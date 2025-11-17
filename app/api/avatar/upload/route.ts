@@ -6,6 +6,8 @@ import path from 'path';
 import { writeFile, stat, mkdir } from 'fs/promises';
 import { verifySession } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 async function ensureDir(dirPath: string) {
     try {
         await stat(dirPath);
