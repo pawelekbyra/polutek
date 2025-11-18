@@ -21,8 +21,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex h-full flex-col relative">
       <TopBar />
-      <div className="flex-1 overflow-auto z-10">
-        {children}
+      <div className="flex-1 md:bg-gray-100 md:flex md:justify-center">
+        <main className="w-full h-full bg-white md:max-w-[400px] md:border md:shadow-lg overflow-auto z-10">
+          {children}
+        </main>
       </div>
     </div>
   );

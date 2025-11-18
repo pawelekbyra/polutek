@@ -99,6 +99,7 @@ export async function createTables() {
         x INTEGER NOT NULL,
         y INTEGER NOT NULL,
         "slideType" VARCHAR(50) NOT NULL,
+        access VARCHAR(50) DEFAULT 'public',
         title VARCHAR(255),
         content TEXT,
         "createdAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -268,13 +269,13 @@ export async function getAllSlides(): Promise<Slide[]> {
 export async function createSlide(slideData: Omit<Slide, 'id' | 'createdAt' | 'initialLikes' | 'isLiked' | 'initialComments'>): Promise<Slide> {
     const sql = getDb();
     const id = `slide_${crypto.randomUUID()}`;
-    const { userId, username, x, y, type, data } = slideData;
+    const { userId, username, x, y, type, data, access } = slideData;
     const content = JSON.stringify(data);
     const title = data && 'title' in data ? (data as any).title : null;
 
     const result = await sql`
-        INSERT INTO slides ("id", "userId", "username", "x", "y", "slideType", "title", "content")
-        VALUES (${id}, ${userId}, ${username}, ${x}, ${y}, ${type}, ${title}, ${content})
+        INSERT INTO slides ("id", "userId", "username", "x", "y", "slideType", "access", "title", "content")
+        VALUES (${id}, ${userId}, ${username}, ${x}, ${y}, ${type}, ${access}, ${title}, ${content})
         RETURNING *;
     `;
     const dbSlide = result[0];

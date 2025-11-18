@@ -77,11 +77,6 @@ const TopBar = () => {
               </button>
             </div>
             <div className="flex justify-end">
-              {isDesktop && (
-                <Button variant="ghost" size="icon" onClick={handleShowPwaModal} aria-label={t('installPwaAriaLabel')}>
-                  <span className="text-sm font-semibold">{t('installAppText')}</span>
-                </Button>
-              )}
               <Button variant="ghost" size="icon" onClick={handleLoggedOutNotificationClick} aria-label={t('notificationAriaLabel')}>
                 <BellIcon className="w-6 h-6" />
               </Button>
@@ -109,11 +104,6 @@ const TopBar = () => {
               <span className="font-semibold text-lg text-white">Ting Tong</span>
             </div>
             <div className="flex justify-end">
-              {isDesktop && (
-                <Button variant="ghost" size="icon" onClick={handleShowPwaModal} aria-label={t('installPwaAriaLabel')}>
-                  <span className="text-sm font-semibold">{t('installAppText')}</span>
-                </Button>
-              )}
               <div className="relative">
                 <Button variant="ghost" size="icon" onClick={handleLoggedInNotificationClick} aria-label={t('notificationAriaLabel')}>
                   <BellIcon className="w-6 h-6" />
