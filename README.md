@@ -1,104 +1,50 @@
-# Ting Tong Next
+# Analiza i Rekomendacje Aplikacji
 
-## Project Overview
+## Wstęp
 
-This project is a modern, mobile-first social media application inspired by TikTok, built with Next.js. It features a vertical video feed with prefetching, a real-time comment and notification system, robust user authentication, and a scalable, centralized data architecture. The application is designed for seamless deployment on Vercel, leveraging its powerful ecosystem of serverless functions, edge network, and integrated services.
+Ten dokument przedstawia szczegółową analizę kodu aplikacji, identyfikuje kluczowe problemy i słabe punkty, a także zawiera rekomendacje dotyczące dalszych prac. Audyt został przeprowadzony w celu poprawy bezpieczeństwa, wydajności, i utrzymania kodu.
 
-## Getting Started
+## Podsumowanie Główych Problemów
 
-### Prerequisites
+1.  **Krytyczna Luka Bezpieczeństwa:** Użycie stałego, jawnego klucza `FALLBACK_SECRET` w `lib/auth.ts` stanowi poważne zagrożenie. W przypadku braku zmiennej środowiskowej `JWT_SECRET`, aplikacja używa znanego, niebezpiecznego klucza do podpisywania tokenów JWT.
+2.  **Brak Testów Automatycznych:** Brak skryptu `test` w `package.json` i ogólny brak testów jednostkowych oraz integracyjnych sprawia, że każda zmiana w kodzie jest ryzykowna i trudna do zweryfikowania.
+3.  **Wydajność Bazy Danych:** Schemat `Prisma` nie zawiera definicji indeksów dla kluczowych pól (np. `slideId` w `Comment`), co może prowadzić do znacznego spowolnienia zapytań w miarę wzrostu ilości danych.
+4.  **Ryzyko Utraty Danych:** Powszechne użycie `onDelete: Cascade` w schemacie bazy danych stwarza ryzyko nieodwracalnej utraty danych przy usuwaniu użytkowników lub innych powiązanych rekordów.
 
-- Node.js (v18 or later)
-- Yarn
-- A PostgreSQL database (e.g., from [Vercel Postgres](https://vercel.com/postgres))
-- An [Ably](https://ably.com/) account for real-time messaging
-- VAPID keys for push notifications
+## Szczegółowa Analiza i Rekomendacje
 
-### Installation & Setup
+### 1. Bezpieczeństwo
 
-1.  **Clone the Repository**:
-    ```bash
-    git clone <repository-url>
-    ```
-2.  **Install Dependencies**:
-    ```bash
-    cd ting-tong-next
-    yarn install
-    ```
-3.  **Configure Environment Variables**:
-    Create a `.env.local` file in the root of the project and add the following variables:
-    ```env
-    # Database
-    DATABASE_URL="your-postgres-database-url"
+-   **Problem:** Użycie `FALLBACK_SECRET` w `lib/auth.ts`.
+    -   **Rekomendacja:** Należy natychmiast usunąć `FALLBACK_SECRET`. Aplikacja powinna rzucać błąd i kończyć działanie podczas uruchamiania w środowisku produkcyjnym, jeśli `JWT_SECRET` nie jest ustawiony.
+-   **Problem:** Brak walidacji danych wejściowych.
+    -   **Rekomendacja:** Wprowadzić walidację danych wejściowych dla wszystkich akcji serwerowych i punktów końcowych API, używając biblioteki takiej jak `Zod`.
+-   **Problem:** Potencjalne luki XSS.
+    -   **Rekomendacja:** Chociaż `DOMPurify` jest używany, należy przeprowadzić dokładny przegląd wszystkich miejsc, w których treść generowana przez użytkownika jest renderowana, aby upewnić się, że jest poprawnie sanitowana.
 
-    # Authentication
-    JWT_SECRET="your-strong-jwt-secret"
+### 2. Wydajność
 
-    # Real-Time Notifications (Ably)
-    ABLY_API_KEY="your-ably-api-key"
-    NEXT_PUBLIC_ABLY_API_KEY="your-ably-public-api-key"
+-   **Problem:** Brak indeksów w bazie danych.
+    -   **Rekomendacja:** Dodać indeksy do wszystkich pól używanych jako klucze obce oraz pól często używanych w klauzulach `WHERE`. Przykłady: `slideId` w `Comment`, `userId` w `Notification`.
+-   **Problem:** N-plus-1 w zapytaniach.
+    -   **Rekomendacja:** Przeanalizować zapytania do bazy danych, zwłaszcza te w pętlach, i tam, gdzie to możliwe, używać zapytań wsadowych (`batch queries`) lub `include` w `Prisma`, aby uniknąć problemu N+1.
 
-    # Push Notifications
-    NEXT_PUBLIC_VAPID_PUBLIC_KEY="your-vapid-public-key"
-    VAPID_PRIVATE_KEY="your-vapid-private-key"
-    VAPID_SUBJECT="mailto:your-email@example.com"
-    ```
-4.  **Run Database Migrations**:
-    Apply the database schema:
-    ```bash
-    npx prisma migrate dev
-    ```
+### 3. Utrzymanie i Dobre Praktyki
 
-### Running the Development Server
+-   **Problem:** Brak testów.
+    -   **Rekomendacja:** Zintegrować framework do testowania (np. `Jest` z `React Testing Library`) i wprowadzić politykę pisania testów jednostkowych i integracyjnych dla nowych funkcji.
+-   **Problem:** Użycie `String` zamiast `Enum` w schemacie `Prisma`.
+    -   **Rekomendacja:** Zastąpić pola `String` (np. `role` w `User`) typem `Enum`, aby zapewnić integralność danych na poziomie bazy.
+-   **Problem:** Duże, monolityczne komponenty.
+    -   **Rekomendacja:** Podzielić większe komponenty (np. `MainFeed.tsx`) на mniejsze, bardziej wyspecjalizowane komponenty, co poprawi czytelność i ułatwi utrzymanie.
+-   **Problem:** `onDelete: Cascade`.
+    -   **Rekomendacja:** Rozważyć zastąpienie `onDelete: Cascade` mechanizmem miękkiego usuwania (`soft delete`) lub anonimizacji, aby zapobiec przypadkowej utracie danych.
+-   **Problem:** Zarządzanie zależnościami.
+    -   **Rekomendacja:** Zbadać, dlaczego konieczne było użycie `"resolutions"` w `package.json` i spróbować rozwiązać problem u źródła. Regularnie przeglądać i aktualizować zależności.
 
-To start the development server, run:
+## Sugerowany Plan Działania
 
-```bash
-yarn dev
-```
-
-The application will be available at `http://localhost:3000`.
-
-## Key Functionalities
-
--   **Vertical Video Feed**: A TikTok-style, infinitely scrollable video feed with prefetching and lazy loading for optimal performance.
--   **Real-Time Notification System**: A robust notification system powered by Ably for real-time updates and Web Push for native notifications. Includes a modern, slide-in notification panel.
--   **Interactive Commenting System**: Users can comment on videos, reply to other comments, and vote on comments, with all interactions updated in real-time.
--   **User Authentication**: A secure, JWT-based authentication system with session management and password recovery.
--   **Centralized Data Layer**: A clean, scalable, and type-safe data architecture with a centralized data access layer, powered by Prisma.
--   **User Roles**: A role-based access control system with three roles: `ADMIN`, `PATRON`, and `TWÓRCA`.
--   **Admin Panel**: A dedicated admin panel for managing users and application content.
-
-## Technology Stack & Architecture
-
--   **Framework**: [Next.js](https://nextjs.org/) (App Router)
--   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
--   **Database & ORM**: [Vercel Postgres](https://vercel.com/postgres) & [Prisma](https://www.prisma.io/)
--   **Real-Time Messaging**: [Ably](https://ably.com/)
--   **Push Notifications**: [Web Push](https://developer.mozilla.org/en-US/docs/Web/API/Push_API)
--   **Rate Limiting**: [Upstash Redis](https://upstash.com/redis) via [Vercel KV](https://vercel.com/kv)
--   **File Storage**: [Vercel Blob](https://vercel.com/blob)
--   **Authentication**: [JWT (jose)](https://github.com/panva/jose)
--   **Form Management**: [React Hook Form](https://react-hook-form.com/) & [Zod](https://zod.dev/)
--   **UI Components**: [Radix UI](https://www.radix-ui.com/) & [Lucide React](https://lucide.dev/)
--   **Animations**: [Framer Motion](https://www.framer.com/motion/)
-
-## Critical Analysis & Future Work
-
-This project has evolved significantly, addressing many of the initial critical issues. The architecture is now more robust, secure, and scalable. However, there are still areas for future improvement.
-
-### Implemented & Solved
-
--   **Centralized Data Layer**: The database logic has been fully refactored into a centralized, type-safe data access layer under `lib/db/`, eliminating all direct Prisma calls from the API and server actions.
--   **Real-Time & Push Notifications**: A complete notification system has been implemented, providing both in-app real-time updates and native push notifications.
--   **Rate Limiting**: A rate limiting solution using Vercel KV has been implemented to protect against spam and abuse.
--   **Secure Password Handling**: All password handling now uses `bcrypt` for secure hashing.
-
-### Recommendations for Future Work
-
--   **Video Transcoding**: The application still serves raw video files. Implementing a video transcoding pipeline (e.g., using Mux or AWS Elemental MediaConvert) to generate HLS/DASH streams remains a top priority for performance and scalability.
--   **Comprehensive Test Coverage**: The project still lacks automated tests. Adding a testing framework (e.g., Jest and React Testing Library for unit/integration tests, and Playwright for E2E tests) is crucial for long-term stability and maintainability.
--   **Enhanced Admin Panel**: The admin panel is functional but could be expanded with features like user search, pagination, content moderation, and analytics.
--   **Optimistic UI Updates**: While the real-time system is fast, implementing optimistic UI updates for actions like commenting and liking would further improve the user experience.
--   **Complete Internationalization (i18n)**: The application has a foundation for i18n, but translations should be completed and expanded across the entire UI.
--   **Code Cleanup**: There are still some unused files and commented-out code that should be removed to improve code quality.
+1.  **Natychmiast:** Usunąć `FALLBACK_SECRET` z `lib/auth.ts`.
+2.  **Krótkoterminowo:** Dodać indeksy do bazy danych i wprowadzić walidację `Zod` dla wszystkich akcji serwerowych.
+3.  **Średnioterminowo:** Zintegrować `Jest` i zacząć pisać testy. Zrefaktoryzować kluczowe komponenty.
+4.  **Długoterminowo:** Zastąpić `onDelete: Cascade` i `String` w schemacie `Prisma`. Przeprowadzić pełny audyt zależności.

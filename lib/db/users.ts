@@ -124,7 +124,11 @@ export const deletePasswordResetToken = async (token: string) => {
  * Gets all users.
  */
 export const getAllUsers = async () => {
-  return prisma.user.findMany();
+  const users = await prisma.user.findMany();
+  return users.map(user => ({
+    ...user,
+    password: user.password === null ? undefined : user.password,
+  }));
 };
 
 /**
