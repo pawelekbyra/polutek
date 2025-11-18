@@ -1,75 +1,55 @@
+// app/api/profile/update/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { SignJWT } from 'jose';
-import { cookies } from 'next/headers';
-import { db, User } from '@/lib/db';
+import { prisma } from '@/lib/prisma';
 import { verifySession } from '@/lib/auth';
+import { z } from 'zod';
 
-const FALLBACK_SECRET = 'a_very_long_insecure_key_for_testing_1234567890abcdef';
-const secretToUse = process.env.JWT_SECRET || FALLBACK_SECRET;
+const updateProfileSchema = z.object({
+    firstName: z.string().min(1, 'First name is required').optional(),
+    lastName: z.string().min(1, 'Last name is required').optional(),
+    email: z.string().email('Invalid email address').optional(),
+    emailConsent: z.boolean().optional(),
+    emailLanguage: z.enum(['pl', 'en']).optional(),
+    newPassword: z.string().min(8).optional(),
+    isProfileComplete: z.boolean().optional(),
+});
 
-if (!process.env.JWT_SECRET) {
-console.warn("WARNING: JWT_SECRET not set. Using insecure default fallback key for development.");
-}
-
-const JWT_SECRET = new TextEncoder().encode(secretToUse);
-const COOKIE_NAME = 'session';
-
-export const dynamic = 'force-dynamic';
-
-// PUT handler to update the user's profile
-export async function PUT(req: NextRequest) {
-    const payload = await verifySession();
-
-    if (!payload || !payload.user) {
-        return NextResponse.json({ success: false, message: 'Not authenticated' }, { status: 401 });
+export async function POST(request: NextRequest) {
+    const session = await verifySession();
+    if (!session?.user) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-    const currentUser = payload.user;
+
+    const body = await request.json();
+
+    const validatedFields = updateProfileSchema.safeParse(body);
+
+    if (!validatedFields.success) {
+        return NextResponse.json({ error: 'Invalid input', details: validatedFields.error.flatten() }, { status: 400 });
+    }
+
+    const { firstName, lastName, email, newPassword, isProfileComplete } = validatedFields.data;
+
+    const dataToUpdate: any = {};
+    if (firstName && lastName) dataToUpdate.displayName = `${firstName} ${lastName}`;
+    if (email) dataToUpdate.email = email;
+    if (isProfileComplete) dataToUpdate.is_profile_complete = isProfileComplete;
+    if (newPassword) {
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        dataToUpdate.password = hashedPassword;
+    }
+
 
     try {
-        const body = await req.json();
-        const { firstName, lastName, email } = body;
-
-        if (!firstName || !lastName || !email) {
-            return NextResponse.json({ success: false, message: 'All fields are required.' }, { status: 400 });
-        }
-
-        const existingUser = await db.findUserByEmail(email);
-        if (existingUser && existingUser.id !== currentUser.id) {
-            return NextResponse.json({ success: false, message: 'This email is already in use.' }, { status: 409 });
-        }
-
-        const updates: Partial<User> = {
-            email,
-            displayName: `${firstName} ${lastName}`,
-        };
-
-        const updatedUser = await db.updateUser(currentUser.id, updates);
-
-        if (!updatedUser) {
-             return NextResponse.json({ success: false, message: 'User not found or failed to update.' }, { status: 404 });
-        }
-
-        // Re-issue the JWT with the updated user details
-        const { password, ...userPayload } = updatedUser;
-        const token = await new SignJWT({ user: userPayload })
-            .setProtectedHeader({ alg: 'HS256' })
-            .setIssuedAt()
-            .setExpirationTime('24h')
-            .sign(JWT_SECRET);
-
-        cookies().set(COOKIE_NAME, token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
-            path: '/',
-            maxAge: 60 * 60 * 24,
+        const updatedUser = await prisma.users.update({
+            where: { id: session.user.id },
+            data: dataToUpdate,
         });
 
-
-        return NextResponse.json({ success: true, data: userPayload });
+        return NextResponse.json({ success: true, user: updatedUser });
 
     } catch (error) {
-        console.error('Error in profile update API:', error);
-        return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
+        console.error('Failed to update profile:', error);
+        return NextResponse.json({ error: 'Failed to update profile' }, { status: 500 });
     }
 }

@@ -66,7 +66,8 @@ const SlideUI = ({ slide, isVisible }: SlideUIProps) => {
         isPlaying,
         isMuted,
         seek,
-        setIsMuted
+        setIsMuted,
+        openAuthorProfileModal
     } = useStore(state => ({
         togglePlay: state.togglePlay,
         currentTime: state.currentTime,
@@ -132,7 +133,7 @@ const SlideUI = ({ slide, isVisible }: SlideUIProps) => {
         </AnimatePresence>
 
         <div className="relative z-20">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2 mb-2 cursor-pointer" onClick={() => openAuthorProfileModal(slide.userId)}>
                 <Image src={slide.avatar || '/avatars/default.png'} alt={slide.username} width={40} height={40} className="rounded-full border-2 border-white" />
                 <p className="font-bold text-lg">{slide.username}</p>
             </div>
