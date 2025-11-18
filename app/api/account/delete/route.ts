@@ -1,41 +1,49 @@
+// app/api/account/delete/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
-
-export const dynamic = 'force-dynamic';
-import { db } from '@/lib/db';
+import { prisma } from '@/lib/prisma';
 import { verifySession } from '@/lib/auth';
+import { z } from 'zod';
+import bcrypt from 'bcrypt';
 
-const COOKIE_NAME = 'session';
+const deleteAccountSchema = z.object({
+    password: z.string().min(1, 'Password is required'),
+});
 
 export async function POST(request: NextRequest) {
-  const payload = await verifySession();
-  if (!payload || !payload.user) {
-    return NextResponse.json({ success: false, message: 'Not authenticated' }, { status: 401 });
-  }
-
-  try {
-    const { confirm_text } = await request.json();
-
-    if (confirm_text !== 'USUWAM KONTO') {
-      return NextResponse.json({ success: false, message: 'Confirmation text is incorrect.' }, { status: 400 });
+    const session = await verifySession();
+    if (!session?.user) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const wasDeleted = await db.deleteUser(payload.user.id);
+    const body = await request.json();
 
-    if (!wasDeleted) {
-        return NextResponse.json({ success: false, message: 'User not found or could not be deleted.' }, { status: 404 });
+    const validatedFields = deleteAccountSchema.safeParse(body);
+
+    if (!validatedFields.success) {
+        return NextResponse.json({ error: 'Invalid input', details: validatedFields.error.flatten() }, { status: 400 });
     }
 
-    // Clear the session cookie to log the user out
-    cookies().delete(COOKIE_NAME);
+    const { password } = validatedFields.data;
 
-    return NextResponse.json({
-      success: true,
-      message: 'Account deleted successfully. You have been logged out.',
-    });
+    try {
+        const user = await prisma.users.findUnique({ where: { id: session.user.id } });
 
-  } catch (error) {
-    console.error('Error in account delete API:', error);
-    return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
-  }
+        if (!user || !user.password) {
+            return NextResponse.json({ error: 'User not found' }, { status: 404 });
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordValid) {
+            return NextResponse.json({ error: 'Invalid password' }, { status: 400 });
+        }
+
+        await prisma.users.delete({ where: { id: session.user.id } });
+
+        return NextResponse.json({ success: true, message: 'Account deleted successfully' });
+
+    } catch (error) {
+        console.error('Failed to delete account:', error);
+        return NextResponse.json({ error: 'Failed to delete account' }, { status: 500 });
+    }
 }

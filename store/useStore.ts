@@ -19,7 +19,9 @@ interface AppState {
 
   // Slide state
   activeSlide: Slide | null;
-  setActiveSlide: (slide: Slide | null) => void;
+  activeSlideIndex: number;
+  activeHlsUrl: string | null;
+  setActiveSlide: (slide: Slide | null, index: number) => void;
   likeChanges: Record<string, LikeState>;
   toggleLike: (slideId: string, initialLikes: number, initialIsLiked: boolean) => void;
 
@@ -29,6 +31,13 @@ interface AppState {
   userPlaybackIntent: 'play' | 'pause' | null;
   currentTime: number;
   duration: number;
+
+  // Author Profile Modal
+  authorProfileId: string | null;
+  isAuthorProfileModalOpen: boolean;
+  openAuthorProfileModal: (userId: string) => void;
+  closeAuthorProfileModal: () => void;
+  jumpToSlide: (slideId: string) => Promise<void>;
 
   // Video player actions
   setIsMuted: (isMuted: boolean) => void;
@@ -45,6 +54,8 @@ export const useStore = create<AppState>((set, get) => ({
   activeModal: null,
   isLoggedIn: false, // Assume user is not logged in initially
   activeSlide: null,
+  activeSlideIndex: 0,
+  activeHlsUrl: null,
   likeChanges: {},
 
   // Video Player
@@ -54,10 +65,25 @@ export const useStore = create<AppState>((set, get) => ({
   currentTime: 0,
   duration: 0,
 
+  // Author Profile Modal
+  authorProfileId: null,
+  isAuthorProfileModalOpen: false,
+
 
   // --- ACTIONS ---
   setActiveModal: (modal) => set({ activeModal: modal }),
-  setActiveSlide: (slide) => set({ activeSlide: slide }),
+  openAuthorProfileModal: (userId) => set({ authorProfileId: userId, isAuthorProfileModalOpen: true }),
+  closeAuthorProfileModal: () => set({ authorProfileId: null, isAuthorProfileModalOpen: false }),
+  jumpToSlide: async (slideId) => {
+    // This will be overridden by the component
+  },
+  setActiveSlide: (slide, index) => {
+      let hlsUrl = null;
+      if (slide && slide.type === 'video' && slide.data?.hlsUrl) {
+          hlsUrl = slide.data.hlsUrl;
+      }
+      set({ activeSlide: slide, activeSlideIndex: index, activeHlsUrl: hlsUrl })
+  },
 
   toggleLike: (slideId, initialLikes, initialIsLiked) => set((state) => {
     const currentChanges = state.likeChanges[slideId];

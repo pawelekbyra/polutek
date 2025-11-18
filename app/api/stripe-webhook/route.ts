@@ -1,7 +1,7 @@
 // app/api/stripe-webhook/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { db } from '@/lib/db';
+import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcrypt';
 import { sendPasswordResetLinkEmail } from '@/lib/email';
 import { randomBytes } from 'crypto';
@@ -10,11 +10,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
     apiVersion: '2024-04-10',
 });
 
-export const config = {
-    api: {
-        bodyParser: false,
-    },
-};
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
     const body = await request.text();
@@ -44,28 +40,36 @@ export async function POST(request: NextRequest) {
         }
 
         try {
-            const existingUser = await db.findUserByEmail(email);
+            const existingUser = await prisma.users.findUnique({ where: { email } });
             if (existingUser) {
-                await db.updateUser(existingUser.id, { role: 'patron' });
+                await prisma.users.update({ where: { id: existingUser.id }, data: { role: 'PATRON' } });
                 return NextResponse.json({ success: true, message: 'Patron istnieje, rola zaktualizowana.' }, { status: 200 });
             }
 
             const tempPassword = randomBytes(32).toString('hex');
             const hashedPassword = await bcrypt.hash(tempPassword, 10);
 
-            const newUser = await db.createUser({
-                email,
-                password: hashedPassword,
-                username: email.split('@')[0],
-                displayName: `Patron ${email.split('@')[0]}`,
-                role: 'patron',
-                avatar: null,
+            const newUser = await prisma.users.create({
+                data: {
+                    email,
+                    password: hashedPassword,
+                    username: email.split('@')[0],
+                    displayName: `Patron ${email.split('@')[0]}`,
+                    role: 'PATRON',
+                    avatar: null,
+                }
             });
 
             const token = randomBytes(32).toString('hex');
             const expiresAt = new Date(Date.now() + 3600000); // 1 hour
 
-            await db.createPasswordResetToken(newUser.id, token, expiresAt);
+            await prisma.password_reset_tokens.create({
+                data: {
+                    userId: newUser.id,
+                    token,
+                    expiresAt,
+                }
+            });
 
             const resetLink = `${process.env.NEXT_PUBLIC_BASE_URL}/reset-password?token=${token}`;
             await sendPasswordResetLinkEmail(email, resetLink);

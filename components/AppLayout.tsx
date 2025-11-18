@@ -6,7 +6,10 @@ import { useTranslation } from '@/context/LanguageContext';
 import TopBar from './TopBar';
 import { useStore } from '@/store/useStore';
 import { shallow } from 'zustand/shallow';
-import TippingModal from './TippingModal'; // Import the TippingModal component
+import TippingModal from './TippingModal';
+import { AuthorProfileModal } from './AuthorProfileModal';
+import GlobalVideoPlayer from './GlobalVideoPlayer';
+import FirstLoginModal from './FirstLoginModal';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const { activeModal, setActiveModal } = useStore(
@@ -31,7 +34,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     <div className="flex h-full flex-col relative">
       <TopBar />
       <div className="flex-1 md:bg-gray-100 md:flex md:justify-center">
-        <main className="w-full h-full bg-white md:max-w-[400px] md:border md:shadow-lg overflow-auto z-10">
+        <main className="relative w-full h-full bg-white md:max-w-[400px] md:border md:shadow-lg overflow-hidden z-10">
+          <GlobalVideoPlayer />
           {children}
         </main>
       </div>
@@ -40,6 +44,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         isOpen={activeModal === 'tip'}
         onClose={() => setActiveModal(null)}
       />
+      <AuthorProfileModal />
+      <FirstLoginModal />
     </div>
   );
 }

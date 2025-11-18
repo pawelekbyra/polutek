@@ -6,45 +6,38 @@ import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
 import { useTranslation } from '@/context/LanguageContext';
+import { useToast } from '@/context/ToastContext';
 
 const DeleteTab: React.FC = () => {
   const { t } = useTranslation();
-  const DELETE_CONFIRM_TEXT = t('deleteAccountConfirmText');
-
-  const [confirmation, setConfirmation] = useState('');
-  const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [password, setPassword] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const { logout } = useUser();
+  const { addToast } = useToast();
 
   const handleDeleteSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (confirmation !== DELETE_CONFIRM_TEXT) {
-      setStatus({ type: 'error', message: t('deleteAccountConfirmError') });
-      return;
-    }
-
     setIsSaving(true);
-    setStatus(null);
 
     try {
       const res = await fetch('/api/account/delete', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ confirm_text: confirmation }),
+        body: JSON.stringify({ password }),
       });
 
       const result = await res.json();
 
       if (res.ok && result.success) {
-        setStatus({ type: 'success', message: result.message });
+        addToast(result.message, 'success');
         setTimeout(() => {
           logout();
         }, 2000);
       } else {
-        throw new Error(result.message || t('deleteAccountError'));
+        throw new Error(result.error || t('deleteAccountError'));
       }
     } catch (error: any) {
-      setStatus({ type: 'error', message: error.message });
+      addToast(error.message, 'error');
       setIsSaving(false);
     }
   };
@@ -61,13 +54,13 @@ const DeleteTab: React.FC = () => {
         </div>
         <form id="deleteForm" onSubmit={handleDeleteSubmit}>
           <div className="form-group mb-4">
-            <label className="form-label text-sm font-medium mb-2 block">{t('deleteAccountPrompt')} <strong>{DELETE_CONFIRM_TEXT}</strong></label>
+            <label className="form-label text-sm font-medium mb-2 block">{t('passwordLabel')}</label>
             <Input
-              type="text"
-              placeholder={DELETE_CONFIRM_TEXT}
+              type="password"
+              placeholder={t('currentPasswordPlaceholder')}
               id="deleteConfirmation"
-              value={confirmation}
-              onChange={(e) => setConfirmation(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <p className="text-xs text-white/60 mt-2">
               {t('deleteAccountInfo')}
@@ -77,16 +70,11 @@ const DeleteTab: React.FC = () => {
             type="submit"
             variant="destructive"
             className="w-full mt-4"
-            disabled={confirmation !== DELETE_CONFIRM_TEXT || isSaving}
+            disabled={!password || isSaving}
           >
             {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
             {isSaving ? t('deleting') : t('deleteAccountButton')}
           </Button>
-          {status && (
-            <div className={`mt-4 text-sm p-3 rounded-md ${status.type === 'success' ? 'bg-green-900/50 text-green-300' : 'bg-red-900/50 text-red-300'}`}>
-              {status.message}
-            </div>
-          )}
         </form>
       </div>
     </div>
