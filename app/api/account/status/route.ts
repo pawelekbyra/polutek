@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifySession } from '@/lib/auth';
+import { findUserById } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
-import * as db from '@/lib/db';
 
 export async function GET(req: NextRequest) {
     const payload = await verifySession();
@@ -11,8 +11,7 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ isLoggedIn: false, user: null });
     }
 
-    // @ts-ignore
-    const freshUser = await db.findUserById(payload.user.id);
+    const freshUser = await findUserById(payload.user.id);
     if (!freshUser) {
         // This can happen if the user was deleted but the cookie remains.
         return NextResponse.json({ isLoggedIn: false, user: null });

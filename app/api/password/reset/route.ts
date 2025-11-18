@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import * as db from '@/lib/db';
+import { getPasswordResetToken, deletePasswordResetToken, updateUser } from '@/lib/db';
 import bcrypt from 'bcrypt';
 
 export async function POST(request: NextRequest) {
@@ -10,26 +10,22 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: 'Missing token or password.' }, { status: 400 });
     }
 
-    // @ts-ignore
-    const savedToken = await db.getPasswordResetToken(token);
+    const savedToken = await getPasswordResetToken(token);
 
     if (!savedToken) {
       return NextResponse.json({ message: 'Invalid or expired token.' }, { status: 400 });
     }
 
     if (new Date() > new Date(savedToken.expiresAt)) {
-      // @ts-ignore
-      await db.deletePasswordResetToken(savedToken.id);
+      await deletePasswordResetToken(token);
       return NextResponse.json({ message: 'Token has expired.' }, { status: 400 });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // @ts-ignore
-    await db.updateUser(savedToken.userId, { password: hashedPassword });
+    await updateUser(savedToken.userId, { password: hashedPassword });
 
-    // @ts-ignore
-    await db.deletePasswordResetToken(savedToken.id);
+    await deletePasswordResetToken(token);
 
     return NextResponse.json({ message: 'Password has been reset successfully.' });
 

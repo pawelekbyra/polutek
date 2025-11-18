@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useUser } from '@/context/UserContext';
 import { Button } from '@/components/ui/button';
-import NotificationPopup from './NotificationPopup';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '@/context/LanguageContext';
 import { useStore } from '@/store/useStore';
@@ -12,7 +11,6 @@ import LoginForm from './LoginForm';
 import { useToast } from '@/context/ToastContext';
 import MenuIcon from './icons/MenuIcon';
 import BellIcon from './icons/BellIcon';
-import PwaDesktopModal from './PwaDesktopModal';
 
 const TopBar = () => {
   const { user } = useUser();
@@ -20,34 +18,12 @@ const TopBar = () => {
   const { t } = useTranslation();
   const { addToast } = useToast();
   const [isLoginPanelOpen, setIsLoginPanelOpen] = useState(false);
-  const [showNotifPanel, setShowNotifPanel] = useState(false);
-  const [showPwaModal, setShowPwaModal] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const checkIsDesktop = () => setIsDesktop(window.innerWidth >= 768);
-    checkIsDesktop();
-    window.addEventListener('resize', checkIsDesktop);
-    return () => window.removeEventListener('resize', checkIsDesktop);
-  }, []);
 
   // This should be replaced with real data from a notifications context or API
   const unreadCount = 0;
 
-  const handleLoggedOutMenuClick = () => {
-    addToast(t('menuAccessAlert'), 'info');
-  };
-
-  const handleLoggedOutNotificationClick = () => {
-    addToast(t('notificationAlert'), 'info');
-  };
-
-  const handleLoggedInNotificationClick = () => {
-    setShowNotifPanel(p => !p);
-  };
-
-  const handleShowPwaModal = () => {
-    setShowPwaModal(true);
+  const handleLoggedOutClick = (type: 'menu' | 'notification') => {
+      addToast(t(type === 'menu' ? 'menuAccessAlert' : 'notificationAlert'), 'info');
   };
 
   return (
@@ -61,10 +37,10 @@ const TopBar = () => {
         }}
       >
         {!user ? (
-          // --- WIDOK DLA UŻYTKOWNIKÓW NIEZALOGOWANYCH ---
+          // --- Logged Out View ---
           <>
             <div className="flex justify-start">
-              <Button variant="ghost" size="icon" onClick={handleLoggedOutMenuClick} aria-label={t('menuAriaLabel')}>
+              <Button variant="ghost" size="icon" onClick={() => handleLoggedOutClick('menu')} aria-label={t('menuAriaLabel')}>
                 <MenuIcon className="w-6 h-6" />
               </Button>
             </div>
@@ -77,13 +53,13 @@ const TopBar = () => {
               </button>
             </div>
             <div className="flex justify-end">
-              <Button variant="ghost" size="icon" onClick={handleLoggedOutNotificationClick} aria-label={t('notificationAriaLabel')}>
+              <Button variant="ghost" size="icon" onClick={() => handleLoggedOutClick('notification')} aria-label={t('notificationAriaLabel')}>
                 <BellIcon className="w-6 h-6" />
               </Button>
             </div>
           </>
         ) : (
-          // --- WIDOK DLA ZALOGOWANYCH UŻYTKOWNIKÓW ---
+          // --- Logged In View ---
           <>
             <div className="flex justify-start">
               <Button variant="ghost" size="icon" onClick={() => setActiveModal('account')} aria-label={t('accountMenuButton')}>
@@ -105,16 +81,12 @@ const TopBar = () => {
             </div>
             <div className="flex justify-end">
               <div className="relative">
-                <Button variant="ghost" size="icon" onClick={handleLoggedInNotificationClick} aria-label={t('notificationAriaLabel')}>
+                <Button variant="ghost" size="icon" onClick={() => setActiveModal('notifications')} aria-label={t('notificationAriaLabel')}>
                   <BellIcon className="w-6 h-6" />
                   {unreadCount > 0 && (
                     <span className="absolute top-1 right-1 block h-2 w-2 rounded-full ring-2 ring-black bg-pink-500" />
                   )}
                 </Button>
-                <NotificationPopup
-                  isOpen={showNotifPanel}
-                  onClose={() => setShowNotifPanel(false)}
-                />
               </div>
             </div>
           </>
@@ -136,9 +108,6 @@ const TopBar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* --- PWA Modal --- */}
-      {showPwaModal && <PwaDesktopModal isOpen={showPwaModal} onClose={() => setShowPwaModal(false)} />}
     </>
   );
 };

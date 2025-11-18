@@ -2,11 +2,15 @@ import { create } from 'zustand';
 import { Slide } from '@/lib/types';
 import React from 'react';
 
-export type ModalType = 'account' | 'comments' | 'info' | 'login' | 'tip' | null;
+export type ModalType = 'account' | 'comments' | 'info' | 'login' | 'tip' | 'notifications' | null;
 
 interface LikeState {
     likes: number;
     isLiked: boolean;
+}
+
+interface VideoState {
+    isManuallyPaused: boolean;
 }
 
 interface AppState {
@@ -31,6 +35,7 @@ interface AppState {
     userPlaybackIntent: 'play' | 'pause' | null;
     currentTime: number;
     duration: number;
+    videoState: VideoState;
 
     // Author Profile Modal
     authorProfileId: string | null;
@@ -47,6 +52,7 @@ interface AppState {
     setCurrentTime: (time: number) => void;
     setDuration: (duration: number) => void;
     seek: (time: number) => void;
+    setVideoState: (state: Partial<VideoState>) => void;
 }
 
 export const useStore = create<AppState>((set, get) => ({
@@ -64,6 +70,9 @@ export const useStore = create<AppState>((set, get) => ({
     userPlaybackIntent: null,
     currentTime: 0,
     duration: 0,
+    videoState: {
+        isManuallyPaused: false,
+    },
 
     // Author Profile Modal
     authorProfileId: null,
@@ -115,7 +124,7 @@ export const useStore = create<AppState>((set, get) => ({
     setCurrentTime: (time) => set({ currentTime: time }),
     setDuration: (duration) => set({ duration: duration }),
     seek: (time) => set({ currentTime: time }), // This is a simplified seek
-
+    setVideoState: (newState) => set(state => ({ videoState: { ...state.videoState, ...newState } })),
 
     // --- COMPUTED / SELECTORS ---
     isAnyModalOpen: () => get().activeModal !== null,

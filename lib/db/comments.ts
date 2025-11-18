@@ -1,141 +1,119 @@
-// lib/db/comments.ts
-import { prisma } from '@/lib/prisma';
-import type { comments as Comment, users as User, comment_votes } from '@prisma/client';
+import { prisma } from '../prisma';
 
-export type CommentWithDetails = Comment & {
-  user: Pick<User, 'id' | 'username' | 'displayName' | 'avatar'>;
-  upvotesCount: number;
-  downvotesCount: number;
-  currentUserVote: 'upvote' | 'downvote' | null;
-};
-
-export async function getCommentsForSlide(
-  slideId: string,
-  currentUserId?: string
-): Promise<CommentWithDetails[]> {
-  const comments = await prisma.comments.findMany({
-    where: {
-      entityId: slideId,
-      deletedAt: null,
-    },
-    include: {
-      users: {
-        select: {
-          id: true,
-          username: true,
-          displayName: true,
-          avatar: true,
+/**
+ * Gets all comments for a given slide.
+ * @param slideId The ID of the slide.
+ * @param userId The ID of the current user to check for votes.
+ */
+export const getCommentsBySlideId = async (slideId: string, userId?: string) => {
+    const comments = await prisma.comment.findMany({
+        where: { slideId },
+        include: {
+            author: true,
+            votes: true,
+            children: {
+                include: {
+                    author: true,
+                    votes: true,
+                },
+                orderBy: {
+                    createdAt: 'asc',
+                },
+            },
         },
-      },
-      comment_votes: true,
-    },
-    orderBy: {
-      createdAt: 'desc', // Domyślne sortowanie po najnowszych
-    },
-  });
-
-  return comments.map((comment) => {
-    const { users, comment_votes, ...commentData } = comment;
-    const upvotesCount = comment_votes.filter((v) => v.voteType === 'upvote').length;
-    const downvotesCount = comment_votes.filter((v) => v.voteType === 'downvote').length;
-
-    const currentUserVote = currentUserId
-      ? comment_votes.find((v) => v.userId === currentUserId)?.voteType ?? null
-      : null;
-
-    return {
-      ...commentData,
-      user: users,
-      upvotesCount,
-      downvotesCount,
-      // @ts-ignore
-      currentUserVote,
-    };
-  });
-}
-
-export async function createComment(data: {
-  entityId: string;
-  userId: string;
-  content: string;
-  imageUrl?: string;
-  parentId?: string | null;
-}): Promise<CommentWithDetails> {
-  const newComment = await prisma.comments.create({
-    data: {
-      entityId: data.entityId,
-      userId: data.userId,
-      content: data.content,
-      imageUrl: data.imageUrl,
-      parentId: data.parentId || null,
-    },
-    include: {
-      users: {
-        select: {
-          id: true,
-          username: true,
-          displayName: true,
-          avatar: true,
+        orderBy: {
+            createdAt: 'desc',
         },
-      },
-    },
-  });
-
-  const { users, ...commentData } = newComment;
-
-  return {
-    ...commentData,
-    user: users,
-    upvotesCount: 0,
-    downvotesCount: 0,
-    currentUserVote: null,
-  };
-}
-
-export async function toggleCommentLike(
-  commentId: string,
-  userId: string,
-  voteType: 'upvote' | 'downvote'
-): Promise<{ newStatus: 'upvoted' | 'downvoted' | 'none'; upvotesCount: number; downvotesCount: number }> {
-  let newStatus: 'upvoted' | 'downvoted' | 'none';
-
-  await prisma.$transaction(async (tx) => {
-    const existingVote = await tx.comment_votes.findUnique({
-      where: {
-        commentId_userId: {
-          commentId,
-          userId,
-        },
-      },
     });
 
-    if (existingVote) {
-      if (existingVote.voteType === voteType) {
-        await tx.comment_votes.delete({ where: { commentId_userId: { commentId, userId } } });
-        newStatus = 'none';
-      } else {
-        await tx.comment_votes.update({
-          where: { commentId_userId: { commentId, userId } },
-          data: { voteType },
-        });
-        // @ts-ignore
-        newStatus = voteType;
-      }
-    } else {
-      await tx.comment_votes.create({
-        data: {
-          commentId,
-          userId,
-          voteType,
-        },
-      });
-       // @ts-ignore
-      newStatus = voteType;
-    }
-  });
+    // Map user's vote status
+    return comments.map(comment => ({
+        ...comment,
+        userVote: comment.votes.find(v => v.userId === userId)?.type,
+        upvotes: comment.votes.filter(v => v.type === 'upvote').length,
+        downvotes: comment.votes.filter(v => v.type === 'downvote').length,
+        children: comment.children.map(reply => ({
+            ...reply,
+            userVote: reply.votes.find(v => v.userId === userId)?.type,
+            upvotes: reply.votes.filter(v => v.type === 'upvote').length,
+            downvotes: reply.votes.filter(v => v.type === 'downvote').length,
+        })),
+    }));
+};
 
-  const upvotesCount = await prisma.comment_votes.count({ where: { commentId, voteType: 'upvote' } });
-  const downvotesCount = await prisma.comment_votes.count({ where: { commentId, voteType: 'downvote' } });
-   // @ts-ignore
-  return { newStatus, upvotesCount, downvotesCount };
-}
+/**
+ * Adds a new comment.
+ * @param data The comment data.
+ */
+export const addComment = async (data: { content: string; slideId: string; authorId: string; parentId?: string; }) => {
+    return prisma.comment.create({
+        data,
+        include: {
+            author: true,
+        },
+    });
+};
+
+/**
+ * Toggles a vote on a comment.
+ * @param commentId The ID of the comment.
+ * @param userId The ID of the user.
+ * @param voteType The type of vote ('upvote' or 'downvote').
+ */
+export const toggleCommentVote = async (commentId: string, userId: string, voteType: 'upvote' | 'downvote') => {
+    const existingVote = await prisma.commentVote.findUnique({
+        where: {
+            userId_commentId: {
+                userId,
+                commentId,
+            },
+        },
+    });
+
+    let newStatus: 'upvoted' | 'downvoted' | 'none';
+
+    if (existingVote) {
+        if (existingVote.type === voteType) {
+            // User is undoing their vote
+            await prisma.commentVote.delete({ where: { id: existingVote.id } });
+            newStatus = 'none';
+        } else {
+            // User is changing their vote
+            await prisma.commentVote.update({
+                where: { id: existingVote.id },
+                data: { type: voteType },
+            });
+            newStatus = voteType === 'upvote' ? 'upvoted' : 'downvoted';
+        }
+    } else {
+        // User is casting a new vote
+        await prisma.commentVote.create({
+            data: {
+                userId,
+                commentId,
+                type: voteType,
+            },
+        });
+        newStatus = voteType === 'upvote' ? 'upvoted' : 'downvoted';
+    }
+
+    const votes = await prisma.commentVote.findMany({
+        where: { commentId },
+    });
+
+    return {
+        newStatus,
+        upvotesCount: votes.filter(v => v.type === 'upvote').length,
+        downvotesCount: votes.filter(v => v.type === 'downvote').length,
+    };
+};
+
+/**
+ * Gets a single comment by its ID.
+ * @param id The ID of the comment.
+ */
+export const getCommentById = async (id: string) => {
+    return prisma.comment.findUnique({
+        where: { id },
+    });
+};

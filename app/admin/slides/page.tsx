@@ -1,4 +1,4 @@
-import { db, User } from '@/lib/db';
+import { getAllSlides, getAllUsers, findUserById, createSlide, updateSlide, deleteSlide, User } from '@/lib/db';
 import { Slide } from '@/lib/types';
 import React from 'react';
 import { verifySession } from '@/lib/auth';
@@ -11,24 +11,23 @@ export const dynamic = 'force-dynamic';
 
 export default async function SlideManagementPage() {
   const session = await verifySession();
-  if (!session || session.user.role !== 'admin') {
+  if (!session || session.user.role !== 'ADMIN') {
     redirect('/admin/login');
   }
 
-  // Use the new getAllSlides function
-  const slides = await db.getAllSlides();
-  const users: User[] = await db.getAllUsers();
+  const slides = await getAllSlides();
+  const users: User[] = await getAllUsers();
 
   async function createSlideAction(formData: FormData): Promise<{ success: boolean, error?: string }> {
     'use server';
     const session = await verifySession();
-    if (!session?.user || session.user.role !== 'admin') {
+    if (!session?.user || session.user.role !== 'ADMIN') {
       return { success: false, error: 'Unauthorized' };
     }
     try {
       const type = formData.get('type') as 'video' | 'image' | 'html';
       const authorId = formData.get('author_id') as string;
-      const author = await db.findUserById(authorId);
+      const author = await findUserById(authorId);
 
       if (!author) {
         return { success: false, error: 'Author not found' };
@@ -63,7 +62,7 @@ export default async function SlideManagementPage() {
           return { success: false, error: 'Invalid slide type' };
       }
 
-      await db.createSlide(newSlide);
+      await createSlide(newSlide);
       revalidatePath('/admin/slides');
       return { success: true };
     } catch (error) {
@@ -75,7 +74,7 @@ export default async function SlideManagementPage() {
   async function updateSlideAction(formData: FormData): Promise<{ success: boolean, error?: string }> {
     'use server';
     const session = await verifySession();
-    if (session?.user?.role !== 'admin') {
+    if (session?.user?.role !== 'ADMIN') {
       return { success: false, error: 'Unauthorized' };
     }
     try {
@@ -104,7 +103,7 @@ export default async function SlideManagementPage() {
         data: updatedData
       };
 
-      await db.updateSlide(slideId, updatedSlide);
+      await updateSlide(slideId, updatedSlide);
       revalidatePath('/admin/slides');
       return { success: true };
     } catch (error) {
@@ -116,12 +115,12 @@ export default async function SlideManagementPage() {
   async function deleteSlideAction(formData: FormData): Promise<{ success: boolean, error?: string }>{
     'use server';
     const session = await verifySession();
-    if (session?.user?.role !== 'admin') {
+    if (session?.user?.role !== 'ADMIN') {
       return { success: false, error: 'Unauthorized' };
     }
     try {
       const slideId = formData.get('id') as string;
-      await db.deleteSlide(slideId);
+      await deleteSlide(slideId);
       revalidatePath('/admin/slides');
       return { success: true };
     } catch (error) {

@@ -1,6 +1,6 @@
 // app/api/slide/[id]/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getSlideById, Like } from '@/lib/db';
 import { verifySession } from '@/lib/auth';
 
 export async function GET(
@@ -17,20 +17,19 @@ export async function GET(
     const currentUserId = session?.user?.id;
 
     try {
-        const slide = await prisma.slides.findUnique({
-            where: { id: slideId },
+        const slide = await getSlideById(slideId, {
             include: {
                 likes: {
                     select: {
                         userId: true,
                     },
                 },
-                comments: {
+                _count: {
                     select: {
-                        id: true,
+                        comments: true,
                     },
                 },
-                users: {
+                author: {
                     select: {
                         avatar: true,
                     }
@@ -42,16 +41,13 @@ export async function GET(
             return NextResponse.json({ error: 'Slide not found' }, { status: 404 });
         }
 
-        const { likes, comments, users, slideType, content, createdAt, ...rest } = slide;
+        const { likes, _count, author, ...rest } = slide;
         const formattedSlide = {
             ...rest,
-            avatar: users?.avatar,
-            type: slideType,
-            createdAt: createdAt ? new Date(createdAt).getTime() : 0,
+            avatar: author?.avatar,
             initialLikes: likes.length,
-            initialComments: comments.length,
-            isLiked: currentUserId ? likes.some(like => like.userId === currentUserId) : false,
-            data: JSON.parse(content || '{}'),
+            initialComments: _count.comments,
+            isLiked: currentUserId ? (likes as Like[]).some(like => like.userId === currentUserId) : false,
         }
 
         return NextResponse.json(formattedSlide);

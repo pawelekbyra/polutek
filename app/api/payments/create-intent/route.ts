@@ -1,7 +1,7 @@
 // app/api/payments/create-intent/route.ts
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { prisma } from '@/lib/db';
+import { findUserByEmail, createUser } from '@/lib/db';
 import { sendTemporaryPassword } from '@/lib/email';
 import { randomBytes, scrypt as _scrypt } from 'crypto';
 import { promisify } from 'util';
@@ -9,7 +9,7 @@ import { promisify } from 'util';
 const scrypt = promisify(_scrypt);
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-  apiVersion: '2024-04-10',
+  apiVersion: '2025-10-29.clover',
 });
 
 export async function POST(request: Request) {
@@ -26,10 +26,8 @@ export async function POST(request: Request) {
     const metadata: { [key: string]: string } = { countryCodeHint: countryCodeHint || 'N/A' };
     if (createAccount && email) {
       // 1. Check if user already exists
-      const existingUser = await prisma.user.findUnique({ where: { email } });
+      const existingUser = await findUserByEmail(email);
       if (existingUser) {
-        // Decide how to handle this case: maybe just proceed with payment but don't create an account,
-        // or return an error. For now, we'll return an error.
         return NextResponse.json({ error: 'User with this email already exists.' }, { status: 409 });
       }
 
@@ -42,13 +40,11 @@ export async function POST(request: Request) {
       const hashedPassword = salt + '.' + hash.toString('hex');
 
       // 4. Create user in the database
-      const newUser = await prisma.user.create({
-        data: {
-          email,
-          password: hashedPassword,
-          username: email.split('@')[0], // Or generate a unique username
-          role: 'PATRON',
-        },
+      const newUser = await createUser({
+        email,
+        password: hashedPassword,
+        username: email.split('@')[0], // Or generate a unique username
+        role: 'PATRON',
       });
 
       // 5. Send the welcome email
@@ -59,7 +55,7 @@ export async function POST(request: Request) {
       metadata.email = email;
     }
 
-    const paymentIntent = await stripe.paymentents.create({
+    const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(amount * 100),
       currency: currency.toLowerCase(),
       metadata,

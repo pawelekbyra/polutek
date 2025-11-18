@@ -1,9 +1,8 @@
 // app/api/account/delete/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { deleteAccount } from '@/lib/db';
 import { verifySession } from '@/lib/auth';
 import { z } from 'zod';
-import bcrypt from 'bcrypt';
 
 const deleteAccountSchema = z.object({
     password: z.string().min(1, 'Password is required'),
@@ -26,21 +25,16 @@ export async function POST(request: NextRequest) {
     const { password } = validatedFields.data;
 
     try {
-        const user = await prisma.users.findUnique({ where: { id: session.user.id } });
+        const success = await deleteAccount(session.user.id, password);
 
-        if (!user || !user.password) {
-            return NextResponse.json({ error: 'User not found' }, { status: 404 });
+        if (!success) {
+            return NextResponse.json({ error: 'Invalid password or user not found' }, { status: 400 });
         }
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
-
-        if (!isPasswordValid) {
-            return NextResponse.json({ error: 'Invalid password' }, { status: 400 });
-        }
-
-        await prisma.users.delete({ where: { id: session.user.id } });
-
-        return NextResponse.json({ success: true, message: 'Account deleted successfully' });
+        // Clear the session cookie upon successful deletion
+        const response = NextResponse.json({ success: true, message: 'Account deleted successfully' });
+        response.cookies.delete('session');
+        return response;
 
     } catch (error) {
         console.error('Failed to delete account:', error);
