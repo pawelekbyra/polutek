@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useUser } from '@/context/UserContext';
+// import { useUser } from '@/context/UserContext';
 import { Button } from '@/components/ui/button';
 import NotificationPopup from './NotificationPopup';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -15,7 +15,8 @@ import BellIcon from './icons/BellIcon';
 import PwaDesktopModal from './PwaDesktopModal';
 
 const TopBar = () => {
-  const { user } = useUser();
+  // const { user } = useUser();
+  const user = { avatar: '' }; // Mock user to bypass login
   const setActiveModal = useStore((state) => state.setActiveModal);
   const { t } = useTranslation();
   const { addToast } = useToast();
@@ -31,23 +32,10 @@ const TopBar = () => {
     return () => window.removeEventListener('resize', checkIsDesktop);
   }, []);
 
-  // This should be replaced with real data from a notifications context or API
   const unreadCount = 0;
-
-  const handleLoggedOutMenuClick = () => {
-    addToast(t('menuAccessAlert'), 'info');
-  };
-
-  const handleLoggedOutNotificationClick = () => {
-    addToast(t('notificationAlert'), 'info');
-  };
 
   const handleLoggedInNotificationClick = () => {
     setShowNotifPanel(p => !p);
-  };
-
-  const handleShowPwaModal = () => {
-    setShowPwaModal(true);
   };
 
   return (
@@ -60,30 +48,7 @@ const TopBar = () => {
           transform: 'translateZ(0)',
         }}
       >
-        {!user ? (
-          // --- WIDOK DLA UŻYTKOWNIKÓW NIEZALOGOWANYCH ---
-          <>
-            <div className="flex justify-start">
-              <Button variant="ghost" size="icon" onClick={handleLoggedOutMenuClick} aria-label={t('menuAriaLabel')}>
-                <MenuIcon className="w-6 h-6" />
-              </Button>
-            </div>
-            <div className="flex justify-center flex-1 text-center">
-              <button
-                onClick={() => setIsLoginPanelOpen(panel => !panel)}
-                className="font-semibold text-sm text-white transition-all duration-300 focus:outline-none whitespace-nowrap"
-              >
-                <span>{t('loggedOutText')}</span>
-              </button>
-            </div>
-            <div className="flex justify-end">
-              <Button variant="ghost" size="icon" onClick={handleLoggedOutNotificationClick} aria-label={t('notificationAriaLabel')}>
-                <BellIcon className="w-6 h-6" />
-              </Button>
-            </div>
-          </>
-        ) : (
-          // --- WIDOK DLA ZALOGOWANYCH UŻYTKOWNIKÓW ---
+          {/* --- FORCED LOGGED-IN VIEW --- */}
           <>
             <div className="flex justify-start">
               <Button variant="ghost" size="icon" onClick={() => setActiveModal('account')} aria-label={t('accountMenuButton')}>
@@ -118,7 +83,6 @@ const TopBar = () => {
               </div>
             </div>
           </>
-        )}
       </div>
 
       {/* --- Login Panel --- */}

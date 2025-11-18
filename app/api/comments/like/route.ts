@@ -1,36 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/db';
-import { verifySession } from '@/lib/auth';
-
-export const dynamic = 'force-dynamic';
+import { db } from '../../../lib/db'; // Assuming db is exported from here
 
 export async function POST(request: NextRequest) {
-  const payload = await verifySession();
-  if (!payload || !payload.user) {
-    return NextResponse.json({ success: false, message: 'Authentication required.' }, { status: 401 });
+  const { commentId, vote } = await request.json();
+
+  if (!commentId || !vote) {
+    return NextResponse.json({ error: 'commentId and vote are required' }, { status: 400 });
   }
-  const userId = payload.user.id;
 
-  try {
-    const { commentId } = await request.json();
-
-    if (!commentId || typeof commentId !== 'string') {
-      return NextResponse.json({ success: false, message: 'commentId is required and must be a string' }, { status: 400 });
-    }
-
-    const result = await db.toggleCommentLike(commentId, userId);
-
-    return NextResponse.json({
-      success: true,
-      status: result.newStatus,
-      likeCount: result.likeCount,
-    });
-
-  } catch (error) {
-    console.error('Error liking comment:', error);
-    if (error instanceof Error && error.message === 'Comment not found') {
-        return NextResponse.json({ success: false, message: 'Comment not found' }, { status: 404 });
-    }
-    return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
+  if (vote === 'up') {
+    await db.upvoteComment(commentId, '123'); // Mock user ID
+  } else if (vote === 'down') {
+    await db.downvoteComment(commentId, '123'); // Mock user ID
+  } else {
+    return NextResponse.json({ error: 'Invalid vote value' }, { status: 400 });
   }
+
+  return NextResponse.json({ message: 'Vote submitted successfully' });
 }

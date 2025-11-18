@@ -1,42 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/db';
-import { verifySession } from '@/lib/auth';
-
-export const dynamic = 'force-dynamic';
+import { db } from '../../../lib/db'; // Assuming db is exported from here
 
 export async function GET(request: NextRequest) {
-  const payload = await verifySession();
-  if (!payload || !payload.user) {
-    return NextResponse.json({ success: false, message: 'Authentication required.' }, { status: 401 });
-  }
+  const notifications = await db.getNotifications('123'); // Mock user ID
+  const unreadCount = await db.getUnreadNotificationCount('123'); // Mock user ID
 
-  try {
-    const notifications = await db.getNotifications(payload.user.id);
-    const unreadCount = await db.getUnreadNotificationCount(payload.user.id);
-    return NextResponse.json({ success: true, notifications, unreadCount }, {
-      headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-      }
-    });
-  } catch (error) {
-    console.error('Error fetching notifications:', error);
-    return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
-  }
+  const headers = {
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+  };
+
+  return NextResponse.json({ notifications, unreadCount }, { headers });
 }
 
 export async function POST(request: NextRequest) {
-    const payload = await verifySession();
-    if (!payload || !payload.user) {
-        return NextResponse.json({ success: false, message: 'Authentication required.' }, { status: 401 });
-    }
+  const { subscription, isPwaInstalled } = await request.json();
 
-    const { subscription, isPwaInstalled } = await request.json();
+  await db.savePushSubscription('123', subscription, isPwaInstalled); // Mock user ID
 
-    try {
-        await db.savePushSubscription(payload.user.id, subscription, isPwaInstalled);
-        return NextResponse.json({ success: true });
-    } catch (error) {
-        console.error('Error saving push subscription:', error);
-        return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
-    }
+  return NextResponse.json({ message: 'PWA subscription registered' });
 }

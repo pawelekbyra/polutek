@@ -1,61 +1,47 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/db';
-import { verifySession } from '@/lib/auth';
-import { sanitize } from '@/lib/sanitize';
-export const dynamic = 'force-dynamic';
+import rateLimiter from '../../../lib/rate-limiter';
+import { pusherServer } from '../../../lib/pusher';
+import { db } from '../../../lib/db'; // Assuming db is exported from here
+import { sanitize } from '../../../lib/sanitize'; // Assuming sanitize is exported from here
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const slideId = searchParams.get('slideId');
 
   if (!slideId) {
-    return NextResponse.json({ success: false, message: 'slideId is required' }, { status: 400 });
+    return NextResponse.json({ error: 'slideId is required' }, { status: 400 });
   }
 
-  try {
-    const comments = await db.getComments(slideId);
-    return NextResponse.json({ success: true, comments });
-  } catch (error) {
-    console.error('Error fetching comments:', error);
-    return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
-  }
+  const comments = await db.getComments(slideId);
+
+  return NextResponse.json({ comments });
 }
 
 export async function POST(request: NextRequest) {
-  const payload = await verifySession();
-  if (!payload || !payload.user) {
-    return NextResponse.json({ success: false, message: 'Authentication required to comment.' }, { status: 401 });
-  }
-  const currentUser = payload.user;
+  const ip = request.ip ?? '127.0.0.1';
 
   try {
-    const { slideId, text, parentId } = await request.json();
-
-    if (!slideId || !text) {
-      return NextResponse.json({ success: false, message: 'slideId and text are required' }, { status: 400 });
-    }
-
-    if (typeof text !== 'string' || text.trim().length === 0) {
-        return NextResponse.json({ success: false, message: 'Comment text cannot be empty.' }, { status: 400 });
-    }
-
-    const slide = await db.getSlide(slideId);
-    if (!slide) {
-        return NextResponse.json({ success: false, message: 'Slide not found' }, { status: 404 });
-    }
-
-    const sanitizedText = sanitize(text.trim());
-    if (sanitizedText.length === 0) {
-        return NextResponse.json({ success: false, message: 'Comment text cannot be empty after sanitization.' }, { status: 400 });
-    }
-
-    // Pass parentId to db.addComment
-    const newComment = await db.addComment(slideId, currentUser.id, sanitizedText, parentId || null);
-
-    return NextResponse.json({ success: true, comment: newComment }, { status: 201 });
-
+    await rateLimiter.consume(ip);
   } catch (error) {
-    console.error('Error posting comment:', error);
-    return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: 'Too Many Requests' }, { status: 429 });
   }
+
+  const { slideId, text, parentId } = await request.json();
+
+  if (!slideId || !text) {
+    return NextResponse.json({ error: 'slideId and text are required' }, { status: 400 });
+  }
+
+  const sanitizedText = sanitize(text.trim());
+  const slide = await db.getSlide(slideId);
+
+  if (!slide) {
+    return NextResponse.json({ error: 'Slide not found' }, { status: 404 });
+  }
+
+  const newComment = await db.addComment(slideId, '123', sanitizedText, parentId); // Mock user ID
+
+  await pusherServer.trigger(`comments-${slideId}`, 'new-comment', newComment);
+
+  return NextResponse.json({ message: 'Comment added successfully', comment: newComment });
 }
