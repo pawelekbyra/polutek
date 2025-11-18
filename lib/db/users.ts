@@ -128,6 +128,7 @@ export const getAllUsers = async () => {
   return users.map(user => ({
     ...user,
     password: user.password === null ? undefined : user.password,
+    displayName: user.displayName === null ? undefined : user.displayName,
   }));
 };
 
