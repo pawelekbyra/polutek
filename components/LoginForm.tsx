@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Input, Button, VStack, Text } from '@chakra-ui/react';
 import { useUser } from '@/context/UserContext';
 import { useTranslation } from '@/context/LanguageContext';
 
@@ -18,7 +17,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
   const { login } = useUser();
   const { t } = useTranslation();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(null);
     setIsLoading(true);
@@ -40,30 +39,49 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 px-4 pb-5">
+    <VStack as="form" onSubmit={handleSubmit} spacing={3} px={4} pb={5}>
       <Input
         type="text"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         placeholder={t('loginPlaceholder')}
-        disabled={isLoading}
+        isDisabled={isLoading}
         autoComplete="username"
-        className="bg-white border-2 border-black text-black placeholder:text-gray-500 font-mono focus:ring-2 focus:ring-pink-500"
+        bg="white"
+        borderColor="black"
+        borderWidth="2px"
+        color="black"
+        _placeholder={{ color: 'gray.500' }}
+        fontFamily="mono"
+        _focus={{ ring: '2px', ringColor: 'pink.500' }}
       />
       <Input
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder={t('passwordPlaceholder')}
-        disabled={isLoading}
+        isDisabled={isLoading}
         autoComplete="current-password"
-        className="bg-white border-2 border-black text-black placeholder:text-gray-500 font-mono focus:ring-2 focus:ring-pink-500"
+        bg="white"
+        borderColor="black"
+        borderWidth="2px"
+        color="black"
+        _placeholder={{ color: 'gray.500' }}
+        fontFamily="mono"
+        _focus={{ ring: '2px', ringColor: 'pink.500' }}
       />
-      <Button type="submit" variant="default" disabled={isLoading} className="font-bold uppercase tracking-wider bg-pink-600 hover:bg-pink-700">
-        {isLoading ? t('loggingIn') : 'ENTER'}
+      <Button
+        type="submit"
+        isLoading={isLoading}
+        colorScheme="pink"
+        fontWeight="bold"
+        textTransform="uppercase"
+        letterSpacing="wider"
+      >
+        {t('loggingIn') || 'ENTER'}
       </Button>
-      {error && <p className="text-red-500 text-sm mt-2 text-center">{error}</p>}
-    </form>
+      {error && <Text color="red.500" fontSize="sm" mt={2} textAlign="center">{error}</Text>}
+    </VStack>
   );
 };
 

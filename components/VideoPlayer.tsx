@@ -4,12 +4,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import Hls from 'hls.js';
 import { useStore } from '@/store/useStore';
 import { shallow } from 'zustand/shallow';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Skeleton } from './ui/skeleton';
+import { Skeleton, Box } from '@chakra-ui/react';
 
 interface VideoPlayerProps {
   hlsUrl: string;
-  // posterUrl is no longer needed, we use the first frame.
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ hlsUrl }) => {
@@ -122,21 +120,25 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ hlsUrl }) => {
 
   return (
     <>
-      <AnimatePresence>
-        {!isVideoReady && (
-            <Skeleton className="absolute inset-0 w-full h-full" />
-        )}
-      </AnimatePresence>
-      <motion.video
+      {!isVideoReady && (
+        <Skeleton position="absolute" inset="0" w="full" h="full" />
+      )}
+      <Box
+        as="video"
         ref={videoRef}
         onClick={togglePlay}
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        position="absolute"
+        top="0"
+        left="0"
+        w="full"
+        h="full"
+        objectFit="cover"
+        zIndex="0"
         playsInline
         loop
         preload="auto"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isVideoReady ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
+        opacity={isVideoReady ? 1 : 0}
+        transition="opacity 0.3s"
       />
     </>
   );

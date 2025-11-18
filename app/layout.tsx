@@ -4,7 +4,8 @@ import { Providers } from "@/components/Providers";
 import AppLayout from "@/components/AppLayout";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import Script from "next/script";
-import { ChakraProvider } from "@chakra-ui/next-js";
+import { CacheProvider } from "@chakra-ui/next-js";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,12 +26,14 @@ export default function RootLayout({
           <meta name="theme-color" content="#000000" />
       </head>
       <body className={inter.className}>
-        <ChakraProvider>
-          <Providers>
-            <AppLayout>{children}</AppLayout>
-            <PWAInstallPrompt />
-          </Providers>
-        </ChakraProvider>
+        <CacheProvider>
+          <ChakraProvider>
+            <Providers>
+              <AppLayout>{children}</AppLayout>
+              <PWAInstallPrompt />
+            </Providers>
+          </ChakraProvider>
+        </CacheProvider>
         <Script
           data-name="BMC-Widget"
           data-cfasync="false"

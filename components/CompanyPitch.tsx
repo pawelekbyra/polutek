@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Button } from './ui/button';
+import { Box, Button, Flex, Heading, Text, VStack, HStack, Avatar } from '@chakra-ui/react';
 
 const CompanyPitch: React.FC = () => {
   const [activeSection, setActiveSection] = useState<'about' | 'mission' | 'team' | null>(null);
@@ -10,58 +10,67 @@ const CompanyPitch: React.FC = () => {
     switch (activeSection) {
       case 'about':
         return (
-          <div className="p-4 text-center">
-            <h3 className="text-2xl font-bold mb-2">Who We Are?</h3>
-            <p>We are innovators, creators, and dreamers. Our goal is to revolutionize the digital space with cutting-edge solutions that inspire and engage.</p>
-          </div>
+          <VStack spacing={2} p={4} textAlign="center">
+            <Heading size="lg">Who We Are?</Heading>
+            <Text>We are innovators, creators, and dreamers. Our goal is to revolutionize the digital space with cutting-edge solutions that inspire and engage.</Text>
+          </VStack>
         );
       case 'mission':
         return (
-          <div className="p-4 text-center">
-            <h3 className="text-2xl font-bold mb-2">Our Mission</h3>
-            <p>Our mission is to build a connected world where technology serves humanity. We strive to create intuitive and powerful tools for everyone.</p>
-            {/* Video placeholder */}
-            <div className="w-full h-64 bg-black mt-4 flex items-center justify-center">
-              <p className="text-white">Company Story Video</p>
-            </div>
-          </div>
+          <VStack spacing={4} p={4} textAlign="center">
+            <Heading size="lg">Our Mission</Heading>
+            <Text>Our mission is to build a connected world where technology serves humanity. We strive to create intuitive and powerful tools for everyone.</Text>
+            <Flex w="full" h="64" bg="black" mt={4} align="center" justify="center">
+              <Text color="white">Company Story Video</Text>
+            </Flex>
+          </VStack>
         );
       case 'team':
         return (
-          <div className="p-4 text-center">
-            <h3 className="text-2xl font-bold mb-2">The Team</h3>
-            <div className="flex justify-center gap-4 mt-4">
-              <div className="text-center">
-                <div className="w-24 h-24 rounded-full bg-gray-600 mx-auto mb-2"></div>
-                <p>Jules</p>
-              </div>
-              <div className="text-center">
-                <div className="w-24 h-24 rounded-full bg-gray-600 mx-auto mb-2"></div>
-                <p>Alex</p>
-              </div>
-              <div className="text-center">
-                <div className="w-24 h-24 rounded-full bg-gray-600 mx-auto mb-2"></div>
-                <p>Maria</p>
-              </div>
-            </div>
-          </div>
+          <VStack spacing={4} p={4} textAlign="center">
+            <Heading size="lg">The Team</Heading>
+            <HStack justify="center" gap={4} mt={4}>
+              <VStack>
+                <Avatar size="xl" />
+                <Text>Jules</Text>
+              </VStack>
+              <VStack>
+                <Avatar size="xl" />
+                <Text>Alex</Text>
+              </VStack>
+              <VStack>
+                <Avatar size="xl" />
+                <Text>Maria</Text>
+              </VStack>
+            </HStack>
+          </VStack>
         );
       default:
-        return <h2 className="text-4xl font-bold">Our Company</h2>;
+        return <Heading size="2xl">Our Company</Heading>;
     }
   };
 
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center bg-gray-800 text-white p-8">
-      <div className="absolute top-5 flex gap-4">
-        <Button onClick={() => setActiveSection('about')} className="bg-indigo-600 hover:bg-indigo-700">Who We Are?</Button>
-        <Button onClick={() => setActiveSection('mission')} className="bg-indigo-600 hover:bg-indigo-700">Our Mission</Button>
-        <Button onClick={() => setActiveSection('team')} className="bg-indigo-600 hover:bg-indigo-700">The Team</Button>
-      </div>
-      <div className="mt-16">
+    <Flex
+      h="full"
+      w="full"
+      direction="column"
+      align="center"
+      justify="center"
+      bg="gray.800"
+      color="white"
+      p={8}
+      position="relative"
+    >
+      <HStack position="absolute" top={5} spacing={4}>
+        <Button onClick={() => setActiveSection('about')} colorScheme="indigo">Who We Are?</Button>
+        <Button onClick={() => setActiveSection('mission')} colorScheme="indigo">Our Mission</Button>
+        <Button onClick={() => setActiveSection('team')} colorScheme="indigo">The Team</Button>
+      </HStack>
+      <Box mt={16}>
         {renderContent()}
-      </div>
-    </div>
+      </Box>
+    </Flex>
   );
 };
 

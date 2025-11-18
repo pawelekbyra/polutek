@@ -1,9 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Loader2 } from 'lucide-react';
+import { Input, Button, Box, Heading, Text, VStack, Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react';
 import { useUser } from '@/context/UserContext';
 import { useTranslation } from '@/context/LanguageContext';
 
@@ -16,7 +14,7 @@ const DeleteTab: React.FC = () => {
   const [isSaving, setIsSaving] = useState(false);
   const { logout } = useUser();
 
-  const handleDeleteSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleDeleteSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (confirmation !== DELETE_CONFIRM_TEXT) {
       setStatus({ type: 'error', message: t('deleteAccountConfirmError') });
@@ -50,46 +48,49 @@ const DeleteTab: React.FC = () => {
   };
 
   return (
-    <div className="tab-pane active p-4" id="delete-tab">
-      <div className="profile-section bg-white/5 border border-white/10 rounded-xl p-5">
-        <h3 className="section-title text-lg font-bold mb-5 flex items-center gap-3"><span className="w-1 h-5 bg-gradient-to-b from-pink-500 to-rose-500 rounded-full"></span>{t('deleteAccountTitle')}</h3>
-        <div className="bg-red-900/50 border border-red-700 rounded-lg p-4 mb-6">
-          <h4 className="text-red-400 font-bold mb-3 text-base">{t('warningTitle')}</h4>
-          <p className="text-white/80 text-sm leading-relaxed">
-            {t('deleteAccountWarning')}
-          </p>
-        </div>
-        <form id="deleteForm" onSubmit={handleDeleteSubmit}>
-          <div className="form-group mb-4">
-            <label className="form-label text-sm font-medium mb-2 block">{t('deleteAccountPrompt')} <strong>{DELETE_CONFIRM_TEXT}</strong></label>
+    <Box p={4}>
+      <Box bg="whiteAlpha.50" borderWidth="1px" borderColor="whiteAlpha.10" borderRadius="xl" p={5}>
+        <Heading size="md" mb={5}>{t('deleteAccountTitle')}</Heading>
+        <Alert status="error" borderRadius="lg" mb={6}>
+          <AlertIcon />
+          <Box>
+            <AlertTitle color="red.400">{t('warningTitle')}</AlertTitle>
+            <AlertDescription color="whiteAlpha.800">{t('deleteAccountWarning')}</AlertDescription>
+          </Box>
+        </Alert>
+        <VStack as="form" onSubmit={handleDeleteSubmit} spacing={4}>
+          <Box w="full">
+            <Text as="label" htmlFor="deleteConfirmation" fontSize="sm" fontWeight="medium" mb={2} display="block">
+              {t('deleteAccountPrompt')} <strong>{DELETE_CONFIRM_TEXT}</strong>
+            </Text>
             <Input
+              id="deleteConfirmation"
               type="text"
               placeholder={DELETE_CONFIRM_TEXT}
-              id="deleteConfirmation"
               value={confirmation}
               onChange={(e) => setConfirmation(e.target.value)}
             />
-            <p className="text-xs text-white/60 mt-2">
-              {t('deleteAccountInfo')}
-            </p>
-          </div>
+            <Text fontSize="xs" color="whiteAlpha.600" mt={2}>{t('deleteAccountInfo')}</Text>
+          </Box>
           <Button
             type="submit"
-            variant="destructive"
-            className="w-full mt-4"
-            disabled={confirmation !== DELETE_CONFIRM_TEXT || isSaving}
+            colorScheme="red"
+            w="full"
+            mt={4}
+            isLoading={isSaving}
+            isDisabled={confirmation !== DELETE_CONFIRM_TEXT}
           >
-            {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-            {isSaving ? t('deleting') : t('deleteAccountButton')}
+            {t('deleteAccountButton')}
           </Button>
           {status && (
-            <div className={`mt-4 text-sm p-3 rounded-md ${status.type === 'success' ? 'bg-green-900/50 text-green-300' : 'bg-red-900/50 text-red-300'}`}>
+            <Alert status={status.type} mt={4} borderRadius="md">
+              <AlertIcon />
               {status.message}
-            </div>
+            </Alert>
           )}
-        </form>
-      </div>
-    </div>
+        </VStack>
+      </Box>
+    </Box>
   );
 };
 

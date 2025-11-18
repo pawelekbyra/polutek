@@ -1,16 +1,11 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { useUser } from '@/context/UserContext';
-import { Button } from '@/components/ui/button';
 import NotificationPopup from './NotificationPopup';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '@/context/LanguageContext';
 import { useStore } from '@/store/useStore';
 import LoginForm from './LoginForm';
-import MenuIcon from './icons/MenuIcon';
-import BellIcon from './icons/BellIcon';
 import PwaDesktopModal from './PwaDesktopModal';
 import {
   Box,
@@ -19,8 +14,10 @@ import {
   Text,
   Avatar,
   useDisclosure,
+  Button,
+  Collapse,
 } from '@chakra-ui/react';
-import { HamburgerIcon, BellIcon as ChakraBellIcon } from '@chakra-ui/icons';
+import { HamburgerIcon, BellIcon } from '@chakra-ui/icons';
 
 const TopBar = () => {
   const { user } = useUser();
@@ -78,13 +75,13 @@ const TopBar = () => {
 
           <Flex align="center">
             {isDesktop && (
-              <Button variant="ghost" size="icon" onClick={openPwaModal} aria-label={t('installPwaAriaLabel')}>
-                <span className="text-sm font-semibold">{t('installAppText')}</span>
+              <Button variant="ghost" size="sm" onClick={openPwaModal} aria-label={t('installPwaAriaLabel')}>
+                <Text fontSize="sm" fontWeight="semibold">{t('installAppText')}</Text>
               </Button>
             )}
             <Box position="relative">
               <IconButton
-                icon={<ChakraBellIcon />}
+                icon={<BellIcon />}
                 variant="ghost"
                 aria-label={t('notificationAriaLabel')}
                 onClick={toggleNotifPanel}
@@ -122,20 +119,19 @@ const TopBar = () => {
         </Flex>
       </Box>
 
-      <AnimatePresence>
-        {isLoginPanelOpen && (
-          <motion.div
-            className="absolute left-0 w-full z-[50] bg-black/60 backdrop-blur-sm"
-            style={{ top: 'var(--topbar-height)' }}
-            initial={{ opacity: 0, y: '-100%' }}
-            animate={{ opacity: 1, y: '0%' }}
-            exit={{ opacity: 0, y: '-100%' }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          >
-            <LoginForm onLoginSuccess={closeLoginPanel} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Collapse in={isLoginPanelOpen} animateOpacity>
+        <Box
+          position="absolute"
+          left="0"
+          w="full"
+          zIndex="50"
+          bg="blackAlpha.600"
+          backdropFilter="blur(10px)"
+          style={{ top: 'var(--topbar-height)' }}
+        >
+          <LoginForm onLoginSuccess={closeLoginPanel} />
+        </Box>
+      </Collapse>
 
       {showPwaModal && <PwaDesktopModal isOpen={showPwaModal} onClose={closePwaModal} />}
     </>
