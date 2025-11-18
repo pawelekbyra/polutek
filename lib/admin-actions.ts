@@ -1,26 +1,25 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import * as db from '@/lib/db';
+import { getAllUsers, updateUser } from '@/lib/db';
 import { verifySession } from '@/lib/auth';
 import { User } from './db.interfaces';
+import { Role } from '@prisma/client';
 
 export async function getAllUsersAction(): Promise<User[]> {
   const payload = await verifySession();
   if (!payload || !payload.user || payload.user.role !== 'ADMIN') {
     throw new Error('Not authorized');
   }
-  // @ts-ignore
-  return db.getAllUsers();
+  return getAllUsers();
 }
 
-export async function updateUserRoleAction(userId: string, role: 'ADMIN' | 'PATRON' | 'TWÓRCA'): Promise<User | null> {
+export async function updateUserRoleAction(userId: string, role: Role): Promise<User | null> {
   const payload = await verifySession();
   if (!payload || !payload.user || payload.user.role !== 'ADMIN') {
     throw new Error('Not authorized');
   }
-  // @ts-ignore
-  const updatedUser = await db.updateUser(userId, { role });
+  const updatedUser = await updateUser(userId, { role });
   revalidatePath('/admin/users');
   return updatedUser;
 }

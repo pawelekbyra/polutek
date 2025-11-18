@@ -1,6 +1,6 @@
 // app/api/author/[id]/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { findUserById, getSlidesByAuthorId, Slide } from '@/lib/db';
 
 export async function GET(
     request: NextRequest,
@@ -13,39 +13,32 @@ export async function GET(
     }
 
     try {
-        const author = await prisma.users.findUnique({
-            where: { id: authorId },
-            select: {
-                id: true,
-                username: true,
-                displayName: true,
-                avatar: true,
-                bio: true,
-            }
+        const author = await findUserById(authorId, {
+            id: true,
+            username: true,
+            displayName: true,
+            avatar: true,
+            bio: true,
         });
 
         if (!author) {
             return NextResponse.json({ error: 'Author not found' }, { status: 404 });
         }
 
-        const slides = await prisma.slides.findMany({
-            where: { userId: authorId },
-            take: 6,
-            orderBy: {
-                createdAt: 'desc',
-            },
-            select: {
-                id: true,
-                title: true,
-                content: true, // For thumbnail
-            }
-        });
+        const slides = await getSlidesByAuthorId(authorId);
 
-        const formattedSlides = slides.map(slide => {
-            const data = JSON.parse(slide.content || '{}');
+        const formattedSlides = slides.map((slide: Slide) => {
+            let data: { poster?: string; imageUrl?: string, title?: string } = {};
+            try {
+                // Prisma returns data as a JSON object, no need to parse
+                if (typeof slide.data === 'object' && slide.data !== null) {
+                    data = slide.data as { poster?: string; imageUrl?: string, title?: string };
+                }
+            } catch (e) { /* ignore error */ }
+
             return {
                 id: slide.id,
-                title: slide.title,
+                title: data.title || 'Untitled',
                 thumbnailUrl: data.poster || data.imageUrl || '',
             }
         })

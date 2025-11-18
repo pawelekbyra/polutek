@@ -1,8 +1,9 @@
 // app/api/profile/update/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { updateUser, changePassword } from '@/lib/db';
 import { verifySession } from '@/lib/auth';
 import { z } from 'zod';
+import bcrypt from 'bcrypt';
 
 const updateProfileSchema = z.object({
     firstName: z.string().min(1, 'First name is required').optional(),
@@ -30,21 +31,24 @@ export async function POST(request: NextRequest) {
 
     const { firstName, lastName, email, newPassword, isProfileComplete } = validatedFields.data;
 
-    const dataToUpdate: any = {};
-    if (firstName && lastName) dataToUpdate.displayName = `${firstName} ${lastName}`;
-    if (email) dataToUpdate.email = email;
-    if (isProfileComplete) dataToUpdate.is_profile_complete = isProfileComplete;
-    if (newPassword) {
-        const hashedPassword = await bcrypt.hash(newPassword, 10);
-        dataToUpdate.password = hashedPassword;
-    }
-
-
     try {
-        const updatedUser = await prisma.users.update({
-            where: { id: session.user.id },
-            data: dataToUpdate,
-        });
+        // Handle password change separately
+        if (newPassword) {
+            await changePassword(session.user.id, newPassword);
+        }
+
+        // Handle other profile updates
+        const dataToUpdate: any = {};
+        if (firstName && lastName) dataToUpdate.displayName = `${firstName} ${lastName}`;
+        if (email) dataToUpdate.email = email;
+        if (isProfileComplete !== undefined) dataToUpdate.is_profile_complete = isProfileComplete;
+
+        let updatedUser = session.user;
+        if (Object.keys(dataToUpdate).length > 0) {
+            const result = await updateUser(session.user.id, dataToUpdate);
+            const { password, ...userPayload } = result;
+            updatedUser = userPayload;
+        }
 
         return NextResponse.json({ success: true, user: updatedUser });
 

@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project is a modern, mobile-first social media application inspired by TikTok, built with Next.js. It features a video feed, a comment system, user authentication, and a foundation for future growth. The application is designed to be deployed on Vercel.
+This project is a modern, mobile-first social media application inspired by TikTok, built with Next.js. It features a vertical video feed with prefetching, a real-time comment and notification system, robust user authentication, and a scalable, centralized data architecture. The application is designed for seamless deployment on Vercel, leveraging its powerful ecosystem of serverless functions, edge network, and integrated services.
 
 ## Getting Started
 
@@ -10,26 +10,44 @@ This project is a modern, mobile-first social media application inspired by TikT
 
 - Node.js (v18 or later)
 - Yarn
+- A PostgreSQL database (e.g., from [Vercel Postgres](https://vercel.com/postgres))
+- An [Ably](https://ably.com/) account for real-time messaging
+- VAPID keys for push notifications
 
-### Installation
+### Installation & Setup
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd ting-tong-next
-   ```
-3. Install the dependencies:
-   ```bash
-   yarn install
-   ```
-4. Create a `.env.local` file in the root of the project and add the following environment variable:
-   ```env
-   DATABASE_URL="your-database-url"
-   ```
-   A valid database URL is required to run the application. You can obtain one from [Vercel Postgres](https://vercel.com/postgres) or any other PostgreSQL provider.
+1.  **Clone the Repository**:
+    ```bash
+    git clone <repository-url>
+    ```
+2.  **Install Dependencies**:
+    ```bash
+    cd ting-tong-next
+    yarn install
+    ```
+3.  **Configure Environment Variables**:
+    Create a `.env.local` file in the root of the project and add the following variables:
+    ```env
+    # Database
+    DATABASE_URL="your-postgres-database-url"
+
+    # Authentication
+    JWT_SECRET="your-strong-jwt-secret"
+
+    # Real-Time Notifications (Ably)
+    ABLY_API_KEY="your-ably-api-key"
+    NEXT_PUBLIC_ABLY_API_KEY="your-ably-public-api-key"
+
+    # Push Notifications
+    NEXT_PUBLIC_VAPID_PUBLIC_KEY="your-vapid-public-key"
+    VAPID_PRIVATE_KEY="your-vapid-private-key"
+    VAPID_SUBJECT="mailto:your-email@example.com"
+    ```
+4.  **Run Database Migrations**:
+    Apply the database schema:
+    ```bash
+    npx prisma migrate dev
+    ```
 
 ### Running the Development Server
 
@@ -41,64 +59,46 @@ yarn dev
 
 The application will be available at `http://localhost:3000`.
 
-### Database Initialization
-
-The project includes scripts to initialize and reset the database.
-
-- To create the database tables and seed them with initial data, run:
-  ```bash
-  yarn db:init
-  ```
-- To reset the database (dropping all tables and recreating them), run:
-  ```bash
-  yarn db:reset
-  ```
-
 ## Key Functionalities
 
-- **Video Feed**: A TikTok-style video feed that serves as the main interface of the application.
-- **User Authentication**: A JWT-based authentication system with session management.
-- **Commenting System**: Users can comment on videos and reply to other comments.
-- **Image Uploads**: Users can upload images to their comments.
-- **User Roles**: A role-based access control system with three roles:
-  - `ADMIN`: Can manage user roles.
-  - `PATRON`: The default role for new users.
-  - `TWÓRCA`: Can publish videos.
-- **Admin Panel**: A simple admin panel for managing user roles.
-- **Video Publishing**: "Creators" can upload videos through a dedicated publishing interface.
+-   **Vertical Video Feed**: A TikTok-style, infinitely scrollable video feed with prefetching and lazy loading for optimal performance.
+-   **Real-Time Notification System**: A robust notification system powered by Ably for real-time updates and Web Push for native notifications. Includes a modern, slide-in notification panel.
+-   **Interactive Commenting System**: Users can comment on videos, reply to other comments, and vote on comments, with all interactions updated in real-time.
+-   **User Authentication**: A secure, JWT-based authentication system with session management and password recovery.
+-   **Centralized Data Layer**: A clean, scalable, and type-safe data architecture with a centralized data access layer, powered by Prisma.
+-   **User Roles**: A role-based access control system with three roles: `ADMIN`, `PATRON`, and `TWÓRCA`.
+-   **Admin Panel**: A dedicated admin panel for managing users and application content.
 
-## Technology Stack
+## Technology Stack & Architecture
 
-- **Framework**: [Next.js](https://nextjs.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Database**: [Vercel Postgres](https://vercel.com/postgres)
-- **File Storage**: [Vercel Blob](https://vercel.com/blob)
-- **Authentication**: [JWT (jose)](https://github.com/panva/jose)
-- **Form Management**: [React Hook Form](https://react-hook-form.com/)
-- **Schema Validation**: [Zod](https://zod.dev/)
-- **UI Components**: [Radix UI](https://www.radix-ui.com/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+-   **Framework**: [Next.js](https://nextjs.org/) (App Router)
+-   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+-   **Database & ORM**: [Vercel Postgres](https://vercel.com/postgres) & [Prisma](https://www.prisma.io/)
+-   **Real-Time Messaging**: [Ably](https://ably.com/)
+-   **Push Notifications**: [Web Push](https://developer.mozilla.org/en-US/docs/Web/API/Push_API)
+-   **Rate Limiting**: [Upstash Redis](https://upstash.com/redis) via [Vercel KV](https://vercel.com/kv)
+-   **File Storage**: [Vercel Blob](https://vercel.com/blob)
+-   **Authentication**: [JWT (jose)](https://github.com/panva/jose)
+-   **Form Management**: [React Hook Form](https://react-hook-form.com/) & [Zod](https://zod.dev/)
+-   **UI Components**: [Radix UI](https://www.radix-ui.com/) & [Lucide React](https://lucide.dev/)
+-   **Animations**: [Framer Motion](https://www.framer.com/motion/)
 
-## Critical Analysis and To-Do
+## Critical Analysis & Future Work
 
-This section outlines critical issues, recommended improvements, and weak points of the project.
+This project has evolved significantly, addressing many of the initial critical issues. The architecture is now more robust, secure, and scalable. However, there are still areas for future improvement.
 
-### Urgent Issues
+### Implemented & Solved
 
-- **Missing Video Transcoding**: The application currently stores and serves raw video files. This is inefficient and will lead to poor performance. Implementing a video transcoding pipeline (e.g., using Mux or AWS Elemental MediaConvert) to generate HLS/DASH streams is a top priority.
-- **No Rate Limiting**: The application lacks rate limiting on critical actions like commenting, liking, and logging in. This makes it vulnerable to spam and abuse. Implementing a rate limiting solution (e.g., with Upstash Redis) is essential.
-- **Insecure Password Handling**: The `init-db.ts` script stores passwords in plain text. This is a major security risk. All password handling should be done using a secure hashing algorithm like bcrypt.
-- **No Test Coverage**: The project has no automated tests. This makes it difficult to refactor code and add new features without introducing bugs. Adding a testing framework (e.g., Jest and React Testing Library) is crucial.
+-   **Centralized Data Layer**: The database logic has been fully refactored into a centralized, type-safe data access layer under `lib/db/`, eliminating all direct Prisma calls from the API and server actions.
+-   **Real-Time & Push Notifications**: A complete notification system has been implemented, providing both in-app real-time updates and native push notifications.
+-   **Rate Limiting**: A rate limiting solution using Vercel KV has been implemented to protect against spam and abuse.
+-   **Secure Password Handling**: All password handling now uses `bcrypt` for secure hashing.
 
-### Recommended Improvements
+### Recommendations for Future Work
 
-- **Refactor Database Logic**: The database logic in `lib/db-postgres.ts` is functional but could be improved. Consider using an ORM like Prisma to simplify database interactions and improve type safety.
-- **Enhance Admin Panel**: The current admin panel is very basic. It should be expanded to include features like user search, pagination, and more detailed user management.
-- **Improve UI/UX**: The UI is functional but could be polished. Consider adding features like loading skeletons, optimistic UI updates, and more intuitive navigation.
-- **Implement a Notification System**: A notification system would greatly improve user engagement. This could include notifications for new comments, likes, and followers.
-
-### Weak Points
-
-- **Scalability**: The current architecture may not scale well to a large number of users. The database schema and application logic should be reviewed and optimized for scalability.
-- **Security**: In addition to the issues mentioned above, the application should undergo a thorough security audit to identify and address any potential vulnerabilities.
-- **Code Organization**: While the project has a decent structure, some of the code could be better organized. For example, some of the server actions could be moved to more specific files.
+-   **Video Transcoding**: The application still serves raw video files. Implementing a video transcoding pipeline (e.g., using Mux or AWS Elemental MediaConvert) to generate HLS/DASH streams remains a top priority for performance and scalability.
+-   **Comprehensive Test Coverage**: The project still lacks automated tests. Adding a testing framework (e.g., Jest and React Testing Library for unit/integration tests, and Playwright for E2E tests) is crucial for long-term stability and maintainability.
+-   **Enhanced Admin Panel**: The admin panel is functional but could be expanded with features like user search, pagination, content moderation, and analytics.
+-   **Optimistic UI Updates**: While the real-time system is fast, implementing optimistic UI updates for actions like commenting and liking would further improve the user experience.
+-   **Complete Internationalization (i18n)**: The application has a foundation for i18n, but translations should be completed and expanded across the entire UI.
+-   **Code Cleanup**: There are still some unused files and commented-out code that should be removed to improve code quality.

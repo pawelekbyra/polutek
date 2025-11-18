@@ -1,27 +1,33 @@
 "use client";
 
-import React, { useEffect, useCallback, useState, useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import Slide from '@/components/Slide';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Slide } from '@/lib/types';
+import VideoSlide from './VideoSlide';
+import { useInView } from 'react-intersection-observer';
 import { useStore } from '@/store/useStore';
 import { shallow } from 'zustand/shallow';
-import { Slide as SlideType } from '@/lib/types';
-import { produce } from 'immer';
+import { Skeleton } from './ui/skeleton';
 
 const fetchSlides = async ({ pageParam = '' }) => {
-  const res = await fetch(`/api/slides?cursor=${pageParam}&limit=10`);
+  const res = await fetch(`/api/slides?cursor=${pageParam}`);
   if (!res.ok) {
-    throw new Error('Failed to fetch slides');
+    throw new Error('Network response was not ok');
   }
-  const data = await res.json();
-  return data;
+  return res.json();
 };
 
-const MainFeed = () => {
+export default function MainFeed() {
   const parentRef = useRef<HTMLDivElement>(null);
-  const [slides, setSlides] = useState<SlideType[]>([]);
+  const { activeSlide, setActiveSlide, videoState } = useStore(
+    (state) => ({
+      activeSlide: state.activeSlide,
+      setActiveSlide: state.setActiveSlide,
+      videoState: state.videoState,
+    }),
+    shallow
+  );
 
   const {
     data,
@@ -32,113 +38,113 @@ const MainFeed = () => {
   } = useInfiniteQuery({
     queryKey: ['slides'],
     queryFn: fetchSlides,
-    initialPageParam: '',
     getNextPageParam: (lastPage) => lastPage.nextCursor,
+    initialPageParam: '',
   });
 
-  useEffect(() => {
-    setSlides(data?.pages.flatMap(page => page.slides) ?? []);
-  }, [data]);
+  const slides = data?.pages.flatMap((page) => page.slides) ?? [];
 
   const rowVirtualizer = useVirtualizer({
       count: hasNextPage ? slides.length + 1 : slides.length,
       getScrollElement: () => parentRef.current,
-      itemSize: () => parentRef.current?.clientHeight || 0,
       estimateSize: () => parentRef.current?.clientHeight || 0,
   });
 
+  const { ref: lastSlideRef, inView } = useInView();
+
   useEffect(() => {
-    const virtualItems = rowVirtualizer.getVirtualItems();
-    if (virtualItems.length === 0) return;
-    const lastItem = virtualItems[virtualItems.length - 1];
-    if (lastItem && lastItem.index >= slides.length - 1 && hasNextPage && !isLoading) {
+    if (inView && hasNextPage) {
       fetchNextPage();
     }
-  }, [rowVirtualizer.getVirtualItems(), slides.length, hasNextPage, isLoading, fetchNextPage]);
-
-
-  const { setActiveSlide, activeSlideIndex } = useStore(
-    (state) => ({
-      setActiveSlide: state.setActiveSlide,
-      activeSlideIndex: state.activeSlideIndex,
-    }),
-    shallow
-  );
-
-  const handleScroll = () => {
-      const visibleRange = rowVirtualizer.getVirtualItems();
-      if (visibleRange.length > 0) {
-          // Używamy pierwszego widocznego elementu, co jest typowe dla snap-scrolla
-          const middleIndex = visibleRange[0].index; 
-          if (middleIndex !== activeSlideIndex && slides[middleIndex]) {
-              setActiveSlide(slides[middleIndex], middleIndex);
-          }
-      }
-  };
-
+  }, [inView, hasNextPage, fetchNextPage]);
 
   useEffect(() => {
-      // Przypisanie funkcji jumpToSlide do stanu globalnego
-      useStore.setState({
-          jumpToSlide: async (slideId: string) => {
-              try {
-                  const res = await fetch(`/api/slide/${slideId}`);
-                  if (res.ok) {
-                      const newSlide = await res.json();
-                      setSlides(produce(draft => {
-                          // Aktualizacja aktywnego slajdu
-                          draft[activeSlideIndex] = newSlide;
-                      }));
-                      // Przewinięcie, aby upewnić się, że slajd jest widoczny
-                      rowVirtualizer.scrollToIndex(activeSlideIndex, { align: 'start' });
-                  }
-              } catch (error) {
-                  console.error("Failed to jump to slide", error);
-              }
-          }
-      });
-  }, [activeSlideIndex, rowVirtualizer]);
+    const items = rowVirtualizer.getVirtualItems();
+    if (videoState.isManuallyPaused) return;
+
+    // Autoplay logic based on viewport visibility
+    const handleScroll = () => {
+        const currentItems = rowVirtualizer.getVirtualItems();
+        if (currentItems.length === 0) return;
+
+        // Find the most visible item
+        let mostVisibleIndex = -1;
+        let maxVisibility = -1;
+
+        for (const item of currentItems) {
+            const itemTop = item.start;
+            const itemBottom = item.start + item.size;
+            const viewportTop = parentRef.current?.scrollTop || 0;
+            const viewportBottom = viewportTop + (parentRef.current?.clientHeight || 0);
+
+            const visibleTop = Math.max(itemTop, viewportTop);
+            const visibleBottom = Math.min(itemBottom, viewportBottom);
+
+            const visibility = Math.max(0, visibleBottom - visibleTop);
+            if (visibility > maxVisibility) {
+                maxVisibility = visibility;
+                mostVisibleIndex = item.index;
+            }
+        }
+
+        if (mostVisibleIndex !== -1 && mostVisibleIndex !== activeSlide) {
+            setActiveSlide(slides[mostVisibleIndex], mostVisibleIndex);
+        }
+    };
+
+    const currentParentRef = parentRef.current;
+    currentParentRef?.addEventListener('scroll', handleScroll, { passive: true });
+    // Initial check
+    handleScroll();
+
+    return () => currentParentRef?.removeEventListener('scroll', handleScroll);
+}, [rowVirtualizer, setActiveSlide, activeSlide, videoState.isManuallyPaused, slides]);
 
 
-  if (isLoading && slides.length === 0) {
-    return <div className="w-full h-full bg-black flex items-center justify-center"><Skeleton className="w-full h-full" /></div>;
-  }
-
-  if (isError) {
-    return <div className="w-full h-full bg-black flex items-center justify-center text-white">Error loading slides.</div>;
-  }
+  if (isLoading) return <Skeleton className="w-full h-full" />;
+  if (isError) return <div>Error loading slides</div>;
 
   return (
-    <div ref={parentRef} onScroll={handleScroll} className="w-full h-screen overflow-y-scroll snap-y snap-mandatory">
-        <div style={{ height: `${rowVirtualizer.getTotalSize()}px`, width: '100%', position: 'relative' }}>
-            {rowVirtualizer.getVirtualItems().map((virtualItem) => {
-                const isLoaderRow = virtualItem.index > slides.length - 1;
-                const slide = slides[virtualItem.index];
+    <div ref={parentRef} className="h-full w-full overflow-y-auto snap-y snap-mandatory scroll-smooth">
+      <div
+        style={{
+          height: `${rowVirtualizer.getTotalSize()}px`,
+          width: '100%',
+          position: 'relative',
+        }}
+      >
+        {rowVirtualizer.getVirtualItems().map((virtualItem) => {
+          const isLoaderRow = virtualItem.index > slides.length - 1;
+          const slide = slides[virtualItem.index];
 
-                return (
-                    <div
-                        key={virtualItem.key}
-                        style={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            width: '100%',
-                            height: `${virtualItem.size}px`,
-                            transform: `translateY(${virtualItem.start}px)`,
-                        }}
-                        className="h-full w-full snap-start"
-                    >
-                        {isLoaderRow ? (
-                           hasNextPage ? <div className="w-full h-full bg-black flex items-center justify-center text-white">Loading more...</div> : null
-                        ) : (
-                            <Slide slide={slide} isVisible={virtualItem.index === activeSlideIndex} />
-                        )}
-                    </div>
-                );
-            })}
-        </div>
+          return (
+            <div
+              key={virtualItem.key}
+              ref={virtualItem.index === slides.length - 1 ? lastSlideRef : null}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: `${virtualItem.size}px`,
+                transform: `translateY(${virtualItem.start}px)`,
+              }}
+              className="snap-start"
+            >
+              {isLoaderRow ? (
+                <div className="h-full w-full flex items-center justify-center">
+                    <Skeleton className="w-full h-full" />
+                </div>
+              ) : (
+                <VideoSlide
+                  slide={slide}
+                  isActive={virtualItem.index === activeSlide}
+                />
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
-};
-
-export default MainFeed;
+}

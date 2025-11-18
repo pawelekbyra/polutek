@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifySession } from '@/lib/auth';
-import * as db from '@/lib/db';
+import { getCommentsBySlideId } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const comments = await db.getCommentsForSlide(slideId, currentUserId);
+    const comments = await getCommentsBySlideId(slideId, currentUserId);
     return NextResponse.json({ success: true, comments });
   } catch (error) {
     console.error('Error fetching comments:', error);

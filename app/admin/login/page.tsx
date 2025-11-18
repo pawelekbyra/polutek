@@ -25,7 +25,7 @@ export default function AdminLoginPage() {
       const data = await response.json();
 
       if (response.ok) {
-        if (data.user?.role === 'admin') {
+        if (data.user?.role === 'ADMIN') {
             router.push('/admin');
         } else {
             setError('You are not authorized to access the admin panel.');

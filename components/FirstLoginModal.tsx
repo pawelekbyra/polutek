@@ -9,12 +9,27 @@ import { Input } from '@/components/ui/input';
 import ToggleSwitch from './ui/ToggleSwitch';
 import { useTranslation } from '@/context/LanguageContext';
 
+type FormData = {
+    emailConsent: boolean;
+    emailLanguage: 'pl' | 'en';
+    firstName: string;
+    lastName: string;
+    newPassword: string;
+    confirmPassword: string;
+};
+
+interface StepProps {
+    formData: FormData;
+    setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
 const FirstLoginModal = () => {
     const { user, checkUserStatus } = useUser();
     const { addToast } = useToast();
     const { t, setLanguage, lang } = useTranslation();
     const [step, setStep] = useState(1);
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<FormData>({
         emailConsent: true,
         emailLanguage: lang,
         firstName: '',
@@ -78,9 +93,9 @@ const FirstLoginModal = () => {
                     <h2 className="text-lg font-semibold text-center">{t('completeProfileTitle')}</h2>
                 </header>
                 <main className="p-6">
-                    {step === 1 && <Step1 formData={formData} setFormData={setFormData} />}
-                    {step === 2 && <Step2 formData={formData} handleChange={handleChange} />}
-                    {step === 3 && <Step3 formData={formData} handleChange={handleChange} />}
+                    {step === 1 && <Step1 formData={formData} setFormData={setFormData} handleChange={handleChange} />}
+                    {step === 2 && <Step2 formData={formData} setFormData={setFormData} handleChange={handleChange} />}
+                    {step === 3 && <Step3 formData={formData} setFormData={setFormData} handleChange={handleChange} />}
                 </main>
                 <footer className="p-4 flex justify-between border-t border-neutral-800">
                     <Button onClick={handlePrev} disabled={step === 1}>
@@ -101,8 +116,9 @@ const FirstLoginModal = () => {
     );
 };
 
-const Step1 = ({ formData, setFormData }) => {
+const Step1 = ({ formData, setFormData }: Partial<StepProps>) => {
     const { t, setLanguage, lang } = useTranslation();
+    if (!setFormData || !formData) return null;
     return (
         <div>
             <div className="flex items-center justify-between mb-4">
@@ -120,8 +136,9 @@ const Step1 = ({ formData, setFormData }) => {
     );
 };
 
-const Step2 = ({ formData, handleChange }) => {
+const Step2 = ({ formData, handleChange }: Partial<StepProps>) => {
     const { t } = useTranslation();
+    if (!handleChange || !formData) return null;
     return (
         <div className="space-y-4">
             <Input name="firstName" placeholder={t('firstNamePlaceholder')} value={formData.firstName} onChange={handleChange} />
@@ -130,8 +147,9 @@ const Step2 = ({ formData, handleChange }) => {
     );
 };
 
-const Step3 = ({ formData, handleChange }) => {
+const Step3 = ({ formData, handleChange }: Partial<StepProps>) => {
     const { t } = useTranslation();
+    if (!handleChange || !formData) return null;
     return (
         <div className="space-y-4">
             <Input name="newPassword" type="password" placeholder={t('newPasswordPlaceholder')} value={formData.newPassword} onChange={handleChange} />

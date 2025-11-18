@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifySession } from '@/lib/auth';
-import * as db from '@/lib/db';
+import { toggleCommentVote } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, message: 'commentId and voteType (upvote/downvote) are required' }, { status: 400 });
     }
 
-    const result = await db.toggleCommentLike(commentId, userId, voteType);
+    const result = await toggleCommentVote(commentId, userId, voteType);
 
     return NextResponse.json({
       success: true,

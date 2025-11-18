@@ -1,6 +1,6 @@
 // app/api/password/change/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { changePassword, findUserById } from '@/lib/db';
 import { verifySession } from '@/lib/auth';
 import { z } from 'zod';
 import bcrypt from 'bcrypt';
@@ -21,7 +21,6 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-
     const validatedFields = changePasswordSchema.safeParse(body);
 
     if (!validatedFields.success) {
@@ -31,24 +30,17 @@ export async function POST(request: NextRequest) {
     const { currentPassword, newPassword } = validatedFields.data;
 
     try {
-        const user = await prisma.users.findUnique({ where: { id: session.user.id } });
-
+        const user = await findUserById(session.user.id);
         if (!user || !user.password) {
             return NextResponse.json({ error: 'User not found' }, { status: 404 });
         }
 
         const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
-
         if (!isPasswordValid) {
             return NextResponse.json({ error: 'Invalid current password' }, { status: 400 });
         }
 
-        const hashedPassword = await bcrypt.hash(newPassword, 10);
-
-        await prisma.users.update({
-            where: { id: session.user.id },
-            data: { password: hashedPassword },
-        });
+        await changePassword(session.user.id, newPassword);
 
         return NextResponse.json({ success: true, message: 'Password changed successfully' });
 
