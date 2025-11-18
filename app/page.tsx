@@ -1,28 +1,21 @@
 "use client";
 
-import React from 'react';
-import dynamic from 'next/dynamic';
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query';
-import { Skeleton } from '@/components/ui/skeleton';
+import { useStore } from '@/store/useStore';
 
-// --- React Query Client ---
-const queryClient = new QueryClient();
-
-// Dynamically import MainFeed to ensure it only runs on the client side.
-// This is crucial for libraries like Swiper.js that interact with the DOM.
-const DynamicMainFeed = dynamic(() => import('@/components/MainFeed'), {
-  ssr: false,
-  loading: () => <div className="w-screen h-screen bg-black flex items-center justify-center"><Skeleton className="w-full h-full" /></div>,
-});
-
-// --- Main Page Export ---
 export default function Home() {
+  const setActiveModal = useStore((state) => state.setActiveModal);
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <DynamicMainFeed />
-    </QueryClientProvider>
+    <main className="p-4">
+      <h1 className="text-2xl font-bold mb-4">My App</h1>
+      <p className="mb-4">Welcome to the app!</p>
+      <button
+        onClick={() => setActiveModal('comments')}
+        aria-label="Komentarze"
+        className="px-4 py-2 bg-pink-500 text-white rounded-lg"
+      >
+        Open Comments
+      </button>
+    </main>
   );
 }

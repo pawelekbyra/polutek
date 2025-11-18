@@ -316,7 +316,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [lang, setLangState] = useState<Language>('pl');
-  const [isLangSelected, setIsLangSelected] = useState(false);
+  const [isLangSelected, setIsLangSelected] = useState(process.env.NODE_ENV === 'development');
 
   const setLanguage = (newLang: Language) => {
     setLangState(newLang);
