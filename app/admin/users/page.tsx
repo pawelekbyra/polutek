@@ -4,12 +4,13 @@ import { revalidatePath } from 'next/cache';
 import UserManagementClient from './UserManagementClient';
 import { verifySession } from '@/lib/auth';
 import { redirect } from 'next/navigation';
+import { UserRole } from '@/lib/db.interfaces';
 
 export const dynamic = 'force-dynamic';
 
 export default async function UserManagementPage() {
   const payload = await verifySession();
-  if (!payload || payload.user.role !== 'admin') {
+  if (!payload || payload.user.role !== UserRole.ADMIN) {
     redirect('/admin/login');
   }
 

@@ -6,12 +6,13 @@ import { revalidatePath } from 'next/cache';
 import SlideManagementClient from './SlideManagementClient';
 import { redirect } from 'next/navigation';
 import { sanitize } from '@/lib/sanitize';
+import { UserRole } from '@/lib/db.interfaces';
 
 export const dynamic = 'force-dynamic';
 
 export default async function SlideManagementPage() {
   const session = await verifySession();
-  if (!session || session.user.role !== 'admin') {
+  if (!session || session.user.role !== UserRole.ADMIN) {
     redirect('/admin/login');
   }
 
@@ -22,7 +23,7 @@ export default async function SlideManagementPage() {
   async function createSlideAction(formData: FormData): Promise<{ success: boolean, error?: string }> {
     'use server';
     const session = await verifySession();
-    if (!session?.user || session.user.role !== 'admin') {
+    if (!session?.user || session.user.role !== UserRole.ADMIN) {
       return { success: false, error: 'Unauthorized' };
     }
     try {
@@ -75,7 +76,7 @@ export default async function SlideManagementPage() {
   async function updateSlideAction(formData: FormData): Promise<{ success: boolean, error?: string }> {
     'use server';
     const session = await verifySession();
-    if (session?.user?.role !== 'admin') {
+    if (session?.user?.role !== UserRole.ADMIN) {
       return { success: false, error: 'Unauthorized' };
     }
     try {
