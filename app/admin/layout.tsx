@@ -1,5 +1,6 @@
 import { verifySession } from '@/lib/auth';
 import { redirect } from 'next/navigation';
+import { UserRole } from '@/lib/db.interfaces';
 
 export default async function AdminLayout({
   children,
@@ -21,7 +22,7 @@ export default async function AdminLayout({
   // Standardowa weryfikacja sesji dla środowiska produkcyjnego
   const session = await verifySession();
 
-  if (!session?.user || session.user.role !== 'admin') {
+  if (!session?.user || session.user.role !== UserRole.ADMIN) {
     redirect('/admin/login');
   }
 
