@@ -11,7 +11,7 @@ export interface User {
   displayName?: string | null;
   avatar?: string | null;
   sessionVersion?: number;
-  role?: 'ADMIN' | 'PATRON' | 'TWÓRCA';
+  role?: 'ADMIN' | 'PATRON' | 'TWÓRCA' | 'TW_RCA';
   is_profile_complete?: boolean;
 }
 
