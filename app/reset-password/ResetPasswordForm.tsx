@@ -1,36 +1,31 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState, FormEvent } from 'react';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
-export default function ResetPasswordForm() {
-  const searchParams = useSearchParams();
-  const token = searchParams.get('token');
+interface ResetPasswordFormProps {
+  token: string;
+}
 
+export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
+  const router = useRouter();
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    if (!token) {
-      setError('Invalid or missing password reset token.');
-    }
-  }, [token]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
     if (password !== confirmPassword) {
       setError('Passwords do not match.');
       return;
     }
-    if (!token) {
-        setError('Invalid or missing password reset token.');
-        return;
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      return;
     }
-
     setIsLoading(true);
     setMessage('');
     setError('');
@@ -38,74 +33,71 @@ export default function ResetPasswordForm() {
     try {
       const res = await fetch('/api/password/reset', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token, password }),
       });
 
       const data = await res.json();
 
-      if (res.ok) {
-        setMessage(data.message);
+      if (data.success) {
+        setMessage('Your password has been reset successfully! Redirecting to login...');
+        setTimeout(() => {
+          router.push('/?showLogin=true'); // Redirect to home with login modal open
+        }, 2000);
       } else {
-        setError(data.message || 'An error occurred.');
+        setError(data.message || 'An unexpected error occurred.');
       }
     } catch (err) {
-      setError('An unexpected error occurred. Please try again.');
+      setError('Failed to send request. Please try again.');
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
-      <div className="w-full max-w-md p-8 space-y-6 bg-gray-800 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold text-center">Reset Password</h1>
-        {message ? (
-          <p className="text-green-400 text-center">{message}</p>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <input type="hidden" name="token" value={token || ''} />
-            <div>
-              <label htmlFor="password"className="text-sm font-medium text-gray-300">New Password</label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="new-password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-3 py-2 mt-1 text-white bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
-              />
-            </div>
-            <div>
-              <label htmlFor="confirmPassword"className="text-sm font-medium text-gray-300">Confirm New Password</label>
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                autoComplete="new-password"
-                required
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full px-3 py-2 mt-1 text-white bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
-              />
-            </div>
-            <div>
-              <button
-                type="submit"
-                disabled={isLoading || !token}
-                className="w-full py-2 px-4 text-sm font-medium text-white bg-pink-600 rounded-md hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 disabled:opacity-50"
-              >
-                {isLoading ? 'Resetting...' : 'Reset Password'}
-              </button>
-            </div>
-            {error && <p className="text-red-400 text-center">{error}</p>}
-          </form>
-        )}
-      </div>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="w-full max-w-md p-8 space-y-6 bg-gray-900 rounded-lg shadow-lg"
+    >
+      <h1 className="text-2xl font-bold text-center">Reset Your Password</h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="password">New Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-4 py-2 mt-1 text-white bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
+            placeholder="Enter new password"
+          />
+        </div>
+        <div>
+          <label htmlFor="confirmPassword">Confirm New Password</label>
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            required
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className="w-full px-4 py-2 mt-1 text-white bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
+            placeholder="Confirm new password"
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={isLoading || !!message}
+          className="w-full px-4 py-2 font-semibold text-white bg-pink-600 rounded-md hover:bg-pink-700 disabled:bg-gray-500 transition-colors"
+        >
+          {isLoading ? 'Resetting...' : 'Reset Password'}
+        </button>
+      </form>
+      {message && <p className="text-green-400 text-center">{message}</p>}
+      {error && <p className="text-red-400 text-center">{error}</p>}
+    </motion.div>
   );
 }

@@ -1,50 +1,59 @@
-// app/api/create-patron/route.ts
-// app/api/create-patron/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/db';
-import bcrypt from 'bcrypt';
+import { findUserByEmail, createUser, updateUser } from '@/lib/db-postgres';
+import { UserRole } from '@/lib/db.interfaces';
 import { sendPasswordResetLinkEmail } from '@/lib/email';
-import { randomBytes } from 'crypto';
+import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
 
-export async function POST(request: NextRequest) {
-    try {
-        const { email } = await request.json();
+export async function POST(req: NextRequest) {
+  try {
+    const { email, username, displayName } = await req.json();
 
-        // Sprawdzenie, czy użytkownik już istnieje
-        const existingUser = await db.findUserByEmail(email);
-        if (existingUser) {
-            return NextResponse.json({ success: false, message: 'Użytkownik z tym adresem email już istnieje.' }, { status: 409 });
-        }
-
-        // Create user with a temporary, un-usable password
-        const tempPassword = randomBytes(32).toString('hex');
-        const hashedPassword = await bcrypt.hash(tempPassword, 10);
-
-        const newUser = await db.createUser({
-            email,
-            password: hashedPassword,
-            username: email.split('@')[0],
-            displayName: `Patron ${email.split('@')[0]}`,
-            role: 'user',
-        });
-
-        // Generate password reset token
-        const token = randomBytes(32).toString('hex');
-        const expiresAt = new Date(Date.now() + 3600000); // 1 hour
-
-        await db.createPasswordResetToken(newUser.id, token, expiresAt);
-
-        // Send password reset link
-        const resetLink = `${process.env.NEXT_PUBLIC_BASE_URL}/reset-password?token=${token}`;
-        await sendPasswordResetLinkEmail(email, resetLink);
-
-        return NextResponse.json({
-            success: true,
-            message: 'Konto zostało utworzone. Sprawdź e-mail, aby ustawić hasło.',
-        }, { status: 201 });
-
-    } catch (error) {
-        console.error('Błąd podczas tworzenia konta patrona:', error);
-        return NextResponse.json({ success: false, message: 'Wystąpił wewnętrzny błąd serwera.' }, { status: 500 });
+    if (!email || !username || !displayName) {
+      return NextResponse.json({ success: false, message: 'Email, username, and displayName are required' }, { status: 400 });
     }
+
+    // Check if user already exists
+    const existingUser = await findUserByEmail(email);
+    if (existingUser) {
+      return NextResponse.json({ success: false, message: 'An account with this email already exists.' }, { status: 409 });
+    }
+
+    // Create a temporary, unusable password hash
+    const tempPassword = await bcrypt.hash(crypto.randomBytes(32).toString('hex'), 10);
+
+    const newUser = await createUser({
+      email,
+      username,
+      displayName,
+      password: tempPassword,
+      role: UserRole.PATRON,
+    });
+
+    // Generate a reset token to force password setup
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    const passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+    const passwordResetExpires = new Date(Date.now() + 24 * 3600000); // 24 hours
+
+    await updateUser(newUser.id, {
+      passwordResetToken,
+      passwordResetExpires,
+    });
+
+    // Construct the password setup link
+    const setupUrl = `${req.nextUrl.origin}/reset-password?token=${resetToken}`;
+
+    // Send the email, welcoming them and asking to set a password
+    await sendPasswordResetLinkEmail(email, setupUrl);
+
+    return NextResponse.json({ success: true, user: { id: newUser.id, email: newUser.email } });
+
+  } catch (error) {
+    console.error('Create patron error:', error);
+    // Check for unique constraint error, e.g., on 'username'
+    if (error instanceof Error && 'code' in error && (error as any).code === 'P2002') {
+        return NextResponse.json({ success: false, message: 'A user with that username already exists.' }, { status: 409 });
+    }
+    return NextResponse.json({ success: false, message: 'An internal server error occurred.' }, { status: 500 });
+  }
 }

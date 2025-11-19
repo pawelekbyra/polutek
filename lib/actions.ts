@@ -1,7 +1,7 @@
 'use server';
 
 import { put } from '@vercel/blob';
-import { db } from '@/lib/db';
+import { updateUser } from '@/lib/db-postgres';
 import { verifySession } from '@/lib/auth';
 
 export async function uploadAvatar(formData: FormData) {
@@ -22,7 +22,7 @@ export async function uploadAvatar(formData: FormData) {
 
   const avatarUrl = blob.url;
 
-  const updatedUser = await db.updateUser(currentUser.id, { avatar: avatarUrl });
+  const updatedUser = await updateUser(currentUser.id, { avatar: avatarUrl });
   if (!updatedUser) {
     return { success: false, message: 'Failed to update user record.' };
   }

@@ -6,19 +6,7 @@ import { X, Heart, MessageSquare, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import { useTranslation } from '@/context/LanguageContext';
 import { useUser } from '@/context/UserContext';
-// This type is now aligned with the backend response
-type Comment = {
-  id: string;
-  text: string;
-  createdAt: string;
-  likedBy: string[];
-  user: {
-    displayName: string;
-    avatar: string;
-  };
-  parentId?: string | null;
-  replies?: Comment[];
-};
+import { Comment } from '@/lib/db.interfaces';
 
 interface CommentItemProps {
   comment: Comment;
@@ -245,9 +233,9 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
     const newReply: Comment = {
       id: tempId,
       text,
-      createdAt: new Date().toISOString(),
+      createdAt: Date.now(),
       likedBy: [],
-      user: { displayName: user.displayName || user.username, avatar: user.avatar || '' },
+      user: { id: user.id, displayName: user.displayName || user.username, avatar: user.avatar || '' },
       parentId,
     };
     addCommentOptimistically(newReply);
@@ -286,9 +274,9 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
     const newCommentData: Comment = {
       id: tempId,
       text: trimmedComment,
-      createdAt: new Date().toISOString(),
+      createdAt: Date.now(),
       likedBy: [],
-      user: { displayName: user.displayName || user.username, avatar: user.avatar || '' },
+      user: { id: user.id, displayName: user.displayName || user.username, avatar: user.avatar || '' },
       parentId: null,
     };
     addCommentOptimistically(newCommentData);

@@ -1,36 +1,41 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/db';
-import bcrypt from 'bcrypt';
+import { getUserByPasswordResetToken, updateUser } from '@/lib/db-postgres';
+import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
 
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    const { token, password } = await request.json();
+    const { token, password } = await req.json();
 
     if (!token || !password) {
-      return NextResponse.json({ message: 'Missing token or password.' }, { status: 400 });
+      return NextResponse.json({ success: false, message: 'Token and password are required' }, { status: 400 });
     }
 
-    const savedToken = await db.getPasswordResetToken(token);
+    // Hash the token that the user provides to match the one in the database
+    const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
 
-    if (!savedToken) {
-      return NextResponse.json({ message: 'Invalid or expired token.' }, { status: 400 });
+    const user = await getUserByPasswordResetToken(hashedToken);
+
+    if (!user || !user.passwordResetExpires || user.passwordResetExpires < new Date()) {
+      return NextResponse.json({ success: false, message: 'Token is invalid or has expired' }, { status: 400 });
     }
 
-    if (new Date() > new Date(savedToken.expiresAt)) {
-      await db.deletePasswordResetToken(savedToken.id);
-      return NextResponse.json({ message: 'Token has expired.' }, { status: 400 });
-    }
-
+    // Hash the new password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await db.updateUser(savedToken.userId, { password: hashedPassword });
+    // Update the user's password and clear the reset token fields
+    await updateUser(user.id, {
+      password: hashedPassword,
+      passwordResetToken: null,
+      passwordResetExpires: null,
+      // Also, increment session version to log out of all other devices
+      sessionVersion: (user.sessionVersion || 0) + 1,
+    });
 
-    await db.deletePasswordResetToken(savedToken.id);
-
-    return NextResponse.json({ message: 'Password has been reset successfully.' });
+    return NextResponse.json({ success: true, message: 'Password has been reset successfully.' });
 
   } catch (error) {
-    console.error('Error in reset password route:', error);
-    return NextResponse.json({ message: 'An internal server error occurred.' }, { status: 500 });
+    console.error('Password reset error:', error);
+    return NextResponse.json({ success: false, message: 'An internal server error occurred.' }, { status: 500 });
   }
 }

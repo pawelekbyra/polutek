@@ -1,32 +1,44 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/db';
-import { randomBytes } from 'crypto';
+import { findUserByEmail, updateUser } from '@/lib/db-postgres';
 import { sendPasswordResetLinkEmail } from '@/lib/email';
+import crypto from 'crypto';
 
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    const { email } = await request.json();
+    const { email } = await req.json();
 
-    const user = await db.findUserByEmail(email);
-    if (!user) {
-      // Don't reveal that the user doesn't exist.
-      // Still return a success message to prevent user enumeration attacks.
-      return NextResponse.json({ message: 'If an account with this email exists, a password reset link has been sent.' });
+    if (!email) {
+      return NextResponse.json({ success: false, message: 'Email is required' }, { status: 400 });
     }
 
-    const token = randomBytes(32).toString('hex');
-    const expiresAt = new Date(Date.now() + 3600000); // 1 hour from now
+    const user = await findUserByEmail(email);
 
-    await db.createPasswordResetToken(user.id, token, expiresAt);
+    if (!user) {
+      // We don't want to reveal if a user exists or not
+      return NextResponse.json({ success: true, message: 'If your account exists, a password reset link has been sent.' });
+    }
 
-    const resetLink = `${process.env.NEXT_PUBLIC_BASE_URL}/reset-password?token=${token}`;
+    // Generate a reset token that expires in 1 hour
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    const passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+    const passwordResetExpires = new Date(Date.now() + 3600000); // 1 hour
 
-    await sendPasswordResetLinkEmail(email, resetLink);
+    // Save the token and expiry to the user
+    await updateUser(user.id, {
+      passwordResetToken,
+      passwordResetExpires,
+    });
 
-    return NextResponse.json({ message: 'If an account with this email exists, a password reset link has been sent.' });
+    // Construct the reset link
+    const resetUrl = `${req.nextUrl.origin}/reset-password?token=${resetToken}`;
+
+    // Send the email
+    await sendPasswordResetLinkEmail(email, resetUrl);
+
+    return NextResponse.json({ success: true, message: 'If your account exists, a password reset link has been sent.' });
 
   } catch (error) {
-    console.error('Error in forgot password route:', error);
-    return NextResponse.json({ message: 'An internal server error occurred.' }, { status: 500 });
+    console.error('Password forgot error:', error);
+    return NextResponse.json({ success: false, message: 'An internal server error occurred.' }, { status: 500 });
   }
 }

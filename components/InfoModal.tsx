@@ -4,8 +4,8 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Coffee } from 'lucide-react';
 import { useTranslation } from '@/context/LanguageContext';
-import { useUser } from '@/context/UserContext';
 import { useToast } from '@/context/ToastContext';
+import { useState } from 'react';
 
 interface InfoModalProps {
   isOpen: boolean;
@@ -13,44 +13,42 @@ interface InfoModalProps {
 }
 
 const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
-    const { t } = useTranslation();
-    const { login } = useUser(); // Dodanie hooka useUser
-    const { addToast } = useToast(); // Dodanie hooka useToast
+  const { t } = useTranslation();
+  const { addToast } = useToast();
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({ email: '', username: '', displayName: '' });
+  const [isLoading, setIsLoading] = useState(false);
+  const [formError, setFormError] = useState('');
 
-    const handleShowTipJar = async () => {
-        const bmcButton = document.querySelector('#bmc-wbtn') as HTMLElement;
-        if (bmcButton) {
-            bmcButton.click();
-        }
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-        // Poniższa logika jest konceptualna i powinna być wywołana przez webhooka płatności.
-        // Dla celów demonstracyjnych, udajemy, że płatność się powiodła.
-        setTimeout(async () => {
-            const mockEmail = 'patron@example.com';
-            const mockPassword = 'password123';
+  const handlePatronSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setFormError('');
 
-            try {
-                // Poniżej znajduje się koncepcyjne wywołanie API, które powinno stworzyć konto
-                const res = await fetch('/api/create-patron', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: mockEmail, password: mockPassword }),
-                });
-                const data = await res.json();
-                if (data.success) {
-                    addToast(`Twoje konto zostało utworzone! Login: ${mockEmail}`, 'success');
-                    await login({ email: mockEmail, password: mockPassword });
-                    onClose(); // Close modal on success
-                } else {
-                    throw new Error(data.message);
-                }
-            } catch (error) {
-                console.error('Błąd tworzenia konta po wpłacie:', error);
-                addToast('Wystąpił błąd podczas tworzenia konta.', 'error');
-                onClose(); // Close modal on error
-            }
-        }, 3000);
-    };
+    try {
+      const res = await fetch('/api/create-patron', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        addToast('Account created! Check your email to set your password.', 'success');
+        onClose();
+        // Here you might trigger the actual payment flow
+      } else {
+        setFormError(data.message || 'An error occurred.');
+      }
+    } catch (error) {
+      setFormError('An unexpected error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -90,9 +88,21 @@ const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
                 <p className="text-sm">
                   {t('infoModalBodyTip') || 'Enjoying the app? Leave a tip...'}
                 </p>
-                <button onClick={handleShowTipJar} className="mt-3 bg-pink-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-pink-600">
-                  {t('tipText') || 'Tip'}
-                </button>
+                {!showForm ? (
+                  <button onClick={() => setShowForm(true)} className="mt-3 bg-pink-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-pink-600">
+                    {t('tipText') || 'Become a Patron'}
+                  </button>
+                ) : (
+                  <form onSubmit={handlePatronSubmit} className="mt-4 space-y-3 text-left">
+                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email" required className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-pink-500" />
+                    <input type="text" name="username" value={formData.username} onChange={handleInputChange} placeholder="Username" required className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-pink-500" />
+                    <input type="text" name="displayName" value={formData.displayName} onChange={handleInputChange} placeholder="Display Name" required className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-pink-500" />
+                    {formError && <p className="text-red-500 text-xs text-center">{formError}</p>}
+                    <button type="submit" disabled={isLoading} className="w-full bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-700 disabled:opacity-50">
+                      {isLoading ? 'Creating Account...' : 'Create Account & Tip'}
+                    </button>
+                  </form>
+                )}
               </div>
               <p>{t('infoModalBodyP3') || 'Donec id elit non mi porta...'}</p>
             </div>

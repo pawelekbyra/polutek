@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
-import { User } from '@/lib/db';
+import { User } from '@/lib/db.interfaces';
 
 interface UserContextType {
   user: User | null;
