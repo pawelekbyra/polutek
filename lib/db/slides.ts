@@ -96,6 +96,13 @@ export const getAllSlides = async () => {
     },
     include: {
       author: true,
+      likes: true,
+      _count: {
+        select: {
+          comments: true,
+          likes: true,
+        },
+      },
     },
   });
 };
@@ -143,6 +150,16 @@ export const getSlidesByAuthorId = async (authorId: string, limit: number = 6) =
         take: limit,
         orderBy: {
             createdAt: 'desc',
+        },
+        include: {
+            author: true,
+            likes: true,
+            _count: {
+                select: {
+                    comments: true,
+                    likes: true,
+                },
+            },
         },
     });
 };

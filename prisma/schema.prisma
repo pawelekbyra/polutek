@@ -129,6 +129,6 @@ model User {
 }
 enum Role {
   PATRON
-  TW_RCA
+  TWÓRCA
   ADMIN
 }
