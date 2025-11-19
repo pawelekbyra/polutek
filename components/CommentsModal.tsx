@@ -6,7 +6,19 @@ import { X, Heart, MessageSquare, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import { useTranslation } from '@/context/LanguageContext';
 import { useUser } from '@/context/UserContext';
-import { Comment } from '@/lib/db';
+// This type is now aligned with the backend response
+type Comment = {
+  id: string;
+  text: string;
+  createdAt: string;
+  likedBy: string[];
+  user: {
+    displayName: string;
+    avatar: string;
+  };
+  parentId?: string | null;
+  replies?: Comment[];
+};
 
 interface CommentItemProps {
   comment: Comment;
@@ -43,9 +55,9 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onReplySubmi
       exit={{ opacity: 0, y: -20 }}
       className={`flex items-start gap-3 ${isReply ? 'ml-8' : ''}`}
     >
-      {comment.user && <Image src={comment.user.avatar || ''} alt={t('userAvatar', { user: comment.user.displayName })} width={32} height={32} className="w-8 h-8 rounded-full mt-1" />}
+      <Image src={comment.user.avatar} alt={t('userAvatar', { user: comment.user.displayName })} width={32} height={32} className="w-8 h-8 rounded-full mt-1" />
       <div className="flex-1">
-        <p className="text-xs font-bold text-white/80">{comment.user?.displayName}</p>
+        <p className="text-xs font-bold text-white/80">{comment.user.displayName}</p>
         <p className="text-sm text-white">{comment.text}</p>
         <div className="flex items-center gap-4 text-xs text-white/60 mt-1">
           <button onClick={() => onLike(comment.id)} className="flex items-center gap-1">
@@ -232,10 +244,8 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
     const tempId = `temp-${Date.now()}`;
     const newReply: Comment = {
       id: tempId,
-      slideId: slideId,
-      userId: user.id,
       text,
-      createdAt: Date.now(),
+      createdAt: new Date().toISOString(),
       likedBy: [],
       user: { displayName: user.displayName || user.username, avatar: user.avatar || '' },
       parentId,
@@ -275,10 +285,8 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
     const tempId = `temp-${Date.now()}`;
     const newCommentData: Comment = {
       id: tempId,
-      slideId: slideId,
-      userId: user.id,
       text: trimmedComment,
-      createdAt: Date.now(),
+      createdAt: new Date().toISOString(),
       likedBy: [],
       user: { displayName: user.displayName || user.username, avatar: user.avatar || '' },
       parentId: null,
