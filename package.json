@@ -40,7 +40,8 @@
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "web-push": "^3.6.7",
-    "zustand": "^4.5.4"
+    "zustand": "^4.5.4",
+    "bcrypt": "^5.1.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -50,7 +51,6 @@
     "@types/web-push": "^3.6.4",
     "@typescript-eslint/eslint-plugin": "^8.41.0",
     "@typescript-eslint/parser": "^8.41.0",
-    "bcrypt": "^5.1.1",
     "dotenv-cli": "^10.0.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",

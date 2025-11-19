@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { findUserByEmail, createUser, updateUser } from '@/lib/db-postgres';
 import { UserRole } from '@/lib/db.interfaces';
 import { sendPasswordResetLinkEmail } from '@/lib/email';
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 
 export async function POST(req: NextRequest) {
