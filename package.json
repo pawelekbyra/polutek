@@ -8,11 +8,11 @@
     "start": "next start",
     "lint": "next lint",
     "db:seed": "tsx scripts/seed-kv.ts",
-    "db:init": "dotenv -e .env.local -- tsx scripts/init-db.ts",
-    "admin:create": "dotenv -e .env.local -- tsx scripts/create-admin.ts"
+    "db:seed-test": "dotenv -e .env.local -- tsx scripts/seed-test-accounts.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
+    "@prisma/client": "5.22.0",
     "@radix-ui/react-slot": "^1.2.3",
     "@serwist/next": "^9.2.0",
     "@serwist/precaching": "^9.2.0",
@@ -22,6 +22,7 @@
     "@tanstack/react-query": "^5.51.1",
     "@types/jsdom": "^21.1.7",
     "@types/react-window": "^2.0.0",
+    "@types/uuid": "^11.0.0",
     "@upstash/redis": "^1.35.6",
     "@vercel/blob": "^2.0.0",
     "@vercel/kv": "^3.0.0",
@@ -37,6 +38,7 @@
     "jsdom": "^26.1.0",
     "lucide-react": "^0.395.0",
     "next": "^14.2.32",
+    "prisma": "5.22.0",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.5.0",
@@ -44,6 +46,7 @@
     "recharts": "^3.1.2",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
+    "ts-node": "^10.9.2",
     "web-push": "^3.6.7",
     "zustand": "^4.5.4"
   },
@@ -56,7 +59,7 @@
     "@typescript-eslint/eslint-plugin": "^8.41.0",
     "@typescript-eslint/parser": "^8.41.0",
     "bcrypt": "^5.1.1",
-    "dotenv-cli": "^10.0.0",
+    "dotenv-cli": "^11.0.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8.5.6",

@@ -1,0 +1,142 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Upewnij się, że User jest zdefiniowany (użyj swojej aktualnej struktury User, ale jako model Prisma)
+model User {
+  id              String    @id @default(uuid())
+  email           String    @unique
+  username        String    @unique
+  password        String?
+  displayName     String?
+  avatar          String?
+  role            Role      @default(User)
+  sessionVersion  Int       @default(1)
+
+  slides          Slide[]
+  likes           Like[]
+  comments        Comment[]
+  commentLikes    CommentLike[]
+  notifications   Notification[]
+  sentNotifications Notification[] @relation("Sender")
+
+  // Added for push subscriptions compatibility if needed, but likely better to keep separate or integrate?
+  // The prompt didn't specify PushSubscription model, but it was in db-postgres.ts.
+  // I will add it to be safe and complete migration.
+  pushSubscription PushSubscription?
+}
+
+model PushSubscription {
+  id              String  @id @default(uuid())
+  userId          String  @unique
+  subscription    Json
+  is_pwa_installed Boolean @default(false)
+  user            User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ENUMY dla ról i dostępu (użyj tych, które uzgodniliśmy)
+enum Role {
+  User
+  Admin
+  Patron
+  Author
+}
+
+enum SlideType {
+  Video
+  Html
+}
+
+enum AccessLevel {
+  Public
+  Secret // Wymaga logowania / Patrona / PWA
+}
+
+// NOWA, PROFESJONALNA TABELA SLIDES
+model Slide {
+  id              String         @id @default(uuid())
+  authorId        String
+  type            SlideType
+  access          AccessLevel    @default(Public)
+  title           String?
+  description     String?
+
+  // Dane właściwe: JSONB dla elastyczności (przechowuje VideoSlideData lub HtmlSlideData)
+  content         Json
+
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  // Relacje
+  author          User           @relation(fields: [authorId], references: [id])
+  likes           Like[]
+  comments        Comment[]
+
+  // Opcjonalne pole dla sortowania w feedzie
+  feedOrder       Int            @default(0)
+}
+
+// Dodaj także uproszczone modele relacji (jeśli ich nie ma):
+model Like {
+    slideId String
+    userId  String
+
+    slide   Slide @relation(fields: [slideId], references: [id], onDelete: Cascade)
+    user    User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@id([slideId, userId])
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  slideId   String
+  userId    String
+  parentId  String?
+  text      String
+  createdAt DateTime @default(now())
+
+  slide     Slide    @relation(fields: [slideId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parent    Comment? @relation("CommentReplies", fields: [parentId], references: [id])
+  replies   Comment[] @relation("CommentReplies")
+  likes     CommentLike[]
+}
+
+model CommentLike {
+  commentId String
+  userId    String
+
+  comment   Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([commentId, userId])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  type      String   // 'like' | 'comment' | 'follow' | 'system'
+  text      String
+  link      String?
+  fromUserId String?
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fromUser  User?    @relation("Sender", fields: [fromUserId], references: [id])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(uuid())
+  userId    String
+  token     String
+  expiresAt DateTime
+}
