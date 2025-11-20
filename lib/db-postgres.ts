@@ -412,3 +412,115 @@ export async function getPushSubscriptions(options: { userId?: string, role?: st
     // This case is for when options is empty, meaning get all subscriptions.
     return await sql`SELECT ps.subscription FROM push_subscriptions ps`;
 }
+
+// --- Slide Management Functions (Added) ---
+
+export async function getSlide(id: string): Promise<Slide | null> {
+    const sql = getDb();
+    const result = await sql`
+        SELECT s.*,
+        (SELECT COUNT(*) FROM likes WHERE "slideId" = s.id) as "likeCount",
+        (SELECT COUNT(*) FROM comments WHERE "slideId" = s.id) as "commentCount"
+        FROM slides s
+        WHERE s.id = ${id}
+    `;
+
+    if (result.length === 0) return null;
+
+    const row = result[0];
+    const content = row.content ? JSON.parse(row.content) : {};
+    return {
+        id: row.id,
+        x: row.x,
+        y: row.y,
+        type: row.slideType as 'video' | 'html',
+        userId: row.userId,
+        username: row.username,
+        createdAt: new Date(row.createdAt).getTime(),
+        initialLikes: parseInt(row.likeCount || '0'),
+        initialComments: parseInt(row.commentCount || '0'),
+        isLiked: false,
+        avatar: content.avatar || '',
+        access: content.access || 'public',
+        data: content.data,
+    } as Slide;
+}
+
+export async function getAllSlides(): Promise<Slide[]> {
+    const sql = getDb();
+    const result = await sql`
+        SELECT s.*,
+        (SELECT COUNT(*) FROM likes WHERE "slideId" = s.id) as "likeCount",
+        (SELECT COUNT(*) FROM comments WHERE "slideId" = s.id) as "commentCount"
+        FROM slides s
+        ORDER BY s."createdAt" DESC;
+    `;
+
+    return result.map((row: any) => {
+        const content = row.content ? JSON.parse(row.content) : {};
+        return {
+            id: row.id,
+            x: row.x,
+            y: row.y,
+            type: row.slideType as 'video' | 'html',
+            userId: row.userId,
+            username: row.username,
+            createdAt: new Date(row.createdAt).getTime(),
+            initialLikes: parseInt(row.likeCount || '0'),
+            initialComments: parseInt(row.commentCount || '0'),
+            isLiked: false, // Admin view doesn't track personal like status
+            avatar: content.avatar || '',
+            access: content.access || 'public',
+            data: content.data,
+        } as Slide;
+    });
+}
+
+export async function updateSlide(id: string, updates: Partial<Slide>): Promise<void> {
+    const sql = getDb();
+
+    // Fetch current slide to preserve existing content fields
+    const slides = await sql`SELECT * FROM slides WHERE id = ${id}`;
+    if (slides.length === 0) throw new Error('Slide not found');
+    const slide = slides[0];
+    const content = slide.content ? JSON.parse(slide.content) : {};
+
+    // Update content fields if provided in updates
+    if (updates.data) content.data = updates.data;
+    if (updates.access) content.access = updates.access;
+    if (updates.avatar) content.avatar = updates.avatar;
+
+    const newContent = JSON.stringify(content);
+
+    // Also update top-level columns if necessary.
+    let title = slide.title;
+    if (updates.data && 'title' in updates.data) {
+         title = (updates.data as any).title;
+    }
+
+    await sql`
+        UPDATE slides
+        SET content = ${newContent}, title = ${title}
+        WHERE id = ${id}
+    `;
+}
+
+export async function deleteSlide(id: string): Promise<void> {
+    const sql = getDb();
+
+    // Delete likes associated with the slide
+    await sql`DELETE FROM likes WHERE "slideId" = ${id}`;
+
+    // Delete comments and their likes
+    // first delete comment_likes for comments of this slide
+    await sql`
+        DELETE FROM comment_likes
+        WHERE "commentId" IN (SELECT id FROM comments WHERE "slideId" = ${id})
+    `;
+
+    // then delete comments
+    await sql`DELETE FROM comments WHERE "slideId" = ${id}`;
+
+    // finally delete the slide
+    await sql`DELETE FROM slides WHERE id = ${id}`;
+}
