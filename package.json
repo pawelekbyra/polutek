@@ -11,6 +11,7 @@
     "db:seed-test": "dotenv -e .env.local -- tsx scripts/seed-test-accounts.ts"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.11.1",
     "@neondatabase/serverless": "^1.0.1",
     "@node-rs/bcrypt": "^1.10.7",
     "@prisma/client": "^6.0.0",
@@ -39,6 +40,7 @@
     "jsdom": "^26.1.0",
     "lucide-react": "^0.395.0",
     "next": "^14.2.32",
+    "next-auth": "^5.0.0-beta.30",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.5.0",

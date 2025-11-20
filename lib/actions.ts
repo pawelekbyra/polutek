@@ -2,17 +2,36 @@
 
 import { put, del } from '@vercel/blob';
 import { db } from '@/lib/db';
-import { verifySession, COOKIE_NAME } from '@/lib/auth';
+import { auth, signIn, signOut } from '@/auth';
 import { revalidatePath } from 'next/cache';
-import { cookies } from 'next/headers';
 import * as bcrypt from '@node-rs/bcrypt';
+import { AuthError } from 'next-auth';
+
+export async function authenticate(
+  prevState: string | undefined,
+  formData: FormData,
+) {
+  try {
+    await signIn('credentials', formData);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return 'Invalid credentials.';
+        default:
+          return 'Something went wrong.';
+      }
+    }
+    throw error;
+  }
+}
 
 export async function uploadAvatar(formData: FormData) {
-  const payload = await verifySession();
-  if (!payload || !payload.user) {
+  const session = await auth();
+  if (!session || !session.user) {
     return { success: false, message: 'Not authenticated' };
   }
-  const currentUser = payload.user;
+  const currentUser = session.user;
 
   const file = formData.get('avatar') as File;
   if (!file) {
@@ -20,12 +39,16 @@ export async function uploadAvatar(formData: FormData) {
   }
 
   // Attempt to delete old avatar if it exists and is a blob URL
-  if (currentUser.avatar && currentUser.avatar.includes('public.blob.vercel-storage.com')) {
+  // We need to fetch the user from DB to get the current avatar URL,
+  // as the session might be stale regarding the avatar.
+  const dbUser = await db.findUserById(currentUser.id);
+  const currentAvatar = dbUser?.avatar || currentUser.image; // use DB or session fallback
+
+  if (currentAvatar && currentAvatar.includes('public.blob.vercel-storage.com')) {
       try {
-          await del(currentUser.avatar);
+          await del(currentAvatar);
       } catch (error) {
           console.error("Failed to delete old avatar:", error);
-          // Continue even if delete fails
       }
   }
 
@@ -45,11 +68,11 @@ export async function uploadAvatar(formData: FormData) {
 }
 
 export async function updateUserProfile(prevState: any, formData: FormData) {
-    const payload = await verifySession();
-    if (!payload || !payload.user) {
+    const session = await auth();
+    if (!session || !session.user) {
         return { success: false, message: 'Not authenticated' };
     }
-    const userId = payload.user.id;
+    const userId = session.user.id;
 
     const firstName = formData.get('firstName') as string;
     const lastName = formData.get('lastName') as string;
@@ -63,7 +86,7 @@ export async function updateUserProfile(prevState: any, formData: FormData) {
 
     try {
         // Check if email is taken by another user (if email changed)
-        if (email !== payload.user.email) {
+        if (email !== session.user.email) {
             const existingUser = await db.findUserByEmail(email);
             if (existingUser && existingUser.id !== userId) {
                 return { success: false, message: 'Email already in use.' };
@@ -83,11 +106,11 @@ export async function updateUserProfile(prevState: any, formData: FormData) {
 }
 
 export async function changePassword(prevState: any, formData: FormData) {
-    const payload = await verifySession();
-    if (!payload || !payload.user) {
+    const session = await auth();
+    if (!session || !session.user) {
         return { success: false, message: 'Not authenticated' };
     }
-    const userId = payload.user.id;
+    const userId = session.user.id;
 
     const currentPassword = formData.get('currentPassword') as string;
     const newPassword = formData.get('newPassword') as string;
@@ -106,12 +129,9 @@ export async function changePassword(prevState: any, formData: FormData) {
     }
 
     try {
-        // Verify current password (we need to fetch the user with password field, findUserById usually returns it)
-        // Wait, db.findUserById returns User interface. Does it include password?
-        // db-postgres.ts: SELECT * FROM users. Yes.
         const user = await db.findUserById(userId);
         if (!user || !user.password) {
-             return { success: false, message: 'User not found.' };
+             return { success: false, message: 'User not found or password not set.' };
         }
 
         const isValid = await bcrypt.compare(currentPassword, user.password);
@@ -121,7 +141,6 @@ export async function changePassword(prevState: any, formData: FormData) {
 
         const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-        // Update password and increment session version to invalidate other sessions
         await db.updateUser(userId, {
             password: hashedPassword,
             sessionVersion: (user.sessionVersion || 0) + 1
@@ -134,25 +153,15 @@ export async function changePassword(prevState: any, formData: FormData) {
 }
 
 export async function deleteAccount(prevState: any, formData: FormData) {
-    const payload = await verifySession();
-    if (!payload || !payload.user) {
+    const session = await auth();
+    if (!session || !session.user) {
         return { success: false, message: 'Not authenticated' };
     }
-    const userId = payload.user.id;
-    const confirmText = formData.get('confirm_text') as string;
-
-    // Note: The validation of the exact text is done on client, but we should double check or just trust the button enabled state logic if it was passed securely.
-    // However, usually we expect a specific string. The instruction says "verify confirmation text".
-    // Client sends the text.
-
-    // Let's assume we need to verify it equals a standard string.
-    // But the localized string varies. The client sends what the user typed.
-    // For simplicity, we'll proceed if the client validated it, or we'd need the locale here.
-    // Given the code in DeleteTab.tsx, it checks client side. We'll assume the intent is confirmed.
+    const userId = session.user.id;
 
     try {
         await db.deleteUser(userId);
-        cookies().delete(COOKIE_NAME);
+        await signOut({ redirect: false }); // Sign out without immediate redirect if in SPA
         revalidatePath('/');
         return { success: true, message: 'Account deleted successfully.' };
     } catch (error: any) {

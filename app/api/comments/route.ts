@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { verifySession } from '@/lib/auth';
+import { auth } from '@/auth';
 import { sanitize } from '@/lib/sanitize';
 import { rateLimit } from '@/lib/rate-limiter';
 import { ably } from '@/lib/ably-server';
@@ -24,11 +24,11 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const payload = await verifySession();
-  if (!payload || !payload.user) {
+  const session = await auth();
+  if (!session || !session.user || !session.user.id) {
     return NextResponse.json({ success: false, message: 'Authentication required to comment.' }, { status: 401 });
   }
-  const currentUser = payload.user;
+  const currentUser = session.user;
 
   const { success } = await rateLimit(`comment:${currentUser.id}`, 3, 30);
 
