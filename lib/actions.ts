@@ -1,11 +1,13 @@
 'use server';
 
-import { put, del } from '@vercel/blob';
 import { db } from '@/lib/db';
 import { auth, signIn, signOut } from '@/auth';
 import { revalidatePath } from 'next/cache';
 import * as bcrypt from '@node-rs/bcrypt';
 import { AuthError } from 'next-auth';
+import fs from 'fs/promises';
+import path from 'path';
+import { User } from '@/lib/db.interfaces';
 
 export async function authenticate(
   prevState: string | undefined,
@@ -27,44 +29,7 @@ export async function authenticate(
 }
 
 export async function uploadAvatar(formData: FormData) {
-  const session = await auth();
-  if (!session || !session.user) {
-    return { success: false, message: 'Not authenticated' };
-  }
-  const currentUser = session.user;
-
-  const file = formData.get('avatar') as File;
-  if (!file) {
-    return { success: false, message: 'No file provided.' };
-  }
-
-  // Attempt to delete old avatar if it exists and is a blob URL
-  // We need to fetch the user from DB to get the current avatar URL,
-  // as the session might be stale regarding the avatar.
-  const dbUser = await db.findUserById(currentUser.id!);
-  const currentAvatar = dbUser?.avatar || currentUser.image; // use DB or session fallback
-
-  if (currentAvatar && currentAvatar.includes('public.blob.vercel-storage.com')) {
-      try {
-          await del(currentAvatar);
-      } catch (error) {
-          console.error("Failed to delete old avatar:", error);
-      }
-  }
-
-  const blob = await put(file.name, file, {
-    access: 'public',
-  });
-
-  const avatarUrl = blob.url;
-
-  const updatedUser = await db.updateUser(currentUser.id!, { avatar: avatarUrl });
-  if (!updatedUser) {
-    return { success: false, message: 'Failed to update user record.' };
-  }
-
-  revalidatePath('/');
-  return { success: true, url: avatarUrl };
+    return { success: false, message: 'Please use the profile save button.' };
 }
 
 export async function updateUserProfile(prevState: any, formData: FormData) {
@@ -74,18 +39,60 @@ export async function updateUserProfile(prevState: any, formData: FormData) {
     }
     const userId = session.user.id!;
 
-    const firstName = formData.get('firstName') as string;
-    const lastName = formData.get('lastName') as string;
+    const displayName = formData.get('displayName') as string;
     const email = formData.get('email') as string;
+    const emailConsent = formData.get('emailConsent'); // 'on' or null
+    const emailLanguage = formData.get('emailLanguage') as string;
+    const avatarFile = formData.get('avatar') as File;
 
     if (!email || !email.includes('@')) {
         return { success: false, message: 'Invalid email address.' };
     }
 
-    const displayName = `${firstName || ''} ${lastName || ''}`.trim();
+    // Prepare Update Object with explicit type casting for db.updateUser compatibility
+    // We use Partial<User> but we also need to ensure the DB supports the keys.
+    // Our db-postgres implementation filters by `updates[key] !== undefined`.
+    const updateData: Partial<User> & { emailConsent?: boolean, emailLanguage?: string } = {
+        displayName: displayName || undefined,
+        email: email,
+        emailConsent: emailConsent === 'on',
+        emailLanguage: (emailConsent === 'on') ? emailLanguage : undefined
+    };
 
     try {
-        // Check if email is taken by another user (if email changed)
+        // 1. Handle File Upload (Local Filesystem)
+        if (avatarFile && avatarFile.size > 0 && avatarFile.name !== 'undefined') {
+            const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
+
+            // Ensure directory exists
+            await fs.mkdir(uploadsDir, { recursive: true });
+
+            // Cleanup Old Avatar if it was local
+            const currentUser = await db.findUserById(userId);
+            if (currentUser?.avatar && currentUser.avatar.startsWith('/uploads/')) {
+                 const oldPath = path.join(process.cwd(), 'public', currentUser.avatar);
+                 try {
+                     await fs.unlink(oldPath);
+                 } catch (err) {
+                     console.warn("Failed to delete old avatar:", err);
+                 }
+            }
+
+            // Generate unique filename
+            const ext = path.extname(avatarFile.name) || '.jpg'; // Fallback extension
+            const filename = `avatar-${userId}-${Date.now()}${ext}`;
+            const filepath = path.join(uploadsDir, filename);
+
+            // Convert file to buffer and write to disk
+            const arrayBuffer = await avatarFile.arrayBuffer();
+            const buffer = Buffer.from(arrayBuffer);
+            await fs.writeFile(filepath, buffer);
+
+            // Update data with new avatar path
+            updateData.avatar = `/uploads/${filename}`;
+        }
+
+        // 2. Check Email Uniqueness
         if (email !== session.user.email) {
             const existingUser = await db.findUserByEmail(email);
             if (existingUser && existingUser.id !== userId) {
@@ -93,14 +100,21 @@ export async function updateUserProfile(prevState: any, formData: FormData) {
             }
         }
 
-        await db.updateUser(userId, {
-            displayName: displayName || undefined,
-            email: email
-        });
+        // 3. Update Database
+        // db.updateUser will only update fields present in updateData (and defined in schema/Partial<User>)
+        const updatedUser = await db.updateUser(userId, updateData);
 
+        if (!updatedUser) {
+            throw new Error("Database update failed.");
+        }
+
+        // 4. Revalidate
         revalidatePath('/');
+        revalidatePath('/api/account/status'); // Ensure status endpoint is fresh if cached
+
         return { success: true, message: 'Profile updated successfully.' };
     } catch (error: any) {
+        console.error("Profile update error:", error);
         return { success: false, message: error.message || 'Failed to update profile.' };
     }
 }
@@ -161,7 +175,7 @@ export async function deleteAccount(prevState: any, formData: FormData) {
 
     try {
         await db.deleteUser(userId);
-        await signOut({ redirect: false }); // Sign out without immediate redirect if in SPA
+        await signOut({ redirect: false });
         revalidatePath('/');
         return { success: true, message: 'Account deleted successfully.' };
     } catch (error: any) {

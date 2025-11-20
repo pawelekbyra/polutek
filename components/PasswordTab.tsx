@@ -38,24 +38,52 @@ const PasswordTab: React.FC = () => {
   return (
     <div className="tab-pane active p-4" id="password-tab">
       <div className="profile-section bg-white/5 border border-white/10 rounded-xl p-5">
-        <h3 className="section-title text-lg font-bold mb-5 flex items-center gap-3"><span className="w-1 h-5 bg-gradient-to-b from-pink-500 to-rose-500 rounded-full"></span>{t('changePasswordTitle')}</h3>
+        <h3 className="section-title text-lg font-bold mb-5 flex items-center gap-3">
+          <span className="w-1 h-5 bg-gradient-to-b from-pink-500 to-rose-500 rounded-full"></span>
+          {t('changePasswordTitle')}
+        </h3>
         <form id="passwordForm" onSubmit={handlePasswordSubmit}>
           <div className="form-group mb-4">
-            <label className="form-label text-sm font-medium mb-2 block">{t('currentPasswordLabel')}</label>
-            <Input type="password" name="currentPassword" placeholder={t('currentPasswordPlaceholder')} required autoComplete="current-password" />
+            <label className="form-label text-sm font-medium mb-2 block text-gray-300">{t('currentPasswordLabel')}</label>
+            <Input
+              type="password"
+              name="currentPassword"
+              placeholder={t('currentPasswordPlaceholder')}
+              required
+              autoComplete="current-password"
+              className="bg-white/10 border-white/10 text-white placeholder:text-white/30 focus:border-pink-500 focus:ring-pink-500"
+            />
           </div>
           <div className="form-group mb-4">
-            <label className="form-label text-sm font-medium mb-2 block">{t('newPasswordLabel')}</label>
-            <Input type="password" name="newPassword" placeholder={t('newPasswordPlaceholder')} required autoComplete="new-password" />
+            <label className="form-label text-sm font-medium mb-2 block text-gray-300">{t('newPasswordLabel')}</label>
+            <Input
+              type="password"
+              name="newPassword"
+              placeholder={t('newPasswordPlaceholder')}
+              required
+              autoComplete="new-password"
+              className="bg-white/10 border-white/10 text-white placeholder:text-white/30 focus:border-pink-500 focus:ring-pink-500"
+            />
           </div>
           <div className="form-group mb-4">
-            <label className="form-label text-sm font-medium mb-2 block">{t('confirmPasswordLabel')}</label>
-            <Input type="password" name="confirmPassword" placeholder={t('confirmPasswordPlaceholder')} required autoComplete="new-password" />
+            <label className="form-label text-sm font-medium mb-2 block text-gray-300">{t('confirmPasswordLabel')}</label>
+            <Input
+              type="password"
+              name="confirmPassword"
+              placeholder={t('confirmPasswordPlaceholder')}
+              required
+              autoComplete="new-password"
+              className="bg-white/10 border-white/10 text-white placeholder:text-white/30 focus:border-pink-500 focus:ring-pink-500"
+            />
             <p className="text-xs text-white/60 mt-2">
               {t('passwordMinLength')}
             </p>
           </div>
-          <Button type="submit" className="w-full bg-pink-600 hover:bg-pink-700" disabled={isSaving}>
+          <Button
+            type="submit"
+            className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-lg shadow-lg transition-all active:scale-95 disabled:opacity-70 disabled:scale-100"
+            disabled={isSaving}
+          >
             {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
             {isSaving ? t('changingPassword') : t('changePasswordButton')}
           </Button>

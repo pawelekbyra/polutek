@@ -1,7 +1,10 @@
 "use client";
 
 import React, { createContext, useState, useContext, useEffect, ReactNode, Dispatch, SetStateAction } from 'react';
-import { User } from '@/lib/db';
+import { User } from '@/lib/db.interfaces';
+
+// Note: Ensure User interface in lib/db.interfaces matches the actual shape of data returned by /api/account/status
+// which might include new fields like emailConsent, emailLanguage etc.
 
 interface UserContextType {
   user: User | null;
@@ -20,9 +23,19 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const checkUserStatus = async () => {
-    setIsLoading(true);
+    // Do not set isLoading(true) here if user is already loaded to prevent UI flickering
+    // Only initial load needs full blocking loading state if desired.
+    // But we might want a "refreshing" state? For now, simple is fine.
+
     try {
-      const res = await fetch('/api/account/status');
+      // Add timestamp to prevent browser caching
+      const res = await fetch(`/api/account/status?t=${Date.now()}`, {
+          cache: 'no-store',
+          headers: {
+              'Pragma': 'no-cache',
+          }
+      });
+
       if (res.ok) {
         const data = await res.json();
         if (data.isLoggedIn) {
@@ -35,7 +48,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       }
     } catch (error) {
       console.error("Failed to check user status", error);
-      setUser(null);
+      // Don't clear user on network error to allow offline persistence if implemented later
+      // setUser(null);
     } finally {
       setIsLoading(false);
     }
@@ -61,12 +75,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = async () => {
     try {
-        const res = await fetch('/api/logout', { method: 'POST' });
-        if (res.ok) {
-            setUser(null);
-        } else {
-            console.error("Logout failed", await res.text());
-        }
+        await fetch('/api/logout', { method: 'POST' });
+        setUser(null);
+        // Force reload to clear any other state
+        window.location.href = '/';
     } catch (error) {
         console.error("Logout API error:", error);
     }
