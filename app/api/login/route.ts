@@ -25,9 +25,10 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { email, password } = body;
+    // accept 'email' OR 'username' from the body, but we will treat it as 'identifier'
+    const { email: emailOrUsername, password } = body;
 
-    if (email === 'admin' && password === 'admin') {
+    if (emailOrUsername === 'admin' && password === 'admin') {
       const mockAdminUser = {
         id: 'mock-admin-id',
         email: 'admin',
@@ -53,11 +54,26 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: true, user: mockAdminUser });
     }
 
-    if (!email || !password) {
-      return NextResponse.json({ success: false, message: 'Email and password are required' }, { status: 400 });
+    if (!emailOrUsername || !password) {
+      return NextResponse.json({ success: false, message: 'Email/Username and password are required' }, { status: 400 });
     }
 
-    const user = await db.findUserByEmail(email);
+    let user = null;
+
+    // Check if input looks like an email
+    if (emailOrUsername.includes('@')) {
+        user = await db.findUserByEmail(emailOrUsername);
+    } else {
+        // Try to find by username
+        // We need to cast db to any or ensure findUserByUsername is in Db type.
+        // Since we added it to lib/db-postgres.ts and lib/db.ts types it as `typeof postgres`, it should be available.
+        if (db.findUserByUsername) {
+             user = await db.findUserByUsername(emailOrUsername);
+        } else {
+            console.error("db.findUserByUsername is not defined");
+            // Fallback or error? If we can't search by username, we can't log them in.
+        }
+    }
 
     if (!user) {
       return NextResponse.json({ success: false, message: 'Invalid username or password' }, { status: 401 });
