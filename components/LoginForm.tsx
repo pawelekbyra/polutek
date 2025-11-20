@@ -30,6 +30,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
     }
 
     try {
+      // The backend API expects 'email' as the key, but we pass the 'username' state variable
+      // which can now contain either email or username.
       await login({ email: username, password });
       onLoginSuccess?.();
     } catch (err: any) {
@@ -45,7 +47,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
         type="text"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        placeholder={t('loginPlaceholder')}
+        placeholder="Email lub Pseudonim"
         disabled={isLoading}
         autoComplete="username"
         className="bg-white border-2 border-black text-black placeholder:text-gray-500 font-mono focus:ring-2 focus:ring-pink-500"

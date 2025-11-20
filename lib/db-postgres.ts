@@ -162,6 +162,11 @@ export async function findUserByEmail(email: string): Promise<User | null> {
     const result = await sql`SELECT * FROM users WHERE email = ${email};`;
     return result[0] as User || null;
 }
+export async function findUserByUsername(username: string): Promise<User | null> {
+    const sql = getDb();
+    const result = await sql`SELECT * FROM users WHERE username = ${username};`;
+    return result[0] as User || null;
+}
 export async function getAllUsers(): Promise<User[]> {
     const sql = getDb();
     const result = await sql`SELECT * FROM users;`;
