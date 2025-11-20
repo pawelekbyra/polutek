@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, message: 'commentId is required and must be a string' }, { status: 400 });
     }
 
-    const result = await db.toggleCommentLike(commentId, userId);
+    const result = await db.toggleCommentLike(commentId, userId!);
 
     return NextResponse.json({
       success: true,
