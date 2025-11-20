@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { verifySession } from '@/lib/auth';
+import { auth } from '@/auth';
 
 export const dynamic = 'force-dynamic';
 
@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     const cursor = searchParams.get('cursor') || undefined;
     const limit = searchParams.has('limit') ? parseInt(searchParams.get('limit')!, 10) : 5;
 
-    const session = await verifySession();
+    const session = await auth();
     const currentUserId = session?.user?.id;
 
     if (!db.getSlides) {

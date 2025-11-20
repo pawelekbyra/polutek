@@ -1,18 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { verifySession } from '@/lib/auth';
+import { auth } from '@/auth';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
-  const payload = await verifySession();
-  if (!payload || !payload.user) {
+  const session = await auth();
+  if (!session || !session.user) {
     return NextResponse.json({ success: false, message: 'Authentication required.' }, { status: 401 });
   }
+  const userId = session.user.id;
 
   try {
-    const notifications = await db.getNotifications(payload.user.id);
-    const unreadCount = await db.getUnreadNotificationCount(payload.user.id);
+    const notifications = await db.getNotifications(userId);
+    const unreadCount = await db.getUnreadNotificationCount(userId);
     return NextResponse.json({ success: true, notifications, unreadCount }, {
       headers: {
         'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -25,15 +26,16 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-    const payload = await verifySession();
-    if (!payload || !payload.user) {
+    const session = await auth();
+    if (!session || !session.user) {
         return NextResponse.json({ success: false, message: 'Authentication required.' }, { status: 401 });
     }
+    const userId = session.user.id;
 
     const { subscription, isPwaInstalled } = await request.json();
 
     try {
-        await db.savePushSubscription(payload.user.id, subscription, isPwaInstalled);
+        await db.savePushSubscription(userId, subscription, isPwaInstalled);
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error('Error saving push subscription:', error);

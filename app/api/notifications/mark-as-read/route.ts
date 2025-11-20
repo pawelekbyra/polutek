@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { auth } from '@/auth';
 import { db } from '@/lib/db';
-import { verifySession } from '@/lib/auth';
 import { redis } from '@/lib/kv';
 
 export async function POST(request: NextRequest) {
-  const payload = await verifySession();
-  if (!payload || !payload.user) {
+  const session = await auth();
+  if (!session || !session.user) {
     return NextResponse.json({ success: false, message: 'Authentication required.' }, { status: 401 });
   }
-  const userId = payload.user.id;
+  const userId = session.user.id;
 
   try {
     const { notificationId } = await request.json();

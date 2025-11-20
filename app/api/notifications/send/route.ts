@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifySession } from '@/lib/auth';
+import { auth } from '@/auth';
 import { db } from '@/lib/db';
 import webpush from 'web-push';
 
@@ -12,22 +12,22 @@ if (process.env.VAPID_SUBJECT && process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY && pro
 }
 
 export async function POST(request: NextRequest) {
-  const payload = await verifySession();
-  if (!payload || !payload.user || payload.user.role !== 'admin') {
+  const session = await auth();
+  if (!session || !session.user || session.user.role !== 'admin') {
     return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 403 });
   }
 
   const { userId, userType, targetPwa, targetBrowser, title, body, url } = await request.json();
 
   try {
-    const options: { userId?: string, userType?: string, isPwaInstalled?: boolean } = {};
+    const options: { userId?: string, role?: string, isPwaInstalled?: boolean } = {};
     let subscriptions = [];
 
     if (userId) {
         options.userId = userId;
         subscriptions = await db.getPushSubscriptions(options);
     } else if (userType) {
-        options.userType = userType;
+        options.role = userType; // Changed from options.userType to options.role based on db.getPushSubscriptions signature
         subscriptions = await db.getPushSubscriptions(options);
     } else if (targetPwa || targetBrowser) {
         if (targetPwa && targetBrowser) {

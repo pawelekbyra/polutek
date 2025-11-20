@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { verifySession } from '@/lib/auth';
+import { auth } from '@/auth';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
-  const payload = await verifySession();
-  if (!payload || !payload.user) {
+  const session = await auth();
+  if (!session || !session.user || !session.user.id) {
     return NextResponse.json({ success: false, message: 'Authentication required.' }, { status: 401 });
   }
-  const userId = payload.user.id;
+  const userId = session.user.id;
 
   try {
     const { commentId } = await request.json();

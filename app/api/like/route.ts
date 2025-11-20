@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { verifySession } from '@/lib/auth';
+import { auth } from '@/auth';
 import { ably } from '@/lib/ably-server';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
-  const payload = await verifySession();
-  if (!payload || !payload.user) {
+  const session = await auth();
+  if (!session || !session.user || !session.user.id) {
     return NextResponse.json({ success: false, message: 'Authentication required to like a post.' }, { status: 401 });
   }
-  const currentUser = payload.user;
+  const currentUser = session.user;
 
   try {
     const { slideId } = await request.json();
