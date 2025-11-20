@@ -31,3 +31,6 @@ cookie.txt
 package-lock.json
 
 /lib/generated/prisma
+
+# User Uploads
+/public/uploads

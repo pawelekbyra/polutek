@@ -1,55 +1,50 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useFormState } from 'react-dom';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import ToggleSwitch from './ui/ToggleSwitch';
-import CropModal from './CropModal';
 import { Crown } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
 import Image from 'next/image';
 import { useTranslation } from '@/context/LanguageContext';
 import { useToast } from '@/context/ToastContext';
-import { uploadAvatar, updateUserProfile } from '@/lib/actions';
+import { updateUserProfile } from '@/lib/actions';
 
 interface ProfileTabProps {
     onClose: () => void;
 }
 
+const initialState = {
+  success: false,
+  message: '',
+};
+
 const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
-  const { user: profile, checkUserStatus, logout } = useUser();
+  const { user: profile, checkUserStatus } = useUser();
   const { t, setLanguage, lang } = useTranslation();
   const { addToast } = useToast();
   const [emailConsent, setEmailConsent] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [isCropModalOpen, setIsCropModalOpen] = useState(false);
-  const [imageToCrop, setImageToCrop] = useState<string | null>(null);
+  // useFormState hook for server action
+  const [state, formAction] = useFormState(updateUserProfile, initialState);
+
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isSettingsSubmitting, setIsSettingsSubmitting] = useState(false);
 
-  const handleProfileSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsSubmitting(true);
-
-    const formData = new FormData(event.currentTarget);
-
-    try {
-      // Using Server Action directly
-      const result = await updateUserProfile(null, formData);
-
-      if (!result.success) {
-        throw new Error(result.message || t('profileUpdateError'));
+  // Handle state updates from server action
+  useEffect(() => {
+    if (state.message) {
+      if (state.success) {
+        addToast(state.message, 'success');
+        checkUserStatus(); // Refresh user data context
+      } else {
+        addToast(state.message, 'error');
       }
-
-      addToast(t('profileUpdateSuccess'), 'success');
-      await checkUserStatus();
-
-    } catch (error: any) {
-      addToast(error.message, 'error');
-    } finally {
-      setIsSubmitting(false);
     }
-  };
+  }, [state, addToast, checkUserStatus]);
 
   const handleAvatarEditClick = () => {
     fileInputRef.current?.click();
@@ -57,71 +52,69 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      setImageToCrop(e.target?.result as string);
-      setIsCropModalOpen(true);
-    };
-    reader.readAsDataURL(file);
-    event.target.value = '';
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setPreviewUrl(url);
+    }
   };
 
-  const handleCropComplete = async (avatarBlob: Blob | null) => {
-    if (!avatarBlob) {
-      setIsCropModalOpen(false);
-      setImageToCrop(null);
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('avatar', avatarBlob, 'avatar.png');
-
-    try {
-      const result = await uploadAvatar(formData);
-
-      if (!result.success) {
-        throw new Error(result.message || t('avatarUploadError'));
+  const handleSettingsSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSettingsSubmitting(true);
+    setTimeout(() => {
+      try {
+        console.log('Saving settings:', { emailConsent, lang });
+        addToast(t('settingsSaveSuccess'), 'success');
+      } catch (error: any) {
+        addToast(error.message, 'error');
+      } finally {
+        setIsSettingsSubmitting(false);
       }
-
-      addToast(t('avatarUploadSuccess'), 'success');
-      await checkUserStatus();
-    } catch (error: any) {
-      addToast(error.message, 'error');
-    } finally {
-      setIsCropModalOpen(false);
-      setImageToCrop(null);
-    }
-  };
-
-  const handleLogout = async () => {
-    await logout();
-    addToast(t('logoutSuccess'), 'success');
-    onClose();
+    }, 1000);
   };
 
   if (!profile) {
     return <div className="p-5 text-center">{t('loadingProfile')}</div>;
   }
 
+  const currentAvatar = previewUrl || profile.avatar;
+
   return (
-    <>
-      <div className="tab-pane active p-4" id="profile-tab">
+    <div className="tab-pane active p-4" id="profile-tab">
+      {/* Main Form wraps everything that needs to be submitted */}
+      <form action={formAction} id="profileForm">
+
+        {/* Avatar Section */}
         <div className="avatar-section bg-white/5 border border-white/10 rounded-xl p-5 mb-4 flex flex-col items-center text-center">
             <div className="relative w-20 h-20 mb-3">
                 <div className="w-full h-full rounded-full overflow-hidden border-2 border-white/80 shadow-lg bg-gray-800 flex items-center justify-center">
-                    {profile.avatar ? (
-                        <Image src={profile.avatar} alt={t('avatarAlt')} width={80} height={80} className="w-full h-full object-cover" id="userAvatar" />
+                    {currentAvatar ? (
+                        <Image
+                          src={currentAvatar}
+                          alt={t('avatarAlt')}
+                          width={80}
+                          height={80}
+                          className="w-full h-full object-cover"
+                          id="userAvatar"
+                          unoptimized={!!previewUrl} // unoptimized for blob urls
+                        />
                     ) : (
                         <span className="text-4xl text-gray-500">{profile.displayName?.charAt(0).toUpperCase()}</span>
                     )}
                 </div>
-                <button onClick={handleAvatarEditClick} className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-7 h-7 bg-pink-600 border-2 border-[#2d2d2d] rounded-full text-white text-lg font-bold flex items-center justify-center" id="avatarEditBtn" title={t('changeAvatarTitle')}>
+                <button
+                  type="button" // Ensure this doesn't submit the form
+                  onClick={handleAvatarEditClick}
+                  className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-7 h-7 bg-pink-600 border-2 border-[#2d2d2d] rounded-full text-white text-lg font-bold flex items-center justify-center"
+                  id="avatarEditBtn"
+                  title={t('changeAvatarTitle')}
+                >
                     +
                 </button>
+                {/* File Input inside the form */}
                 <input
                     type="file"
+                    name="avatar"
                     ref={fileInputRef}
                     onChange={handleFileSelect}
                     className="hidden"
@@ -138,45 +131,44 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
             </div>
         </div>
 
+        {/* Personal Data Section */}
         <div className="form-section bg-white/5 border border-white/10 rounded-xl p-5 mb-4">
-          <h3 className="section-title text-lg font-bold mb-5 flex items-center gap-3"><span className="w-1 h-5 bg-gradient-to-b from-pink-500 to-rose-500 rounded-full"></span>{t('personalData')}</h3>
-          <form id="profileForm" onSubmit={handleProfileSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="form-group">
-                <label className="form-label text-sm font-medium mb-2 block">{t('firstName')}</label>
-                <Input type="text" name="firstName" defaultValue={profile.displayName?.split(' ')[0] || ''} placeholder={t('firstNamePlaceholder')} disabled={isSubmitting} />
-              </div>
-              <div className="form-group">
-                <label className="form-label text-sm font-medium mb-2 block">{t('lastName')}</label>
-                <Input type="text" name="lastName" defaultValue={profile.displayName?.split(' ').slice(1).join(' ') || ''} placeholder={t('lastNamePlaceholder')} disabled={isSubmitting} />
-              </div>
-            </div>
-            <div className="form-group mb-4">
-              <label className="form-label text-sm font-medium mb-2 block">{t('email')}</label>
-              <Input type="email" name="email" defaultValue={profile.email} placeholder={t('emailPlaceholder')} disabled={isSubmitting} />
-            </div>
-            <Button type="submit" className="w-full bg-pink-600 hover:bg-pink-700" disabled={isSubmitting}>
-              {isSubmitting ? t('saving') : t('saveChanges')}
-            </Button>
-          </form>
-        </div>
+          <h3 className="section-title text-lg font-bold mb-5 flex items-center gap-3">
+            <span className="w-1 h-5 bg-gradient-to-b from-pink-500 to-rose-500 rounded-full"></span>
+            {t('personalData')}
+          </h3>
 
-        <div className="settings-section bg-white/5 border border-white/10 rounded-xl p-5">
-          <h3 className="section-title text-lg font-bold mb-5 flex items-center gap-3"><span className="w-1 h-5 bg-gradient-to-b from-pink-500 to-rose-500 rounded-full"></span>{t('settings')}</h3>
-          <form onSubmit={(e) => {
-              e.preventDefault();
-              setIsSubmitting(true);
-              setTimeout(() => {
-                try {
-                  console.log('Saving settings:', { emailConsent, lang });
-                  addToast(t('settingsSaveSuccess'), 'success');
-                } catch (error: any) {
-                  addToast(error.message, 'error');
-                } finally {
-                  setIsSubmitting(false);
-                }
-              }, 1000);
-          }}>
+          <div className="grid grid-cols-1 gap-4 mb-4">
+            <div className="form-group">
+              <label className="form-label text-sm font-medium mb-2 block">{t('displayName') || 'Display Name'}</label>
+              <Input
+                type="text"
+                name="displayName"
+                defaultValue={profile.displayName || ''}
+                placeholder={t('displayNamePlaceholder') || 'Your Name'}
+              />
+            </div>
+          </div>
+          <div className="form-group mb-4">
+            <label className="form-label text-sm font-medium mb-2 block">{t('email')}</label>
+            <Input
+              type="email"
+              name="email"
+              defaultValue={profile.email}
+              placeholder={t('emailPlaceholder')}
+            />
+          </div>
+          <SaveButton t={t} />
+        </div>
+      </form>
+
+      {/* Settings Section - Separate Form logic */}
+      <div className="settings-section bg-white/5 border border-white/10 rounded-xl p-5">
+        <h3 className="section-title text-lg font-bold mb-5 flex items-center gap-3">
+          <span className="w-1 h-5 bg-gradient-to-b from-pink-500 to-rose-500 rounded-full"></span>
+          {t('settings')}
+        </h3>
+        <form onSubmit={handleSettingsSubmit}>
             <div className="flex items-center justify-between mb-4">
               <label className="form-label text-sm">{t('emailConsent')}</label>
               <ToggleSwitch isActive={emailConsent} onToggle={() => setEmailConsent(p => !p)} />
@@ -188,37 +180,26 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
                     <Button type="button" variant={lang === 'en' ? 'secondary' : 'outline'} onClick={() => setLanguage('en')} className="flex-1">{t('english')}</Button>
                 </div>
             </div>
-            <Button type="submit" className="w-full bg-pink-600 hover:bg-pink-700 mt-4" disabled={isSubmitting}>
-              {isSubmitting ? t('saving') : t('saveSettings')}
+             <Button type="submit" className="w-full bg-pink-600 hover:bg-pink-700 mt-4" disabled={isSettingsSubmitting}>
+              {isSettingsSubmitting ? t('saving') : t('saveSettings')}
             </Button>
-          </form>
-        </div>
-        <div className="flex justify-center mt-4">
-            {/* Logout removed as per user preference in memory, but TopBar handles it now.
-                However, memory said "'Logout' button has been removed from the 'Profile' tab".
-                But I see it in the previous file content. I will respect the memory and REMOVE it now.
-            */}
-            {/*
-            <Button
-              onClick={handleLogout}
-              className="w-full bg-black hover:bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-zinc-100 transition-colors"
-            >
-              {t('logoutLink')}
-            </Button>
-            */}
-        </div>
+        </form>
       </div>
-
-      {isCropModalOpen && (
-        <CropModal
-            isOpen={isCropModalOpen}
-            onClose={() => setIsCropModalOpen(false)}
-            imageSrc={imageToCrop}
-            onCropComplete={handleCropComplete}
-        />
-      )}
-    </>
+    </div>
   );
 };
+
+// Component for the submit button to handle pending state
+function SaveButton({ t }: { t: any }) {
+  const { pending } = useFormStatus();
+  return (
+    <Button type="submit" className="w-full bg-pink-600 hover:bg-pink-700" disabled={pending}>
+      {pending ? t('saving') : t('saveChanges')}
+    </Button>
+  );
+}
+
+// Helper to get form status
+import { useFormStatus } from 'react-dom';
 
 export default ProfileTab;
