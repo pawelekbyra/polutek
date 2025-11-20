@@ -13,11 +13,9 @@ import { useToast } from '@/context/ToastContext';
 import MenuIcon from './icons/MenuIcon';
 import BellIcon from './icons/BellIcon';
 import PwaDesktopModal from './PwaDesktopModal';
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { User, LogOut } from 'lucide-react';
 
 const TopBar = () => {
-  const { user, logout } = useUser();
+  const { user } = useUser();
   const setActiveModal = useStore((state) => state.setActiveModal);
   const { t } = useTranslation();
   const { addToast } = useToast();
@@ -25,7 +23,6 @@ const TopBar = () => {
   const [showNotifPanel, setShowNotifPanel] = useState(false);
   const [showPwaModal, setShowPwaModal] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const checkIsDesktop = () => setIsDesktop(window.innerWidth >= 768);
@@ -51,17 +48,6 @@ const TopBar = () => {
 
   const handleShowPwaModal = () => {
     setShowPwaModal(true);
-  };
-
-  const handleLogout = async () => {
-      await logout();
-      setIsMenuOpen(false);
-      addToast(t('logoutSuccess'), 'success');
-  };
-
-  const handleOpenAccount = () => {
-      setActiveModal('account');
-      setIsMenuOpen(false);
   };
 
   return (
@@ -105,35 +91,7 @@ const TopBar = () => {
           // --- WIDOK DLA ZALOGOWANYCH UŻYTKOWNIKÓW ---
           <>
             <div className="flex justify-start">
-              <Popover open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-                  <PopoverTrigger asChild>
-                    <Button variant="ghost" size="icon" aria-label={t('menuAriaLabel')}>
-                        <MenuIcon className="w-6 h-6" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent align="start" sideOffset={5} className="w-64 p-2 bg-zinc-900 border-zinc-800 text-white shadow-xl rounded-xl">
-                      <div className="grid grid-cols-2 gap-2">
-                          <button
-                            onClick={handleOpenAccount}
-                            className="flex flex-col items-center justify-center gap-2 p-4 bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-colors aspect-square"
-                          >
-                              <User size={24} className="text-blue-400" />
-                              <span className="text-xs font-medium">{t('account')}</span>
-                          </button>
-                          <button
-                            onClick={handleLogout}
-                            className="flex flex-col items-center justify-center gap-2 p-4 bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-colors aspect-square"
-                          >
-                              <LogOut size={24} className="text-red-400" />
-                              <span className="text-xs font-medium">{t('logout')}</span>
-                          </button>
-                      </div>
-                  </PopoverContent>
-              </Popover>
-
-              {/* User Avatar (optional, keeping it for visual balance or removing if redundant) */}
-              {/* Keeping it as a shortcut to profile or just display */}
-               <div className="ml-2 flex items-center">
+              <Button variant="ghost" size="icon" onClick={() => setActiveModal('account')} aria-label={t('accountMenuButton')}>
                 {user.avatar ? (
                   <Image
                     src={user.avatar}
@@ -145,8 +103,7 @@ const TopBar = () => {
                 ) : (
                   <div className="w-8 h-8 rounded-full bg-gray-300 dark:bg-zinc-700" />
                 )}
-               </div>
-
+              </Button>
             </div>
             <div className="flex justify-center flex-1">
               <span className="font-semibold text-lg text-white">Ting Tong</span>

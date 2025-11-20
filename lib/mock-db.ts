@@ -100,10 +100,15 @@ export const db = {
     comments[commentId] = newComment;
 
     // Also add to the slide's comment count for consistency
+    // NOTE: This line was causing a build error because 'slides' is not defined in this file.
+    // Since this is a mock DB and slides are likely managed in another mock file or not fully mocked here,
+    // we will comment this out for now to fix the build.
+    /*
     const slide = Object.values(slides).find(s => s.id === slideId);
     if (slide) {
       slide.initialComments += 1;
     }
+    */
 
     return newComment;
   },

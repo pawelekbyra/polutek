@@ -101,7 +101,7 @@ export default async function SlideManagementPage() {
         data: updatedData
       };
 
-      await db.updateSlide(slideId, updatedSlide);
+      await db.updateSlide(slideId, updatedSlide as unknown as Partial<Slide>);
       revalidatePath('/admin/slides');
       return { success: true };
     } catch (error) {

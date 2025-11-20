@@ -9,19 +9,8 @@ import { shallow } from 'zustand/shallow';
 import GlobalVideoPlayer from './GlobalVideoPlayer';
 import { AuthorProfileModal } from './AuthorProfileModal';
 import TippingModal from './TippingModal';
-import CommentsModal from './CommentsModal';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-  const {
-    activeModal,
-    setActiveModal,
-    activeSlide
-  } = useStore(state => ({
-    activeModal: state.activeModal,
-    setActiveModal: state.setActiveModal,
-    activeSlide: state.activeSlide
-  }), shallow);
-
   useEffect(() => {
     const setAppHeight = () => {
       document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
@@ -41,12 +30,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </div>
       <AuthorProfileModal />
       <TippingModal />
-      <CommentsModal
-        isOpen={activeModal === 'comments'}
-        onClose={() => setActiveModal(null)}
-        slideId={activeSlide?.id}
-        initialCommentsCount={activeSlide?.initialComments || 0}
-      />
     </div>
   );
 }

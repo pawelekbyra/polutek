@@ -4,7 +4,7 @@ import React, { createContext, useState, useContext, ReactNode, useEffect } from
 
 const translations: Record<string, Record<string, string>> = {
     pl: {
-        loggedOutText: "Ting Tong",
+        loggedOutText: "Nie masz psychy się zalogować",
         loggedInWelcome: 'Witaj, {name}',
         loading: 'Ładowanie...',
         selectLang: 'Wybierz Język',
@@ -154,7 +154,7 @@ const translations: Record<string, Record<string, string>> = {
         publishButtonInactive: 'Publikowanie dostępne tylko dla Twórców'
     },
     en: {
-        loggedOutText: "Ting Tong",
+        loggedOutText: "Don't have the guts to log in",
         loggedInWelcome: 'Welcome, {name}',
         loading: 'Loading...',
         selectLang: 'Select Language',
