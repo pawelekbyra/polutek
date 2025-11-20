@@ -72,8 +72,8 @@ model Slide {
   id           String    @id @default(cuid())
 
   // Application Logic Fields (Postgres implementation compatibility)
-  userId       String    @map("userId")
-  author       User      @relation(fields: [userId], references: [id])
+  authorId     String    @map("userId")
+  author       User      @relation(fields: [authorId], references: [id])
   username     String?   // Denormalized for performance in manual queries
 
   title        String?

@@ -55,7 +55,7 @@ async function seedSlides() {
         // Check if slide exists for this author with this title
         const existing = await prisma.slide.findFirst({
             where: {
-                userId: author.id,
+                authorId: author.id,
                 title: slideTitle
             }
         });
@@ -81,7 +81,7 @@ async function seedSlides() {
 
         await prisma.slide.create({
             data: {
-                userId: author.id,
+                authorId: author.id,
                 username: author.username, // Denormalized
                 title: video.title,
                 content: contentJson,
