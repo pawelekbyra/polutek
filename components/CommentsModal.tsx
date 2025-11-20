@@ -286,10 +286,18 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ slideId, text, parentId }),
       });
-      if (!res.ok) {
-        throw new Error('Failed to post reply');
+
+      let data;
+      try {
+        data = await res.json();
+      } catch {
+        // ignore parse error
       }
-      const data = await res.json();
+
+      if (!res.ok || (data && !data.success)) {
+        throw new Error(data?.message || 'Failed to post reply');
+      }
+
       replaceTempComment(tempId, data.comment);
 
     } catch (err: any) {
@@ -327,10 +335,18 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ slideId, text: trimmedComment }),
       });
-      if (!res.ok) {
-        throw new Error('Failed to post comment');
+
+      let data;
+      try {
+        data = await res.json();
+      } catch {
+        // ignore parse error
       }
-      const data = await res.json();
+
+      if (!res.ok || (data && !data.success)) {
+        throw new Error(data?.message || 'Failed to post comment');
+      }
+
       replaceTempComment(tempId, data.comment);
     } catch (err: any) {
       setError(err.message);
@@ -352,7 +368,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
     if (error) {
       return (
         <div className="flex-1 flex items-center justify-center text-center text-red-400 p-4">
-          {error}
+          {t(error)}
         </div>
       );
     }
