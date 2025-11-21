@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx prisma generate && next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "db:reset": "dotenv -e .env.local -- prisma db push --force-reset && npm run db:seed-test && dotenv -e .env.local -- tsx scripts/seed-slides.ts",
@@ -48,7 +48,6 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.5.0",
-    "react-virtuoso": "^4.14.1",
     "react-window": "^2.2.3",
     "recharts": "^3.1.2",
     "tailwind-merge": "^2.3.0",
