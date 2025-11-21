@@ -1,7 +1,8 @@
 "use client";
 
-import React, { memo, useState, useEffect, useRef } from 'react';
+import React, { memo, useState, useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
+import DOMPurify from 'dompurify'; // Importujemy tutaj, tak jak w działającej wersji
 import { SlideDTO, HtmlSlideDTO, VideoSlideDTO, CommentWithRelations } from '@/lib/dto';
 import { useStore } from '@/store/useStore';
 import VideoControls from './VideoControls';
@@ -19,12 +20,35 @@ import { useQueryClient } from '@tanstack/react-query';
 import { CommentSchema } from '@/lib/validators';
 import { z } from 'zod';
 
-// Importujemy poprawiony komponent
-import HtmlContent from './HtmlContent';
-
+// --- Prop Types for Sub-components ---
+interface HtmlContentProps {
+  slide: HtmlSlideDTO;
+}
 interface SlideUIProps {
   slide: SlideDTO;
 }
+
+// --- Sub-components (Zdefiniowane lokalnie, zgodnie z działającą wersją) ---
+
+const HtmlContent = ({ slide }: HtmlContentProps) => {
+  // Używamy useMemo tak jak w działającej wersji, aby Swiper od razu widział treść
+  const sanitizedHtml = useMemo(() => {
+    if (!slide.data?.htmlContent) return '';
+    // Zabezpieczenie SSR: na serwerze zwracamy surowy HTML (lub pusty), na kliencie oczyszczony
+    return typeof window !== 'undefined'
+      ? DOMPurify.sanitize(slide.data.htmlContent)
+      : slide.data.htmlContent;
+  }, [slide.data?.htmlContent]);
+
+  if (!slide.data?.htmlContent) return null;
+
+  return (
+    <div
+      className="w-full h-full overflow-y-auto bg-white text-black"
+      dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
+    />
+  );
+};
 
 const SlideUI = ({ slide }: SlideUIProps) => {
     const {
@@ -72,7 +96,9 @@ const SlideUI = ({ slide }: SlideUIProps) => {
         className="absolute inset-0 z-10 p-4 flex flex-col justify-end text-white"
         onClick={handleContainerClick}
       >
+        {/* Top gradient */}
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
+        {/* Bottom gradient */}
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
 
         <AnimatePresence>
@@ -95,6 +121,7 @@ const SlideUI = ({ slide }: SlideUIProps) => {
             )}
         </AnimatePresence>
 
+        {/* UI Controls Container */}
         <div className="relative z-20 pointer-events-none">
             <div className="flex items-center gap-2 mb-2 pointer-events-auto">
                 <Image 
@@ -132,7 +159,9 @@ const SlideUI = ({ slide }: SlideUIProps) => {
         )}
       </div>
     );
-  };
+};
+
+// --- Main Slide Component ---
 
 interface SlideProps {
     slide: SlideDTO;
@@ -146,6 +175,7 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
     const showSecretOverlay = slide.access === 'secret' && !isLoggedIn;
     const queryClient = useQueryClient();
 
+    // Zachowujemy ulepszoną logikę prefetchowania (z try/catch)
     useEffect(() => {
         if (isActive && slide?.id) {
             try {
@@ -183,16 +213,8 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
             case 'video':
                 return <LocalVideoPlayer slide={slide as VideoSlideDTO} isActive={isActive} shouldLoad={priorityLoad} />;
             case 'html':
-                // FIX: Sprawdzamy czy data istnieje, aby uniknąć błędu undefined
-                const htmlSlide = slide as HtmlSlideDTO;
-                if (!htmlSlide.data) return null;
-                
-                return (
-                    <HtmlContent 
-                        data={htmlSlide.data} 
-                        isActive={isActive} 
-                    />
-                );
+                // Używamy lokalnego komponentu HtmlContent, który akceptuje props 'slide'
+                return <HtmlContent slide={slide as HtmlSlideDTO} />;
             default:
                 return <div className="w-full h-full bg-gray-800 flex items-center justify-center"><p>Unsupported slide type</p></div>;
         }
@@ -200,7 +222,7 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
 
     return (
         <div className={cn(
-            "relative w-full h-full z-10 bg-black",
+            "relative w-full h-full z-10 bg-black", 
             showSecretOverlay && "blur-md brightness-50"
         )}>
             {renderContent()}
