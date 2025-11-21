@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import Swiper from 'swiper';
+import Swiper, { Mousewheel, Keyboard } from 'swiper';
 import 'swiper/css';
 import Slide from '@/components/Slide';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -75,8 +75,13 @@ const FeedSwiper = () => {
   useEffect(() => {
     if (slides.length > 0 && swiperRef.current && !swiperInstance.current) {
       swiperInstance.current = new Swiper(swiperRef.current, {
+        modules: [Mousewheel, Keyboard],
         direction: 'vertical',
         loop: true,
+        mousewheel: true,
+        keyboard: {
+          enabled: true,
+        },
         on: {
           slideChange: () => {
             if (swiperInstance.current) {
