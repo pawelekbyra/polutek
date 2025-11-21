@@ -19,13 +19,13 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'commondatastorage.googleapis.com',
+        hostname: '*.public.blob.vercel-storage.com',
         port: '',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: '*.public.blob.vercel-storage.com',
+        hostname: 'commondatastorage.googleapis.com',
         port: '',
         pathname: '/**',
       }

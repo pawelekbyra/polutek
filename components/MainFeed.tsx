@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useRef, useState, useCallback } from 'react';
+import React, { useMemo, useEffect, useRef, useState } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import Slide from '@/components/Slide';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -85,15 +85,12 @@ const MainFeed = () => {
             const nextSlide = slides[index + 1] || null;
 
             // Update global store only if changed
-            // We access the latest state via useStore directly or just trust the effect
-            // Since activeSlide is in dep array of this effect, we need to be careful to not create loops.
-            // But here we use the Ref/Closure.
-            // Ideally we check against the current store value, but we don't have it in the closure unless activeSlide is in deps.
-            // Instead, we rely on state updates.
-            setActiveSlide(currentSlide);
-            setNextSlide(nextSlide);
-            if (currentSlide.type === 'video') {
-                playVideo();
+            if (activeSlide?.id !== currentSlide.id) {
+                setActiveSlide(currentSlide);
+                setNextSlide(nextSlide);
+                if (currentSlide.type === 'video') {
+                    playVideo();
+                }
             }
           }
         }
@@ -106,7 +103,7 @@ const MainFeed = () => {
     return () => {
       observerRef.current?.disconnect();
     };
-  }, [slides, setActiveSlide, setNextSlide, playVideo]); // Re-run when slides list changes
+  }, [slides, setActiveSlide, setNextSlide, playVideo, activeSlide]);
 
   // Setup "Load More" observer
   useEffect(() => {
@@ -124,7 +121,7 @@ const MainFeed = () => {
     return () => {
       loadMoreObserverRef.current?.disconnect();
     };
-  }, [hasNextPage, fetchNextPage, slides]); // Re-bind when content changes/grows
+  }, [hasNextPage, fetchNextPage, slides]);
 
 
   if (isLoading && slides.length === 0) {
@@ -150,7 +147,7 @@ const MainFeed = () => {
       style={{
         scrollbarWidth: 'none',
         msOverflowStyle: 'none',
-        overscrollBehaviorY: 'contain' // Prevent bounce on parent
+        overscrollBehaviorY: 'contain'
       }}
     >
       {slides.map((slide, index) => (
