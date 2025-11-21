@@ -1,6 +1,5 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { Virtuoso } from 'react-virtuoso';
 import Slide from '@/components/Slide';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useStore } from '@/store/useStore';
@@ -33,9 +32,7 @@ const MainFeed = () => {
   }), shallow);
 
   const [currentViewIndex, setCurrentViewIndex] = useState(0);
-
-  // Timer ref for debounce
-  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const {
     data,
@@ -43,6 +40,7 @@ const MainFeed = () => {
     hasNextPage,
     isLoading,
     isError,
+    isFetchingNextPage
   } = useInfiniteQuery({
     queryKey: ['slides'],
     queryFn: fetchSlides,
@@ -57,12 +55,53 @@ const MainFeed = () => {
   // Initialize active slide if not set
   useEffect(() => {
       if (slides.length > 0 && !activeSlide) {
-          // Initialize first slide as active
           setActiveSlide(slides[0]);
           setNextSlide(slides[1] || null);
       }
   }, [slides, activeSlide, setActiveSlide, setNextSlide]);
 
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const indexAttr = entry.target.getAttribute('data-index');
+          if (indexAttr === null) return;
+
+          const index = parseInt(indexAttr, 10);
+
+          // Update local state for priority loading
+          setCurrentViewIndex(index);
+
+          const currentSlide = slides[index];
+          const nextSlide = slides[index + 1] || null;
+
+          if (currentSlide && activeSlide?.id !== currentSlide.id) {
+             setActiveSlide(currentSlide);
+             setNextSlide(nextSlide);
+             if (currentSlide.type === 'video') {
+                playVideo();
+             }
+          }
+
+          // Load more if near the end (last 2 items)
+          if (index >= slides.length - 2 && hasNextPage && !isFetchingNextPage) {
+             fetchNextPage();
+          }
+        }
+      });
+    }, {
+      root: container,
+      threshold: 0.6
+    });
+
+    const elements = container.querySelectorAll('.slide-item');
+    elements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [slides, activeSlide, setActiveSlide, setNextSlide, playVideo, hasNextPage, fetchNextPage, isFetchingNextPage]);
 
   if (isLoading && slides.length === 0) {
     return <div className="w-screen h-screen bg-black flex items-center justify-center"><Skeleton className="w-full h-full" /></div>;
@@ -73,50 +112,31 @@ const MainFeed = () => {
   }
 
   return (
-    <Virtuoso
-      className="snap-y snap-mandatory"
-      style={{ height: '100vh' }}
-      data={slides}
-      overscan={200}
-      endReached={() => hasNextPage && fetchNextPage()}
-      itemContent={(index, slide) => {
-        const priorityLoad = index === currentViewIndex || index === currentViewIndex + 1;
+    <div
+      ref={containerRef}
+      className="h-[100dvh] w-full overflow-y-scroll snap-y snap-mandatory"
+      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+    >
+      <style jsx>{`
+        div::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
+      {slides.map((slide, index) => {
+        // Load current, previous, and next slide (buffer)
+        const isPriority = Math.abs(index - currentViewIndex) <= 1;
+
         return (
-          <div className="h-screen w-full snap-start">
-             <Slide slide={slide} priorityLoad={priorityLoad} />
+          <div
+            key={slide.id}
+            data-index={index}
+            className="slide-item h-full w-full snap-start relative"
+          >
+            <Slide slide={slide} priorityLoad={isPriority} />
           </div>
         );
-      }}
-      rangeChanged={(range) => {
-          // Clear any existing timer to debounce rapid scrolling
-          if (debounceTimerRef.current) {
-              clearTimeout(debounceTimerRef.current);
-          }
-
-          // Set a new timer
-          debounceTimerRef.current = setTimeout(() => {
-              // Detect which slide is active.
-              // Since items are full screen, startIndex is effectively the active one when snapping completes.
-              const activeIndex = range.startIndex;
-              setCurrentViewIndex(activeIndex);
-
-              if (activeIndex >= 0 && activeIndex < slides.length) {
-                  const currentSlide = slides[activeIndex];
-                  const nextSlide = slides[activeIndex + 1] || null;
-
-                  // Only update if changed to avoid unnecessary re-renders
-                  if (activeSlide?.id !== currentSlide.id) {
-                      setActiveSlide(currentSlide);
-                      setNextSlide(nextSlide);
-
-                      if (currentSlide.type === 'video') {
-                          playVideo();
-                      }
-                  }
-              }
-          }, 80); // Reduced debounce to 80ms for snappier response
-      }}
-    />
+      })}
+    </div>
   );
 };
 
