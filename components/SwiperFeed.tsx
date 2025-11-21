@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { Virtuoso } from 'react-virtuoso';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import Slide from '@/components/Slide';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useStore } from '@/store/useStore';
@@ -24,18 +25,13 @@ const fetchSlides = async ({ pageParam = '' }) => {
   }
 };
 
-const MainFeed = () => {
+const SwiperFeed = () => {
   const { setActiveSlide, setNextSlide, playVideo, activeSlide } = useStore(state => ({
     setActiveSlide: state.setActiveSlide,
     setNextSlide: state.setNextSlide,
     playVideo: state.playVideo,
     activeSlide: state.activeSlide
   }), shallow);
-
-  const [currentViewIndex, setCurrentViewIndex] = useState(0);
-
-  // Timer ref for debounce
-  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const {
     data,
@@ -73,51 +69,37 @@ const MainFeed = () => {
   }
 
   return (
-    <Virtuoso
-      className="snap-y snap-mandatory"
-      style={{ height: '100vh' }}
-      data={slides}
-      overscan={200}
-      endReached={() => hasNextPage && fetchNextPage()}
-      itemContent={(index, slide) => {
-        const priorityLoad = index === currentViewIndex || index === currentViewIndex + 1;
-        return (
-          <div className="h-screen w-full snap-start">
-             <Slide slide={slide} priorityLoad={priorityLoad} />
-          </div>
-        );
+    <Swiper
+      direction={'vertical'}
+      className="w-full h-full"
+      onSlideChange={(swiper) => {
+        const activeIndex = swiper.realIndex;
+        if (activeIndex >= 0 && activeIndex < slides.length) {
+            const currentSlide = slides[activeIndex];
+            const nextSlide = slides[activeIndex + 1] || null;
+
+            if (activeSlide?.id !== currentSlide.id) {
+                setActiveSlide(currentSlide);
+                setNextSlide(nextSlide);
+
+                if (currentSlide.type === 'video') {
+                    playVideo();
+                }
+            }
+        }
+        if (hasNextPage && activeIndex >= slides.length - 2) {
+          fetchNextPage();
+        }
       }}
-      rangeChanged={(range) => {
-          // Clear any existing timer to debounce rapid scrolling
-          if (debounceTimerRef.current) {
-              clearTimeout(debounceTimerRef.current);
-          }
-
-          // Set a new timer
-          debounceTimerRef.current = setTimeout(() => {
-              // Detect which slide is active.
-              // Since items are full screen, startIndex is effectively the active one when snapping completes.
-              const activeIndex = range.startIndex;
-              setCurrentViewIndex(activeIndex);
-
-              if (activeIndex >= 0 && activeIndex < slides.length) {
-                  const currentSlide = slides[activeIndex];
-                  const nextSlide = slides[activeIndex + 1] || null;
-
-                  // Only update if changed to avoid unnecessary re-renders
-                  if (activeSlide?.id !== currentSlide.id) {
-                      setActiveSlide(currentSlide);
-                      setNextSlide(nextSlide);
-
-                      if (currentSlide.type === 'video') {
-                          playVideo();
-                      }
-                  }
-              }
-          }, 80); // Reduced debounce to 80ms for snappier response
-      }}
-    />
+      loop={true}
+    >
+      {slides.map((slide, index) => (
+        <SwiperSlide key={slide.id} virtualIndex={index}>
+          <Slide slide={slide} priorityLoad={index < 2} />
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 };
 
-export default MainFeed;
+export default SwiperFeed;
