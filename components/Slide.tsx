@@ -16,6 +16,7 @@ import { cn } from '@/lib/utils';
 import SecretOverlay from './SecretOverlay';
 import { DEFAULT_AVATAR_URL } from '@/lib/constants';
 import LocalVideoPlayer from './LocalVideoPlayer';
+import { useInView } from '@/hooks/useInView';
 
 // --- Prop Types for Sub-components ---
 interface HtmlContentProps {
@@ -161,18 +162,28 @@ const SlideUI = ({ slide }: SlideUIProps) => {
 interface SlideProps {
     slide: SlideDTO;
     priorityLoad?: boolean;
+    onInView?: () => void;
 }
 
-const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
+const Slide = memo<SlideProps>(({ slide, priorityLoad = false, onInView }) => {
     const { isLoggedIn } = useUser();
-    const activeSlideId = useStore(state => state.activeSlide?.id);
-    const isActive = activeSlideId === slide.id;
+    // Use reference equality to support multiple instances of same slide ID (looping)
+    const activeSlide = useStore(state => state.activeSlide);
+    const isActive = activeSlide === slide;
+
     const showSecretOverlay = slide.access === 'secret' && !isLoggedIn;
+
+    const [ref, inView] = useInView({ threshold: 0.6 });
+
+    useEffect(() => {
+        if (inView && onInView) {
+            onInView();
+        }
+    }, [inView, onInView]);
 
     const renderContent = () => {
         switch (slide.type) {
             case 'video':
-                // Pass priorityLoad as shouldLoad to LocalVideoPlayer
                 return <LocalVideoPlayer slide={slide as VideoSlideDTO} isActive={isActive} shouldLoad={priorityLoad} />;
             case 'html':
                 return <HtmlContent slide={slide as HtmlSlideDTO} />;
@@ -182,10 +193,13 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
     };
 
     return (
-        <div className={cn(
-            "relative w-full h-full z-10 bg-black", // Changed from bg-transparent to bg-black
-            showSecretOverlay && "blur-md brightness-50"
-        )}>
+        <div
+            ref={ref}
+            className={cn(
+                "relative w-full h-full z-10 bg-black",
+                showSecretOverlay && "blur-md brightness-50"
+            )}
+        >
             {renderContent()}
             {showSecretOverlay ? <SecretOverlay /> : <SlideUI slide={slide} />}
         </div>

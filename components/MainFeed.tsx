@@ -1,6 +1,5 @@
-import React, { useMemo, useState, useEffect, useRef } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { Virtuoso } from 'react-virtuoso';
 import Slide from '@/components/Slide';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useStore } from '@/store/useStore';
@@ -25,17 +24,12 @@ const fetchSlides = async ({ pageParam = '' }) => {
 };
 
 const MainFeed = () => {
-  const { setActiveSlide, setNextSlide, playVideo, activeSlide } = useStore(state => ({
+  const { activeSlide, setActiveSlide, setNextSlide, playVideo } = useStore(state => ({
+    activeSlide: state.activeSlide,
     setActiveSlide: state.setActiveSlide,
     setNextSlide: state.setNextSlide,
-    playVideo: state.playVideo,
-    activeSlide: state.activeSlide
+    playVideo: state.playVideo
   }), shallow);
-
-  const [currentViewIndex, setCurrentViewIndex] = useState(0);
-
-  // Timer ref for debounce
-  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const {
     data,
@@ -43,26 +37,33 @@ const MainFeed = () => {
     hasNextPage,
     isLoading,
     isError,
+    isFetchingNextPage
   } = useInfiniteQuery({
     queryKey: ['slides'],
     queryFn: fetchSlides,
     initialPageParam: '',
-    getNextPageParam: (lastPage) => lastPage.nextCursor,
+    // Loop logic: if nextCursor is null, start over from ''
+    getNextPageParam: (lastPage) => lastPage.nextCursor ?? '',
   });
 
   const slides = useMemo(() => {
     return (data?.pages.flatMap(page => page.slides) ?? []) as SlideDTO[];
   }, [data]);
 
-  // Initialize active slide if not set
+  // Determine active index using reference equality to handle loop items correctly
+  const activeIndex = useMemo(() => {
+      if (!activeSlide) return 0;
+      return slides.findIndex(s => s === activeSlide);
+  }, [slides, activeSlide]);
+
   useEffect(() => {
       if (slides.length > 0 && !activeSlide) {
-          // Initialize first slide as active
           setActiveSlide(slides[0]);
-          setNextSlide(slides[1] || null);
+          if (slides[0].type === 'video') {
+              playVideo();
+          }
       }
-  }, [slides, activeSlide, setActiveSlide, setNextSlide]);
-
+  }, [slides, activeSlide, setActiveSlide, playVideo]);
 
   if (isLoading && slides.length === 0) {
     return <div className="w-screen h-screen bg-black flex items-center justify-center"><Skeleton className="w-full h-full" /></div>;
@@ -73,50 +74,42 @@ const MainFeed = () => {
   }
 
   return (
-    <Virtuoso
-      className="snap-y snap-mandatory"
-      style={{ height: '100vh' }}
-      data={slides}
-      overscan={200}
-      endReached={() => hasNextPage && fetchNextPage()}
-      itemContent={(index, slide) => {
-        const priorityLoad = index === currentViewIndex || index === currentViewIndex + 1;
-        return (
-          <div className="h-screen w-full snap-start">
-             <Slide slide={slide} priorityLoad={priorityLoad} />
+    <div className="h-[100dvh] w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+      {slides.map((slide, index) => {
+          const priorityLoad = index === activeIndex || index === activeIndex + 1;
+          // Generate unique key for loop items
+          const uniqueKey = `${slide.id}-${index}`;
+
+          return (
+            <div key={uniqueKey} className="h-[100dvh] w-full snap-start snap-always relative">
+               <Slide
+                 slide={slide}
+                 priorityLoad={priorityLoad}
+                 onInView={() => {
+                     if (activeSlide !== slide) { // Reference check
+                         setActiveSlide(slide);
+                         const next = slides[index + 1] || null;
+                         setNextSlide(next);
+                         if (slide.type === 'video') {
+                             playVideo();
+                         }
+                     }
+
+                     // Trigger infinite scroll (loop) when approaching end
+                     if (index >= slides.length - 2 && !isFetchingNextPage) {
+                         fetchNextPage();
+                     }
+                 }}
+               />
+            </div>
+          );
+      })}
+      {isFetchingNextPage && (
+          <div className="h-[100dvh] w-full snap-start flex items-center justify-center bg-black">
+              <Skeleton className="w-full h-full opacity-20" />
           </div>
-        );
-      }}
-      rangeChanged={(range) => {
-          // Clear any existing timer to debounce rapid scrolling
-          if (debounceTimerRef.current) {
-              clearTimeout(debounceTimerRef.current);
-          }
-
-          // Set a new timer
-          debounceTimerRef.current = setTimeout(() => {
-              // Detect which slide is active.
-              // Since items are full screen, startIndex is effectively the active one when snapping completes.
-              const activeIndex = range.startIndex;
-              setCurrentViewIndex(activeIndex);
-
-              if (activeIndex >= 0 && activeIndex < slides.length) {
-                  const currentSlide = slides[activeIndex];
-                  const nextSlide = slides[activeIndex + 1] || null;
-
-                  // Only update if changed to avoid unnecessary re-renders
-                  if (activeSlide?.id !== currentSlide.id) {
-                      setActiveSlide(currentSlide);
-                      setNextSlide(nextSlide);
-
-                      if (currentSlide.type === 'video') {
-                          playVideo();
-                      }
-                  }
-              }
-          }, 80); // Reduced debounce to 80ms for snappier response
-      }}
-    />
+      )}
+    </div>
   );
 };
 
