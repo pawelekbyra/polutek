@@ -1,9 +1,9 @@
 "use client";
 
-import React, { memo, useState, useEffect, useRef, useMemo } from 'react';
+import React, { memo, useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import DOMPurify from 'dompurify';
-import { SlideDTO, HtmlSlideDTO, VideoSlideDTO } from '@/lib/dto';
+// USUNIĘTO: import DOMPurify ... (to powodowało błędy, jest teraz w HtmlContent.tsx)
+import { SlideDTO, HtmlSlideDTO, VideoSlideDTO, CommentWithRelations } from '@/lib/dto';
 import { useStore } from '@/store/useStore';
 import VideoControls from './VideoControls';
 import { shallow } from 'zustand/shallow';
@@ -19,48 +19,22 @@ import LocalVideoPlayer from './LocalVideoPlayer';
 import { useQueryClient } from '@tanstack/react-query';
 import { CommentSchema } from '@/lib/validators';
 import { z } from 'zod';
-import { CommentWithRelations } from '@/lib/dto';
 
-// --- Prop Types for Sub-components ---
-interface HtmlContentProps {
-  slide: HtmlSlideDTO;
-}
+// WAŻNE: Importujemy zewnętrzny komponent, który działa poprawnie
+import HtmlContent from './HtmlContent';
+
 interface SlideUIProps {
   slide: SlideDTO;
 }
 
-// --- Sub-components ---
-
-const HtmlContent = ({ slide }: HtmlContentProps) => {
-  const sanitizedHtml = useMemo(() => {
-    if (!slide.data?.htmlContent) return '';
-    return typeof window !== 'undefined'
-      ? DOMPurify.sanitize(slide.data.htmlContent)
-      : slide.data.htmlContent;
-  }, [slide.data?.htmlContent]);
-
-  if (!slide.data?.htmlContent) return null;
-
-  return (
-    <div
-      className="w-full h-full overflow-y-auto bg-white"
-      dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
-    />
-  );
-};
-
 const SlideUI = ({ slide }: SlideUIProps) => {
     const {
-        activeModal,
-        setActiveModal,
         togglePlay,
         isPlaying,
         isMuted,
         seekTo,
         setIsMuted
     } = useStore(state => ({
-        activeModal: state.activeModal,
-        setActiveModal: state.setActiveModal,
         togglePlay: state.togglePlay,
         isPlaying: state.isPlaying,
         isMuted: state.isMuted,
@@ -124,11 +98,16 @@ const SlideUI = ({ slide }: SlideUIProps) => {
             )}
         </AnimatePresence>
 
-
         {/* UI Controls Container */}
         <div className="relative z-20 pointer-events-none">
             <div className="flex items-center gap-2 mb-2 pointer-events-auto">
-                <Image src={slide.avatar || DEFAULT_AVATAR_URL} alt={slide.username} width={40} height={40} className="rounded-full border-2 border-white" />
+                <Image 
+                    src={slide.avatar || DEFAULT_AVATAR_URL} 
+                    alt={slide.username || 'User'} 
+                    width={40} 
+                    height={40} 
+                    className="rounded-full border-2 border-white" 
+                />
                 <p className="font-bold text-lg">{slide.username}</p>
             </div>
 
@@ -136,13 +115,12 @@ const SlideUI = ({ slide }: SlideUIProps) => {
             {slide.data && 'description' in slide.data && <p className="text-sm opacity-90">{slide.data.description}</p>}
         </div>
 
-
         <Sidebar
             slideId={slide.id}
             initialLikes={slide.initialLikes}
             initialIsLiked={slide.isLiked}
             commentsCount={slide.initialComments}
-            authorId={slide.userId}
+            authorId={slide.userId} 
         />
 
         {isVideoSlide && (
@@ -160,7 +138,6 @@ const SlideUI = ({ slide }: SlideUIProps) => {
     );
   };
 
-
 // --- Main Slide Component ---
 
 interface SlideProps {
@@ -175,6 +152,7 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
     const showSecretOverlay = slide.access === 'secret' && !isLoggedIn;
     const queryClient = useQueryClient();
 
+    // Prefetch comments logic
     useEffect(() => {
         if (isActive && slide?.id) {
             try {
@@ -183,7 +161,7 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
                     queryFn: async () => {
                           try {
                              const res = await fetch(`/api/comments?slideId=${slide.id}&limit=50`);
-                             if (!res.ok) return []; // Fail silently or return empty
+                             if (!res.ok) return []; 
                              const data = await res.json();
                              if (!data.success || !data.comments) return [];
 
@@ -212,7 +190,13 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
             case 'video':
                 return <LocalVideoPlayer slide={slide as VideoSlideDTO} isActive={isActive} shouldLoad={priorityLoad} />;
             case 'html':
-                return <HtmlContent slide={slide as HtmlSlideDTO} />;
+                // FIX: Używamy zewnętrznego komponentu i przekazujemy poprawne propsy 'data' oraz 'isActive'
+                return (
+                    <HtmlContent 
+                        data={(slide as HtmlSlideDTO).data} 
+                        isActive={isActive} 
+                    />
+                );
             default:
                 return <div className="w-full h-full bg-gray-800 flex items-center justify-center"><p>Unsupported slide type</p></div>;
         }
@@ -220,7 +204,7 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
 
     return (
         <div className={cn(
-            "relative w-full h-full z-10 bg-black", // Changed from bg-transparent to bg-black
+            "relative w-full h-full z-10 bg-black",
             showSecretOverlay && "blur-md brightness-50"
         )}>
             {renderContent()}
