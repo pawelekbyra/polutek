@@ -47,16 +47,12 @@ const HtmlContent = ({ slide }: HtmlContentProps) => {
 
 const SlideUI = ({ slide }: SlideUIProps) => {
     const {
-        activeModal,
-        setActiveModal,
         togglePlay,
         isPlaying,
         isMuted,
         seekTo,
         setIsMuted
     } = useStore(state => ({
-        activeModal: state.activeModal,
-        setActiveModal: state.setActiveModal,
         togglePlay: state.togglePlay,
         isPlaying: state.isPlaying,
         isMuted: state.isMuted,
@@ -160,20 +156,55 @@ const SlideUI = ({ slide }: SlideUIProps) => {
 
 interface SlideProps {
     slide: SlideDTO;
-    priorityLoad?: boolean;
+    index: number;
+    activeSlideIndex: number;
+    setActiveSlideIndex: (index: number) => void;
 }
 
-const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
+const Slide = memo<SlideProps>(({ slide, index, activeSlideIndex, setActiveSlideIndex }) => {
+    const slideRef = useRef<HTMLDivElement>(null);
     const { isLoggedIn } = useUser();
-    const activeSlideId = useStore(state => state.activeSlide?.id);
-    const isActive = activeSlideId === slide.id;
     const showSecretOverlay = slide.access === 'secret' && !isLoggedIn;
+
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.51) {
+            setActiveSlideIndex(index);
+          }
+        },
+        {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.51
+        }
+      );
+
+      if (slideRef.current) {
+        observer.observe(slideRef.current);
+      }
+
+      return () => {
+        if (slideRef.current) {
+          observer.unobserve(slideRef.current);
+        }
+      };
+    }, [index, setActiveSlideIndex]);
+
+    const isActive = index === activeSlideIndex;
+    const isNext = index === activeSlideIndex + 1;
+    const isPrevious = index === activeSlideIndex - 1;
+
 
     const renderContent = () => {
         switch (slide.type) {
             case 'video':
-                // Pass priorityLoad as shouldLoad to LocalVideoPlayer
-                return <LocalVideoPlayer slide={slide as VideoSlideDTO} isActive={isActive} shouldLoad={priorityLoad} />;
+                return <LocalVideoPlayer
+                  slide={slide as VideoSlideDTO}
+                  isActive={isActive}
+                  isNext={isNext}
+                  isPrevious={isPrevious}
+                />;
             case 'html':
                 return <HtmlContent slide={slide as HtmlSlideDTO} />;
             default:
@@ -182,8 +213,10 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
     };
 
     return (
-        <div className={cn(
-            "relative w-full h-full z-10 bg-black", // Changed from bg-transparent to bg-black
+        <div
+            ref={slideRef}
+            className={cn(
+            "relative w-full h-full z-10 bg-black",
             showSecretOverlay && "blur-md brightness-50"
         )}>
             {renderContent()}
