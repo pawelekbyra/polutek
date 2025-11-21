@@ -17,12 +17,16 @@ import SecretOverlay from './SecretOverlay';
 import { DEFAULT_AVATAR_URL } from '@/lib/constants';
 import LocalVideoPlayer from './LocalVideoPlayer';
 
-// --- Prop Types for Sub-components ---
+// --- Prop Types ---
 interface HtmlContentProps {
   slide: HtmlSlideDTO;
 }
 interface SlideUIProps {
     slide: SlideDTO;
+}
+interface SlideProps {
+    slide: SlideDTO;
+    index: number; // Dodajemy index jako prop
 }
 
 // --- Sub-components ---
@@ -47,16 +51,12 @@ const HtmlContent = ({ slide }: HtmlContentProps) => {
 
 const SlideUI = ({ slide }: SlideUIProps) => {
     const {
-        activeModal,
-        setActiveModal,
         togglePlay,
         isPlaying,
         isMuted,
         seekTo,
         setIsMuted
     } = useStore(state => ({
-        activeModal: state.activeModal,
-        setActiveModal: state.setActiveModal,
         togglePlay: state.togglePlay,
         isPlaying: state.isPlaying,
         isMuted: state.isMuted,
@@ -95,9 +95,7 @@ const SlideUI = ({ slide }: SlideUIProps) => {
         className="absolute inset-0 z-10 p-4 flex flex-col justify-end text-white"
         onClick={handleContainerClick}
       >
-        {/* Top gradient */}
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
-        {/* Bottom gradient */}
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
 
         <AnimatePresence>
@@ -120,18 +118,14 @@ const SlideUI = ({ slide }: SlideUIProps) => {
             )}
         </AnimatePresence>
 
-
-        {/* UI Controls Container */}
         <div className="relative z-20 pointer-events-none">
             <div className="flex items-center gap-2 mb-2 pointer-events-auto">
                 <Image src={slide.avatar || DEFAULT_AVATAR_URL} alt={slide.username} width={40} height={40} className="rounded-full border-2 border-white" />
                 <p className="font-bold text-lg">{slide.username}</p>
             </div>
-
             {slide.data && 'title' in slide.data && <h2 className="text-xl font-semibold mb-1">{slide.data.title}</h2>}
             {slide.data && 'description' in slide.data && <p className="text-sm opacity-90">{slide.data.description}</p>}
         </div>
-
 
         <Sidebar
             slideId={slide.id}
@@ -155,25 +149,50 @@ const SlideUI = ({ slide }: SlideUIProps) => {
     );
   };
 
-
 // --- Main Slide Component ---
 
-interface SlideProps {
-    slide: SlideDTO;
-    priorityLoad?: boolean;
-}
-
-const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
+const Slide = memo<SlideProps>(({ slide, index }) => {
+    const slideRef = useRef<HTMLDivElement>(null);
     const { isLoggedIn } = useUser();
-    const activeSlideId = useStore(state => state.activeSlide?.id);
-    const isActive = activeSlideId === slide.id;
+    const { activeSlideIndex, setActiveSlideIndex } = useStore(state => ({
+        activeSlideIndex: state.activeSlideIndex,
+        setActiveSlideIndex: state.setActiveSlideIndex,
+    }), shallow);
+
+    const isActive = index === activeSlideIndex;
+    // Definiujemy, które slajdy preładować: aktywny, poprzedni i następny
+    const isNearby = activeSlideIndex !== null && Math.abs(index - activeSlideIndex) <= 1;
+
     const showSecretOverlay = slide.access === 'secret' && !isLoggedIn;
+
+    // Logika IntersectionObserver
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                // Gdy ponad 80% slajdu jest widoczne i nie jest on już aktywny, ustawiamy go jako nowy aktywny slajd
+                if (entry.isIntersecting && !isActive) {
+                    setActiveSlideIndex(index);
+                }
+            },
+            { threshold: 0.8 } // Kluczowy parametr!
+        );
+
+        const currentRef = slideRef.current;
+        if (currentRef) {
+            observer.observe(currentRef);
+        }
+
+        return () => {
+            if (currentRef) {
+                observer.unobserve(currentRef);
+            }
+        };
+    }, [index, isActive, setActiveSlideIndex]);
 
     const renderContent = () => {
         switch (slide.type) {
             case 'video':
-                // Pass priorityLoad as shouldLoad to LocalVideoPlayer
-                return <LocalVideoPlayer slide={slide as VideoSlideDTO} isActive={isActive} shouldLoad={priorityLoad} />;
+                return <LocalVideoPlayer slide={slide as VideoSlideDTO} isActive={isActive} shouldLoad={isNearby} />;
             case 'html':
                 return <HtmlContent slide={slide as HtmlSlideDTO} />;
             default:
@@ -182,10 +201,13 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
     };
 
     return (
-        <div className={cn(
-            "relative w-full h-full z-10 bg-black", // Changed from bg-transparent to bg-black
-            showSecretOverlay && "blur-md brightness-50"
-        )}>
+        <div
+            ref={slideRef}
+            className={cn(
+                "relative w-full h-full z-10 bg-black",
+                showSecretOverlay && "blur-md brightness-50"
+            )}
+        >
             {renderContent()}
             {showSecretOverlay ? <SecretOverlay /> : <SlideUI slide={slide} />}
         </div>
