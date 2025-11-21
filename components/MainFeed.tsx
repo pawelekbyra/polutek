@@ -1,6 +1,7 @@
-import React, { useMemo, useState, useEffect, useRef } from 'react';
+import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { Virtuoso } from 'react-virtuoso';
+import useEmblaCarousel from 'embla-carousel-react';
+import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
 import Slide from '@/components/Slide';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useStore } from '@/store/useStore';
@@ -34,9 +35,6 @@ const MainFeed = () => {
 
   const [currentViewIndex, setCurrentViewIndex] = useState(0);
 
-  // Timer ref for debounce
-  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
-
   const {
     data,
     fetchNextPage,
@@ -54,15 +52,86 @@ const MainFeed = () => {
     return (data?.pages.flatMap(page => page.slides) ?? []) as SlideDTO[];
   }, [data]);
 
-  // Initialize active slide if not set
+  // Embla setup
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      axis: 'y',
+      loop: true,
+      duration: 25, // Adjust swipe duration for snapping feel
+      skipSnaps: false,
+      dragFree: false
+    },
+    [WheelGesturesPlugin({ forceWheelAxis: 'y' })]
+  );
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+
+    const index = emblaApi.selectedScrollSnap();
+    setCurrentViewIndex(index);
+
+    // Determine "Fetch More" threshold
+    // If we are near the end of the list (e.g., 2 items from end) and have more pages
+    if (hasNextPage && slides.length - index <= 2) {
+       fetchNextPage();
+    }
+
+    // Update Global Store
+    if (slides[index]) {
+        const currentSlide = slides[index];
+        // Calculate next slide for pre-warming (handling loop)
+        const nextIndex = (index + 1) % slides.length;
+        const nextSlide = slides[nextIndex] || null;
+
+        if (activeSlide?.id !== currentSlide.id) {
+            setActiveSlide(currentSlide);
+            setNextSlide(nextSlide);
+
+            // Play video if applicable
+            if (currentSlide.type === 'video') {
+                 // Small timeout to ensure transition is settling/done
+                 setTimeout(() => {
+                     playVideo();
+                 }, 50);
+            }
+        }
+    }
+  }, [emblaApi, slides, hasNextPage, fetchNextPage, activeSlide, setActiveSlide, setNextSlide, playVideo]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on('select', onSelect);
+    // Initial select call to set first slide
+    onSelect();
+
+    return () => {
+        emblaApi.off('select', onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
+  // Sync activeSlide from store back to Embla (e.g., if changed elsewhere, or initial load)
+  useEffect(() => {
+    if (!emblaApi || !activeSlide || slides.length === 0) return;
+
+    // Only scroll if the visual index doesn't match the store's active slide
+    // This prevents circular loops of updates
+    const currentIndex = emblaApi.selectedScrollSnap();
+    if (slides[currentIndex]?.id !== activeSlide.id) {
+        const indexToScroll = slides.findIndex(s => s.id === activeSlide.id);
+        if (indexToScroll !== -1) {
+            emblaApi.scrollTo(indexToScroll);
+        }
+    }
+  }, [activeSlide, emblaApi, slides]);
+
+
+  // Initial load check
   useEffect(() => {
       if (slides.length > 0 && !activeSlide) {
-          // Initialize first slide as active
           setActiveSlide(slides[0]);
           setNextSlide(slides[1] || null);
       }
   }, [slides, activeSlide, setActiveSlide, setNextSlide]);
-
 
   if (isLoading && slides.length === 0) {
     return <div className="w-screen h-screen bg-black flex items-center justify-center"><Skeleton className="w-full h-full" /></div>;
@@ -73,50 +142,28 @@ const MainFeed = () => {
   }
 
   return (
-    <Virtuoso
-      className="snap-y snap-mandatory"
-      style={{ height: '100vh' }}
-      data={slides}
-      overscan={200}
-      endReached={() => hasNextPage && fetchNextPage()}
-      itemContent={(index, slide) => {
-        const priorityLoad = index === currentViewIndex || index === currentViewIndex + 1;
-        return (
-          <div className="h-screen w-full snap-start">
-             <Slide slide={slide} priorityLoad={priorityLoad} />
-          </div>
-        );
-      }}
-      rangeChanged={(range) => {
-          // Clear any existing timer to debounce rapid scrolling
-          if (debounceTimerRef.current) {
-              clearTimeout(debounceTimerRef.current);
-          }
+    <div className="w-full h-screen bg-black overflow-hidden" ref={emblaRef}>
+      <div className="flex flex-col h-full">
+        {slides.map((slide, index) => {
+          // Virtualization/Logic for priority load
+          // Calculate distance in loop context
+          const len = slides.length;
+          // Standard distance
+          let distance = Math.abs(index - currentViewIndex);
+          // Loop wrap-around distance
+          const loopDistance = Math.min(distance, len - distance);
 
-          // Set a new timer
-          debounceTimerRef.current = setTimeout(() => {
-              // Detect which slide is active.
-              // Since items are full screen, startIndex is effectively the active one when snapping completes.
-              const activeIndex = range.startIndex;
-              setCurrentViewIndex(activeIndex);
+          // Load if current, next, or previous (neighbor)
+          const priorityLoad = loopDistance <= 1;
 
-              if (activeIndex >= 0 && activeIndex < slides.length) {
-                  const currentSlide = slides[activeIndex];
-                  const nextSlide = slides[activeIndex + 1] || null;
-
-                  // Only update if changed to avoid unnecessary re-renders
-                  if (activeSlide?.id !== currentSlide.id) {
-                      setActiveSlide(currentSlide);
-                      setNextSlide(nextSlide);
-
-                      if (currentSlide.type === 'video') {
-                          playVideo();
-                      }
-                  }
-              }
-          }, 80); // Reduced debounce to 80ms for snappier response
-      }}
-    />
+          return (
+            <div className="flex-[0_0_100%] min-h-0 relative" key={slide.id}>
+               <Slide slide={slide} priorityLoad={priorityLoad} />
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 };
 
