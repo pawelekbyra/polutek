@@ -26,7 +26,7 @@ interface HtmlContentProps {
   slide: HtmlSlideDTO;
 }
 interface SlideUIProps {
-    slide: SlideDTO;
+  slide: SlideDTO;
 }
 
 // --- Sub-components ---
@@ -180,7 +180,7 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
                 queryClient.prefetchQuery({
                     queryKey: ['comments', slide.id],
                     queryFn: async () => {
-                         try {
+                          try {
                              const res = await fetch(`/api/comments?slideId=${slide.id}&limit=50`);
                              if (!res.ok) return []; // Fail silently or return empty
                              const data = await res.json();
@@ -193,10 +193,10 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
                                replies: c.replies || [],
                                likedBy: c.likedBy || []
                              })) as CommentWithRelations[];
-                         } catch (e) {
+                          } catch (e) {
                              console.error("Prefetch error:", e);
                              return [];
-                         }
+                          }
                     },
                     staleTime: 1000 * 60 * 5,
                 });
