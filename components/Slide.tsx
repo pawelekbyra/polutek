@@ -167,6 +167,7 @@ const Slide = memo<SlideProps>(({ slide }) => {
     const renderContent = () => {
         switch (slide.type) {
             case 'video':
+                // For video slides, we need a transparent background so the global player (z-0) shows through
                 return <div className="w-full h-full bg-transparent" />;
             case 'html':
                 return <HtmlContent slide={slide as HtmlSlideDTO} />;
@@ -177,7 +178,8 @@ const Slide = memo<SlideProps>(({ slide }) => {
 
     return (
         <div className={cn(
-            "relative w-full h-full bg-black",
+            "relative w-full h-full z-10", // Ensure Slide sits above GlobalVideoPlayer (z-0)
+            slide.type === 'video' ? "bg-transparent" : "bg-black", // Transparent hole for video
             showSecretOverlay && "blur-md brightness-50"
         )}>
             {renderContent()}
