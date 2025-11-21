@@ -44,6 +44,25 @@ const LocalVideoPlayer = ({ slide, isActive, shouldLoad = false }: LocalVideoPla
             hls.on(Hls.Events.MANIFEST_PARSED, () => {
                 setIsReadyToPlay(true);
             });
+            // Handle errors
+            hls.on(Hls.Events.ERROR, function (event, data) {
+                 if (data.fatal) {
+                    switch (data.type) {
+                    case Hls.ErrorTypes.NETWORK_ERROR:
+                        console.log('fatal network error encountered, try to recover');
+                        hls.startLoad();
+                        break;
+                    case Hls.ErrorTypes.MEDIA_ERROR:
+                        console.log('fatal media error encountered, try to recover');
+                        hls.recoverMediaError();
+                        break;
+                    default:
+                        // cannot recover
+                        hls.destroy();
+                        break;
+                    }
+                }
+            });
 
             // Cleanup
             return () => {
@@ -69,11 +88,9 @@ const LocalVideoPlayer = ({ slide, isActive, shouldLoad = false }: LocalVideoPla
         // Jeśli slajd jest aktywny LUB jest następny w kolejce (shouldLoad) -> ładujemy dane
         if ((isActive || shouldLoad) && hls && slide.data.hlsUrl) {
             // Sprawdź, czy już nie załadowano, aby uniknąć duplikatów
-            if (hls.url !== slide.data.hlsUrl) {
-                 console.log(`Preloading video ${slide.id}`);
-                 hls.loadSource(slide.data.hlsUrl);
-                 hls.startLoad();
-            }
+            // Note: checking hls.url might be unreliable if it wasn't set yet, but startLoad is safe.
+            hls.loadSource(slide.data.hlsUrl);
+            hls.startLoad();
         }
     }, [isActive, shouldLoad, slide.data.hlsUrl, slide.id]);
 
@@ -82,21 +99,24 @@ const LocalVideoPlayer = ({ slide, isActive, shouldLoad = false }: LocalVideoPla
         const video = videoRef.current;
         if (!video) return;
 
+        // Strictly play only if this specific slide is active AND global state is playing
         const shouldPlay = isActive && isPlaying;
 
         if (shouldPlay) {
             const playPromise = video.play();
             if (playPromise !== undefined) {
                 playPromise.catch(error => {
-                    console.warn("Autoplay prevented", error);
-                    // Tu można dodać logikę pokazania przycisku "Play" w razie błędu
+                    // Auto-play policy block is common, we swallow it here to avoid console noise,
+                    // but the UI shows a Pause icon if it fails usually.
+                    // console.warn("Autoplay prevented", error);
                 });
             }
         } else {
             video.pause();
             if (!isActive) {
-                // Opcjonalnie: przewiń do początku po przewinięciu dalej
+                // Optional: Reset time if scrolled away?
                 // video.currentTime = 0; 
+                // Leaving it paused at current frame is usually better UX for "scrolling back"
             }
         }
     }, [isActive, isPlaying]);

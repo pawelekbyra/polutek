@@ -16,6 +16,7 @@ import { cn } from '@/lib/utils';
 import SecretOverlay from './SecretOverlay';
 import { DEFAULT_AVATAR_URL } from '@/lib/constants';
 import LocalVideoPlayer from './LocalVideoPlayer';
+import { useInView } from '@/hooks/useInView';
 
 // --- Prop Types for Sub-components ---
 interface HtmlContentProps {
@@ -161,13 +162,25 @@ const SlideUI = ({ slide }: SlideUIProps) => {
 interface SlideProps {
     slide: SlideDTO;
     priorityLoad?: boolean;
+    onInView?: () => void;
 }
 
-const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
+const Slide = memo<SlideProps>(({ slide, priorityLoad = false, onInView }) => {
     const { isLoggedIn } = useUser();
     const activeSlideId = useStore(state => state.activeSlide?.id);
     const isActive = activeSlideId === slide.id;
     const showSecretOverlay = slide.access === 'secret' && !isLoggedIn;
+
+    // Intersection Observer to trigger active state
+    // Threshold 0.6 means >60% of the slide is visible.
+    // Since slides are 100vh, it's impossible for 2 slides to have >50% visibility at the same time.
+    const [ref, inView] = useInView({ threshold: 0.6 });
+
+    useEffect(() => {
+        if (inView && onInView) {
+            onInView();
+        }
+    }, [inView, onInView]);
 
     const renderContent = () => {
         switch (slide.type) {
@@ -182,10 +195,13 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
     };
 
     return (
-        <div className={cn(
-            "relative w-full h-full z-10 bg-black", // Changed from bg-transparent to bg-black
-            showSecretOverlay && "blur-md brightness-50"
-        )}>
+        <div
+            ref={ref}
+            className={cn(
+                "relative w-full h-full z-10 bg-black",
+                showSecretOverlay && "blur-md brightness-50"
+            )}
+        >
             {renderContent()}
             {showSecretOverlay ? <SecretOverlay /> : <SlideUI slide={slide} />}
         </div>
