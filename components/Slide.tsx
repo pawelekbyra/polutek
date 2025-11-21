@@ -16,6 +16,10 @@ import { cn } from '@/lib/utils';
 import SecretOverlay from './SecretOverlay';
 import { DEFAULT_AVATAR_URL } from '@/lib/constants';
 import LocalVideoPlayer from './LocalVideoPlayer';
+import { useQueryClient } from '@tanstack/react-query';
+import { CommentSchema } from '@/lib/validators';
+import { z } from 'zod';
+import { CommentWithRelations } from '@/lib/dto';
 
 // --- Prop Types for Sub-components ---
 interface HtmlContentProps {
@@ -168,6 +172,30 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
     const activeSlideId = useStore(state => state.activeSlide?.id);
     const isActive = activeSlideId === slide.id;
     const showSecretOverlay = slide.access === 'secret' && !isLoggedIn;
+    const queryClient = useQueryClient();
+
+    useEffect(() => {
+        if (isActive) {
+            queryClient.prefetchQuery({
+                queryKey: ['comments', slide.id],
+                queryFn: async () => {
+                     const res = await fetch(`/api/comments?slideId=${slide.id}&limit=50`);
+                     if (!res.ok) throw new Error('Failed to fetch comments');
+                     const data = await res.json();
+                     if (!data.success) throw new Error(data.message || 'Failed to fetch comments');
+
+                     const parsedComments = z.array(CommentSchema).parse(data.comments);
+                     return parsedComments.map((c: any) => ({
+                       ...c,
+                       author: c.author || c.user,
+                       replies: c.replies || [],
+                       likedBy: c.likedBy || []
+                     })) as CommentWithRelations[];
+                },
+                staleTime: 1000 * 60 * 5,
+            });
+        }
+    }, [isActive, slide.id, queryClient]);
 
     const renderContent = () => {
         switch (slide.type) {
