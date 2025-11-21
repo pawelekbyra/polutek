@@ -1,6 +1,6 @@
 import { neon, NeonQueryFunction } from '@neondatabase/serverless';
 import { User, Comment, Notification } from './db.interfaces';
-import { Slide } from './types';
+import { SlideDTO as Slide } from './dto';
 import { prisma } from './prisma';
 import { CommentWithRelations } from './dto';
 
@@ -344,13 +344,21 @@ export async function toggleCommentLike(commentId: string, userId: string): Prom
 
 // --- Comment Functions ---
 
-export async function getComments(slideId: string): Promise<CommentWithRelations[]> {
+export async function getComments(
+  slideId: string,
+  options: { limit?: number; cursor?: string } = {}
+): Promise<{ comments: CommentWithRelations[]; nextCursor: string | null }> {
+  const { limit = 20, cursor } = options;
+
   // Use Prisma Client to fetch comments with relations
   const comments = await prisma.comment.findMany({
     where: {
       slideId,
       parentId: null // Fetch only top-level threads
     },
+    take: limit + 1, // Fetch one extra to determine next cursor
+    skip: cursor ? 1 : 0, // Skip the cursor itself if present
+    cursor: cursor ? { id: cursor } : undefined,
     orderBy: { createdAt: 'desc' },
     include: {
       author: true,
@@ -368,8 +376,14 @@ export async function getComments(slideId: string): Promise<CommentWithRelations
     }
   });
 
+  let nextCursor: string | null = null;
+  if (comments.length > limit) {
+    const nextItem = comments.pop(); // Remove the extra item
+    nextCursor = nextItem?.id || null;
+  }
+
   // Map Prisma result to DTO (transform likes -> likedBy)
-  return comments.map(c => ({
+  const mappedComments = comments.map(c => ({
     ...c,
     likedBy: c.likes.map(l => l.userId),
     replies: c.replies.map(r => ({
@@ -379,6 +393,8 @@ export async function getComments(slideId: string): Promise<CommentWithRelations
       _count: { likes: r.likes.length }
     }))
   }));
+
+  return { comments: mappedComments, nextCursor };
 }
 
 export async function addComment(
@@ -547,7 +563,7 @@ export async function getSlide(id: string): Promise<Slide | null> {
         type: row.slideType as 'video' | 'html',
         userId: row.userId,
         username: row.username,
-        createdAt: new Date(row.createdAt).getTime(),
+        createdAt: new Date(row.createdAt).toISOString(),
         initialLikes: row.likeCount || 0,
         initialComments: row.commentCount || 0,
         isLiked: false,
@@ -600,7 +616,7 @@ export async function getSlides(options: { limit?: number, cursor?: string, curr
             type: row.slideType as 'video' | 'html',
             userId: row.userId,
             username: row.username,
-            createdAt: new Date(row.createdAt).getTime(),
+            createdAt: new Date(row.createdAt).toISOString(),
             initialLikes: row.likeCount || 0,
             initialComments: row.commentCount || 0,
             isLiked: row.isLiked,
@@ -629,7 +645,7 @@ export async function getAllSlides(): Promise<Slide[]> {
             type: row.slideType as 'video' | 'html',
             userId: row.userId,
             username: row.username,
-            createdAt: new Date(row.createdAt).getTime(),
+            createdAt: new Date(row.createdAt).toISOString(),
             initialLikes: row.likeCount || 0,
             initialComments: row.commentCount || 0,
             isLiked: false,
