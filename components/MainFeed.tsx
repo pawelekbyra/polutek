@@ -1,12 +1,18 @@
-import React, { useMemo, useState, useEffect, useRef } from 'react';
+import React, { useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { Virtuoso } from 'react-virtuoso';
+import { Virtuoso, VirtuosoHandle } from 'react-virtuoso';
 import Slide from '@/components/Slide';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useStore } from '@/store/useStore';
 import { SlidesResponseSchema } from '@/lib/validators';
 import { SlideDTO } from '@/lib/dto';
 import { shallow } from 'zustand/shallow';
+
+// CSS for hiding scrollbar but keeping functionality
+const hideScrollbarStyle: React.CSSProperties = {
+  msOverflowStyle: 'none',  /* IE and Edge */
+  scrollbarWidth: 'none',  /* Firefox */
+};
 
 const fetchSlides = async ({ pageParam = '' }) => {
   const res = await fetch(`/api/slides?cursor=${pageParam}&limit=5`);
@@ -32,10 +38,10 @@ const MainFeed = () => {
     activeSlide: state.activeSlide
   }), shallow);
 
-  const [currentViewIndex, setCurrentViewIndex] = useState(0);
-
-  // Timer ref for debounce
-  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const virtuosoRef = useRef<VirtuosoHandle>(null);
+  const [slidesList, setSlidesList] = useState<SlideDTO[]>([]);
+  // We keep track if we are currently appending recycled slides to avoid rapid loops
+  const [isRecycling, setIsRecycling] = useState(false);
 
   const {
     data,
@@ -43,6 +49,7 @@ const MainFeed = () => {
     hasNextPage,
     isLoading,
     isError,
+    isFetching
   } = useInfiniteQuery({
     queryKey: ['slides'],
     queryFn: fetchSlides,
@@ -50,73 +57,98 @@ const MainFeed = () => {
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });
 
-  const slides = useMemo(() => {
-    return (data?.pages.flatMap(page => page.slides) ?? []) as SlideDTO[];
+  // Sync React Query data to our local list, but only append new unique data
+  // We need a stable list that we can manually append to for the infinite loop effect
+  useEffect(() => {
+    if (data?.pages) {
+      const newSlides = data.pages.flatMap(page => page.slides) as SlideDTO[];
+
+      // If we haven't started recycling yet, we strictly follow the API data
+      // Once we start recycling (looping), we manage the list manually
+      setSlidesList(prev => {
+          // Check if we have looped content (manual list is longer than API list)
+          // This is a simple heuristic.
+          const isLooping = prev.length > newSlides.length;
+
+          if (isLooping) {
+            return prev; // Don't overwrite looped list with shorter API list
+          }
+          return newSlides;
+      });
+    }
   }, [data]);
 
-  // Initialize active slide if not set
-  useEffect(() => {
-      if (slides.length > 0 && !activeSlide) {
-          // Initialize first slide as active
-          setActiveSlide(slides[0]);
-          setNextSlide(slides[1] || null);
+  // Handle Infinite Loop Logic
+  const handleEndReached = useCallback(() => {
+    if (hasNextPage) {
+       fetchNextPage();
+    } else if (slidesList.length > 0 && !isFetching && !isRecycling) {
+       // API is exhausted, but we want an infinite loop.
+       // Append the existing slides to the end.
+       setIsRecycling(true);
+
+       setSlidesList(prev => {
+         // Append a copy of the slides to create the loop
+         return [...prev, ...prev];
+       });
+
+       // Reset recycling flag after a delay to allow state to settle
+       setTimeout(() => setIsRecycling(false), 1000);
+    }
+  }, [hasNextPage, fetchNextPage, slidesList.length, isFetching, isRecycling]);
+
+  // Update Active Slide
+  const handleRangeChanged = useCallback((range: { startIndex: number }) => {
+      const index = range.startIndex;
+      if (index >= 0 && index < slidesList.length) {
+          const currentSlide = slidesList[index];
+          const nextSlide = slidesList[index + 1] || null;
+
+          // Update store
+          setActiveSlide(currentSlide);
+          setNextSlide(nextSlide);
+
+          if (currentSlide.type === 'video') {
+            playVideo();
+          }
       }
-  }, [slides, activeSlide, setActiveSlide, setNextSlide]);
+  }, [slidesList, setActiveSlide, setNextSlide, playVideo]);
 
-
-  if (isLoading && slides.length === 0) {
-    return <div className="w-screen h-screen bg-black flex items-center justify-center"><Skeleton className="w-full h-full" /></div>;
+  if (isLoading && slidesList.length === 0) {
+    return <div className="w-full h-[100dvh] bg-black flex items-center justify-center"><Skeleton className="w-full h-full" /></div>;
   }
 
   if (isError) {
-    return <div className="w-screen h-screen bg-black flex items-center justify-center text-white">Error loading slides.</div>;
+    return <div className="w-full h-[100dvh] bg-black flex items-center justify-center text-white">Error loading slides.</div>;
   }
 
   return (
-    <Virtuoso
-      className="snap-y snap-mandatory"
-      style={{ height: '100vh' }}
-      data={slides}
-      overscan={200}
-      endReached={() => hasNextPage && fetchNextPage()}
-      itemContent={(index, slide) => {
-        const priorityLoad = index === currentViewIndex || index === currentViewIndex + 1;
-        return (
-          <div className="h-screen w-full snap-start">
-             <Slide slide={slide} priorityLoad={priorityLoad} />
-          </div>
-        );
-      }}
-      rangeChanged={(range) => {
-          // Clear any existing timer to debounce rapid scrolling
-          if (debounceTimerRef.current) {
-              clearTimeout(debounceTimerRef.current);
-          }
-
-          // Set a new timer
-          debounceTimerRef.current = setTimeout(() => {
-              // Detect which slide is active.
-              // Since items are full screen, startIndex is effectively the active one when snapping completes.
-              const activeIndex = range.startIndex;
-              setCurrentViewIndex(activeIndex);
-
-              if (activeIndex >= 0 && activeIndex < slides.length) {
-                  const currentSlide = slides[activeIndex];
-                  const nextSlide = slides[activeIndex + 1] || null;
-
-                  // Only update if changed to avoid unnecessary re-renders
-                  if (activeSlide?.id !== currentSlide.id) {
-                      setActiveSlide(currentSlide);
-                      setNextSlide(nextSlide);
-
-                      if (currentSlide.type === 'video') {
-                          playVideo();
-                      }
-                  }
-              }
-          }, 80); // Reduced debounce to 80ms for snappier response
-      }}
-    />
+    <>
+        <style jsx global>{`
+            .hide-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+        `}</style>
+        <Virtuoso
+          ref={virtuosoRef}
+          className="snap-y snap-mandatory h-[100dvh] w-full overflow-y-scroll hide-scrollbar"
+          style={{ ...hideScrollbarStyle, height: '100dvh' }}
+          data={slidesList}
+          overscan={1}
+          endReached={handleEndReached}
+          rangeChanged={handleRangeChanged}
+          itemContent={(index, slide) => {
+            return (
+              <div
+                className="h-[100dvh] w-full snap-start relative"
+                key={`${slide.id}-${index}`}
+              >
+                 <Slide slide={slide} priorityLoad={true} />
+              </div>
+            );
+          }}
+        />
+    </>
   );
 };
 
