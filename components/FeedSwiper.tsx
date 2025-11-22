@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState, useEffect, useRef } from 'react';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import Swiper from 'swiper';
 import { Mousewheel, Keyboard } from 'swiper/modules';
 import 'swiper/css';
@@ -13,6 +13,7 @@ import { useStore } from '@/store/useStore';
 import { SlidesResponseSchema } from '@/lib/validators';
 import { SlideDTO } from '@/lib/dto';
 import { shallow } from 'zustand/shallow';
+import { fetchComments, fetchAuthorProfile } from '@/lib/queries';
 
 const fetchSlides = async ({ pageParam = '' }) => {
   const res = await fetch(`/api/slides?cursor=${pageParam}&limit=5`);
@@ -38,6 +39,7 @@ const FeedSwiper = () => {
     activeSlide: state.activeSlide
   }), shallow);
 
+  const queryClient = useQueryClient();
   const swiperRef = useRef(null);
   const swiperInstance = useRef<Swiper | null>(null);
 
@@ -99,6 +101,21 @@ const FeedSwiper = () => {
                   setActiveSlide(currentSlide);
                   setNextSlide(nextSlide);
 
+                  // Pre-fetch comments and author profile
+                  if (currentSlide.id) {
+                    queryClient.prefetchInfiniteQuery({
+                      queryKey: ['comments', currentSlide.id],
+                      queryFn: () => fetchComments({ slideId: currentSlide.id }),
+                      initialPageParam: '',
+                    });
+                  }
+                  if (currentSlide.authorId) {
+                    queryClient.prefetchQuery({
+                      queryKey: ['author', currentSlide.authorId],
+                      queryFn: () => fetchAuthorProfile(currentSlide.authorId),
+                    });
+                  }
+
                   if (currentSlide.type === 'video') {
                     playVideo();
                   }
@@ -112,7 +129,7 @@ const FeedSwiper = () => {
         },
       });
     }
-  }, [slides.length > 0]);
+  }, [slides.length > 0, queryClient]);
 
   useEffect(() => {
     if (swiperInstance.current) {

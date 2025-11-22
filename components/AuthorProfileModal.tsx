@@ -1,73 +1,29 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { AnimatePresence, motion } from 'framer-motion';
-import { X, Crown, Shield, Zap } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useStore } from '@/store/useStore';
 import { Skeleton } from '@/components/ui/skeleton';
 import Image from 'next/image';
 import { DEFAULT_AVATAR_URL } from '@/lib/constants';
 import { UserBadge } from './UserBadge';
-
-interface AuthorProfile {
-    id: string;
-    username: string;
-    avatarUrl: string;
-    bio: string;
-    role?: string;
-    slides: { id: string; thumbnailUrl: string; title: string; }[];
-}
+import { fetchAuthorProfile } from '@/lib/queries';
+import { AuthorProfile } from '@/types';
 
 interface AuthorProfileModalProps {
     authorId: string;
     onClose: () => void;
 }
 
-const MOCK_PROFILE: AuthorProfile = {
-    id: 'mock-1',
-    username: 'Mock Author',
-    avatarUrl: DEFAULT_AVATAR_URL,
-    bio: 'This is a mock profile because the API is missing.',
-    role: 'author',
-    slides: [
-        { id: '1', thumbnailUrl: 'https://placehold.co/600x400?text=Video+1', title: 'Mock Video 1' },
-        { id: '2', thumbnailUrl: 'https://placehold.co/600x400?text=Video+2', title: 'Mock Video 2' },
-        { id: '3', thumbnailUrl: 'https://placehold.co/600x400?text=Video+3', title: 'Mock Video 3' },
-    ]
-};
-
 export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProps) {
     const { jumpToSlide } = useStore();
-    const [profile, setProfile] = useState<AuthorProfile | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-        async function fetchAuthorProfile() {
-            if (authorId) {
-                setIsLoading(true);
-                setProfile(null);
-                try {
-                    // Attempt fetch, fallback to mock
-                    const res = await fetch(`/api/author/${authorId}`);
-                    if (res.ok) {
-                        const data = await res.json();
-                        setProfile(data);
-                    } else {
-                        console.warn("Failed to fetch author profile, using mock data.");
-                         // Simulate delay
-                        await new Promise(resolve => setTimeout(resolve, 500));
-                        setProfile({ ...MOCK_PROFILE, id: authorId, username: `User ${authorId.slice(0, 5)}` });
-                    }
-                } catch (error) {
-                    console.warn("Error fetching author profile, using mock data.", error);
-                    setProfile({ ...MOCK_PROFILE, id: authorId });
-                } finally {
-                    setIsLoading(false);
-                }
-            }
-        }
-        fetchAuthorProfile();
-    }, [authorId]);
+    const { data: profile, isLoading, isError } = useQuery<AuthorProfile>({
+        queryKey: ['author', authorId],
+        queryFn: () => fetchAuthorProfile(authorId),
+        enabled: !!authorId,
+    });
 
     const handleSlideClick = (slideId: string) => {
         jumpToSlide(slideId);
@@ -100,6 +56,10 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                     <main className="flex-1 p-6 overflow-y-auto">
                         {isLoading ? (
                             <AuthorProfileSkeleton />
+                        ) : isError ? (
+                            <div className="flex flex-col items-center justify-center h-full space-y-4">
+                                <p>Could not load profile.</p>
+                            </div>
                         ) : profile ? (
                             <>
                                 <div className="flex items-center space-x-4 mb-4">
@@ -141,11 +101,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                                     ))}
                                 </div>
                             </>
-                        ) : (
-                            <div className="flex flex-col items-center justify-center h-full space-y-4">
-                                <p>Could not load profile.</p>
-                            </div>
-                        )}
+                        ) : null}
                     </main>
                 </motion.div>
         </motion.div>
