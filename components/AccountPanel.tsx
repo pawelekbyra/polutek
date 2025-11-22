@@ -63,6 +63,7 @@ const AccountPanel: React.FC<AccountPanelProps> = ({ onClose }) => {
         >
           <div className="flex flex-col items-center gap-1">
              <h2 className="text-base font-semibold text-white tracking-wide">{user?.displayName || user?.username || t('account')}</h2>
+             {user && (user as any).bio && <p className="text-xs text-white/60 max-w-[200px] truncate">{(user as any).bio}</p>}
           </div>
           <button
             onClick={onClose}
