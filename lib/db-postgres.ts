@@ -590,8 +590,10 @@ export async function getSlides(options: { limit?: number, cursor?: string, curr
         result = await sql`
             SELECT
                 s.*,
+                u.avatar as "userAvatar",
                 ${currentUserId ? sql`EXISTS(SELECT 1 FROM likes WHERE "slideId" = s.id AND "userId" = ${currentUserId})` : false} as "isLiked"
             FROM slides s
+            LEFT JOIN users u ON s."userId" = u.id
             WHERE s."createdAt" < ${cursorDate}
             ORDER BY s."createdAt" DESC
             LIMIT ${limit}
@@ -600,8 +602,10 @@ export async function getSlides(options: { limit?: number, cursor?: string, curr
         result = await sql`
             SELECT
                 s.*,
+                u.avatar as "userAvatar",
                 ${currentUserId ? sql`EXISTS(SELECT 1 FROM likes WHERE "slideId" = s.id AND "userId" = ${currentUserId})` : false} as "isLiked"
             FROM slides s
+            LEFT JOIN users u ON s."userId" = u.id
             ORDER BY s."createdAt" DESC
             LIMIT ${limit}
         `;
@@ -620,7 +624,7 @@ export async function getSlides(options: { limit?: number, cursor?: string, curr
             initialLikes: row.likeCount || 0,
             initialComments: row.commentCount || 0,
             isLiked: !!row.isLiked,
-            avatar: content.avatar || '',
+            avatar: row.userAvatar || content.avatar || '',
             access: content.access || 'public',
             data: content.data,
         } as Slide;
