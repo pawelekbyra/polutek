@@ -7,7 +7,7 @@ import { useUser } from '@/context/UserContext';
 import { useTranslation } from '@/context/LanguageContext';
 import { useToast } from '@/context/ToastContext';
 import { useStore } from '@/store/useStore';
-import { X, ChevronRight, Crown, Sparkles } from 'lucide-react'; // Crown icon for VIP
+import { X, ChevronRight, Crown, Sparkles, Trophy } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
@@ -52,10 +52,9 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose
             </div>
             <button
                 disabled={isProcessing || !stripe || !elements}
-                // VIP BUTTON: Gold Gradient with Purple Glow
-                className="w-full py-4 rounded-xl font-bold text-black bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 shadow-[0_0_20px_rgba(168,85,247,0.5)] hover:shadow-[0_0_35px_rgba(168,85,247,0.7)] hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:hover:scale-100 border border-yellow-300/50"
+                className="w-full py-4 rounded-xl font-bold text-white bg-gradient-to-r from-[#ff0055] via-[#ff4081] to-[#d946ef] shadow-[0_0_20px_rgba(255,0,85,0.4)] hover:shadow-[0_0_35px_rgba(255,0,85,0.6)] hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:hover:scale-100 border border-white/10 tracking-widest"
             >
-                {isProcessing ? (t('processing') || "Przetwarzanie...") : (t('payNow') || "Zapłać teraz")}
+                {isProcessing ? (t('processing') || "Przetwarzanie...") : "ENTER"}
             </button>
         </form>
     );
@@ -83,7 +82,10 @@ const TippingModal = () => {
         setFormData(prev => ({ ...prev, email: user?.email || '' }));
         if (currentStep === 0) setCurrentStep(1);
     } else {
-        if (!isTippingModalOpen) setCurrentStep(0);
+        if (!isTippingModalOpen) {
+            setCurrentStep(0);
+            setFormData(prev => ({ ...prev, create_account: false })); // Reset checkbox
+        }
     }
   }, [isLoggedIn, user, isTippingModalOpen]);
 
@@ -159,10 +161,6 @@ const TippingModal = () => {
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        // VIP CONTAINER STYLE:
-        // Border: Gold/Yellow (border-yellow-500/30)
-        // Shadow: Purple Glow (shadow-[...rgba(147,51,234...)])
-        // Bg: Deep Luxury Black
         className="relative w-[90%] max-w-[420px] max-h-[85vh] flex flex-col rounded-[24px] border border-yellow-500/30 shadow-[0_0_60px_-10px_rgba(147,51,234,0.5)] overflow-hidden bg-[#050505]"
       >
         {/* Gold Gradient Line at very top */}
@@ -173,7 +171,7 @@ const TippingModal = () => {
             <div className="flex items-center justify-center gap-2 mb-1">
                 <Crown className="text-yellow-400 w-5 h-5 drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]" />
                 <h2 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-200 tracking-wide drop-shadow-sm">
-                    Wsparcie VIP
+                    Bramka napiwkowa
                 </h2>
                 <Sparkles className="text-purple-400 w-4 h-4 animate-pulse" />
             </div>
@@ -211,46 +209,55 @@ const TippingModal = () => {
                         className="space-y-6 flex-1 relative z-10"
                     >
                         <div className="text-center space-y-2">
-                            <h3 className="text-lg font-medium text-white/90">Dane Darczyńcy</h3>
-                            <p className="text-sm text-purple-200/50">Dołącz do grona wspierających.</p>
+                            <h3 className="text-lg font-medium text-white/90">Wspieraj Twórcę</h3>
+                            
+                            {/* Left Aligned Subtitle with Trophy */}
+                            <div className="flex items-center justify-start gap-2 text-yellow-400/90 mt-1">
+                                <Trophy className="w-4 h-4 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]" />
+                                <p className="text-sm font-medium">Założyć konto Patrona?</p>
+                            </div>
                         </div>
 
                         <div className="space-y-4">
                             {!isLoggedIn && (
                                 <div 
                                     className={cn(
-                                        "flex items-center justify-between p-4 rounded-xl border cursor-pointer transition-all duration-300 group",
+                                        "flex items-center justify-start p-4 gap-3 rounded-xl border cursor-pointer transition-all duration-300 group",
                                         formData.create_account 
                                             ? "bg-purple-900/20 border-yellow-500/40 shadow-[0_0_15px_rgba(147,51,234,0.15)]" 
                                             : "bg-white/5 border-white/10 hover:border-yellow-500/30"
                                     )}
                                     onClick={() => setFormData(prev => ({ ...prev, create_account: !prev.create_account }))}
                                 >
-                                    <span className={cn("text-sm font-medium transition-colors", formData.create_account ? "text-yellow-400" : "text-white/80")}>
-                                        Załóż konto (opcjonalne)
-                                    </span>
+                                    {/* Checkbox Indicator on LEFT */}
                                     <div className={cn(
-                                        "w-6 h-6 rounded-full border flex items-center justify-center transition-all duration-300", 
-                                        formData.create_account ? "bg-gradient-to-r from-amber-400 to-yellow-500 border-transparent shadow-[0_0_10px_rgba(234,179,8,0.4)]" : "border-white/20 group-hover:border-white/40"
+                                        "w-6 h-6 rounded-full border flex items-center justify-center transition-all duration-300 shrink-0", 
+                                        formData.create_account 
+                                            ? "bg-gradient-to-r from-[#ff0055] to-[#d946ef] border-transparent shadow-[0_0_10px_rgba(255,0,85,0.4)]" 
+                                            : "border-white/20 group-hover:border-white/40"
                                     )}>
-                                        {formData.create_account && <div className="w-2.5 h-2.5 bg-black rounded-full" />}
+                                        {formData.create_account && <div className="w-2.5 h-2.5 bg-white rounded-full" />}
                                     </div>
+                                    
+                                    <span className={cn("text-sm font-medium transition-colors", formData.create_account ? "text-white" : "text-white/80")}>
+                                        No Jacha
+                                    </span>
                                 </div>
                             )}
 
-                            <div className={cn("space-y-2 overflow-hidden transition-all duration-300", (formData.create_account || !isLoggedIn) ? "max-h-[200px] opacity-100" : "max-h-0 opacity-0")}>
+                            <div className={cn("space-y-2 overflow-hidden transition-all duration-300", (formData.create_account) ? "max-h-[200px] opacity-100" : "max-h-0 opacity-0")}>
                                 <div className="group relative">
-                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-yellow-500 rounded-xl blur opacity-0 group-focus-within:opacity-40 transition duration-500"></div>
+                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-[#ff0055] to-[#d946ef] rounded-xl blur opacity-0 group-focus-within:opacity-40 transition duration-500"></div>
                                     <input
                                         type="email"
                                         placeholder="Adres email"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        className="relative w-full bg-[#0a0a0a] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder:text-white/30 focus:outline-none focus:border-yellow-500/50 focus:text-yellow-100 transition-all"
+                                        className="relative w-full bg-[#0a0a0a] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder:text-white/30 focus:outline-none focus:border-[#ff0055]/50 focus:text-white transition-all"
                                     />
                                 </div>
-                                <p className="text-xs text-white/30 text-center">
-                                    {formData.create_account ? "Wyślemy Ci hasło na ten adres." : "Potrzebny do potwierdzenia płatności."}
+                                <p className="text-xs text-white/40 text-center px-2 leading-relaxed">
+                                    Na ten email wyślemy Ci dane do logowania, abyś mógł odebrać swoje benefity.
                                 </p>
                             </div>
                         </div>
@@ -375,13 +382,13 @@ const TippingModal = () => {
                 <button
                     onClick={handleNext}
                     disabled={isProcessing}
-                    className="group flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold text-black bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 shadow-[0_4px_20px_rgba(168,85,247,0.4)] hover:shadow-[0_6px_30px_rgba(168,85,247,0.6)] hover:scale-[1.02] active:scale-95 transition-all border border-yellow-300/40"
+                    className="group flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-[#ff0055] via-[#ff4081] to-[#d946ef] shadow-[0_4px_20px_rgba(255,0,85,0.4)] hover:shadow-[0_6px_30px_rgba(255,0,85,0.6)] hover:scale-[1.02] active:scale-95 transition-all border border-white/10 tracking-widest"
                 >
                     {isProcessing ? (
                         <span className="animate-pulse">Przetwarzanie...</span>
                     ) : (
                         <>
-                            Dalej <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                            ENTER <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
                         </>
                     )}
                 </button>
