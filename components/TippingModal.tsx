@@ -342,10 +342,10 @@ const TippingModal = () => {
         )}
 
         {/* Stripe Logo Footer - Always visible at bottom */}
-        <div className="pb-6 pt-4 flex items-center justify-center bg-[#1c1c1e] z-10 border-t border-white/5">
-             <div className="flex items-center gap-3 opacity-60 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300">
-                  <span className="text-sm font-bold text-white/70 uppercase tracking-wider">Powered by</span>
-                  <div className="relative h-8 w-20">
+        <div className="pb-4 pt-2 flex items-center justify-center bg-[#1c1c1e] z-10 border-t border-white/5">
+             <div className="flex items-center gap-2 opacity-50 grayscale hover:grayscale-0 transition-all duration-300">
+                  <span className="text-[10px] text-white/60 font-medium">Powered by</span>
+                  <div className="relative h-4 w-10">
                       <Image
                         src="/stripe.png"
                         alt="Stripe"

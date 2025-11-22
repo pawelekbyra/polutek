@@ -2,18 +2,16 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { X, Crown, Shield, User as UserIcon, Zap } from 'lucide-react';
+import { X } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import Image from 'next/image';
 import { DEFAULT_AVATAR_URL } from '@/lib/constants';
-import { useTranslation } from '@/context/LanguageContext';
 
 interface PatronProfile {
     id: string;
     username: string;
     avatarUrl: string;
     bio: string;
-    role?: string;
 }
 
 interface PatronProfileModalProps {
@@ -26,13 +24,11 @@ const MOCK_PROFILE: PatronProfile = {
     username: 'Mock User',
     avatarUrl: DEFAULT_AVATAR_URL,
     bio: 'This is a mock profile because the API is missing.',
-    role: 'patron',
 };
 
 export function PatronProfileModal({ patronId, onClose }: PatronProfileModalProps) {
     const [profile, setProfile] = useState<PatronProfile | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-    const { t } = useTranslation();
 
     useEffect(() => {
         async function fetchPatronProfile() {
@@ -49,8 +45,7 @@ export function PatronProfileModal({ patronId, onClose }: PatronProfileModalProp
                             id: data.id,
                             username: data.username,
                             avatarUrl: data.avatarUrl,
-                            bio: data.bio,
-                            role: data.role
+                            bio: data.bio
                         });
                     } else {
                         console.warn("Failed to fetch patron profile, using mock data.");
@@ -69,36 +64,6 @@ export function PatronProfileModal({ patronId, onClose }: PatronProfileModalProp
         fetchPatronProfile();
     }, [patronId]);
 
-    const renderBadge = (role?: string) => {
-        switch (role) {
-            case 'admin':
-                return (
-                    <div className="flex items-center gap-1.5 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-md mt-1 mb-3">
-                        <Shield size={12} fill="currentColor" />
-                        <span>Admin</span>
-                    </div>
-                );
-            case 'author':
-            case 'creator':
-            case 'tworca':
-                return (
-                    <div className="flex items-center gap-1.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-md mt-1 mb-3">
-                        <Zap size={12} fill="currentColor" />
-                        <span>Twórca</span>
-                    </div>
-                );
-            case 'patron':
-                return (
-                    <div className="flex items-center gap-1.5 bg-gradient-to-r from-yellow-400 to-amber-500 text-black px-3 py-1 rounded-full text-xs font-bold shadow-md mt-1 mb-3">
-                        <Crown size={12} fill="currentColor" />
-                        <span>Patron</span>
-                    </div>
-                );
-            default:
-                return null;
-        }
-    };
-
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -116,7 +81,7 @@ export function PatronProfileModal({ patronId, onClose }: PatronProfileModalProp
                 onClick={(e) => e.stopPropagation()}
             >
                     <header className="relative flex items-center justify-center p-4 border-b border-neutral-800 shrink-0">
-                        <h2 className="text-lg font-semibold">{t('profile') || 'Profil Użytkownika'}</h2>
+                        <h2 className="text-lg font-semibold">Profil Użytkownika</h2>
                         <button onClick={onClose} className="absolute p-1 right-3 top-3 rounded-full hover:bg-neutral-700">
                             <X size={20} />
                         </button>
@@ -127,21 +92,20 @@ export function PatronProfileModal({ patronId, onClose }: PatronProfileModalProp
                             <PatronProfileSkeleton />
                         ) : profile ? (
                             <div className="flex flex-col items-center text-center">
-                                <div className="relative w-24 h-24 mb-3">
+                                <div className="relative w-24 h-24 mb-4">
                                     <Image
                                       src={profile.avatarUrl || DEFAULT_AVATAR_URL}
                                       alt={profile.username}
                                       layout="fill"
                                       objectFit="cover"
-                                      className="rounded-full border-2 border-white/10"
+                                      className="rounded-full border-2 border-pink-500"
                                     />
                                 </div>
-                                {renderBadge(profile.role)}
                                 <h3 className="text-2xl font-bold mb-2">{profile.username}</h3>
                                 {profile.bio ? (
                                     <p className="text-neutral-400 text-sm leading-relaxed">{profile.bio}</p>
                                 ) : (
-                                    <p className="text-neutral-600 text-sm italic">{t('noBio') || 'Brak opisu.'}</p>
+                                    <p className="text-neutral-600 text-sm italic">Brak opisu.</p>
                                 )}
                             </div>
                         ) : (

@@ -1,106 +1,159 @@
-
 import time
 from playwright.sync_api import sync_playwright, expect
 
-def verify_changes(page):
-    # 1. Go to homepage
-    page.goto("http://localhost:3000")
+def run(playwright):
+    browser = playwright.chromium.launch(headless=True)
+    context = browser.new_context()
+    page = context.new_page()
 
-    # Wait for language selection (if present) or feed
+    # Allow time for server to start
+    time.sleep(10)
+
     try:
-        page.get_by_role("button", name="Polski").click(timeout=5000)
-    except:
-        pass # Maybe language already selected
+        # 1. Test Tipping Modal
+        print("Testing Tipping Modal...")
+        page.goto("http://localhost:3000")
 
-    # Wait for feed to load
-    page.wait_for_timeout(3000)
-
-    # 2. Verify Tipping Modal (Stripe Logo)
-    # Click Wallet icon in sidebar
-    try:
-        page.get_by_role("button", name="t").first.click() # The wallet icon might not have a clear accessible name, try by class or svg
-    except:
-        # Fallback to finding by icon class or sidebar structure
-        # Sidebar usually has button with Wallet icon.
-        # Let's try opening via store logic if possible, or just clicking buttons in sidebar.
-        pass
-
-    # Use evaluate to force open modals for screenshots if UI interaction is flaky
-    page.evaluate("useStore.getState().openTippingModal()")
-    page.wait_for_timeout(1000)
-    page.screenshot(path="verification/tipping_modal.png")
-    print("Tipping Modal screenshot taken.")
-
-    # Close Tipping Modal
-    page.evaluate("useStore.getState().closeTippingModal()")
-    page.wait_for_timeout(500)
-
-    # 3. Verify Author Profile Badge
-    # Open Author Profile for a dummy ID
-    page.evaluate("useStore.getState().openAuthorProfileModal('mock-author')")
-    page.wait_for_timeout(2000) # Wait for fetch/mock
-    page.screenshot(path="verification/author_profile.png")
-    print("Author Profile screenshot taken.")
-
-    # Close Author Modal
-    page.evaluate("useStore.getState().closeAuthorProfileModal()")
-    page.wait_for_timeout(500)
-
-    # 4. Verify Notification Mocks
-    # Login is required for notifications.
-    # We can try to mock the login state or hit the API directly?
-    # The UI component 'NotificationPopup' calls /api/notifications.
-    # We can try to open the notification modal if we can bypass login or if we are logged in (guest mode usually doesn't show notifications).
-    # If not logged in, we can't see notifications easily via UI.
-    # However, I modified the API. I can verify the API returns mocks via python request or just skip UI verification for notifications if login is hard.
-    # Let's try to fetch the API in the script context.
-
-    # Actually, let's verify Patron Profile Badge
-    page.evaluate("useStore.getState().openPatronProfileModal('mock-patron')")
-    page.wait_for_timeout(2000)
-    page.screenshot(path="verification/patron_profile.png")
-    print("Patron Profile screenshot taken.")
-
-if __name__ == "__main__":
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
-        # Expose useStore to window for easy manipulation
-        # We need to make sure the app exposes it or we can't do the evaluate trick.
-        # The app might not expose 'useStore' globally.
-        # I'll rely on clicking UI if possible, or assume I can't easily force state without a devtool hook.
-        # Wait, the prompt memory says "Global modals... managed via Zustand".
-        # I can try to inject a script to expose it, but easier is to just click.
-
-        # Rethink: I can't access `useStore` from `page.evaluate` unless it's attached to window.
-        # I'll try to interact with the UI.
-
+        # Wait for language selection if it appears (based on memory)
         try:
-            # Navigate
-            page.goto("http://localhost:3000")
-            try:
-                page.get_by_role("button", name="Polski").click(timeout=5000)
-            except:
-                pass
-            page.wait_for_timeout(2000)
+            page.get_by_role("button", name="Polski").click(timeout=5000)
+            print("Language selected.")
+        except:
+            print("No language selection needed or timed out.")
 
-            # Open Tipping Modal (Wallet Icon)
-            # Find the sidebar. It has buttons.
-            # Looking at previous knowledge, Sidebar has Heart, MessageSquare, Share2, Wallet.
-            # Wallet should be the 4th/5th icon.
-            # I'll try to find an SVG with 'wallet' class or similar, or just click the button.
-            # Inspecting `Sidebar.tsx` (from memory/previous): it renders Lucide icons.
-            # I'll try to click the button that likely contains the Wallet icon.
+        # Evaluate code to open tipping modal directly via store if possible,
+        # or find a button. The 'Wallet' icon in Sidebar opens tipping modal?
+        # Let's try to click the wallet icon.
+        # Sidebar might be hidden or require interaction.
+        # Let's try to force open via console since we have access to window (if store is exposed)
+        # But store is inside React.
+        # Let's click the Wallet icon. It uses Lucide 'Wallet'.
 
-            # Since I can't see the DOM, I'll take a screenshot of the feed first to debug locators if needed.
-            page.screenshot(path="verification/feed_debug.png")
+        # Wait for app to load
+        page.wait_for_selector("body", timeout=30000)
 
-            # Try to click the tipping button (usually in Sidebar)
-            # Assuming it's a button in the sidebar.
-            # I will try generic selectors.
+        # Click Tipping/Wallet button (assuming it's in sidebar or topbar)
+        # Based on files, it's likely in Sidebar.
+        # Using a selector for the wallet icon or button containing it.
+        # We can try to match the button by aria-label or icon.
+        # If not found, we might struggle.
 
-        except Exception as e:
-            print(f"Error: {e}")
-            page.screenshot(path="verification/error.png")
+        # Alternative: The user mentioned "Wallet" (Tipping) icon in Sidebar.
+        # Let's try to find it.
+        try:
+            page.locator("button:has(svg.lucide-wallet)").click(timeout=5000)
+            print("Clicked Wallet button.")
+        except:
+            print("Could not find Wallet button. Trying to find text 'Napiwek' or similar if translated.")
 
+        # Wait for modal
+        expect(page.get_by_text("Bramka Napiwkowa")).to_be_visible(timeout=10000)
+
+        # Check for Stripe image
+        # It should be an image with src ending in stripe.png
+        stripe_img = page.locator("img[src*='stripe.png']")
+        expect(stripe_img).to_be_visible()
+        print("Stripe image found.")
+
+        page.screenshot(path="/home/jules/verification/tipping_modal.png")
+
+        # Close tipping modal
+        page.locator("button:has(svg.lucide-x)").click()
+
+
+        # 2. Test Patron Modal via Comments
+        print("Testing Patron Modal...")
+
+        # We need to open comments.
+        # Click comment icon (MessageSquare)
+        page.locator("button:has(svg.lucide-message-square)").first.click()
+
+        # Wait for Comments Modal
+        expect(page.get_by_text("Komentarze")).to_be_visible(timeout=10000)
+
+        # We need comments to exist. If empty, we can't test clicking avatar.
+        # If no comments, we can try to add one (if logged in, but we are guest).
+        # Guests see "Zaloguj się aby skomentować".
+        # If API returns mock data or empty, we might be stuck.
+        # Memory says "CommentsModal manages comment fetching... interacting with /api/comments".
+        # If the DB is empty, no comments.
+        # However, we can mock the network response for /api/comments!
+
+        # Reload page to reset state and setup network interception
+        page.goto("http://localhost:3000")
+        try:
+            page.get_by_role("button", name="Polski").click(timeout=2000)
+        except:
+            pass
+
+        # Mock /api/comments
+        page.route("**/api/comments*", lambda route: route.fulfill(
+            status=200,
+            content_type="application/json",
+            body='''{
+                "success": true,
+                "comments": [
+                    {
+                        "id": "c1",
+                        "text": "Hello world",
+                        "createdAt": "2023-01-01T12:00:00Z",
+                        "updatedAt": "2023-01-01T12:00:00Z",
+                        "slideId": "s1",
+                        "authorId": "u1",
+                        "likedBy": [],
+                        "author": {
+                            "id": "u1",
+                            "username": "PatronUser",
+                            "displayName": "Patron Display",
+                            "avatar": "https://placehold.co/100x100"
+                        }
+                    }
+                ],
+                "nextCursor": null
+            }'''
+        ))
+
+        # Mock /api/author/u1 for the profile
+        page.route("**/api/author/u1", lambda route: route.fulfill(
+            status=200,
+            content_type="application/json",
+            body='''{
+                "id": "u1",
+                "username": "PatronUser",
+                "avatarUrl": "https://placehold.co/100x100",
+                "bio": "I am a patron bio",
+                "slides": []
+            }'''
+        ))
+
+        # Open comments again
+        # Need to wait for slides to load so the button is clickable
+        time.sleep(2)
+        page.locator("button:has(svg.lucide-message-square)").first.click()
+
+        # Wait for comment to appear
+        expect(page.get_by_text("Patron Display")).to_be_visible(timeout=10000)
+
+        # Click the avatar
+        # The avatar is inside the comment item.
+        # Look for the image with alt "Avatar użytkownika Patron Display" or similar (based on translation)
+        # Or just click the image inside the first comment.
+        page.locator("div.flex.items-start.gap-3 > div.cursor-pointer").first.click()
+
+        # Wait for Patron Modal
+        expect(page.get_by_text("Profil Użytkownika")).to_be_visible()
+        expect(page.get_by_text("PatronUser")).to_be_visible()
+        expect(page.get_by_text("I am a patron bio")).to_be_visible()
+
+        print("Patron modal verified.")
+        page.screenshot(path="/home/jules/verification/patron_modal.png")
+
+    except Exception as e:
+        print(f"Error: {e}")
+        page.screenshot(path="/home/jules/verification/error.png")
+        raise e
+    finally:
         browser.close()
+
+with sync_playwright() as playwright:
+    run(playwright)
