@@ -60,7 +60,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         slideId={activeSlide?.id}
         initialCommentsCount={activeSlide?.initialComments || 0}
       />
-      {activeModal === 'account' && <AccountPanel onClose={() => setActiveModal(null)} />}
+      <AnimatePresence>
+        {activeModal === 'account' && <AccountPanel key="account-panel" onClose={() => setActiveModal(null)} />}
+      </AnimatePresence>
     </div>
   );
 }

@@ -54,9 +54,11 @@ const TopBar = () => {
   };
 
   const handleLogout = async () => {
-      await logout();
       setIsMenuOpen(false);
-      addToast(t('logoutSuccess'), 'success');
+      setTimeout(async () => {
+        await logout();
+        addToast(t('logoutSuccess'), 'success');
+      }, 300);
   };
 
   const handleOpenAccount = () => {
@@ -129,7 +131,11 @@ const TopBar = () => {
                         <MenuIcon className="w-6 h-6" />
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent align="start" sideOffset={5} className="w-auto min-w-[150px] p-2 bg-zinc-900 border-zinc-800 text-white shadow-xl rounded-xl">
+                  <PopoverContent
+                    align="start"
+                    sideOffset={5}
+                    className="w-auto min-w-[150px] p-2 bg-zinc-900 border-zinc-800 text-white shadow-xl rounded-xl data-[state=closed]:slide-out-to-top-5 data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
+                  >
                       <div className="flex flex-col gap-2">
                           <button
                             onClick={handleOpenAccount}
