@@ -147,6 +147,7 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
 
             <div className="flex flex-col items-center gap-1">
                 <h3 className="text-xl font-bold text-white" id="displayName">{profile.displayName}</h3>
+                {(profile as any).bio && <p className="text-xs text-white/70 max-w-[240px] text-center">{(profile as any).bio}</p>}
                 <p className="text-sm text-white/50" id="userEmail">{profile.email}</p>
                 {profile.role === 'patron' && (
                   <div className="flex items-center gap-1.5 bg-gradient-to-r from-yellow-400 to-orange-400 text-black px-3 py-1 rounded-full text-xs font-bold shadow-md mt-2">
@@ -173,6 +174,17 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
                 defaultValue={profile.displayName || ''}
                 placeholder={t('displayNamePlaceholder') || 'Your Name'}
                 className="bg-black/20 border-white/10 text-white focus:border-pink-500/50 focus:bg-black/40 transition-all"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-white/80 ml-1">{t('bio') || 'Coś o sobie'}</label>
+              <textarea
+                name="bio"
+                defaultValue={(profile as any).bio || ''}
+                placeholder={t('bioPlaceholder') || 'Napisz coś o sobie...'}
+                rows={3}
+                className="w-full bg-black/20 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-pink-500/50 focus:bg-black/40 focus:outline-none transition-all resize-none placeholder:text-white/30"
               />
             </div>
 
