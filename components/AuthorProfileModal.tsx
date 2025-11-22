@@ -99,7 +99,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                             <AuthorProfileSkeleton />
                         ) : profile ? (
                             <>
-                                <div className="flex items-center space-x-4 mb-6">
+                                <div className="flex items-center space-x-4 mb-4">
                                     <Image
                                       src={profile.avatarUrl || DEFAULT_AVATAR_URL}
                                       alt={profile.username}
@@ -109,9 +109,11 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                                     />
                                     <div>
                                         <h3 className="text-2xl font-bold">{profile.username}</h3>
-                                        <p className="text-neutral-400 text-sm mt-1">{profile.bio}</p>
                                     </div>
                                 </div>
+                                {profile.bio && (
+                                    <p className="text-neutral-400 text-sm mb-6">{profile.bio}</p>
+                                )}
                                 <h4 className="text-lg font-semibold mb-4 text-neutral-300">Slides</h4>
                                 <div className="grid grid-cols-3 gap-2">
                                     {profile.slides.map(slide => (
