@@ -184,7 +184,7 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({ isOpen, onClose }
       );
     }
     return (
-      <ul className="flex-grow p-2 max-h-[45vh] overflow-y-auto custom-scrollbar">
+      <ul className="flex-grow p-2 max-h-[60vh] overflow-y-auto custom-scrollbar">
         <AnimatePresence>
           {notifications.map((notif) => (
             <NotificationItem key={notif.id} notification={notif} onToggle={handleToggle} />
@@ -198,7 +198,8 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({ isOpen, onClose }
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 pb-[calc(var(--bottombar-height)_+_20px)] md:pb-5"
+          // Zmiany: z-[80] (nad TopBar z-[60]), items-start (góra), pt-3 (odstęp od krawędzi)
+          className="fixed inset-0 z-[80] flex items-start justify-center bg-black/50 pt-3 md:pt-5"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -210,9 +211,10 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({ isOpen, onClose }
               backdropFilter: 'blur(12px)',
               WebkitBackdropFilter: 'blur(12px)',
             }}
-            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            // Zmiany: animacja y z góry (-10) a nie z dołu (10)
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
             onClick={(e) => e.stopPropagation()}
           >
