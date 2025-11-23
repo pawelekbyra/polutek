@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK!);
 
-// Logo Stripe w wersji CZARNEJ (dla jasnego/metalicznego tła)
+// Logo Stripe w wersji CZARNEJ
 const StripeLogo = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="60" height="25" viewBox="0 0 120 60" fillRule="evenodd" fill="#000000">
         <path d="M101.547 30.94c0-5.885-2.85-10.53-8.3-10.53-5.47 0-8.782 4.644-8.782 10.483 0 6.92 3.908 10.414 9.517 10.414 2.736 0 4.805-.62 6.368-1.494v-4.598c-1.563.782-3.356 1.264-5.632 1.264-2.23 0-4.207-.782-4.46-3.494h11.24c0-.3.046-1.494.046-2.046zM90.2 28.757c0-2.598 1.586-3.678 3.035-3.678 1.402 0 2.897 1.08 2.897 3.678zm-14.597-8.345c-2.253 0-3.7 1.057-4.506 1.793l-.3-1.425H65.73v26.805l5.747-1.218.023-6.506c.828.598 2.046 1.448 4.07 1.448 4.115 0 7.862-3.3 7.862-10.598-.023-6.667-3.816-10.3-7.84-10.3zm-1.38 15.84c-1.356 0-2.16-.483-2.713-1.08l-.023-8.53c.598-.667 1.425-1.126 2.736-1.126 2.092 0 3.54 2.345 3.54 5.356 0 3.08-1.425 5.38-3.54 5.38zm-16.4-17.196l5.77-1.24V13.15l-5.77 1.218zm0 1.747h5.77v20.115h-5.77zm-6.185 1.7l-.368-1.7h-4.966V40.92h5.747V27.286c1.356-1.77 3.655-1.448 4.368-1.195v-5.287c-.736-.276-3.425-.782-4.782 1.7zm-11.494-6.7L34.535 17l-.023 18.414c0 3.402 2.552 5.908 5.954 5.908 1.885 0 3.264-.345 4.023-.76v-4.667c-.736.3-4.368 1.356-4.368-2.046V25.7h4.368v-4.897h-4.37zm-15.54 10.828c0-.897.736-1.24 1.954-1.24a12.85 12.85 0 0 1 5.7 1.47V21.47c-1.908-.76-3.793-1.057-5.7-1.057-4.667 0-7.77 2.437-7.77 6.506 0 6.345 8.736 5.333 8.736 8.07 0 1.057-.92 1.402-2.207 1.402-1.908 0-4.345-.782-6.276-1.84v5.47c2.138.92 4.3 1.3 6.276 1.3 4.782 0 8.07-2.368 8.07-6.483-.023-6.85-8.782-5.632-8.782-8.207z"/>
@@ -56,11 +56,10 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose
                 <PaymentElement 
                     options={{ 
                         layout: 'tabs',
-                        // Appearance is handled in the parent Element wrapper to avoid errors
                     }} 
                 />
             </div>
-            {/* Black Button for contrast on metallic background */}
+            {/* Black Button */}
             <button
                 disabled={isProcessing || !stripe || !elements}
                 className="w-full py-3 rounded-lg font-black text-white text-lg bg-neutral-900 border border-black/20 shadow-[0_5px_15px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.3)] hover:scale-[1.01] active:scale-95 transition-all disabled:opacity-50 disabled:hover:scale-100 tracking-widest relative overflow-hidden group"
@@ -177,15 +176,15 @@ const TippingModal = () => {
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        // BACKGROUND: Metallic Silver with Black Border (Reverted color scheme)
+        // Metallic Silver with Black Border
         className="relative w-[90%] max-w-[420px] max-h-[85vh] flex flex-col rounded-[20px] shadow-[0_0_100px_-20px_rgba(255,255,255,0.4)] overflow-hidden bg-gradient-to-br from-gray-100 via-gray-300 to-gray-500 border-[3px] border-black pointer-events-auto"
       >
-        {/* Animated Glossy Shine on Border */}
+        {/* Animated Glossy Shine */}
         <div className="absolute inset-0 border-[6px] border-transparent rounded-[21px] pointer-events-none overflow-hidden z-[50]">
             <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/50 to-transparent opacity-0 animate-[shine-border_4s_infinite]" />
         </div>
 
-        {/* Shine Overlay (Texture) */}
+        {/* Shine Overlay */}
         <div className="absolute inset-0 opacity-15 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/noise.png')] mix-blend-overlay z-0"></div>
         
         {/* Top Highlight Line */}
@@ -205,7 +204,7 @@ const TippingModal = () => {
             </button>
         </div>
 
-        {/* Progress Bar - Compact */}
+        {/* Progress Bar */}
         <div className="h-1 w-full bg-black/10 relative overflow-hidden z-10 mb-1">
             <motion.div
                 className="h-full bg-neutral-900"
@@ -215,8 +214,8 @@ const TippingModal = () => {
             />
         </div>
 
-        {/* Body - Compact Padding */}
-        <div className="flex-1 overflow-y-auto p-5 custom-scrollbar flex flex-col relative z-10">
+        {/* Body - Compact Padding: px-5 pt-5 pb-0 (removed bottom padding) */}
+        <div className="flex-1 overflow-y-auto px-5 pt-5 pb-0 custom-scrollbar flex flex-col relative z-10">
             <AnimatePresence mode="wait">
                 {currentStep === 0 && (
                     <motion.div
@@ -224,15 +223,15 @@ const TippingModal = () => {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
-                        className="space-y-4 flex-1"
+                        // Removed 'flex-1' to allow shrink-wrap, reduced space-y to 2
+                        className="space-y-2"
                     >
-                        {/* ZWIĘKSZONY ODSTĘP OD PASKA: pt-4 */}
+                        {/* Increased top padding as requested */}
                         <div className="text-left pt-4">
-                            {/* Patrona z dużej litery */}
                             <p className="text-lg font-bold text-black tracking-wide">Założyć konto Patrona?</p>
                         </div>
 
-                        <div className="space-y-3">
+                        <div className="space-y-2">
                             {!isLoggedIn && (
                                 <div 
                                     className={cn(
@@ -376,7 +375,8 @@ const TippingModal = () => {
 
         {/* Footer Buttons - Compact */}
         {currentStep < 2 && (
-            <div className="px-5 pb-5 pt-0 flex gap-2 bg-transparent z-20 relative">
+            // Added pt-3 to give a controlled gap between content and button
+            <div className="px-5 pb-5 pt-3 flex gap-2 bg-transparent z-20 relative">
                 {currentStep > 0 && (
                     <button
                         onClick={handleBack}
@@ -385,7 +385,6 @@ const TippingModal = () => {
                         Wstecz
                     </button>
                 )}
-                {/* Main Action Button - Black for Contrast */}
                 <button
                     onClick={handleNext}
                     disabled={isProcessing}
