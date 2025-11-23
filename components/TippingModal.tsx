@@ -214,7 +214,7 @@ const TippingModal = () => {
             />
         </div>
 
-        {/* Body - Compact Padding: px-5 pt-5 pb-0 (removed bottom padding) */}
+        {/* Body - Compact Padding */}
         <div className="flex-1 overflow-y-auto px-5 pt-5 pb-0 custom-scrollbar flex flex-col relative z-10">
             <AnimatePresence mode="wait">
                 {currentStep === 0 && (
@@ -223,11 +223,10 @@ const TippingModal = () => {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
-                        // Removed 'flex-1' to allow shrink-wrap, reduced space-y to 2
                         className="space-y-2"
                     >
-                        {/* Increased top padding as requested */}
-                        <div className="text-left pt-4">
+                        {/* ODSTĘP USUNIĘTY (z pt-4 na standardowy) */}
+                        <div className="text-left">
                             <p className="text-lg font-bold text-black tracking-wide">Założyć konto Patrona?</p>
                         </div>
 
@@ -375,7 +374,6 @@ const TippingModal = () => {
 
         {/* Footer Buttons - Compact */}
         {currentStep < 2 && (
-            // Added pt-3 to give a controlled gap between content and button
             <div className="px-5 pb-5 pt-3 flex gap-2 bg-transparent z-20 relative">
                 {currentStep > 0 && (
                     <button
