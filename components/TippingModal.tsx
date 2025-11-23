@@ -414,7 +414,7 @@ const TippingModal = () => {
                             </div>
                         </div>
 
-                        {/* MOVED: Terms Checkbox */}
+                        {/* Terms Checkbox */}
                         <div 
                             className="flex items-center justify-center pt-2 gap-3 cursor-pointer group"
                             onClick={() => setFormData(prev => ({ ...prev, terms_accepted: !prev.terms_accepted }))}
@@ -506,7 +506,7 @@ const TippingModal = () => {
         <div className="pb-3 pt-2 flex items-center justify-center bg-black/5 backdrop-blur-sm z-10 border-t border-black/5">
              <div className="flex items-center gap-[3px] opacity-40 hover:opacity-80 transition-all duration-300">
                   <span className="text-[9px] text-black font-bold uppercase tracking-widest">Powered by</span>
-                  <div className="relative flex items-center -ml-3 -mt-px">
+                  <div className="relative flex items-center -ml-3 -mt-px -left-px">
                       <StripeLogo />
                   </div>
              </div>
