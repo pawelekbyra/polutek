@@ -53,20 +53,10 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose
     return (
         <form onSubmit={handleSubmit} className="w-full">
             <div className="mb-4 min-h-[200px] mix-blend-screen">
+                {/* Poprawka: usunięto 'appearance' stąd, jest ono definiowane w Elements w TippingModal */}
                 <PaymentElement 
                     options={{ 
                         layout: 'tabs',
-                        appearance: {
-                            theme: 'night',
-                            variables: {
-                                colorPrimary: '#ffffff',
-                                colorBackground: '#262626',
-                                colorText: '#ffffff',
-                                colorDanger: '#ef4444',
-                                fontFamily: 'inherit',
-                                borderRadius: '8px',
-                            }
-                        }
                     }} 
                 />
             </div>
@@ -359,7 +349,15 @@ const TippingModal = () => {
                                     options={{ 
                                         clientSecret, 
                                         appearance: { 
-                                            theme: 'night', // Stripe Dark Theme
+                                            theme: 'night',
+                                            variables: { 
+                                                colorPrimary: '#ffffff', 
+                                                colorBackground: '#262626', 
+                                                colorText: '#ffffff',
+                                                colorDanger: '#ef4444',
+                                                fontFamily: 'inherit',
+                                                borderRadius: '8px',
+                                            } 
                                         } 
                                     }}
                                 >
