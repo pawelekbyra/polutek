@@ -427,6 +427,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
                   onDelete={handleDelete}
                   onReport={handleReport}
                   onAvatarClick={openPatronProfileModal}
+                  onPrefetchUser={handlePrefetchUser}
                   currentUserId={user?.id}
                   lang={lang}
                 />
