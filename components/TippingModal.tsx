@@ -381,7 +381,8 @@ const TippingModal = () => {
                         exit={{ opacity: 0, x: -20 }}
                         className="space-y-3 flex-1 relative z-10"
                     >
-                        <div className="text-center">
+                        {/* ZMIANA: Usunięto text-center, aby wyrównać do lewej */}
+                        <div>
                             <h3 className="text-lg font-bold text-black">Wybierz lub wpisz kwotę napiwku</h3>
                         </div>
 
