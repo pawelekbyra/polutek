@@ -176,11 +176,10 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({ isOpen, onClose }
         </div>
       );
     }
-    if (notifications.length === 0) {
+    if (!notifications || !Array.isArray(notifications) || notifications.length === 0) {
       return (
-        <div className="text-center py-10 text-white/60 flex flex-col items-center gap-4 p-4">
-          <Bell size={48} className="opacity-50" />
-          <p>{t('notificationsEmpty')}</p>
+        <div className="p-4 text-center text-white/50 text-sm">
+            Brak nowych powiadomień
         </div>
       );
     }
