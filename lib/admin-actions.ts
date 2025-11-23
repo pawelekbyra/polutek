@@ -15,24 +15,26 @@ function generatePassword(length = 12) {
     return retVal;
 }
 
+async function checkAdmin() {
+    const session = await auth();
+    if (!session?.user?.id) {
+        throw new Error('Musisz być zalogowany.');
+    }
+
+    const currentUser = await prisma.user.findUnique({
+        where: { id: session.user.id },
+        select: { role: true }
+    });
+
+    if (!currentUser || currentUser.role !== 'admin') {
+        throw new Error('Brak uprawnień. Wymagana rola administratora.');
+    }
+    return session.user.id;
+}
+
 export async function createUserByAdmin(email: string) {
     try {
-        const session = await auth();
-
-        if (!session?.user?.id) {
-            return { success: false, message: 'Musisz być zalogowany.' };
-        }
-
-        // Verify ADMIN role
-        const currentUser = await prisma.user.findUnique({
-            where: { id: session.user.id },
-            select: { role: true }
-        });
-
-        // Use lowercase 'admin' to match typical convention and Prisma schema default (lower case)
-        if (!currentUser || currentUser.role !== 'admin') {
-            return { success: false, message: 'Brak uprawnień. Wymagana rola administratora.' };
-        }
+        await checkAdmin();
 
         // Check if user exists
         const existingUser = await prisma.user.findUnique({
@@ -77,10 +79,18 @@ export async function createUserByAdmin(email: string) {
             };
         }
 
-        return { success: true, message: 'Użytkownik utworzony i powiadomiony mailowo.' };
+        if (!['user', 'admin', 'patron', 'author'].includes(newRole)) {
+            return { success: false, message: 'Nieprawidłowa rola.' };
+        }
 
+        await prisma.user.update({
+            where: { id: userId },
+            data: { role: newRole }
+        });
+
+        revalidatePath('/admin');
+        return { success: true, message: `Rola użytkownika zmieniona na ${newRole}.` };
     } catch (error: any) {
-        console.error("Error creating user:", error);
-        return { success: false, message: 'Wystąpił błąd serwera.' };
+        return { success: false, message: error.message || 'Błąd aktualizacji roli.' };
     }
 }
