@@ -7,7 +7,7 @@ import { useUser } from '@/context/UserContext';
 import { useTranslation } from '@/context/LanguageContext';
 import { useToast } from '@/context/ToastContext';
 import { useStore } from '@/store/useStore';
-import { X, ChevronRight, Sparkles, Trophy, Heart } from 'lucide-react';
+import { X, Sparkles, Heart, Star } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
@@ -20,7 +20,10 @@ const StripeLogo = () => (
 );
 
 const StarryBackground = () => {
-    const stars = [
+    // 3 TYPES of icons now: Sparkles, Hearts, and Stars.
+    // Significantly increased density for all.
+    
+    const sparkles = [
         { top: '5%', left: '10%', delay: 0, scale: 0.8 },
         { top: '15%', left: '85%', delay: 1.2, scale: 1 },
         { top: '25%', left: '40%', delay: 2.5, scale: 0.7 },
@@ -34,6 +37,13 @@ const StarryBackground = () => {
         { top: '90%', left: '80%', delay: 0.8, scale: 0.8 },
         { top: '50%', left: '5%', delay: 3.5, scale: 1.2 },
         { top: '30%', left: '95%', delay: 1.9, scale: 0.9 },
+        { top: '12%', left: '35%', delay: 0.3, scale: 0.6 },
+        { top: '60%', left: '60%', delay: 1.1, scale: 1.0 },
+        { top: '82%', left: '35%', delay: 2.6, scale: 0.8 },
+        { top: '42%', left: '92%', delay: 1.6, scale: 0.9 },
+        { top: '95%', left: '25%', delay: 0.9, scale: 0.7 },
+        { top: '2%', left: '75%', delay: 3.2, scale: 1.1 },
+        { top: '28%', left: '5%', delay: 1.4, scale: 0.8 },
     ];
 
     const hearts = [
@@ -42,30 +52,62 @@ const StarryBackground = () => {
         { top: '40%', left: '55%', delay: 3.2 },
         { top: '10%', left: '90%', delay: 1.4 },
         { top: '80%', left: '20%', delay: 0.3 },
+        { top: '33%', left: '82%', delay: 2.5 },
+        { top: '58%', left: '12%', delay: 0.9 },
+        { top: '88%', left: '60%', delay: 1.8 },
+        { top: '5%', left: '45%', delay: 2.9 },
+        { top: '52%', left: '42%', delay: 1.2 },
+        { top: '18%', left: '8%', delay: 3.4 },
+    ];
+
+    const stars = [ // New classic 5-point stars
+        { top: '8%', left: '22%', delay: 0.4 },
+        { top: '92%', left: '55%', delay: 2.7 },
+        { top: '38%', left: '88%', delay: 1.3 },
+        { top: '62%', left: '38%', delay: 3.1 },
+        { top: '15%', left: '50%', delay: 1.9 },
+        { top: '78%', left: '5%', delay: 0.6 },
+        { top: '48%', left: '95%', delay: 2.3 },
+        { top: '22%', left: '72%', delay: 1.1 },
+        { top: '85%', left: '92%', delay: 2.8 },
+        { top: '55%', left: '8%', delay: 1.6 },
+        { top: '3%', left: '92%', delay: 3.3 },
+        { top: '68%', left: '22%', delay: 0.8 },
     ];
 
     return (
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-            {stars.map((star, i) => (
+            {sparkles.map((item, i) => (
                 <motion.div
-                    key={`star-${i}`}
+                    key={`sparkle-${i}`}
                     className="absolute text-white/50"
-                    style={{ top: star.top, left: star.left }}
-                    animate={{ opacity: [0.2, 1, 0.2], scale: [star.scale * 0.8, star.scale * 1.2, star.scale * 0.8] }}
-                    transition={{ duration: 3, repeat: Infinity, delay: star.delay, ease: "easeInOut" }}
+                    style={{ top: item.top, left: item.left }}
+                    animate={{ opacity: [0.2, 1, 0.2], scale: [item.scale * 0.8, item.scale * 1.2, item.scale * 0.8] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: item.delay, ease: "easeInOut" }}
                 >
                     <Sparkles size={12} />
                 </motion.div>
             ))}
-            {hearts.map((heart, i) => (
+            {hearts.map((item, i) => (
                 <motion.div
                     key={`heart-${i}`}
                     className="absolute text-white/30"
-                    style={{ top: heart.top, left: heart.left }}
+                    style={{ top: item.top, left: item.left }}
                     animate={{ opacity: [0, 0.6, 0], scale: [0.8, 1.1, 0.8], y: [0, -5, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, delay: heart.delay, ease: "easeInOut" }}
+                    transition={{ duration: 4, repeat: Infinity, delay: item.delay, ease: "easeInOut" }}
                 >
                     <Heart size={14} fill="currentColor" />
+                </motion.div>
+            ))}
+             {stars.map((item, i) => (
+                <motion.div
+                    key={`star-${i}`}
+                    className="absolute text-white/40"
+                    style={{ top: item.top, left: item.left }}
+                    animate={{ opacity: [0.1, 0.8, 0.1], rotate: [0, 45, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, delay: item.delay, ease: "easeInOut" }}
+                >
+                    <Star size={10} fill="currentColor" />
                 </motion.div>
             ))}
         </div>
@@ -239,6 +281,7 @@ const TippingModal = () => {
         
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/60 z-20"></div>
 
+        {/* Header - X button moved to absolute top-right */}
         <div className="relative p-6 text-center shrink-0 border-b border-black/5 bg-white/10 backdrop-blur-sm z-10">
             <div className="flex items-center justify-center gap-2 mb-1">
                 <h2 className="text-xl font-black text-black tracking-wide drop-shadow-sm opacity-90 whitespace-nowrap">
@@ -246,11 +289,12 @@ const TippingModal = () => {
                 </h2>
                 <Sparkles className="text-white w-4 h-4 animate-pulse" />
             </div>
+            {/* Improved X button: black, bold, closer to corner */}
             <button
                 onClick={closeTippingModal}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-black/40 hover:text-black hover:bg-black/10 rounded-full transition-colors"
+                className="absolute right-3 top-3 p-2 text-black hover:text-black/70 hover:bg-black/5 rounded-full transition-colors z-50"
             >
-                <X size={20} />
+                <X size={20} strokeWidth={3} />
             </button>
         </div>
 
@@ -276,9 +320,7 @@ const TippingModal = () => {
                         <div className="text-left space-y-2">
                             <div className="flex items-center justify-start gap-3 pl-1">
                                 <p className="text-lg font-bold text-black drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)] tracking-wide">Założyć konto patrona?</p>
-                                <div className="p-2 bg-black/10 rounded-full border border-black/5 shadow-inner">
-                                   <Trophy className="w-5 h-5 text-black drop-shadow-sm" />
-                                </div>
+                                {/* Trophy icon removed here */}
                             </div>
                         </div>
 
@@ -451,7 +493,7 @@ const TippingModal = () => {
         )}
 
         <div className="pb-4 pt-2 flex items-center justify-center bg-black/5 backdrop-blur-sm z-10 border-t border-black/5">
-             <div className="flex items-center gap-1 opacity-60 hover:opacity-100 transition-all duration-300">
+             <div className="flex items-center gap-0.5 opacity-60 hover:opacity-100 transition-all duration-300">
                   <span className="text-[10px] text-black font-bold">Powered by</span>
                   <div className="relative flex items-center">
                       <StripeLogo />
