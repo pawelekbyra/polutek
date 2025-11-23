@@ -175,16 +175,20 @@ const TippingModal = () => {
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        // Metallic Silver (Darker) with Black Border
         className="relative w-[90%] max-w-[420px] max-h-[85vh] flex flex-col rounded-[20px] shadow-[0_0_100px_-20px_rgba(255,255,255,0.4)] overflow-hidden bg-gradient-to-br from-gray-200 via-gray-400 to-gray-600 border-[3px] border-black pointer-events-auto"
       >
+        {/* Animated Glossy Shine */}
         <div className="absolute inset-0 border-[6px] border-transparent rounded-[21px] pointer-events-none overflow-hidden z-[50]">
             <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/50 to-transparent opacity-0 animate-[shine-border_4s_infinite]" />
         </div>
 
+        {/* Shine Overlay */}
         <div className="absolute inset-0 opacity-15 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/noise.png')] mix-blend-overlay z-0"></div>
         
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/70 z-20"></div>
 
+        {/* Header */}
         <div className="relative pt-5 pb-3 px-5 text-center shrink-0 z-10 border-b border-black/5 bg-white/10 backdrop-blur-sm">
             <h2 className="text-xl font-extrabold text-black tracking-tight drop-shadow-sm opacity-90">
                 Bramka Napiwkowa
@@ -197,6 +201,7 @@ const TippingModal = () => {
             </button>
         </div>
 
+        {/* Progress Bar */}
         <div className="h-1 w-full bg-black/10 relative overflow-hidden z-10 mb-1">
             <motion.div
                 className="h-full bg-neutral-900"
@@ -206,6 +211,7 @@ const TippingModal = () => {
             />
         </div>
 
+        {/* Body */}
         <div className="flex-1 overflow-y-auto px-5 pt-5 pb-0 custom-scrollbar flex flex-col relative z-10">
             <AnimatePresence mode="wait">
                 {currentStep === 0 && (
@@ -274,6 +280,7 @@ const TippingModal = () => {
                     >
                         <div className="text-center space-y-1">
                             <h3 className="text-lg font-bold text-black">Wybierz kwotę</h3>
+                            {/* Zmiana tekstu zgodnie z życzeniem */}
                             <p className="text-xs text-black/50 font-medium uppercase tracking-wider">
                                 Wybierz lub wpisz kwotę napiwku
                             </p>
@@ -296,30 +303,28 @@ const TippingModal = () => {
                             ))}
                         </div>
 
-                        {/* Input z polem wyboru waluty */}
-                        <div className="relative group mt-2">
-                            <div className="relative flex items-center bg-black/5 border border-black/10 rounded-xl overflow-hidden transition-colors focus-within:bg-black/10 focus-within:border-black/20 shadow-inner">
-                                <input
-                                    type="number"
-                                    value={formData.amount}
-                                    onChange={(e) => setFormData({ ...formData, amount: Number(e.target.value) })}
-                                    className="flex-1 bg-transparent text-center text-3xl font-black text-black py-4 focus:outline-none z-10 placeholder:text-black/10 pl-6"
-                                    placeholder="0"
-                                />
-                                {/* Currency Selector Dropdown with Chevron */}
-                                <div className="relative h-full flex items-center border-l border-black/10 bg-black/5 hover:bg-black/10 transition-colors">
-                                    <select
-                                        value={formData.currency}
-                                        onChange={(e) => setFormData({ ...formData, currency: e.target.value as any })}
-                                        className="appearance-none bg-transparent text-black/80 font-bold text-sm focus:outline-none cursor-pointer pl-4 pr-8 py-4 h-full z-20"
-                                    >
-                                        <option value="PLN">PLN</option>
-                                        <option value="EUR">EUR</option>
-                                        <option value="USD">USD</option>
-                                        <option value="GBP">GBP</option>
-                                    </select>
-                                    <ChevronDown size={14} className="absolute right-2 text-black/50 pointer-events-none z-10" />
-                                </div>
+                        {/* NOWY INPUT Z WYBOREM WALUTY - POPRAWIONY */}
+                        <div className="relative flex items-center bg-black/5 border border-black/10 rounded-xl overflow-hidden transition-colors focus-within:bg-black/10 focus-within:border-black/20 shadow-inner">
+                            <input
+                                type="number"
+                                value={formData.amount}
+                                onChange={(e) => setFormData({ ...formData, amount: Number(e.target.value) })}
+                                className="flex-1 w-full bg-transparent text-center text-3xl font-black text-black py-4 focus:outline-none placeholder:text-black/10 pl-4"
+                                placeholder="0"
+                            />
+                            {/* Fixed width dropdown container */}
+                            <div className="h-full border-l border-black/10 flex items-center bg-black/5 hover:bg-black/10 transition-colors relative shrink-0">
+                                <select
+                                    value={formData.currency}
+                                    onChange={(e) => setFormData({ ...formData, currency: e.target.value as any })}
+                                    className="appearance-none bg-transparent font-bold text-lg text-black py-4 pl-4 pr-10 cursor-pointer focus:outline-none z-10"
+                                >
+                                    <option value="PLN">PLN</option>
+                                    <option value="EUR">EUR</option>
+                                    <option value="USD">USD</option>
+                                    <option value="GBP">GBP</option>
+                                </select>
+                                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-black/50 pointer-events-none z-0" />
                             </div>
                         </div>
                     </motion.div>
