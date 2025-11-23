@@ -4,7 +4,6 @@ import { auth } from '@/auth';
 import { prisma } from '@/lib/prisma';
 import * as bcrypt from '@node-rs/bcrypt';
 import { sendWelcomeEmail } from '@/lib/email';
-import { revalidatePath } from 'next/cache';
 
 // Helper for generating random password
 function generatePassword(length = 12) {
@@ -69,140 +68,15 @@ export async function createUserByAdmin(email: string) {
             }
         });
 
+        // Send Welcome Email
         const emailResult = await sendWelcomeEmail(email, tempPassword);
 
         if (!emailResult.success) {
+            // We return success true because the user WAS created, but warn about email.
             return {
                 success: true,
                 message: `Użytkownik utworzony. Błąd wysyłki email. Hasło: ${tempPassword}`
             };
-        }
-
-        revalidatePath('/admin');
-        return { success: true, message: 'Użytkownik utworzony i powiadomiony mailowo.' };
-
-    } catch (error: any) {
-        console.error("Error creating user:", error);
-        return { success: false, message: error.message || 'Wystąpił błąd serwera.' };
-    }
-}
-
-export async function getUsers(page = 1, limit = 10, search = '', role = 'all') {
-    try {
-        await checkAdmin();
-
-        const skip = (page - 1) * limit;
-        const where: any = {};
-
-        if (search) {
-            where.OR = [
-                { email: { contains: search, mode: 'insensitive' } },
-                { username: { contains: search, mode: 'insensitive' } },
-                { displayName: { contains: search, mode: 'insensitive' } }
-            ];
-        }
-
-        if (role && role !== 'all') {
-            where.role = role;
-        }
-
-        const [users, total] = await Promise.all([
-            prisma.user.findMany({
-                where,
-                skip,
-                take: limit,
-                orderBy: { createdAt: 'desc' },
-                select: {
-                    id: true,
-                    email: true,
-                    username: true,
-                    displayName: true,
-                    avatar: true,
-                    role: true,
-                    createdAt: true,
-                }
-            }),
-            prisma.user.count({ where })
-        ]);
-
-        return { success: true, users, total, pages: Math.ceil(total / limit) };
-    } catch (error: any) {
-        return { success: false, message: error.message || 'Błąd pobierania użytkowników.' };
-    }
-}
-
-export async function deleteUser(userId: string) {
-    try {
-        const currentAdminId = await checkAdmin();
-
-        if (userId === currentAdminId) {
-            return { success: false, message: 'Nie możesz usunąć własnego konta.' };
-        }
-
-        // Get user slides to cleanup related data
-        const userSlides = await prisma.slide.findMany({
-            where: { userId },
-            select: { id: true }
-        });
-        const slideIds = userSlides.map(s => s.id);
-
-        await prisma.$transaction(async (tx) => {
-            // 1. Cleanup Push Subscriptions
-            await tx.pushSubscription.deleteMany({ where: { userId } });
-
-            // 2. Cleanup Notifications
-            await tx.notification.deleteMany({
-                where: { OR: [{ userId }, { fromUserId: userId }] }
-            });
-
-            // 3. Cleanup Likes (on videos)
-            await tx.like.deleteMany({ where: { authorId: userId } });
-
-            // 4. Cleanup Comment Likes
-            await tx.commentLike.deleteMany({ where: { userId } });
-
-            // 5. Cleanup Comments (and their replies via Cascade usually, but let's be safe)
-            // Note: Deleting a user who is an author of a comment.
-            // Replies are linked to parentId. If we delete a parent, children go via cascade in DB schema usually.
-            await tx.comment.deleteMany({ where: { authorId: userId } });
-
-            // 6. Cleanup Slides Data
-            if (slideIds.length > 0) {
-                // Delete likes on these slides
-                await tx.like.deleteMany({ where: { slideId: { in: slideIds } } });
-                // Delete comments on these slides
-                // First delete likes on those comments
-                // Find comments on these slides first?
-                // Actually, simplest is to let constraints handle it if they exist, but they don't for Slide->Comment relation (Slide side).
-                // Comments reference Slide.
-                await tx.comment.deleteMany({ where: { slideId: { in: slideIds } } });
-
-                // Finally delete slides
-                await tx.slide.deleteMany({ where: { id: { in: slideIds } } });
-            }
-
-            // 7. Delete Sessions/Accounts (Cascade exists in schema, but explicit is fine)
-            await tx.session.deleteMany({ where: { userId } });
-            await tx.account.deleteMany({ where: { userId } });
-
-            // 8. Delete User
-            await tx.user.delete({ where: { id: userId } });
-        });
-
-        revalidatePath('/admin');
-        return { success: true, message: 'Użytkownik został usunięty.' };
-    } catch (error: any) {
-        console.error("Delete user error:", error);
-        return { success: false, message: error.message || 'Błąd usuwania użytkownika.' };
-    }
-}
-
-export async function updateUserRole(userId: string, newRole: string) {
-    try {
-        const currentAdminId = await checkAdmin();
-
-        if (userId === currentAdminId) {
-            return { success: false, message: 'Nie możesz zmienić własnej roli.' };
         }
 
         if (!['user', 'admin', 'patron', 'author'].includes(newRole)) {

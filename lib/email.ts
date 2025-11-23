@@ -1,6 +1,7 @@
 import { Resend } from 'resend';
 
 // Use a placeholder key if the environment variable is missing to prevent build failures.
+// This is consistent with the project's handling of other secrets (e.g., Ably, Redis).
 const resendApiKey = process.env.RESEND_API_KEY || 're_123456789';
 
 if (!process.env.RESEND_API_KEY) {
