@@ -176,8 +176,8 @@ const TippingModal = () => {
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        // Metallic Silver with Black Border
-        className="relative w-[90%] max-w-[420px] max-h-[85vh] flex flex-col rounded-[20px] shadow-[0_0_100px_-20px_rgba(255,255,255,0.4)] overflow-hidden bg-gradient-to-br from-gray-100 via-gray-300 to-gray-500 border-[3px] border-black pointer-events-auto"
+        // Metallic Silver (Darker) with Black Border
+        className="relative w-[90%] max-w-[420px] max-h-[85vh] flex flex-col rounded-[20px] shadow-[0_0_100px_-20px_rgba(255,255,255,0.4)] overflow-hidden bg-gradient-to-br from-gray-200 via-gray-400 to-gray-600 border-[3px] border-black pointer-events-auto"
       >
         {/* Animated Glossy Shine */}
         <div className="absolute inset-0 border-[6px] border-transparent rounded-[21px] pointer-events-none overflow-hidden z-[50]">
@@ -192,7 +192,8 @@ const TippingModal = () => {
 
         {/* Header - Compact */}
         <div className="relative pt-5 pb-3 px-5 text-center shrink-0 z-10 border-b border-black/5 bg-white/10 backdrop-blur-sm">
-            <h2 className="text-xl font-black text-black tracking-wide drop-shadow-sm opacity-90">
+            {/* Font change: extrabold + tracking-tight */}
+            <h2 className="text-xl font-extrabold text-black tracking-tight drop-shadow-sm opacity-90">
                 Bramka Napiwkowa
             </h2>
             {/* Close Button X: black */}
@@ -225,7 +226,6 @@ const TippingModal = () => {
                         exit={{ opacity: 0, x: -20 }}
                         className="space-y-2"
                     >
-                        {/* ODSTĘP USUNIĘTY (z pt-4 na standardowy) */}
                         <div className="text-left">
                             <p className="text-lg font-bold text-black tracking-wide">Założyć konto Patrona?</p>
                         </div>
@@ -267,7 +267,8 @@ const TippingModal = () => {
                                     />
                                 </div>
                                 <p className="text-[11px] text-black/50 text-center px-2">
-                                    Na ten email wyślemy Ci <span className="text-black/90 font-bold">dane do logowania</span>.
+                                    {/* Changed text here */}
+                                    Na ten email otrzymasz <span className="text-black/90 font-bold">dane do logowania</span>.
                                 </p>
                             </div>
                         </div>
@@ -399,7 +400,7 @@ const TippingModal = () => {
         )}
 
         <div className="pb-3 pt-2 flex items-center justify-center bg-black/5 backdrop-blur-sm z-10 border-t border-black/5">
-             <div className="flex items-center gap-0 opacity-40 hover:opacity-80 transition-all duration-300">
+             <div className="flex items-center gap-[3px] opacity-40 hover:opacity-80 transition-all duration-300">
                   <span className="text-[9px] text-black font-bold uppercase tracking-widest">Powered by</span>
                   <div className="relative flex items-center -ml-3">
                       <StripeLogo />
