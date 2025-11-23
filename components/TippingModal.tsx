@@ -405,7 +405,8 @@ const TippingModal = () => {
                             ))}
                         </div>
 
-                        <div className="relative flex items-center bg-black/5 border border-black/10 rounded-xl transition-colors focus-within:bg-black/10 focus-within:border-black/20 shadow-inner z-20" ref={dropdownRef}>
+                        {/* ZMIANA: Usunięto overflow-hidden z głównego kontenera i dodano relative */}
+                        <div className="flex items-center bg-black/5 border border-black/10 rounded-xl shadow-inner z-20 relative" ref={dropdownRef}>
                             <input
                                 type="number"
                                 value={formData.amount}
@@ -414,56 +415,63 @@ const TippingModal = () => {
                                 placeholder="0"
                             />
                             
-                            {/* CUSTOM CURRENCY DROPDOWN TRIGGER */}
-                            <div 
-                                className="h-full border-l border-black/10 flex items-center bg-black/5 hover:bg-black/10 transition-colors relative shrink-0 cursor-pointer pl-4 pr-10 rounded-r-xl"
-                                onClick={() => setIsCurrencyDropdownOpen(!isCurrencyDropdownOpen)}
-                            >
-                                <span className="font-bold text-lg text-black select-none">{formData.currency}</span>
-                                <motion.div
-                                    animate={{ rotate: isCurrencyDropdownOpen ? 180 : 0 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center"
+                            {/* Kontener dla triggera i listy */}
+                            <div className="relative h-full">
+                                {/* TRIGGER WALUTY */}
+                                <div 
+                                    className="h-full border-l border-black/10 flex items-center bg-black/5 hover:bg-black/10 transition-colors relative shrink-0 cursor-pointer pl-4 pr-10 rounded-r-xl"
+                                    onClick={() => setIsCurrencyDropdownOpen(!isCurrencyDropdownOpen)}
                                 >
-                                    <ChevronDown className="w-4 h-4 text-black/50" />
-                                </motion.div>
-                            </div>
-
-                             {/* CUSTOM CURRENCY DROPDOWN LIST */}
-                            <AnimatePresence>
-                                {isCurrencyDropdownOpen && (
+                                    <span className="font-bold text-lg text-black select-none">{formData.currency}</span>
                                     <motion.div
-                                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                                        transition={{ duration: 0.2, ease: "easeInOut" }}
-                                        className="absolute top-[calc(100%+8px)] right-0 w-32 bg-neutral-900 border border-black/20 rounded-xl shadow-xl overflow-hidden z-50"
+                                        animate={{ rotate: isCurrencyDropdownOpen ? 180 : 0 }}
+                                        transition={{ duration: 0.2 }}
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center"
                                     >
-                                        <div className="py-1">
-                                            {currencies.map((currency) => (
-                                                <button
-                                                    key={currency}
-                                                    onClick={() => {
-                                                        setFormData({ ...formData, currency: currency as any });
-                                                        setIsCurrencyDropdownOpen(false);
-                                                    }}
-                                                    className={cn(
-                                                        "w-full flex items-center justify-between px-4 py-2.5 text-left font-bold transition-colors relative group",
-                                                        formData.currency === currency 
-                                                            ? "text-white bg-white/10" 
-                                                            : "text-white/70 hover:text-white hover:bg-white/5"
-                                                    )}
-                                                >
-                                                    <span>{currency}</span>
-                                                    {formData.currency === currency && (
-                                                        <Check size={16} className="text-white" />
-                                                    )}
-                                                </button>
-                                            ))}
-                                        </div>
+                                        <ChevronDown className="w-4 h-4 text-black/50" />
                                     </motion.div>
-                                )}
-                            </AnimatePresence>
+                                </div>
+
+                                {/* NOWA LISTA ROZWIJANA (JASNY STYL) */}
+                                <AnimatePresence>
+                                    {isCurrencyDropdownOpen && (
+                                        <motion.div
+                                            // ZMIANA POZYCJI: top-0 right-0 żeby zakryć trigger
+                                            initial={{ opacity: 0, scale: 0.95 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            exit={{ opacity: 0, scale: 0.95 }}
+                                            transition={{ duration: 0.2, ease: "easeInOut" }}
+                                            style={{ originY: 0, originX: 1 }} // Rozwijanie z prawego górnego rogu
+                                            // ZMIANA STYLU: Jasne tło, szkło, wysoki z-index
+                                            className="absolute top-0 right-0 min-w-[120px] bg-white/95 backdrop-blur-xl border border-black/10 rounded-xl shadow-[0_10px_30px_-10px_rgba(0,0,0,0.15)] overflow-hidden z-[70]"
+                                        >
+                                            <div className="py-1">
+                                                {currencies.map((currency) => (
+                                                    <button
+                                                        key={currency}
+                                                        onClick={() => {
+                                                            setFormData({ ...formData, currency: currency as any });
+                                                            setIsCurrencyDropdownOpen(false);
+                                                        }}
+                                                        // ZMIANA STYLU ELEMENTÓW LISTY: Ciemny tekst, jasne tło po najechaniu
+                                                        className={cn(
+                                                            "w-full flex items-center justify-between px-4 py-3 text-left font-bold transition-colors relative group text-black",
+                                                            formData.currency === currency 
+                                                                ? "bg-black/10" 
+                                                                : "hover:bg-black/5"
+                                                        )}
+                                                    >
+                                                        <span>{currency}</span>
+                                                        {formData.currency === currency && (
+                                                            <Check size={16} className="text-black" />
+                                                        )}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
                         </div>
 
                         <div 
