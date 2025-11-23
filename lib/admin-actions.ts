@@ -3,7 +3,7 @@
 import { auth } from '@/auth';
 import { prisma } from '@/lib/prisma';
 import * as bcrypt from '@node-rs/bcrypt';
-import { Resend } from 'resend';
+import { sendWelcomeEmail } from '@/lib/email';
 
 // Helper for generating random password
 function generatePassword(length = 12) {
@@ -66,43 +66,15 @@ export async function createUserByAdmin(email: string) {
             }
         });
 
-        // Send Email via Resend
-        // Use environment variable for API key.
-        // User stated: "klucze resend sa skonfigurowane w vercelu jako sekret jako resendAPI"
-        // Standard Resend SDK looks for RESEND_API_KEY, but we can pass it explicitly.
-        const resendApiKey = process.env.resendAPI || process.env.RESEND_API_KEY;
+        // Send Welcome Email
+        const emailResult = await sendWelcomeEmail(email, tempPassword);
 
-        if (!resendApiKey) {
-            console.warn("Resend API Key (resendAPI) is missing!");
-            return { success: true, message: `Użytkownik utworzony, ale brak klucza API email. Hasło: ${tempPassword}` };
-        }
-
-        const resend = new Resend(resendApiKey);
-
-        const { error } = await resend.emails.send({
-            from: 'Ting Tong <onboarding@resend.dev>', // Default testing domain, or verified domain if set up
-            to: [email],
-            subject: 'Witaj w Ting Tong! Twoje konto zostało utworzone.',
-            html: `
-                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-                    <h2>Witaj w Ting Tong!</h2>
-                    <p>Twoje konto zostało utworzone przez administratora.</p>
-                    <p>Oto Twoje dane do logowania:</p>
-                    <div style="background: #f4f4f5; padding: 15px; border-radius: 8px; margin: 20px 0;">
-                        <p style="margin: 5px 0;"><strong>Email:</strong> ${email}</p>
-                        <p style="margin: 5px 0;"><strong>Hasło:</strong> ${tempPassword}</p>
-                    </div>
-                    <p>Zaloguj się i zmień hasło w ustawieniach profilu.</p>
-                    <p>Pozdrawiamy,<br>Zespół Ting Tong</p>
-                </div>
-            `
-        });
-
-        if (error) {
-            console.error("Resend Error:", error);
+        if (!emailResult.success) {
             // We return success true because the user WAS created, but warn about email.
-            // In a strict system we might rollback, but here ease of use prevails.
-            return { success: true, message: `Użytkownik utworzony. Błąd wysyłki email: ${error.message}. Hasło: ${tempPassword}` };
+            return {
+                success: true,
+                message: `Użytkownik utworzony. Błąd wysyłki email. Hasło: ${tempPassword}`
+            };
         }
 
         return { success: true, message: 'Użytkownik utworzony i powiadomiony mailowo.' };
