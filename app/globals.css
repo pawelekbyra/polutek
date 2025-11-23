@@ -71,11 +71,11 @@
     -webkit-user-select: none;
   }
 body {
-    @apply bg-zinc-900 text-foreground;
-    background-image: radial-gradient(ellipse at center, hsl(0 0% 15%) 0%, hsl(0 0% 5%) 100%);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    @apply bg-[#f3f4f6] text-foreground;
+    /* Light background for desktop emulator contrast */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
   *::-webkit-scrollbar {
     display: none;

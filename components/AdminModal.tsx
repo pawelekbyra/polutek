@@ -41,7 +41,7 @@ export default function AdminModal() {
     };
 
     return (
-        <div className="fixed inset-0 z-[10300] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+        <div className="absolute inset-0 z-[10300] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}

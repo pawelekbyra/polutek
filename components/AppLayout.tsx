@@ -53,9 +53,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div className="flex h-full flex-col relative">
+    <div className="flex h-[100dvh] w-full flex-col relative bg-black md:h-[85vh] md:max-h-[900px] md:w-[420px] md:aspect-[9/19] md:rounded-[40px] md:border-[12px] md:border-[#121212] md:shadow-2xl md:overflow-hidden md:mx-auto transition-all duration-300">
       <TopBar />
-      <div className="flex-1 overflow-auto z-10">
+      <div className="flex-1 overflow-auto z-10 custom-scrollbar">
         {children}
       </div>
       <AnimatePresence mode="wait">
