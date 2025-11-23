@@ -7,7 +7,7 @@ import { useUser } from '@/context/UserContext';
 import { useTranslation } from '@/context/LanguageContext';
 import { useToast } from '@/context/ToastContext';
 import { useStore } from '@/store/useStore';
-import { X, ChevronDown } from 'lucide-react';
+import { X, ChevronDown, Check, User, Ban } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
@@ -76,6 +76,7 @@ const TippingModal = () => {
   const { t } = useTranslation();
   const { isTippingModalOpen, closeTippingModal } = useStore();
 
+  // Steps: 0=Recipient, 1=Data(Account), 2=Amount, 3=Payment
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
     email: '',
@@ -83,6 +84,7 @@ const TippingModal = () => {
     currency: 'PLN',
     create_account: false,
     terms_accepted: false,
+    recipient: '', // 'Paweł' | 'Nikt'
   });
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -90,19 +92,37 @@ const TippingModal = () => {
   useEffect(() => {
     if (isLoggedIn) {
         setFormData(prev => ({ ...prev, email: user?.email || '' }));
-        if (currentStep === 0) setCurrentStep(1);
     } else {
         if (!isTippingModalOpen) {
             setCurrentStep(0);
-            setFormData(prev => ({ ...prev, create_account: false }));
+            setFormData(prev => ({ ...prev, create_account: false, terms_accepted: false, recipient: '' }));
         }
     }
-  }, [isLoggedIn, user, isTippingModalOpen, currentStep]);
+  }, [isLoggedIn, user, isTippingModalOpen]);
 
   if (!isTippingModalOpen) return null;
 
   const handleNext = async () => {
     if (currentStep === 0) {
+        // Step 0: Choose Recipient
+        if (!formData.recipient) {
+            addToast('Wybierz odbiorcę, aby kontynuować.', 'error');
+            return;
+        }
+        // If logged in, skip account creation step (1) and go to amount (2)
+        if (isLoggedIn) {
+            setCurrentStep(2);
+        } else {
+            setCurrentStep(1);
+        }
+    }
+    else if (currentStep === 1) {
+        // Step 1: Account Data (Only for guests)
+        if (!formData.terms_accepted) {
+            addToast('Musisz zaakceptować regulamin, aby kontynuować.', 'error');
+            return;
+        }
+
         if (formData.create_account) {
             if (!formData.email) {
                 addToast(t('errorEmailRequired') || 'Podaj adres email', 'error');
@@ -114,9 +134,10 @@ const TippingModal = () => {
                 return;
             }
         }
-        setCurrentStep(1);
+        setCurrentStep(2);
     }
-    else if (currentStep === 1) {
+    else if (currentStep === 2) {
+        // Step 2: Amount
         if (formData.amount <= 0) {
             addToast(t('errorMinTipAmount', { minAmount: '0', currency: formData.currency }) || 'Kwota musi być większa od 0', 'error');
             return;
@@ -138,7 +159,7 @@ const TippingModal = () => {
             const data = await res.json();
             if (res.ok) {
                 setClientSecret(data.clientSecret);
-                setCurrentStep(2);
+                setCurrentStep(3);
             } else {
                 addToast(data.error || t('errorCreatingPayment') || 'Błąd tworzenia płatności', 'error');
             }
@@ -151,16 +172,25 @@ const TippingModal = () => {
   };
 
   const handleBack = () => {
-      if (currentStep > 0) setCurrentStep(currentStep - 1);
+      if (currentStep === 2 && isLoggedIn) {
+          // If logged in, back from Amount goes to Recipient (skipping Account)
+          setCurrentStep(0);
+      } else if (currentStep > 0) {
+          setCurrentStep(currentStep - 1);
+      }
   };
 
   const steps = [
-      { id: 0, title: "Dane" },
-      { id: 1, title: "Kwota" },
-      { id: 2, title: "Płatność" }
+      { id: 0, title: "Odbiorca" },
+      { id: 1, title: "Dane" },
+      { id: 2, title: "Kwota" },
+      { id: 3, title: "Płatność" }
   ];
 
-  const progress = ((currentStep + 1) / steps.length) * 100;
+  // Calculate progress based on visible steps (3 steps for logged in, 4 for guest)
+  const totalSteps = isLoggedIn ? 3 : 4;
+  const currentVisualStep = isLoggedIn && currentStep >= 1 ? currentStep - 1 : currentStep;
+  const progress = ((currentVisualStep + 1) / totalSteps) * 100;
 
   const suggestedAmounts = [10, 20, 50];
 
@@ -175,20 +205,16 @@ const TippingModal = () => {
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        // Metallic Silver (Darker) with Black Border
         className="relative w-[90%] max-w-[420px] max-h-[85vh] flex flex-col rounded-[20px] shadow-[0_0_100px_-20px_rgba(255,255,255,0.4)] overflow-hidden bg-gradient-to-br from-gray-200 via-gray-400 to-gray-600 border-[3px] border-black pointer-events-auto"
       >
-        {/* Animated Glossy Shine */}
         <div className="absolute inset-0 border-[6px] border-transparent rounded-[21px] pointer-events-none overflow-hidden z-[50]">
             <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/50 to-transparent opacity-0 animate-[shine-border_4s_infinite]" />
         </div>
 
-        {/* Shine Overlay */}
         <div className="absolute inset-0 opacity-15 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/noise.png')] mix-blend-overlay z-0"></div>
         
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/70 z-20"></div>
 
-        {/* Header */}
         <div className="relative pt-5 pb-3 px-5 text-center shrink-0 z-10 border-b border-black/5 bg-white/10 backdrop-blur-sm">
             <h2 className="text-xl font-extrabold text-black tracking-tight drop-shadow-sm opacity-90">
                 Bramka Napiwkowa
@@ -201,7 +227,6 @@ const TippingModal = () => {
             </button>
         </div>
 
-        {/* Progress Bar */}
         <div className="h-1 w-full bg-black/10 relative overflow-hidden z-10 mb-1">
             <motion.div
                 className="h-full bg-neutral-900"
@@ -211,12 +236,77 @@ const TippingModal = () => {
             />
         </div>
 
-        {/* Body */}
         <div className="flex-1 overflow-y-auto px-5 pt-5 pb-0 custom-scrollbar flex flex-col relative z-10">
             <AnimatePresence mode="wait">
+                {/* STEP 0: RECIPIENT SELECTION */}
                 {currentStep === 0 && (
                     <motion.div
                         key="step0"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        className="space-y-2"
+                    >
+                        <div className="text-left">
+                            <p className="text-lg font-bold text-black tracking-wide">Komu chcesz przekazać napiwek?</p>
+                        </div>
+
+                        <div className="space-y-3 pt-2">
+                            {/* Option 1: Paweł */}
+                            <div 
+                                className={cn(
+                                    "flex items-center justify-start p-4 gap-4 rounded-xl border cursor-pointer transition-all duration-300 group relative overflow-hidden",
+                                    formData.recipient === 'Paweł'
+                                        ? "bg-neutral-900 border-neutral-900 shadow-lg" 
+                                        : "bg-black/5 border-black/5 hover:bg-black/10"
+                                )}
+                                onClick={() => setFormData(prev => ({ ...prev, recipient: 'Paweł' }))}
+                            >
+                                <div className={cn(
+                                    "w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shrink-0 z-10", 
+                                    formData.recipient === 'Paweł' 
+                                        ? "bg-white text-black" 
+                                        : "bg-black/10 text-black/50 group-hover:text-black"
+                                )}>
+                                    <User size={20} />
+                                </div>
+                                
+                                <span className={cn("text-base font-bold transition-colors z-10", formData.recipient === 'Paweł' ? "text-white" : "text-black/70")}>
+                                    Pawłowi Polutkowi
+                                </span>
+                            </div>
+
+                            {/* Option 2: Nikomu */}
+                            <div 
+                                className={cn(
+                                    "flex items-center justify-start p-4 gap-4 rounded-xl border cursor-pointer transition-all duration-300 group relative overflow-hidden",
+                                    formData.recipient === 'Nikt'
+                                        ? "bg-neutral-900 border-neutral-900 shadow-lg" 
+                                        : "bg-black/5 border-black/5 hover:bg-black/10"
+                                )}
+                                onClick={() => setFormData(prev => ({ ...prev, recipient: 'Nikt' }))}
+                            >
+                                <div className={cn(
+                                    "w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shrink-0 z-10", 
+                                    formData.recipient === 'Nikt'
+                                        ? "bg-white text-black" 
+                                        : "bg-black/10 text-black/50 group-hover:text-black"
+                                )}>
+                                    <Ban size={20} />
+                                </div>
+                                
+                                <span className={cn("text-base font-bold transition-colors z-10", formData.recipient === 'Nikt' ? "text-white" : "text-black/70")}>
+                                    Nikomu
+                                </span>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+
+                {/* STEP 1: ACCOUNT DATA (Old Step 0) */}
+                {currentStep === 1 && (
+                    <motion.div
+                        key="step1"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
@@ -266,13 +356,31 @@ const TippingModal = () => {
                                     Na ten email otrzymasz <span className="text-black/90 font-bold">dane do logowania</span>.
                                 </p>
                             </div>
+
+                            <div 
+                                className="flex items-center justify-start pt-2 gap-3 cursor-pointer group"
+                                onClick={() => setFormData(prev => ({ ...prev, terms_accepted: !prev.terms_accepted }))}
+                            >
+                                <div className={cn(
+                                    "w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200",
+                                    formData.terms_accepted 
+                                        ? "bg-neutral-900 border-neutral-900" 
+                                        : "border-black/30 group-hover:border-black/60 bg-white/20"
+                                )}>
+                                    {formData.terms_accepted && <Check size={14} className="text-white" strokeWidth={4} />}
+                                </div>
+                                <p className="text-sm font-medium text-black/70 group-hover:text-black transition-colors">
+                                    Akceptuję <span className="underline decoration-black/30 underline-offset-2">regulamin</span>
+                                </p>
+                            </div>
                         </div>
                     </motion.div>
                 )}
 
-                {currentStep === 1 && (
+                {/* STEP 2: AMOUNT (Old Step 1) */}
+                {currentStep === 2 && (
                     <motion.div
-                        key="step1"
+                        key="step2"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
@@ -280,7 +388,6 @@ const TippingModal = () => {
                     >
                         <div className="text-center space-y-1">
                             <h3 className="text-lg font-bold text-black">Wybierz kwotę</h3>
-                            {/* Zmiana tekstu zgodnie z życzeniem */}
                             <p className="text-xs text-black/50 font-medium uppercase tracking-wider">
                                 Wybierz lub wpisz kwotę napiwku
                             </p>
@@ -303,7 +410,6 @@ const TippingModal = () => {
                             ))}
                         </div>
 
-                        {/* NOWY INPUT Z WYBOREM WALUTY - POPRAWIONY */}
                         <div className="relative flex items-center bg-black/5 border border-black/10 rounded-xl overflow-hidden transition-colors focus-within:bg-black/10 focus-within:border-black/20 shadow-inner">
                             <input
                                 type="number"
@@ -312,7 +418,6 @@ const TippingModal = () => {
                                 className="flex-1 w-full bg-transparent text-center text-3xl font-black text-black py-4 focus:outline-none placeholder:text-black/10 pl-4"
                                 placeholder="0"
                             />
-                            {/* Fixed width dropdown container */}
                             <div className="h-full border-l border-black/10 flex items-center bg-black/5 hover:bg-black/10 transition-colors relative shrink-0">
                                 <select
                                     value={formData.currency}
@@ -330,9 +435,10 @@ const TippingModal = () => {
                     </motion.div>
                 )}
 
-                {currentStep === 2 && (
+                {/* STEP 3: PAYMENT (Old Step 2) */}
+                {currentStep === 3 && (
                     <motion.div
-                        key="step2"
+                        key="step3"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
@@ -373,7 +479,7 @@ const TippingModal = () => {
         </div>
 
         {/* Footer Buttons */}
-        {currentStep < 2 && (
+        {currentStep < 3 && (
             <div className="px-5 pb-5 pt-3 flex gap-2 bg-transparent z-20 relative">
                 {currentStep > 0 && (
                     <button
