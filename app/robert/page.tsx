@@ -8,7 +8,7 @@ export default function RobertPage() {
   } as any) as any;
 
   return (
-    <div className="flex flex-col min-h-screen bg-black text-green-500 font-mono p-4 overflow-hidden relative z-[100]">
+    <div className="flex flex-col h-screen bg-black text-green-500 font-mono p-4 overflow-hidden relative z-[100]">
       <div className="flex-1 overflow-y-auto mb-4 border border-green-900 p-4 rounded custom-scrollbar">
         {messages.length === 0 && (
           <div className="opacity-50 text-center mt-20">
