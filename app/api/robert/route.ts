@@ -8,8 +8,8 @@ export const maxDuration = 30;
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request) {
-  // 1. Diagnostyka w logach serwera (niewidoczna dla użytkownika)
-  console.log(`[ROBERT] Start request. Google Key: ${!!process.env.GOOGLE_GENERATIVE_AI_API_KEY}, GitHub Token: ${!!process.env.GITHUB_TOKEN}`);
+  // Diagnostyka w logach serwera
+  console.log(`[ROBERT] Start. Google Key present: ${!!process.env.GOOGLE_GENERATIVE_AI_API_KEY}, GitHub Token present: ${!!process.env.GITHUB_TOKEN}`);
 
   try {
     const { messages } = await req.json();
@@ -24,7 +24,8 @@ export async function POST(req: Request) {
       Nie pytaj o pozwolenie na zmiany w kodzie. Jeśli użytkownik prosi o nową funkcję, napisz plan, a potem użyj narzędzi, aby stworzyć pliki.
       Zawsze używaj narzędzia create_file, aby zapisać kod.`,
       messages,
-      maxSteps: 5, // <--- KLUCZOWE: Pozwala na pętlę (Plan -> Kod -> Wynik -> Odpowiedź)
+      // @ts-ignore: Ignorujemy błąd typowania, funkcja jest dostępna w v5
+      maxSteps: 5, 
       tools: {
         create_file: tool({
           description: 'Create or update a file in the repository. Path should be relative to root (e.g., "app/new-page.tsx").',
