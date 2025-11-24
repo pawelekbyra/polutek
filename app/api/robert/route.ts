@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     });
 
     const result = streamText({
-      model: google('gemini-1.5-pro-latest'),
+      model: google('gemini-1.5-pro'),
       system: `Jesteś Robert (Genesis Architect). Masz pełną autonomię. Twoim celem jest rozwijanie tej aplikacji.
       Nie pytaj o pozwolenie na zmiany w kodzie. Jeśli użytkownik prosi o nową funkcję, napisz plan, a potem użyj narzędzi, aby stworzyć pliki.
       Zawsze używaj narzędzia create_file, aby zapisać kod.`,

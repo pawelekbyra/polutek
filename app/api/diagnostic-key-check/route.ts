@@ -18,9 +18,9 @@ export async function GET() {
 
   try {
     // 2. Test nie-streamingowy Gemini
-    // Using gemini-1.5-flash as gemini-2.5-flash (requested) is not a valid model version yet.
+    // Using gemini-1.5-pro.
     const result = await generateText({
-      model: google('gemini-1.5-flash'), // Używamy prostego modelu
+      model: google('gemini-1.5-pro'), // Używamy sprawdzonego modelu
       prompt: 'Odpowiedz jednym słowem: OK',
     });
 
