@@ -3,10 +3,11 @@
 import { useChat } from '@ai-sdk/react';
 
 export default function RobertPage() {
-  // POPRAWKA: Dodano 'error' i 'reload' do destrukturyzacji, aby naprawić błąd kompilacji (TypeError: Cannot find name 'reload')
+  // POPRAWKA BŁĘDÓW KOMPILACJI: Dodano 'error' i 'reload' do destrukturyzacji
   const { messages, input, handleInputChange, handleSubmit, status, error, reload } = useChat({
     api: '/api/robert',
-    onError: (err) => {
+    // POPRAWKA BŁĘDU KOMPILACJI: Dodano : any do parametru 'err' (linia 9 w logu)
+    onError: (err: any) => { 
       console.error("[ROBERT-UI] Chat Hook Error:", err);
     }
   } as any) as any;
