@@ -1,16 +1,27 @@
 'use client'; 
-
 import { useChat } from '@ai-sdk/react';
+import React, { FormEvent } from 'react'; // Dodajemy import FormEvent
 
 export default function RobertPage() {
-  // POPRAWKA BŁĘDÓW KOMPILACJI: Dodano 'error' i 'reload' do destrukturyzacji
+  // Uproszczone wywołanie hooka
   const { messages, input, handleInputChange, handleSubmit, status, error, reload } = useChat({
     api: '/api/robert',
-    // POPRAWKA BŁĘDU KOMPILACJI: Dodano : any do parametru 'err' (linia 9 w logu)
     onError: (err: any) => { 
       console.error("[ROBERT-UI] Chat Hook Error:", err);
     }
   } as any) as any;
+
+  // Nowa funkcja do bezpiecznej obsługi submit (zgodna z błędem w konsoli)
+  const handleSafeSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    // Ostateczne sprawdzenie, czy handleSubmit jest funkcją, zanim ją wywołamy
+    if (typeof handleSubmit === 'function') {
+      handleSubmit(e);
+    } else {
+      console.error("ROBERT DEBUG: handleSubmit is not available or is not a function.");
+    }
+  };
 
   return (
     <div className="flex flex-col h-screen bg-black text-green-500 font-mono p-4 overflow-hidden relative z-[100]">
@@ -66,7 +77,7 @@ export default function RobertPage() {
         )}
       </div>
 
-      <form onSubmit={handleSubmit} className="flex gap-2">
+      <form onSubmit={handleSafeSubmit} className="flex gap-2">
         <span className="flex items-center text-green-500">&gt;</span>
         <input
           className="flex-1 bg-black border border-green-800 text-green-500 p-2 focus:outline-none focus:border-green-500 rounded"
