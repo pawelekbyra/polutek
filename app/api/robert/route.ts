@@ -8,8 +8,8 @@ export const maxDuration = 30;
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request) {
-  // Diagnostyka w logach serwera
-  console.log(`[ROBERT] Start. Google Key present: ${!!process.env.GOOGLE_GENERATIVE_AI_API_KEY}, GitHub Token present: ${!!process.env.GITHUB_TOKEN}`);
+  // Logowanie obecności kluczy. Jest to krytyczne dla diagnostyki.
+  console.log(`[ROBERT DIAGNOSTIC] GOOGLE_GENERATIVE_AI_API_KEY present: ${!!process.env.GOOGLE_GENERATIVE_AI_API_KEY}, GITHUB_TOKEN present: ${!!process.env.GITHUB_TOKEN}`);
 
   if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
     return Response.json({ error: "Missing GOOGLE_GENERATIVE_AI_API_KEY" }, { status: 500 });
