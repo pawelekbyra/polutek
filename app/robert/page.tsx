@@ -1,41 +1,25 @@
 'use client'; 
 import { useChat } from '@ai-sdk/react';
-import React, { FormEvent } from 'react';
-
-// === KOD DO IZOLACJI I DIAGNOSTYKI ===
-// Zastępuje hook useChat mockowymi wartościami
-const mockUseChat = () => ({
-  messages: [],
-  input: '',
-  handleInputChange: () => {},
-  handleSubmit: (e: FormEvent) => {
-    // Ta funkcja jest wywoływana przez handleSafeSubmit
-    console.log("--- ROBERT ISOLATION SUCCESSFUL ---");
-    console.log("Hook jest pominięty. Formularz wysłany pomyślnie.");
-    alert("Klient Działa! Naciśnij OK i sprawdź konsolę. Prawdziwy problem jest w hooku lub serwerze.");
-  },
-  status: 'initial',
-  error: null,
-  reload: () => {
-    console.log("Mock reload triggered");
-  },
-});
+import React, { FormEvent } from 'react'; // Dodajemy import FormEvent
 
 export default function RobertPage() {
-  // WERSJA DIAGNOSTYCZNA: Użycie mocka
-  // W docelowej wersji użyjemy:
-  // const { ... } = useChat({...});
-  const { messages, input, handleInputChange, handleSubmit, status, error, reload } = mockUseChat();
+  // Uproszczone wywołanie hooka
+  const { messages, input, handleInputChange, handleSubmit, status, error, reload } = useChat({
+    api: '/api/robert',
+    onError: (err: any) => { 
+      console.error("[ROBERT-UI] Chat Hook Error:", err);
+    }
+  };
 
-  // Funkcja bezpiecznej obsługi submit (pozostaje bez zmian, bo sprawdza istnienie handleSubmit)
+  // Nowa funkcja do bezpiecznej obsługi submit (zgodna z błędem w konsoli)
   const handleSafeSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    // Ta linia teraz wywoła MOCK-ową funkcję handleSubmit, która wyświetli alert
+    // Ostateczne sprawdzenie, czy handleSubmit jest funkcją, zanim ją wywołamy
     if (typeof handleSubmit === 'function') {
       handleSubmit(e);
     } else {
-      console.error("ROBERT DEBUG: handleSubmit is not available. This should not happen with the mock.");
+      console.error("ROBERT DEBUG: handleSubmit is not available or is not a function.");
     }
   };
 
@@ -93,7 +77,13 @@ export default function RobertPage() {
         )}
       </div>
 
-      <form onSubmit={handleSafeSubmit} className="flex gap-2">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault(); // ZAPOBIEGAMY PRZEŁADOWANIU STRONY
+          handleSubmit(e); // WYWOŁUJEMY LOGIKĘ AI HOOKA
+        }}
+        className="flex gap-2"
+      >
         <span className="flex items-center text-green-500">&gt;</span>
         <input
           className="flex-1 bg-black border border-green-800 text-green-500 p-2 focus:outline-none focus:border-green-500 rounded"
