@@ -1,27 +1,54 @@
 'use client'; 
-
 import { useChat } from '@ai-sdk/react';
+import React, { FormEvent } from 'react';
+
+// === KOD DO IZOLACJI I DIAGNOSTYKI ===
+// Zastępuje hook useChat mockowymi wartościami
+const mockUseChat = () => ({
+  messages: [],
+  input: '',
+  handleInputChange: () => {},
+  handleSubmit: (e: FormEvent) => {
+    // Ta funkcja jest wywoływana przez handleSafeSubmit
+    console.log("--- ROBERT ISOLATION SUCCESSFUL ---");
+    console.log("Hook jest pominięty. Formularz wysłany pomyślnie.");
+    alert("Klient Działa! Naciśnij OK i sprawdź konsolę. Prawdziwy problem jest w hooku lub serwerze.");
+  },
+  status: 'initial',
+  error: null,
+  reload: () => {
+    console.log("Mock reload triggered");
+  },
+});
 
 export default function RobertPage() {
-  // POPRAWKA BŁĘDÓW KOMPILACJI: Dodano 'error' i 'reload' do destrukturyzacji
-  const { messages, input, handleInputChange, handleSubmit, status, error, reload } = useChat({
-    api: '/api/robert',
-    // POPRAWKA BŁĘDU KOMPILACJI: Dodano : any do parametru 'err' (linia 9 w logu)
-    onError: (err: any) => { 
-      console.error("[ROBERT-UI] Chat Hook Error:", err);
+  // WERSJA DIAGNOSTYCZNA: Użycie mocka
+  // W docelowej wersji użyjemy:
+  // const { ... } = useChat({...});
+  const { messages, input, handleInputChange, handleSubmit, status, error, reload } = mockUseChat();
+
+  // Funkcja bezpiecznej obsługi submit (pozostaje bez zmian, bo sprawdza istnienie handleSubmit)
+  const handleSafeSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    // Ta linia teraz wywoła MOCK-ową funkcję handleSubmit, która wyświetli alert
+    if (typeof handleSubmit === 'function') {
+      handleSubmit(e);
+    } else {
+      console.error("ROBERT DEBUG: handleSubmit is not available. This should not happen with the mock.");
     }
-  } as any) as any;
+  };
 
   return (
     <div className="flex flex-col h-screen bg-black text-green-500 font-mono p-4 overflow-hidden relative z-[100]">
       <div className="flex-1 overflow-y-auto mb-4 border border-green-900 p-4 rounded custom-scrollbar">
         
-        {/* WYŚWIETLANIE BŁĘDU ZAMIAST TREŚCI */}
+        {/* TUTAJ WZMACNIAMY LOGIKĘ WYŚWIETLANIA BŁĘDÓW HOOKA */}
         {error && (
             <div className="text-red-500 mt-4 border border-red-900 p-4 whitespace-pre-wrap">
                 &gt; CRITICAL ERROR: Communication Failure.
                 <br/>
-                **Szczegóły:** {error.message}
+                **Szczegóły:** {error ? (error as any).message : 'Unknown error'}
                 <br/>
                 <button 
                    onClick={() => reload()} 
@@ -66,7 +93,7 @@ export default function RobertPage() {
         )}
       </div>
 
-      <form onSubmit={handleSubmit} className="flex gap-2">
+      <form onSubmit={handleSafeSubmit} className="flex gap-2">
         <span className="flex items-center text-green-500">&gt;</span>
         <input
           className="flex-1 bg-black border border-green-800 text-green-500 p-2 focus:outline-none focus:border-green-500 rounded"
