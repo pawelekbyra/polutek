@@ -1,88 +1,105 @@
 'use client'; 
 
 import { useChat } from '@ai-sdk/react';
-import React, { FormEvent, useEffect } from 'react'; 
+import React, { FormEvent, useState, useEffect } from 'react'; 
 
 export default function RobertPage() {
-  // Pobieramy hooka z rzutowaniem na 'any' aby uniknąć problemów z typami
-  const chatHook = useChat({
-    api: '/api/robert',
-    onError: (err: any) => { 
-      console.error("[ROBERT-UI] Chat Hook Error:", err);
-    }
-  } as any) as any;
-
+  // 1. Używamy useChat standardowo, bez agresywnych rzutowań na początku
   const { 
     messages, 
     input, 
-    setInput,
     handleInputChange, 
     handleSubmit, 
     status, 
     error, 
     reload,
-    append 
-  } = chatHook;
+    setInput // Ważne: pobieramy setInput do ręcznego sterowania
+  } = useChat({
+    api: '/api/robert',
+    onError: (err) => { 
+      console.error("🔴 [ROBERT UI ERROR]:", err);
+      alert("Błąd połączenia: " + err.message);
+    },
+    // Zabezpieczenie: jeśli input jest undefined, hook użyje pustego ciągu
+    initialInput: '' 
+  });
 
-  // Fallback dla submit
-  const handleSafeSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  // 2. Dodatkowy stan lokalny, gdyby useChat zawiódł przy inicjalizacji
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    setIsReady(true);
+    console.log("🟢 [ROBERT UI]: Komponent załadowany. Status:", status);
+  }, [status]);
+
+  // 3. Bezpieczna funkcja wysyłania
+  const handleSafeSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    if (!input || input.trim() === '') return;
+    if (!input.trim()) return;
 
-    if (typeof handleSubmit === 'function') {
-      handleSubmit(e);
-    } else if (typeof append === 'function') {
-      console.warn("[ROBERT-UI] handleSubmit missing, using append fallback.");
-      await append({ role: 'user', content: input });
-      if (setInput) setInput('');
-    } else {
-      alert("BŁĄD KRYTYCZNY: Nie można wysłać wiadomości.");
-    }
+    console.log("🔵 [ROBERT UI]: Wysyłanie wiadomości:", input);
+    handleSubmit(e);
   };
+
+  // Jeśli JS jeszcze nie ruszył, pokazujemy loader (unikamy "martwego" inputa)
+  if (!isReady) return <div className="bg-black h-screen text-green-500 p-4">Inicjalizacja terminala...</div>;
 
   return (
     <div className="flex flex-col h-screen bg-black text-green-500 font-mono p-4 overflow-hidden relative z-[100]">
-      <div className="flex-1 overflow-y-auto mb-4 border border-green-900 p-4 rounded custom-scrollbar">
-        
-        {error && (
-            <div className="text-red-500 mt-4 border border-red-900 p-4 whitespace-pre-wrap">
-                CRITICAL ERROR: {error.message}
-                <button onClick={() => reload()} className="block underline mt-2">RETRY</button>
-            </div>
-        )}
+      
+      {/* LOGI BŁĘDÓW NA EKRANIE (żebyś widział co się dzieje bez konsoli) */}
+      {error && (
+        <div className="bg-red-900/50 border border-red-500 text-white p-2 mb-2 text-sm">
+          ⚠️ BŁĄD: {error.message} 
+          <button onClick={() => reload()} className="ml-4 underline font-bold">SPRÓBUJ PONOWNIE</button>
+        </div>
+      )}
 
-        {(messages || []).length === 0 && !error && (
-          <div className="opacity-50 text-center mt-20">&gt; SYSTEM ONLINE. WAITING FOR INPUT...</div>
+      <div className="flex-1 overflow-y-auto mb-4 border border-green-900 p-4 rounded custom-scrollbar">
+        {messages.length === 0 && !error && (
+          <div className="opacity-50 text-center mt-10">
+            &gt; SYSTEM ROBERT ONLINE. <br/>
+            &gt; CZEKAM NA ROZKAZY...
+          </div>
         )}
         
-        {!error && (messages || []).map((m: any) => (
+        {messages.map((m) => (
           <div key={m.id} className="mb-4 whitespace-pre-wrap">
-            <span className="font-bold opacity-70">{m.role === 'user' ? 'USER > ' : 'ROBERT > '}</span>
-            {m.content}
-            {m.toolInvocations?.map((toolInvocation: any) => (
-                <div key={toolInvocation.toolCallId} className="text-yellow-500 mt-1">
-                   [TOOL: {toolInvocation.toolName}]
-                   {'result' in toolInvocation ? <span className="text-green-400"> ✓ OK</span> : <span className="animate-pulse"> ...</span>}
-                </div>
+            <span className={`font-bold ${m.role === 'user' ? 'text-blue-400' : 'text-green-400'}`}>
+              {m.role === 'user' ? 'TY > ' : 'ROBERT > '}
+            </span>
+            <span>{m.content}</span>
+            {m.toolInvocations?.map((tool: any) => (
+               <div key={tool.toolCallId} className="text-yellow-500 text-sm mt-1 pl-4 border-l-2 border-yellow-500">
+                 [TOOL: {tool.toolName}] {JSON.stringify(tool.args)}
+                 {'result' in tool ? <span className="text-green-300"> ✓ OK</span> : <span className="animate-pulse"> ...</span>}
+               </div>
             ))}
           </div>
         ))}
-        {status === 'streaming' && <div className="animate-pulse">&gt; PROCESSING...</div>}
+        
+        {status === 'streaming' && (
+          <div className="animate-pulse text-green-700">&gt; Przetwarzanie danych...</div>
+        )}
       </div>
 
-      <form onSubmit={handleSafeSubmit} className="flex gap-2"> 
-        <span className="flex items-center text-green-500">&gt;</span>
+      {/* FORMULARZ */}
+      <form onSubmit={handleSafeSubmit} className="flex gap-2 border-t border-green-900 pt-4"> 
+        <span className="flex items-center text-green-500 animate-pulse">&gt;</span>
         <input
-          className="flex-1 bg-black border border-green-800 text-green-500 p-2 focus:outline-none rounded"
-          value={input || ''}
-          placeholder="Enter command..."
+          className="flex-1 bg-black border border-green-800 text-green-400 p-2 focus:outline-none focus:border-green-500 rounded font-bold"
+          value={input}
           onChange={handleInputChange}
+          placeholder="Wpisz polecenie..."
           autoFocus
-          disabled={!!error}
+          autoComplete="off"
         />
-        <button type="submit" className="bg-green-900 text-black px-4 py-2 hover:bg-green-700 font-bold rounded">
-          EXECUTE
+        <button
+          type="submit"
+          disabled={status === 'streaming' || !input.trim()}
+          className="bg-green-900 text-green-100 px-6 py-2 hover:bg-green-700 font-bold rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        >
+          WYŚLIJ
         </button>
       </form>
 
