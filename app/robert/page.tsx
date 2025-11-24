@@ -9,7 +9,7 @@ export default function RobertPage() {
     onError: (err: any) => { 
       console.error("[ROBERT-UI] Chat Hook Error:", err);
     }
-  } as any) as any;
+  };
 
   // Nowa funkcja do bezpiecznej obsługi submit (zgodna z błędem w konsoli)
   const handleSafeSubmit = (e: FormEvent) => {
@@ -27,12 +27,12 @@ export default function RobertPage() {
     <div className="flex flex-col h-screen bg-black text-green-500 font-mono p-4 overflow-hidden relative z-[100]">
       <div className="flex-1 overflow-y-auto mb-4 border border-green-900 p-4 rounded custom-scrollbar">
         
-        {/* WYŚWIETLANIE BŁĘDU ZAMIAST TREŚCI */}
+        {/* TUTAJ WZMACNIAMY LOGIKĘ WYŚWIETLANIA BŁĘDÓW HOOKA */}
         {error && (
             <div className="text-red-500 mt-4 border border-red-900 p-4 whitespace-pre-wrap">
                 &gt; CRITICAL ERROR: Communication Failure.
                 <br/>
-                **Szczegóły:** {error.message}
+                **Szczegóły:** {error ? (error as any).message : 'Unknown error'}
                 <br/>
                 <button 
                    onClick={() => reload()} 
