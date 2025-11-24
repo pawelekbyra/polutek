@@ -1,15 +1,14 @@
 'use client';
 
 import { useChat } from '@ai-sdk/react';
-import { TextStreamChatTransport } from 'ai';
 import { useEffect, useRef, useState } from 'react';
 
 export default function RobertPage() {
+  // TU JEST PROBLEM: Brakowało 'api' i 'streamProtocol'
   const { messages, error, regenerate, sendMessage } = useChat({
-    transport: new TextStreamChatTransport({
-      api: '/api/robert',
-    }),
-  });
+    api: '/api/robert',
+    streamProtocol: 'text',
+  } as any);
 
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
