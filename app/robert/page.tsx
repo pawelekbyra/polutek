@@ -3,22 +3,12 @@
 import { useChat } from '@ai-sdk/react';
 
 export default function RobertPage() {
-  // Use 'append' instead of 'handleSubmit' to avoid "reading match" errors and gain more control
-  const { messages, input, handleInputChange, append, setInput, status } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, status } = useChat({
     api: '/api/robert',
   } as any) as any;
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-
-    const currentInput = input;
-    setInput('');
-    await append({ role: 'user', content: currentInput });
-  };
-
   return (
-    <div className="flex flex-col min-h-screen bg-black text-green-500 font-mono p-4 overflow-hidden relative z-[100]">
+    <div className="flex flex-col h-screen bg-black text-green-500 font-mono p-4 overflow-hidden relative z-[100]">
       <div className="flex-1 overflow-y-auto mb-4 border border-green-900 p-4 rounded custom-scrollbar">
         {messages.length === 0 && (
           <div className="opacity-50 text-center mt-20">
