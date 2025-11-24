@@ -3,7 +3,7 @@
 import { useChat } from '@ai-sdk/react';
 
 export default function RobertPage() {
-  const { messages, input, handleInputChange, handleSubmit, status, error } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, status, error, reload } = useChat({
     api: '/api/robert',
     onError: (error: any) => console.error("Chat Error:", error),
   } as any) as any;
