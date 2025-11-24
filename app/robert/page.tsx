@@ -3,11 +3,9 @@
 import { useChat } from '@ai-sdk/react';
 
 export default function RobertPage() {
-  const { messages, input, handleInputChange, handleSubmit, status, error, reload } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, status, error } = useChat({
     api: '/api/robert',
-    onError: (err: any) => {
-        console.error("[ROBERT-UI] Chat Hook Error:", err);
-    }
+    onError: (error: any) => console.error("Chat Error:", error),
   } as any) as any;
 
   return (
@@ -61,9 +59,20 @@ export default function RobertPage() {
         {status === 'streaming' && (
           <div className="animate-pulse">&gt; PROCESSING...</div>
         )}
+        {error && (
+          <div className="text-red-500 border border-red-500 p-2 mt-2 rounded">
+             ERROR: {error.message}
+          </div>
+        )}
       </div>
 
-      <form onSubmit={handleSubmit} className="flex gap-2">
+      <form
+        onSubmit={(e) => {
+          console.log("ROBERT DEBUG: Attempting form submission.");
+          handleSubmit(e);
+        }}
+        className="flex gap-2"
+      >
         <span className="flex items-center text-green-500">&gt;</span>
         <input
           className="flex-1 bg-black border border-green-800 text-green-500 p-2 focus:outline-none focus:border-green-500 rounded"
