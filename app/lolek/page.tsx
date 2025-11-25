@@ -1,12 +1,13 @@
 'use client';
 
 import { useChat } from '@ai-sdk/react';
+import { DefaultChatTransport, getToolName } from 'ai';
 import { useState, useRef, useEffect } from 'react';
 import { Cpu, Send, Trash2 } from 'lucide-react';
 
 export default function LolekPage() {
   const { messages, error, sendMessage, regenerate, setMessages, status, stop } = useChat({
-    api: '/api/lolek',
+    transport: new DefaultChatTransport({ api: '/api/lolek' }),
     onError: (err) => {
         console.error("Chat error:", err);
     }
@@ -74,7 +75,7 @@ export default function LolekPage() {
                   case 'tool-convertFahrenheitToCelsius':
                     return (
                       <div key={`${message.id}-${i}`} className="p-2 my-2 border border-green-800 bg-black/30">
-                        <p className="text-xs font-bold text-yellow-400 mb-1">TOOL CALL: {part.toolName}</p>
+                        <p className="text-xs font-bold text-yellow-400 mb-1">TOOL CALL: {getToolName(part)}</p>
                         <pre className="text-xs whitespace-pre-wrap">{JSON.stringify(part, null, 2)}</pre>
                       </div>
                     );
