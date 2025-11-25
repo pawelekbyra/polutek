@@ -6,7 +6,9 @@ import { Cpu, Send, Trash2 } from 'lucide-react';
 
 export default function LolekPage() {
   const { messages, error, sendMessage, regenerate, setMessages, status, stop } = useChat({
-    api: '/api/lolek',
+    transport: {
+        api: '/api/lolek'
+    },
     onError: (err) => {
         console.error("Chat error:", err);
     }
