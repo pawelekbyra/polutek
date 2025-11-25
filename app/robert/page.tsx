@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Terminal, Send, Trash2, Cpu } from 'lucide-react';
 
 export default function RobertPage() {
-  const { messages, error, reload, input, setInput, handleSubmit, setMessages } = useChat({
+  const { messages, error, reload, append } = useChat({
     api: '/api/robert',
     onError: (err) => {
         console.error("Chat error:", err);
@@ -29,9 +29,8 @@ export default function RobertPage() {
     inputRef.current?.focus();
   }, []);
 
-  const clearChat = () => {
-      setMessages([]);
-      inputRef.current?.focus();
+    await append({ role: 'user', content: input });
+    setInput('');
   };
 
   return (
@@ -71,9 +70,7 @@ export default function RobertPage() {
             <span className={`text-xs opacity-50 mb-1 ${m.role === 'user' ? 'text-blue-400' : 'text-green-400'}`}>
               {m.role === 'user' ? 'USR-CMD >' : 'SYS-OUT >'}
             </span>
-            <div className={`max-w-[85%] whitespace-pre-wrap break-words ${m.role === 'user' ? 'text-blue-300' : 'text-green-300'}`}>
-              {m.content}
-            </div>
+            <span>{m.content}</span>
           </div>
         ))}
 
@@ -83,7 +80,7 @@ export default function RobertPage() {
               <p>{error.message}</p>
               <button
                 onClick={() => reload()}
-                className="mt-2 px-2 py-1 border border-red-500 hover:bg-red-900 transition-colors uppercase text-xs"
+                className="mt-2 px-2 py-1 border border-red-500 hover:bg-red-900 transition-colors"
               >
                 Retry Execution
               </button>
