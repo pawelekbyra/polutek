@@ -347,62 +347,70 @@ export async function toggleCommentLike(commentId: string, userId: string): Prom
 
 export async function getComments(
   slideId: string,
-  options: { limit?: number; cursor?: string } = {}
+  options: { limit?: number; cursor?: string; sortBy?: 'newest' | 'top' } = {}
 ): Promise<{ comments: CommentWithRelations[]; nextCursor: string | null }> {
-  const { limit = 20, cursor } = options;
+  const { limit = 20, cursor, sortBy = 'newest' } = options;
 
-  // Use Prisma Client to fetch comments with relations
+  const orderBy = sortBy === 'top'
+    ? { likes: { _count: 'desc' as const } }
+    : { createdAt: 'desc' as const };
+
   const comments = await prisma.comment.findMany({
     where: {
       slideId,
-      parentId: null // Fetch only top-level threads
+      parentId: null,
     },
-    take: limit + 1, // Fetch one extra to determine next cursor
-    skip: cursor ? 1 : 0, // Skip the cursor itself if present
+    take: limit + 1,
+    skip: cursor ? 1 : 0,
     cursor: cursor ? { id: cursor } : undefined,
-    orderBy: { createdAt: 'desc' },
+    orderBy: [orderBy, { createdAt: 'desc' }],
     include: {
       author: {
-        select: { id: true, username: true, displayName: true, avatar: true, role: true }
+        select: { id: true, username: true, displayName: true, avatar: true, role: true },
       },
       likes: {
-        select: { userId: true }
+        select: { userId: true },
       },
-      replies: {
+      _count: {
+        select: { likes: true },
+      },
+      replies: { // L1
         include: {
-          author: {
-            select: { id: true, username: true, displayName: true, avatar: true, role: true }
+          author: { select: { id: true, username: true, displayName: true, avatar: true, role: true } },
+          likes: { select: { userId: true } },
+          _count: { select: { likes: true } },
+          replies: { // L2
+            include: {
+              author: { select: { id: true, username: true, displayName: true, avatar: true, role: true } },
+              likes: { select: { userId: true } },
+              _count: { select: { likes: true } },
+            },
+            orderBy: { createdAt: 'asc' },
           },
-          likes: {
-            select: { userId: true }
-          }
         },
-        orderBy: { createdAt: 'asc' }
+        orderBy: { createdAt: 'asc' },
       },
-    }
+    },
   });
 
   let nextCursor: string | null = null;
   if (comments.length > limit) {
-    const nextItem = comments.pop(); // Remove the extra item
+    const nextItem = comments.pop();
     nextCursor = nextItem?.id || null;
   }
 
-  // Map Prisma result to DTO
-  const mappedComments = comments.map(c => {
-    const mappedReplies = c.replies.map(r => ({
-      ...r,
-      likedBy: r.likes.map(l => l.userId),
-      replies: [], // Max depth 1
-      _count: { likes: r.likes.length }
-    }));
+  // Helper function to recursively map comments to DTO
+  const mapComment = (comment: any): CommentWithRelations => {
+    const replies = comment.replies?.map(mapComment) || [];
     return {
-      ...c,
-      likedBy: c.likes.map(l => l.userId),
-      replies: mappedReplies,
-      _count: { likes: c.likes.length },
+      ...comment,
+      likedBy: comment.likes.map((l: any) => l.userId),
+      replies: replies,
+      _count: { likes: comment._count.likes },
     };
-  });
+  };
+
+  const mappedComments = comments.map(mapComment);
 
   return { comments: mappedComments, nextCursor };
 }

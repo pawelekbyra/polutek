@@ -157,7 +157,12 @@ const translations: Record<string, Record<string, string>> = {
         publishButton: 'Publikuj',
         publishButtonInactive: 'Publikowanie dostępne tylko dla Twórców',
         commentRateLimit: 'Zbyt szybko komentujesz. Zwolnij trochę!',
-        commentError: 'Błąd dodawania komentarza.'
+        commentError: 'Błąd dodawania komentarza.',
+        deleteConfirmation: 'Czy na pewno chcesz usunąć ten komentarz?',
+        newest: 'Najnowsze',
+        top: 'Najlepsze',
+        hideReplies: 'Ukryj odpowiedzi',
+        showReplies: 'Zobacz {count} odpowiedzi'
     },
     en: {
         loggedOutText: "Ting Tong",
@@ -313,7 +318,12 @@ const translations: Record<string, Record<string, string>> = {
         publishButton: 'Publish',
         publishButtonInactive: 'Publishing available for Creators only',
         commentRateLimit: 'You are commenting too fast. Slow down!',
-        commentError: 'Error adding comment.'
+        commentError: 'Error adding comment.',
+        deleteConfirmation: 'Are you sure you want to delete this comment?',
+        newest: 'Newest',
+        top: 'Top',
+        hideReplies: 'Hide replies',
+        showReplies: 'View {count} replies'
     }
 };
 
@@ -333,6 +343,14 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [lang, setLangState] = useState<Language>('pl');
   const [isLangSelected, setIsLangSelected] = useState(false);
+
+  useEffect(() => {
+    const storedLang = localStorage.getItem('app_lang') as Language;
+    if (storedLang && ['pl', 'en'].includes(storedLang)) {
+      setLangState(storedLang);
+      setIsLangSelected(true);
+    }
+  }, []);
 
   const setLanguage = (newLang: Language) => {
     setLangState(newLang);
