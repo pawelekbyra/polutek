@@ -115,7 +115,7 @@ model Comment {
   id        String   @id @default(cuid())
   text      String
   imageUrl  String?
-  authorId  String
+  authorId  String   @map("userId")
   author    User     @relation(fields: [authorId], references: [id])
   slideId   String
   slide     Slide    @relation(fields: [slideId], references: [id])
