@@ -13,6 +13,7 @@ export async function GET(request: NextRequest) {
   const slideId = searchParams.get('slideId');
   const cursor = searchParams.get('cursor') || undefined;
   const limitParam = searchParams.get('limit');
+  const sortBy = searchParams.get('sortBy') as 'newest' | 'top' | undefined;
   const limit = limitParam ? parseInt(limitParam, 10) : 20;
 
   if (!slideId) {

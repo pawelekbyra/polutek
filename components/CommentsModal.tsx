@@ -1,30 +1,26 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useInfiniteQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Heart, MessageSquare, Loader2, MoreHorizontal, Trash, Flag, Smile } from 'lucide-react';
+import { X, Heart, MessageSquare, Loader2, MoreHorizontal, Trash, Flag, Smile, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
-import Ably from 'ably';
 import { ably } from '@/lib/ably-client';
 import { useTranslation } from '@/context/LanguageContext';
 import { useUser } from '@/context/UserContext';
 import { useToast } from '@/context/ToastContext';
 import { useStore } from '@/store/useStore';
-import { z } from 'zod';
 import { CommentWithRelations } from '@/lib/dto';
-import { CommentSchema } from '@/lib/validators';
 import { formatDistanceToNow } from 'date-fns';
 import { pl, enUS } from 'date-fns/locale';
 import { Skeleton } from "@/components/ui/skeleton";
 import { DEFAULT_AVATAR_URL } from '@/lib/constants';
 import { UserBadge } from './UserBadge';
 import { fetchComments } from '@/lib/queries';
+import { cn } from '@/lib/utils';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import * as Tooltip from '@radix-ui/react-tooltip';
-
-import { fetchAuthorProfile } from '@/lib/queries';
 
 interface CommentItemProps {
   comment: CommentWithRelations;
@@ -33,22 +29,19 @@ interface CommentItemProps {
   onDelete: (id: string) => Promise<void>;
   onReport: (id: string) => void;
   onAvatarClick: (userId: string) => void;
-  onPrefetchUser: (userId: string) => void;
   currentUserId?: string;
-  isReply?: boolean;
   lang: string;
+  level?: number;
 }
 
-const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onReplySubmit, onDelete, onReport, onAvatarClick, onPrefetchUser, currentUserId, isReply = false, lang }) => {
+const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onReplySubmit, onDelete, onReport, onAvatarClick, currentUserId, lang, level = 0 }) => {
   const { t } = useTranslation();
   const [isReplying, setIsReplying] = useState(false);
   const [replyText, setReplyText] = useState('');
+  const [areRepliesVisible, setAreRepliesVisible] = useState(true);
   const { user } = useUser();
   const isLiked = currentUserId ? comment.likedBy.includes(currentUserId) : false;
-
-  const handleReplyClick = () => {
-    setIsReplying(!isReplying);
-  };
+  const likeCount = comment._count?.likes ?? comment.likedBy.length;
 
   const handleLocalReplySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,119 +52,75 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onReplySubmi
   };
 
   const author = comment.author;
-
   const dateLocale = lang === 'pl' ? pl : enUS;
   const formattedTime = formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true, locale: dateLocale });
-  const fullDate = new Date(comment.createdAt).toLocaleString(lang === 'pl' ? 'pl-PL' : 'en-US');
 
-  const renderText = (text: string) => {
-    const parts = text.split(/(\s+)/);
-    return parts.map((part, index) => {
-      if (part.startsWith('#')) {
-        return <span key={index} className="text-blue-400 font-semibold">{part}</span>;
-      }
-      if (part.startsWith('@')) {
-        return <span key={index} className="text-pink-400 font-semibold">{part}</span>;
-      }
-      return part;
-    });
-  };
+  const hasReplies = comment.replies && comment.replies.length > 0;
 
   return (
     <motion.div
-      layout
-      initial={{ opacity: 0, y: 20 }}
+      layout="position"
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      className={`flex items-start gap-3 ${isReply ? 'ml-8' : ''} group`}
+      exit={{ opacity: 0, y: -10 }}
+      className={cn("flex items-start gap-2 group", level > 0 && "pl-4")}
     >
+      {level > 0 && <div className="w-px bg-white/10 self-stretch -ml-2 mr-2"></div>}
       <div
         onClick={() => onAvatarClick(author.id)}
         className="cursor-pointer flex-shrink-0 flex flex-col items-center"
       >
-          <div className="relative w-8 h-8 mt-1">
-            <Image
-              src={author.avatar || DEFAULT_AVATAR_URL}
-              alt={t('userAvatar', { user: author.displayName || 'User' })}
-              width={32}
-              height={32}
-              className={`w-full h-full rounded-full object-cover hover:opacity-80 transition-opacity border border-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.4)]`}
-            />
-          </div>
-          <div className="mt-1 flex justify-center">
-             <UserBadge role={author.role} className="scale-[0.7] transform origin-top" />
-          </div>
+        <Image
+          src={author.avatar || DEFAULT_AVATAR_URL}
+          alt={t('userAvatar', { user: author.displayName || 'User' })}
+          width={level > 0 ? 24 : 32}
+          height={level > 0 ? 24 : 32}
+          className="rounded-full object-cover mt-1"
+        />
       </div>
-      <div className="flex-1 min-w-0">
-        <div className="flex justify-between items-start">
-            <div className="flex items-center gap-2 pt-1">
-                <p
-                    className="text-xs font-bold text-white/80 cursor-pointer hover:underline"
-                    onClick={() => onAvatarClick(author.id)}
-                >
-                    {author.displayName || author.username || 'User'}
-                </p>
-                <Tooltip.Provider delayDuration={300}>
-                  <Tooltip.Root>
-                    <Tooltip.Trigger asChild>
-                      <span className="text-[10px] text-white/40 cursor-default hover:text-white/60 transition-colors">{formattedTime}</span>
-                    </Tooltip.Trigger>
-                    <Tooltip.Portal>
-                      <Tooltip.Content className="bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-lg z-[60]" sideOffset={5}>
-                        {fullDate}
-                        <Tooltip.Arrow className="fill-gray-800" />
-                      </Tooltip.Content>
-                    </Tooltip.Portal>
-                  </Tooltip.Root>
-                </Tooltip.Provider>
-            </div>
 
-             <DropdownMenu.Root>
+      <div className="flex-1 min-w-0">
+        <div className="bg-white/5 rounded-lg px-3 py-1.5">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-2">
+              <p className="text-xs font-bold text-white/90 cursor-pointer hover:underline" onClick={() => onAvatarClick(author.id)}>
+                {author.displayName || author.username || 'User'}
+              </p>
+              <UserBadge role={author.role} className="scale-[0.6] transform origin-left" />
+            </div>
+            <DropdownMenu.Root>
                 <DropdownMenu.Trigger asChild>
-                  <button className="text-white/40 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                    <MoreHorizontal size={16} />
+                  <button className="text-white/40 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity p-1">
+                    <MoreHorizontal size={14} />
                   </button>
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Portal>
                   <DropdownMenu.Content className="min-w-[150px] bg-gray-800 rounded-md p-1 shadow-xl z-[60] border border-white/10" align="end">
                     {currentUserId === comment.authorId ? (
-                      <DropdownMenu.Item
-                        className="flex items-center gap-2 px-2 py-1.5 text-sm text-red-400 hover:bg-white/10 rounded cursor-pointer outline-none"
-                        onSelect={() => onDelete(comment.id)}
-                      >
-                        <Trash size={14} />
-                        {t('delete') || 'Usuń'}
+                      <DropdownMenu.Item className="flex items-center gap-2 px-2 py-1.5 text-sm text-red-400 hover:bg-white/10 rounded cursor-pointer outline-none" onSelect={() => { if (confirm(t('deleteConfirmation'))) onDelete(comment.id); }}>
+                        <Trash size={14} />{t('delete') || 'Usuń'}
                       </DropdownMenu.Item>
                     ) : (
-                      <DropdownMenu.Item
-                         className="flex items-center gap-2 px-2 py-1.5 text-sm text-white hover:bg-white/10 rounded cursor-pointer outline-none"
-                         onSelect={() => onReport(comment.id)}
-                      >
-                        <Flag size={14} />
-                        {t('report') || 'Zgłoś'}
+                      <DropdownMenu.Item className="flex items-center gap-2 px-2 py-1.5 text-sm text-white hover:bg-white/10 rounded cursor-pointer outline-none" onSelect={() => onReport(comment.id)}>
+                        <Flag size={14} />{t('report') || 'Zgłoś'}
                       </DropdownMenu.Item>
                     )}
                   </DropdownMenu.Content>
                 </DropdownMenu.Portal>
              </DropdownMenu.Root>
+          </div>
+          <p className="text-sm text-white/90 whitespace-pre-wrap break-words">{comment.text}</p>
         </div>
 
-        <p className="text-sm text-white whitespace-pre-wrap break-words">{renderText(comment.text)}</p>
-        <div className="flex items-center gap-4 text-xs text-white/60 mt-1">
-          <button onClick={() => onLike(comment.id)} className="flex items-center gap-1 hover:text-white transition-colors">
-            <Heart size={14} className={isLiked ? 'text-red-500 fill-current' : ''} />
-            {comment.likedBy.length > 0 && <span>{comment.likedBy.length}</span>}
+        <div className="flex items-center gap-3 text-xs text-white/50 mt-1 pl-2">
+          <span>{formattedTime}</span>
+          <button onClick={() => setIsReplying(!isReplying)} className="font-semibold hover:text-white transition-colors">
+            {t('reply')}
           </button>
-          {!isReply && (
-            <button onClick={handleReplyClick} className="flex items-center gap-1 hover:text-white transition-colors">
-              <MessageSquare size={14} />
-              <span>{t('reply')}</span>
-            </button>
-          )}
         </div>
+
         {isReplying && user && (
           <form onSubmit={handleLocalReplySubmit} className="flex items-center gap-2 mt-2">
-            {user.avatar && <Image src={user.avatar} alt={t('yourAvatar')} width={24} height={24} className="w-6 h-6 rounded-full" />}
             <input
               type="text"
               value={replyText}
@@ -185,33 +134,58 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onReplySubmi
             </button>
           </form>
         )}
-        <div className="mt-2 space-y-3">
-          {comment.replies?.map((reply: CommentWithRelations) => (
-            <CommentItem
-              key={reply.id}
-              comment={reply}
-              onLike={onLike}
-              onReplySubmit={onReplySubmit}
-              onDelete={onDelete}
-              onReport={onReport}
-              onAvatarClick={onAvatarClick}
-                onPrefetchUser={onPrefetchUser}
-              currentUserId={currentUserId}
-              isReply={true}
-              lang={lang}
-            />
-          ))}
-        </div>
+
+        {hasReplies && (
+          <div className="mt-2">
+            <button onClick={() => setAreRepliesVisible(!areRepliesVisible)} className="flex items-center gap-1 text-xs text-white/60 font-semibold mb-2">
+              <ChevronDown size={14} className={cn("transition-transform", !areRepliesVisible && "-rotate-90")} />
+              {areRepliesVisible ? t('hideReplies') : t('showReplies', { count: comment.replies.length.toString() })}
+            </button>
+            <AnimatePresence>
+            {areRepliesVisible && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="space-y-3 overflow-hidden"
+              >
+                {comment.replies?.map((reply) => (
+                  <CommentItem key={reply.id} comment={reply} onLike={onLike} onReplySubmit={onReplySubmit} onDelete={onDelete} onReport={onReport} onAvatarClick={onAvatarClick} currentUserId={currentUserId} lang={lang} level={level + 1} />
+                ))}
+              </motion.div>
+            )}
+            </AnimatePresence>
+          </div>
+        )}
+      </div>
+
+      <div className="flex flex-col items-center gap-0.5 text-white/50 pt-2">
+        <button onClick={() => onLike(comment.id)} className="group/like">
+          <Heart size={16} className={cn("transition-colors", isLiked ? 'text-red-500 fill-current' : 'group-hover/like:text-white')} />
+        </button>
+        <span className="text-[10px]">{likeCount > 0 ? likeCount : ''}</span>
       </div>
     </motion.div>
   );
 };
 
-interface CommentsModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  slideId?: string;
-  initialCommentsCount: number;
+const recursivelyUpdateComment = (comments: CommentWithRelations[], commentId: string, updateFn: (comment: CommentWithRelations) => CommentWithRelations): [CommentWithRelations[], boolean] => {
+  let foundAndUpdated = false;
+  const updatedComments = comments.map(c => {
+    if (c.id === commentId) {
+      foundAndUpdated = true;
+      return updateFn(c);
+    }
+    if (c.replies && c.replies.length > 0) {
+      const [updatedReplies, didUpdate] = recursivelyUpdateComment(c.replies, commentId, updateFn);
+      if (didUpdate) {
+        foundAndUpdated = true;
+        return { ...c, replies: updatedReplies };
+      }
+    }
+    return c;
+  });
+  return [updatedComments, foundAndUpdated];
 }
 
 const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId, initialCommentsCount }) => {
@@ -220,18 +194,14 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
   const { setActiveModal, openPatronProfileModal } = useStore();
   const { addToast } = useToast();
   const [newComment, setNewComment] = useState('');
+  const [sortBy, setSortBy] = useState<'newest' | 'top'>('newest');
   const queryClient = useQueryClient();
 
   const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isLoading,
-    isFetchingNextPage,
+    data, error, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ['comments', slideId],
-    queryFn: ({ pageParam }) => fetchComments({ pageParam, slideId: slideId! }),
+    queryKey: ['comments', slideId, sortBy],
+    queryFn: ({ pageParam }) => fetchComments({ pageParam, slideId: slideId!, sortBy }),
     initialPageParam: '',
     getNextPageParam: (lastPage) => lastPage.nextCursor,
     enabled: isOpen && !!slideId,
@@ -241,212 +211,116 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
 
   useEffect(() => {
     if (!isOpen || !slideId) return;
-
     const channel = ably.channels.get(`comments:${slideId}`);
-    const onNewComment = (message: Ably.Message) => {
-      queryClient.invalidateQueries({ queryKey: ['comments', slideId] });
-    };
-
+    const onNewComment = () => queryClient.invalidateQueries({ queryKey: ['comments', slideId] });
     channel.subscribe('new-comment', onNewComment);
-
-    return () => {
-      channel.unsubscribe('new-comment', onNewComment);
-    };
+    return () => channel.unsubscribe('new-comment', onNewComment);
   }, [isOpen, slideId, queryClient]);
 
-
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-
   useEffect(() => {
     if (textareaRef.current) {
-        textareaRef.current.style.height = 'auto';
-        textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   }, [newComment]);
 
   const likeMutation = useMutation({
-    mutationFn: (commentId: string) => fetch('/api/comments/like', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ commentId }),
-    }),
+    mutationFn: (commentId: string) => fetch('/api/comments/like', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ commentId }) }),
     onMutate: async (commentId: string) => {
-      await queryClient.cancelQueries({ queryKey: ['comments', slideId] });
-      const previousComments = queryClient.getQueryData(['comments', slideId]);
-      queryClient.setQueryData(['comments', slideId], (oldData: any) => {
-        const newData = { ...oldData };
-        newData.pages = newData.pages.map((page: any) => ({
-          ...page,
-          comments: page.comments.map((comment: CommentWithRelations) => {
-            if (comment.id === commentId) {
-              const isLiked = comment.likedBy.includes(user!.id);
-              const newLikedBy = isLiked
-                ? comment.likedBy.filter((id) => id !== user!.id)
-                : [...comment.likedBy, user!.id];
-              return { ...comment, likedBy: newLikedBy };
-            }
-            return comment;
-          }),
-        }));
-        return newData;
+      await queryClient.cancelQueries({ queryKey: ['comments', slideId, sortBy] });
+      const previousData = queryClient.getQueryData(['comments', slideId, sortBy]);
+
+      queryClient.setQueryData(['comments', slideId, sortBy], (oldData: any) => {
+          if (!oldData) return oldData;
+          const newPages = oldData.pages.map((page: any) => {
+              const [updatedComments] = recursivelyUpdateComment(page.comments, commentId, (comment) => {
+                  const isLiked = comment.likedBy.includes(user!.id);
+                  const newLikedBy = isLiked ? comment.likedBy.filter(id => id !== user!.id) : [...comment.likedBy, user!.id];
+                  const newLikeCount = (comment._count?.likes ?? 0) + (isLiked ? -1 : 1);
+                  return { ...comment, likedBy: newLikedBy, _count: { ...comment._count, likes: newLikeCount } };
+              });
+              return { ...page, comments: updatedComments };
+          });
+          return { ...oldData, pages: newPages };
       });
-      return { previousComments };
+
+      return { previousData };
     },
     onError: (err, variables, context) => {
-      if (context?.previousComments) {
-        queryClient.setQueryData(['comments', slideId], context.previousComments);
+      if (context?.previousData) {
+        queryClient.setQueryData(['comments', slideId, sortBy], context.previousData);
       }
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['comments', slideId] });
+      queryClient.invalidateQueries({ queryKey: ['comments', slideId, sortBy] });
     },
   });
 
   const replyMutation = useMutation({
-    mutationFn: ({ parentId, text }: { parentId: string; text: string }) => fetch('/api/comments', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ slideId, text, parentId }),
-    }),
+    mutationFn: ({ parentId, text }: { parentId: string | null; text: string }) => fetch('/api/comments', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slideId, text, parentId }) }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['comments', slideId] });
+      setNewComment('');
     },
   });
 
   const deleteMutation = useMutation({
-    mutationFn: (commentId: string) => fetch('/api/comments', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ commentId }),
-    }),
-    onMutate: async (commentId: string) => {
-      await queryClient.cancelQueries({ queryKey: ['comments', slideId] });
-      const previousComments = queryClient.getQueryData(['comments', slideId]);
-      queryClient.setQueryData(['comments', slideId], (oldData: any) => {
-        const newData = { ...oldData };
-        newData.pages = newData.pages.map((page: any) => ({
-          ...page,
-          comments: page.comments.filter((comment: CommentWithRelations) => comment.id !== commentId),
-        }));
-        return newData;
-      });
-      return { previousComments };
-    },
-    onError: (err, variables, context) => {
-      if (context?.previousComments) {
-        queryClient.setQueryData(['comments', slideId], context.previousComments);
-      }
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['comments', slideId] });
-    },
+    mutationFn: (commentId: string) => fetch('/api/comments', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ commentId }) }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['comments', slideId] }),
   });
 
-  const handleLike = (commentId: string) => {
-    if (!user) return;
-    likeMutation.mutate(commentId);
-  };
-
-  const handleReplySubmit = async (parentId: string, text: string) => {
-    if (!user) return;
-    await replyMutation.mutateAsync({ parentId, text });
-  };
-
-  const handleDelete = async (commentId: string) => {
-    if (!confirm(t('deleteConfirmation') || 'Are you sure?')) return;
-    await deleteMutation.mutateAsync(commentId);
-  };
-
-  const handleReport = (commentId: string) => {
-    console.log('Reporting comment:', commentId);
-    addToast(t('reportSubmitted') || 'Report submitted', 'success');
-  };
-
-  const handlePrefetchUser = (userId: string) => {
-      queryClient.prefetchQuery({
-          queryKey: ['author', userId],
-          queryFn: () => fetchAuthorProfile(userId),
-          staleTime: 1000 * 60 * 5, // 5 minutes
-      });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const trimmedComment = newComment.trim();
     if (!trimmedComment || !user || !slideId) return;
-
-    // We'll use a mutation for this as well for consistency
-    await replyMutation.mutateAsync({ parentId: '', text: trimmedComment });
-    setNewComment('');
+    replyMutation.mutate({ parentId: null, text: trimmedComment });
   };
-
 
   const renderContent = () => {
     if (isLoading && comments.length === 0) {
       return (
-        <div className="flex-1 p-4 space-y-4">
-           {[...Array(3)].map((_, i) => (
+        <div className="flex-1 px-2 pt-2 space-y-4">
+           {[...Array(5)].map((_, i) => (
               <div key={i} className="flex items-start gap-3">
                  <Skeleton className="h-8 w-8 rounded-full bg-white/10" />
                  <div className="space-y-2 flex-1">
-                    <Skeleton className="h-4 w-[30%] bg-white/10" />
-                    <Skeleton className="h-4 w-[80%] bg-white/10" />
+                    <Skeleton className="h-4 w-[100px] bg-white/10" />
+                    <Skeleton className="h-4 w-[200px] bg-white/10" />
                  </div>
               </div>
            ))}
         </div>
       );
     }
-    if (error && comments.length === 0) {
-      return (
-        <div className="flex-1 flex items-center justify-center text-center text-red-400 p-4">
-          <p>{t('commentsError') || 'Could not load comments.'}</p>
-        </div>
-      );
-    }
-    if (comments.length === 0 && !isLoading) {
-        return (
-            <div className="flex-1 flex items-center justify-center text-center text-white/60 p-4">
-                {t('noCommentsYet')}
-            </div>
-        );
-    }
+    if (error) return <div className="flex-1 flex items-center justify-center text-red-400 p-4">{t('commentsError')}</div>;
+    if (comments.length === 0) return <div className="flex-1 flex items-center justify-center text-white/60 p-4">{t('noCommentsYet')}</div>;
+
     return (
-      <div className="p-4 custom-scrollbar">
-        <AnimatePresence>
-          <motion.div layout className="space-y-4">
-            {comments.map((c) => {
-              const comment = c as unknown as CommentWithRelations;
-              if (!comment.author) return null;
-              return (
-                <CommentItem
-                  key={comment.id}
-                  comment={comment}
-                  onLike={handleLike}
-                  onReplySubmit={handleReplySubmit}
-                  onDelete={handleDelete}
-                  onReport={handleReport}
-                  onAvatarClick={openPatronProfileModal}
-                  onPrefetchUser={handlePrefetchUser}
-                  currentUserId={user?.id}
-                  lang={lang}
-                />
-              );
-            })}
-            {hasNextPage && (
-                 <div className="flex justify-center pt-2 pb-4">
-                    <button
-                        onClick={() => fetchNextPage()}
-                        disabled={isFetchingNextPage}
-                        className="text-sm text-pink-400 hover:text-pink-300 disabled:opacity-50 flex items-center gap-2"
-                    >
-                        {isFetchingNextPage && <Loader2 className="animate-spin h-3 w-3" />}
-                        {t('loadMore') || 'Load More'}
-                    </button>
-                 </div>
-            )}
-          </motion.div>
-        </AnimatePresence>
+      <div className="px-2 pt-2 custom-scrollbar">
+        <motion.div layout className="space-y-3">
+          {comments.map((comment) => (
+            <CommentItem
+              key={comment.id}
+              comment={comment}
+              onLike={likeMutation.mutate}
+              onReplySubmit={(parentId, text) => replyMutation.mutateAsync({ parentId, text })}
+              onDelete={deleteMutation.mutate}
+              onReport={(id) => addToast(t('reportSubmitted'), 'success')}
+              onAvatarClick={openPatronProfileModal}
+              currentUserId={user?.id}
+              lang={lang}
+            />
+          ))}
+          {hasNextPage && (
+            <div className="flex justify-center py-2">
+              <button onClick={() => fetchNextPage()} disabled={isFetchingNextPage} className="text-sm text-pink-400 hover:text-pink-300 disabled:opacity-50 flex items-center gap-2">
+                {isFetchingNextPage && <Loader2 className="animate-spin h-3 w-3" />}
+                {t('loadMore')}
+              </button>
+            </div>
+          )}
+        </motion.div>
       </div>
     );
   };
@@ -454,16 +328,9 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          className="absolute inset-0 bg-black/60 z-50 flex items-end"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          onClick={onClose}
-        >
+        <motion.div className="absolute inset-0 bg-black/60 z-50 flex items-end" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} onClick={onClose}>
           <motion.div
-            className="w-full bg-black/80 backdrop-blur-md rounded-t-2xl flex flex-col border-t border-white/10"
+            className="w-full bg-[#1C1C1E] backdrop-blur-md rounded-t-2xl flex flex-col border-t border-white/10"
             style={{ height: '75dvh' }}
             initial={{ y: '100%' }}
             animate={{ y: '0%' }}
@@ -471,65 +338,43 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
             transition={{ type: 'spring', stiffness: 400, damping: 40 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex-shrink-0 relative flex items-center justify-center p-4 border-b border-white/10">
+            <div className="flex-shrink-0 relative text-center p-3 border-b border-white/10">
               <h2 className="text-base font-semibold text-white">{t('commentsTitle', { count: (comments.length || initialCommentsCount).toString() })}</h2>
-              <button onClick={onClose} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white">
-                <X size={24} />
-              </button>
+              <button onClick={onClose} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/60 hover:text-white"><X size={24} /></button>
             </div>
 
-            <div className="flex-1 overflow-y-auto min-h-0">
-               {renderContent()}
+            <div className="flex-shrink-0 px-2 py-1.5 border-b border-white/10 flex items-center gap-2">
+                <button onClick={() => setSortBy('newest')} className={cn("px-3 py-1 text-xs rounded-full", sortBy === 'newest' ? 'bg-white/90 text-black font-semibold' : 'bg-white/10 text-white/80')}>{t('newest')}</button>
+                <button onClick={() => setSortBy('top')} className={cn("px-3 py-1 text-xs rounded-full", sortBy === 'top' ? 'bg-white/90 text-black font-semibold' : 'bg-white/10 text-white/80')}>{t('top')}</button>
             </div>
 
-            <div className="flex-shrink-0 p-2 border-t border-white/10 bg-black/50 pb-[env(safe-area-inset-bottom)] md:pb-2 z-10">
-            {user ? (
+            <div className="flex-1 overflow-y-auto min-h-0">{renderContent()}</div>
+
+            <div className="flex-shrink-0 p-2 border-t border-white/10 bg-black/30 pb-[calc(0.5rem+env(safe-area-inset-bottom))] z-10">
+              {user ? (
                 <form onSubmit={handleSubmit} className="flex items-end gap-2">
-                  <div className="w-8 h-8 rounded-full mb-1">
-                      <Image
-                        src={user.avatar || DEFAULT_AVATAR_URL}
-                        alt={t('yourAvatar')}
-                        width={32}
-                        height={32}
-                        className={`w-full h-full rounded-full object-cover`}
-                      />
-                  </div>
+                  <Image src={user.avatar || DEFAULT_AVATAR_URL} alt={t('yourAvatar')} width={32} height={32} className="w-8 h-8 rounded-full object-cover mb-1" />
                   <div className="flex-1 relative">
-                      <textarea
-                        ref={textareaRef}
-                        value={newComment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                        placeholder={t('addCommentPlaceholder')}
-                        className="w-full px-4 py-2 bg-white/10 text-white rounded-2xl focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm resize-none min-h-[40px] max-h-[120px] pr-10"
-                        disabled={replyMutation.isPending}
-                        rows={1}
-                      />
-                      <button type="button" className="absolute right-2 bottom-2 text-white/40 hover:text-white" title="Emoji">
-                          <Smile size={20} />
-                      </button>
+                    <textarea
+                      ref={textareaRef}
+                      value={newComment}
+                      onChange={(e) => setNewComment(e.target.value)}
+                      placeholder={t('addCommentPlaceholder')}
+                      className="w-full px-4 py-2 bg-white/10 text-white rounded-2xl focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm resize-none min-h-[40px] max-h-[120px] pr-10"
+                      disabled={replyMutation.isPending}
+                      rows={1}
+                    />
+                    <button type="button" className="absolute right-2 bottom-2 text-white/40 hover:text-white" title="Emoji"><Smile size={20} /></button>
                   </div>
-
-                  <button
-                    type="submit"
-                    className="px-4 py-2 mb-1 bg-pink-500 text-white rounded-full text-sm font-semibold disabled:opacity-50 flex items-center justify-center min-w-[70px] transition-colors"
-                    disabled={!newComment.trim() || replyMutation.isPending}
-                  >
+                  <button type="submit" className="px-4 py-2 mb-1 bg-pink-500 text-white rounded-full text-sm font-semibold disabled:opacity-50 flex items-center justify-center min-w-[70px] transition-colors" disabled={!newComment.trim() || replyMutation.isPending}>
                     {replyMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : t('sendButton')}
                   </button>
                 </form>
-            ) : (
-                <div className="flex justify-center p-2">
-                    <button
-                        onClick={() => {
-                            setActiveModal('login');
-                            onClose();
-                        }}
-                        className="w-full py-3 bg-white/10 text-white/80 rounded-xl text-sm font-semibold hover:bg-white/20 hover:text-white transition-colors border border-white/5 active:scale-[0.98] transition-transform"
-                    >
-                        Zaloguj się, aby skomentować
-                    </button>
+              ) : (
+                <div className="text-center p-2">
+                  <button onClick={() => { setActiveModal('login'); onClose(); }} className="w-full py-3 bg-white/10 text-white/80 rounded-xl text-sm font-semibold hover:bg-white/20">Zaloguj się, aby skomentować</button>
                 </div>
-            )}
+              )}
             </div>
           </motion.div>
         </motion.div>
