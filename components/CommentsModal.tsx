@@ -241,6 +241,16 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
     return () => channel.unsubscribe('new-comment', onNewComment);
   }, [isOpen, slideId, queryClient]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      // Reset state when the modal is closed
+      setNewComment('');
+      setReplyingTo(null);
+      setImageFile(null);
+      setShowEmojiPicker(false);
+    }
+  }, [isOpen]);
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
     if (textareaRef.current) {
@@ -344,6 +354,19 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
                 pages: newPages,
             };
         });
+        // Also, manually update the reply count on the parent comment in the main comments query
+        queryClient.setQueryData(['comments', slideId, sortBy], (old: any) => {
+            if (!old) return old;
+            const newPages = old.pages.map((page: any) => {
+                const [updatedComments] = recursivelyUpdateComment(page.comments, parentId, (comment) => ({
+                    ...comment,
+                    _count: { ...comment._count, replies: (comment._count?.replies ?? 0) + 1 },
+                }));
+                return { ...page, comments: updatedComments };
+            });
+            return { ...old, pages: newPages };
+        });
+
         return { previousReplies };
       } else {
         // Optimistic update for a root comment
@@ -362,9 +385,8 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
     },
     onError: (err, { parentId }, context) => {
       addToast(t('commentPostError'), 'error');
-      if (parentId && context?.previousReplies) {
-        queryClient.setQueryData(['comments', slideId, 'replies', parentId], context.previousReplies);
-      }
+      // Revert both optimistic updates
+      queryClient.invalidateQueries({ queryKey: ['comments', slideId], exact: false });
     },
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({ queryKey: ['comments', slideId, 'replies', variables.parentId] });
@@ -419,7 +441,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
   const renderContent = () => {
     if (isLoading && comments.length === 0) {
       return (
-        <div className="flex-1 flex items-center justify-center">
+        <div className="w-full h-full flex items-center justify-center">
           <Loader2 className="h-8 w-8 animate-spin text-pink-400" />
         </div>
       );
@@ -516,10 +538,10 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
                   </div>
                    {showEmojiPicker && (
                       <div className="absolute bottom-16 right-0 z-20">
-                         <EmojiPicker onEmojiClick={onEmojiClick} />
+                         <EmojiPicker onEmojiClick={onEmojiClick} theme="dark" />
                       </div>
                    )}
-                   <button type="submit" className="p-2 text-sm font-semibold disabled:opacity-50 flex items-center justify-center transition-colors text-[#FE2C55] disabled:text-[#FE2C55]/50" disabled={!newComment.trim() || replyMutation.isPending}>
+                   <button type="submit" className="p-2 text-sm font-semibold disabled:opacity-50 flex items-center justify-center transition-colors text-[#FE2C55] disabled:text-[#FE2C55]/50" disabled={(!newComment.trim() && !imageFile) || replyMutation.isPending}>
                     {replyMutation.isPending ? <Loader2 className="h-5 w-5 animate-spin" /> : <SendHorizontal size={22} />}
                   </button>
                 </form>
