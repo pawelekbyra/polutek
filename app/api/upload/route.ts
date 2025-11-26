@@ -1,8 +1,6 @@
-
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile } from 'fs/promises';
+import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
-import { tmpdir } from 'os';
 
 export async function POST(request: NextRequest) {
   const data = await request.formData();
@@ -15,12 +13,23 @@ export async function POST(request: NextRequest) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
 
-  const tempFilePath = join(tmpdir(), `upload_${Date.now()}_${file.name}`);
-  await writeFile(tempFilePath, buffer);
+  // Create a unique filename
+  const filename = `${Date.now()}_${file.name.replace(/\s+/g, '_')}`;
 
-  // In a real app, you'd upload to a cloud storage service (S3, etc.)
-  // and return the URL. For now, we'll just return a placeholder.
-  const imageUrl = `/uploads/${tempFilePath.split('/').pop()}`;
+  // Define the path to the public/uploads directory
+  const uploadDir = join(process.cwd(), 'public', 'uploads');
+
+  // Create the upload directory if it doesn't exist
+  await mkdir(uploadDir, { recursive: true });
+
+  // Define the full file path
+  const path = join(uploadDir, filename);
+
+  // Write the file to the public directory
+  await writeFile(path, buffer);
+
+  // Return the public URL of the file
+  const imageUrl = `/uploads/${filename}`;
 
   return NextResponse.json({ success: true, imageUrl });
 }
