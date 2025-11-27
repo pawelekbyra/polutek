@@ -99,7 +99,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                         {/* Profile Header */}
                         <div className="flex flex-col items-center pt-6 px-4">
                             {/* Avatar */}
-                            <div className="relative mb-3">
+                            <div className="relative mb-4">
                                 <Image
                                     src={profile.avatarUrl || DEFAULT_AVATAR_URL}
                                     alt={profile.username}
@@ -113,21 +113,21 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                             <h1 className="text-lg font-bold text-white mb-1">@{profile.username}</h1>
 
                             {/* Badge */}
-                            <div className="mb-3">
+                            <div className="mb-4">
                                 <UserBadge role={profile.role} />
                             </div>
 
                             {/* Bio (Description) */}
                             {profile.bio ? (
-                                <p className="text-sm text-center text-white/90 whitespace-pre-wrap mb-4 px-2 leading-tight max-w-sm">
+                                <p className="text-sm text-center text-white/90 whitespace-pre-wrap mb-6 px-2 leading-tight max-w-sm">
                                     {profile.bio}
                                 </p>
                             ) : (
-                                <p className="text-sm text-center text-white/40 mb-4 italic">Brak opisu</p>
+                                <p className="text-sm text-center text-white/40 mb-6 italic">Brak opisu</p>
                             )}
 
                             {/* Stats */}
-                            <div className="flex items-center gap-6 mt-2 mb-6">
+                            <div className="flex items-center gap-8 mb-8">
                                 <div className="flex flex-col items-center">
                                     <span className="font-bold text-white text-lg">{formatCount(profile.slides.length)}</span>
                                     <span className="text-xs text-white/60">Filmików</span>
@@ -143,7 +143,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                             </div>
 
                             {/* Actions */}
-                            <div className="flex gap-2 w-full max-w-xs mb-6">
+                            <div className="flex gap-2 w-full max-w-xs mb-8">
                                 <button
                                     onClick={togglePatron}
                                     className={`flex-1 py-2.5 rounded text-sm font-semibold transition-colors flex items-center justify-center gap-2
@@ -168,35 +168,30 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                         </div>
 
                         {/* Tabs */}
-                        <div className="flex border-b border-white/10 mt-2 sticky top-0 bg-[#121212] z-10" style={{ top: 0 }}>
-                             {/* Note: sticky top-0 might conflict with the modal scrolling if not careful, but usually works in this structure.
-                                Actually, the scrollable container is the div above. The sticky parent needs to be inside that scroll container.
-                                Wait, `sticky` works relative to scroll container. The scroll container starts after the top bar.
-                                So `top: 0` is correct relative to the scroll view.
-                             */}
+                        <div className="flex border-b border-white/10 mt-0 sticky top-0 bg-[#121212] z-10" style={{ top: 0 }}>
                             <button
                                 onClick={() => setActiveTab('videos')}
-                                className={`flex-1 flex justify-center items-center py-3 relative ${activeTab === 'videos' ? 'text-white' : 'text-white/40'}`}
+                                className={`flex-1 flex justify-center items-center py-3.5 relative transition-colors ${activeTab === 'videos' ? 'text-white' : 'text-white/40 hover:bg-white/5'}`}
                             >
-                                <Grid size={20} />
+                                <Grid size={26} strokeWidth={activeTab === 'videos' ? 2.5 : 2} />
                                 {activeTab === 'videos' && (
                                     <motion.div layoutId="activeTab" className="absolute bottom-0 w-8 h-[2px] bg-white" />
                                 )}
                             </button>
                             <button
                                 onClick={() => setActiveTab('liked')}
-                                className={`flex-1 flex justify-center items-center py-3 relative ${activeTab === 'liked' ? 'text-white' : 'text-white/40'}`}
+                                className={`flex-1 flex justify-center items-center py-3.5 relative transition-colors ${activeTab === 'liked' ? 'text-white' : 'text-white/40 hover:bg-white/5'}`}
                             >
-                                <Heart size={20} />
+                                <Heart size={26} strokeWidth={activeTab === 'liked' ? 2.5 : 2} />
                                 {activeTab === 'liked' && (
                                     <motion.div layoutId="activeTab" className="absolute bottom-0 w-8 h-[2px] bg-white" />
                                 )}
                             </button>
                             <button
                                 onClick={() => setActiveTab('private')}
-                                className={`flex-1 flex justify-center items-center py-3 relative ${activeTab === 'private' ? 'text-white' : 'text-white/40'}`}
+                                className={`flex-1 flex justify-center items-center py-3.5 relative transition-colors ${activeTab === 'private' ? 'text-white' : 'text-white/40 hover:bg-white/5'}`}
                             >
-                                <Lock size={20} />
+                                <Lock size={26} strokeWidth={activeTab === 'private' ? 2.5 : 2} />
                                 {activeTab === 'private' && (
                                     <motion.div layoutId="activeTab" className="absolute bottom-0 w-8 h-[2px] bg-white" />
                                 )}
