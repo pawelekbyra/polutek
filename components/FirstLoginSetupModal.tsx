@@ -57,7 +57,7 @@ export default function FirstLoginSetupModal() {
     console.log('User status in FirstLoginSetupModal:', user);
 
     // Kluczowy warunek:
-    if (user && user.isLoggedIn && user.isFirstLogin) {
+    if (user && user.isFirstLogin) {
       console.log('WARUNEK SPEŁNIONY: Pokazuję modal pierwszego logowania.');
     } else {
       console.log('WARUNEK NIESPEŁNIONY: isFirstLogin jest FAŁSZ lub brakuje obiektu user.');
