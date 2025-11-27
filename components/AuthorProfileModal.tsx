@@ -75,8 +75,8 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                       paddingTop: 'var(--safe-area-top)',
                     }}
                 >
-                    <div className="flex justify-start w-12 pl-0">
-                        <button onClick={onClose} className="p-2 text-white/80 hover:text-white transition-colors">
+                    <div className="flex justify-start w-12">
+                        <button onClick={onClose} className="p-2 -ml-2 text-white/80 hover:text-white transition-colors">
                             <ChevronLeft size={28} />
                         </button>
                     </div>

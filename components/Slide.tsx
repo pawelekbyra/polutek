@@ -85,7 +85,7 @@ const SlideUI = ({ slide, isLocked = false }: SlideUIProps) => {
         {/* Top gradient */}
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
         {/* Bottom gradient */}
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/70 via-black/40 to-transparent pointer-events-none" />
 
         <AnimatePresence>
             {!isLocked && showPlaybackIcon && (
@@ -107,8 +107,8 @@ const SlideUI = ({ slide, isLocked = false }: SlideUIProps) => {
             )}
         </AnimatePresence>
 
-        {/* UI Controls Container */}
-        <div className="relative z-20 pointer-events-none w-full max-w-[calc(100%-60px)] flex flex-col items-start text-left">
+        {/* UI Controls Container - Added bottom padding/margin to lift it up */}
+        <div className="relative z-20 pointer-events-none w-full max-w-[calc(100%-60px)] flex flex-col items-start text-left mb-6">
             <div className="flex items-center gap-2 mb-2 pointer-events-auto max-w-full">
                 <Image 
                     src={slide.avatar || DEFAULT_AVATAR_URL} 

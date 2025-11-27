@@ -444,16 +444,16 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
   const renderContent = () => {
     if (isLoading && comments.length === 0) {
       return (
-        <div className="w-full h-full flex items-center justify-center">
+        <div className="flex-1 flex items-center justify-center h-full">
           <Loader2 className="h-8 w-8 animate-spin text-pink-400" />
         </div>
       );
     }
-    if (error) return <div className="flex-1 flex items-center justify-center text-red-400 p-4">{t('commentsError')}</div>;
-    if (comments.length === 0) return <div className="flex-1 flex items-center justify-center text-white/60 p-4">{t('noCommentsYet')}</div>;
+    if (error) return <div className="flex-1 flex items-center justify-center text-red-400 p-4 h-full">{t('commentsError')}</div>;
+    if (comments.length === 0) return <div className="flex-1 flex items-center justify-center text-white/60 p-4 h-full text-center">{t('noCommentsYet')}</div>;
 
     return (
-      <div className="px-2 pt-2 custom-scrollbar">
+      <div className="px-2 pt-2 custom-scrollbar flex-1">
         <div className="space-y-3">
           {comments.map((comment) => (
             <MemoizedCommentItem
@@ -508,7 +508,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
                 <button onClick={() => setSortBy('newest')} className={cn("font-semibold", sortBy === 'newest' ? 'text-white' : 'text-white/40')}>{t('newest')}</button>
             </div>
 
-            <div className="flex-1 overflow-y-auto min-h-0">{renderContent()}</div>
+            <div className="flex-1 overflow-y-auto min-h-0 flex flex-col">{renderContent()}</div>
 
             <div className="flex-shrink-0 border-t border-white/10 bg-[#121212] pb-[calc(0.5rem+env(safe-area-inset-bottom))] z-10">
               {replyingTo && (
