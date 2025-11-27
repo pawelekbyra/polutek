@@ -46,7 +46,6 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
     };
 
     const togglePatron = () => {
-        closeAuthorProfileModal();
         openTippingModal();
     };
 

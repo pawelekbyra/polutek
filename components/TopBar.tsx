@@ -105,7 +105,7 @@ const TopBar = () => {
             <div className="flex justify-start">
               <motion.button
                 whileTap={{ scale: 0.9 }}
-                className="p-2 text-white/80 hover:text-white transition-colors active:bg-white/10 rounded-md outline-none"
+                className="p-2 text-white hover:text-white transition-colors active:bg-white/10 rounded-md outline-none"
                 onClick={handleLoggedOutMenuClick}
                 aria-label={t('menuAriaLabel')}
               >
@@ -134,7 +134,7 @@ const TopBar = () => {
               )}
               <motion.button
                  whileTap={{ scale: 0.9 }}
-                 className="p-2 text-white/80 hover:text-white transition-colors active:bg-white/10 rounded-md outline-none"
+                 className="p-2 text-white hover:text-white transition-colors active:bg-white/10 rounded-md outline-none"
                  onClick={handleLoggedOutNotificationClick}
                  aria-label={t('notificationAriaLabel')}
               >
