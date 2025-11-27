@@ -62,10 +62,10 @@ const VideoControls: React.FC<VideoControlsProps> = ({
 
   return (
     <div
-        className="flex items-center gap-2 text-white bg-black/30 p-2 rounded-lg mt-4 backdrop-blur-sm"
+        className="flex items-center gap-2 text-white bg-black/30 p-2 rounded-lg mt-2 backdrop-blur-sm max-w-full"
         onClick={(e) => e.stopPropagation()}
     >
-      <button onClick={onTogglePlay} className="p-1 hover:text-pink-500 transition-colors">
+      <button onClick={onTogglePlay} className="p-1 hover:text-pink-500 transition-colors shrink-0">
         {isPlaying ? <Pause size={20} /> : <Play size={20} />}
       </button>
 
