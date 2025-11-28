@@ -13,7 +13,7 @@ export default function ClientLayoutWrapper({
 }) {
   const pathname = usePathname();
 
-  if (pathname?.startsWith("/robert") || pathname === "/setup") {
+  if (pathname?.startsWith("/robert") || pathname?.startsWith("/setup")) {
     return (
       <Providers>
         {children}

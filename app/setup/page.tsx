@@ -12,6 +12,7 @@ import { Loader2, Check, X, ShieldCheck, Mail, ChevronRight, Lock } from 'lucide
 import { useToast } from '@/context/ToastContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import ToggleSwitch from '@/components/ui/ToggleSwitch';
+import { useSession } from 'next-auth/react';
 
 // Zod Schemas for individual steps
 const PasswordSchema = z.string()
@@ -42,6 +43,7 @@ type FinalFormValues = z.infer<typeof FinalSchema>;
 
 export default function SetupPage() {
   const { user, setUser } = useUser();
+  const { update } = useSession();
   const { addToast } = useToast();
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -58,33 +60,6 @@ export default function SetupPage() {
 
   const updateFormData = (data: Partial<FinalFormValues>) => {
     setFormData(prev => ({ ...prev, ...data }));
-  };
-
-  const handleFinalSubmit = async () => {
-    setIsSubmitting(true);
-    // Combine all data
-    const finalData = { ...formData } as FinalFormValues;
-
-    const result = await completeFirstLoginSetup(finalData);
-
-    if (result.success) {
-      addToast('Konfiguracja zakończona!', 'success');
-      if (user) {
-        // Optimistic update
-        setUser({
-            ...user,
-            isFirstLogin: false,
-            displayName: finalData.displayName,
-            emailConsent: finalData.emailConsent,
-            emailLanguage: finalData.emailLanguage
-        });
-      }
-      // Hard redirect to clear any stuck states
-      window.location.href = '/';
-    } else {
-      addToast(result.message || 'Błąd konfiguracji.', 'error');
-      setIsSubmitting(false);
-    }
   };
 
   return (
@@ -127,8 +102,38 @@ export default function SetupPage() {
                             setIsSubmitting(true);
                             const finalData = { ...formData, ...data } as FinalFormValues;
                             const result = await completeFirstLoginSetup(finalData);
+
                             if (result.success) {
                                 addToast('Witamy w Polutku!', 'success');
+
+                                // FORCE SESSION UPDATE
+                                // We send the updated user object to the update() method.
+                                // The exact structure depends on how `jwt` callback handles `trigger: "update"`.
+                                // In auth.ts we see:
+                                // if (trigger === "update" && session?.user) {
+                                //    token.displayName = session.user.displayName;
+                                //    token.isFirstLogin = session.user.isFirstLogin;
+                                // }
+                                // So we need to pass a session-like object with a user property.
+                                await update({
+                                    user: {
+                                        displayName: finalData.displayName,
+                                        isFirstLogin: false
+                                    }
+                                });
+
+                                // Update local context as well (optimistic)
+                                if (user) {
+                                    setUser({
+                                        ...user,
+                                        isFirstLogin: false,
+                                        displayName: finalData.displayName,
+                                        emailConsent: finalData.emailConsent,
+                                        emailLanguage: finalData.emailLanguage
+                                    });
+                                }
+
+                                // Hard redirect to home to clear any query params or state
                                 window.location.href = '/';
                             } else {
                                 addToast(result.message || 'Błąd.', 'error');
