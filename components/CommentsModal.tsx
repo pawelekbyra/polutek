@@ -199,6 +199,7 @@ const MemoizedCommentItem = React.memo(CommentItem);
 
 const recursivelyUpdateComment = (comments: CommentWithRelations[], commentId: string, updateFn: (comment: CommentWithRelations) => CommentWithRelations): [CommentWithRelations[], boolean] => {
   let foundAndUpdated = false;
+  if (!comments) return [[], false];
   const updatedComments = comments.map(c => {
     if (c.id === commentId) {
       foundAndUpdated = true;
@@ -276,7 +277,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
       queryClient.setQueryData(['comments', slideId, sortBy], (oldData: any) => {
           if (!oldData) return oldData;
           const newPages = oldData.pages.map((page: any) => {
-              const [updatedComments] = recursivelyUpdateComment(page.comments, commentId, (comment) => {
+              const [updatedComments] = recursivelyUpdateComment(page.comments || [], commentId, (comment) => {
                   const isLiked = comment.likedBy.includes(user!.id);
                   const newLikedBy = isLiked ? comment.likedBy.filter(id => id !== user!.id) : [...comment.likedBy, user!.id];
                   const newLikeCount = (comment._count?.likes ?? 0) + (isLiked ? -1 : 1);
@@ -338,7 +339,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
         },
         likedBy: [],
         _count: { likes: 0, replies: 0 },
-        parentAuthorId: replyingTo ? replyingTo.author?.id : null,
+        parentAuthorId: replyingTo ? (replyingTo.author?.id || null) : null,
         parentAuthorUsername: replyingTo ? (replyingTo.author?.displayName || replyingTo.author?.username || 'Unknown') : null,
         replies: [],
       };
@@ -366,7 +367,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
         queryClient.setQueryData(['comments', slideId, sortBy], (old: any) => {
             if (!old) return old;
             const newPages = old.pages.map((page: any) => {
-                const [updatedComments] = recursivelyUpdateComment(page.comments, parentId, (comment) => ({
+                const [updatedComments] = recursivelyUpdateComment(page.comments || [], parentId, (comment) => ({
                     ...comment,
                     _count: { ...comment._count, likes: comment._count?.likes ?? 0, replies: (comment._count?.replies ?? 0) + 1 },
                 }));
