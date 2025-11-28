@@ -75,6 +75,8 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
         if (profile?.id) {
             queryClient.invalidateQueries({ queryKey: ['author', profile.id] });
         }
+        // Invalidate notifications to show the system notification
+        queryClient.invalidateQueries({ queryKey: ['notifications'] });
       } else {
         addToast(state.message, 'error');
       }

@@ -179,10 +179,16 @@ export async function deleteAccount(prevState: ActionResponse | any, formData: F
             sendAccountDeletedEmail(userEmail).catch(err => console.error('Failed to send deletion email', err));
         }
 
-        await signOut({ redirect: false });
+        try {
+            await signOut({ redirect: false });
+        } catch (signOutError) {
+            console.error("SignOut failed during deletion cleanup (safe to ignore):", signOutError);
+        }
+
         revalidatePath('/');
         return { success: true, message: 'Twoje konto zostało usunięte. Zostałeś wylogowany.' };
     } catch (error: any) {
+        console.error("Delete Account Error:", error);
         return { success: false, message: error.message || 'Failed to delete account.' };
     }
 }
