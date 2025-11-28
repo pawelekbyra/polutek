@@ -13,6 +13,7 @@ import { useToast } from '@/context/ToastContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import ToggleSwitch from '@/components/ui/ToggleSwitch';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 // Zod Schemas for individual steps
 const PasswordSchema = z.string()
@@ -45,6 +46,7 @@ export default function SetupPage() {
   const { user, setUser } = useUser();
   const { update } = useSession();
   const { addToast } = useToast();
+  const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -106,35 +108,36 @@ export default function SetupPage() {
                             if (result.success) {
                                 addToast('Witamy w Polutku!', 'success');
 
-                                // FORCE SESSION UPDATE
-                                // We send the updated user object to the update() method.
-                                // The exact structure depends on how `jwt` callback handles `trigger: "update"`.
-                                // In auth.ts we see:
-                                // if (trigger === "update" && session?.user) {
-                                //    token.displayName = session.user.displayName;
-                                //    token.isFirstLogin = session.user.isFirstLogin;
-                                // }
-                                // So we need to pass a session-like object with a user property.
-                                await update({
-                                    user: {
-                                        displayName: finalData.displayName,
-                                        isFirstLogin: false
-                                    }
-                                });
+                                try {
+                                    // Trigger session update - server will fetch fresh DB data
+                                    await update({ force: true });
+                                    console.log("Session updated");
 
-                                // Update local context as well (optimistic)
-                                if (user) {
-                                    setUser({
-                                        ...user,
-                                        isFirstLogin: false,
-                                        displayName: finalData.displayName,
-                                        emailConsent: finalData.emailConsent,
-                                        emailLanguage: finalData.emailLanguage
-                                    });
+                                    // Update local context
+                                    if (user) {
+                                        setUser({
+                                            ...user,
+                                            isFirstLogin: false,
+                                            displayName: finalData.displayName,
+                                            emailConsent: finalData.emailConsent,
+                                            emailLanguage: finalData.emailLanguage
+                                        });
+                                    }
+
+                                    // Refresh router to clear cache and redirect
+                                    router.refresh();
+
+                                    // Hard redirect as fallback/guarantee
+                                    setTimeout(() => {
+                                        window.location.href = '/';
+                                    }, 500);
+
+                                } catch (e) {
+                                    console.error("Session update failed", e);
+                                    // Fallback redirect
+                                    window.location.href = '/';
                                 }
 
-                                // Hard redirect to home to clear any query params or state
-                                window.location.href = '/';
                             } else {
                                 addToast(result.message || 'Błąd.', 'error');
                                 setIsSubmitting(false);
