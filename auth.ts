@@ -15,11 +15,25 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   session: { strategy: "jwt" },
   callbacks: {
     async jwt({ token, user, trigger, session }) {
-      if (trigger === "update" && session?.user) {
-        token.displayName = session.user.displayName;
-        token.isFirstLogin = session.user.isFirstLogin;
+      // If updating, re-fetch user from DB to ensure token is fresh
+      if (trigger === "update") {
+        // Use token.sub (userId) to fetch fresh data
+        if (token.sub) {
+            const freshUser = await prisma.user.findUnique({
+                where: { id: token.sub }
+            });
+            if (freshUser) {
+                token.displayName = freshUser.displayName;
+                token.isFirstLogin = freshUser.isFirstLogin;
+                token.role = freshUser.role;
+                token.username = freshUser.username;
+                token.avatar = freshUser.avatar;
+            }
+        }
         return token;
       }
+
+      // Initial sign in
       if (user) {
         token.id = user.id;
         token.role = user.role;
