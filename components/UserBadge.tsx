@@ -1,12 +1,22 @@
 import React from 'react';
-import { Trophy, Shield, Zap } from 'lucide-react';
+import { Trophy, Shield, Zap, Bot } from 'lucide-react';
 
 interface UserBadgeProps {
   role?: string;
+  isRobot?: boolean;
   className?: string;
 }
 
-export const UserBadge: React.FC<UserBadgeProps> = ({ role, className = '' }) => {
+export const UserBadge: React.FC<UserBadgeProps> = ({ role, isRobot, className = '' }) => {
+  if (isRobot) {
+    return (
+      <div className={`inline-flex items-center gap-1.5 bg-zinc-800 text-white px-2 py-0.5 rounded-full text-[10px] font-bold shadow-sm ${className}`}>
+        <Bot size={10} fill="currentColor" />
+        <span>ROBOT</span>
+      </div>
+    );
+  }
+
   if (!role) return null;
 
   switch (role.toLowerCase()) {

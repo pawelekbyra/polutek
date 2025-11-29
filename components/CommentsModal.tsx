@@ -86,6 +86,9 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
       role: 'user'
   };
 
+  // @ts-ignore - isRobot might be missing from type definition in some environments
+  const isRobot = safeAuthor.isRobot;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -108,9 +111,12 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
 
       <div className="flex-1 min-w-0">
         <div className="bg-transparent rounded-lg">
-           <p className="text-xs font-semibold text-[#A6A6A6] cursor-pointer hover:underline" onClick={() => onAvatarClick(safeAuthor.id)}>
-              @{safeAuthor.displayName || safeAuthor.username || 'User'}
-            </p>
+           <div className="flex items-center gap-2">
+             <p className="text-xs font-semibold text-[#A6A6A6] cursor-pointer hover:underline" onClick={() => onAvatarClick(safeAuthor.id)}>
+                @{safeAuthor.displayName || safeAuthor.username || 'User'}
+              </p>
+              <UserBadge role={safeAuthor.role} isRobot={isRobot} />
+           </div>
           <p className="text-[13px] text-white whitespace-pre-wrap break-words">
             {isL1Plus && comment.parentAuthorUsername && (
                 <span
