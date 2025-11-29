@@ -3,6 +3,7 @@ import { User, Comment, Notification } from './db.interfaces';
 import { SlideDTO as Slide } from './dto';
 import { prisma } from './prisma';
 import { CommentWithRelations } from './dto';
+import * as bcrypt from 'bcryptjs';
 
 let sql: NeonQueryFunction<false, false>;
 
@@ -180,9 +181,15 @@ export async function createUser(userData: Omit<User, 'id' | 'sessionVersion' | 
     const { username, displayName, email, password, avatar, role } = userData;
     // Ensure avatar is NULL if undefined or empty string to differentiate from default URL logic in UI
     const avatarValue = avatar || null;
+
+    let hashedPassword = password;
+    if (password) {
+        hashedPassword = await bcrypt.hash(password, 10);
+    }
+
     const result = await sql`
         INSERT INTO users (username, "displayName", email, password, avatar, "role", "isFirstLogin")
-        VALUES (${username}, ${displayName}, ${email}, ${password}, ${avatarValue}, ${role || 'user'}, true)
+        VALUES (${username}, ${displayName}, ${email}, ${hashedPassword}, ${avatarValue}, ${role || 'user'}, true)
         RETURNING *;
     `;
     const newUser = result[0] as User;
