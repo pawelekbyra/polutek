@@ -37,7 +37,7 @@ export async function GET(req: NextRequest) {
                 email: 'robot@polutek.app',
                 password: null, // No password needed
                 avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=Robert',
-                role: 'verified' // Or a specific 'bot' role if available, but 'verified' is good for visibility
+                role: 'user' // 'verified' is not a valid role type, using 'user'
             });
             console.log("Bot user created:", botUser.id);
         } catch (err: any) {
