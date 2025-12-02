@@ -142,7 +142,7 @@ const TopBar = () => {
             <div className="flex justify-start">
               <motion.button
                 whileTap={{ scale: 0.9 }}
-                className="p-1 text-white hover:text-white transition-colors active:bg-white/10 rounded-md outline-none"
+                className="p-1 ml-1 text-white hover:text-white transition-colors active:bg-white/10 rounded-md outline-none"
                 onClick={handleLoggedOutMenuClick}
                 aria-label={t('menuAriaLabel')}
               >
@@ -171,7 +171,7 @@ const TopBar = () => {
               )}
               <motion.button
                  whileTap={{ scale: 0.9 }}
-                 className="p-1 text-white hover:text-white transition-colors active:bg-white/10 rounded-md outline-none"
+                 className="p-1 mr-1 text-white hover:text-white transition-colors active:bg-white/10 rounded-md outline-none"
                  onClick={handleBellClick}
                  aria-label={t('notificationAriaLabel')}
               >
@@ -185,7 +185,7 @@ const TopBar = () => {
             <div className="flex justify-start">
               <Popover open={isMenuOpen} onOpenChange={setIsMenuOpen}>
                   <PopoverTrigger asChild>
-                    <Button variant="ghost" size="icon" aria-label={t('menuAriaLabel')}>
+                    <Button variant="ghost" size="icon" aria-label={t('menuAriaLabel')} className="ml-1">
                         <MenuIcon className="w-6 h-6" />
                     </Button>
                   </PopoverTrigger>
@@ -234,7 +234,7 @@ const TopBar = () => {
                 </Button>
               )}
               <div className="relative">
-                <Button variant="ghost" size="icon" onClick={handleBellClick} aria-label={t('notificationAriaLabel')}>
+                <Button variant="ghost" size="icon" onClick={handleBellClick} aria-label={t('notificationAriaLabel')} className="mr-1">
                   <BellIcon className="w-6 h-6" />
                   {unreadCount > 0 && (
                     <span className="absolute top-1 right-1 block h-2 w-2 rounded-full ring-2 ring-black bg-pink-500" />
