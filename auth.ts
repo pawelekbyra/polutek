@@ -9,6 +9,7 @@ import { Adapter } from "next-auth/adapters"
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   ...authConfig,
+  trustHost: true,
   // Explicit cast to Adapter to bypass strict type checks between PrismaAdapter and NextAuth Adapter
   // caused by our custom fields in User model
   adapter: PrismaAdapter(prisma) as Adapter,
