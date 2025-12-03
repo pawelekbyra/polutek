@@ -9,8 +9,10 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useToast } from '@/context/ToastContext';
 
-// Use environment variable for the publishable key
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+// Use environment variable for the publishable key, but handle missing key safely
+// to prevent crash on module load.
+const stripeKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+const stripePromise = stripeKey ? loadStripe(stripeKey) : null;
 
 const StripeLogo = () => (
     <svg viewBox="0 0 60 25" xmlns="http://www.w3.org/2000/svg" width="38" height="16" className="opacity-80 grayscale">
@@ -63,8 +65,9 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string; onClose
 };
 
 const TippingModal: React.FC = () => {
-    const { activeModal, closeTippingModal } = useStore();
-    const isOpen = activeModal === 'tipping';
+    // FIX: Check isTippingModalOpen, NOT activeModal === 'tipping', as per store definition
+    const { isTippingModalOpen, closeTippingModal } = useStore();
+    const isOpen = isTippingModalOpen;
 
     // Add 'email' to formData
     const [formData, setFormData] = useState({
@@ -337,7 +340,7 @@ const TippingModal: React.FC = () => {
                                                 <p className="text-xs text-black/50 mt-1">{formData.email}</p>
                                             </div>
 
-                                            {clientSecret && (
+                                            {clientSecret && stripePromise ? (
                                                 <div className="bg-white/40 p-4 rounded-xl border border-black/10">
                                                     <Elements
                                                         stripe={stripePromise}
@@ -355,6 +358,10 @@ const TippingModal: React.FC = () => {
                                                     >
                                                         <CheckoutForm clientSecret={clientSecret} onClose={closeTippingModal} />
                                                     </Elements>
+                                                </div>
+                                            ) : (
+                                                <div className="text-center text-red-500 py-4 font-bold">
+                                                    Błąd: System płatności niedostępny. Sprawdź konfigurację Stripe.
                                                 </div>
                                             )}
                                         </motion.div>
