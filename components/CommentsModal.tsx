@@ -95,16 +95,16 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
     >
       <div
         onClick={() => onAvatarClick(safeAuthor.id)}
-        className="cursor-pointer flex-shrink-0 flex flex-col items-center gap-1"
+        className="cursor-pointer flex-shrink-0 flex flex-col items-center gap-0"
       >
         <Image
           src={safeAuthor.avatar || DEFAULT_AVATAR_URL}
           alt={t('userAvatar', { user: safeAuthor.displayName || 'User' })}
           width={isL0 ? 36 : 28}
           height={isL0 ? 36 : 28}
-          className="rounded-full object-cover mt-1"
+          className="rounded-full object-cover"
         />
-        <div className="mt-1">
+        <div className="-mt-1.5 relative z-10">
           <UserBadge role={safeAuthor.role} />
         </div>
       </div>
