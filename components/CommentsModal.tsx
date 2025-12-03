@@ -63,8 +63,8 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
   // Defensive: ensure page.replies is an array before flattening to prevent crashes
   const replies = repliesData?.pages.flatMap(page => page.replies || []) ?? [];
 
-  const isLiked = currentUserId ? comment.likedBy.includes(currentUserId) : false;
-  const likeCount = comment._count?.likes ?? comment.likedBy.length;
+  const isLiked = comment.isLiked;
+  const likeCount = comment._count?.likes ?? 0;
   const replyCount = comment._count?.replies ?? 0;
 
   const handleToggleReplies = () => {
@@ -105,9 +105,6 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
           height={isL0 ? 36 : 28}
           className="rounded-full object-cover"
         />
-        <div className="-mt-1.5 relative z-10">
-          <UserBadge role={safeAuthor.role} />
-        </div>
       </div>
 
       <div className="flex-1 min-w-0">
@@ -137,6 +134,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
 
         <div className="flex items-center gap-3 text-xs text-[#808080] mt-1.5">
           <span>{formattedTime}</span>
+          <UserBadge role={safeAuthor.role} />
           {currentUserId && (
             <button onClick={() => onStartReply(comment)} className="font-semibold hover:text-white transition-colors">
               {t('reply')}
@@ -288,10 +286,9 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
           if (!oldData) return oldData;
           const newPages = oldData.pages.map((page: any) => {
               const [updatedComments] = recursivelyUpdateComment(page.comments || [], commentId, (comment) => {
-                  const isLiked = comment.likedBy.includes(user!.id);
-                  const newLikedBy = isLiked ? comment.likedBy.filter(id => id !== user!.id) : [...comment.likedBy, user!.id];
+                  const isLiked = comment.isLiked;
                   const newLikeCount = (comment._count?.likes ?? 0) + (isLiked ? -1 : 1);
-                  return { ...comment, likedBy: newLikedBy, _count: { ...comment._count, likes: newLikeCount } };
+                  return { ...comment, isLiked: !isLiked, _count: { ...comment._count, likes: newLikeCount } };
               });
               return { ...page, comments: updatedComments };
           });
@@ -347,7 +344,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
           avatar: user!.avatar || null,
           role: user!.role || 'user',
         },
-        likedBy: [],
+        isLiked: false,
         _count: { likes: 0, replies: 0 },
         parentAuthorId: replyingTo ? (replyingTo.author?.id || null) : null,
         parentAuthorUsername: replyingTo ? (replyingTo.author?.displayName || replyingTo.author?.username || 'Unknown') : null,

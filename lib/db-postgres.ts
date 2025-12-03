@@ -367,9 +367,9 @@ export async function toggleCommentLike(commentId: string, userId: string): Prom
 
 export async function getComments(
   slideId: string,
-  options: { limit?: number; cursor?: string; sortBy?: 'newest' | 'top' } = {}
+  options: { limit?: number; cursor?: string; sortBy?: 'newest' | 'top', currentUserId?: string } = {}
 ): Promise<{ comments: CommentWithRelations[]; nextCursor: string | null }> {
-  const { limit = 20, cursor, sortBy = 'newest' } = options;
+  const { limit = 20, cursor, sortBy = 'newest', currentUserId } = options;
 
   const orderBy = sortBy === 'top'
     ? { likes: { _count: 'desc' as const } }
@@ -389,6 +389,7 @@ export async function getComments(
         select: { id: true, username: true, displayName: true, avatar: true, role: true },
       },
       likes: {
+        where: currentUserId ? { userId: currentUserId } : { userId: '00000000-0000-0000-0000-000000000000' }, // Dummy UUID if no user
         select: { userId: true },
       },
       _count: {
@@ -406,7 +407,7 @@ export async function getComments(
   const mapComment = (comment: any): CommentWithRelations => {
     return {
       ...comment,
-      likedBy: comment.likes.map((l: any) => l.userId),
+      isLiked: comment.likes.length > 0,
       replies: [], // Replies are now loaded lazily
       parentAuthorId: null, // Root comments have no parent author
       _count: {
@@ -423,9 +424,9 @@ export async function getComments(
 
 export async function getCommentReplies(
   parentId: string,
-  options: { limit?: number; cursor?: string } = {}
+  options: { limit?: number; cursor?: string; currentUserId?: string } = {}
 ): Promise<{ comments: CommentWithRelations[]; nextCursor: string | null }> {
-  const { limit = 10, cursor } = options;
+  const { limit = 10, cursor, currentUserId } = options;
 
   const replies = await prisma.comment.findMany({
     where: {
@@ -434,12 +435,13 @@ export async function getCommentReplies(
     take: limit + 1,
     skip: cursor ? 1 : 0,
     cursor: cursor ? { id: cursor } : undefined,
-    orderBy: { createdAt: 'asc' },
+    orderBy: { createdAt: 'desc' }, // Fix for Issue 1: Newest First
     include: {
       author: {
         select: { id: true, username: true, displayName: true, avatar: true, role: true },
       },
       likes: {
+        where: currentUserId ? { userId: currentUserId } : { userId: '00000000-0000-0000-0000-000000000000' },
         select: { userId: true },
       },
       _count: {
@@ -463,7 +465,7 @@ export async function getCommentReplies(
 
   const mapComment = (comment: any): CommentWithRelations => ({
     ...comment,
-    likedBy: comment.likes.map((l: any) => l.userId),
+    isLiked: comment.likes.length > 0,
     replies: [], // Deeper replies can be handled similarly if needed
     _count: {
       likes: comment._count.likes,
@@ -510,7 +512,7 @@ export async function addComment(
   // Return DTO shape
   return {
     ...comment,
-    likedBy: [],
+    isLiked: false,
     replies: [],
     _count: { likes: 0 }
   };
