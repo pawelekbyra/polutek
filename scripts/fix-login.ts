@@ -2,15 +2,18 @@ import { config } from 'dotenv';
 import * as bcrypt from 'bcryptjs';
 import { prisma } from '../lib/prisma';
 
-// Try to load .env.local
+// Try to load .env.local, then .env
 config({ path: '.env.local' });
+config({ path: '.env' });
 
 async function fixLogin() {
-    console.log("🛠️  Starting Login Fix Tool...");
+    console.log("🛠️  Starting Login Fix Tool (Admin Account Reset)...");
 
     // Check if DATABASE_URL is present
     if (!process.env.DATABASE_URL) {
-        console.error("❌ Error: DATABASE_URL is not defined. Make sure you have a .env.local file or environment variables set.");
+        console.error("❌ Error: DATABASE_URL is not defined.");
+        console.error("👉 Tip: Run this script with dotenv-cli if your variables are in a file:");
+        console.error("   npx dotenv -e .env.local -- npx tsx scripts/fix-login.ts");
         process.exit(1);
     }
 
@@ -22,7 +25,10 @@ async function fixLogin() {
     console.log(`ℹ️  New Password: ${newPassword}`);
 
     try {
-        console.log(`🔍 Checking database connection and user...`);
+        console.log(`🔍 Checking database connection...`);
+        // Test connection
+        await prisma.$connect();
+
         const existingUser = await prisma.user.findUnique({ where: { email } });
 
         const salt = await bcrypt.genSalt(10);
@@ -36,6 +42,12 @@ async function fixLogin() {
                 where: { email },
                 data: {
                     password: hashedPassword,
+                    // Ensure account is not locked by first login flag if that's an issue
+                    // But keep it true if we want them to go through setup?
+                    // User said "logowanie nie dziala", let's assume we want to just let them in.
+                    // But usually setup is important. Let's keep existing flags unless necessary.
+                    // Actually, let's reset sessionVersion to force refresh
+                    sessionVersion: { increment: 1 }
                 }
             });
             console.log("✅ Password updated in database.");
@@ -48,7 +60,7 @@ async function fixLogin() {
                     password: hashedPassword,
                     role: 'admin',
                     displayName: 'Administrator TT',
-                    isFirstLogin: false,
+                    isFirstLogin: false, // Create as ready-to-use
                     name: 'Administrator TT'
                 }
             });
@@ -77,7 +89,6 @@ async function fixLogin() {
 
     } catch (e) {
         console.error("❌ Database Error:", e);
-        console.error("Hint: Check if your database is running and accessible via DATABASE_URL.");
     } finally {
         await prisma.$disconnect();
     }
