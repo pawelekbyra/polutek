@@ -133,7 +133,7 @@ export default function SetupPage() {
                                             }
                                             // Set language in localStorage to skip preloader
                                             if (typeof window !== 'undefined') {
-                                                localStorage.setItem('language', 'pl'); // Default to PL as setup is in PL
+                                                localStorage.setItem('app_lang', 'pl'); // Default to PL as setup is in PL
                                             }
                                             // Force reload to apply new session
                                             window.location.href = '/';
