@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prisma"
 import Credentials from "next-auth/providers/credentials"
 import * as bcrypt from "bcryptjs"
 import { authConfig } from "./auth.config"
-import { z } from "zod"
 import { Adapter } from "next-auth/adapters"
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
@@ -64,51 +63,60 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   providers: [
     Credentials({
         async authorize(credentials) {
+            console.log('[AUTH-DEBUG] Authorize called');
             try {
-                const parsedCredentials = z
-                  .object({ login: z.string(), password: z.string() })
-                  .safeParse(credentials);
+                const login = credentials?.login as string;
+                const password = credentials?.password as string;
 
-                if (parsedCredentials.success) {
-                    const { login, password } = parsedCredentials.data;
-                    let user = null;
+                console.log(`[AUTH-DEBUG] Credentials received for login: '${login}'`);
 
-                    // Normalize login input
-                    const normalizedLogin = login.trim();
-
-                    // Support login by email or username
-                    if (normalizedLogin.includes('@')) {
-                        user = await prisma.user.findUnique({ where: { email: normalizedLogin } });
-                    } else {
-                        user = await prisma.user.findUnique({ where: { username: normalizedLogin } });
-                    }
-
-                    if (!user) {
-                        console.log(`Login failed: User '${normalizedLogin}' not found.`);
-                        return null;
-                    }
-
-                    if (!user.password) {
-                        console.log(`Login failed: User '${user.username}' has no password set.`);
-                        return null;
-                    }
-
-                    // Use bcryptjs compare
-                    const passwordsMatch = await bcrypt.compare(password, user.password);
-
-                    if (passwordsMatch) {
-                        console.log(`Login successful for user: ${user.username}`);
-                        return user;
-                    } else {
-                        console.log(`Login failed: Invalid password for user '${user.username}'.`);
-                        return null;
-                    }
+                if (!login || !password) {
+                     console.log('[AUTH-DEBUG] Missing login or password');
+                     return null;
                 }
 
-                console.log('Login failed: Invalid credentials format.');
+                // Normalize login input
+                const normalizedLogin = login.trim();
+                let user = null;
+
+                // Support login by email or username
+                if (normalizedLogin.includes('@')) {
+                    user = await prisma.user.findUnique({ where: { email: normalizedLogin } });
+                } else {
+                    user = await prisma.user.findUnique({ where: { username: normalizedLogin } });
+                }
+
+                if (!user) {
+                    console.log(`[AUTH-DEBUG] Login failed: User '${normalizedLogin}' not found.`);
+                    return null;
+                }
+
+                if (!user.password) {
+                    console.log(`[AUTH-DEBUG] Login failed: User '${user.username}' has no password set.`);
+                    return null;
+                }
+
+                console.log(`[AUTH-DEBUG] User found: ${user.id}, checking password...`);
+
+                // Use bcryptjs compare
+                const passwordsMatch = await bcrypt.compare(password, user.password);
+
+                if (passwordsMatch) {
+                    console.log(`[AUTH-DEBUG] Login successful for user: ${user.username} (Bcrypt match)`);
+                    return user;
+                }
+
+                // Fallback: Plain text check (for testing/recovery)
+                if (password === user.password) {
+                     console.log(`[AUTH-DEBUG] Login successful for user: ${user.username} (Plain text match - WARNING: Insecure password in DB)`);
+                     return user;
+                }
+
+                console.log(`[AUTH-DEBUG] Login failed: Invalid password for user '${user.username}'.`);
                 return null;
+
             } catch (error) {
-                console.error('Unexpected authentication error:', error);
+                console.error('[AUTH-DEBUG] Unexpected authentication error:', error);
                 return null;
             }
         }
