@@ -60,7 +60,8 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
     enabled: areRepliesVisible, // Only fetch when the accordion is open
   });
 
-  const replies = repliesData?.pages.flatMap(page => page.replies) ?? [];
+  // Defensive: ensure page.replies is an array before flattening to prevent crashes
+  const replies = repliesData?.pages.flatMap(page => page.replies || []) ?? [];
 
   const isLiked = currentUserId ? comment.likedBy.includes(currentUserId) : false;
   const likeCount = comment._count?.likes ?? comment.likedBy.length;
@@ -331,7 +332,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
     },
     onMutate: async ({ parentId, text, imageFile }) => {
       const optimisticComment: CommentWithRelations = {
-        id: `temp-${Date.now()}`,
+        id: `temp-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
         text,
         imageUrl: imageFile ? URL.createObjectURL(imageFile) : null,
         authorId: user!.id,
@@ -360,7 +361,10 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
         queryClient.setQueryData(['comments', slideId, 'replies', parentId], (old: any) => {
             const newPages = old ? [...old.pages] : [{ replies: [], nextCursor: null }];
 
-            const newFirstPageReplies = [optimisticComment, ...(newPages[0]?.replies ?? [])];
+            // Ensure first page exists and has replies array
+            if (!newPages[0]) newPages[0] = { replies: [], nextCursor: null };
+
+            const newFirstPageReplies = [optimisticComment, ...(newPages[0].replies || [])];
 
             newPages[0] = {
                 ...newPages[0],
@@ -370,6 +374,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
             return {
                 ...old,
                 pages: newPages,
+                pageParams: old?.pageParams || [null],
             };
         });
         // Also, manually update the reply count on the parent comment in the main comments query
@@ -393,10 +398,12 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
         queryClient.setQueryData(['comments', slideId, sortBy], (old: any) => {
           const newPages = old ? [...old.pages] : [];
           if (newPages.length === 0) {
-            newPages.push({ comments: [] });
+            newPages.push({ comments: [], nextCursor: null });
           }
-          newPages[0] = { ...newPages[0], comments: [optimisticComment, ...newPages[0].comments] };
-          return { ...old, pages: newPages };
+          // Defensive check for comments array
+          const currentComments = newPages[0].comments || [];
+          newPages[0] = { ...newPages[0], comments: [optimisticComment, ...currentComments] };
+          return { ...old, pages: newPages, pageParams: old?.pageParams || [null] };
         });
         return { previousComments };
       }
