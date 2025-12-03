@@ -102,9 +102,9 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
           alt={t('userAvatar', { user: safeAuthor.displayName || 'User' })}
           width={isL0 ? 36 : 28}
           height={isL0 ? 36 : 28}
-          className="rounded-full object-cover mt-1"
+          className="rounded-full object-cover"
         />
-        <div>
+        <div className="-mt-1.5 relative z-10">
           <UserBadge role={safeAuthor.role} />
         </div>
       </div>
