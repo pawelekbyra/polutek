@@ -17,12 +17,15 @@ export async function GET(request: NextRequest) {
   const sortBy = searchParams.get('sortBy') as 'newest' | 'top' | undefined;
   const limit = limitParam ? parseInt(limitParam, 10) : 20;
 
+  const session = await auth();
+  const currentUserId = session?.user?.id;
+
   if (!slideId) {
     return NextResponse.json({ success: false, message: 'slideId is required' }, { status: 400 });
   }
 
   try {
-    const { comments, nextCursor } = await db.getComments(slideId, { limit, cursor, sortBy: sortBy || 'top' });
+    const { comments, nextCursor } = await db.getComments(slideId, { limit, cursor, sortBy: sortBy || 'top', currentUserId });
     return NextResponse.json({ success: true, comments, nextCursor });
   } catch (error) {
     console.error('Error fetching comments:', error);
