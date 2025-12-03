@@ -95,7 +95,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
     >
       <div
         onClick={() => onAvatarClick(safeAuthor.id)}
-        className="cursor-pointer flex-shrink-0 flex flex-col items-center gap-1"
+        className="cursor-pointer flex-shrink-0 flex flex-col items-center gap-0"
       >
         <Image
           src={safeAuthor.avatar || DEFAULT_AVATAR_URL}
@@ -104,7 +104,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
           height={isL0 ? 36 : 28}
           className="rounded-full object-cover mt-1"
         />
-        <div className="mt-1">
+        <div>
           <UserBadge role={safeAuthor.role} />
         </div>
       </div>

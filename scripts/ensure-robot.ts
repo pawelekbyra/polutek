@@ -12,25 +12,19 @@ async function main() {
 
     if (user) {
       console.log('Robot Robert już istnieje.');
-      if (!user.isRobot) {
-        console.log('Aktualizacja flagi isRobot...');
-        await updateUser(user.id, { isRobot: true });
-        console.log('Zaktualizowano.');
-      }
+      // isRobot column removed from DB, skipping flag check
     } else {
       console.log('Tworzenie Robota Roberta...');
       user = await createUser({
         username,
         email,
-        password: 'secure_password_placeholder_robot', // Bot won't login via password usually
+        password: 'secure_password_placeholder_robot',
         displayName: 'Robot Robert',
-        avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=Robert', // Example avatar
-        role: 'user', // Basic role, but with isRobot flag
-        // isRobot will be set by default logic if we update createUser or we update it after
+        avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=Robert',
+        role: 'user',
       });
 
-      // Update specifically for isRobot as createUser might not support it in arguments yet
-      await updateUser(user.id, { isRobot: true });
+      // await updateUser(user.id, { isRobot: true }); // Removed as column is gone
       console.log('Utworzono Robota Roberta.');
     }
   } catch (error) {
