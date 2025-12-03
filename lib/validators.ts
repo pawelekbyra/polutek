@@ -27,7 +27,7 @@ export interface CommentSchemaType {
     avatar: string | null;
     role: string;
   };
-  likedBy: string[];
+  isLiked: boolean;
   _count?: {
     likes: number;
   };
@@ -56,7 +56,7 @@ export const CommentSchema: z.ZodType<CommentSchemaType> = z.lazy(() =>
       avatar: z.string().nullable(),
       role: z.string().default('user'),
     }),
-    likedBy: z.array(z.string()).default([]),
+    isLiked: z.boolean().default(false),
     _count: z.object({
       likes: z.number(),
     }).optional(),
