@@ -157,7 +157,10 @@ const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Share */}
       <button onClick={handleShare} data-action="share" className={buttonClass}>
-        <CornerUpRight size={iconSize} strokeWidth={1.5} className="stroke-white" style={{ filter: 'drop-shadow(0 0 3px rgba(0,0,0,0.5))' }}/>
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width={iconSize} height={iconSize} className="stroke-white" style={{ filter: 'drop-shadow(0 0 3px rgba(0,0,0,0.5))' }}>
+            <polyline points="15 14 20 9 15 4"></polyline>
+            <path d="M4 20v-7a4 4 0 0 1 4-4h12"></path>
+        </svg>
         <span className={labelClass}>{t('shareText') || 'Udostępnij'}</span>
       </button>
 
