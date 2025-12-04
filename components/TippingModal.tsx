@@ -56,27 +56,7 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose
                 <PaymentElement 
                     options={{ 
                         layout: 'tabs',
-                        appearance: {
-                            theme: 'stripe',
-                            variables: {
-                                colorPrimary: '#000000',
-                                colorBackground: '#f3f4f6', // Lekko szare tło inputów w Stripe
-                                colorText: '#000000',
-                                borderRadius: '8px',
-                                spacingUnit: '4px',
-                            },
-                            rules: {
-                                '.Input': {
-                                    border: '2px solid transparent',
-                                    backgroundColor: '#f3f4f6', // Szare inputy
-                                    color: '#000000',
-                                },
-                                '.Input:focus': {
-                                    border: '2px solid #000000', // Czarna ramka przy focus
-                                    backgroundColor: '#ffffff', // Białe tło przy focus
-                                }
-                            }
-                        }
+                        // appearance zostało przeniesione do <Elements>
                     }} 
                 />
             </div>
@@ -564,6 +544,24 @@ const TippingModal = () => {
                                         clientSecret, 
                                         appearance: { 
                                             theme: 'stripe',
+                                            variables: {
+                                                colorPrimary: '#000000',
+                                                colorBackground: '#f3f4f6', // Lekko szare tło inputów w Stripe
+                                                colorText: '#000000',
+                                                borderRadius: '8px',
+                                                spacingUnit: '4px',
+                                            },
+                                            rules: {
+                                                '.Input': {
+                                                    border: '2px solid transparent',
+                                                    backgroundColor: '#f3f4f6', // Szare inputy
+                                                    color: '#000000',
+                                                },
+                                                '.Input:focus': {
+                                                    border: '2px solid #000000', // Czarna ramka przy focus
+                                                    backgroundColor: '#ffffff', // Białe tło przy focus
+                                                }
+                                            }
                                         } 
                                     }}
                                 >
