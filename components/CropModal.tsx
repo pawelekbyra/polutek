@@ -39,11 +39,17 @@ const CropModal: React.FC<CropModalProps> = ({ isOpen, onClose, imageSrc, onCrop
         if (!ctx) return;
 
         const canvasRect = canvas.getBoundingClientRect();
-        const minScale = Math.max(canvasRect.width / img.width, canvasRect.height / img.height);
+        // Calculate minScale correctly based on the image size vs canvas size
+        // We want the image to cover the crop area at min scale if possible
+        const minScale = Math.max(CROP_AREA_SIZE / img.width, CROP_AREA_SIZE / img.height);
 
-        setScale(minScale);
+        // Or fit the canvas? Usually we fit the canvas.
+        // Let's stick to fitting the canvas roughly.
+        const fitScale = Math.max(canvasRect.width / img.width, canvasRect.height / img.height);
+
+        setScale(fitScale);
         setOffset({ x: 0, y: 0 });
-        drawCanvas(ctx, img, minScale, { x: 0, y: 0 });
+        drawCanvas(ctx, img, fitScale, { x: 0, y: 0 });
       };
     }
   }, [imageSrc]);
@@ -67,20 +73,40 @@ const CropModal: React.FC<CropModalProps> = ({ isOpen, onClose, imageSrc, onCrop
     ctx.drawImage(img, x, y, imgWidth, imgHeight);
   };
 
-  const handleMouseDown = (e: React.MouseEvent) => {
+  const handleStart = (clientX: number, clientY: number) => {
       setIsDragging(true);
-      lastMousePos.current = { x: e.clientX, y: e.clientY };
+      lastMousePos.current = { x: clientX, y: clientY };
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMove = (clientX: number, clientY: number) => {
       if (!isDragging) return;
-      const deltaX = e.clientX - lastMousePos.current.x;
-      const deltaY = e.clientY - lastMousePos.current.y;
-      lastMousePos.current = { x: e.clientX, y: e.clientY };
+      const deltaX = clientX - lastMousePos.current.x;
+      const deltaY = clientY - lastMousePos.current.y;
+      lastMousePos.current = { x: clientX, y: clientY };
       setOffset(prev => ({ x: prev.x + deltaX, y: prev.y + deltaY }));
   };
 
-  const handleMouseUp = () => setIsDragging(false);
+  const handleEnd = () => setIsDragging(false);
+
+  // Mouse Handlers
+  const handleMouseDown = (e: React.MouseEvent) => handleStart(e.clientX, e.clientY);
+  const handleMouseMove = (e: React.MouseEvent) => handleMove(e.clientX, e.clientY);
+  const handleMouseUp = () => handleEnd();
+
+  // Touch Handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+      if (e.touches.length === 1) {
+          handleStart(e.touches[0].clientX, e.touches[0].clientY);
+      }
+  };
+  const handleTouchMove = (e: React.TouchEvent) => {
+      if (e.touches.length === 1) {
+          e.preventDefault(); // Prevent scrolling while dragging
+          handleMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+  };
+  const handleTouchEnd = () => handleEnd();
+
 
   const handleSave = async () => {
     const canvas = canvasRef.current;
@@ -90,7 +116,7 @@ const CropModal: React.FC<CropModalProps> = ({ isOpen, onClose, imageSrc, onCrop
     setIsSaving(true);
 
     const outputCanvas = document.createElement('canvas');
-    const finalSize = Math.min(img.width, img.height, 256); // Output a reasonable size
+    const finalSize = Math.min(img.width, img.height, 512); // Output a reasonable size (512px)
     outputCanvas.width = finalSize;
     outputCanvas.height = finalSize;
     const ctx = outputCanvas.getContext('2d');
@@ -124,7 +150,7 @@ const CropModal: React.FC<CropModalProps> = ({ isOpen, onClose, imageSrc, onCrop
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="absolute inset-0 bg-black/90 z-50 flex items-center justify-center p-5"
+          className="absolute inset-0 bg-black/90 z-[999] flex items-center justify-center p-5"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -143,18 +169,21 @@ const CropModal: React.FC<CropModalProps> = ({ isOpen, onClose, imageSrc, onCrop
               </Button>
             </div>
 
-            <div className="relative w-full h-72 bg-black rounded-lg overflow-hidden mb-5 border-2 border-white/10">
+            <div className="relative w-full h-72 bg-black rounded-lg overflow-hidden mb-5 border-2 border-white/10 touch-none">
               <canvas
                 ref={canvasRef}
-                className="w-full h-full cursor-grab"
+                className="w-full h-full cursor-grab active:cursor-grabbing"
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseUp}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
                 aria-label={t('cropCanvasAriaLabel')}
               />
               <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-dashed border-white rounded-full pointer-events-none"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-dashed border-white rounded-full pointer-events-none shadow-[0_0_0_9999px_rgba(0,0,0,0.5)]"
                 style={{ width: CROP_AREA_SIZE, height: CROP_AREA_SIZE }}
               ></div>
             </div>
