@@ -75,29 +75,23 @@ const TopBar = () => {
   };
 
   const handleBellClick = async () => {
-    // 'prompt' is sometimes used in older APIs or specific contexts, but Notification.permission is 'default'
+    // If not logged in, ALWAYS show the login toast, regardless of permissions.
+    if (!user) {
+        addToast(t('loginRequired') || 'Musisz się zalogować', 'locked');
+        return;
+    }
+
+    // Only if logged in, proceed with subscription/notifications logic
     if (permission === 'default') {
       const granted = await subscribe();
       if (granted) {
           addToast(t('notificationsEnabled') || 'Powiadomienia włączone', 'success');
-      } else {
-          // If denied or failed, we might want to guide user or just do nothing for now
-          // If they just dismissed, permission remains default/prompt usually
       }
     } else if (permission === 'granted') {
-        if (!user) {
-            addToast(t('loginRequired') || 'Musisz się zalogować', 'locked');
-        } else {
-            setActiveModal('notifications');
-        }
+        setActiveModal('notifications');
     } else {
-       // Denied
-       // Optionally show instruction how to enable
-       if (!user) {
-            addToast(t('loginRequired') || 'Musisz się zalogować', 'locked');
-        } else {
-            setActiveModal('notifications');
-        }
+        // Denied
+        setActiveModal('notifications');
     }
   };
 

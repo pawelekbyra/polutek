@@ -143,7 +143,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
           )}
         </div>
 
-        <div className="flex items-center gap-3 text-xs text-[#808080] mt-1.5">
+        <div className="flex items-center gap-3 text-xs text-[#808080] mt-[1px]">
           <span>{formattedTime}</span>
           {currentUserId && (
             <button onClick={() => onStartReply(comment)} className="font-semibold hover:text-white transition-colors">
