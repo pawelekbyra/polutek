@@ -74,7 +74,7 @@
   /*
     Logic for Body Background:
     - Default (Mobile): Black (#000000)
-    - Desktop (md:): Light Gray (#f3f4f6) to contrast with the emulator frame
+    - Desktop (md:): Zinc-950 to blend with emulator frame
   */
   body {
     background-color: #000000;
@@ -82,13 +82,12 @@
 
   @media (min-width: 768px) {
     body {
-      background-color: #f3f4f6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background-color: #09090b; /* zinc-950 */
+      /* No flex needed here as DesktopDeviceFrame handles centering */
     }
     #app-layout {
-      margin: auto;
+      /* No margin needed as it's inside the frame */
+      margin: 0;
     }
   }
 

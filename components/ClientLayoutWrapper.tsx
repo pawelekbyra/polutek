@@ -6,6 +6,7 @@ import { Providers } from "@/components/Providers";
 import AppLayout from "@/components/AppLayout";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import Script from "next/script";
+import DesktopDeviceFrame from "@/components/layout/DesktopDeviceFrame";
 
 export default function ClientLayoutWrapper({
   children,
@@ -38,7 +39,15 @@ export default function ClientLayoutWrapper({
 
   return (
     <Providers>
-      <AppLayout>{children}</AppLayout>
+      <div className="hidden md:block">
+        <DesktopDeviceFrame>
+          <AppLayout>{children}</AppLayout>
+        </DesktopDeviceFrame>
+      </div>
+      <div className="block md:hidden h-full w-full">
+         <AppLayout>{children}</AppLayout>
+      </div>
+
       <Script
         data-name="BMC-Widget"
         data-cfasync="false"
