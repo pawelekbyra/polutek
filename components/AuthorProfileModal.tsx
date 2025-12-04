@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
-import { ChevronLeft, Instagram, Grid, Heart, Lock, Loader2 } from 'lucide-react';
+import { ChevronLeft, Instagram, Grid, Heart, Lock, Loader2, Youtube, Facebook } from 'lucide-react';
 import { useStore } from '@/store/useStore';
 import Image from 'next/image';
 import { DEFAULT_AVATAR_URL } from '@/lib/constants';
@@ -148,7 +148,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                             <div className="flex gap-2 w-full max-w-xs mb-4">
                                 <button
                                     onClick={togglePatron}
-                                    className={`flex-1 py-2.5 rounded text-sm font-semibold transition-colors flex items-center justify-center gap-2
+                                    className={`flex-grow py-2.5 rounded text-sm font-semibold transition-colors flex items-center justify-center gap-2 px-4
                                         ${isPatron
                                             ? 'bg-[#3A3A3A] text-white hover:bg-[#4A4A4A]'
                                             : 'bg-[#FE2C55] text-white hover:bg-[#E0274B]'
@@ -160,11 +160,14 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                                         <>Zostań Patronem</>
                                     )}
                                 </button>
-                                <button className="px-3 py-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors">
+                                <button className="p-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors flex items-center justify-center min-w-[40px]">
+                                    <Youtube size={20} />
+                                </button>
+                                <button className="p-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors flex items-center justify-center min-w-[40px]">
                                     <Instagram size={20} />
                                 </button>
-                                <button className="px-3 py-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors">
-                                    <ChevronLeft className="rotate-180" size={20} />
+                                <button className="p-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors flex items-center justify-center min-w-[40px]">
+                                    <Facebook size={20} />
                                 </button>
                             </div>
                         </div>

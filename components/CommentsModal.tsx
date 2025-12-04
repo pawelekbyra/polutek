@@ -87,6 +87,16 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
       role: 'user'
   };
 
+  const { addToast } = useToast();
+
+  const handleLikeClick = () => {
+    if (!currentUserId) {
+      addToast(t('loginRequired') || 'Musisz się zalogować', 'locked');
+      return;
+    }
+    onLike(comment.id);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -96,7 +106,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
     >
       <div
         onClick={() => onAvatarClick(safeAuthor.id)}
-        className="cursor-pointer flex-shrink-0 flex flex-col items-center gap-0"
+        className="cursor-pointer flex-shrink-0 flex flex-col items-center gap-1"
       >
         <Image
           src={safeAuthor.avatar || DEFAULT_AVATAR_URL}
@@ -105,6 +115,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
           height={isL0 ? 36 : 28}
           className="rounded-full object-cover"
         />
+        <UserBadge role={safeAuthor.role} />
       </div>
 
       <div className="flex-1 min-w-0">
@@ -134,7 +145,6 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
 
         <div className="flex items-center gap-3 text-xs text-[#808080] mt-1.5">
           <span>{formattedTime}</span>
-          <UserBadge role={safeAuthor.role} />
           {currentUserId && (
             <button onClick={() => onStartReply(comment)} className="font-semibold hover:text-white transition-colors">
               {t('reply')}
@@ -194,7 +204,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
       </div>
 
       <div className="flex flex-col items-center gap-0.5 text-[#808080] pt-2">
-        <button onClick={() => onLike(comment.id)} className="group/like">
+        <button onClick={handleLikeClick} className="group/like">
           <Heart size={18} className={cn("transition-colors", isLiked ? 'text-[#FE2C55] fill-current' : 'group-hover/like:text-white')} />
         </button>
         <span className="text-[11px] font-semibold">{likeCount > 0 ? likeCount : ''}</span>
