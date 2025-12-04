@@ -217,20 +217,24 @@ const TippingModal = () => {
 
   const modalTitle = showTerms ? "Regulamin i Polityka" : "Bramka Napiwkowa";
 
-  // Warianty animacji BEZ zmiany opacity
+  // Animacje: Subtelne przejścia opacity + slide
   const stepVariants = {
-      initial: { x: 20 },
-      animate: { x: 0 },
-      exit: { x: -20 }
+      initial: { x: 20, opacity: 0 },
+      animate: { x: 0, opacity: 1 },
+      exit: { x: -20, opacity: 0 }
   };
 
   return (
     <AnimatePresence mode="wait">
       {isTippingModalOpen && (
         <div className="absolute inset-0 z-[10200] flex items-center justify-center pointer-events-none">
-          {/* TŁO: Przezroczyste (nie wyciemnia strony) */}
-          <div
-            className="absolute inset-0 z-[-1] pointer-events-auto bg-transparent"
+          {/* TŁO: Subtelne rozmycie (2px) i przyciemnienie */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0 z-[-1] pointer-events-auto bg-black/70 backdrop-blur-[2px]"
             onClick={closeTippingModal}
           />
           <motion.div
@@ -238,7 +242,7 @@ const TippingModal = () => {
             animate={{ x: '0%' }}
             exit={{ x: tippingModalOptions.fromLeft ? '-100%' : '100%' }}
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
-            // KONTENER: Overflow visible aby dropdown mógł wyjść, ale rounded handling poprzez wewnętrzne kontenery
+            // KONTENER: Overflow visible, żeby dropdown mógł wystawać
             className="relative w-[90%] max-w-[420px] max-h-[85vh] flex flex-col rounded-3xl bg-[#1C1C1E] shadow-2xl pointer-events-auto border border-white/10 overflow-visible"
           >
         
@@ -399,12 +403,14 @@ const TippingModal = () => {
                     >
                         {showTerms ? (
                              <div className="flex flex-col h-full overflow-hidden">
-                                {/* Większy obszar dla regulaminu */}
-                                <div className="flex-1 overflow-y-auto bg-black/20 border border-white/10 rounded-xl p-4 text-sm text-white/80 space-y-3 custom-scrollbar h-[400px]">
+                                {/* REGULAMIN: Ustawiona wysokość i scrollowanie */}
+                                <div className="flex-1 overflow-y-auto bg-black/20 border border-white/10 rounded-xl p-4 text-sm text-white/80 space-y-3 custom-scrollbar h-[50vh] max-h-[400px]">
                                     <p className="font-bold text-white">1. Postanowienia ogólne</p>
                                     <p>Korzystając z Bramki Napiwkowej, użytkownik (&quot;Darczyńca&quot;) oświadcza, że zapoznał się z niniejszym regulaminem i w pełni go akceptuje. Wpłaty są dobrowolne i mają charakter darowizny na rzecz twórcy (&quot;Beneficjent&quot;).</p>
+                                    
                                     <p className="font-bold text-white">2. Płatności i Zwroty</p>
                                     <p>Wszystkie transakcje są przetwarzane przez zewnętrznego operatora płatności Stripe. Serwis nie przechowywuje pełnych danych kart płatniczych. Z uwagi na charakter usługi (darowizna cyfrowa), wpłaty są bezzwrotne, chyba że przepisy prawa stanowią inaczej. Reklamacje dotyczące błędów technicznych należy zgłaszać w ciągu 14 dni.</p>
+                                    
                                     <p className="font-bold text-white">3. Prywatność i Dane Osobowe</p>
                                     <p>Administratorem danych jest właściciel serwisu. Podany adres e-mail przetwarzany jest wyłącznie w celu:</p>
                                     <ul className="list-disc pl-5 space-y-1">
@@ -413,9 +419,12 @@ const TippingModal = () => {
                                         <li>Kontaktu w sprawach technicznych.</li>
                                     </ul>
                                     <p>Dane nie są udostępniane podmiotom trzecim w celach marketingowych.</p>
+                                    
                                     <p className="font-bold text-white">4. Postanowienia końcowe</p>
                                     <p>Regulamin może ulec zmianie. W sprawach nieuregulowanych decydują przepisy prawa polskiego.</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    
+                                    <p className="opacity-50 mt-4 italic">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                                    <p className="opacity-50 italic">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.</p>
                                 </div>
                                 <div className="mt-2 flex justify-start">
                                      <button
@@ -449,8 +458,11 @@ const TippingModal = () => {
                                     ))}
                                 </div>
 
-                                {/* POLE KWOTY I DROPDOWN */}
-                                <div className="flex items-stretch h-[60px]" ref={dropdownRef}>
+                                {/* POLE KWOTY I DROPDOWN (Z-INDEX FIX) */}
+                                <div 
+                                    className={cn("flex items-stretch h-[60px] relative transition-all", isCurrencyDropdownOpen ? "z-50" : "z-30")} 
+                                    ref={dropdownRef}
+                                >
                                     <div className="relative flex-1 h-full">
                                         <input
                                             type="number"
@@ -476,7 +488,7 @@ const TippingModal = () => {
                                         <AnimatePresence>
                                             {isCurrencyDropdownOpen && (
                                                 <motion.div
-                                                    initial={{ opacity: 1, scale: 1 }} // Bez fade
+                                                    initial={{ opacity: 1, scale: 1 }} 
                                                     animate={{ opacity: 1, scale: 1 }}
                                                     exit={{ opacity: 1, scale: 1 }}
                                                     className="absolute top-0 right-0 w-full bg-[#2C2C2E] border border-white/10 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] overflow-hidden z-[9999]"
@@ -612,7 +624,7 @@ const TippingModal = () => {
             </div>
         )}
 
-        {/* STOPKA: gap-[2px] */}
+        {/* STOPKA: Logo bardzo blisko napisu gap-[2px] */}
         <div className="pb-4 pt-4 flex items-center justify-center bg-[#1C1C1E] z-10 border-t border-white/5 rounded-b-3xl">
              <div className="flex items-center gap-[2px] opacity-40 hover:opacity-100 transition-all duration-300">
                   <span className="text-[10px] text-white font-bold uppercase tracking-widest">Powered by</span>
