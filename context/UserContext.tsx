@@ -28,7 +28,14 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const checkUserStatus = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch('/api/account/status');
+      // Add timestamp to prevent browser caching of the status check
+      const res = await fetch(`/api/account/status?t=${Date.now()}`, {
+        headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
+        }
+      });
       if (res.ok) {
         const data = await res.json();
         if (data.isLoggedIn) {
@@ -59,7 +66,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     });
     const data = await res.json();
     if (data.success) {
-        setUser(data.user);
+        // Force status check after login to ensure full user object is loaded
+        await checkUserStatus();
     } else {
         throw new Error(data.message || 'Login failed');
     }
