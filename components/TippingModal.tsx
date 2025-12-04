@@ -56,17 +56,37 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose
                 <PaymentElement 
                     options={{ 
                         layout: 'tabs',
+                        appearance: {
+                            theme: 'night',
+                            variables: {
+                                colorPrimary: '#db2777', // bg-pink-600
+                                colorBackground: '#2C2C2E',
+                                colorText: '#ffffff',
+                                colorDanger: '#ff4444',
+                                fontFamily: 'inherit',
+                                borderRadius: '12px',
+                                spacingUnit: '4px',
+                            },
+                            rules: {
+                                '.Input': {
+                                    border: '1px solid rgba(255,255,255,0.1)',
+                                    backgroundColor: 'rgba(0,0,0,0.3)',
+                                },
+                                '.Input:focus': {
+                                    border: '1px solid #db2777', // bg-pink-600
+                                }
+                            }
+                        }
                     }} 
                 />
             </div>
             <button
                 disabled={isProcessing || !stripe || !elements}
-                className="w-full py-3.5 rounded-xl font-bold text-white text-base bg-[#FE2C55] hover:bg-[#e0274b] transition-all disabled:opacity-50 tracking-wide shadow-lg active:scale-[0.98]"
+                className="w-full py-3.5 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
             >
                 {isProcessing ? (
                     <div className="flex items-center justify-center gap-2">
                         <Loader2 className="animate-spin h-5 w-5" />
-                        <span>{t('processing') || "PRZETWARZANIE..."}</span>
                     </div>
                 ) : (
                     "ZAPŁAĆ TERAZ"
@@ -154,7 +174,7 @@ const TippingModal = () => {
     }
     else if (currentStep === 2) {
         if (!formData.terms_accepted) {
-            addToast('Musisz zaakceptować regulamin i Politykę Prywatności, aby kontynuować.', 'error');
+            addToast('Musisz zaakceptować Regulamin i Politykę Prywatności, aby kontynuować.', 'error');
             return;
         }
 
@@ -246,14 +266,14 @@ const TippingModal = () => {
             className="relative w-[90%] max-w-[420px] max-h-[85vh] flex flex-col rounded-3xl bg-[#1C1C1E] shadow-2xl pointer-events-auto border border-white/10 overflow-visible"
           >
         
-        {/* NAGŁÓWEK */}
-        <div className="relative pt-2 pb-4 px-6 text-center shrink-0 z-10 bg-[#1C1C1E] border-b border-white/5 rounded-t-3xl">
-            <h2 className="text-xl font-bold text-white tracking-tight">
+        {/* NAGŁÓWEK - Adjusted for perfect centering using flexbox and removed top padding */}
+        <div className="relative h-14 flex items-center justify-center px-6 text-center shrink-0 z-10 bg-[#1C1C1E] border-b border-white/5 rounded-t-3xl">
+            <h2 className="text-base font-medium text-white tracking-wide">
                 {modalTitle}
             </h2>
             <button
                 onClick={closeTippingModal}
-                className="absolute right-[2px] top-[2px] p-2 text-white/40 hover:text-white hover:bg-white/10 rounded-full transition-colors z-50"
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-white/40 hover:text-white hover:bg-white/10 rounded-full transition-colors z-50"
             >
                 <X size={22} strokeWidth={2.5} />
             </button>
@@ -262,7 +282,7 @@ const TippingModal = () => {
         {/* PROGRESS BAR */}
         <div className="h-1 w-full bg-white/5 relative overflow-hidden z-10">
             <motion.div
-                className="h-full bg-[#FE2C55]"
+                className="h-full bg-pink-600" // Changed from #FE2C55 to bg-pink-600
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -294,7 +314,7 @@ const TippingModal = () => {
                                 className={cn(
                                     "flex items-center justify-start p-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
                                     formData.recipient === 'Paweł'
-                                        ? "bg-[#2C2C2E] border-[#FE2C55] shadow-[0_0_15px_rgba(254,44,85,0.15)]" 
+                                        ? "bg-[#2C2C2E] border-pink-600 shadow-[0_0_15px_rgba(219,39,119,0.15)]" // Changed highlight color
                                         : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
                                 )}
                                 onClick={() => setFormData(prev => ({ ...prev, recipient: 'Paweł' }))}
@@ -302,10 +322,10 @@ const TippingModal = () => {
                                 <div className={cn(
                                     "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all duration-300 shrink-0",
                                     formData.recipient === 'Paweł'
-                                        ? "border-[#FE2C55]"
+                                        ? "border-pink-600" // Changed border color
                                         : "border-white/30 group-hover:border-white"
                                 )}>
-                                    {formData.recipient === 'Paweł' && <div className="w-2.5 h-2.5 bg-[#FE2C55] rounded-full" />}
+                                    {formData.recipient === 'Paweł' && <div className="w-2.5 h-2.5 bg-pink-600 rounded-full" />} {/* Changed fill color */}
                                 </div>
                                 <span className={cn("text-base font-semibold transition-colors", formData.recipient === 'Paweł' ? "text-white" : "text-white/70 group-hover:text-white")}>
                                     Pawłowi Polutkowi
@@ -357,7 +377,7 @@ const TippingModal = () => {
                                     className={cn(
                                         "flex items-center justify-start p-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
                                         formData.create_account 
-                                            ? "bg-[#2C2C2E] border-[#FE2C55] shadow-[0_0_15px_rgba(254,44,85,0.15)]" 
+                                            ? "bg-[#2C2C2E] border-pink-600 shadow-[0_0_15px_rgba(219,39,119,0.15)]" // Changed highlight
                                             : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
                                     )}
                                     onClick={() => setFormData(prev => ({ ...prev, create_account: !prev.create_account }))}
@@ -365,10 +385,10 @@ const TippingModal = () => {
                                     <div className={cn(
                                         "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all duration-300 shrink-0", 
                                         formData.create_account 
-                                            ? "border-[#FE2C55]" 
+                                            ? "border-pink-600" // Changed border
                                             : "border-white/30 group-hover:border-white"
                                     )}>
-                                        {formData.create_account && <div className="w-2.5 h-2.5 bg-[#FE2C55] rounded-full" />}
+                                        {formData.create_account && <div className="w-2.5 h-2.5 bg-pink-600 rounded-full" />} {/* Changed fill */}
                                     </div>
                                     <span className={cn("text-base font-semibold transition-colors", formData.create_account ? "text-white" : "text-white/70 group-hover:text-white")}>
                                         No jacha!
@@ -383,7 +403,7 @@ const TippingModal = () => {
                                         placeholder="Twój adres email"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        className="relative w-full bg-black/30 border border-white/10 rounded-xl px-5 py-4 text-white placeholder:text-white/30 focus:outline-none focus:bg-black/50 focus:border-[#FE2C55] transition-all font-medium text-base"
+                                        className="relative w-full bg-black/30 border border-white/10 rounded-xl px-5 py-4 text-white placeholder:text-white/30 focus:outline-none focus:bg-black/50 focus:border-pink-600 transition-all font-medium text-base" // Changed focus border
                                     />
                                 </div>
                                 <p className="text-xs text-white/40 text-left px-2 font-medium">
@@ -444,7 +464,7 @@ const TippingModal = () => {
                                             className={cn(
                                                 "py-3 rounded-xl font-bold transition-all border relative overflow-hidden group text-lg",
                                                 formData.amount === amount
-                                                    ? "bg-[#FE2C55] border-[#FE2C55] text-white shadow-lg"
+                                                    ? "bg-pink-600 border-pink-600 text-white shadow-lg" // Changed selected bg/border
                                                     : "bg-[#2C2C2E] border-white/5 text-white/80 hover:bg-[#3A3A3C] hover:text-white"
                                             )}
                                         >
@@ -463,7 +483,7 @@ const TippingModal = () => {
                                             type="number"
                                             value={formData.amount}
                                             onChange={(e) => setFormData({ ...formData, amount: Number(e.target.value) })}
-                                            className="w-full h-full bg-black/30 border border-white/10 text-center text-3xl font-black text-white rounded-l-xl focus:outline-none focus:bg-black/50 focus:border-[#FE2C55] transition-all z-10 relative"
+                                            className="w-full h-full bg-black/30 border border-white/10 text-center text-3xl font-black text-white rounded-l-xl focus:outline-none focus:bg-black/50 focus:border-pink-600 transition-all z-10 relative" // Changed focus border
                                             placeholder="0"
                                         />
                                     </div>
@@ -505,7 +525,7 @@ const TippingModal = () => {
                                                             >
                                                                 <span className="text-xl">{currency}</span>
                                                                 {formData.currency === currency && (
-                                                                    <Check size={20} className="text-[#FE2C55]" />
+                                                                    <Check size={20} className="text-pink-600" /> // Changed check color
                                                                 )}
                                                             </button>
                                                         ))}
@@ -523,13 +543,13 @@ const TippingModal = () => {
                                     <div className={cn(
                                         "w-5 h-5 rounded border flex items-center justify-center transition-all duration-200 shrink-0",
                                         formData.terms_accepted
-                                            ? "bg-[#FE2C55] border-[#FE2C55]"
+                                            ? "bg-pink-600 border-pink-600" // Changed checkbox color
                                             : "border-white/30 bg-transparent group-hover:border-white"
                                     )}>
                                         {formData.terms_accepted && <Check size={14} className="text-white" strokeWidth={3} />}
                                     </div>
                                     <p className="text-sm font-medium text-white/50 group-hover:text-white transition-colors select-none text-left">
-                                        Akceptuję <span className="underline decoration-white/30 underline-offset-2 hover:text-white cursor-pointer" onClick={(e) => { e.stopPropagation(); setShowTerms(true); }}>regulamin i zasady</span>
+                                        Akceptuję <span className="underline decoration-white/30 underline-offset-2 hover:text-white cursor-pointer" onClick={(e) => { e.stopPropagation(); setShowTerms(true); }}>Regulamin i Politykę Prywatności</span>
                                     </p>
                                 </div>
                             </>
@@ -562,7 +582,7 @@ const TippingModal = () => {
                                         appearance: { 
                                             theme: 'night',
                                             variables: {
-                                                colorPrimary: '#FE2C55',
+                                                colorPrimary: '#db2777', // bg-pink-600
                                                 colorBackground: '#2C2C2E',
                                                 colorText: '#ffffff',
                                                 colorDanger: '#ff4444',
@@ -576,7 +596,7 @@ const TippingModal = () => {
                                                     backgroundColor: 'rgba(0,0,0,0.3)',
                                                 },
                                                 '.Input:focus': {
-                                                    border: '1px solid #FE2C55',
+                                                    border: '1px solid #db2777', // bg-pink-600
                                                 }
                                             }
                                         } 
@@ -605,15 +625,15 @@ const TippingModal = () => {
                 <button
                     onClick={handleNext}
                     disabled={isProcessing}
-                    className="group flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl font-black text-lg text-white bg-[#FE2C55] hover:bg-[#e0274b] transition-all disabled:opacity-50 tracking-widest uppercase shadow-lg active:scale-[0.98]"
+                    className="group flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 shadow-lg active:scale-[0.98]" // Changed to match Login Enter
                 >
                     {isProcessing ? (
                         <div className="flex items-center gap-2">
                             <Loader2 className="animate-spin h-5 w-5" />
-                            <span>PRZETWARZANIE...</span>
+                            {/* <span>PRZETWARZANIE...</span> removed text per user request */}
                         </div>
                     ) : (
-                        "DALEJ"
+                        "ENTER" // Changed text from DALEJ to ENTER
                     )}
                 </button>
             </div>
