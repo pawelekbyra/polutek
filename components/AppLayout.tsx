@@ -59,16 +59,16 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         id="app-layout"
         className="
             relative flex flex-col
-            w-full h-[100dvh]
-            md:w-[400px] md:h-[95vh] md:max-h-[1200px]
-            md:rounded-[30px] md:border-[8px] md:border-gray-900 md:shadow-2xl
-            md:overflow-hidden md:bg-black
+            w-full h-full
             bg-black
         "
     >
       <Preloader />
       <TopBar />
-      <div className="flex-1 overflow-auto z-10 custom-scrollbar relative">
+      <div
+        className="flex-1 overflow-auto z-10 custom-scrollbar relative scroll-snap-y-mandatory"
+        data-scroll-container
+      >
         {children}
       </div>
       <AnimatePresence mode="wait">
