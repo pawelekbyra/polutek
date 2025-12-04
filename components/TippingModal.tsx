@@ -402,7 +402,7 @@ const TippingModal = () => {
                                 {/* Większy obszar dla regulaminu */}
                                 <div className="flex-1 overflow-y-auto bg-black/20 border border-white/10 rounded-xl p-4 text-sm text-white/80 space-y-3 custom-scrollbar h-[400px]">
                                     <p className="font-bold text-white">1. Postanowienia ogólne</p>
-                                    <p>Korzystając z Bramki Napiwkowej, użytkownik ("Darczyńca") oświadcza, że zapoznał się z niniejszym regulaminem i w pełni go akceptuje. Wpłaty są dobrowolne i mają charakter darowizny na rzecz twórcy ("Beneficjent").</p>
+                                    <p>Korzystając z Bramki Napiwkowej, użytkownik (&quot;Darczyńca&quot;) oświadcza, że zapoznał się z niniejszym regulaminem i w pełni go akceptuje. Wpłaty są dobrowolne i mają charakter darowizny na rzecz twórcy (&quot;Beneficjent&quot;).</p>
                                     <p className="font-bold text-white">2. Płatności i Zwroty</p>
                                     <p>Wszystkie transakcje są przetwarzane przez zewnętrznego operatora płatności Stripe. Serwis nie przechowywuje pełnych danych kart płatniczych. Z uwagi na charakter usługi (darowizna cyfrowa), wpłaty są bezzwrotne, chyba że przepisy prawa stanowią inaczej. Reklamacje dotyczące błędów technicznych należy zgłaszać w ciągu 14 dni.</p>
                                     <p className="font-bold text-white">3. Prywatność i Dane Osobowe</p>
@@ -612,7 +612,7 @@ const TippingModal = () => {
             </div>
         )}
 
-        {/* STOPKA */}
+        {/* STOPKA: gap-[2px] */}
         <div className="pb-4 pt-4 flex items-center justify-center bg-[#1C1C1E] z-10 border-t border-white/5 rounded-b-3xl">
              <div className="flex items-center gap-[2px] opacity-40 hover:opacity-100 transition-all duration-300">
                   <span className="text-[10px] text-white font-bold uppercase tracking-widest">Powered by</span>
