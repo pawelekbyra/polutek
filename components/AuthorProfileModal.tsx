@@ -13,6 +13,24 @@ import { AuthorProfile } from '@/types';
 import { formatCount } from '@/lib/utils';
 import { SafeLock } from './SafeLock';
 
+// Simple TikTok Icon SVG Component
+const TiktokIcon = ({ size = 20, className = "" }: { size?: number, className?: string }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+    >
+        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+    </svg>
+);
+
 interface AuthorProfileModalProps {
     authorId: string;
     onClose: () => void;
@@ -169,6 +187,9 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                                 <button className="p-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors flex items-center justify-center min-w-[40px]">
                                     <Facebook size={20} />
                                 </button>
+                                <button className="p-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors flex items-center justify-center min-w-[40px]">
+                                    <TiktokIcon size={20} />
+                                </button>
                             </div>
                         </div>
 
@@ -178,7 +199,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                                 onClick={() => setActiveTab('videos')}
                                 className={`flex-1 flex justify-center items-center py-3 relative transition-colors ${activeTab === 'videos' ? 'bg-[#1a1a1a] text-pink-500' : 'bg-[#121212] text-white/40 hover:bg-[#1a1a1a]/50'}`}
                             >
-                                <Grid size={20} />
+                                <Grid size={26} />
                                 {activeTab === 'videos' && (
                                     <motion.div layoutId="activeTab" className="absolute bottom-0 w-full h-[2px] bg-pink-500" />
                                 )}
@@ -187,7 +208,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                                 onClick={() => setActiveTab('liked')}
                                 className={`flex-1 flex justify-center items-center py-3 relative transition-colors ${activeTab === 'liked' ? 'bg-[#1a1a1a] text-pink-500' : 'bg-[#121212] text-white/40 hover:bg-[#1a1a1a]/50'}`}
                             >
-                                <Heart size={20} />
+                                <Heart size={26} />
                                 {activeTab === 'liked' && (
                                     <motion.div layoutId="activeTab" className="absolute bottom-0 w-full h-[2px] bg-pink-500" />
                                 )}
@@ -196,7 +217,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                                 onClick={() => setActiveTab('private')}
                                 className={`flex-1 flex justify-center items-center py-3 relative transition-colors ${activeTab === 'private' ? 'bg-[#1a1a1a] text-pink-500' : 'bg-[#121212] text-white/40 hover:bg-[#1a1a1a]/50'}`}
                             >
-                                <Lock size={20} />
+                                <Lock size={26} />
                                 {activeTab === 'private' && (
                                     <motion.div layoutId="activeTab" className="absolute bottom-0 w-full h-[2px] bg-pink-500" />
                                 )}
@@ -254,4 +275,3 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
         </motion.div>
     );
 }
-
