@@ -13,9 +13,9 @@ import { cn } from '@/lib/utils';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK!);
 
-// Logo Stripe w wersji BIAŁEJ (dla Dark Mode)
+// Logo Stripe w wersji BIAŁEJ
 const StripeLogo = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="25" viewBox="0 0 120 60" fillRule="evenodd" fill="#FFFFFF">
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="22" viewBox="0 0 120 60" fillRule="evenodd" fill="#FFFFFF">
         <path d="M101.547 30.94c0-5.885-2.85-10.53-8.3-10.53-5.47 0-8.782 4.644-8.782 10.483 0 6.92 3.908 10.414 9.517 10.414 2.736 0 4.805-.62 6.368-1.494v-4.598c-1.563.782-3.356 1.264-5.632 1.264-2.23 0-4.207-.782-4.46-3.494h11.24c0-.3.046-1.494.046-2.046zM90.2 28.757c0-2.598 1.586-3.678 3.035-3.678 1.402 0 2.897 1.08 2.897 3.678zm-14.597-8.345c-2.253 0-3.7 1.057-4.506 1.793l-.3-1.425H65.73v26.805l5.747-1.218.023-6.506c.828.598 2.046 1.448 4.07 1.448 4.115 0 7.862-3.3 7.862-10.598-.023-6.667-3.816-10.3-7.84-10.3zm-1.38 15.84c-1.356 0-2.16-.483-2.713-1.08l-.023-8.53c.598-.667 1.425-1.126 2.736-1.126 2.092 0 3.54 2.345 3.54 5.356 0 3.08-1.425 5.38-3.54 5.38zm-16.4-17.196l5.77-1.24V13.15l-5.77 1.218zm0 1.747h5.77v20.115h-5.77zm-6.185 1.7l-.368-1.7h-4.966V40.92h5.747V27.286c1.356-1.77 3.655-1.448 4.368-1.195v-5.287c-.736-.276-3.425-.782-4.782 1.7zm-11.494-6.7L34.535 17l-.023 18.414c0 3.402 2.552 5.908 5.954 5.908 1.885 0 3.264-.345 4.023-.76v-4.667c-.736.3-4.368 1.356-4.368-2.046V25.7h4.368v-4.897h-4.37zm-15.54 10.828c0-.897.736-1.24 1.954-1.24a12.85 12.85 0 0 1 5.7 1.47V21.47c-1.908-.76-3.793-1.057-5.7-1.057-4.667 0-7.77 2.437-7.77 6.506 0 6.345 8.736 5.333 8.736 8.07 0 1.057-.92 1.402-2.207 1.402-1.908 0-4.345-.782-6.276-1.84v5.47c2.138.92 4.3 1.3 6.276 1.3 4.782 0 8.07-2.368 8.07-6.483-.023-6.85-8.782-5.632-8.782-8.207z"/>
     </svg>
 );
@@ -56,7 +56,6 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose
                 <PaymentElement 
                     options={{ 
                         layout: 'tabs',
-                        // Opcje stylów są przekazywane wyżej w <Elements>
                     }} 
                 />
             </div>
@@ -216,17 +215,20 @@ const TippingModal = () => {
   const suggestedAmounts = [10, 20, 50];
   const currencies = ['PLN', 'EUR', 'USD', 'GBP'];
 
+  // DYNAMICZNY TYTUŁ
+  const modalTitle = showTerms ? "Regulamin i Polityka" : "Bramka Napiwkowa";
+
   return (
     <AnimatePresence mode="wait">
       {isTippingModalOpen && (
         <div className="absolute inset-0 z-[10200] flex items-center justify-center pointer-events-none">
-          {/* TŁO: Ciemne, rozmyte, pasujące do innych modali */}
+          {/* TŁO: Tylko przyciemnienie, BEZ rozmycia (backdrop-blur usunięte) */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="absolute inset-0 z-[-1] pointer-events-auto bg-black/80 backdrop-blur-sm"
+            className="absolute inset-0 z-[-1] pointer-events-auto bg-black/80"
             onClick={closeTippingModal}
           />
           <motion.div
@@ -234,24 +236,23 @@ const TippingModal = () => {
             animate={{ x: '0%' }}
             exit={{ x: tippingModalOptions.fromLeft ? '-100%' : '100%' }}
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
-            // KONTENER: Ciemnoszary (#1C1C1E), podobny do CommentsModal i AuthorProfileModal
             className="relative w-[90%] max-w-[420px] max-h-[85vh] flex flex-col rounded-3xl overflow-hidden bg-[#1C1C1E] shadow-2xl pointer-events-auto border border-white/10"
           >
         
-        {/* NAGŁÓWEK */}
-        <div className="relative pt-6 pb-4 px-6 text-center shrink-0 z-10 bg-[#1C1C1E] border-b border-white/5">
+        {/* NAGŁÓWEK: Tytuł wyżej, X w samym rogu */}
+        <div className="relative pt-4 pb-4 px-6 text-center shrink-0 z-10 bg-[#1C1C1E] border-b border-white/5">
             <h2 className="text-xl font-bold text-white tracking-tight">
-                Bramka Napiwkowa
+                {modalTitle}
             </h2>
             <button
                 onClick={closeTippingModal}
-                className="absolute right-4 top-4 p-2 text-white/40 hover:text-white hover:bg-white/10 rounded-full transition-colors z-50"
+                className="absolute right-2 top-2 p-2 text-white/40 hover:text-white hover:bg-white/10 rounded-full transition-colors z-50"
             >
                 <X size={22} strokeWidth={2.5} />
             </button>
         </div>
 
-        {/* PROGRESS BAR: Ciemne tło paska, Różowy pasek postępu */}
+        {/* PROGRESS BAR */}
         <div className="h-1 w-full bg-white/5 relative overflow-hidden z-10">
             <motion.div
                 className="h-full bg-[#FE2C55]"
@@ -273,7 +274,7 @@ const TippingModal = () => {
                         className="space-y-4"
                     >
                         <div className="text-left">
-                            <p className="text-lg font-bold text-white/90 tracking-wide">Komu wysyłasz hajs?</p>
+                            <p className="text-lg font-bold text-white/90 tracking-wide">Komu chcesz wysłać napiwek?</p>
                         </div>
 
                         <div className="space-y-3 pt-1">
@@ -337,7 +338,7 @@ const TippingModal = () => {
                         className="space-y-4"
                     >
                         <div className="text-left">
-                            <p className="text-lg font-bold text-white/90 tracking-wide">Konto Patrona?</p>
+                            <p className="text-lg font-bold text-white/90 tracking-wide">Czy chcesz utworzyć konto Patrona?</p>
                         </div>
 
                         <div className="space-y-4">
@@ -368,7 +369,6 @@ const TippingModal = () => {
 
                             <div className={cn("space-y-2 overflow-hidden transition-all duration-500", (formData.create_account) ? "max-h-[200px] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2")}>
                                 <div className="group relative">
-                                    {/* INPUT EMAIL: Ciemny, jasny tekst */}
                                     <input
                                         type="email"
                                         placeholder="Twój adres email"
@@ -377,8 +377,9 @@ const TippingModal = () => {
                                         className="relative w-full bg-black/30 border border-white/10 rounded-xl px-5 py-4 text-white placeholder:text-white/30 focus:outline-none focus:bg-black/50 focus:border-[#FE2C55] transition-all font-medium text-base"
                                     />
                                 </div>
+                                {/* Usunięto tekst "Zero spamu" zgodnie z prośbą */}
                                 <p className="text-xs text-white/40 text-center px-2 font-medium">
-                                    Wyślemy tam <span className="text-white font-bold">dane do logowania</span>. Zero spamu.
+                                    Wyślemy tam <span className="text-white font-bold">dane do logowania</span>.
                                 </p>
                             </div>
                         </div>
@@ -395,9 +396,7 @@ const TippingModal = () => {
                     >
                         {showTerms ? (
                              <div className="flex flex-col h-full overflow-hidden">
-                                <div className="mb-2">
-                                    <h3 className="text-lg font-bold text-white">Regulamin i Polityka</h3>
-                                </div>
+                                {/* Usunięto podtytuł, ponieważ główny tytuł się zmienia */}
                                 <div className="flex-1 overflow-y-auto bg-black/20 border border-white/10 rounded-xl p-4 text-sm text-white/80 space-y-3 custom-scrollbar">
                                     <p className="font-bold text-white">1. Postanowienia ogólne</p>
                                     <p>Wpłacając, akceptujesz zasady. To proste.</p>
@@ -406,22 +405,22 @@ const TippingModal = () => {
                                     <p className="font-bold text-white">3. Prywatność</p>
                                     <p>Szanujemy Twoje dane. Email służy tylko do wysłania potwierdzenia lub założenia konta.</p>
                                 </div>
-                                <div className="mt-4">
+                                <div className="mt-4 flex justify-start">
                                      <button
                                         onClick={() => setShowTerms(false)}
-                                        className="w-full py-3 rounded-xl font-bold text-white bg-[#3A3A3C] hover:bg-[#4A4A4C] transition-all text-sm"
+                                        className="w-auto px-6 py-3 rounded-xl font-bold text-white bg-[#3A3A3C] hover:bg-[#4A4A4C] transition-all text-sm"
                                     >
-                                        Rozumiem, wracamy
+                                        Wróć
                                     </button>
                                 </div>
                              </div>
                         ) : (
                             <>
                                 <div>
-                                    <h3 className="text-lg font-bold text-white/90">Ile rzucasz?</h3>
+                                    <h3 className="text-lg font-bold text-white/90">Wybierz lub wpisz kwotę napiwku</h3>
                                 </div>
 
-                                {/* PRZYCISKI KWOT: Ciemne tła, Różowy przy wyborze */}
+                                {/* PRZYCISKI KWOT Z WALUTĄ */}
                                 <div className="grid grid-cols-3 gap-3">
                                     {suggestedAmounts.map(amount => (
                                         <button
@@ -434,34 +433,33 @@ const TippingModal = () => {
                                                     : "bg-[#2C2C2E] border-white/5 text-white/80 hover:bg-[#3A3A3C] hover:text-white"
                                             )}
                                         >
-                                            {amount}
+                                            {amount} {formData.currency}
                                         </button>
                                     ))}
                                 </div>
 
-                                {/* POLE KWOTY */}
-                                <div className="flex items-center group" ref={dropdownRef}>
-                                    <div className="relative flex-1">
+                                {/* POLE KWOTY I DROPDOWN: Naprawiona wysokość i szerokość */}
+                                <div className="flex items-stretch h-[60px]" ref={dropdownRef}>
+                                    <div className="relative flex-1 h-full">
                                         <input
                                             type="number"
                                             value={formData.amount}
                                             onChange={(e) => setFormData({ ...formData, amount: Number(e.target.value) })}
-                                            className="w-full bg-black/30 border border-white/10 text-center text-4xl font-black text-white py-4 rounded-l-xl focus:outline-none focus:bg-black/50 focus:border-[#FE2C55] transition-all z-10 relative"
+                                            className="w-full h-full bg-black/30 border border-white/10 text-center text-3xl font-black text-white rounded-l-xl focus:outline-none focus:bg-black/50 focus:border-[#FE2C55] transition-all z-10 relative"
                                             placeholder="0"
                                         />
                                     </div>
 
                                     <div className="relative h-full">
-                                        {/* TRIGGER WALUTY */}
+                                        {/* TRIGGER WALUTY: Szeroki i wygodny */}
                                         <div
-                                            className="h-full border border-l-0 border-white/10 bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-colors relative shrink-0 cursor-pointer pl-4 pr-10 rounded-r-xl flex items-center"
+                                            className="h-full min-w-[100px] border border-l-0 border-white/10 bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-colors relative shrink-0 cursor-pointer px-4 rounded-r-xl flex items-center justify-between"
                                             onClick={() => setIsCurrencyDropdownOpen(!isCurrencyDropdownOpen)}
                                         >
                                             <span className="font-bold text-xl text-white select-none">{formData.currency}</span>
                                             <motion.div
                                                 animate={{ rotate: isCurrencyDropdownOpen ? 180 : 0 }}
                                                 transition={{ duration: 0.2 }}
-                                                className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center"
                                             >
                                                 <ChevronDown className="w-5 h-5 text-white/50" />
                                             </motion.div>
@@ -506,9 +504,9 @@ const TippingModal = () => {
                                     </div>
                                 </div>
 
-                                {/* REGULAMIN */}
+                                {/* CHECKBOX REGULAMIN: Wyrównany do lewej */}
                                 <div
-                                    className="flex items-center justify-center gap-3 cursor-pointer group relative z-10 mt-2"
+                                    className="flex items-center justify-start gap-3 cursor-pointer group relative z-10 mt-2"
                                     onClick={() => setFormData(prev => ({ ...prev, terms_accepted: !prev.terms_accepted }))}
                                 >
                                     <div className={cn(
@@ -519,7 +517,7 @@ const TippingModal = () => {
                                     )}>
                                         {formData.terms_accepted && <Check size={14} className="text-white" strokeWidth={3} />}
                                     </div>
-                                    <p className="text-sm font-medium text-white/50 group-hover:text-white transition-colors select-none">
+                                    <p className="text-sm font-medium text-white/50 group-hover:text-white transition-colors select-none text-left">
                                         Akceptuję <span className="underline decoration-white/30 underline-offset-2 hover:text-white cursor-pointer" onClick={(e) => { e.stopPropagation(); setShowTerms(true); }}>regulamin i zasady</span>
                                     </p>
                                 </div>
@@ -543,7 +541,6 @@ const TippingModal = () => {
                         </div>
 
                         {clientSecret && (
-                            // STRIPE CONTAINER: Ciemny, bez obramowania
                             <div className="bg-transparent mt-2">
                                 <Elements 
                                     stripe={stripePromise} 
@@ -609,9 +606,9 @@ const TippingModal = () => {
             </div>
         )}
 
-        {/* STOPKA Z CIEMNYM TŁEM */}
+        {/* STOPKA: Logo Stripe blisko napisu (gap-1) */}
         <div className="pb-4 pt-4 flex items-center justify-center bg-[#1C1C1E] z-10 border-t border-white/5">
-             <div className="flex items-center gap-[6px] opacity-40 hover:opacity-100 transition-all duration-300">
+             <div className="flex items-center gap-1 opacity-40 hover:opacity-100 transition-all duration-300">
                   <span className="text-[10px] text-white font-bold uppercase tracking-widest">Powered by</span>
                   <div className="relative flex items-center -mt-px">
                       <StripeLogo />
