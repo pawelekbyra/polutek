@@ -253,7 +253,7 @@ const TippingModal = () => {
             </h2>
             <button
                 onClick={closeTippingModal}
-                className="absolute right-1 top-1 p-2 text-white/40 hover:text-white hover:bg-white/10 rounded-full transition-colors z-50"
+                className="absolute right-[2px] top-[2px] p-2 text-white/40 hover:text-white hover:bg-white/10 rounded-full transition-colors z-50"
             >
                 <X size={22} strokeWidth={2.5} />
             </button>
@@ -271,7 +271,7 @@ const TippingModal = () => {
 
         {/* TREŚĆ */}
         <div className={cn(
-            "flex-1 overflow-visible px-6 pt-6 pb-0 flex flex-col relative z-10 text-white rounded-b-3xl",
+            "flex-1 overflow-visible px-6 pt-3 pb-0 flex flex-col relative z-10 text-white rounded-b-3xl", // Changed pt-6 to pt-3
             isCurrencyDropdownOpen && "z-30" // Raise content z-index when dropdown is open so it covers footer
         )}>
             <AnimatePresence mode="wait" initial={false}>
@@ -429,15 +429,7 @@ const TippingModal = () => {
                                     <p className="opacity-50 mt-4 italic">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                                     <p className="opacity-50 italic">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.</p>
                                 </div>
-                                <div className="mt-2 flex justify-start mb-4">
-                                     <button
-                                        onClick={() => setShowTerms(false)}
-                                        className="w-auto px-4 py-2 rounded-lg font-bold text-white bg-[#3A3A3C] hover:bg-[#4A4A4C] transition-all text-xs"
-                                    >
-                                        Wróć
-                                    </button>
-                                </div>
-                             </div>
+                            </div>
                         ) : (
                             <>
                                 <div>
@@ -627,14 +619,23 @@ const TippingModal = () => {
             </div>
         )}
 
-        {/* STOPKA: Logo bardzo blisko napisu gap-[2px] */}
-        <div className="pb-4 pt-4 flex items-center justify-center bg-[#1C1C1E] z-10 border-t border-white/5 rounded-b-3xl">
-             <div className="flex items-center gap-[2px] opacity-40 hover:opacity-100 transition-all duration-300">
-                  <span className="text-[10px] text-white font-bold uppercase tracking-widest">Powered by</span>
-                  <div className="relative flex items-center -mt-px">
-                      <StripeLogo />
-                  </div>
-             </div>
+        {/* STOPKA */}
+        <div className="pb-4 pt-4 flex items-center justify-center bg-[#1C1C1E] z-10 border-t border-white/5 rounded-b-3xl min-h-[50px]">
+             {showTerms ? (
+                  <button
+                    onClick={() => setShowTerms(false)}
+                    className="w-auto px-4 py-2 rounded-lg font-bold text-white bg-[#3A3A3C] hover:bg-[#4A4A4C] transition-all text-xs uppercase tracking-wide"
+                  >
+                    Wróć
+                  </button>
+             ) : (
+                 <div className="flex items-center gap-[2px] opacity-40 hover:opacity-100 transition-all duration-300">
+                      <span className="text-[10px] text-white font-bold uppercase tracking-widest">Powered by</span>
+                      <div className="relative flex items-center -mt-px">
+                          <StripeLogo />
+                      </div>
+                 </div>
+             )}
         </div>
       </motion.div>
         </div>
