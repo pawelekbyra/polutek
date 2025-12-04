@@ -59,10 +59,12 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose
                     }} 
                 />
             </div>
+            {/* BUTTON GLOW EFFECT */}
             <button
                 disabled={isProcessing || !stripe || !elements}
-                className="w-full py-3.5 rounded-xl font-bold text-white text-base bg-[#FE2C55] hover:bg-[#e0274b] transition-all disabled:opacity-50 tracking-wide shadow-lg active:scale-[0.98]"
+                className="w-full py-4 rounded-2xl font-black text-white text-lg bg-[#FE2C55] hover:bg-[#e0274b] transition-all disabled:opacity-50 tracking-widest uppercase shadow-[0_0_30px_-5px_rgba(254,44,85,0.6)] hover:shadow-[0_0_40px_-5px_rgba(254,44,85,0.8)] active:scale-[0.98] relative overflow-hidden"
             >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-[shimmer_2s_infinite]" />
                 {isProcessing ? (
                     <div className="flex items-center justify-center gap-2">
                         <Loader2 className="animate-spin h-5 w-5" />
@@ -97,6 +99,7 @@ const TippingModal = () => {
   const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
 
+  // Używamy refa do kliknięcia poza dropdownem
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -112,6 +115,7 @@ const TippingModal = () => {
     }
   }, [isLoggedIn, user, isTippingModalOpen]);
 
+  // Kliknięcie poza dropdown zamyka go
   useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
           if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -217,7 +221,6 @@ const TippingModal = () => {
 
   const modalTitle = showTerms ? "Regulamin i Polityka" : "Bramka Napiwkowa";
 
-  // Animacje: Subtelne przejścia opacity + slide
   const stepVariants = {
       initial: { x: 20, opacity: 0 },
       animate: { x: 0, opacity: 1 },
@@ -228,13 +231,15 @@ const TippingModal = () => {
     <AnimatePresence mode="wait">
       {isTippingModalOpen && (
         <div className="absolute inset-0 z-[10200] flex items-center justify-center pointer-events-none">
-          {/* TŁO: Subtelne rozmycie (2px) i przyciemnienie */}
+          {/* 1. TŁO SPOTLIGHT: Radialny gradient zamiast flat color 
+             Środek jaśniejszy/przezroczysty, rogi ciemne.
+          */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="absolute inset-0 z-[-1] pointer-events-auto bg-black/70 backdrop-blur-[2px]"
+            className="absolute inset-0 z-[-1] pointer-events-auto bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.3)_0%,rgba(0,0,0,0.85)_100%)] backdrop-blur-[2px]"
             onClick={closeTippingModal}
           />
           <motion.div
@@ -242,18 +247,21 @@ const TippingModal = () => {
             animate={{ x: '0%' }}
             exit={{ x: tippingModalOptions.fromLeft ? '-100%' : '100%' }}
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
-            // KONTENER: Overflow visible, żeby dropdown mógł wystawać
-            className="relative w-[90%] max-w-[420px] max-h-[85vh] flex flex-col rounded-3xl bg-[#1C1C1E] shadow-2xl pointer-events-auto border border-white/10 overflow-visible"
+            // 2. MATERIAŁ "DEEP SURFACE":
+            // - bg-[#1C1C1E] jako baza
+            // - shadow-[inset...] dla wewnętrznego blasku (krawędź szkła)
+            // - shadow-2xl i dodatkowy drop-shadow dla głębi
+            className="relative w-[90%] max-w-[420px] max-h-[85vh] flex flex-col rounded-3xl bg-[#1C1C1E] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1),0_20px_60px_-10px_rgba(0,0,0,0.8)] pointer-events-auto overflow-visible"
           >
         
         {/* NAGŁÓWEK */}
-        <div className="relative pt-4 pb-4 px-6 text-center shrink-0 z-10 bg-[#1C1C1E] border-b border-white/5 rounded-t-3xl">
-            <h2 className="text-xl font-bold text-white tracking-tight">
+        <div className="relative pt-5 pb-4 px-6 text-center shrink-0 z-10 border-b border-white/5 rounded-t-3xl">
+            <h2 className="text-xl font-bold text-white tracking-tight drop-shadow-md">
                 {modalTitle}
             </h2>
             <button
                 onClick={closeTippingModal}
-                className="absolute right-2 top-2 p-2 text-white/40 hover:text-white hover:bg-white/10 rounded-full transition-colors z-50"
+                className="absolute right-3 top-3 p-2 text-white/40 hover:text-white hover:bg-white/10 rounded-full transition-colors z-50"
             >
                 <X size={22} strokeWidth={2.5} />
             </button>
@@ -262,7 +270,7 @@ const TippingModal = () => {
         {/* PROGRESS BAR */}
         <div className="h-1 w-full bg-white/5 relative overflow-hidden z-10">
             <motion.div
-                className="h-full bg-[#FE2C55]"
+                className="h-full bg-[#FE2C55] shadow-[0_0_10px_rgba(254,44,85,0.5)]" // Added glow to progress bar
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -289,22 +297,22 @@ const TippingModal = () => {
                         <div className="space-y-3 pt-1">
                             <div 
                                 className={cn(
-                                    "flex items-center justify-start p-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
+                                    "flex items-center justify-start p-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border relative overflow-hidden",
                                     formData.recipient === 'Paweł'
-                                        ? "bg-[#2C2C2E] border-[#FE2C55] shadow-[0_0_15px_rgba(254,44,85,0.15)]" 
+                                        ? "bg-[#2C2C2E] border-[#FE2C55] shadow-[0_0_20px_rgba(254,44,85,0.15)]" 
                                         : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
                                 )}
                                 onClick={() => setFormData(prev => ({ ...prev, recipient: 'Paweł' }))}
                             >
                                 <div className={cn(
-                                    "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all duration-300 shrink-0",
+                                    "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all duration-300 shrink-0 z-10",
                                     formData.recipient === 'Paweł'
                                         ? "border-[#FE2C55]"
                                         : "border-white/30 group-hover:border-white"
                                 )}>
-                                    {formData.recipient === 'Paweł' && <div className="w-2.5 h-2.5 bg-[#FE2C55] rounded-full" />}
+                                    {formData.recipient === 'Paweł' && <div className="w-2.5 h-2.5 bg-[#FE2C55] rounded-full shadow-[0_0_8px_#FE2C55]" />}
                                 </div>
-                                <span className={cn("text-base font-semibold transition-colors", formData.recipient === 'Paweł' ? "text-white" : "text-white/70 group-hover:text-white")}>
+                                <span className={cn("text-base font-semibold transition-colors z-10", formData.recipient === 'Paweł' ? "text-white" : "text-white/70 group-hover:text-white")}>
                                     Pawłowi Polutkowi
                                 </span>
                             </div>
@@ -313,7 +321,7 @@ const TippingModal = () => {
                                 className={cn(
                                     "flex items-center justify-start p-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
                                     formData.recipient === 'Nikt'
-                                        ? "bg-[#2C2C2E] border-white shadow-lg" 
+                                        ? "bg-[#2C2C2E] border-white shadow-[0_0_20px_rgba(255,255,255,0.1)]" 
                                         : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
                                 )}
                                 onClick={() => setFormData(prev => ({ ...prev, recipient: 'Nikt' }))}
@@ -354,7 +362,7 @@ const TippingModal = () => {
                                     className={cn(
                                         "flex items-center justify-start p-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
                                         formData.create_account 
-                                            ? "bg-[#2C2C2E] border-[#FE2C55] shadow-[0_0_15px_rgba(254,44,85,0.15)]" 
+                                            ? "bg-[#2C2C2E] border-[#FE2C55] shadow-[0_0_20px_rgba(254,44,85,0.15)]" 
                                             : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
                                     )}
                                     onClick={() => setFormData(prev => ({ ...prev, create_account: !prev.create_account }))}
@@ -365,7 +373,7 @@ const TippingModal = () => {
                                             ? "border-[#FE2C55]" 
                                             : "border-white/30 group-hover:border-white"
                                     )}>
-                                        {formData.create_account && <div className="w-2.5 h-2.5 bg-[#FE2C55] rounded-full" />}
+                                        {formData.create_account && <div className="w-2.5 h-2.5 bg-[#FE2C55] rounded-full shadow-[0_0_8px_#FE2C55]" />}
                                     </div>
                                     <span className={cn("text-base font-semibold transition-colors", formData.create_account ? "text-white" : "text-white/70 group-hover:text-white")}>
                                         No jacha!
@@ -403,14 +411,11 @@ const TippingModal = () => {
                     >
                         {showTerms ? (
                              <div className="flex flex-col h-full overflow-hidden">
-                                {/* REGULAMIN: Ustawiona wysokość i scrollowanie */}
                                 <div className="flex-1 overflow-y-auto bg-black/20 border border-white/10 rounded-xl p-4 text-sm text-white/80 space-y-3 custom-scrollbar h-[50vh] max-h-[400px]">
                                     <p className="font-bold text-white">1. Postanowienia ogólne</p>
                                     <p>Korzystając z Bramki Napiwkowej, użytkownik (&quot;Darczyńca&quot;) oświadcza, że zapoznał się z niniejszym regulaminem i w pełni go akceptuje. Wpłaty są dobrowolne i mają charakter darowizny na rzecz twórcy (&quot;Beneficjent&quot;).</p>
-                                    
                                     <p className="font-bold text-white">2. Płatności i Zwroty</p>
                                     <p>Wszystkie transakcje są przetwarzane przez zewnętrznego operatora płatności Stripe. Serwis nie przechowywuje pełnych danych kart płatniczych. Z uwagi na charakter usługi (darowizna cyfrowa), wpłaty są bezzwrotne, chyba że przepisy prawa stanowią inaczej. Reklamacje dotyczące błędów technicznych należy zgłaszać w ciągu 14 dni.</p>
-                                    
                                     <p className="font-bold text-white">3. Prywatność i Dane Osobowe</p>
                                     <p>Administratorem danych jest właściciel serwisu. Podany adres e-mail przetwarzany jest wyłącznie w celu:</p>
                                     <ul className="list-disc pl-5 space-y-1">
@@ -419,10 +424,8 @@ const TippingModal = () => {
                                         <li>Kontaktu w sprawach technicznych.</li>
                                     </ul>
                                     <p>Dane nie są udostępniane podmiotom trzecim w celach marketingowych.</p>
-                                    
                                     <p className="font-bold text-white">4. Postanowienia końcowe</p>
                                     <p>Regulamin może ulec zmianie. W sprawach nieuregulowanych decydują przepisy prawa polskiego.</p>
-                                    
                                     <p className="opacity-50 mt-4 italic">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                                     <p className="opacity-50 italic">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.</p>
                                 </div>
@@ -449,7 +452,7 @@ const TippingModal = () => {
                                             className={cn(
                                                 "py-3 rounded-xl font-bold transition-all border relative overflow-hidden group text-lg",
                                                 formData.amount === amount
-                                                    ? "bg-[#FE2C55] border-[#FE2C55] text-white shadow-lg"
+                                                    ? "bg-[#FE2C55] border-[#FE2C55] text-white shadow-[0_0_15px_rgba(254,44,85,0.3)] scale-[1.03]"
                                                     : "bg-[#2C2C2E] border-white/5 text-white/80 hover:bg-[#3A3A3C] hover:text-white"
                                             )}
                                         >
@@ -458,67 +461,61 @@ const TippingModal = () => {
                                     ))}
                                 </div>
 
-                                {/* POLE KWOTY I DROPDOWN (Z-INDEX FIX) */}
-                                <div 
-                                    className={cn("flex items-stretch h-[60px] relative transition-all", isCurrencyDropdownOpen ? "z-50" : "z-30")} 
-                                    ref={dropdownRef}
-                                >
-                                    <div className="relative flex-1 h-full">
+                                {/* 3. SUPER-INTEGRATED CURRENCY INPUT 
+                                    Jeden duży blok, waluta jako integralny element.
+                                */}
+                                <div className="relative mt-2" ref={dropdownRef}>
+                                    <div className="flex items-baseline justify-center bg-black/20 border border-white/10 rounded-2xl py-6 relative z-10 transition-all focus-within:border-[#FE2C55] focus-within:bg-black/30">
                                         <input
                                             type="number"
                                             value={formData.amount}
                                             onChange={(e) => setFormData({ ...formData, amount: Number(e.target.value) })}
-                                            className="w-full h-full bg-black/30 border border-white/10 text-center text-3xl font-black text-white rounded-l-xl focus:outline-none focus:bg-black/50 focus:border-[#FE2C55] transition-all z-10 relative"
+                                            className="bg-transparent text-right text-5xl font-black text-white focus:outline-none w-[50%] placeholder:text-white/20"
                                             placeholder="0"
                                         />
-                                    </div>
-
-                                    {/* KONTENER DLA DROPDOWNA */}
-                                    <div className="relative h-full w-[120px]"> 
-                                        {/* TRIGGER - widoczny tylko gdy dropdown zamknięty, lub pod spodem */}
-                                        <div
-                                            className="h-full border border-l-0 border-white/10 bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-colors relative shrink-0 cursor-pointer px-4 rounded-r-xl flex items-center justify-between"
-                                            onClick={() => setIsCurrencyDropdownOpen(true)}
+                                        <button
+                                            onClick={() => setIsCurrencyDropdownOpen(!isCurrencyDropdownOpen)}
+                                            className="ml-2 flex items-center gap-1 text-xl font-bold text-white/60 hover:text-white transition-colors"
                                         >
-                                            <span className="font-bold text-xl text-white select-none">{formData.currency}</span>
-                                            <ChevronDown className="w-5 h-5 text-white/50" />
-                                        </div>
-
-                                        {/* ROZWIJANA LISTA - Zakrywa Trigger */}
-                                        <AnimatePresence>
-                                            {isCurrencyDropdownOpen && (
-                                                <motion.div
-                                                    initial={{ opacity: 1, scale: 1 }} 
-                                                    animate={{ opacity: 1, scale: 1 }}
-                                                    exit={{ opacity: 1, scale: 1 }}
-                                                    className="absolute top-0 right-0 w-full bg-[#2C2C2E] border border-white/10 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] overflow-hidden z-[9999]"
-                                                >
-                                                    <div className="flex flex-col">
-                                                        {currencies.map((currency) => (
-                                                            <button
-                                                                key={currency}
-                                                                onClick={() => {
-                                                                    setFormData({ ...formData, currency: currency as any });
-                                                                    setIsCurrencyDropdownOpen(false);
-                                                                }}
-                                                                className={cn(
-                                                                    "w-full flex items-center justify-between px-4 py-4 text-left font-bold transition-colors relative group text-white border-b border-white/5 last:border-0",
-                                                                    formData.currency === currency
-                                                                        ? "bg-white/10"
-                                                                        : "hover:bg-white/5"
-                                                                )}
-                                                            >
-                                                                <span className="text-xl">{currency}</span>
-                                                                {formData.currency === currency && (
-                                                                    <Check size={20} className="text-[#FE2C55]" />
-                                                                )}
-                                                            </button>
-                                                        ))}
-                                                    </div>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
+                                            {formData.currency}
+                                            <ChevronDown size={16} className={cn("transition-transform", isCurrencyDropdownOpen && "rotate-180")} />
+                                        </button>
                                     </div>
+
+                                    {/* DROPDOWN - Absolutnie pod polem, ale wewnątrz kontenera z odpowiednim Z-Index */}
+                                    <AnimatePresence>
+                                        {isCurrencyDropdownOpen && (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                                                className="absolute top-full mt-2 right-0 left-0 bg-[#2C2C2E] border border-white/10 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] overflow-hidden z-[100]"
+                                            >
+                                                <div className="flex flex-col p-1">
+                                                    {currencies.map((currency) => (
+                                                        <button
+                                                            key={currency}
+                                                            onClick={() => {
+                                                                setFormData({ ...formData, currency: currency as any });
+                                                                setIsCurrencyDropdownOpen(false);
+                                                            }}
+                                                            className={cn(
+                                                                "w-full flex items-center justify-between px-4 py-3 rounded-lg text-left font-bold transition-colors relative group text-white",
+                                                                formData.currency === currency
+                                                                    ? "bg-white/10 text-white"
+                                                                    : "hover:bg-white/5 text-white/70"
+                                                            )}
+                                                        >
+                                                            <span className="text-lg">{currency}</span>
+                                                            {formData.currency === currency && (
+                                                                <Check size={18} className="text-[#FE2C55]" />
+                                                            )}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
 
                                 <div
@@ -528,7 +525,7 @@ const TippingModal = () => {
                                     <div className={cn(
                                         "w-5 h-5 rounded border flex items-center justify-center transition-all duration-200 shrink-0",
                                         formData.terms_accepted
-                                            ? "bg-[#FE2C55] border-[#FE2C55]"
+                                            ? "bg-[#FE2C55] border-[#FE2C55] shadow-[0_0_10px_rgba(254,44,85,0.4)]"
                                             : "border-white/30 bg-transparent group-hover:border-white"
                                     )}>
                                         {formData.terms_accepted && <Check size={14} className="text-white" strokeWidth={3} />}
@@ -552,14 +549,14 @@ const TippingModal = () => {
                         transition={{ duration: 0.2 }}
                         className="space-y-4 flex-1 relative z-10"
                     >
-                        <div className="text-center">
-                            <div className="inline-block bg-[#2C2C2E] border border-white/10 text-white px-6 py-2 rounded-full shadow-lg">
-                                <span className="text-2xl font-black">{formData.amount.toFixed(2)} {formData.currency}</span>
+                        <div className="text-center mt-4">
+                            <div className="inline-block bg-[#2C2C2E] border border-white/10 text-white px-8 py-3 rounded-full shadow-lg">
+                                <span className="text-3xl font-black">{formData.amount.toFixed(2)} <span className="text-[#FE2C55]">{formData.currency}</span></span>
                             </div>
                         </div>
 
                         {clientSecret && (
-                            <div className="bg-transparent mt-2">
+                            <div className="bg-transparent mt-4">
                                 <Elements 
                                     stripe={stripePromise} 
                                     options={{ 
@@ -582,6 +579,7 @@ const TippingModal = () => {
                                                 },
                                                 '.Input:focus': {
                                                     border: '1px solid #FE2C55',
+                                                    boxShadow: '0 0 0 2px rgba(254, 44, 85, 0.2)',
                                                 }
                                             }
                                         } 
@@ -596,22 +594,24 @@ const TippingModal = () => {
             </AnimatePresence>
         </div>
 
-        {/* PRZYCISKI NAWIGACJI - widoczne tylko gdy nie czytamy regulaminu */}
+        {/* PRZYCISKI NAWIGACJI */}
         {currentStep < 3 && !showTerms && (
             <div className="px-6 pb-6 pt-4 flex gap-3 bg-transparent z-20 relative rounded-b-3xl">
                 {currentStep > 0 && (
                     <button
                         onClick={handleBack}
-                        className="px-6 py-3.5 rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
+                        className="px-6 py-4 rounded-2xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
                     >
                         Wstecz
                     </button>
                 )}
+                {/* 4. BUTTON GLOW (Reused same style as CheckoutForm button for consistency) */}
                 <button
                     onClick={handleNext}
                     disabled={isProcessing}
-                    className="group flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl font-black text-lg text-white bg-[#FE2C55] hover:bg-[#e0274b] transition-all disabled:opacity-50 tracking-widest uppercase shadow-lg active:scale-[0.98]"
+                    className="group flex-1 flex items-center justify-center gap-2 py-4 rounded-2xl font-black text-xl text-white bg-[#FE2C55] hover:bg-[#e0274b] transition-all disabled:opacity-50 tracking-widest uppercase shadow-[0_0_30px_-5px_rgba(254,44,85,0.6)] hover:shadow-[0_0_40px_-5px_rgba(254,44,85,0.8)] active:scale-[0.98] relative overflow-hidden"
                 >
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
                     {isProcessing ? (
                         <div className="flex items-center gap-2">
                             <Loader2 className="animate-spin h-5 w-5" />
@@ -624,7 +624,7 @@ const TippingModal = () => {
             </div>
         )}
 
-        {/* STOPKA: Logo bardzo blisko napisu gap-[2px] */}
+        {/* STOPKA */}
         <div className="pb-4 pt-4 flex items-center justify-center bg-[#1C1C1E] z-10 border-t border-white/5 rounded-b-3xl">
              <div className="flex items-center gap-[2px] opacity-40 hover:opacity-100 transition-all duration-300">
                   <span className="text-[10px] text-white font-bold uppercase tracking-widest">Powered by</span>
