@@ -56,27 +56,6 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose
                 <PaymentElement 
                     options={{ 
                         layout: 'tabs',
-                        appearance: {
-                            theme: 'night',
-                            variables: {
-                                colorPrimary: '#db2777', // bg-pink-600
-                                colorBackground: '#2C2C2E',
-                                colorText: '#ffffff',
-                                colorDanger: '#ff4444',
-                                fontFamily: 'inherit',
-                                borderRadius: '12px',
-                                spacingUnit: '4px',
-                            },
-                            rules: {
-                                '.Input': {
-                                    border: '1px solid rgba(255,255,255,0.1)',
-                                    backgroundColor: 'rgba(0,0,0,0.3)',
-                                },
-                                '.Input:focus': {
-                                    border: '1px solid #db2777', // bg-pink-600
-                                }
-                            }
-                        }
                     }} 
                 />
             </div>
