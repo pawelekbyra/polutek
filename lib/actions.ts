@@ -15,6 +15,7 @@ export interface ActionResponse {
   success: boolean;
   message?: string;
   errors?: Record<string, string[] | string>;
+  avatarUrl?: string;
 }
 
 export async function authenticate(
@@ -74,6 +75,8 @@ export async function updateUserProfile(prevState: ActionResponse | any, formDat
         emailLanguage: emailConsent ? (emailLanguage || 'pl') : null
     };
 
+    let newAvatarUrl: string | undefined;
+
     try {
         // Handle File Upload
         if (avatarFile && avatarFile.size > 0 && avatarFile.name !== 'undefined') {
@@ -95,9 +98,11 @@ export async function updateUserProfile(prevState: ActionResponse | any, formDat
 
             const blob = await put(uniqueFilename, avatarFile, { access: 'public' });
             updateData.avatar = blob.url;
+            newAvatarUrl = blob.url;
         } else if (!session.user.avatar) {
              // If user has no avatar, set it to default
              updateData.avatar = DEFAULT_AVATAR_URL;
+             newAvatarUrl = DEFAULT_AVATAR_URL;
         }
 
         // Check if email is taken by another user (if email changed)
@@ -123,7 +128,11 @@ export async function updateUserProfile(prevState: ActionResponse | any, formDat
         await NotificationService.sendProfileUpdate(userId);
 
         revalidatePath('/');
-        return { success: true, message: 'Profile updated successfully.' };
+        return {
+            success: true,
+            message: 'Profile updated successfully.',
+            avatarUrl: newAvatarUrl // Return the new URL for immediate client-side update
+        };
     } catch (error: any) {
         console.error("Profile update error:", error);
         return { success: false, message: error.message || 'Failed to update profile.' };
