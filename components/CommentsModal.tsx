@@ -113,7 +113,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
           alt={t('userAvatar', { user: safeAuthor.displayName || 'User' })}
           width={isL0 ? 36 : 28}
           height={isL0 ? 36 : 28}
-          className="rounded-full object-cover"
+          className="rounded-full object-cover border-2 border-white"
         />
         <UserBadge role={safeAuthor.role} />
       </div>
@@ -552,7 +552,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
               )}
               {user ? (
                 <form onSubmit={handleSubmit} className="flex items-center gap-2 p-2">
-                  <Image src={user.avatar || DEFAULT_AVATAR_URL} alt={t('yourAvatar')} width={36} height={36} className="w-9 h-9 rounded-full object-cover" />
+                  <Image src={user.avatar || DEFAULT_AVATAR_URL} alt={t('yourAvatar')} width={36} height={36} className="w-9 h-9 rounded-full object-cover border-2 border-white" />
                   <div className="flex-1 relative flex items-center bg-[#282828] rounded-xl">
                     <input
                       type="file"
@@ -585,14 +585,16 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
                   </button>
                 </form>
               ) : (
-                <div className="text-center p-4 text-[#8F8F8F] text-sm">
-                  <button
-                    onClick={() => { setActiveModal('login'); }}
-                    className="text-[#8F8F8F] font-semibold underline active:opacity-70 transition-opacity"
-                  >
-                    Zaloguj się
-                  </button>
-                  , aby skomentować
+                <div className="flex items-center justify-center h-12 text-center px-4 text-[#8F8F8F] text-sm">
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={() => { setActiveModal('login'); }}
+                      className="text-[#8F8F8F] font-semibold underline active:opacity-70 transition-opacity"
+                    >
+                      Zaloguj się
+                    </button>
+                    <span>, aby skomentować</span>
+                  </div>
                 </div>
               )}
             </div>

@@ -125,7 +125,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                                     alt={profile.username}
                                     width={96}
                                     height={96}
-                                    className="rounded-full object-cover w-24 h-24 border border-white/10"
+                                    className="rounded-full object-cover w-24 h-24 border-2 border-white"
                                 />
                             </div>
 
