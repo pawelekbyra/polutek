@@ -85,7 +85,7 @@ export async function updateUserProfile(prevState: ActionResponse | any, formDat
                 try {
                    // Only attempt to delete if it looks like a Vercel Blob URL to avoid errors with external/legacy URLs
                    if (session.user.avatar.includes('.public.blob.vercel-storage.com')) {
-                       await del(session.user.avatar);
+                       await del(session.user.avatar, { token: process.env.blobowski_READ_WRITE_TOKEN });
                    }
                 } catch (e) {
                     console.warn("Failed to delete old avatar:", e);
@@ -96,7 +96,7 @@ export async function updateUserProfile(prevState: ActionResponse | any, formDat
             const fileExtension = avatarFile.name.split('.').pop() || 'png';
             const uniqueFilename = `${uuidv4()}.${fileExtension}`;
 
-            const blob = await put(uniqueFilename, avatarFile, { access: 'public' });
+            const blob = await put(uniqueFilename, avatarFile, { access: 'public', token: process.env.blobowski_READ_WRITE_TOKEN });
             updateData.avatar = blob.url;
             newAvatarUrl = blob.url;
         } else if (!session.user.avatar) {

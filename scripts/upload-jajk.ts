@@ -17,7 +17,7 @@ async function uploadWithOverwrite() {
     const blob = await put('jajk.png', fileBuffer, {
       access: 'public',
       addRandomSuffix: false,
-      token: process.env.BLOB_READ_WRITE_TOKEN,
+      token: process.env.blobowski_READ_WRITE_TOKEN,
       // @ts-ignore - valid option usually
       allowOverwrite: true
     });
