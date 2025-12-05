@@ -20,7 +20,7 @@ export function PatronProfileModal({ patronId, onClose }: PatronProfileModalProp
         queryKey: ['author', patronId],
         queryFn: () => fetchAuthorProfile(patronId),
         enabled: !!patronId,
-        staleTime: 1000 * 60 * 5, // 5 minutes
+        // Removed staleTime to ensure fresh data fetch on every open
     });
 
     return (
