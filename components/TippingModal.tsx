@@ -15,7 +15,7 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK!);
 
 // Logo Stripe w wersji BIAŁEJ
 const StripeLogo = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="75" height="33" viewBox="0 0 120 60" fillRule="evenodd" fill="#FFFFFF">
+    <svg xmlns="http://www.w3.org/2000/svg" width="65" height="29" viewBox="0 0 120 60" fillRule="evenodd" fill="#FFFFFF">
         <path d="M101.547 30.94c0-5.885-2.85-10.53-8.3-10.53-5.47 0-8.782 4.644-8.782 10.483 0 6.92 3.908 10.414 9.517 10.414 2.736 0 4.805-.62 6.368-1.494v-4.598c-1.563.782-3.356 1.264-5.632 1.264-2.23 0-4.207-.782-4.46-3.494h11.24c0-.3.046-1.494.046-2.046zM90.2 28.757c0-2.598 1.586-3.678 3.035-3.678 1.402 0 2.897 1.08 2.897 3.678zm-14.597-8.345c-2.253 0-3.7 1.057-4.506 1.793l-.3-1.425H65.73v26.805l5.747-1.218.023-6.506c.828.598 2.046 1.448 4.07 1.448 4.115 0 7.862-3.3 7.862-10.598-.023-6.667-3.816-10.3-7.84-10.3zm-1.38 15.84c-1.356 0-2.16-.483-2.713-1.08l-.023-8.53c.598-.667 1.425-1.126 2.736-1.126 2.092 0 3.54 2.345 3.54 5.356 0 3.08-1.425 5.38-3.54 5.38zm-16.4-17.196l5.77-1.24V13.15l-5.77 1.218zm0 1.747h5.77v20.115h-5.77zm-6.185 1.7l-.368-1.7h-4.966V40.92h5.747V27.286c1.356-1.77 3.655-1.448 4.368-1.195v-5.287c-.736-.276-3.425-.782-4.782 1.7zm-11.494-6.7L34.535 17l-.023 18.414c0 3.402 2.552 5.908 5.954 5.908 1.885 0 3.264-.345 4.023-.76v-4.667c-.736.3-4.368 1.356-4.368-2.046V25.7h4.368v-4.897h-4.37zm-15.54 10.828c0-.897.736-1.24 1.954-1.24a12.85 12.85 0 0 1 5.7 1.47V21.47c-1.908-.76-3.793-1.057-5.7-1.057-4.667 0-7.77 2.437-7.77 6.506 0 6.345 8.736 5.333 8.736 8.07 0 1.057-.92 1.402-2.207 1.402-1.908 0-4.345-.782-6.276-1.84v5.47c2.138.92 4.3 1.3 6.276 1.3 4.782 0 8.07-2.368 8.07-6.483-.023-6.85-8.782-5.632-8.782-8.207z"/>
     </svg>
 );
@@ -59,18 +59,27 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose
                     }} 
                 />
             </div>
-            <button
-                disabled={isProcessing || !stripe || !elements}
-                className="w-full py-3.5 mb-6 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
-            >
-                {isProcessing ? (
-                    <div className="flex items-center justify-center gap-2">
-                        <Loader2 className="animate-spin h-5 w-5" />
-                    </div>
-                ) : (
-                    "ZAPŁAĆ TERAZ"
-                )}
-            </button>
+            <div className="flex gap-3 mb-6">
+                 <button
+                    type="button"
+                    onClick={onClose}
+                    className="flex-1 h-10 rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
+                >
+                    Wstecz
+                </button>
+                <button
+                    disabled={isProcessing || !stripe || !elements}
+                    className="flex-1 h-10 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
+                >
+                    {isProcessing ? (
+                        <div className="flex items-center justify-center gap-2">
+                            <Loader2 className="animate-spin h-5 w-5" />
+                        </div>
+                    ) : (
+                        "NAPIWKUJ"
+                    )}
+                </button>
+            </div>
         </form>
     );
 };
@@ -289,7 +298,7 @@ const TippingModal = () => {
         
         {/* NAGŁÓWEK - Adjusted for perfect centering using flexbox and removed top padding */}
         <div className="relative h-14 flex items-center justify-center px-6 text-center shrink-0 z-10 bg-[#1C1C1E] border-b border-white/5 rounded-t-3xl">
-            <h2 className="text-xs font-bold text-white/50 uppercase tracking-widest">
+            <h2 className="text-xl font-bold text-white/50 uppercase tracking-widest">
                 {modalTitle}
             </h2>
             <button
@@ -333,7 +342,7 @@ const TippingModal = () => {
                         <div className="space-y-3 pt-1">
                             <div 
                                 className={cn(
-                                    "flex items-center justify-start p-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
+                                    "flex items-center justify-start h-10 px-4 gap-4 rounded-xl cursor-pointer transition-all duration-300 group border",
                                     formData.recipient === 'Paweł'
                                         ? "bg-[#2C2C2E] border-pink-600 shadow-[0_0_15px_rgba(219,39,119,0.15)]" // Changed highlight color
                                         : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
@@ -355,7 +364,7 @@ const TippingModal = () => {
 
                             <div 
                                 className={cn(
-                                    "flex items-center justify-start p-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
+                                    "flex items-center justify-start h-10 px-4 gap-4 rounded-xl cursor-pointer transition-all duration-300 group border",
                                     formData.recipient === 'Nikt'
                                         ? "bg-[#2C2C2E] border-white shadow-lg" 
                                         : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
@@ -396,7 +405,7 @@ const TippingModal = () => {
                             {!isLoggedIn && (
                                 <div 
                                     className={cn(
-                                        "flex items-center justify-start p-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
+                                        "flex items-center justify-start h-10 px-4 gap-4 rounded-xl cursor-pointer transition-all duration-300 group border",
                                         formData.create_account 
                                             ? "bg-[#2C2C2E] border-pink-600 shadow-[0_0_15px_rgba(219,39,119,0.15)]" // Changed highlight
                                             : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
@@ -424,7 +433,7 @@ const TippingModal = () => {
                                         placeholder="Twój adres email"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        className="relative w-full bg-black/30 border border-white/10 rounded-xl px-5 py-4 text-white placeholder:text-white/30 focus:outline-none focus:bg-black/50 focus:border-pink-600 transition-all font-medium text-base" // Changed focus border
+                                        className="relative w-full h-10 bg-black/30 border border-white/10 rounded-xl px-5 text-white placeholder:text-white/30 focus:outline-none focus:bg-black/50 focus:border-pink-600 transition-all font-medium text-base" // Changed focus border
                                     />
                                 </div>
                                 <p className="text-xs text-white/40 text-left px-2 font-medium">
@@ -483,7 +492,7 @@ const TippingModal = () => {
                                             key={amount}
                                             onClick={() => setFormData({ ...formData, amount })}
                                             className={cn(
-                                                "py-3 rounded-xl font-bold transition-all border relative overflow-hidden group text-lg",
+                                                "h-10 rounded-xl font-bold transition-all border relative overflow-hidden group text-base",
                                                 formData.amount === amount
                                                     ? "bg-pink-600 border-pink-600 text-white shadow-lg" // Changed selected bg/border
                                                     : "bg-[#2C2C2E] border-white/5 text-white/80 hover:bg-[#3A3A3C] hover:text-white"
@@ -496,7 +505,7 @@ const TippingModal = () => {
 
                                 {/* POLE KWOTY I DROPDOWN (Z-INDEX FIX) */}
                                 <div 
-                                    className={cn("flex items-stretch h-[60px] relative transition-all", isCurrencyDropdownOpen ? "z-50" : "z-30")} 
+                                    className={cn("flex items-stretch h-10 relative transition-all", isCurrencyDropdownOpen ? "z-50" : "z-30")}
                                     ref={dropdownRef}
                                 >
                                     <div className="relative flex-1 h-full">
@@ -504,7 +513,7 @@ const TippingModal = () => {
                                             type="number"
                                             value={formData.amount}
                                             onChange={(e) => setFormData({ ...formData, amount: Number(e.target.value) })}
-                                            className="w-full h-full bg-black/30 border border-white/10 text-center text-3xl font-black text-white rounded-l-xl focus:outline-none focus:bg-black/50 focus:border-pink-600 transition-all z-10 relative" // Changed focus border
+                                            className="w-full h-full bg-black/30 border border-white/10 text-center text-2xl font-black text-white rounded-l-xl focus:outline-none focus:bg-black/50 focus:border-pink-600 transition-all z-10 relative" // Changed focus border
                                             placeholder="0"
                                         />
                                     </div>
@@ -513,11 +522,11 @@ const TippingModal = () => {
                                     <div className="relative h-full w-[120px]"> 
                                         {/* TRIGGER - widoczny tylko gdy dropdown zamknięty, lub pod spodem */}
                                         <div
-                                            className="h-full border border-l-0 border-white/10 bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-colors relative shrink-0 cursor-pointer px-4 rounded-r-xl flex items-center justify-between"
+                                            className="h-full border border-l-0 border-white/10 bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-colors relative shrink-0 cursor-pointer rounded-r-xl"
                                             onClick={() => setIsCurrencyDropdownOpen(true)}
                                         >
-                                            <span className="font-bold text-xl text-white select-none">{formData.currency}</span>
-                                            <ChevronDown className="w-5 h-5 text-white/50" />
+                                            <span className="absolute inset-0 flex items-center justify-center font-bold text-base text-white select-none">{formData.currency}</span>
+                                            <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50" />
                                         </div>
 
                                         {/* ROZWIJANA LISTA - Zakrywa Trigger */}
@@ -615,7 +624,7 @@ const TippingModal = () => {
                 {currentStep > 0 && (
                     <button
                         onClick={handleBack}
-                        className="px-6 py-3.5 rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
+                        className="flex-1 h-10 rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
                     >
                         Wstecz
                     </button>
@@ -623,7 +632,7 @@ const TippingModal = () => {
                 <button
                     onClick={handleNext}
                     disabled={isProcessing}
-                    className="group flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 shadow-lg active:scale-[0.98]" // Changed to match Login Enter
+                    className="group flex-1 h-10 flex items-center justify-center gap-2 rounded-xl font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 shadow-lg active:scale-[0.98]" // Changed to match Login Enter
                 >
                     {isProcessing ? (
                         <div className="flex items-center gap-2">
@@ -649,7 +658,7 @@ const TippingModal = () => {
              ) : (
                  <div className="flex items-center gap-0 opacity-40 hover:opacity-100 transition-all duration-300">
                       <span className="text-[10px] text-white font-bold uppercase tracking-widest">Powered by</span>
-                      <div className="relative flex items-center -mt-px -ml-2">
+                      <div className="relative flex items-center -mt-[2px] -ml-[4px]">
                           <StripeLogo />
                       </div>
                  </div>
