@@ -84,6 +84,7 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
 
         // Parallel updates to ensure everything is fresh
         // update({ image: state.avatarUrl }) passes the new image directly to the client session
+        // This relies on the updated auth.ts handling 'trigger: update' to update the token immediately from payload
         Promise.all([
           checkUserStatus(), // Update local UserContext from DB
           update({ image: state.avatarUrl }), // Update NextAuth session cookie immediately with new image
@@ -97,6 +98,8 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
         queryClient.invalidateQueries({ queryKey: ['notifications'] });
         // Invalidate comments to update author avatar in existing comments
         queryClient.invalidateQueries({ queryKey: ['comments'] });
+        // Invalidate slides in case the user's avatar is shown on their own slides in a feed
+        queryClient.invalidateQueries({ queryKey: ['slides'] });
       } else {
         addToast(state.message, 'error');
       }

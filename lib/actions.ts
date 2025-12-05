@@ -127,7 +127,9 @@ export async function updateUserProfile(prevState: ActionResponse | any, formDat
         // Create system notification about profile update
         await NotificationService.sendProfileUpdate(userId);
 
-        revalidatePath('/');
+        // Force revalidation of all paths where avatar might appear
+        revalidatePath('/', 'layout');
+
         return {
             success: true,
             message: 'Profile updated successfully.',
