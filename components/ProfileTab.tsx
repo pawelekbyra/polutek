@@ -16,6 +16,7 @@ import CropModal from './CropModal';
 import UserBadge from './UserBadge';
 import { useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
+import StatusMessage from '@/components/ui/StatusMessage';
 
 interface ProfileTabProps {
     onClose: () => void;
@@ -43,10 +44,13 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [croppedFile, setCroppedFile] = useState<File | null>(null);
 
+  // Status message states
+  const [avatarMessage, setAvatarMessage] = useState<{ type: 'success' | 'error', message: string, isVisible: boolean }>({ type: 'success', message: '', isVisible: false });
+  const [formMessage, setFormMessage] = useState<{ type: 'success' | 'error', message: string, isVisible: boolean }>({ type: 'success', message: '', isVisible: false });
+
   // Initialize state from profile when available
   useEffect(() => {
     if (profile) {
-      // No need to cast to any, as User interface in lib/db.interfaces.ts now includes these fields
       if (profile.emailConsent !== undefined) setEmailConsent(profile.emailConsent);
       if (profile.emailLanguage) setEmailLanguage(profile.emailLanguage);
     }
@@ -55,60 +59,65 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
   // useFormState hook for server action
   const [state, formAction] = useFormState(updateUserProfile, initialState);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // Track the last handled message to prevent duplicate toasts
   const lastMessageRef = useRef<string>('');
+
+  // Handle avatar message auto-hide
+  useEffect(() => {
+    if (avatarMessage.isVisible) {
+      const timer = setTimeout(() => {
+        setAvatarMessage(prev => ({ ...prev, isVisible: false }));
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [avatarMessage.isVisible]);
+
+  // Handle form message auto-hide
+  useEffect(() => {
+    if (formMessage.isVisible) {
+      const timer = setTimeout(() => {
+        setFormMessage(prev => ({ ...prev, isVisible: false }));
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [formMessage.isVisible]);
 
   // Handle state updates from server action
   useEffect(() => {
-    // Only proceed if there is a message and it's different from the last one
-    // OR if it's the same message but sufficient time has passed (simple dedupe by value here is usually enough for form submissions)
-    // Actually, useFormState might return the same object reference if it hasn't changed, but if it changes, it's a new submission.
-    // However, to be safe against re-renders triggered by other things (like checkUserStatus updating context),
-    // we strictly check against a ref.
-
     if (state.message && state.message !== lastMessageRef.current) {
       lastMessageRef.current = state.message;
 
-      if (state.success) {
-        addToast(state.message, 'success');
+      // Update form message state instead of toast
+      setFormMessage({
+        type: state.success ? 'success' : 'error',
+        message: state.message,
+        isVisible: true
+      });
 
-        // Immediate optimistic update of the preview if URL is returned
+      if (state.success) {
         if (state.avatarUrl) {
            setPreviewUrl(state.avatarUrl);
-           // Also optimistically update the UserContext if possible
            if (profile) {
                setUser({ ...profile, avatar: state.avatarUrl });
            }
         }
 
-        // Parallel updates to ensure everything is fresh
-        // update({ image: state.avatarUrl }) passes the new image directly to the client session
-        // This relies on the updated auth.ts handling 'trigger: update' to update the token immediately from payload
         Promise.all([
-          checkUserStatus(), // Update local UserContext from DB
-          update({ image: state.avatarUrl }), // Update NextAuth session cookie immediately with new image
+          checkUserStatus(),
+          update({ image: state.avatarUrl }),
         ]).catch(console.error);
 
-        // Invalidate author profile query to update the modal if it's open for this user
         if (profile?.id) {
             queryClient.invalidateQueries({ queryKey: ['author', profile.id] });
         }
-        // Invalidate notifications to show the system notification
         queryClient.invalidateQueries({ queryKey: ['notifications'] });
-        // Invalidate comments to update author avatar in existing comments
         queryClient.invalidateQueries({ queryKey: ['comments'] });
-        // Invalidate slides in case the user's avatar is shown on their own slides in a feed
         queryClient.invalidateQueries({ queryKey: ['slides'] });
-        // Invalidate patron modal query
         if (profile?.id) {
             queryClient.invalidateQueries({ queryKey: ['patron', profile.id] });
         }
-      } else {
-        addToast(state.message, 'error');
       }
     }
-  }, [state, addToast, checkUserStatus, profile, queryClient, update, setUser]);
+  }, [state, checkUserStatus, profile, queryClient, update, setUser]);
 
   const handleAvatarEditClick = () => {
     fileInputRef.current?.click();
@@ -125,7 +134,6 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
         }
       };
       reader.readAsDataURL(file);
-      // Reset input so the same file can be selected again
       event.target.value = '';
     }
   };
@@ -135,6 +143,13 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
       const file = new File([croppedBlob], 'avatar.png', { type: 'image/png' });
       setCroppedFile(file);
       setPreviewUrl(URL.createObjectURL(file));
+
+      // Trigger avatar success message
+      setAvatarMessage({
+        type: 'success',
+        message: t('avatarUpdateSuccess') || 'Awatar zaktualizowany pomyślnie',
+        isVisible: true
+      });
     }
     setIsCropOpen(false);
   };
@@ -143,9 +158,6 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
     if (croppedFile) {
       formData.set('avatar', croppedFile);
     }
-    // Clear the last message ref so if the server returns the EXACT same message again (rare but possible), it still shows.
-    // However, usually success messages might be identical.
-    // If we want to allow identical messages on subsequent submits, we should clear the ref on submit.
     lastMessageRef.current = '';
     formAction(formData);
   };
@@ -171,10 +183,9 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
                       height={96}
                       className="w-full h-full object-cover rounded-full border-2 border-white"
                       id="userAvatar"
-                      unoptimized={!!previewUrl} // Skip optimization for blob URLs or immediate previews
+                      unoptimized={!!previewUrl}
                     />
 
-                    {/* Overlay on hover */}
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                         <Camera className="text-white w-8 h-8" />
                     </div>
@@ -196,6 +207,14 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
                     accept="image/png, image/jpeg, image/webp"
                 />
             </div>
+
+            {/* Avatar Section Feedback */}
+            <StatusMessage
+                type={avatarMessage.type}
+                message={avatarMessage.message}
+                isVisible={avatarMessage.isVisible}
+                className="mb-3"
+            />
 
             <div className="flex flex-col items-center gap-1">
                 <h3 className="text-xl font-bold text-white" id="displayName">{profile.displayName}</h3>
@@ -253,7 +272,6 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
                         <span className="text-xs text-white/50">{t('emailConsentDesc') || 'Receive updates and notifications via email'}</span>
                     </div>
                     <ToggleSwitch isActive={emailConsent} onToggle={() => setEmailConsent(p => !p)} />
-                    {/* Hidden input to submit the toggle value */}
                     <input type="hidden" name="emailConsent" value={emailConsent.toString()} />
                 </div>
 
@@ -292,6 +310,15 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
 
           <div className="mt-6">
             <SaveButton t={t} />
+          </div>
+
+          {/* General Settings Feedback */}
+          <div className="mt-4 min-h-[50px]">
+             <StatusMessage
+                 type={formMessage.type}
+                 message={formMessage.message}
+                 isVisible={formMessage.isVisible}
+             />
           </div>
         </div>
       </form>
