@@ -6,6 +6,7 @@ import { revalidatePath } from 'next/cache';
 import * as bcrypt from 'bcryptjs';
 import { AuthError } from 'next-auth';
 import { put, del } from '@vercel/blob';
+import { v4 as uuidv4 } from 'uuid';
 import { DEFAULT_AVATAR_URL } from '@/lib/constants';
 import { NotificationService } from '@/lib/notifications';
 
@@ -87,7 +88,11 @@ export async function updateUserProfile(prevState: ActionResponse | any, formDat
                 }
             }
 
-            const blob = await put(avatarFile.name, avatarFile, { access: 'public' });
+            // Generate unique filename to prevent caching issues
+            const fileExtension = avatarFile.name.split('.').pop() || 'png';
+            const uniqueFilename = `${uuidv4()}.${fileExtension}`;
+
+            const blob = await put(uniqueFilename, avatarFile, { access: 'public' });
             updateData.avatar = blob.url;
         } else if (!session.user.avatar) {
              // If user has no avatar, set it to default
