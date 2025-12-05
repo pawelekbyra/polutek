@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useUser } from '@/context/UserContext';
@@ -61,7 +61,7 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose
             </div>
             <button
                 disabled={isProcessing || !stripe || !elements}
-                className="w-full py-3.5 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
+                className="w-full py-3.5 mb-6 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
             >
                 {isProcessing ? (
                     <div className="flex items-center justify-center gap-2">
@@ -216,6 +216,31 @@ const TippingModal = () => {
 
   const modalTitle = showTerms ? "Regulamin i Polityka" : "Bramka Napiwkowa";
 
+  const stripeOptions = useMemo(() => ({
+      clientSecret: clientSecret || "",
+      appearance: {
+          theme: 'night' as const,
+          variables: {
+              colorPrimary: '#db2777', // bg-pink-600
+              colorBackground: '#2C2C2E',
+              colorText: '#ffffff',
+              colorDanger: '#ff4444',
+              fontFamily: 'inherit',
+              borderRadius: '12px',
+              spacingUnit: '4px',
+          },
+          rules: {
+              '.Input': {
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  backgroundColor: 'rgba(0,0,0,0.3)',
+              },
+              '.Input:focus': {
+                  border: '1px solid #db2777', // bg-pink-600
+              }
+          }
+      }
+  }), [clientSecret]);
+
   // Animacje: Subtelne przejścia opacity + slide
   const stepVariants = {
       initial: { x: 20, opacity: 0 },
@@ -247,7 +272,7 @@ const TippingModal = () => {
         
         {/* NAGŁÓWEK - Adjusted for perfect centering using flexbox and removed top padding */}
         <div className="relative h-14 flex items-center justify-center px-6 text-center shrink-0 z-10 bg-[#1C1C1E] border-b border-white/5 rounded-t-3xl">
-            <h2 className="text-lg font-bold text-white tracking-wide">
+            <h2 className="text-xl font-extrabold text-white uppercase tracking-wider">
                 {modalTitle}
             </h2>
             <button
@@ -556,30 +581,7 @@ const TippingModal = () => {
                             <div className="bg-transparent mt-2">
                                 <Elements 
                                     stripe={stripePromise} 
-                                    options={{ 
-                                        clientSecret, 
-                                        appearance: { 
-                                            theme: 'night',
-                                            variables: {
-                                                colorPrimary: '#db2777', // bg-pink-600
-                                                colorBackground: '#2C2C2E',
-                                                colorText: '#ffffff',
-                                                colorDanger: '#ff4444',
-                                                fontFamily: 'inherit',
-                                                borderRadius: '12px',
-                                                spacingUnit: '4px',
-                                            },
-                                            rules: {
-                                                '.Input': {
-                                                    border: '1px solid rgba(255,255,255,0.1)',
-                                                    backgroundColor: 'rgba(0,0,0,0.3)',
-                                                },
-                                                '.Input:focus': {
-                                                    border: '1px solid #db2777', // bg-pink-600
-                                                }
-                                            }
-                                        } 
-                                    }}
+                                    options={stripeOptions}
                                 >
                                     <CheckoutForm clientSecret={clientSecret} onClose={closeTippingModal} />
                                 </Elements>
@@ -628,9 +630,9 @@ const TippingModal = () => {
                     Wróć
                   </button>
              ) : (
-                 <div className="flex items-center gap-[2px] opacity-40 hover:opacity-100 transition-all duration-300">
+                 <div className="flex items-center gap-0 opacity-40 hover:opacity-100 transition-all duration-300">
                       <span className="text-[10px] text-white font-bold uppercase tracking-widest">Powered by</span>
-                      <div className="relative flex items-center -mt-px">
+                      <div className="relative flex items-center -mt-px -ml-2">
                           <StripeLogo />
                       </div>
                  </div>
