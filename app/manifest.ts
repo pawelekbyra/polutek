@@ -2,9 +2,9 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Ting Tong',
-    short_name: 'TingTong',
-    description: 'Ting Tong — pionowy feed wideo z prefetchingiem i trybem HLS/CDN-ready.',
+    name: 'Patronek',
+    short_name: 'Patronek',
+    description: 'Patronek — pionowy feed wideo z prefetchingiem i trybem HLS/CDN-ready.',
     start_url: '/',
     display: 'standalone',
     background_color: '#000000',

@@ -341,7 +341,7 @@ function Step2({
                             type="text"
                             {...register('displayName')}
                             className={`bg-black/40 border-white/10 text-white h-14 px-4 text-lg rounded-xl pr-12 focus:border-pink-500 focus:ring-0 transition-all ${displayNameAvailable === false ? 'border-red-500' : (displayNameAvailable === true ? 'border-green-500' : '')}`}
-                            placeholder="Np. PolutekMaster"
+                            placeholder="Np. PatronekMaster"
                             autoComplete="off"
                         />
                         <div className="absolute right-4 top-1/2 -translate-y-1/2">

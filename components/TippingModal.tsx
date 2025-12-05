@@ -68,7 +68,7 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose
                         <Loader2 className="animate-spin h-5 w-5" />
                     </div>
                 ) : (
-                    "ZAPŁAĆ TERAZ"
+                    "WYŚLIJ NAPIWEK"
                 )}
             </button>
         </form>
@@ -307,16 +307,16 @@ const TippingModal = () => {
                         animate="animate"
                         exit="exit"
                         transition={{ duration: 0.2 }}
-                        className="space-y-4"
+                        className="space-y-1"
                     >
-                        <div className="text-left">
+                        <div className="text-left mb-1">
                             <p className="text-base font-medium text-white/90 tracking-wide">Komu chcesz wysłać napiwek?</p>
                         </div>
 
                         <div className="space-y-3 pt-1">
                             <div 
                                 className={cn(
-                                    "flex items-center justify-start p-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
+                                    "flex items-center justify-start py-3 px-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
                                     formData.recipient === 'Paweł'
                                         ? "bg-[#2C2C2E] border-pink-600 shadow-[0_0_15px_rgba(219,39,119,0.15)]" // Changed highlight color
                                         : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
@@ -332,13 +332,13 @@ const TippingModal = () => {
                                     {formData.recipient === 'Paweł' && <div className="w-2.5 h-2.5 bg-pink-600 rounded-full" />} {/* Changed fill color */}
                                 </div>
                                 <span className={cn("text-base font-semibold transition-colors", formData.recipient === 'Paweł' ? "text-white" : "text-white/70 group-hover:text-white")}>
-                                    Pawłowi Polutkowi
+                                    Pawłowi Perfect
                                 </span>
                             </div>
 
                             <div 
                                 className={cn(
-                                    "flex items-center justify-start p-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
+                                    "flex items-center justify-start py-3 px-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
                                     formData.recipient === 'Nikt'
                                         ? "bg-[#2C2C2E] border-white shadow-lg" 
                                         : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
@@ -369,9 +369,9 @@ const TippingModal = () => {
                         animate="animate"
                         exit="exit"
                         transition={{ duration: 0.2 }}
-                        className="space-y-4"
+                        className="space-y-1"
                     >
-                        <div className="text-left">
+                        <div className="text-left mb-1">
                             <p className="text-base font-medium text-white/90 tracking-wide">Czy chcesz utworzyć konto Patrona?</p>
                         </div>
 
@@ -379,7 +379,7 @@ const TippingModal = () => {
                             {!isLoggedIn && (
                                 <div 
                                     className={cn(
-                                        "flex items-center justify-start p-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
+                                        "flex items-center justify-start py-3 px-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
                                         formData.create_account 
                                             ? "bg-[#2C2C2E] border-pink-600 shadow-[0_0_15px_rgba(219,39,119,0.15)]" // Changed highlight
                                             : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
@@ -407,7 +407,7 @@ const TippingModal = () => {
                                         placeholder="Twój adres email"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        className="relative w-full bg-black/30 border border-white/10 rounded-xl px-5 py-4 text-white placeholder:text-white/30 focus:outline-none focus:bg-black/50 focus:border-pink-600 transition-all font-medium text-base" // Changed focus border
+                                        className="relative w-full bg-black/30 border border-white/10 rounded-xl px-5 h-12 text-white placeholder:text-white/30 focus:outline-none focus:bg-black/50 focus:border-pink-600 transition-all font-medium text-base" // Changed focus border
                                     />
                                 </div>
                                 <p className="text-xs text-white/40 text-left px-2 font-medium">
@@ -432,31 +432,25 @@ const TippingModal = () => {
                              <div className="flex flex-col h-full overflow-hidden">
                                 {/* REGULAMIN: Ustawiona wysokość i scrollowanie */}
                                 <div className="flex-1 overflow-y-auto bg-black/20 border border-white/10 rounded-xl p-4 text-sm text-white/80 space-y-3 custom-scrollbar h-[50vh] max-h-[400px]">
-                                    <p className="font-bold text-white">1. Postanowienia ogólne</p>
-                                    <p>Korzystając z Bramki Napiwkowej, użytkownik (&quot;Darczyńca&quot;) oświadcza, że zapoznał się z niniejszym regulaminem i w pełni go akceptuje. Wpłaty są dobrowolne i mają charakter darowizny na rzecz twórcy (&quot;Beneficjent&quot;).</p>
-                                    
-                                    <p className="font-bold text-white">2. Płatności i Zwroty</p>
-                                    <p>Wszystkie transakcje są przetwarzane przez zewnętrznego operatora płatności Stripe. Serwis nie przechowywuje pełnych danych kart płatniczych. Z uwagi na charakter usługi (darowizna cyfrowa), wpłaty są bezzwrotne, chyba że przepisy prawa stanowią inaczej. Reklamacje dotyczące błędów technicznych należy zgłaszać w ciągu 14 dni.</p>
-                                    
-                                    <p className="font-bold text-white">3. Prywatność i Dane Osobowe</p>
-                                    <p>Administratorem danych jest właściciel serwisu. Podany adres e-mail przetwarzany jest wyłącznie w celu:</p>
-                                    <ul className="list-disc pl-5 space-y-1">
-                                        <li>Przesłania potwierdzenia transakcji.</li>
-                                        <li>Utworzenia konta Patrona (jeśli zaznaczono opcję).</li>
-                                        <li>Kontaktu w sprawach technicznych.</li>
-                                    </ul>
-                                    <p>Dane nie są udostępniane podmiotom trzecim w celach marketingowych.</p>
-                                    
-                                    <p className="font-bold text-white">4. Postanowienia końcowe</p>
-                                    <p>Regulamin może ulec zmianie. W sprawach nieuregulowanych decydują przepisy prawa polskiego.</p>
-                                    
-                                    <p className="opacity-50 mt-4 italic">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                                    <p className="opacity-50 italic">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.</p>
+                                    <p className="font-bold text-white">1. O co tu chodzi?</p>
+                                    <p>Serwis Patronek to autorska aplikacja napiwkowa, której właścicielem jest Paweł Perfect. Służy do wspierania twórczości autora.</p>
+
+                                    <p className="font-bold text-white mt-3">2. To jest darowizna</p>
+                                    <p>Wpłacana kwota jest dobrowolnym napiwkiem (darowizną), a nie opłatą za usługę. Wpłacasz, bo chcesz wesprzeć Twórcę.</p>
+
+                                    <p className="font-bold text-white mt-3">3. Konto Patrona</p>
+                                    <p>Przy okazji wsparcia możesz utworzyć Konto Patrona. To darmowy dodatek w podziękowaniu, dający dostęp do ukrytych treści.</p>
+
+                                    <p className="font-bold text-white mt-3">4. Płatności i Zwroty</p>
+                                    <p>Transakcje obsługuje Stripe. Wpłaty są bezzwrotne.</p>
+
+                                    <p className="font-bold text-white mt-3">5. Twoje Dane</p>
+                                    <p>Twój e-mail służy tylko do obsługi płatności i logowania. Zero spamu.</p>
                                 </div>
                             </div>
                         ) : (
                             <>
-                                <div>
+                                <div className="mb-[-10px]">
                                     <h3 className="text-base font-medium text-white/90">Wybierz lub wpisz kwotę napiwku</h3>
                                 </div>
 
@@ -466,7 +460,7 @@ const TippingModal = () => {
                                             key={amount}
                                             onClick={() => setFormData({ ...formData, amount })}
                                             className={cn(
-                                                "py-3 rounded-xl font-bold transition-all border relative overflow-hidden group text-lg",
+                                                "py-2 rounded-xl font-bold transition-all border relative overflow-hidden group text-lg",
                                                 formData.amount === amount
                                                     ? "bg-pink-600 border-pink-600 text-white shadow-lg" // Changed selected bg/border
                                                     : "bg-[#2C2C2E] border-white/5 text-white/80 hover:bg-[#3A3A3C] hover:text-white"
@@ -479,7 +473,7 @@ const TippingModal = () => {
 
                                 {/* POLE KWOTY I DROPDOWN (Z-INDEX FIX) */}
                                 <div 
-                                    className={cn("flex items-stretch h-[60px] relative transition-all", isCurrencyDropdownOpen ? "z-50" : "z-30")} 
+                                    className={cn("flex items-stretch h-12 relative transition-all", isCurrencyDropdownOpen ? "z-50" : "z-30")}
                                     ref={dropdownRef}
                                 >
                                     <div className="relative flex-1 h-full">
