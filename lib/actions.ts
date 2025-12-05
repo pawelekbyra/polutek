@@ -38,10 +38,7 @@ export async function authenticate(
 }
 
 // Removed standalone uploadAvatar as it is now integrated into updateUserProfile
-// or can be kept if needed for other parts, but the prompt implies a replacement logic.
-// For safety, I'll keep the export but it won't be used by the new ProfileTab.
 export async function uploadAvatar(formData: FormData): Promise<ActionResponse> {
-  // Legacy/Unused in new ProfileTab flow, kept for backward compatibility if needed
   return { success: false, message: 'Please use the profile save button.' };
 }
 
@@ -57,7 +54,6 @@ export async function updateUserProfile(prevState: ActionResponse | any, formDat
     const email = formData.get('email') as string;
     const avatarFile = formData.get('avatar') as File;
 
-    // New fields handling
     const emailConsentRaw = formData.get('emailConsent');
     const emailLanguage = formData.get('emailLanguage') as string;
     const emailConsent = emailConsentRaw === 'true' || emailConsentRaw === 'on';
@@ -66,24 +62,22 @@ export async function updateUserProfile(prevState: ActionResponse | any, formDat
         return { success: false, message: 'Invalid email address.' };
     }
 
-    // Update Object
     const updateData: any = {
         displayName: displayName || undefined,
         bio: bio || undefined,
         email: email,
         emailConsent: emailConsent,
-        emailLanguage: emailConsent ? (emailLanguage || 'pl') : null
+        emailLanguage: emailConsent ? (emailLanguage || 'pl') : null,
+        updatedAt: new Date() // Explicitly set updatedAt
     };
 
     let newAvatarUrl: string | undefined;
 
     try {
-        // Handle File Upload
         if (avatarFile && avatarFile.size > 0 && avatarFile.name !== 'undefined') {
             // Delete old avatar if it exists and is not the default one
             if (session.user.avatar && session.user.avatar !== DEFAULT_AVATAR_URL) {
                 try {
-                   // Only attempt to delete if it looks like a Vercel Blob URL to avoid errors with external/legacy URLs
                    if (session.user.avatar.includes('.public.blob.vercel-storage.com')) {
                        await del(session.user.avatar);
                    }
@@ -92,20 +86,19 @@ export async function updateUserProfile(prevState: ActionResponse | any, formDat
                 }
             }
 
-            // Generate unique filename to prevent caching issues
             const fileExtension = avatarFile.name.split('.').pop() || 'png';
             const uniqueFilename = `${uuidv4()}.${fileExtension}`;
 
             const blob = await put(uniqueFilename, avatarFile, { access: 'public' });
             updateData.avatar = blob.url;
             newAvatarUrl = blob.url;
-        } else if (!session.user.avatar) {
-             // If user has no avatar, set it to default
-             updateData.avatar = DEFAULT_AVATAR_URL;
-             newAvatarUrl = DEFAULT_AVATAR_URL;
+        } else if (!session.user.avatar && !updateData.avatar) {
+             // If user has no avatar and no new one is provided (and not maintaining old one?),
+             // wait, we only want to set default if it's currently null/undefined in DB?
+             // But we are in "update", so we usually don't wipe it unless asked.
+             // If avatarFile is null, we do nothing to avatar field.
         }
 
-        // Check if email is taken by another user (if email changed)
         if (email !== session.user.email) {
             const existingUser = await prisma.user.findUnique({ where: { email } });
             if (existingUser && existingUser.id !== userId) {
@@ -124,16 +117,14 @@ export async function updateUserProfile(prevState: ActionResponse | any, formDat
             data: updateData
         });
 
-        // Create system notification about profile update
         await NotificationService.sendProfileUpdate(userId);
 
-        // Force revalidation of all paths where avatar might appear
         revalidatePath('/', 'layout');
 
         return {
             success: true,
             message: 'Profile updated successfully.',
-            avatarUrl: newAvatarUrl // Return the new URL for immediate client-side update
+            avatarUrl: newAvatarUrl
         };
     } catch (error: any) {
         console.error("Profile update error:", error);
@@ -196,12 +187,7 @@ export async function deleteAccount(prevState: ActionResponse | any, formData: F
         return { success: false, message: 'Not authenticated' };
     }
 
-    // Safety check: Require confirmation text
     const confirmText = formData.get('confirm_text') as string;
-    // We hardcode the polish check here as a fallback, but ideally it matches the client-side constant.
-    // However, given the multi-language context, strict server-side validation of localized strings is tricky without passing the locale.
-    // For now, we will assume if the client sent the request, the client validation passed,
-    // BUT we should at least check if the field is present to prevent accidental calls.
     if (!confirmText) {
          return { success: false, message: 'Missing confirmation text.' };
     }

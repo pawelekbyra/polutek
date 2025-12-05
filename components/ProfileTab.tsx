@@ -46,7 +46,6 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
   // Initialize state from profile when available
   useEffect(() => {
     if (profile) {
-      // No need to cast to any, as User interface in lib/db.interfaces.ts now includes these fields
       if (profile.emailConsent !== undefined) setEmailConsent(profile.emailConsent);
       if (profile.emailLanguage) setEmailLanguage(profile.emailLanguage);
     }
@@ -56,50 +55,48 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
   const [state, formAction] = useFormState(updateUserProfile, initialState);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Track the last handled message to prevent duplicate toasts
+  // Track the last handled message
   const lastMessageRef = useRef<string>('');
 
   // Handle state updates from server action
   useEffect(() => {
-    // Only proceed if there is a message and it's different from the last one
-    // OR if it's the same message but sufficient time has passed (simple dedupe by value here is usually enough for form submissions)
-    // Actually, useFormState might return the same object reference if it hasn't changed, but if it changes, it's a new submission.
-    // However, to be safe against re-renders triggered by other things (like checkUserStatus updating context),
-    // we strictly check against a ref.
-
     if (state.message && state.message !== lastMessageRef.current) {
       lastMessageRef.current = state.message;
 
       if (state.success) {
         addToast(state.message, 'success');
 
-        // Immediate optimistic update of the preview if URL is returned
         if (state.avatarUrl) {
            setPreviewUrl(state.avatarUrl);
-           // Also optimistically update the UserContext if possible
+           // Immediate local update for user context
            if (profile) {
                setUser({ ...profile, avatar: state.avatarUrl });
            }
         }
 
-        // Parallel updates to ensure everything is fresh
-        // update({ image: state.avatarUrl }) passes the new image directly to the client session
-        // This relies on the updated auth.ts handling 'trigger: update' to update the token immediately from payload
-        Promise.all([
-          checkUserStatus(), // Update local UserContext from DB
-          update({ image: state.avatarUrl }), // Update NextAuth session cookie immediately with new image
-        ]).catch(console.error);
+        // Use a slight delay before triggering global updates to ensure DB propagation
+        const handleUpdates = async () => {
+             // 1. Update NextAuth Session immediately with the known new URL
+             if (state.avatarUrl) {
+                 await update({ image: state.avatarUrl });
+             } else {
+                 await update();
+             }
 
-        // Invalidate author profile query to update the modal if it's open for this user
-        if (profile?.id) {
-            queryClient.invalidateQueries({ queryKey: ['author', profile.id] });
-        }
-        // Invalidate notifications to show the system notification
-        queryClient.invalidateQueries({ queryKey: ['notifications'] });
-        // Invalidate comments to update author avatar in existing comments
-        queryClient.invalidateQueries({ queryKey: ['comments'] });
-        // Invalidate slides in case the user's avatar is shown on their own slides in a feed
-        queryClient.invalidateQueries({ queryKey: ['slides'] });
+             // 2. Refresh UserContext from DB (API call)
+             await checkUserStatus();
+
+             // 3. Invalidate Query Caches
+             if (profile?.id) {
+                 await queryClient.invalidateQueries({ queryKey: ['author', profile.id] });
+             }
+             queryClient.invalidateQueries({ queryKey: ['notifications'] });
+             queryClient.invalidateQueries({ queryKey: ['comments'] });
+             queryClient.invalidateQueries({ queryKey: ['slides'] });
+        };
+
+        handleUpdates().catch(console.error);
+
       } else {
         addToast(state.message, 'error');
       }
@@ -121,7 +118,6 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
         }
       };
       reader.readAsDataURL(file);
-      // Reset input so the same file can be selected again
       event.target.value = '';
     }
   };
@@ -139,9 +135,6 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
     if (croppedFile) {
       formData.set('avatar', croppedFile);
     }
-    // Clear the last message ref so if the server returns the EXACT same message again (rare but possible), it still shows.
-    // However, usually success messages might be identical.
-    // If we want to allow identical messages on subsequent submits, we should clear the ref on submit.
     lastMessageRef.current = '';
     formAction(formData);
   };
@@ -167,10 +160,9 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
                       height={96}
                       className="w-full h-full object-cover rounded-full border-2 border-white"
                       id="userAvatar"
-                      unoptimized={!!previewUrl} // Skip optimization for blob URLs or immediate previews
+                      unoptimized={!!previewUrl}
                     />
 
-                    {/* Overlay on hover */}
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                         <Camera className="text-white w-8 h-8" />
                     </div>
@@ -249,7 +241,6 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
                         <span className="text-xs text-white/50">{t('emailConsentDesc') || 'Receive updates and notifications via email'}</span>
                     </div>
                     <ToggleSwitch isActive={emailConsent} onToggle={() => setEmailConsent(p => !p)} />
-                    {/* Hidden input to submit the toggle value */}
                     <input type="hidden" name="emailConsent" value={emailConsent.toString()} />
                 </div>
 
