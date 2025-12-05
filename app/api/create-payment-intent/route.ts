@@ -21,7 +21,7 @@ export async function POST(req: Request) {
       receipt_email: email, // Crucial for Patron logic via Webhook
       metadata: {
         user_email: email,
-        source: 'ting-tong-app',
+        source: 'patronek-app',
         create_account: createAccount ? 'true' : 'false',
         language: language || 'pl'
       }

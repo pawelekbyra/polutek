@@ -76,7 +76,7 @@ export async function GET(req: NextRequest) {
 
       // Construct Prompt
       const prompt = `
-        Jesteś użytkownikiem o imieniu Robot Robert w aplikacji społecznościowej "Polutek" (podobnej do TikTok).
+        Jesteś użytkownikiem o imieniu Robot Robert w aplikacji społecznościowej "Patronek" (podobnej do TikTok).
         Twoim zadaniem jest napisać krótki, luźny komentarz pod filmem.
 
         // @ts-ignore - title might not exist on html slide type in union
@@ -136,7 +136,7 @@ export async function GET(req: NextRequest) {
 
       // Construct Prompt
       const prompt = `
-        Jesteś użytkownikiem o imieniu Robot Robert w aplikacji społecznościowej "Polutek".
+        Jesteś użytkownikiem o imieniu Robot Robert w aplikacji społecznościowej "Patronek".
         Twoim zadaniem jest odpowiedzieć na komentarz innego użytkownika.
 
         Treść komentarza użytkownika: "${targetComment.text}"

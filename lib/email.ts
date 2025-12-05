@@ -42,12 +42,12 @@ export async function sendWelcomeEmail(email: string, tempPassword: string) {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'Wsparcie <noreply@polutek.pl>',
+      from: 'Patronek <powiadomienia@patronek.pl>',
       to: [email],
-      subject: 'Witaj w Polutek!',
+      subject: 'Witaj w Patronek!',
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
-          <h2>Witaj w Polutek!</h2>
+          <h2>Witaj w Patronek!</h2>
           <p>Twoje konto zostało pomyślnie utworzone.</p>
           <p>Poniżej znajdują się Twoje dane logowania:</p>
           <div style="background: #f4f4f5; padding: 15px; border-radius: 8px; margin: 20px 0;">
@@ -55,7 +55,7 @@ export async function sendWelcomeEmail(email: string, tempPassword: string) {
             <p style="margin: 5px 0;"><strong>Hasło tymczasowe:</strong> ${tempPassword}</p>
           </div>
           <p>Zaloguj się i zmień hasło w ustawieniach profilu, aby zachować bezpieczeństwo konta.</p>
-          <p>Pozdrawiamy,<br>Zespół Polutek</p>
+          <p>Pozdrawiamy,<br>Zespół Patronek</p>
         </div>
       `,
     });
@@ -80,17 +80,17 @@ export async function sendAccountDeletedEmail(email: string) {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'Wsparcie <noreply@polutek.pl>',
+      from: 'Patronek <powiadomienia@patronek.pl>',
       to: [email],
-      subject: 'Twoje konto Polutek zostało usunięte',
+      subject: 'Twoje konto Patronek zostało usunięte',
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
           <h2>Konto usunięte</h2>
-          <p>Twoje konto w serwisie Polutek zostało trwale usunięte zgodnie z Twoją dyspozycją.</p>
+          <p>Twoje konto w serwisie Patronek zostało trwale usunięte zgodnie z Twoją dyspozycją.</p>
           <p>Wszystkie Twoje dane zostały skasowane.</p>
           <p>Jeśli to była pomyłka, niestety nie możemy przywrócić Twoich danych, ale zawsze możesz założyć nowe konto.</p>
           <p>Dziękujemy, że byłeś/aś z nami.</p>
-          <p>Pozdrawiamy,<br>Zespół Polutek</p>
+          <p>Pozdrawiamy,<br>Zespół Patronek</p>
         </div>
       `,
     });
