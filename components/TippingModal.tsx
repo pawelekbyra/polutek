@@ -289,7 +289,7 @@ const TippingModal = () => {
         
         {/* NAGŁÓWEK - Adjusted for perfect centering using flexbox and removed top padding */}
         <div className="relative h-14 flex items-center justify-center px-6 text-center shrink-0 z-10 bg-[#1C1C1E] border-b border-white/5 rounded-t-3xl">
-            <h2 className="text-xs font-bold text-white/50 uppercase tracking-widest">
+            <h2 className="text-xl font-bold text-white/50 tracking-widest">
                 {modalTitle}
             </h2>
             <button
@@ -312,7 +312,7 @@ const TippingModal = () => {
 
         {/* TREŚĆ */}
         <div className={cn(
-            "flex-1 overflow-visible px-6 pt-10 pb-0 flex flex-col relative z-10 text-white rounded-b-3xl", // Changed pt-6 to pt-10 to lower text
+            "flex-1 overflow-visible px-6 pt-6 pb-0 flex flex-col relative z-10 text-white rounded-b-3xl", // Changed pt-10 to pt-6 to match pb-6
             isCurrencyDropdownOpen && "z-30" // Raise content z-index when dropdown is open so it covers footer
         )}>
             <AnimatePresence mode="wait" initial={false}>
@@ -324,16 +324,16 @@ const TippingModal = () => {
                         animate="animate"
                         exit="exit"
                         transition={{ duration: 0.2 }}
-                        className="space-y-4" // Changed from space-y-6 (24px) to space-y-4 (16px) for symmetry with footer pt-4
+                        className="space-y-4"
                     >
                         <div className="text-left">
                             <p className="text-base font-medium text-white/90 tracking-wide">Komu chcesz wysłać napiwek?</p>
                         </div>
 
-                        <div className="space-y-3 pt-1">
+                        <div className="space-y-4 pt-1">
                             <div 
                                 className={cn(
-                                    "flex items-center justify-start p-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
+                                    "flex items-center justify-start h-10 px-4 gap-4 rounded-xl cursor-pointer transition-all duration-300 group border", // Changed from p-4 to h-10 px-4
                                     formData.recipient === 'Paweł'
                                         ? "bg-[#2C2C2E] border-pink-600 shadow-[0_0_15px_rgba(219,39,119,0.15)]" // Changed highlight color
                                         : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
@@ -355,7 +355,7 @@ const TippingModal = () => {
 
                             <div 
                                 className={cn(
-                                    "flex items-center justify-start p-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
+                                    "flex items-center justify-start h-10 px-4 gap-4 rounded-xl cursor-pointer transition-all duration-300 group border", // Changed from p-4 to h-10 px-4
                                     formData.recipient === 'Nikt'
                                         ? "bg-[#2C2C2E] border-white shadow-lg" 
                                         : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
@@ -396,7 +396,7 @@ const TippingModal = () => {
                             {!isLoggedIn && (
                                 <div 
                                     className={cn(
-                                        "flex items-center justify-start p-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border",
+                                        "flex items-center justify-start h-10 px-4 gap-4 rounded-xl cursor-pointer transition-all duration-300 group border", // Changed from p-4 to h-10 px-4
                                         formData.create_account 
                                             ? "bg-[#2C2C2E] border-pink-600 shadow-[0_0_15px_rgba(219,39,119,0.15)]" // Changed highlight
                                             : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
@@ -424,7 +424,7 @@ const TippingModal = () => {
                                         placeholder="Twój adres email"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        className="relative w-full bg-black/30 border border-white/10 rounded-xl px-5 py-4 text-white placeholder:text-white/30 focus:outline-none focus:bg-black/50 focus:border-pink-600 transition-all font-medium text-base" // Changed focus border
+                                        className="relative w-full h-10 bg-black/30 border border-white/10 rounded-xl px-4 text-white placeholder:text-white/30 focus:outline-none focus:bg-black/50 focus:border-pink-600 transition-all font-medium text-base" // Changed to h-10 px-4
                                     />
                                 </div>
                                 <p className="text-xs text-white/40 text-left px-2 font-medium">
@@ -483,7 +483,7 @@ const TippingModal = () => {
                                             key={amount}
                                             onClick={() => setFormData({ ...formData, amount })}
                                             className={cn(
-                                                "py-3 rounded-xl font-bold transition-all border relative overflow-hidden group text-lg",
+                                                "h-10 rounded-xl font-bold transition-all border relative overflow-hidden group text-lg flex items-center justify-center", // Changed from py-3 to h-10
                                                 formData.amount === amount
                                                     ? "bg-pink-600 border-pink-600 text-white shadow-lg" // Changed selected bg/border
                                                     : "bg-[#2C2C2E] border-white/5 text-white/80 hover:bg-[#3A3A3C] hover:text-white"
@@ -496,27 +496,27 @@ const TippingModal = () => {
 
                                 {/* POLE KWOTY I DROPDOWN (Z-INDEX FIX) */}
                                 <div 
-                                    className={cn("flex items-stretch h-[60px] relative transition-all", isCurrencyDropdownOpen ? "z-50" : "z-30")} 
-                                    ref={dropdownRef}
+                                    className={cn("flex items-stretch h-10 relative transition-all", isCurrencyDropdownOpen ? "z-50" : "z-30")}
+                                    ref={dropdownRef} // Changed from h-[60px] to h-10
                                 >
                                     <div className="relative flex-1 h-full">
                                         <input
                                             type="number"
                                             value={formData.amount}
                                             onChange={(e) => setFormData({ ...formData, amount: Number(e.target.value) })}
-                                            className="w-full h-full bg-black/30 border border-white/10 text-center text-3xl font-black text-white rounded-l-xl focus:outline-none focus:bg-black/50 focus:border-pink-600 transition-all z-10 relative" // Changed focus border
+                                            className="w-full h-full bg-black/30 border border-white/10 text-center text-xl font-black text-white rounded-l-xl focus:outline-none focus:bg-black/50 focus:border-pink-600 transition-all z-10 relative" // Changed text-3xl to text-xl
                                             placeholder="0"
                                         />
                                     </div>
 
                                     {/* KONTENER DLA DROPDOWNA */}
-                                    <div className="relative h-full w-[120px]"> 
+                                    <div className="relative h-full w-[100px]">
                                         {/* TRIGGER - widoczny tylko gdy dropdown zamknięty, lub pod spodem */}
                                         <div
                                             className="h-full border border-l-0 border-white/10 bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-colors relative shrink-0 cursor-pointer px-4 rounded-r-xl flex items-center justify-between"
                                             onClick={() => setIsCurrencyDropdownOpen(true)}
                                         >
-                                            <span className="font-bold text-xl text-white select-none">{formData.currency}</span>
+                                            <span className="font-bold text-base text-white select-none">{formData.currency}</span> {/* Changed text-xl to text-base */}
                                             <ChevronDown className="w-5 h-5 text-white/50" />
                                         </div>
 
@@ -538,13 +538,13 @@ const TippingModal = () => {
                                                                     setIsCurrencyDropdownOpen(false);
                                                                 }}
                                                                 className={cn(
-                                                                    "w-full flex items-center justify-between px-4 py-4 text-left font-bold transition-colors relative group text-white border-b border-white/5 last:border-0",
+                                                                    "w-full flex items-center justify-between px-4 py-2 text-left font-bold transition-colors relative group text-white border-b border-white/5 last:border-0 h-10", // Changed py-4 to py-2 h-10
                                                                     formData.currency === currency
                                                                         ? "bg-white/10"
                                                                         : "hover:bg-white/5"
                                                                 )}
                                                             >
-                                                                <span className="text-xl">{currency}</span>
+                                                                <span className="text-base">{currency}</span> {/* Changed text-xl to text-base */}
                                                                 {formData.currency === currency && (
                                                                     <Check size={20} className="text-pink-600" /> // Changed check color
                                                                 )}
@@ -615,7 +615,7 @@ const TippingModal = () => {
                 {currentStep > 0 && (
                     <button
                         onClick={handleBack}
-                        className="px-6 py-3.5 rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
+                        className="px-6 h-10 rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5 flex items-center justify-center" // Changed from py-3.5 to h-10 flex items-center justify-center
                     >
                         Wstecz
                     </button>
@@ -623,7 +623,7 @@ const TippingModal = () => {
                 <button
                     onClick={handleNext}
                     disabled={isProcessing}
-                    className="group flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 shadow-lg active:scale-[0.98]" // Changed to match Login Enter
+                    className="group flex-1 flex items-center justify-center gap-2 h-10 rounded-xl font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 shadow-lg active:scale-[0.98]" // Changed from py-3.5 to h-10
                 >
                     {isProcessing ? (
                         <div className="flex items-center gap-2">
