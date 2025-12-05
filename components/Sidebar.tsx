@@ -30,7 +30,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const { addToast } = useToast();
   const { t } = useTranslation();
-  const { isLoggedIn } = useUser();
+  const { isLoggedIn, user: currentUser } = useUser();
   const {
     setActiveModal,
     toggleLike,
@@ -52,6 +52,9 @@ const Sidebar: React.FC<SidebarProps> = ({
   const [liveLikes, setLiveLikes] = React.useState(initialLikes);
   const currentLikes = likeState ? likeState.likes : liveLikes;
   const isLiked = likeState ? likeState.isLiked : initialIsLiked;
+
+  // Optimistic update for author avatar if it's the current user
+  const displayAvatar = (currentUser && currentUser.id === authorId) ? currentUser.avatar : authorAvatar;
 
   useEffect(() => {
     setLiveLikes(initialLikes);
@@ -112,9 +115,9 @@ const Sidebar: React.FC<SidebarProps> = ({
     >
       {/* Avatar / Author Profile */}
       <div className="relative w-12 h-12 mb-1.5">
-        <button onClick={handleOpenAuthorProfile} className="w-full h-full flex items-center justify-center text-white bg-gray-600 rounded-full overflow-hidden border-2 border-yellow-400 shadow-[0_0_10px_rgba(250,204,21,0.5)]">
-           {authorAvatar ? (
-             <Image src={authorAvatar} alt="Author" width={48} height={48} className="w-full h-full object-cover" />
+        <button onClick={handleOpenAuthorProfile} className="w-full h-full flex items-center justify-center text-white bg-gray-600 rounded-full overflow-hidden border-2 border-white shadow-[0_0_10px_rgba(250,204,21,0.5)]">
+           {displayAvatar ? (
+             <Image src={displayAvatar} alt="Author" width={48} height={48} className="w-full h-full object-cover" />
            ) : (
              <User size={32} strokeWidth={1.4} />
            )}
