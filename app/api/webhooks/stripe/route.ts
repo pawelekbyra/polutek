@@ -4,6 +4,7 @@ import Stripe from 'stripe';
 import { stripe } from '@/lib/stripe';
 import { findUserByEmail, updateUser, createUser } from '@/lib/db-postgres';
 import { NotificationService } from '@/lib/notifications';
+import { sendWelcomeEmail } from '@/lib/email';
 import crypto from 'crypto';
 
 export async function POST(req: Request) {
@@ -53,25 +54,32 @@ export async function POST(req: Request) {
            );
 
         } else {
-           console.log(`User not found, creating new patron account for ${email}...`);
-           // Create new user
-           // Generate a random password using crypto
-           const tempPassword = crypto.randomBytes(4).toString('hex');
-           const newUser = await createUser({
-               username: email.split('@')[0] + '_' + Math.floor(Math.random() * 1000),
-               displayName: email.split('@')[0],
-               email: email,
-               password: tempPassword,
-               role: 'patron',
-               avatar: undefined // Changed from null to undefined to fix type error
-           });
+           if (paymentIntent.metadata.create_account === 'true') {
+             console.log(`User not found, creating new patron account for ${email}...`);
+             // Create new user
+             // Generate a random password using crypto
+             const tempPassword = crypto.randomBytes(4).toString('hex');
+             const newUser = await createUser({
+                 username: email.split('@')[0] + '_' + Math.floor(Math.random() * 1000),
+                 displayName: email.split('@')[0],
+                 email: email,
+                 password: tempPassword,
+                 role: 'patron',
+                 avatar: undefined // Changed from null to undefined to fix type error
+             });
 
-           // Notify new user (Welcome handled by createUser, add specific Patron msg)
-           await NotificationService.send(
-               newUser.id,
-               'system',
-               { text: `Witaj w gronie Patronów! Twoje konto zostało utworzone. Twój tymczasowy hasło to: ${tempPassword} (zmień je w ustawieniach).` }
-           );
+             // Send welcome email
+             await sendWelcomeEmail(email, tempPassword);
+
+             // Notify new user (Welcome handled by createUser, add specific Patron msg)
+             await NotificationService.send(
+                 newUser.id,
+                 'system',
+                 { text: `Witaj w gronie Patronów! Twoje konto zostało utworzone. Twój tymczasowy hasło to: ${tempPassword} (zmień je w ustawieniach).` }
+             );
+           } else {
+             console.log(`User not found for ${email} and create_account is not true. Skipping account creation.`);
+           }
         }
       } else {
           console.warn('Payment succeeded but no email found in metadata or receipt_email.');
