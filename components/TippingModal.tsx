@@ -91,6 +91,7 @@ const TippingModal = () => {
     recipient: '',
   });
   const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const [lastIntentConfig, setLastIntentConfig] = useState<{ amount: number, currency: string, email: string } | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
   const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);
@@ -107,6 +108,8 @@ const TippingModal = () => {
             setFormData(prev => ({ ...prev, create_account: false, terms_accepted: false, recipient: '' }));
             setIsCurrencyDropdownOpen(false);
             setShowTerms(false);
+            setClientSecret(null);
+            setLastIntentConfig(null);
         }
     }
   }, [isLoggedIn, user, isTippingModalOpen]);
@@ -163,6 +166,15 @@ const TippingModal = () => {
             return;
         }
 
+        // Reuse existing client secret if config hasn't changed
+        if (clientSecret && lastIntentConfig &&
+            lastIntentConfig.amount === formData.amount &&
+            lastIntentConfig.currency === formData.currency &&
+            lastIntentConfig.email === formData.email) {
+            setCurrentStep(3);
+            return;
+        }
+
         setIsProcessing(true);
         try {
             const res = await fetch('/api/create-payment-intent', {
@@ -180,6 +192,11 @@ const TippingModal = () => {
             const data = await res.json();
             if (res.ok) {
                 setClientSecret(data.clientSecret);
+                setLastIntentConfig({
+                    amount: formData.amount,
+                    currency: formData.currency,
+                    email: formData.email
+                });
                 setCurrentStep(3);
             } else {
                 addToast(data.error || t('errorCreatingPayment') || 'Błąd tworzenia płatności', 'error');
@@ -272,7 +289,7 @@ const TippingModal = () => {
         
         {/* NAGŁÓWEK - Adjusted for perfect centering using flexbox and removed top padding */}
         <div className="relative h-14 flex items-center justify-center px-6 text-center shrink-0 z-10 bg-[#1C1C1E] border-b border-white/5 rounded-t-3xl">
-            <h2 className="text-xl font-extrabold text-white uppercase tracking-wider">
+            <h2 className="text-xl font-bold text-white uppercase tracking-widest">
                 {modalTitle}
             </h2>
             <button
@@ -295,7 +312,7 @@ const TippingModal = () => {
 
         {/* TREŚĆ */}
         <div className={cn(
-            "flex-1 overflow-visible px-6 pt-3 pb-0 flex flex-col relative z-10 text-white rounded-b-3xl", // Changed pt-6 to pt-3
+            "flex-1 overflow-visible px-6 pt-6 pb-0 flex flex-col relative z-10 text-white rounded-b-3xl", // Changed pt-3 to pt-6
             isCurrencyDropdownOpen && "z-30" // Raise content z-index when dropdown is open so it covers footer
         )}>
             <AnimatePresence mode="wait" initial={false}>
@@ -307,7 +324,7 @@ const TippingModal = () => {
                         animate="animate"
                         exit="exit"
                         transition={{ duration: 0.2 }}
-                        className="space-y-4"
+                        className="space-y-6"
                     >
                         <div className="text-left">
                             <p className="text-base font-medium text-white/90 tracking-wide">Komu chcesz wysłać napiwek?</p>
@@ -369,7 +386,7 @@ const TippingModal = () => {
                         animate="animate"
                         exit="exit"
                         transition={{ duration: 0.2 }}
-                        className="space-y-4"
+                        className="space-y-6"
                     >
                         <div className="text-left">
                             <p className="text-base font-medium text-white/90 tracking-wide">Czy chcesz utworzyć konto Patrona?</p>
@@ -426,7 +443,7 @@ const TippingModal = () => {
                         animate="animate"
                         exit="exit"
                         transition={{ duration: 0.2 }}
-                        className="space-y-4 flex-1 relative z-10 h-full flex flex-col"
+                        className="space-y-6 flex-1 relative z-10 h-full flex flex-col"
                     >
                         {showTerms ? (
                              <div className="flex flex-col h-full overflow-hidden">
