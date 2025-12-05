@@ -4,7 +4,7 @@ import { stripe } from '@/lib/stripe';
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { amount, currency, email } = body;
+    const { amount, currency, email, createAccount, language } = body;
 
     // Basic validation
     if (!amount || amount < 1) { // Assuming minimum 1.00 unit
@@ -21,7 +21,9 @@ export async function POST(req: Request) {
       receipt_email: email, // Crucial for Patron logic via Webhook
       metadata: {
         user_email: email,
-        source: 'ting-tong-app'
+        source: 'ting-tong-app',
+        create_account: createAccount ? 'true' : 'false',
+        language: language || 'pl'
       }
     });
 
