@@ -14,6 +14,7 @@ export interface ActionResponse {
   success: boolean;
   message?: string;
   errors?: Record<string, string[] | string>;
+  avatarUrl?: string;
 }
 
 export async function authenticate(
@@ -113,7 +114,11 @@ export async function updateUserProfile(prevState: ActionResponse | any, formDat
         await NotificationService.sendProfileUpdate(userId);
 
         revalidatePath('/');
-        return { success: true, message: 'Profile updated successfully.' };
+        return {
+            success: true,
+            message: 'Profile updated successfully.',
+            avatarUrl: updateData.avatar
+        };
     } catch (error: any) {
         console.error("Profile update error:", error);
         return { success: false, message: error.message || 'Failed to update profile.' };

@@ -72,10 +72,16 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
       if (state.success) {
         addToast(state.message, 'success');
 
+        // Optimistically update local preview if server returns a URL
+        if (state.avatarUrl) {
+            setPreviewUrl(state.avatarUrl);
+        }
+
         // Parallel updates to ensure everything is fresh
         Promise.all([
+          // Important: Pass the new image to NextAuth update to ensure it sticks immediately
+          state.avatarUrl ? update({ image: state.avatarUrl }) : update(),
           checkUserStatus(), // Update local UserContext
-          update(),          // Update NextAuth session cookie
         ]).catch(console.error);
 
         // Invalidate author profile query to update the modal if it's open for this user
@@ -90,7 +96,7 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
         addToast(state.message, 'error');
       }
     }
-  }, [state, addToast, checkUserStatus, profile?.id, queryClient]);
+  }, [state, addToast, checkUserStatus, profile?.id, queryClient, update]);
 
   const handleAvatarEditClick = () => {
     fileInputRef.current?.click();
