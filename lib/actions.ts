@@ -96,7 +96,10 @@ export async function updateUserProfile(prevState: ActionResponse | any, formDat
             const fileExtension = avatarFile.name.split('.').pop() || 'png';
             const uniqueFilename = `${uuidv4()}.${fileExtension}`;
 
-            const blob = await put(uniqueFilename, avatarFile, { access: 'public' });
+            const blob = await put(uniqueFilename, avatarFile, {
+                access: 'public',
+                addRandomSuffix: true // Ensure uniqueness at Vercel Blob level too
+            });
             updateData.avatar = blob.url;
             newAvatarUrl = blob.url;
         } else if (!session.user.avatar) {
