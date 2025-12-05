@@ -131,9 +131,21 @@ const CropModal: React.FC<CropModalProps> = ({ isOpen, onClose, imageSrc, onCrop
     const cropAreaSourceSize = cropAreaDeviceSize / scale;
 
     const sourceX = (img.width / 2) - (canvasCenterX - (canvasCenterX + offset.x)) / scale - (cropAreaSourceSize / 2);
-    const sourceY = (img.height / 2) - (canvasCenterY - (canvasCenterY + offset.y)) / scale - (cropAreaSourceSize / 2);
+    // Corrected logic: The previous line simplifies to img.width/2 + offset.x/scale ... which is wrong sign for dragging.
+    // However, correcting the formula:
+    // sourceX = (img.width / 2) - offset.x / scale - (cropAreaSourceSize / 2);
+    // Let's replace completely with the cleaner formula derived:
+    // sourceX = (img.width / 2) - offset.x / scale - (cropAreaSourceSize / 2);
+    // sourceY = (img.height / 2) - offset.y / scale - (cropAreaSourceSize / 2);
 
-    ctx.drawImage(img, sourceX, sourceY, cropAreaSourceSize, cropAreaSourceSize, 0, 0, finalSize, finalSize);
+    // Note: If I drag image RIGHT (offset.x > 0), the visible part is to the LEFT of image center.
+    // So sourceX (top-left of crop on image) should be SMALLER than center.
+    // (Center - offset/scale) is smaller. So this is correct.
+
+    const finalSourceX = (img.width / 2) - offset.x / scale - (cropAreaSourceSize / 2);
+    const finalSourceY = (img.height / 2) - offset.y / scale - (cropAreaSourceSize / 2);
+
+    ctx.drawImage(img, finalSourceX, finalSourceY, cropAreaSourceSize, cropAreaSourceSize, 0, 0, finalSize, finalSize);
 
     outputCanvas.toBlob((blob) => {
         if (blob) {
