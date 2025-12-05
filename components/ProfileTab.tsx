@@ -24,10 +24,11 @@ interface ProfileTabProps {
 const initialState = {
   success: false,
   message: '',
+  avatarUrl: undefined,
 };
 
 const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
-  const { user: profile, checkUserStatus } = useUser();
+  const { user: profile, checkUserStatus, setUser } = useUser();
   const { t } = useTranslation();
   const { addToast } = useToast();
   const queryClient = useQueryClient();
@@ -72,10 +73,20 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
       if (state.success) {
         addToast(state.message, 'success');
 
+        // Immediate optimistic update of the preview if URL is returned
+        if (state.avatarUrl) {
+           setPreviewUrl(state.avatarUrl);
+           // Also optimistically update the UserContext if possible
+           if (profile) {
+               setUser({ ...profile, avatar: state.avatarUrl });
+           }
+        }
+
         // Parallel updates to ensure everything is fresh
+        // update({ image: state.avatarUrl }) passes the new image directly to the client session
         Promise.all([
-          checkUserStatus(), // Update local UserContext
-          update(),          // Update NextAuth session cookie
+          checkUserStatus(), // Update local UserContext from DB
+          update({ image: state.avatarUrl }), // Update NextAuth session cookie immediately with new image
         ]).catch(console.error);
 
         // Invalidate author profile query to update the modal if it's open for this user
@@ -90,7 +101,7 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
         addToast(state.message, 'error');
       }
     }
-  }, [state, addToast, checkUserStatus, profile?.id, queryClient]);
+  }, [state, addToast, checkUserStatus, profile, queryClient, update, setUser]);
 
   const handleAvatarEditClick = () => {
     fileInputRef.current?.click();
@@ -153,7 +164,7 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
                       height={96}
                       className="w-full h-full object-cover rounded-full border-2 border-white"
                       id="userAvatar"
-                      unoptimized={!!previewUrl}
+                      unoptimized={!!previewUrl} // Skip optimization for blob URLs or immediate previews
                     />
 
                     {/* Overlay on hover */}

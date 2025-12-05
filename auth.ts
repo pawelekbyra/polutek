@@ -56,6 +56,25 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         session.user.displayName = token.displayName;
         session.user.avatar = token.avatar;
         session.user.isFirstLogin = token.isFirstLogin;
+
+        // CRITICAL FIX for persistence:
+        // Fetch fresh user data from DB to ensure avatar/session is always up to date
+        // even if the JWT token is stale. This solves the "doesn't update forever" issue.
+        if (session.user.id) {
+            try {
+                const freshUser = await prisma.user.findUnique({
+                    where: { id: session.user.id },
+                    select: { avatar: true, displayName: true, role: true }
+                });
+                if (freshUser) {
+                    session.user.avatar = freshUser.avatar;
+                    session.user.displayName = freshUser.displayName;
+                    session.user.role = freshUser.role;
+                }
+            } catch (e) {
+                // Fail silently and use token data
+            }
+        }
       }
       return session;
     }
