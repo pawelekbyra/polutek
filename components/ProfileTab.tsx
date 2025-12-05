@@ -100,6 +100,10 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
         queryClient.invalidateQueries({ queryKey: ['comments'] });
         // Invalidate slides in case the user's avatar is shown on their own slides in a feed
         queryClient.invalidateQueries({ queryKey: ['slides'] });
+        // Invalidate patron modal query
+        if (profile?.id) {
+            queryClient.invalidateQueries({ queryKey: ['patron', profile.id] });
+        }
       } else {
         addToast(state.message, 'error');
       }
