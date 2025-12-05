@@ -171,7 +171,7 @@ const TippingModal = () => {
 
         const minAmount = formData.currency === 'PLN' ? 5.00 : 1.00;
         if (formData.amount < minAmount) {
-            setValidationError(t('errorMinTipAmount', { minAmount: minAmount.toFixed(2), currency: formData.currency }) || `Minimalna kwota to ${minAmount.toFixed(2)} ${formData.currency}`);
+            setValidationError('Minimalna kwota napiwku to 5 PLN (1 dla pozostałych walut)');
             return;
         }
 
@@ -573,7 +573,7 @@ const TippingModal = () => {
                                     </div>
                                 </div>
 
-                                <div className="mt-2 min-h-[20px]">
+                                <div className="mt-2">
                                    <StatusMessage
                                       type="error"
                                       message={validationError}
