@@ -289,7 +289,7 @@ const TippingModal = () => {
         
         {/* NAGŁÓWEK - Adjusted for perfect centering using flexbox and removed top padding */}
         <div className="relative h-14 flex items-center justify-center px-6 text-center shrink-0 z-10 bg-[#1C1C1E] border-b border-white/5 rounded-t-3xl">
-            <h2 className="text-xl font-bold text-white uppercase tracking-widest">
+            <h2 className="text-xs font-bold text-white/50 uppercase tracking-widest">
                 {modalTitle}
             </h2>
             <button
@@ -312,7 +312,7 @@ const TippingModal = () => {
 
         {/* TREŚĆ */}
         <div className={cn(
-            "flex-1 overflow-visible px-6 pt-6 pb-0 flex flex-col relative z-10 text-white rounded-b-3xl", // Changed pt-3 to pt-6
+            "flex-1 overflow-visible px-6 pt-10 pb-0 flex flex-col relative z-10 text-white rounded-b-3xl", // Changed pt-6 to pt-10 to lower text
             isCurrencyDropdownOpen && "z-30" // Raise content z-index when dropdown is open so it covers footer
         )}>
             <AnimatePresence mode="wait" initial={false}>
@@ -324,7 +324,7 @@ const TippingModal = () => {
                         animate="animate"
                         exit="exit"
                         transition={{ duration: 0.2 }}
-                        className="space-y-6"
+                        className="space-y-4" // Changed from space-y-6 (24px) to space-y-4 (16px) for symmetry with footer pt-4
                     >
                         <div className="text-left">
                             <p className="text-base font-medium text-white/90 tracking-wide">Komu chcesz wysłać napiwek?</p>
@@ -386,7 +386,7 @@ const TippingModal = () => {
                         animate="animate"
                         exit="exit"
                         transition={{ duration: 0.2 }}
-                        className="space-y-6"
+                        className="space-y-4" // Changed from space-y-6 to space-y-4
                     >
                         <div className="text-left">
                             <p className="text-base font-medium text-white/90 tracking-wide">Czy chcesz utworzyć konto Patrona?</p>
