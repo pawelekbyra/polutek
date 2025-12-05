@@ -17,7 +17,16 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     async jwt({ token, user, trigger, session }) {
       // If updating, re-fetch user from DB to ensure token is fresh
       if (trigger === "update") {
-        // Use token.sub (userId) to fetch fresh data
+        // Optimistically update from session payload first (to solve race conditions)
+        if (session?.image) {
+            token.avatar = session.image;
+            token.picture = session.image;
+        }
+        if (session?.name) {
+             token.displayName = session.name;
+        }
+
+        // Then try to fetch fresh data from DB to confirm
         if (token.sub) {
             try {
                 const freshUser = await prisma.user.findUnique({
