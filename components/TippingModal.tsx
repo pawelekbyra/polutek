@@ -61,7 +61,7 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose
             </div>
             <button
                 disabled={isProcessing || !stripe || !elements}
-                className="w-full py-3.5 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
+                className="w-full py-3.5 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2 mb-4"
             >
                 {isProcessing ? (
                     <div className="flex items-center justify-center gap-2">
@@ -247,7 +247,7 @@ const TippingModal = () => {
         
         {/* NAGŁÓWEK - Adjusted for perfect centering using flexbox and removed top padding */}
         <div className="relative h-14 flex items-center justify-center px-6 text-center shrink-0 z-10 bg-[#1C1C1E] border-b border-white/5 rounded-t-3xl">
-            <h2 className="text-lg font-bold text-white tracking-wide">
+            <h2 className="text-xl font-extrabold text-white tracking-wider uppercase">
                 {modalTitle}
             </h2>
             <button
@@ -630,7 +630,7 @@ const TippingModal = () => {
              ) : (
                  <div className="flex items-center gap-[2px] opacity-40 hover:opacity-100 transition-all duration-300">
                       <span className="text-[10px] text-white font-bold uppercase tracking-widest">Powered by</span>
-                      <div className="relative flex items-center -mt-px">
+                      <div className="relative flex items-center -mt-px -ml-2">
                           <StripeLogo />
                       </div>
                  </div>
