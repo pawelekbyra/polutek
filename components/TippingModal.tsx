@@ -510,13 +510,13 @@ const TippingModal = () => {
                                     </div>
 
                                     {/* KONTENER DLA DROPDOWNA */}
-                                    <div className="relative h-full w-[120px]"> 
+                                    <div className="relative h-full w-[100px]">
                                         {/* TRIGGER - widoczny tylko gdy dropdown zamknięty, lub pod spodem */}
                                         <div
                                             className="h-full border border-l-0 border-white/10 bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-colors relative shrink-0 cursor-pointer px-4 rounded-r-xl flex items-center justify-between"
                                             onClick={() => setIsCurrencyDropdownOpen(true)}
                                         >
-                                            <span className="font-bold text-xl text-white select-none">{formData.currency}</span>
+                                            <span className="font-bold text-base text-white select-none">{formData.currency}</span> {/* Changed text-xl to text-base */}
                                             <ChevronDown className="w-5 h-5 text-white/50" />
                                         </div>
 
@@ -538,13 +538,13 @@ const TippingModal = () => {
                                                                     setIsCurrencyDropdownOpen(false);
                                                                 }}
                                                                 className={cn(
-                                                                    "w-full flex items-center justify-between px-4 py-4 text-left font-bold transition-colors relative group text-white border-b border-white/5 last:border-0",
+                                                                    "w-full flex items-center justify-between px-4 py-2 text-left font-bold transition-colors relative group text-white border-b border-white/5 last:border-0 h-10", // Changed py-4 to py-2 h-10
                                                                     formData.currency === currency
                                                                         ? "bg-white/10"
                                                                         : "hover:bg-white/5"
                                                                 )}
                                                             >
-                                                                <span className="text-xl">{currency}</span>
+                                                                <span className="text-base">{currency}</span> {/* Changed text-xl to text-base */}
                                                                 {formData.currency === currency && (
                                                                     <Check size={20} className="text-pink-600" /> // Changed check color
                                                                 )}
