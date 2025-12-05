@@ -91,6 +91,7 @@ const TippingModal = () => {
     recipient: '',
   });
   const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const [lastIntentConfig, setLastIntentConfig] = useState<{ amount: number, currency: string, email: string } | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
   const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);
@@ -107,6 +108,8 @@ const TippingModal = () => {
             setFormData(prev => ({ ...prev, create_account: false, terms_accepted: false, recipient: '' }));
             setIsCurrencyDropdownOpen(false);
             setShowTerms(false);
+            setClientSecret(null);
+            setLastIntentConfig(null);
         }
     }
   }, [isLoggedIn, user, isTippingModalOpen]);
@@ -163,6 +166,15 @@ const TippingModal = () => {
             return;
         }
 
+        // Reuse existing client secret if config hasn't changed
+        if (clientSecret && lastIntentConfig &&
+            lastIntentConfig.amount === formData.amount &&
+            lastIntentConfig.currency === formData.currency &&
+            lastIntentConfig.email === formData.email) {
+            setCurrentStep(3);
+            return;
+        }
+
         setIsProcessing(true);
         try {
             const res = await fetch('/api/create-payment-intent', {
@@ -180,6 +192,11 @@ const TippingModal = () => {
             const data = await res.json();
             if (res.ok) {
                 setClientSecret(data.clientSecret);
+                setLastIntentConfig({
+                    amount: formData.amount,
+                    currency: formData.currency,
+                    email: formData.email
+                });
                 setCurrentStep(3);
             } else {
                 addToast(data.error || t('errorCreatingPayment') || 'Błąd tworzenia płatności', 'error');
