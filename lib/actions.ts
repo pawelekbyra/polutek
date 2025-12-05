@@ -8,6 +8,7 @@ import { AuthError } from 'next-auth';
 import { put, del } from '@vercel/blob';
 import { DEFAULT_AVATAR_URL } from '@/lib/constants';
 import { NotificationService } from '@/lib/notifications';
+import { sendAccountDeletedEmail } from '@/lib/email';
 
 export interface ActionResponse {
   success: boolean;
@@ -75,20 +76,35 @@ export async function updateUserProfile(prevState: ActionResponse | any, formDat
     try {
         // Handle File Upload
         if (avatarFile && avatarFile.size > 0 && avatarFile.name !== 'undefined') {
-            // Delete old avatar if it exists and is not the default one
-            if (session.user.avatar && session.user.avatar !== DEFAULT_AVATAR_URL) {
-                try {
-                   // Only attempt to delete if it looks like a Vercel Blob URL to avoid errors with external/legacy URLs
-                   if (session.user.avatar.includes('.public.blob.vercel-storage.com')) {
-                       await del(session.user.avatar);
-                   }
-                } catch (e) {
-                    console.warn("Failed to delete old avatar:", e);
+            try {
+                // Delete old avatar if it exists and is not the default one
+                if (session.user.avatar && session.user.avatar !== DEFAULT_AVATAR_URL) {
+                    try {
+                        // Only attempt to delete if it looks like a Vercel Blob URL to avoid errors with external/legacy URLs
+                        if (session.user.avatar.includes('.public.blob.vercel-storage.com')) {
+                            await del(session.user.avatar);
+                        }
+                    } catch (e) {
+                        console.warn("Failed to delete old avatar:", e);
+                    }
                 }
-            }
 
-            const blob = await put(avatarFile.name, avatarFile, { access: 'public' });
-            updateData.avatar = blob.url;
+                // Generate a unique path for the blob to ensure the URL changes (cache busting)
+                // Use a folder 'avatars/' + userId + timestamp + original name
+                const originalName = avatarFile.name || 'avatar.png';
+                const extension = originalName.split('.').pop() || 'png';
+                const blobPath = `avatars/${userId}-${Date.now()}.${extension}`;
+
+                const blob = await put(blobPath, avatarFile, {
+                    access: 'public',
+                    addRandomSuffix: false // We are handling uniqueness manually with timestamp
+                });
+
+                updateData.avatar = blob.url;
+            } catch (uploadError: any) {
+                console.error("Avatar upload failed:", uploadError);
+                return { success: false, message: "Failed to upload avatar image." };
+            }
         } else if (!session.user.avatar) {
              // If user has no avatar, set it to default
              updateData.avatar = DEFAULT_AVATAR_URL;
@@ -161,8 +177,6 @@ export async function changePassword(prevState: ActionResponse | any, formData: 
         return { success: false, message: error.message || 'Failed to change password.' };
     }
 }
-
-import { sendAccountDeletedEmail } from '@/lib/email';
 
 export async function deleteAccount(prevState: ActionResponse | any, formData: FormData): Promise<ActionResponse> {
     const session = await auth();

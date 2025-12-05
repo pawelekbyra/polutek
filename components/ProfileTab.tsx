@@ -71,12 +71,17 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
         addToast(state.message, 'success');
         checkUserStatus(); // Refresh user data context
 
-        // Invalidate author profile query to update the modal if it's open for this user
+        // Invalidate all relevant queries to ensure the new avatar propagates immediately
         if (profile?.id) {
             queryClient.invalidateQueries({ queryKey: ['author', profile.id] });
         }
-        // Invalidate notifications to show the system notification
+        // Invalidate comments (so user's avatar in comments updates)
+        queryClient.invalidateQueries({ queryKey: ['comments'] });
+        // Invalidate notifications (so user's avatar in notifications updates if they sent any)
         queryClient.invalidateQueries({ queryKey: ['notifications'] });
+        // Invalidate slides (if they are an author)
+        queryClient.invalidateQueries({ queryKey: ['slides'] });
+
       } else {
         addToast(state.message, 'error');
       }
