@@ -10,6 +10,7 @@ import { useStore } from '@/store/useStore';
 import { X, ChevronDown, Check, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import StatusMessage from '@/components/ui/StatusMessage';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK!);
 
@@ -97,6 +98,9 @@ const TippingModal = () => {
   const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
 
+  // Validation Error State
+  const [validationError, setValidationError] = useState<string | null>(null);
+
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -110,6 +114,7 @@ const TippingModal = () => {
             setShowTerms(false);
             setClientSecret(null);
             setLastIntentConfig(null);
+            setValidationError(null);
         }
     }
   }, [isLoggedIn, user, isTippingModalOpen]);
@@ -125,6 +130,9 @@ const TippingModal = () => {
   }, []);
 
   const handleNext = async () => {
+    // Clear any previous error on attempt
+    setValidationError(null);
+
     if (currentStep === 0) {
         if (!formData.recipient) {
             addToast('Wybierz odbiorcę, aby kontynuować.', 'error');
@@ -156,13 +164,14 @@ const TippingModal = () => {
     }
     else if (currentStep === 2) {
         if (!formData.terms_accepted) {
-            addToast('Musisz zaakceptować Regulamin i Politykę Prywatności, aby kontynuować.', 'error');
+            // Can use status message for this too, or keep as toast since it's checkbox related not value related
+            setValidationError('Musisz zaakceptować Regulamin i Politykę Prywatności.');
             return;
         }
 
         const minAmount = formData.currency === 'PLN' ? 5.00 : 1.00;
         if (formData.amount < minAmount) {
-            addToast(t('errorMinTipAmount', { minAmount: minAmount.toFixed(2), currency: formData.currency }) || `Minimalna kwota to ${minAmount.toFixed(2)} ${formData.currency}`, 'error');
+            setValidationError(t('errorMinTipAmount', { minAmount: minAmount.toFixed(2), currency: formData.currency }) || `Minimalna kwota to ${minAmount.toFixed(2)} ${formData.currency}`);
             return;
         }
 
@@ -210,6 +219,7 @@ const TippingModal = () => {
   };
 
   const handleBack = () => {
+      setValidationError(null);
       if (currentStep === 2 && isLoggedIn) {
           setCurrentStep(0);
       } else if (currentStep > 0) {
@@ -481,7 +491,10 @@ const TippingModal = () => {
                                     {suggestedAmounts.map(amount => (
                                         <button
                                             key={amount}
-                                            onClick={() => setFormData({ ...formData, amount })}
+                                            onClick={() => {
+                                                setFormData({ ...formData, amount });
+                                                setValidationError(null);
+                                            }}
                                             className={cn(
                                                 "h-10 flex items-center justify-center rounded-xl font-bold transition-all border relative overflow-hidden group text-lg",
                                                 formData.amount === amount
@@ -503,7 +516,10 @@ const TippingModal = () => {
                                         <input
                                             type="number"
                                             value={formData.amount}
-                                            onChange={(e) => setFormData({ ...formData, amount: Number(e.target.value) })}
+                                            onChange={(e) => {
+                                                setFormData({ ...formData, amount: Number(e.target.value) });
+                                                setValidationError(null);
+                                            }}
                                             className="w-full h-full bg-black/30 border border-white/10 text-center text-xl font-black text-white rounded-l-xl focus:outline-none focus:bg-black/50 focus:border-pink-600 transition-all z-10 relative" // Changed h-[60px] to h-10 and text-3xl to text-xl
                                             placeholder="0"
                                         />
@@ -557,9 +573,20 @@ const TippingModal = () => {
                                     </div>
                                 </div>
 
+                                <div className="mt-2 min-h-[20px]">
+                                   <StatusMessage
+                                      type="error"
+                                      message={validationError}
+                                      isVisible={!!validationError}
+                                   />
+                                </div>
+
                                 <div
                                     className="flex items-center justify-start gap-3 cursor-pointer group relative z-10 mt-2"
-                                    onClick={() => setFormData(prev => ({ ...prev, terms_accepted: !prev.terms_accepted }))}
+                                    onClick={() => {
+                                        setFormData(prev => ({ ...prev, terms_accepted: !prev.terms_accepted }));
+                                        setValidationError(null);
+                                    }}
                                 >
                                     <div className={cn(
                                         "w-5 h-5 rounded border flex items-center justify-center transition-all duration-200 shrink-0",
