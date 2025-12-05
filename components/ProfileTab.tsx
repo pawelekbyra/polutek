@@ -15,6 +15,7 @@ import { DEFAULT_AVATAR_URL } from '@/lib/constants';
 import CropModal from './CropModal';
 import UserBadge from './UserBadge';
 import { useQueryClient } from '@tanstack/react-query';
+import { useSession } from 'next-auth/react';
 
 interface ProfileTabProps {
     onClose: () => void;
@@ -30,6 +31,7 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
   const { t } = useTranslation();
   const { addToast } = useToast();
   const queryClient = useQueryClient();
+  const { update } = useSession();
 
   // State for fields
   const [emailConsent, setEmailConsent] = useState(false);
@@ -69,7 +71,12 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
 
       if (state.success) {
         addToast(state.message, 'success');
-        checkUserStatus(); // Refresh user data context
+
+        // Parallel updates to ensure everything is fresh
+        Promise.all([
+          checkUserStatus(), // Update local UserContext
+          update(),          // Update NextAuth session cookie
+        ]).catch(console.error);
 
         // Invalidate author profile query to update the modal if it's open for this user
         if (profile?.id) {
@@ -79,20 +86,6 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
         queryClient.invalidateQueries({ queryKey: ['notifications'] });
         // Invalidate comments to update author avatar in existing comments
         queryClient.invalidateQueries({ queryKey: ['comments'] });
-        // Invalidate any open patron/author profiles (just in case the user is viewing themselves as a patron/author)
-        // We use queryClient.invalidateQueries with a predicate or fuzzy match if possible,
-        // but for now, we can invalidate specific known keys if we had them.
-        // Since 'author' key depends on ID, and we know the ID, we can invalidate it.
-        // This was already done above: queryClient.invalidateQueries({ queryKey: ['author', profile.id] });
-
-        // However, the PatronProfileModal uses queryKey: ['author', patronId] as well (via fetchAuthorProfile).
-        // So the existing invalidation for ['author', profile.id] COVERS both AuthorProfileModal and PatronProfileModal
-        // IF the user is viewing their own profile there.
-
-        // If there are other places (e.g. lists of patrons), we might need more.
-        // But based on the request "modalu autora dla autorow i w modalu komentarzy i w modalu patrona",
-        // 'author' key covers Author and Patron modals. 'comments' key covers Comments.
-        // The Account modal (ProfileTab) uses UserContext, which is updated via checkUserStatus().
       } else {
         addToast(state.message, 'error');
       }

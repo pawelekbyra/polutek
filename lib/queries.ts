@@ -7,7 +7,7 @@ export const fetchComments = async ({ pageParam = '', slideId, sortBy = 'newest'
   const params = new URLSearchParams({ slideId, limit: '20', sortBy });
   if (pageParam) params.append('cursor', pageParam);
 
-  const res = await fetch(`/api/comments?${params.toString()}`);
+  const res = await fetch(`/api/comments?${params.toString()}`, { cache: 'no-store' });
   if (!res.ok) throw new Error('Failed to fetch comments');
 
   const data = await res.json();
@@ -22,7 +22,7 @@ export const fetchComments = async ({ pageParam = '', slideId, sortBy = 'newest'
 };
 
 export const fetchAuthorProfile = async (authorId: string): Promise<AuthorProfile> => {
-    const res = await fetch(`/api/author/${authorId}`);
+    const res = await fetch(`/api/author/${authorId}`, { cache: 'no-store' });
     if (!res.ok) {
         throw new Error('Failed to fetch author profile');
     }
