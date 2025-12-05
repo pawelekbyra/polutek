@@ -1,6 +1,7 @@
 'use server';
 
 import { db } from '@/lib/db';
+import { prisma } from '@/lib/prisma';
 import { auth, signIn, signOut } from '@/auth';
 import { revalidatePath } from 'next/cache';
 import * as bcrypt from 'bcryptjs';
@@ -101,13 +102,22 @@ export async function updateUserProfile(prevState: ActionResponse | any, formDat
 
         // Check if email is taken by another user (if email changed)
         if (email !== session.user.email) {
-            const existingUser = await db.findUserByEmail(email);
+            const existingUser = await prisma.user.findUnique({ where: { email } });
             if (existingUser && existingUser.id !== userId) {
                 return { success: false, message: 'Email already in use.' };
             }
         }
 
-        await db.updateUser(userId, updateData);
+        // Sync avatar to all image fields to prevent caching/loading mismatch
+        if (updateData.avatar) {
+            updateData.avatarUrl = updateData.avatar;
+            updateData.image = updateData.avatar;
+        }
+
+        await prisma.user.update({
+            where: { id: userId },
+            data: updateData
+        });
 
         // Create system notification about profile update
         await NotificationService.sendProfileUpdate(userId);
