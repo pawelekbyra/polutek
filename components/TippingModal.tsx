@@ -21,7 +21,7 @@ const StripeLogo = () => (
     </svg>
 );
 
-const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose: () => void }) => {
+const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string, onClose: () => void, onBack: () => void }) => {
     const stripe = useStripe();
     const elements = useElements();
     const { addToast } = useToast();
@@ -60,18 +60,26 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose
                     }} 
                 />
             </div>
-            <button
-                disabled={isProcessing || !stripe || !elements}
-                className="w-full py-3.5 mb-6 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
-            >
-                {isProcessing ? (
-                    <div className="flex items-center justify-center gap-2">
-                        <Loader2 className="animate-spin h-5 w-5" />
-                    </div>
-                ) : (
-                    "ZAPŁAĆ TERAZ"
-                )}
-            </button>
+            <div className="flex gap-3">
+                <button
+                    onClick={onBack}
+                    className="flex-1 px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
+                >
+                    Wstecz
+                </button>
+                <button
+                    disabled={isProcessing || !stripe || !elements}
+                    className="flex-1 group h-10 flex items-center justify-center gap-2 rounded-xl font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 shadow-lg active:scale-[0.98]" // Changed to h-10
+                >
+                    {isProcessing ? (
+                        <div className="flex items-center gap-2">
+                            <Loader2 className="animate-spin h-5 w-5" />
+                        </div>
+                    ) : (
+                        "Napiwkuj"
+                    )}
+                </button>
+            </div>
         </form>
     );
 };
@@ -106,16 +114,16 @@ const TippingModal = () => {
   useEffect(() => {
     if (isLoggedIn) {
         setFormData(prev => ({ ...prev, email: user?.email || '' }));
-    } else {
-        if (!isTippingModalOpen) {
-            setCurrentStep(0);
-            setFormData(prev => ({ ...prev, create_account: false, terms_accepted: false, recipient: '' }));
-            setIsCurrencyDropdownOpen(false);
-            setShowTerms(false);
-            setClientSecret(null);
-            setLastIntentConfig(null);
-            setValidationError(null);
-        }
+    }
+
+    if (!isTippingModalOpen) {
+        setCurrentStep(0);
+        setFormData(prev => ({ ...prev, create_account: false, terms_accepted: false, recipient: '' }));
+        setIsCurrencyDropdownOpen(false);
+        setShowTerms(false);
+        setClientSecret(null);
+        setLastIntentConfig(null);
+        setValidationError(null);
     }
   }, [isLoggedIn, user, isTippingModalOpen]);
 
@@ -575,15 +583,6 @@ const TippingModal = () => {
                                         </AnimatePresence>
                                     </div>
                                 </div>
-
-                                <div className="min-h-[24px]">
-                                   <StatusMessage
-                                      type="error"
-                                      message={validationError}
-                                      isVisible={!!validationError}
-                                   />
-                                </div>
-
                                 <div
                                     className="flex items-center justify-start gap-3 cursor-pointer group relative z-10"
                                     onClick={() => {
@@ -630,7 +629,7 @@ const TippingModal = () => {
                                     stripe={stripePromise} 
                                     options={stripeOptions}
                                 >
-                                    <CheckoutForm clientSecret={clientSecret} onClose={closeTippingModal} />
+                                    <CheckoutForm clientSecret={clientSecret} onClose={closeTippingModal} onBack={handleBack} />
                                 </Elements>
                             </div>
                         )}
@@ -640,12 +639,12 @@ const TippingModal = () => {
         </div>
 
         {/* PRZYCISKI NAWIGACJI - widoczne tylko gdy nie czytamy regulaminu */}
-        {currentStep < 3 && !showTerms && (
+        {currentStep < 2 && !showTerms && (
             <div className={cn("px-6 pb-6 pt-4 flex gap-3 bg-transparent z-20 relative rounded-b-3xl", isCurrencyDropdownOpen && "z-10")}>
                 {currentStep > 0 && (
                     <button
                         onClick={handleBack}
-                        className="px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
+                        className="flex-1 px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
                     >
                         Wstecz
                     </button>
@@ -666,7 +665,15 @@ const TippingModal = () => {
                 </button>
             </div>
         )}
-
+        {!!validationError && (
+            <div className="min-h-[24px]">
+                <StatusMessage
+                    type="error"
+                    message={validationError}
+                    isVisible={!!validationError}
+                />
+            </div>
+        )}
         {/* STOPKA */}
         <div className="pb-4 pt-4 flex items-center justify-center bg-[#1C1C1E] z-10 border-t border-white/5 rounded-b-3xl min-h-[50px]">
              {showTerms ? (

@@ -88,6 +88,7 @@ const translations: Record<string, Record<string, string>> = {
         profileUpdateError: 'Błąd aktualizacji profilu.',
         avatarUploadSuccess: 'Awatar zaktualizowany pomyślnie!',
         avatarUploadError: 'Błąd wysyłania awatara.',
+        avatarUpdateSuccess: 'Zaktualizowano avatara',
         avatarAlt: 'Awatar użytkownika',
         changeAvatarTitle: 'Zmień awatar',
         patronTier: 'Patron Miłości', // Nowy klucz
@@ -252,6 +253,7 @@ const translations: Record<string, Record<string, string>> = {
         profileUpdateError: 'Failed to update profile.',
         avatarUploadSuccess: 'Avatar updated successfully!',
         avatarUploadError: 'Failed to upload avatar.',
+        avatarUpdateSuccess: 'Avatar updated successfully',
         avatarAlt: 'User avatar',
         changeAvatarTitle: 'Change avatar',
         patronTier: 'Patron of Love', // Nowy klucz
