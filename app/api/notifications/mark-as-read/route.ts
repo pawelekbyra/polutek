@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
-import { db } from '@/lib/db';
-import { redis } from '@/lib/kv';
+import { prisma } from '@/lib/prisma';
 
 export async function POST(request: NextRequest) {
   const session = await auth();
@@ -18,7 +17,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Security check: Ensure the notification belongs to the user trying to mark it as read.
-    const notification = await db.notification.findFirst({
+    const notification = await prisma.notification.findFirst({
         where: {
             id: notificationId,
             userId: userId
@@ -29,7 +28,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ success: false, message: 'Notification not found or access denied.' }, { status: 404 });
     }
 
-    await db.notification.update({
+    await prisma.notification.update({
         where: {
             id: notificationId
         },
