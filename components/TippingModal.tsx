@@ -582,7 +582,7 @@ const TippingModal = () => {
                                 </div>
 
                                 <div
-                                    className="flex items-center justify-start gap-3 cursor-pointer group relative z-10 mt-2"
+                                    className="flex items-center justify-start gap-3 cursor-pointer group relative z-10"
                                     onClick={() => {
                                         setFormData(prev => ({ ...prev, terms_accepted: !prev.terms_accepted }));
                                         setValidationError(null);
