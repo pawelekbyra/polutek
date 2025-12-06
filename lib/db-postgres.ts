@@ -581,9 +581,9 @@ export async function getNotifications(userId: string): Promise<Notification[]> 
         };
     }) as Notification[];
 }
-export async function markNotificationAsRead(notificationId: string): Promise<Notification | null> {
+export async function markNotificationAsRead(notificationId: string, userId: string): Promise<Notification | null> {
     const sql = getDb();
-    const result = await sql`UPDATE notifications SET read = true WHERE id = ${notificationId} RETURNING *;`;
+    const result = await sql`UPDATE notifications SET read = true WHERE id = ${notificationId} AND "userId" = ${userId} RETURNING *;`;
     return result[0] as Notification || null;
 }
 export async function getUnreadNotificationCount(userId: string): Promise<number> {
