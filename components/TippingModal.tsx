@@ -21,7 +21,7 @@ const StripeLogo = () => (
     </svg>
 );
 
-const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose: () => void }) => {
+const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string, onClose: () => void, onBack: () => void }) => {
     const stripe = useStripe();
     const elements = useElements();
     const { addToast } = useToast();
@@ -60,18 +60,27 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose
                     }} 
                 />
             </div>
-            <button
-                disabled={isProcessing || !stripe || !elements}
-                className="w-full py-3.5 mb-6 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
-            >
-                {isProcessing ? (
-                    <div className="flex items-center justify-center gap-2">
-                        <Loader2 className="animate-spin h-5 w-5" />
-                    </div>
-                ) : (
-                    "Napiwkuj"
-                )}
-            </button>
+             <div className="flex gap-3 mb-6">
+                <button
+                    type="button"
+                    onClick={onBack}
+                    className="flex-1 px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
+                >
+                    Wstecz
+                </button>
+                <button
+                    disabled={isProcessing || !stripe || !elements}
+                    className="flex-1 h-10 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
+                >
+                    {isProcessing ? (
+                        <div className="flex items-center justify-center gap-2">
+                            <Loader2 className="animate-spin h-5 w-5" />
+                        </div>
+                    ) : (
+                        "Napiwkuj"
+                    )}
+                </button>
+            </div>
         </form>
     );
 };
@@ -170,7 +179,7 @@ const TippingModal = () => {
         }
 
         if (formData.currency === 'PLN' && formData.amount < 5) {
-            setValidationError('Minimalna kwota napiwku to 5 PLN.');
+            setValidationError('Kwota mniejsza niż 5 PLN.');
             return;
         }
         if (formData.currency !== 'PLN' && formData.amount < 1) {
@@ -325,7 +334,7 @@ const TippingModal = () => {
 
         {/* TREŚĆ */}
         <div className={cn(
-            "flex-1 overflow-y-auto px-6 pt-6 pb-0 flex flex-col relative z-10 text-white rounded-b-3xl", // Changed pt-10 to pt-6 per user request
+            "flex-1 overflow-y-auto px-6 pt-6 pb-0 flex flex-col relative z-10 text-white rounded-b-3xl custom-scrollbar", // Changed pt-10 to pt-6 per user request
             isCurrencyDropdownOpen && "z-30" // Raise content z-index when dropdown is open so it covers footer
         )}>
             <AnimatePresence mode="wait" initial={false}>
@@ -630,7 +639,7 @@ const TippingModal = () => {
                                     stripe={stripePromise} 
                                     options={stripeOptions}
                                 >
-                                    <CheckoutForm clientSecret={clientSecret} onClose={closeTippingModal} />
+                                    <CheckoutForm clientSecret={clientSecret} onClose={closeTippingModal} onBack={handleBack} />
                                 </Elements>
                             </div>
                         )}
