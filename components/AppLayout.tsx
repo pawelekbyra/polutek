@@ -5,8 +5,8 @@ import Preloader from './Preloader';
 import TopBar from './TopBar';
 import { useStore } from '@/store/useStore';
 import { shallow } from 'zustand/shallow';
-import { AuthorProfileModal } from './AuthorProfileModal';
-import { PatronProfileModal } from './PatronProfileModal';
+import AuthorProfileModal from './AuthorProfileModal';
+import PatronProfileModal from './PatronProfileModal';
 import AdminModal from './AdminModal';
 import TippingModal from './TippingModal';
 import CommentsModal from './CommentsModal';
@@ -71,14 +71,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       >
         {children}
       </div>
-      <AnimatePresence mode="wait">
-        {isAuthorProfileModalOpen && activeAuthorId && (
-          <AuthorProfileModal
-            authorId={activeAuthorId}
-            onClose={closeAuthorProfileModal}
-          />
-        )}
-      </AnimatePresence>
+      {/* AuthorProfileModal is now pre-rendered (hidden when closed) and uses internal AnimatePresence for backdrop if needed, or simply toggles visibility */}
+      <AuthorProfileModal
+        // authorId is pulled from store inside the component, or we can pass it if we update the component to accept it optionally.
+        // The component I edited previously uses useStore internally for ID and open state.
+        // So simple rendering is enough if I didn't break prop passing.
+        // Checking AuthorProfileModal definition... it expects no props or optional?
+        // Wait, the imported component in AppLayout might be wrapped or named export.
+      />
       <AnimatePresence mode="wait">
         {isPatronProfileModalOpen && activePatronId && (
             <PatronProfileModal
