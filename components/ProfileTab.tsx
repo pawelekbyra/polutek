@@ -147,7 +147,7 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
       // Trigger avatar success message
       setAvatarMessage({
         type: 'success',
-        message: t('avatarUpdateSuccess') || 'Awatar zaktualizowany pomyślnie',
+        message: 'Zaktualizowano avatara',
         isVisible: true
       });
     }
@@ -208,19 +208,20 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
                 />
             </div>
 
-            {/* Avatar Section Feedback */}
-            <StatusMessage
-                type={avatarMessage.type}
-                message={avatarMessage.message}
-                isVisible={avatarMessage.isVisible}
-                className="mb-3"
-            />
-
             <div className="flex flex-col items-center gap-1">
                 <h3 className="text-xl font-bold text-white" id="displayName">{profile.displayName}</h3>
                 <UserBadge role={profile.role} className="mb-1" />
                 {(profile as any).bio && <p className="text-xs text-white/70 max-w-[240px] text-center">{(profile as any).bio}</p>}
                 <p className="text-sm text-white/50" id="userEmail">{profile.email}</p>
+            </div>
+
+            {/* Avatar Section Feedback */}
+            <div className="mt-4 min-h-[24px]">
+                <StatusMessage
+                    type={avatarMessage.type}
+                    message={avatarMessage.message}
+                    isVisible={avatarMessage.isVisible}
+                />
             </div>
         </div>
 
@@ -313,7 +314,7 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
           </div>
 
           {/* General Settings Feedback */}
-          <div className="mt-4 min-h-[50px]">
+          <div className="mt-4 min-h-[24px]">
              <StatusMessage
                  type={formMessage.type}
                  message={formMessage.message}

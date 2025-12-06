@@ -171,7 +171,10 @@ const TippingModal = () => {
 
         const minAmount = formData.currency === 'PLN' ? 5.00 : 1.00;
         if (formData.amount < minAmount) {
-            setValidationError(t('errorMinTipAmount', { minAmount: minAmount.toFixed(2), currency: formData.currency }) || `Minimalna kwota to ${minAmount.toFixed(2)} ${formData.currency}`);
+            const message = formData.currency === 'PLN'
+                ? `Minimalna kwota to 5 PLN`
+                : `Minimalna kwota to 1 ${formData.currency}`;
+            setValidationError(message);
             return;
         }
 
@@ -573,7 +576,7 @@ const TippingModal = () => {
                                     </div>
                                 </div>
 
-                                <div className="mt-2 min-h-[20px]">
+                                <div className="min-h-[24px]">
                                    <StatusMessage
                                       type="error"
                                       message={validationError}
@@ -582,7 +585,7 @@ const TippingModal = () => {
                                 </div>
 
                                 <div
-                                    className="flex items-center justify-start gap-3 cursor-pointer group relative z-10 mt-2"
+                                    className="flex items-center justify-start gap-3 cursor-pointer group relative z-10"
                                     onClick={() => {
                                         setFormData(prev => ({ ...prev, terms_accepted: !prev.terms_accepted }));
                                         setValidationError(null);

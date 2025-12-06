@@ -113,7 +113,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
           alt={t('userAvatar', { user: safeAuthor.displayName || 'User' })}
           width={isL0 ? 36 : 28}
           height={isL0 ? 36 : 28}
-          className="rounded-full object-cover border-2 border-white"
+          className="rounded-full object-cover border border-white/80"
         />
         <UserBadge role={safeAuthor.role} />
       </div>
@@ -552,7 +552,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
               )}
               {user ? (
                 <form onSubmit={handleSubmit} className="flex items-center gap-2 p-2">
-                  <Image src={user.avatar || DEFAULT_AVATAR_URL} alt={t('yourAvatar')} width={36} height={36} className="w-9 h-9 rounded-full object-cover border-2 border-white" />
+                  <Image src={user.avatar || DEFAULT_AVATAR_URL} alt={t('yourAvatar')} width={36} height={36} className="w-9 h-9 rounded-full object-cover border border-white/80" />
                   <div className="flex-1 relative flex items-center bg-[#282828] rounded-xl">
                     <input
                       type="file"
