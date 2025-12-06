@@ -193,10 +193,10 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
                 {/* Zmieniono kolor ramki (border) z #2d2d2d na white */}
                 <button
                   type="button"
-                  className="absolute bottom-0 right-0 w-8 h-8 bg-pink-600 border-2 border-white rounded-full text-white flex items-center justify-center hover:bg-pink-500 transition-colors shadow-lg"
+                  className="absolute bottom-0 right-0 w-8 h-8 bg-emerald-600 border-2 border-white rounded-full text-white flex items-center justify-center hover:bg-emerald-500 transition-colors shadow-lg"
                   title={t('changeAvatarTitle')}
                 >
-                   <Pencil size={14} />
+                   <Camera size={16} />
                 </button>
 
                 <input
