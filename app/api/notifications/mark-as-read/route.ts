@@ -18,25 +18,11 @@ export async function POST(request: NextRequest) {
     }
 
     // Security check: Ensure the notification belongs to the user trying to mark it as read.
-    const notification = await db.notification.findFirst({
-        where: {
-            id: notificationId,
-            userId: userId
-        }
-    });
+    const notification = await db.markNotificationAsRead(notificationId);
 
     if (!notification) {
         return NextResponse.json({ success: false, message: 'Notification not found or access denied.' }, { status: 404 });
     }
-
-    await db.notification.update({
-        where: {
-            id: notificationId
-        },
-        data: {
-            read: true
-        }
-    });
 
     return NextResponse.json({ success: true });
 
