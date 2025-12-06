@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Bell, Mail, User, Tag, ChevronDown, Loader2, Heart, MessageSquare, UserPlus, Info, Trash } from 'lucide-react';
+import { X, Bell, Mail, User, Tag, ChevronDown, Loader2, Heart, MessageSquare, UserPlus, Info, Trash, Rocket } from 'lucide-react';
 import { useTranslation } from '@/context/LanguageContext';
 import { formatDistanceToNow } from 'date-fns';
 import { pl } from 'date-fns/locale';
 import Image from 'next/image';
 
-type NotificationType = 'like' | 'comment' | 'follow' | 'message' | 'system';
+type NotificationType = 'like' | 'comment' | 'follow' | 'message' | 'system' | 'welcome';
 
 interface Notification {
   id: string;
@@ -28,7 +28,8 @@ const iconMap: Record<NotificationType, React.ReactNode> = {
   comment: <MessageSquare size={20} className="text-white/80" />,
   follow: <UserPlus size={20} className="text-white/80" />,
   message: <Mail size={20} className="text-white/80" />,
-  system: <Info size={20} className="text-blue-400" />
+  system: <Info size={20} className="text-blue-400" />,
+  welcome: <Rocket size={20} className="text-yellow-400" />,
 };
 
 const NotificationItem: React.FC<{
@@ -65,9 +66,9 @@ const NotificationItem: React.FC<{
     >
       <div className="flex items-start gap-3 p-3">
         <div onClick={handleToggle} className="flex-shrink-0">
-            {notification.type === 'system' ? (
+            {notification.type === 'system' || notification.type === 'welcome' ? (
             <div className="w-10 h-10 rounded-full mt-1 bg-white/10 flex items-center justify-center">
-                <Info size={20} className="text-white" />
+                {iconMap[notification.type] || iconMap['system']}
             </div>
             ) : (
             <Image src={notification.user?.avatar || '/default-avatar.png'} alt={t('userAvatar', { user: notification.user?.displayName || 'User' })} width={40} height={40} className="w-10 h-10 rounded-full mt-1" />
@@ -76,7 +77,7 @@ const NotificationItem: React.FC<{
 
         <div className="flex-1 flex flex-col" onClick={handleToggle}>
           <p className="text-sm">
-            {notification.type !== 'system' && <span className="font-bold">{notification.user?.displayName}</span>} {notification.preview}
+            {notification.type !== 'system' && notification.type !== 'welcome' && <span className="font-bold">{notification.user?.displayName}</span>} {notification.preview}
           </p>
           <span className="text-xs text-white/60 mt-1">{notification.time}</span>
         </div>
@@ -84,10 +85,13 @@ const NotificationItem: React.FC<{
         <div className="flex items-center gap-2 pt-1">
           {notification.unread && <div className="w-2 h-2 bg-pink-500 rounded-full" />}
 
+          {/* Delete Button Hidden as per user request */}
+          {/*
           <DeleteButton
             onDelete={(e) => { e.stopPropagation(); onDelete(notification.id); }}
             t={t}
           />
+          */}
 
           <div onClick={handleToggle}>
              <ChevronDown size={14} className={`transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
@@ -102,7 +106,7 @@ const NotificationItem: React.FC<{
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden"
           >
-            <p className="text-sm text-white/80 p-3 pt-0">
+            <p className="text-sm text-white/80 p-3 pt-0 whitespace-pre-line">
               {getFullText()}
             </p>
           </motion.div>
@@ -112,7 +116,7 @@ const NotificationItem: React.FC<{
   );
 };
 
-// Sub-component for delete confirmation
+// Sub-component for delete confirmation (Kept in code but unused in rendering loop)
 const DeleteButton = ({ onDelete, t }: { onDelete: (e: any) => void, t: any }) => {
   const [confirming, setConfirming] = useState(false);
 

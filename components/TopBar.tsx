@@ -228,10 +228,10 @@ const TopBar = () => {
                 </Button>
               )}
               <div className="relative">
-                <Button variant="ghost" size="icon" onClick={handleBellClick} aria-label={t('notificationAriaLabel')} className="mr-1.5">
+                <Button variant="ghost" size="icon" onClick={handleBellClick} aria-label={t('notificationAriaLabel')} className="mr-1.5 relative">
                   <BellIcon className="w-6 h-6" />
                   {unreadCount > 0 && (
-                    <span className="absolute top-1 right-1 block h-2 w-2 rounded-full ring-2 ring-black bg-pink-500" />
+                    <span className="absolute top-1 right-2 block h-2 w-2 rounded-full bg-pink-500 ring-2 ring-black" />
                   )}
                 </Button>
               </div>
