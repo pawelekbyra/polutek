@@ -61,13 +61,18 @@ const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string,
                 />
             </div>
              <div className="flex gap-3 mb-6">
-                <button
-                    type="button"
-                    onClick={onBack}
-                    className="flex-1 px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
-                >
-                    Wstecz
-                </button>
+                {/* Wstecz button removed from here - "ten przyklejony do wyjebania" */}
+                {/* Keeping only Napiwkuj button, but it might need to be full width or Wstecz moved to footer?
+                    User said: "w osttanim kroku bramki napiwkowej nie mnoze byc zdublowany przycisk wstecz. ten przyklejony do wyjebannia"
+                    The sticky footer has "Wstecz" if not showing terms.
+                    This one inside form is likely the "przyklejony" one to the form or duplicates the footer.
+                    Wait, the footer is outside CheckoutForm.
+                    So if I remove Wstecz here, the footer Wstecz will work?
+                    Let's check TippingModal rendering.
+                    In step 3, TippingModal renders CheckoutForm.
+                    TippingModal footer has Wstecz button if !showTerms.
+                    So removing it here is correct.
+                */}
                 <button
                     disabled={isProcessing || !stripe || !elements}
                     className="flex-1 h-10 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
@@ -651,6 +656,17 @@ const TippingModal = () => {
         {/* PRZYCISKI NAWIGACJI - widoczne tylko gdy nie czytamy regulaminu */}
         {!showTerms && (
              <div className={cn("px-6 pb-6 pt-4 flex gap-3 bg-transparent z-20 relative rounded-b-3xl", isCurrencyDropdownOpen && "z-10")}>
+                {/*
+                   If currentStep is 3 (payment), we want the Wstecz button in the footer to work as "Back from Payment"
+                   or let the form handle it?
+                   The user removed the "sticky" back button from CheckoutForm.
+                   So we must ensure this footer button is visible in step 3.
+                   Condition: currentStep > 0 shows Wstecz.
+                   currentStep < 3 shows Enter (Next).
+                   So in step 3, only Wstecz is shown here.
+                   And CheckoutForm renders "Napiwkuj" (submit).
+                   So footer has "Wstecz", Form has "Napiwkuj". Perfect.
+                */}
                 {currentStep > 0 && (
                     <button
                         onClick={handleBack}

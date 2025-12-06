@@ -6,6 +6,7 @@ import { useTranslation } from '@/context/LanguageContext';
 import { formatDistanceToNow } from 'date-fns';
 import { pl } from 'date-fns/locale';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 type NotificationType = 'like' | 'comment' | 'follow' | 'message' | 'system' | 'welcome';
 
@@ -20,6 +21,7 @@ interface Notification {
   user: {
     displayName: string;
     avatar: string;
+    role?: string;
   } | null;
 }
 
@@ -56,6 +58,14 @@ const NotificationItem: React.FC<{
       return notification.full || notification.preview;
   }
 
+  // Determine avatar border color based on role (similar to CommentsModal)
+  const isPatron = notification.user?.role === 'patron';
+  const isAuthor = notification.user?.role === 'author';
+
+  let avatarBorderClass = 'border-white/80'; // Default
+  if (isPatron) avatarBorderClass = 'border-yellow-500';
+  else if (isAuthor) avatarBorderClass = 'border-purple-600';
+
   return (
     <motion.li
       layout
@@ -71,7 +81,13 @@ const NotificationItem: React.FC<{
                 {iconMap[notification.type] || iconMap['system']}
             </div>
             ) : (
-            <Image src={notification.user?.avatar || '/default-avatar.png'} alt={t('userAvatar', { user: notification.user?.displayName || 'User' })} width={40} height={40} className="w-10 h-10 rounded-full mt-1" />
+            <Image
+                src={notification.user?.avatar || '/default-avatar.png'}
+                alt={t('userAvatar', { user: notification.user?.displayName || 'User' })}
+                width={40}
+                height={40}
+                className={cn("w-10 h-10 rounded-full mt-1 object-cover border", avatarBorderClass)}
+            />
             )}
         </div>
 
@@ -84,14 +100,6 @@ const NotificationItem: React.FC<{
 
         <div className="flex items-center gap-2 pt-1">
           {notification.unread && <div className="w-2 h-2 bg-pink-500 rounded-full" />}
-
-          {/* Delete Button Hidden as per user request */}
-          {/*
-          <DeleteButton
-            onDelete={(e) => { e.stopPropagation(); onDelete(notification.id); }}
-            t={t}
-          />
-          */}
 
           <div onClick={handleToggle}>
              <ChevronDown size={14} className={`transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
@@ -238,7 +246,11 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({ isOpen, onClose }
             time: formatDistanceToNow(new Date(n.createdAt), { addSuffix: true, locale: lang === 'pl' ? pl : undefined }),
             full: n.text || n.fullKey,
             unread: !n.read,
-            user: n.fromUser || { displayName: 'System', avatar: '/icons/icon-192x192.png' },
+            user: n.fromUser ? {
+                displayName: n.fromUser.displayName || 'User',
+                avatar: n.fromUser.avatar || '/icons/icon-192x192.png',
+                role: n.fromUser.role // Ensure role is passed if available in API response
+            } : { displayName: 'System', avatar: '/icons/icon-192x192.png' },
         };
   }) : [];
 

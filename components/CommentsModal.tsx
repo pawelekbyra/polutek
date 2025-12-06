@@ -97,6 +97,15 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
     onLike(comment.id);
   };
 
+  // Determine avatar border color based on role
+  // Patron = Yellow, Author = Purple (though author logic usually checks slideId matches userId, here we just check role 'patron')
+  const isPatron = safeAuthor.role === 'patron';
+  const isAuthor = safeAuthor.role === 'author'; // Or maybe check against slide author? For now just role.
+
+  let avatarBorderClass = 'border-white/80';
+  if (isPatron) avatarBorderClass = 'border-yellow-500';
+  else if (isAuthor) avatarBorderClass = 'border-purple-600'; // "zajebisty fioletowy"
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -113,7 +122,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
           alt={t('userAvatar', { user: safeAuthor.displayName || 'User' })}
           width={isL0 ? 36 : 28}
           height={isL0 ? 36 : 28}
-          className="rounded-full object-cover border border-white/80"
+          className={cn("rounded-full object-cover border", avatarBorderClass)}
         />
         <UserBadge role={safeAuthor.role} />
       </div>
@@ -552,7 +561,13 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
               )}
               {user ? (
                 <form onSubmit={handleSubmit} className="flex items-center gap-2 p-2">
-                  <Image src={user.avatar || DEFAULT_AVATAR_URL} alt={t('yourAvatar')} width={36} height={36} className="w-9 h-9 rounded-full object-cover border border-white/80" />
+                  <Image
+                    src={user.avatar || DEFAULT_AVATAR_URL}
+                    alt={t('yourAvatar')}
+                    width={36}
+                    height={36}
+                    className={cn("w-9 h-9 rounded-full object-cover border", user.role === 'patron' ? 'border-yellow-500' : (user.role === 'author' ? 'border-purple-600' : 'border-white/80'))}
+                  />
                   <div className="flex-1 relative flex items-center bg-[#282828] rounded-xl">
                     <input
                       type="file"
