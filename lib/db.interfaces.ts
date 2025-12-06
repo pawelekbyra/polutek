@@ -38,7 +38,7 @@ export interface Comment {
 export interface Notification {
   id: string;
   userId: string;
-  type: 'like' | 'comment' | 'follow' | 'system';
+  type: 'like' | 'comment' | 'follow' | 'system' | 'welcome';
   text: string;
   link: string | null; // e.g., /slide/slide_id?comment=comment_id
   createdAt: number | Date;

@@ -12,6 +12,7 @@ import { fetchAuthorProfile } from '@/lib/queries';
 import { AuthorProfile } from '@/types';
 import { formatCount } from '@/lib/utils';
 import { SafeLock } from './SafeLock';
+import { useUser } from '@/context/UserContext';
 
 // Simple TikTok Icon SVG Component
 const TiktokIcon = ({ size = 20, className = "" }: { size?: number, className?: string }) => (
@@ -38,14 +39,49 @@ interface AuthorProfileModalProps {
 
 export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProps) {
     const { jumpToSlide, openTippingModal, closeAuthorProfileModal } = useStore();
+    const { user } = useUser();
     const [activeTab, setActiveTab] = useState<'videos' | 'liked' | 'private'>('videos');
-    const [isPatron, setIsPatron] = useState(false); // Mock state for "Become a Patron"
 
     const { data: profile, isLoading, isError } = useQuery<AuthorProfile>({
         queryKey: ['author', authorId],
         queryFn: () => fetchAuthorProfile(authorId),
         enabled: !!authorId,
+        placeholderData: (previousData) => previousData, // Optimization: keep previous data while fetching
     });
+
+    // Check if current user is a patron of this author
+    // Note: In a real app, this should be a check against the user's subscription list or API
+    // For now, based on instructions, we assume 'mock' behavior or simple check if user is logged in they "might" be patron if we had that data.
+    // The prompt says: "zalogowana osoba nie widzi juz 'Zostan POatronbem' tylko odklikniety przytcisk i napis taki ze juz jestes"
+    // I will use a simple check for logged in status combined with a query if available, or just assume for now if the user instruction implies a simplification.
+    // However, to be cleaner, let's use the 'patron' query if it exists or just `user` existence + maybe a mock logic.
+    // Memory mentions `['patron', id]` key.
+
+    const { data: patronData } = useQuery({
+        queryKey: ['patron', authorId],
+        queryFn: async () => {
+             // Mock fetch or real endpoint if exists.
+             // If no endpoint, we default to false.
+             return { isPatron: false };
+        },
+        enabled: !!user && !!authorId,
+        initialData: { isPatron: false }
+    });
+
+    // Per user request: "zalogowana osoba nie widzi juz 'Zostan POatronbem' tylko odklikniety przytcisk i napis taki ze juz jestes"
+    // This implies that *any* logged in user sees "Jesteś Patronem"? Or only actual patrons?
+    // "dla zalogowanego avatar autora nie wyswietla juz kuleczki z plusikiem bo tak jakby juz subskrajbuje"
+    // This suggests a simplified "Logged In = Subscribed" model for this specific request context, OR the user assumes they are logged in as a patron.
+    // I will assume actual logic should be used if possible, but given the "tak jakby juz subskrajbuje" (as if already subscribing) comment,
+    // I will default to showing "Jesteś Patronem" if logged in, OR simply maintain the isPatron state.
+    // Let's implement a visual toggle based on `isPatron` state, but since we don't have a backend for it,
+    // I will assume `isPatron` is true if `user` is present, OR adhere to strict correctness.
+    // Let's look at the previous code: `const [isPatron, setIsPatron] = useState(false);`.
+    // I will use `user` presence to determine "Jesteś Patronem" if that's what the user wants ("zalogowana osoba..."),
+    // OR I will stick to `isPatron` mock.
+    // Decision: The user says "zalogowana osoba nie widzi juz...". It sounds like a rule: "Logged in users see Jesteś Patronem".
+    // This might be for testing/demo purposes. I will set `isPatron` to true if `user` exists.
+    const isPatron = !!user;
 
     // Mock stats generation based on authorId (deterministic for specific user, random otherwise)
     const stats = useMemo(() => {
@@ -64,6 +100,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
     };
 
     const togglePatron = () => {
+        if (isPatron) return; // Do nothing if already patron
         onClose();
         openTippingModal({ fromLeft: false }); // Slide from right
     };
@@ -105,7 +142,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                     </div>
                     <div className="w-12" /> {/* Spacer to balance the back button */}
                 </div>
-                {isLoading ? (
+                {isLoading && !profile ? (
                     <div className="flex-1 flex items-center justify-center h-full">
                         <Loader2 className="h-8 w-8 animate-spin text-pink-400" />
                     </div>
@@ -166,9 +203,10 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                             <div className="flex gap-2 w-full max-w-xs mb-4">
                                 <button
                                     onClick={togglePatron}
+                                    disabled={isPatron}
                                     className={`flex-grow py-2.5 rounded text-sm font-semibold transition-colors flex items-center justify-center gap-2 px-4
                                         ${isPatron
-                                            ? 'bg-[#3A3A3A] text-white hover:bg-[#4A4A4A]'
+                                            ? 'bg-[#3A3A3A] text-white/50 cursor-default'
                                             : 'bg-[#FE2C55] text-white hover:bg-[#E0274B]'
                                         }`}
                                 >
@@ -184,9 +222,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                                 <button className="p-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors flex items-center justify-center min-w-[40px]">
                                     <Instagram size={20} />
                                 </button>
-                                <button className="p-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors flex items-center justify-center min-w-[40px]">
-                                    <Facebook size={20} />
-                                </button>
+                                {/* Facebook removed */}
                                 <button className="p-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors flex items-center justify-center min-w-[40px]">
                                     <TiktokIcon size={20} />
                                 </button>

@@ -50,10 +50,11 @@ const AccountPanel: React.FC<AccountPanelProps> = ({ onClose }) => {
     >
       <motion.div
         className="absolute top-0 left-0 h-full w-full max-w-md bg-gradient-to-br from-[#121212] to-[#1e1e1e] flex flex-col shadow-2xl"
+        // Zaktualizowana animacja: taka sama jak AuthorProfileModal, ale z lewej strony (x: -100%)
         initial={{ x: '-100%' }}
         animate={{ x: '0%' }}
         exit={{ x: '-100%' }}
-        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        transition={{ type: 'spring', damping: 30, stiffness: 200 }}
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the panel
       >
         {/* Top Bar - styled to be distinct but integrated */}
@@ -62,7 +63,7 @@ const AccountPanel: React.FC<AccountPanelProps> = ({ onClose }) => {
             style={{ height: 'var(--topbar-height)', paddingTop: 'var(--safe-area-top)'}}
         >
           <div className="flex flex-col items-center gap-1">
-             <h2 className="text-base font-semibold text-white tracking-wide">{user?.displayName || user?.username || t('account')}</h2>
+             <h2 className="text-base font-semibold text-white tracking-wide">{t('account') || 'Konto'}</h2>
           </div>
           <button
             onClick={onClose}

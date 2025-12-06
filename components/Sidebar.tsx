@@ -56,6 +56,10 @@ const Sidebar: React.FC<SidebarProps> = ({
   // Optimistic update for author avatar if it's the current user
   const displayAvatar = (currentUser && currentUser.id === authorId) ? currentUser.avatar : authorAvatar;
 
+  // Logic to hide the plus icon: if logged in (per user request: "bo tak jakby juz subskrajbuje")
+  // or if currentUser is the author.
+  const showPlusIcon = !isLoggedIn && (!currentUser || currentUser.id !== authorId);
+
   useEffect(() => {
     setLiveLikes(initialLikes);
     const channel = ably.channels.get(`likes:${slideId}`);
@@ -122,11 +126,13 @@ const Sidebar: React.FC<SidebarProps> = ({
              <User size={32} strokeWidth={1.4} />
            )}
         </button>
-         <div
-            className="absolute left-1/2 -translate-x-1/2 -bottom-1.5 w-5 h-5 rounded-full flex items-center justify-center text-white text-lg font-bold border-2 border-white pointer-events-none bg-primary"
-          >
-            +
-          </div>
+         {showPlusIcon && (
+             <div
+                className="absolute left-1/2 -translate-x-1/2 -bottom-1.5 w-5 h-5 rounded-full flex items-center justify-center text-white text-lg font-bold border-2 border-white pointer-events-none bg-primary"
+              >
+                +
+              </div>
+         )}
       </div>
 
       {/* Like */}
