@@ -193,7 +193,7 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({ isOpen, onClose }
             return {
                 ...old,
                 notifications: old.notifications.map((n: any) =>
-                    n.id === id ? { ...n, read: true } : n
+                    n.id === id ? { ...n, unread: false } : n
                 ),
                 unreadCount: Math.max(0, (old.unreadCount || 0) - 1)
             };

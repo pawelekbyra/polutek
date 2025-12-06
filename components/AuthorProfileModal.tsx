@@ -87,7 +87,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
     if (!authorId) return null;
 
     // Requirement: Author Avatar = Purple border.
-    const avatarBorderColor = 'border-purple-600';
+    const avatarBorderColor = 'border-pink-500';
 
     return (
         <motion.div
@@ -188,7 +188,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                                     disabled={isPatron}
                                     className={`flex-grow py-2.5 rounded text-sm font-semibold transition-colors flex items-center justify-center gap-2 px-4
                                         ${isPatron
-                                            ? 'bg-[#3A3A3A] text-white/50 cursor-default'
+                                            ? 'bg-pink-500 text-white cursor-default'
                                             : 'bg-[#FE2C55] text-white hover:bg-[#E0274B]'
                                         }`}
                                 >
