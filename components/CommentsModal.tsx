@@ -104,7 +104,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
 
   let avatarBorderClass = 'border-white/80';
   if (isPatron) avatarBorderClass = 'border-yellow-500';
-  else if (isAuthor) avatarBorderClass = 'border-purple-600'; // "zajebisty fioletowy"
+  else if (isAuthor) avatarBorderClass = 'border-pink-500'; // "zajebisty fioletowy"
 
   return (
     <motion.div
@@ -288,12 +288,39 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
   }, [isOpen]);
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   }, [newComment]);
+
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    const modal = modalRef.current;
+
+    const handleFocus = () => {
+        modal?.classList.add('is-focused');
+    };
+
+    const handleBlur = () => {
+        modal?.classList.remove('is-focused');
+    };
+
+    if (textarea) {
+        textarea.addEventListener('focus', handleFocus);
+        textarea.addEventListener('blur', handleBlur);
+    }
+
+    return () => {
+        if (textarea) {
+            textarea.removeEventListener('focus', handleFocus);
+            textarea.removeEventListener('blur', handleBlur);
+        }
+    };
+  }, [isOpen]);
 
   const likeMutation = useMutation({
     mutationFn: (commentId: string) => fetch('/api/comments/like', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ commentId }) }),
@@ -532,7 +559,8 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
       {isOpen && (
         <motion.div className="absolute inset-0 bg-black/60 z-50 flex items-end" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} onClick={onClose}>
           <motion.div
-            className="w-full bg-[#1C1C1E] backdrop-blur-md rounded-t-2xl flex flex-col border-t border-white/10"
+            ref={modalRef}
+            className="w-full bg-[#1C1C1E] backdrop-blur-md rounded-t-2xl flex flex-col border-t border-white/10 comments-modal"
             style={{ height: '75dvh' }}
             initial={{ y: '100%' }}
             animate={{ y: '0%' }}
@@ -566,7 +594,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
                     alt={t('yourAvatar')}
                     width={36}
                     height={36}
-                    className={cn("w-9 h-9 rounded-full object-cover border", user.role === 'patron' ? 'border-yellow-500' : (user.role === 'author' ? 'border-purple-600' : 'border-white/80'))}
+                    className={cn("w-9 h-9 rounded-full object-cover border", user.role === 'patron' ? 'border-yellow-500' : (user.role === 'author' ? 'border-pink-500' : 'border-white/80'))}
                   />
                   <div className="flex-1 relative flex items-center bg-[#282828] rounded-xl">
                     <input

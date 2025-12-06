@@ -137,6 +137,10 @@
   #bmc-wbtn {
     display: none !important;
   }
+
+  .comments-modal.is-focused {
+    height: 50dvh !important;
+  }
 }
 
 /* Optional: Additional safeguard for landscape on mobile phones */
