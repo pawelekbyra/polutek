@@ -147,7 +147,7 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
       // Trigger avatar success message
       setAvatarMessage({
         type: 'success',
-        message: 'Zaktualizowano avatara',
+        message: 'Avatar zaktualizowany',
         isVisible: true
       });
     }
@@ -216,13 +216,12 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
             </div>
 
             {/* Avatar Section Feedback */}
-            <div className="mt-4 min-h-[24px]">
-                <StatusMessage
-                    type={avatarMessage.type}
-                    message={avatarMessage.message}
-                    isVisible={avatarMessage.isVisible}
-                />
-            </div>
+            <StatusMessage
+                type={avatarMessage.type}
+                message={avatarMessage.message}
+                isVisible={avatarMessage.isVisible}
+                className="mt-3"
+            />
         </div>
 
         {/* Combined Form Fields */}
@@ -314,7 +313,7 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ onClose }) => {
           </div>
 
           {/* General Settings Feedback */}
-          <div className="mt-4 min-h-[24px]">
+          <div className="mt-4">
              <StatusMessage
                  type={formMessage.type}
                  message={formMessage.message}
