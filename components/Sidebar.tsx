@@ -10,6 +10,7 @@ import { useStore } from '@/store/useStore';
 import { formatCount } from '@/lib/utils';
 import { shallow } from 'zustand/shallow';
 import { useUser } from '@/context/UserContext';
+import { cn } from '@/lib/utils';
 
 interface SidebarProps {
   initialLikes: number;
@@ -108,6 +109,11 @@ const Sidebar: React.FC<SidebarProps> = ({
   const labelClass = "text-[11px] leading-[1.1] text-center drop-shadow-md font-medium text-white";
   const iconSize = 32;
 
+  // Determine avatar border color
+  // In Sidebar, this is the Author's avatar.
+  // Requirement: Author = Purple border.
+  const avatarBorderColor = 'border-purple-600'; // "zajebisty fioletowy"
+
   return (
     <aside
       className="absolute right-0 flex flex-col items-center gap-[12px] z-20 pointer-events-auto"
@@ -119,7 +125,13 @@ const Sidebar: React.FC<SidebarProps> = ({
     >
       {/* Avatar / Author Profile */}
       <div className="relative w-12 h-12 mb-1.5">
-        <button onClick={handleOpenAuthorProfile} className="w-full h-full flex items-center justify-center text-white bg-gray-600 rounded-full overflow-hidden border-2 border-white shadow-[0_0_10px_rgba(250,204,21,0.5)]">
+        <button
+            onClick={handleOpenAuthorProfile}
+            className={cn(
+                "w-full h-full flex items-center justify-center text-white bg-gray-600 rounded-full overflow-hidden border-2 shadow-[0_0_10px_rgba(250,204,21,0.5)]",
+                avatarBorderColor
+            )}
+        >
            {displayAvatar ? (
              <Image src={displayAvatar} alt="Author" width={48} height={48} className="w-full h-full object-cover" />
            ) : (

@@ -10,7 +10,7 @@ import { DEFAULT_AVATAR_URL } from '@/lib/constants';
 import UserBadge from './UserBadge';
 import { fetchAuthorProfile } from '@/lib/queries';
 import { AuthorProfile } from '@/types';
-import { formatCount } from '@/lib/utils';
+import { formatCount, cn } from '@/lib/utils';
 import { SafeLock } from './SafeLock';
 import { useUser } from '@/context/UserContext';
 
@@ -49,14 +49,6 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
         placeholderData: (previousData) => previousData, // Optimization: keep previous data while fetching
     });
 
-    // Check if current user is a patron of this author
-    // Note: In a real app, this should be a check against the user's subscription list or API
-    // For now, based on instructions, we assume 'mock' behavior or simple check if user is logged in they "might" be patron if we had that data.
-    // The prompt says: "zalogowana osoba nie widzi juz 'Zostan POatronbem' tylko odklikniety przytcisk i napis taki ze juz jestes"
-    // I will use a simple check for logged in status combined with a query if available, or just assume for now if the user instruction implies a simplification.
-    // However, to be cleaner, let's use the 'patron' query if it exists or just `user` existence + maybe a mock logic.
-    // Memory mentions `['patron', id]` key.
-
     const { data: patronData } = useQuery({
         queryKey: ['patron', authorId],
         queryFn: async () => {
@@ -68,19 +60,6 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
         initialData: { isPatron: false }
     });
 
-    // Per user request: "zalogowana osoba nie widzi juz 'Zostan POatronbem' tylko odklikniety przytcisk i napis taki ze juz jestes"
-    // This implies that *any* logged in user sees "Jesteś Patronem"? Or only actual patrons?
-    // "dla zalogowanego avatar autora nie wyswietla juz kuleczki z plusikiem bo tak jakby juz subskrajbuje"
-    // This suggests a simplified "Logged In = Subscribed" model for this specific request context, OR the user assumes they are logged in as a patron.
-    // I will assume actual logic should be used if possible, but given the "tak jakby juz subskrajbuje" (as if already subscribing) comment,
-    // I will default to showing "Jesteś Patronem" if logged in, OR simply maintain the isPatron state.
-    // Let's implement a visual toggle based on `isPatron` state, but since we don't have a backend for it,
-    // I will assume `isPatron` is true if `user` is present, OR adhere to strict correctness.
-    // Let's look at the previous code: `const [isPatron, setIsPatron] = useState(false);`.
-    // I will use `user` presence to determine "Jesteś Patronem" if that's what the user wants ("zalogowana osoba..."),
-    // OR I will stick to `isPatron` mock.
-    // Decision: The user says "zalogowana osoba nie widzi juz...". It sounds like a rule: "Logged in users see Jesteś Patronem".
-    // This might be for testing/demo purposes. I will set `isPatron` to true if `user` exists.
     const isPatron = !!user;
 
     // Mock stats generation based on authorId (deterministic for specific user, random otherwise)
@@ -106,6 +85,9 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
     };
 
     if (!authorId) return null;
+
+    // Requirement: Author Avatar = Purple border.
+    const avatarBorderColor = 'border-purple-600';
 
     return (
         <motion.div
@@ -162,7 +144,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                                     alt={profile.username}
                                     width={96}
                                     height={96}
-                                    className="rounded-full object-cover w-24 h-24 border-2 border-white"
+                                    className={cn("rounded-full object-cover w-24 h-24 border-2", avatarBorderColor)}
                                 />
                             </div>
 
