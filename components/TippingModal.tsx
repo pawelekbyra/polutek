@@ -69,7 +69,7 @@ const CheckoutForm = ({ clientSecret, onClose }: { clientSecret: string, onClose
                         <Loader2 className="animate-spin h-5 w-5" />
                     </div>
                 ) : (
-                    "ZAPŁAĆ TERAZ"
+                    "Napiwkuj"
                 )}
             </button>
         </form>
@@ -169,9 +169,12 @@ const TippingModal = () => {
             return;
         }
 
-        const minAmount = formData.currency === 'PLN' ? 5.00 : 1.00;
-        if (formData.amount < minAmount) {
-            setValidationError('Minimalna kwota napiwku to 5 PLN (1 dla pozostałych walut)');
+        if (formData.currency === 'PLN' && formData.amount < 5) {
+            setValidationError('Minimalna kwota napiwku to 5 PLN.');
+            return;
+        }
+        if (formData.currency !== 'PLN' && formData.amount < 1) {
+            setValidationError(`Minimalna kwota napiwku to 1 ${formData.currency}.`);
             return;
         }
 
@@ -322,7 +325,7 @@ const TippingModal = () => {
 
         {/* TREŚĆ */}
         <div className={cn(
-            "flex-1 overflow-visible px-6 pt-6 pb-0 flex flex-col relative z-10 text-white rounded-b-3xl", // Changed pt-10 to pt-6 per user request
+            "flex-1 overflow-y-auto px-6 pt-6 pb-0 flex flex-col relative z-10 text-white rounded-b-3xl", // Changed pt-10 to pt-6 per user request
             isCurrencyDropdownOpen && "z-30" // Raise content z-index when dropdown is open so it covers footer
         )}>
             <AnimatePresence mode="wait" initial={false}>
@@ -637,30 +640,32 @@ const TippingModal = () => {
         </div>
 
         {/* PRZYCISKI NAWIGACJI - widoczne tylko gdy nie czytamy regulaminu */}
-        {currentStep < 3 && !showTerms && (
-            <div className={cn("px-6 pb-6 pt-4 flex gap-3 bg-transparent z-20 relative rounded-b-3xl", isCurrencyDropdownOpen && "z-10")}>
+        {!showTerms && (
+             <div className={cn("px-6 pb-6 pt-4 flex gap-3 bg-transparent z-20 relative rounded-b-3xl", isCurrencyDropdownOpen && "z-10")}>
                 {currentStep > 0 && (
                     <button
                         onClick={handleBack}
-                        className="px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
+                        className="flex-1 px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
                     >
                         Wstecz
                     </button>
                 )}
-                <button
-                    onClick={handleNext}
-                    disabled={isProcessing}
-                    className="group flex-1 h-10 flex items-center justify-center gap-2 rounded-xl font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 shadow-lg active:scale-[0.98]" // Changed to h-10
-                >
-                    {isProcessing ? (
-                        <div className="flex items-center gap-2">
-                            <Loader2 className="animate-spin h-5 w-5" />
-                            {/* <span>PRZETWARZANIE...</span> removed text per user request */}
-                        </div>
-                    ) : (
-                        "ENTER" // Changed text from DALEJ to ENTER
-                    )}
-                </button>
+                {currentStep < 3 && (
+                    <button
+                        onClick={handleNext}
+                        disabled={isProcessing}
+                        className="group flex-1 h-10 flex items-center justify-center gap-2 rounded-xl font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 shadow-lg active:scale-[0.98]" // Changed to h-10
+                    >
+                        {isProcessing ? (
+                            <div className="flex items-center gap-2">
+                                <Loader2 className="animate-spin h-5 w-5" />
+                                {/* <span>PRZETWARZANIE...</span> removed text per user request */}
+                            </div>
+                        ) : (
+                            "ENTER" // Changed text from DALEJ to ENTER
+                        )}
+                    </button>
+                )}
             </div>
         )}
 
