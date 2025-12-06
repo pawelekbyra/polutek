@@ -12,6 +12,31 @@ import { fetchAuthorProfile } from '@/lib/queries';
 import { AuthorProfile } from '@/types';
 import { formatCount } from '@/lib/utils';
 import { SafeLock } from './SafeLock';
+import { useUser } from '@/context/UserContext';
+
+function PatronButton({ togglePatron }: { togglePatron: () => void }) {
+    const { isLoggedIn } = useUser();
+
+    if (isLoggedIn) {
+        return (
+            <button
+                disabled
+                className="flex-grow py-2.5 rounded text-sm font-semibold transition-colors flex items-center justify-center gap-2 px-4 bg-[#3A3A3A] text-white/60 cursor-default"
+            >
+                Jesteś Patronem
+            </button>
+        );
+    }
+
+    return (
+        <button
+            onClick={togglePatron}
+            className="flex-grow py-2.5 rounded text-sm font-semibold transition-colors flex items-center justify-center gap-2 px-4 bg-[#FE2C55] text-white hover:bg-[#E0274B]"
+        >
+            Zostań Patronem
+        </button>
+    );
+}
 
 // Simple TikTok Icon SVG Component
 const TiktokIcon = ({ size = 20, className = "" }: { size?: number, className?: string }) => (
@@ -39,12 +64,12 @@ interface AuthorProfileModalProps {
 export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProps) {
     const { jumpToSlide, openTippingModal, closeAuthorProfileModal } = useStore();
     const [activeTab, setActiveTab] = useState<'videos' | 'liked' | 'private'>('videos');
-    const [isPatron, setIsPatron] = useState(false); // Mock state for "Become a Patron"
 
     const { data: profile, isLoading, isError } = useQuery<AuthorProfile>({
         queryKey: ['author', authorId],
         queryFn: () => fetchAuthorProfile(authorId),
         enabled: !!authorId,
+        staleTime: 1000 * 60 * 5, // Cache for 5 mins to make it "instant" on re-open
     });
 
     // Mock stats generation based on authorId (deterministic for specific user, random otherwise)
@@ -164,29 +189,14 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
 
                             {/* Actions */}
                             <div className="flex gap-2 w-full max-w-xs mb-4">
-                                <button
-                                    onClick={togglePatron}
-                                    className={`flex-grow py-2.5 rounded text-sm font-semibold transition-colors flex items-center justify-center gap-2 px-4
-                                        ${isPatron
-                                            ? 'bg-[#3A3A3A] text-white hover:bg-[#4A4A4A]'
-                                            : 'bg-[#FE2C55] text-white hover:bg-[#E0274B]'
-                                        }`}
-                                >
-                                    {isPatron ? (
-                                        <>Jesteś Patronem</>
-                                    ) : (
-                                        <>Zostań Patronem</>
-                                    )}
-                                </button>
+                                <PatronButton togglePatron={togglePatron} />
                                 <button className="p-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors flex items-center justify-center min-w-[40px]">
                                     <Youtube size={20} />
                                 </button>
                                 <button className="p-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors flex items-center justify-center min-w-[40px]">
                                     <Instagram size={20} />
                                 </button>
-                                <button className="p-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors flex items-center justify-center min-w-[40px]">
-                                    <Facebook size={20} />
-                                </button>
+                                {/* Facebook Removed */}
                                 <button className="p-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors flex items-center justify-center min-w-[40px]">
                                     <TiktokIcon size={20} />
                                 </button>

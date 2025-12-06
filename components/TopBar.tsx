@@ -71,6 +71,7 @@ const TopBar = () => {
   const unreadCount = notificationData?.unreadCount || 0;
 
   const handleLoggedOutMenuClick = () => {
+    // Ensure "Locked" type is used
     addToast(t('loginRequired') || 'Musisz się zalogować', 'locked');
   };
 
@@ -231,7 +232,7 @@ const TopBar = () => {
                 <Button variant="ghost" size="icon" onClick={handleBellClick} aria-label={t('notificationAriaLabel')} className="mr-1.5">
                   <BellIcon className="w-6 h-6" />
                   {unreadCount > 0 && (
-                    <span className="absolute top-1 right-1 block h-2 w-2 rounded-full ring-2 ring-black bg-pink-500" />
+                    <span className="absolute top-0 right-0 -mt-[2px] -mr-[2px] block h-2.5 w-2.5 rounded-full ring-2 ring-black bg-pink-500" />
                   )}
                 </Button>
               </div>

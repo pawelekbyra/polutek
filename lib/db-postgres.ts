@@ -200,7 +200,7 @@ export async function createUser(userData: Omit<User, 'id' | 'sessionVersion' | 
     await createNotification({
         userId: newUser.id,
         type: 'system',
-        text: 'Witaj w Polutku! Uzupełnij swój profil.',
+        text: `Witaj ${displayName || username || 'w Polutku'}! 🤩 Cieszymy się, że jesteś z nami!`,
         link: '/profile',
         fromUserId: null, // System notification
     });

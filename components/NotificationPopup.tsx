@@ -43,6 +43,9 @@ const NotificationItem: React.FC<{
     const newIsExpanded = !isExpanded;
     setIsExpanded(newIsExpanded);
 
+    // Opening the notification panel is enough to "clear" the unread indicator globally,
+    // but here we also mark specific items read if expanded.
+    // The user requirement says "rozwiniety komunikat... powodowac znikniecie kropeczki".
     if (newIsExpanded && notification.unread) {
       onMarkAsRead(notification.id);
     }
@@ -84,10 +87,11 @@ const NotificationItem: React.FC<{
         <div className="flex items-center gap-2 pt-1">
           {notification.unread && <div className="w-2 h-2 bg-pink-500 rounded-full" />}
 
-          <DeleteButton
+          {/* Hidden delete button as per user request */}
+          {/* <DeleteButton
             onDelete={(e) => { e.stopPropagation(); onDelete(notification.id); }}
             t={t}
-          />
+          /> */}
 
           <div onClick={handleToggle}>
              <ChevronDown size={14} className={`transition-transform ${isExpanded ? 'rotate-180' : ''}`} />

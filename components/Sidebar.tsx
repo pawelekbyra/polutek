@@ -10,6 +10,8 @@ import { useStore } from '@/store/useStore';
 import { formatCount } from '@/lib/utils';
 import { shallow } from 'zustand/shallow';
 import { useUser } from '@/context/UserContext';
+import { useQueryClient } from '@tanstack/react-query';
+import { fetchAuthorProfile } from '@/lib/queries';
 
 interface SidebarProps {
   initialLikes: number;
@@ -55,6 +57,19 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   // Optimistic update for author avatar if it's the current user
   const displayAvatar = (currentUser && currentUser.id === authorId) ? currentUser.avatar : authorAvatar;
+
+  const queryClient = useQueryClient();
+
+  // Preload Author Data logic
+  useEffect(() => {
+    if (authorId) {
+      queryClient.prefetchQuery({
+        queryKey: ['author', authorId],
+        queryFn: () => fetchAuthorProfile(authorId),
+        staleTime: 1000 * 60 * 5, // 5 minutes
+      });
+    }
+  }, [authorId, queryClient]);
 
   useEffect(() => {
     setLiveLikes(initialLikes);
@@ -122,11 +137,13 @@ const Sidebar: React.FC<SidebarProps> = ({
              <User size={32} strokeWidth={1.4} />
            )}
         </button>
-         <div
-            className="absolute left-1/2 -translate-x-1/2 -bottom-1.5 w-5 h-5 rounded-full flex items-center justify-center text-white text-lg font-bold border-2 border-white pointer-events-none bg-primary"
-          >
-            +
-          </div>
+         {!isLoggedIn && (
+            <div
+                className="absolute left-1/2 -translate-x-1/2 -bottom-1.5 w-5 h-5 rounded-full flex items-center justify-center text-white text-lg font-bold border-2 border-white pointer-events-none bg-primary"
+            >
+                +
+            </div>
+         )}
       </div>
 
       {/* Like */}
