@@ -190,7 +190,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
           )}
         </div>
 
-        {replyCount > 0 && (
+        {(replyCount > 0 || (lastRepliedParentId === comment.id)) && (
           <div className="mt-2">
             <button onClick={handleToggleReplies} className="flex items-center gap-1.5 text-xs text-[#8F8F8F] font-semibold mb-2">
               <ChevronDown size={16} className={cn("transition-transform duration-200", areRepliesVisible && "rotate-180")} />
@@ -501,7 +501,36 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
 
   const deleteMutation = useMutation({
     mutationFn: (commentId: string) => fetch('/api/comments', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ commentId }) }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['comments', slideId] }),
+    onMutate: async (commentId: string) => {
+      // Find if this comment is a root comment or reply to handle store updates optimistically or after invalidation
+      // Since we only have ID, we rely on invalidation for UI list, but for counts we might need to know.
+      // However, deleting a root comment definitely decrements the total count.
+      // Deleting a reply decrements the parent's reply count (handled via invalidation/refetch).
+      // We will decrement the global count anyway if it was successful.
+      // Actually, we should check if it's a root comment. But we don't have the comment object here easily.
+      // We can pass the comment object to mutation or just decrement blindly? No, unsafe.
+      // Better: Invalidate queries. The store count is derived from `commentCountChanges`.
+      // We need to update `commentCountChanges`.
+      // If we don't know if it's a root comment, we can't safely decrement global count (replies don't count towards header count? usually they do).
+      // Header count = total comments (including replies?).
+      // If `commentCountChanges` tracks TOTAL comments, then we should decrement it regardless of nesting.
+      // Let's assume header count includes replies.
+
+      // Cancel queries
+      await queryClient.cancelQueries({ queryKey: ['comments', slideId] });
+
+      const previousData = queryClient.getQueryData(['comments', slideId, sortBy]);
+
+      // Update global store optimistically?
+      // useStore.getState().decrementCommentCount(slideId!, initialCommentsCount);
+      // We'll do this in onSuccess to be safe, or here if we want instant feedback.
+
+      return { previousData };
+    },
+    onSuccess: () => {
+        useStore.getState().decrementCommentCount(slideId!, initialCommentsCount);
+        queryClient.invalidateQueries({ queryKey: ['comments', slideId] });
+    },
   });
 
   const handleSubmit = (e: React.FormEvent) => {

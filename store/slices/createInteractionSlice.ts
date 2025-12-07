@@ -10,6 +10,7 @@ export interface InteractionSlice {
   commentCountChanges: Record<string, number>;
   toggleLike: (slideId: string, initialLikes: number, initialIsLiked: boolean) => void;
   incrementCommentCount: (slideId: string, initialCount: number) => void;
+  decrementCommentCount: (slideId: string, initialCount: number) => void;
 }
 
 export const createInteractionSlice: StateCreator<InteractionSlice> = (set) => ({
@@ -36,6 +37,15 @@ export const createInteractionSlice: StateCreator<InteractionSlice> = (set) => (
         commentCountChanges: {
             ...state.commentCountChanges,
             [slideId]: currentCount + 1,
+        },
+    };
+  }),
+  decrementCommentCount: (slideId, initialCount) => set((state) => {
+    const currentCount = state.commentCountChanges[slideId] ?? initialCount;
+    return {
+        commentCountChanges: {
+            ...state.commentCountChanges,
+            [slideId]: Math.max(0, currentCount - 1),
         },
     };
   }),
