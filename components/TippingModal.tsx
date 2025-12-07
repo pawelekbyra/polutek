@@ -65,6 +65,11 @@ const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string,
                     <PaymentElement
                         options={{
                             layout: 'tabs',
+                            fields: {
+                                billingDetails: {
+                                    email: 'never',
+                                }
+                            }
                         }}
                         onReady={() => setIsElementReady(true)}
                     />
@@ -299,9 +304,14 @@ const TippingModal = () => {
                   border: '1px solid #db2777', // bg-pink-600
               }
           }
+      },
+      defaultValues: {
+          billingDetails: {
+              email: formData.email,
+          }
       }
     };
-  }, [clientSecret]);
+  }, [clientSecret, formData.email]);
 
   // Animacje: Subtelne przejścia opacity + slide
   const stepVariants = {
