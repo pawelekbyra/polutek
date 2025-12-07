@@ -255,8 +255,13 @@ const TippingModal = () => {
 
   const modalTitle = showTerms ? "Regulamin i Polityka" : "Bramka Napiwkowa";
 
-  const stripeOptions = useMemo(() => ({
-      clientSecret: clientSecret || "",
+  const stripeOptions = useMemo(() => {
+    // Ensure we never pass an empty string if clientSecret is null,
+    // although the component only renders if clientSecret is truthy.
+    if (!clientSecret) return undefined;
+
+    return {
+      clientSecret,
       appearance: {
           theme: 'night' as const,
           variables: {
@@ -278,7 +283,8 @@ const TippingModal = () => {
               }
           }
       }
-  }), [clientSecret]);
+    };
+  }, [clientSecret]);
 
   // Animacje: Subtelne przejścia opacity + slide
   const stepVariants = {
@@ -625,9 +631,10 @@ const TippingModal = () => {
                             </div>
                         </div>
 
-                        {clientSecret && (
-                            <div className="bg-transparent mt-2">
+                        {clientSecret && stripeOptions && (
+                            <div className="bg-transparent mt-2 min-h-[250px] relative">
                                 <Elements 
+                                    key={clientSecret}
                                     stripe={stripePromise} 
                                     options={stripeOptions}
                                 >

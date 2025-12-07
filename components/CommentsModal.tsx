@@ -290,6 +290,16 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
+  // Calculate static height on mount to prevent squishing when keyboard opens
+  const [modalHeight, setModalHeight] = useState<string>('75vh');
+
+  useEffect(() => {
+      // Set height to 75% of the initial window height and keep it there.
+      // This prevents the modal background from shrinking when address bar toggles or keyboard opens (if viewport resizes).
+      // We set a fixed pixel height so the list doesn't resize/squish.
+      setModalHeight(`${window.innerHeight * 0.75}px`);
+  }, []);
+
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
@@ -561,7 +571,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
           <motion.div
             ref={modalRef}
             className="w-full bg-[#1C1C1E] backdrop-blur-md rounded-t-2xl flex flex-col border-t border-white/10 comments-modal"
-            style={{ height: '75dvh' }}
+            style={{ height: modalHeight }}
             initial={{ y: '100%' }}
             animate={{ y: '0%' }}
             exit={{ y: '100%' }}
@@ -578,9 +588,12 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
                 <button onClick={() => setSortBy('newest')} className={cn("font-semibold", sortBy === 'newest' ? 'text-white' : 'text-white/40')}>{t('newest')}</button>
             </div>
 
-            <div className="flex-1 overflow-y-auto min-h-0 flex flex-col">{renderContent()}</div>
+            <div className="flex-1 overflow-y-auto min-h-0 flex flex-col pb-20">{renderContent()}</div>
 
-            <div className="flex-shrink-0 border-t border-white/10 bg-[#121212] pb-[calc(0.5rem+env(safe-area-inset-bottom))] z-10">
+            {/* Footer / Input Area - Fixed at bottom */}
+            <div
+                className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-[#121212] pb-[calc(0.5rem+env(safe-area-inset-bottom))] z-20"
+            >
               {replyingTo && (
                 <div className="bg-[#282828] px-4 py-1.5 text-xs text-[#A6A6A6] flex justify-between items-center">
                   <span>{t('replyingTo', { user: replyingTo.author?.displayName || replyingTo.author?.username || '' })}</span>
