@@ -137,7 +137,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
       <div className="flex-1 min-w-0">
         <div className="bg-transparent rounded-lg">
            <div className="flex items-center gap-2">
-             <p className={cn("text-xs font-semibold cursor-pointer hover:underline", isPatron ? "text-yellow-400" : "text-[#A6A6A6]")} onClick={() => onAvatarClick(safeAuthor.id)}>
+             <p className="text-xs font-semibold text-[#A6A6A6] cursor-pointer hover:underline" onClick={() => onAvatarClick(safeAuthor.id)}>
                 {safeAuthor.displayName || safeAuthor.username || 'User'}
               </p>
            </div>
