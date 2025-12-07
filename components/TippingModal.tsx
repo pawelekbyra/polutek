@@ -103,6 +103,7 @@ const TippingModal = () => {
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [lastIntentConfig, setLastIntentConfig] = useState<{ amount: number, currency: string, email: string } | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [mountKey, setMountKey] = useState(0);
 
   const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
@@ -126,6 +127,9 @@ const TippingModal = () => {
         setClientSecret(null);
         setLastIntentConfig(null);
         setValidationError(null);
+    } else {
+        // Generate new key when modal opens to ensure fresh Stripe instance
+        setMountKey(Date.now());
     }
   }, [isLoggedIn, user, isTippingModalOpen]);
 
@@ -627,15 +631,15 @@ const TippingModal = () => {
                         className="space-y-4 flex-1 relative z-10"
                     >
                         <div className="text-center">
-                            <div className="inline-block bg-[#2C2C2E] border border-white/10 text-white px-6 py-2 rounded-full shadow-lg">
-                                <span className="text-2xl font-black">{formData.amount.toFixed(2)} {formData.currency}</span>
+                            <div className="inline-block bg-[#2C2C2E] border border-white/10 text-white px-4 py-1.5 rounded-full shadow-lg">
+                                <span className="text-xl font-black">{formData.amount.toFixed(2)} {formData.currency}</span>
                             </div>
                         </div>
 
                         {clientSecret && stripeOptions && (
                             <div className="bg-transparent mt-2 min-h-[250px] relative">
                                 <Elements 
-                                    key={clientSecret}
+                                    key={`${clientSecret}-${mountKey}`}
                                     stripe={stripePromise} 
                                     options={stripeOptions}
                                 >
