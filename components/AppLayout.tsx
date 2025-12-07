@@ -15,6 +15,7 @@ import NotificationPopup from './NotificationPopup';
 import { AnimatePresence } from 'framer-motion';
 import { useUser } from '@/context/UserContext';
 import PWAInstallPrompt from './PWAInstallPrompt';
+import { ToastContainer } from '@/context/ToastContext';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const { user } = useUser();
@@ -108,6 +109,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </AnimatePresence>
 
       <PWAInstallPrompt />
+      <ToastContainer />
     </div>
   );
 }

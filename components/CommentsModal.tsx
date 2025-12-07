@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useInfiniteQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Heart, MessageSquare, Loader2, MoreHorizontal, Trash, Flag, Smile, ChevronDown, ImageIcon, SendHorizontal } from 'lucide-react';
+import { X, Heart, MessageSquare, Loader2, MoreHorizontal, Trash, Flag, Smile, ChevronDown, ImageIcon, ArrowUp } from 'lucide-react';
 import Image from 'next/image';
 import { ably } from '@/lib/ably-client';
 import EmojiPicker, { EmojiClickData, Theme } from 'emoji-picker-react';
@@ -159,7 +159,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
           )}
         </div>
 
-        <div className="flex items-center gap-3 text-xs text-[#808080] mt-[1px]">
+        <div className="flex items-center gap-3 text-xs text-[#808080] mt-[-1px]">
           <span>{formattedTime}</span>
           {currentUserId && (
             <button onClick={() => onStartReply(comment)} className="font-semibold hover:text-white transition-colors">
@@ -204,6 +204,9 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
                 exit={{ opacity: 0, height: 0 }}
                 className="space-y-4 overflow-hidden pt-2"
               >
+                {isLoadingReplies && replies.length === 0 && (
+                   <div className="flex justify-center p-2"><Loader2 className="animate-spin h-4 w-4 text-pink-400" /></div>
+                )}
                 {replies.map((reply) => (
                   <MemoizedCommentItem key={reply.id} slideId={slideId} comment={reply} onLike={onLike} onDelete={onDelete} onReport={onReport} onAvatarClick={onAvatarClick} onStartReply={onStartReply} currentUserId={currentUserId} lang={lang} level={level + 1} lastRepliedParentId={lastRepliedParentId} />
                 ))}
@@ -483,7 +486,11 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
              queryClient.invalidateQueries({ queryKey: ['comments', slideId, 'replies', variables.parentId] });
           }, 1000);
       } else {
-        queryClient.invalidateQueries({ queryKey: ['comments', slideId, sortBy] });
+        setSortBy('newest');
+        queryClient.invalidateQueries({ queryKey: ['comments', slideId, 'newest'] });
+        if (sortBy !== 'newest') {
+             queryClient.invalidateQueries({ queryKey: ['comments', slideId, sortBy] });
+        }
         // Increment comment count in global state only for root comments
         useStore.getState().incrementCommentCount(slideId!, initialCommentsCount);
       }
@@ -651,8 +658,14 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
                          <EmojiPicker onEmojiClick={onEmojiClick} theme={Theme.DARK} previewConfig={{ showPreview: false }} />
                       </div>
                    )}
-                   <button type="submit" className="p-2 text-sm font-semibold disabled:opacity-50 flex items-center justify-center transition-colors text-[#FE2C55] disabled:text-[#FE2C55]/50" disabled={(!newComment.trim() && !imageFile) || replyMutation.isPending}>
-                    {replyMutation.isPending ? <Loader2 className="h-5 w-5 animate-spin" /> : <SendHorizontal size={22} />}
+                   <button type="submit" className="p-2 disabled:opacity-50 flex items-center justify-center transition-opacity" disabled={(!newComment.trim() && !imageFile) || replyMutation.isPending}>
+                    {replyMutation.isPending ? (
+                        <Loader2 className="h-6 w-6 animate-spin text-[#FE2C55]" />
+                    ) : (
+                        <div className="w-8 h-8 bg-[#FE2C55] rounded-full flex items-center justify-center text-white">
+                            <ArrowUp size={20} strokeWidth={3} />
+                        </div>
+                    )}
                   </button>
                 </form>
               ) : (
