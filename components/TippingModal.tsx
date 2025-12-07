@@ -15,7 +15,8 @@ import StatusMessage from '@/components/ui/StatusMessage';
 // Inicjalizacja Stripe
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK!);
 
-// --- KONFIGURACJA WYGLĄDU (Poza komponentem dla stabilności) ---
+// --- KONFIGURACJA WYGLĄDU ---
+// Wyciągnięte na zewnątrz, aby referencja była stabilna
 const STRIPE_APPEARANCE = {
     theme: 'night' as const,
     variables: {
@@ -50,16 +51,16 @@ const CheckoutForm = ({ clientSecret, email, onClose, onBack }: { clientSecret: 
     const { addToast } = useToast();
     const [isProcessing, setIsProcessing] = useState(false);
     const { t } = useTranslation();
+    const [isReady, setIsReady] = useState(false); // Stan gotowości formularza
 
-    // Memoizacja opcji elementu - kluczowa dla stabilności.
-    // Używamy loader: 'auto', aby Stripe zarządzał stanem ładowania UI.
+    // Opcje elementu - loader: 'auto' jest kluczowy dla uniknięcia "pustego diva"
     const paymentElementOptions = useMemo(() => ({
         layout: 'tabs' as const,
         readOnly: isProcessing,
-        loader: 'auto' as const,
+        loader: 'auto' as const, // TO ROZWIĄZUJE PROBLEM PUSTEGO RENDEROWANIA
         fields: {
             billingDetails: {
-                email: 'never' as const, // Ukrywamy pole email w UI
+                email: 'never' as const,
             }
         }
     }), [isProcessing]);
@@ -77,10 +78,7 @@ const CheckoutForm = ({ clientSecret, email, onClose, onBack }: { clientSecret: 
             const { error, paymentIntent } = await stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    // Budujemy czysty URL powrotu
                     return_url: `${window.location.protocol}//${window.location.host}${window.location.pathname}`,
-                    
-                    // Jawnie przekazujemy email tutaj. 
                     payment_method_data: {
                         billing_details: {
                             email: email, 
@@ -112,10 +110,12 @@ const CheckoutForm = ({ clientSecret, email, onClose, onBack }: { clientSecret: 
 
     return (
         <form onSubmit={handleSubmit} className="w-full">
-            <div className="mb-4 min-h-[250px] w-full relative z-10">
+            {/* Wrapper z minimalną wysokością zapobiega skakaniu layoutu i błędom obliczeń iframe */}
+            <div className="mb-4 min-h-[280px] w-full relative z-10">
                 <PaymentElement
                     id="payment-element"
                     options={paymentElementOptions}
+                    onReady={() => setIsReady(true)}
                     onLoadError={(e) => {
                         console.error("Load Error:", e);
                         addToast("Błąd ładowania formularza płatności", "error");
@@ -133,7 +133,7 @@ const CheckoutForm = ({ clientSecret, email, onClose, onBack }: { clientSecret: 
                 </button>
                 <button
                     type="submit"
-                    disabled={isProcessing || !stripe || !elements}
+                    disabled={isProcessing || !stripe || !elements || !isReady}
                     className="flex-1 h-10 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
                 >
                     {isProcessing ? (
@@ -168,6 +168,7 @@ const TippingModal = () => {
   const [lastIntentConfig, setLastIntentConfig] = useState<{ amount: number, currency: string, email: string } | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  // Dodajemy prosty licznik, aby wymusić remount tylko w krytycznych momentach
   const [paymentStepKey, setPaymentStepKey] = useState(0);
   const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
@@ -180,14 +181,18 @@ const TippingModal = () => {
         setFormData(prev => ({ ...prev, email: user?.email || '' }));
     }
     if (!isTippingModalOpen) {
-        setCurrentStep(0);
-        setFormData(prev => ({ ...prev, create_account: false, terms_accepted: false, recipient: '' }));
-        setIsCurrencyDropdownOpen(false);
-        setShowTerms(false);
-        setClientSecret(null);
-        setLastIntentConfig(null);
-        setValidationError(null);
-        setPaymentStepKey(0);
+        // Reset stanu po zamknięciu
+        const timer = setTimeout(() => {
+            setCurrentStep(0);
+            setFormData(prev => ({ ...prev, create_account: false, terms_accepted: false, recipient: '' }));
+            setIsCurrencyDropdownOpen(false);
+            setShowTerms(false);
+            setClientSecret(null);
+            setLastIntentConfig(null);
+            setValidationError(null);
+            setPaymentStepKey(0);
+        }, 300); // Czekamy aż animacja wyjścia się skończy
+        return () => clearTimeout(timer);
     }
   }, [isLoggedIn, user, isTippingModalOpen]);
 
@@ -248,11 +253,11 @@ const TippingModal = () => {
             return;
         }
 
+        // Jeśli parametry się nie zmieniły, nie twórz nowego Intent
         if (clientSecret && lastIntentConfig &&
             lastIntentConfig.amount === formData.amount &&
             lastIntentConfig.currency === formData.currency &&
             lastIntentConfig.email === formData.email) {
-            setPaymentStepKey(prev => prev + 1); 
             setCurrentStep(3);
             return;
         }
@@ -279,7 +284,7 @@ const TippingModal = () => {
                     currency: formData.currency,
                     email: formData.email
                 });
-                setPaymentStepKey(prev => prev + 1);
+                setPaymentStepKey(prev => prev + 1); // Wymuś odświeżenie Elements
                 setCurrentStep(3);
             } else {
                 addToast(data.error || t('errorCreatingPayment') || 'Błąd tworzenia płatności', 'error');
@@ -301,29 +306,19 @@ const TippingModal = () => {
       }
   };
 
-  const steps = [
-      { id: 0, title: "Odbiorca" },
-      { id: 1, title: "Dane" },
-      { id: 2, title: "Kwota" },
-      { id: 3, title: "Płatność" }
-  ];
-
   const totalSteps = isLoggedIn ? 3 : 4;
   const currentVisualStep = isLoggedIn && currentStep >= 1 ? currentStep - 1 : currentStep;
   const progress = ((currentVisualStep + 1) / totalSteps) * 100;
-
-  const suggestedAmounts = [10, 20, 50];
-  const currencies = ['PLN', 'EUR', 'USD', 'GBP'];
-
   const modalTitle = showTerms ? "Regulamin i Polityka" : "Bramka Napiwkowa";
 
-  // Opcje dla Elements (tylko wygląd i theme)
+  // Opcje dla Elements - używamy useMemo z właściwymi zależnościami
   const stripeOptions = useMemo(() => {
     if (!clientSecret) return undefined;
 
     return {
       clientSecret,
       appearance: STRIPE_APPEARANCE,
+      loader: 'auto' as const, // Kluczowe dla UX
       defaultValues: {
         billingDetails: {
             email: formData.email || undefined,
@@ -397,7 +392,7 @@ const TippingModal = () => {
                         transition={{ duration: 0.2 }}
                         className="space-y-3"
                     >
-                        <div className="text-left">
+                         <div className="text-left">
                             <p className="text-base font-medium text-white/90 tracking-wide">Komu chcesz wysłać napiwek?</p>
                         </div>
                         <div className="space-y-3 pt-1">
@@ -460,7 +455,7 @@ const TippingModal = () => {
                         <div className="text-left">
                             <p className="text-base font-medium text-white/90 tracking-wide">Czy chcesz utworzyć konto Patrona?</p>
                         </div>
-                        <div className="space-y-3">
+                         <div className="space-y-3">
                             {!isLoggedIn && (
                                 <div 
                                     className={cn(
@@ -512,7 +507,7 @@ const TippingModal = () => {
                         transition={{ duration: 0.2 }}
                         className="space-y-6 flex-1 relative z-10 h-full flex flex-col"
                     >
-                        {showTerms ? (
+                         {showTerms ? (
                              <div className="flex flex-col h-full overflow-hidden">
                                 <div className="flex-1 overflow-y-auto bg-black/20 border border-white/10 rounded-xl p-4 text-sm text-white/80 space-y-3 custom-scrollbar h-[50vh] max-h-[400px]">
                                     <p className="font-bold text-white">1. Postanowienia ogólne</p>
@@ -540,7 +535,7 @@ const TippingModal = () => {
                                     <h3 className="text-base font-medium text-white/90">Wybierz lub wpisz kwotę napiwku</h3>
                                 </div>
                                 <div className="grid grid-cols-3 gap-3">
-                                    {suggestedAmounts.map(amount => (
+                                    {[10, 20, 50].map(amount => (
                                         <button
                                             key={amount}
                                             onClick={() => {
@@ -591,7 +586,7 @@ const TippingModal = () => {
                                                     className="absolute top-0 right-0 w-full bg-[#2C2C2E] border border-white/10 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] overflow-hidden z-[9999]"
                                                 >
                                                     <div className="flex flex-col">
-                                                        {currencies.map((currency) => (
+                                                        {['PLN', 'EUR', 'USD', 'GBP'].map((currency) => (
                                                             <button
                                                                 key={currency}
                                                                 onClick={() => {
@@ -657,23 +652,22 @@ const TippingModal = () => {
                             </div>
                         </div>
 
+                        {/* UPEWNIAMY SIĘ, ŻE clientSecret JEST DOSTĘPNY PRZED RENDEROWANIEM */}
                         {clientSecret && stripeOptions ? (
-                            <div className="bg-transparent mt-2 min-h-[250px] relative w-full">
-                                <Elements 
-                                    key={`${clientSecret}-${paymentStepKey}`}
-                                    stripe={stripePromise} 
-                                    options={stripeOptions}
-                                >
-                                    <CheckoutForm 
-                                        clientSecret={clientSecret} 
-                                        email={formData.email} 
-                                        onClose={closeTippingModal} 
-                                        onBack={handleBack} 
-                                    />
-                                </Elements>
-                            </div>
+                            <Elements 
+                                key={`${clientSecret}-${paymentStepKey}`}
+                                stripe={stripePromise} 
+                                options={stripeOptions}
+                            >
+                                <CheckoutForm 
+                                    clientSecret={clientSecret} 
+                                    email={formData.email} 
+                                    onClose={closeTippingModal} 
+                                    onBack={handleBack} 
+                                />
+                            </Elements>
                         ) : (
-                             <div className="flex items-center justify-center h-[250px]">
+                             <div className="flex items-center justify-center h-[280px]">
                                 <Loader2 className="animate-spin h-8 w-8 text-pink-600" />
                             </div>
                         )}
