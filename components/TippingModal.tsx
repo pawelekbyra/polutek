@@ -26,6 +26,7 @@ const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string,
     const elements = useElements();
     const { addToast } = useToast();
     const [isProcessing, setIsProcessing] = useState(false);
+    const [isElementReady, setIsElementReady] = useState(false);
     const { t } = useTranslation();
 
     const handleSubmit = async (event: React.FormEvent) => {
@@ -53,12 +54,21 @@ const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string,
 
     return (
         <form onSubmit={handleSubmit} className="w-full">
-            <div className="mb-4 min-h-[200px]">
-                <PaymentElement 
-                    options={{ 
-                        layout: 'tabs',
-                    }} 
-                />
+            <div className="mb-4 min-h-[200px] relative">
+                 {/* Loader displayed until Stripe Element is ready */}
+                 {!isElementReady && (
+                    <div className="absolute inset-0 flex items-center justify-center z-10">
+                        <Loader2 className="animate-spin h-8 w-8 text-pink-600" />
+                    </div>
+                )}
+                <div className={cn("transition-opacity duration-300", isElementReady ? "opacity-100" : "opacity-0")}>
+                    <PaymentElement
+                        options={{
+                            layout: 'tabs',
+                        }}
+                        onReady={() => setIsElementReady(true)}
+                    />
+                </div>
             </div>
             <div className="flex gap-3">
                 <button
@@ -69,7 +79,7 @@ const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string,
                     Wstecz
                 </button>
                 <button
-                    disabled={isProcessing || !stripe || !elements}
+                    disabled={isProcessing || !stripe || !elements || !isElementReady}
                     className="flex-1 h-10 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
                 >
                     {isProcessing ? (
@@ -103,7 +113,9 @@ const TippingModal = () => {
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [lastIntentConfig, setLastIntentConfig] = useState<{ amount: number, currency: string, email: string } | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [mountKey, setMountKey] = useState(0);
+
+  // New key to force re-mounting of Elements on step entry
+  const [paymentStepKey, setPaymentStepKey] = useState(0);
 
   const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
@@ -127,9 +139,7 @@ const TippingModal = () => {
         setClientSecret(null);
         setLastIntentConfig(null);
         setValidationError(null);
-    } else {
-        // Generate new key when modal opens to ensure fresh Stripe instance
-        setMountKey(Date.now());
+        setPaymentStepKey(0);
     }
   }, [isLoggedIn, user, isTippingModalOpen]);
 
@@ -197,6 +207,7 @@ const TippingModal = () => {
             lastIntentConfig.amount === formData.amount &&
             lastIntentConfig.currency === formData.currency &&
             lastIntentConfig.email === formData.email) {
+            setPaymentStepKey(prev => prev + 1); // Force fresh mount
             setCurrentStep(3);
             return;
         }
@@ -223,6 +234,7 @@ const TippingModal = () => {
                     currency: formData.currency,
                     email: formData.email
                 });
+                setPaymentStepKey(prev => prev + 1); // Force fresh mount
                 setCurrentStep(3);
             } else {
                 addToast(data.error || t('errorCreatingPayment') || 'Błąd tworzenia płatności', 'error');
@@ -639,7 +651,7 @@ const TippingModal = () => {
                         {clientSecret && stripeOptions && (
                             <div className="bg-transparent mt-2 min-h-[250px] relative">
                                 <Elements 
-                                    key={`${clientSecret}-${mountKey}`}
+                                    key={`${clientSecret}-${paymentStepKey}`}
                                     stripe={stripePromise} 
                                     options={stripeOptions}
                                 >
