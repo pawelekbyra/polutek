@@ -49,18 +49,20 @@ const CheckoutForm = ({ clientSecret, email, onClose, onBack }: { clientSecret: 
     const elements = useElements();
     const { addToast } = useToast();
     const [isProcessing, setIsProcessing] = useState(false);
-    const [isElementReady, setIsElementReady] = useState(false);
     const { t } = useTranslation();
 
-    // Memoizacja opcji elementu - kluczowa dla stabilności
+    // Memoizacja opcji elementu - kluczowa dla stabilności.
+    // Używamy loader: 'auto', aby Stripe zarządzał stanem ładowania UI.
     const paymentElementOptions = useMemo(() => ({
         layout: 'tabs' as const,
+        readOnly: isProcessing,
+        loader: 'auto' as const,
         fields: {
             billingDetails: {
                 email: 'never' as const, // Ukrywamy pole email w UI
             }
         }
-    }), []);
+    }), [isProcessing]);
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -75,13 +77,10 @@ const CheckoutForm = ({ clientSecret, email, onClose, onBack }: { clientSecret: 
             const { error, paymentIntent } = await stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    // Budujemy czysty URL powrotu (bez query params, które mogłyby mylić Stripe)
+                    // Budujemy czysty URL powrotu
                     return_url: `${window.location.protocol}//${window.location.host}${window.location.pathname}`,
                     
-                    // --- KLUCZOWA POPRAWKA ---
                     // Jawnie przekazujemy email tutaj. 
-                    // Jest to niezbędne dla metod redirect (Klarna/PayPal/Revolut), 
-                    // gdy pole email w formularzu jest ukryte.
                     payment_method_data: {
                         billing_details: {
                             email: email, 
@@ -92,7 +91,6 @@ const CheckoutForm = ({ clientSecret, email, onClose, onBack }: { clientSecret: 
             });
 
             if (error) {
-                // Logujemy błąd do konsoli, żebyś mógł go zobaczyć (F12 -> Console)
                 console.error("Stripe Error Details:", error);
                 
                 if (error.type === "card_error" || error.type === "validation_error") {
@@ -114,29 +112,28 @@ const CheckoutForm = ({ clientSecret, email, onClose, onBack }: { clientSecret: 
 
     return (
         <form onSubmit={handleSubmit} className="w-full">
-            <div className="mb-4 min-h-[220px] relative w-full">
-                 {!isElementReady && (
-                    <div className="absolute inset-0 flex items-center justify-center z-20 bg-[#2C2C2E]/50 backdrop-blur-sm rounded-xl">
-                        <Loader2 className="animate-spin h-8 w-8 text-pink-600" />
-                    </div>
-                )}
-                <div className={cn("transition-opacity duration-300 w-full", isElementReady ? "opacity-100" : "opacity-0")}>
-                    <PaymentElement
-                        options={paymentElementOptions}
-                        onReady={() => setIsElementReady(true)}
-                    />
-                </div>
+            <div className="mb-4 min-h-[250px] w-full relative z-10">
+                <PaymentElement
+                    id="payment-element"
+                    options={paymentElementOptions}
+                    onLoadError={(e) => {
+                        console.error("Load Error:", e);
+                        addToast("Błąd ładowania formularza płatności", "error");
+                    }}
+                />
             </div>
-            <div className="flex gap-3 w-full">
+            <div className="flex gap-3 w-full mt-4">
                 <button
                     type="button"
                     onClick={onBack}
-                    className="flex-1 px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
+                    disabled={isProcessing}
+                    className="flex-1 px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5 disabled:opacity-50"
                 >
                     Wstecz
                 </button>
                 <button
-                    disabled={isProcessing || !stripe || !elements || !isElementReady}
+                    type="submit"
+                    disabled={isProcessing || !stripe || !elements}
                     className="flex-1 h-10 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
                 >
                     {isProcessing ? (
@@ -327,8 +324,6 @@ const TippingModal = () => {
     return {
       clientSecret,
       appearance: STRIPE_APPEARANCE,
-      // Default values tutaj są ważne dla initial render, 
-      // ale dla redirect methods najważniejsze jest payment_method_data w confirmPayment
       defaultValues: {
         billingDetails: {
             email: formData.email || undefined,
@@ -662,7 +657,7 @@ const TippingModal = () => {
                             </div>
                         </div>
 
-                        {clientSecret && stripeOptions && (
+                        {clientSecret && stripeOptions ? (
                             <div className="bg-transparent mt-2 min-h-[250px] relative w-full">
                                 <Elements 
                                     key={`${clientSecret}-${paymentStepKey}`}
@@ -671,11 +666,15 @@ const TippingModal = () => {
                                 >
                                     <CheckoutForm 
                                         clientSecret={clientSecret} 
-                                        email={formData.email} // Przekazujemy email do formularza
+                                        email={formData.email} 
                                         onClose={closeTippingModal} 
                                         onBack={handleBack} 
                                     />
                                 </Elements>
+                            </div>
+                        ) : (
+                             <div className="flex items-center justify-center h-[250px]">
+                                <Loader2 className="animate-spin h-8 w-8 text-pink-600" />
                             </div>
                         )}
                     </motion.div>
@@ -683,10 +682,10 @@ const TippingModal = () => {
             </AnimatePresence>
         </div>
 
-        {!showTerms && (
+        {!showTerms && currentStep !== 3 && (
              <div className={cn("px-6 pb-6 pt-4 flex flex-col gap-3 bg-transparent z-20 relative rounded-b-3xl", isCurrencyDropdownOpen && "z-10")}>
                 <div className="flex gap-3 w-full">
-                    {currentStep > 0 && currentStep !== 3 && (
+                    {currentStep > 0 && (
                         <button
                             onClick={handleBack}
                             className="flex-1 px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
@@ -694,21 +693,19 @@ const TippingModal = () => {
                             Wstecz
                         </button>
                     )}
-                    {currentStep < 3 && (
-                        <button
-                            onClick={handleNext}
-                            disabled={isProcessing}
-                            className="group flex-1 h-10 flex items-center justify-center gap-2 rounded-xl font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 shadow-lg active:scale-[0.98]"
-                        >
-                            {isProcessing ? (
-                                <div className="flex items-center gap-2">
-                                    <Loader2 className="animate-spin h-5 w-5" />
-                                </div>
-                            ) : (
-                                "ENTER"
-                            )}
-                        </button>
-                    )}
+                    <button
+                        onClick={handleNext}
+                        disabled={isProcessing}
+                        className="group flex-1 h-10 flex items-center justify-center gap-2 rounded-xl font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 shadow-lg active:scale-[0.98]"
+                    >
+                        {isProcessing ? (
+                            <div className="flex items-center gap-2">
+                                <Loader2 className="animate-spin h-5 w-5" />
+                            </div>
+                        ) : (
+                            "ENTER"
+                        )}
+                    </button>
                 </div>
                 <StatusMessage
                     type="error"
