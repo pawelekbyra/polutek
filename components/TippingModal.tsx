@@ -115,16 +115,17 @@ const TippingModal = () => {
   useEffect(() => {
     if (isLoggedIn) {
         setFormData(prev => ({ ...prev, email: user?.email || '' }));
-    } else {
-        if (!isTippingModalOpen) {
-            setCurrentStep(0);
-            setFormData(prev => ({ ...prev, create_account: false, terms_accepted: false, recipient: '' }));
-            setIsCurrencyDropdownOpen(false);
-            setShowTerms(false);
-            setClientSecret(null);
-            setLastIntentConfig(null);
-            setValidationError(null);
-        }
+    }
+
+    // Reset state whenever modal closes, regardless of login status
+    if (!isTippingModalOpen) {
+        setCurrentStep(0);
+        setFormData(prev => ({ ...prev, create_account: false, terms_accepted: false, recipient: '' }));
+        setIsCurrencyDropdownOpen(false);
+        setShowTerms(false);
+        setClientSecret(null);
+        setLastIntentConfig(null);
+        setValidationError(null);
     }
   }, [isLoggedIn, user, isTippingModalOpen]);
 
