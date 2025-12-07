@@ -170,11 +170,11 @@ const TippingModal = () => {
         }
 
         if (formData.currency === 'PLN' && formData.amount < 5) {
-            setValidationError('Minimalna kwota napiwku to 5 PLN.');
+            setValidationError('Kwota mniejsza niż 5 PLN.');
             return;
         }
         if (formData.currency !== 'PLN' && formData.amount < 1) {
-            setValidationError(`Minimalna kwota napiwku to 1 ${formData.currency}.`);
+            setValidationError(`Minimalna kwota to 1 ${formData.currency}.`);
             return;
         }
 
@@ -642,10 +642,18 @@ const TippingModal = () => {
         {/* PRZYCISKI NAWIGACJI - widoczne tylko gdy nie czytamy regulaminu */}
         {!showTerms && (
              <div className={cn("px-6 pb-6 pt-4 flex gap-3 bg-transparent z-20 relative rounded-b-3xl", isCurrencyDropdownOpen && "z-10")}>
-                {currentStep > 0 && (
+                {currentStep > 0 && currentStep < 3 && (
                     <button
                         onClick={handleBack}
                         className="flex-1 px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
+                    >
+                        Wstecz
+                    </button>
+                )}
+                {currentStep === 3 && (
+                     <button
+                        onClick={handleBack}
+                        className="w-full px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
                     >
                         Wstecz
                     </button>
@@ -654,7 +662,7 @@ const TippingModal = () => {
                     <button
                         onClick={handleNext}
                         disabled={isProcessing}
-                        className="group flex-1 h-10 flex items-center justify-center gap-2 rounded-xl font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 shadow-lg active:scale-[0.98]" // Changed to h-10
+                        className="group flex-1 h-10 flex items-center justify-center gap-2 rounded-xl font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 shadow-lg active:scale-[0.98]"
                     >
                         {isProcessing ? (
                             <div className="flex items-center gap-2">
