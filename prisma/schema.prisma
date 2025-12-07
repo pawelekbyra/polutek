@@ -82,7 +82,7 @@ model Slide {
 
   // Application Logic Fields (Postgres implementation compatibility)
   userId       String    @map("userId")
-  author       User      @relation(fields: [userId], references: [id])
+  author       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   username     String?   // Denormalized for performance in manual queries
 
   title        String?
@@ -116,7 +116,7 @@ model Comment {
   text      String
   imageUrl  String?
   authorId  String   @map("userId")
-  author    User     @relation(fields: [authorId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   slideId   String
   slide     Slide    @relation(fields: [slideId], references: [id])
 
@@ -137,7 +137,7 @@ model Comment {
 model Like {
   id        String   @id @default(cuid())
   authorId  String
-  author    User     @relation(fields: [authorId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   slideId   String
   slide     Slide    @relation(fields: [slideId], references: [id])
   createdAt DateTime @default(now())
@@ -149,7 +149,7 @@ model Like {
 model CommentLike {
   id        String   @id @default(cuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   commentId String
   comment   Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
@@ -161,12 +161,12 @@ model CommentLike {
 model Notification {
   id        String   @id @default(cuid())
   userId    String
-  user      User     @relation("UserNotifications", fields: [userId], references: [id]) // Receiver
+  user      User     @relation("UserNotifications", fields: [userId], references: [id], onDelete: Cascade) // Receiver
   type      String   // 'like', 'comment', 'follow', 'system'
   text      String
   link      String?
   fromUserId String?
-  fromUser  User?    @relation("NotificationSender", fields: [fromUserId], references: [id]) // Sender
+  fromUser  User?    @relation("NotificationSender", fields: [fromUserId], references: [id], onDelete: Cascade) // Sender
 
   read      Boolean  @default(false)
   createdAt DateTime @default(now())
