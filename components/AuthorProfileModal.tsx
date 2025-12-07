@@ -188,7 +188,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                                     disabled={isPatron}
                                     className={`flex-grow py-2.5 rounded text-sm font-semibold transition-colors flex items-center justify-center gap-2 px-4
                                         ${isPatron
-                                            ? 'bg-pink-500 text-white cursor-default'
+                                            ? 'bg-emerald-600 hover:bg-emerald-700 text-white cursor-default'
                                             : 'bg-[#FE2C55] text-white hover:bg-[#E0274B]'
                                         }`}
                                 >

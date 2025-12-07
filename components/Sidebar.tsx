@@ -111,8 +111,8 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   // Determine avatar border color
   // In Sidebar, this is the Author's avatar.
-  // Requirement: Author = Purple border.
-  const avatarBorderColor = 'border-purple-600'; // "zajebisty fioletowy"
+  // Requirement: Author = Pink border.
+  const avatarBorderColor = 'border-pink-500';
 
   return (
     <aside

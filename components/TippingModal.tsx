@@ -585,16 +585,8 @@ const TippingModal = () => {
                                     </div>
                                 </div>
 
-                                <div className="mt-2">
-                                   <StatusMessage
-                                      type="error"
-                                      message={validationError}
-                                      isVisible={!!validationError}
-                                   />
-                                </div>
-
                                 <div
-                                    className="flex items-center justify-start gap-3 cursor-pointer group relative z-10"
+                                    className="flex items-center justify-start gap-3 cursor-pointer group relative z-10 mt-2"
                                     onClick={() => {
                                         setFormData(prev => ({ ...prev, terms_accepted: !prev.terms_accepted }));
                                         setValidationError(null);
@@ -650,42 +642,51 @@ const TippingModal = () => {
 
         {/* PRZYCISKI NAWIGACJI - widoczne tylko gdy nie czytamy regulaminu */}
         {!showTerms && (
-             <div className={cn("px-6 pb-6 pt-4 flex gap-3 bg-transparent z-20 relative rounded-b-3xl", isCurrencyDropdownOpen && "z-10")}>
-                {/*
-                   If currentStep is 3 (payment), we want the Wstecz button in the footer to work as "Back from Payment"
-                   or let the form handle it?
-                   The user removed the "sticky" back button from CheckoutForm.
-                   So we must ensure this footer button is visible in step 3.
-                   Condition: currentStep > 0 shows Wstecz.
-                   currentStep < 3 shows Enter (Next).
-                   So in step 3, only Wstecz is shown here.
-                   And CheckoutForm renders "Napiwkuj" (submit).
-                   So footer has "Wstecz", Form has "Napiwkuj". Perfect.
-                */}
-                {currentStep > 0 && (
-                    <button
-                        onClick={handleBack}
-                        className="flex-1 px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
-                    >
-                        Wstecz
-                    </button>
-                )}
-                {currentStep < 3 && (
-                    <button
-                        onClick={handleNext}
-                        disabled={isProcessing}
-                        className="group flex-1 h-10 flex items-center justify-center gap-2 rounded-xl font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 shadow-lg active:scale-[0.98]" // Changed to h-10
-                    >
-                        {isProcessing ? (
-                            <div className="flex items-center gap-2">
-                                <Loader2 className="animate-spin h-5 w-5" />
-                                {/* <span>PRZETWARZANIE...</span> removed text per user request */}
-                            </div>
-                        ) : (
-                            "ENTER" // Changed text from DALEJ to ENTER
-                        )}
-                    </button>
-                )}
+             <div className={cn("px-6 pb-6 pt-4 flex flex-col gap-3 bg-transparent z-20 relative rounded-b-3xl", isCurrencyDropdownOpen && "z-10")}>
+                <div className="flex gap-3 w-full">
+                    {/*
+                       If currentStep is 3 (payment), we want the Wstecz button in the footer to work as "Back from Payment"
+                       or let the form handle it?
+                       The user removed the "sticky" back button from CheckoutForm.
+                       So we must ensure this footer button is visible in step 3.
+                       Condition: currentStep > 0 shows Wstecz.
+                       currentStep < 3 shows Enter (Next).
+                       So in step 3, only Wstecz is shown here.
+                       And CheckoutForm renders "Napiwkuj" (submit).
+                       So footer has "Wstecz", Form has "Napiwkuj". Perfect.
+                    */}
+                    {currentStep > 0 && currentStep !== 3 && (
+                        <button
+                            onClick={handleBack}
+                            className="flex-1 px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
+                        >
+                            Wstecz
+                        </button>
+                    )}
+                    {currentStep < 3 && (
+                        <button
+                            onClick={handleNext}
+                            disabled={isProcessing}
+                            className="group flex-1 h-10 flex items-center justify-center gap-2 rounded-xl font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 shadow-lg active:scale-[0.98]" // Changed to h-10
+                        >
+                            {isProcessing ? (
+                                <div className="flex items-center gap-2">
+                                    <Loader2 className="animate-spin h-5 w-5" />
+                                    {/* <span>PRZETWARZANIE...</span> removed text per user request */}
+                                </div>
+                            ) : (
+                                "ENTER" // Changed text from DALEJ to ENTER
+                            )}
+                        </button>
+                    )}
+                </div>
+
+                <StatusMessage
+                    type="error"
+                    message={validationError}
+                    isVisible={!!validationError}
+                    className="w-full"
+                />
             </div>
         )}
 
