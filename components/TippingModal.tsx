@@ -12,11 +12,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import StatusMessage from '@/components/ui/StatusMessage';
 
-// Ładujemy Stripe poza komponentem, aby uniknąć re-inicjalizacji
+// Inicjalizacja Stripe
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK!);
 
-// --- STABILIZACJA WYGLĄDU ---
-// Definicja stylu poza komponentem zapobiega niepotrzebnym re-renderom
+// --- KONFIGURACJA WYGLĄDU (Poza komponentem dla stabilności) ---
 const STRIPE_APPEARANCE = {
     theme: 'night' as const,
     variables: {
@@ -34,7 +33,7 @@ const STRIPE_APPEARANCE = {
             backgroundColor: 'rgba(0,0,0,0.3)',
         },
         '.Input:focus': {
-            border: '1px solid #db2777', // bg-pink-600
+            border: '1px solid #db2777',
         }
     }
 };
@@ -45,7 +44,7 @@ const StripeLogo = () => (
     </svg>
 );
 
-const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string, onClose: () => void, onBack: () => void }) => {
+const CheckoutForm = ({ clientSecret, email, onClose, onBack }: { clientSecret: string, email: string, onClose: () => void, onBack: () => void }) => {
     const stripe = useStripe();
     const elements = useElements();
     const { addToast } = useToast();
@@ -53,13 +52,12 @@ const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string,
     const [isElementReady, setIsElementReady] = useState(false);
     const { t } = useTranslation();
 
-    // --- STABILIZACJA OPCJI ELEMENTU ---
-    // Memoizacja zapobiega miganiu i przeładowywaniu elementu przy interakcjach z UI
+    // Memoizacja opcji elementu - kluczowa dla stabilności
     const paymentElementOptions = useMemo(() => ({
         layout: 'tabs' as const,
         fields: {
             billingDetails: {
-                email: 'never' as const, // To polecenie definitywnie ukrywa input emaila w UI Stripe'a
+                email: 'never' as const, // Ukrywamy pole email w UI
             }
         }
     }), []);
@@ -73,38 +71,50 @@ const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string,
 
         setIsProcessing(true);
 
-        // --- KLUCZOWA POPRAWKA DLA REVOLUT/PAYPAL/KLARNA ---
-        // Dodanie return_url jest wymagane dla metod z przekierowaniem.
-        // Bez tego Stripe zawiesza się ("infinite spinner").
-        const { error, paymentIntent } = await stripe.confirmPayment({
-            elements,
-            confirmParams: {
-                return_url: window.location.href, // Wraca na tę samą stronę po sukcesie
-            },
-            redirect: 'if_required', // Przekieruje tylko jeśli metoda tego wymaga (np. BLIK zazwyczaj nie, ale PayPal tak)
-        });
+        try {
+            const { error, paymentIntent } = await stripe.confirmPayment({
+                elements,
+                confirmParams: {
+                    // Budujemy czysty URL powrotu (bez query params, które mogłyby mylić Stripe)
+                    return_url: `${window.location.protocol}//${window.location.host}${window.location.pathname}`,
+                    
+                    // --- KLUCZOWA POPRAWKA ---
+                    // Jawnie przekazujemy email tutaj. 
+                    // Jest to niezbędne dla metod redirect (Klarna/PayPal/Revolut), 
+                    // gdy pole email w formularzu jest ukryte.
+                    payment_method_data: {
+                        billing_details: {
+                            email: email, 
+                        }
+                    },
+                },
+                redirect: 'if_required',
+            });
 
-        if (error) {
-            // Obsługa błędów (np. odrzucenie karty, błąd walidacji)
-            if (error.type === "card_error" || error.type === "validation_error") {
-                 addToast(error.message || 'Wystąpił błąd płatności', 'error');
-            } else {
-                 console.error("Stripe Error:", error);
-                 addToast('Wystąpił nieoczekiwany błąd.', 'error');
+            if (error) {
+                // Logujemy błąd do konsoli, żebyś mógł go zobaczyć (F12 -> Console)
+                console.error("Stripe Error Details:", error);
+                
+                if (error.type === "card_error" || error.type === "validation_error") {
+                    addToast(error.message || 'Błąd walidacji płatności', 'error');
+                } else {
+                    addToast('Wystąpił nieoczekiwany błąd płatności.', 'error');
+                }
+                setIsProcessing(false);
+            } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+                addToast('Płatność udana!', 'success');
+                onClose();
             }
+        } catch (e) {
+            console.error("Unexpected Error in handleSubmit:", e);
+            addToast('Wystąpił krytyczny błąd aplikacji.', 'error');
             setIsProcessing(false);
-        } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-            // Sukces bez przekierowania (np. zwykła karta bez 3DS)
-            addToast('Płatność udana!', 'success');
-            onClose();
         }
     };
 
     return (
-        // Wymuszenie w-full na formularzu jest kluczowe dla iframe Stripe wewnątrz flexboxa
         <form onSubmit={handleSubmit} className="w-full">
             <div className="mb-4 min-h-[220px] relative w-full">
-                 {/* Loader widoczny do momentu załadowania elementu */}
                  {!isElementReady && (
                     <div className="absolute inset-0 flex items-center justify-center z-20 bg-[#2C2C2E]/50 backdrop-blur-sm rounded-xl">
                         <Loader2 className="animate-spin h-8 w-8 text-pink-600" />
@@ -161,9 +171,7 @@ const TippingModal = () => {
   const [lastIntentConfig, setLastIntentConfig] = useState<{ amount: number, currency: string, email: string } | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Klucz wymuszający przebudowę komponentu płatności przy zmianie kwoty/waluty
   const [paymentStepKey, setPaymentStepKey] = useState(0);
-  
   const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
@@ -174,7 +182,6 @@ const TippingModal = () => {
     if (isLoggedIn) {
         setFormData(prev => ({ ...prev, email: user?.email || '' }));
     }
-    // Reset stanu po zamknięciu modala
     if (!isTippingModalOpen) {
         setCurrentStep(0);
         setFormData(prev => ({ ...prev, create_account: false, terms_accepted: false, recipient: '' }));
@@ -200,7 +207,6 @@ const TippingModal = () => {
   const handleNext = async () => {
     setValidationError(null);
 
-    // Krok 0: Wybór odbiorcy
     if (currentStep === 0) {
         if (!formData.recipient) {
             addToast('Wybierz odbiorcę, aby kontynuować.', 'error');
@@ -211,12 +217,11 @@ const TippingModal = () => {
             return;
         }
         if (isLoggedIn) {
-            setCurrentStep(2); // Pomiń email dla zalogowanych
+            setCurrentStep(2);
         } else {
             setCurrentStep(1);
         }
     }
-    // Krok 1: Dane (Email)
     else if (currentStep === 1) {
         if (formData.create_account) {
             if (!formData.email) {
@@ -231,7 +236,6 @@ const TippingModal = () => {
         }
         setCurrentStep(2);
     }
-    // Krok 2: Kwota i zgody
     else if (currentStep === 2) {
         if (!formData.terms_accepted) {
             setValidationError('Musisz zaakceptować Regulamin i Politykę Prywatności.');
@@ -247,7 +251,6 @@ const TippingModal = () => {
             return;
         }
 
-        // Reużycie Intentu jeśli nic się nie zmieniło (oszczędza API calls)
         if (clientSecret && lastIntentConfig &&
             lastIntentConfig.amount === formData.amount &&
             lastIntentConfig.currency === formData.currency &&
@@ -317,17 +320,17 @@ const TippingModal = () => {
 
   const modalTitle = showTerms ? "Regulamin i Polityka" : "Bramka Napiwkowa";
 
-  // --- STABILIZACJA GŁÓWNYCH OPCJI STRIPE ---
+  // Opcje dla Elements (tylko wygląd i theme)
   const stripeOptions = useMemo(() => {
     if (!clientSecret) return undefined;
 
     return {
       clientSecret,
-      appearance: STRIPE_APPEARANCE, // Stała referencja
+      appearance: STRIPE_APPEARANCE,
+      // Default values tutaj są ważne dla initial render, 
+      // ale dla redirect methods najważniejsze jest payment_method_data w confirmPayment
       defaultValues: {
         billingDetails: {
-            // Przekazujemy email zebrany wcześniej, aby Stripe "wiedział", że go mamy.
-            // Jeśli email jest pusty stringiem, dajemy undefined, żeby Stripe nie zgłaszał błędu formatu.
             email: formData.email || undefined,
         }
       }
@@ -383,13 +386,12 @@ const TippingModal = () => {
             />
         </div>
 
-        {/* TREŚĆ MODALA */}
+        {/* TREŚĆ */}
         <div className={cn(
             "flex-1 overflow-y-auto px-6 pt-6 pb-0 flex flex-col relative z-10 text-white rounded-b-3xl custom-scrollbar",
             isCurrencyDropdownOpen && "z-30"
         )}>
             <AnimatePresence mode="wait" initial={false}>
-                {/* KROK 0: ODBIORCA */}
                 {currentStep === 0 && (
                     <motion.div
                         key="step0"
@@ -450,7 +452,6 @@ const TippingModal = () => {
                     </motion.div>
                 )}
 
-                {/* KROK 1: DANE (EMAIL) */}
                 {currentStep === 1 && (
                     <motion.div
                         key="step1"
@@ -506,7 +507,6 @@ const TippingModal = () => {
                     </motion.div>
                 )}
 
-                {/* KROK 2: KWOTA + ZGODY */}
                 {currentStep === 2 && (
                     <motion.div
                         key={showTerms ? "terms" : "step2"}
@@ -646,7 +646,6 @@ const TippingModal = () => {
                     </motion.div>
                 )}
 
-                {/* KROK 3: PŁATNOŚĆ (STRIPE) */}
                 {currentStep === 3 && (
                     <motion.div
                         key="step3"
@@ -664,14 +663,18 @@ const TippingModal = () => {
                         </div>
 
                         {clientSecret && stripeOptions && (
-                            // Wymuszenie szerokości kontenera dla Stripe Elements
                             <div className="bg-transparent mt-2 min-h-[250px] relative w-full">
                                 <Elements 
                                     key={`${clientSecret}-${paymentStepKey}`}
                                     stripe={stripePromise} 
                                     options={stripeOptions}
                                 >
-                                    <CheckoutForm clientSecret={clientSecret} onClose={closeTippingModal} onBack={handleBack} />
+                                    <CheckoutForm 
+                                        clientSecret={clientSecret} 
+                                        email={formData.email} // Przekazujemy email do formularza
+                                        onClose={closeTippingModal} 
+                                        onBack={handleBack} 
+                                    />
                                 </Elements>
                             </div>
                         )}
@@ -680,7 +683,6 @@ const TippingModal = () => {
             </AnimatePresence>
         </div>
 
-        {/* STOPKA NAWIGACYJNA (UKRYTA PRZY REGULAMINIE) */}
         {!showTerms && (
              <div className={cn("px-6 pb-6 pt-4 flex flex-col gap-3 bg-transparent z-20 relative rounded-b-3xl", isCurrencyDropdownOpen && "z-10")}>
                 <div className="flex gap-3 w-full">
@@ -717,7 +719,6 @@ const TippingModal = () => {
             </div>
         )}
 
-        {/* LOGO STRIPE / POWRÓT Z REGULAMINU */}
         <div className="pb-4 pt-4 flex items-center justify-center bg-[#1C1C1E] z-10 border-t border-white/5 rounded-b-3xl min-h-[50px]">
              {showTerms ? (
                   <button
