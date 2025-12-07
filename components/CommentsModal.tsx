@@ -41,11 +41,18 @@ interface CommentItemProps {
   lang: string;
   level?: number;
   slideId: string | null;
+  lastRepliedParentId?: string | null;
 }
 
-const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, onReport, onAvatarClick, onStartReply, currentUserId, lang, level = 0, slideId }) => {
+const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, onReport, onAvatarClick, onStartReply, currentUserId, lang, level = 0, slideId, lastRepliedParentId }) => {
   const { t } = useTranslation();
   const [areRepliesVisible, setAreRepliesVisible] = useState(false);
+
+  useEffect(() => {
+    if (lastRepliedParentId === comment.id) {
+        setAreRepliesVisible(true);
+    }
+  }, [lastRepliedParentId, comment.id]);
 
   const {
     data: repliesData,
@@ -130,8 +137,8 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
       <div className="flex-1 min-w-0">
         <div className="bg-transparent rounded-lg">
            <div className="flex items-center gap-2">
-             <p className="text-xs font-semibold text-[#A6A6A6] cursor-pointer hover:underline" onClick={() => onAvatarClick(safeAuthor.id)}>
-                @{safeAuthor.displayName || safeAuthor.username || 'User'}
+             <p className={cn("text-xs font-semibold cursor-pointer hover:underline", isPatron ? "text-yellow-400" : "text-[#A6A6A6]")} onClick={() => onAvatarClick(safeAuthor.id)}>
+                {safeAuthor.displayName || safeAuthor.username || 'User'}
               </p>
            </div>
           <p className="text-[13px] text-white whitespace-pre-wrap break-words">
@@ -140,7 +147,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
                   className="text-pink-400 font-semibold mr-1 cursor-pointer"
                   onClick={() => comment.parentAuthorId && onAvatarClick(comment.parentAuthorId)}
                 >
-                  @{comment.parentAuthorUsername}
+                  {comment.parentAuthorUsername}
                 </span>
             )}
             {comment.text}
@@ -198,7 +205,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
                 className="space-y-4 overflow-hidden pt-2"
               >
                 {replies.map((reply) => (
-                  <MemoizedCommentItem key={reply.id} slideId={slideId} comment={reply} onLike={onLike} onDelete={onDelete} onReport={onReport} onAvatarClick={onAvatarClick} onStartReply={onStartReply} currentUserId={currentUserId} lang={lang} level={level + 1} />
+                  <MemoizedCommentItem key={reply.id} slideId={slideId} comment={reply} onLike={onLike} onDelete={onDelete} onReport={onReport} onAvatarClick={onAvatarClick} onStartReply={onStartReply} currentUserId={currentUserId} lang={lang} level={level + 1} lastRepliedParentId={lastRepliedParentId} />
                 ))}
                 {hasMoreReplies && (
                    <button onClick={() => fetchReplies()} disabled={isLoadingReplies} className="text-xs text-[#8F8F8F] font-semibold flex items-center gap-2">
@@ -247,11 +254,12 @@ const recursivelyUpdateComment = (comments: CommentWithRelations[], commentId: s
 const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId, initialCommentsCount }) => {
   const { t, lang } = useTranslation();
   const { user } = useUser();
-  const { setActiveModal, openPatronProfileModal } = useStore();
+  const { setActiveModal, openPatronProfileModal, commentCountChanges } = useStore();
   const { addToast } = useToast();
   const [newComment, setNewComment] = useState('');
   const [sortBy, setSortBy] = useState<'newest' | 'top'>('top');
   const [replyingTo, setReplyingTo] = useState<CommentWithRelations | null>(null);
+  const [lastRepliedParentId, setLastRepliedParentId] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const imageInputRef = useRef<HTMLInputElement>(null);
@@ -268,6 +276,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
   });
 
   const comments = data?.pages.flatMap((page) => page.comments) ?? [];
+  const totalCommentCount = (slideId && commentCountChanges[slideId]) ?? initialCommentsCount;
 
   useEffect(() => {
     if (!isOpen || !slideId) return;
@@ -467,8 +476,13 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
       queryClient.invalidateQueries({ queryKey: ['comments', slideId], exact: false });
     },
     onSuccess: (data, variables) => {
-      queryClient.invalidateQueries({ queryKey: ['comments', slideId, 'replies', variables.parentId] });
-      if (!variables.parentId) {
+      // Delay invalidation for replies to prevent race condition where new reply isn't in DB result yet
+      if (variables.parentId) {
+          setLastRepliedParentId(variables.parentId);
+          setTimeout(() => {
+             queryClient.invalidateQueries({ queryKey: ['comments', slideId, 'replies', variables.parentId] });
+          }, 1000);
+      } else {
         queryClient.invalidateQueries({ queryKey: ['comments', slideId, sortBy] });
         // Increment comment count in global state only for root comments
         useStore.getState().incrementCommentCount(slideId!, initialCommentsCount);
@@ -549,6 +563,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
               }}
               currentUserId={user?.id}
               lang={lang}
+              lastRepliedParentId={lastRepliedParentId}
             />
           ))}
           {hasNextPage && (
@@ -579,7 +594,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex-shrink-0 relative text-center p-3 border-b border-white/10">
-              <h2 className="text-base font-semibold text-white">{t('commentsTitle', { count: (comments.length || initialCommentsCount).toString() })}</h2>
+              <h2 className="text-base font-semibold text-white">{t('commentsTitle', { count: totalCommentCount.toString() })}</h2>
               <button onClick={onClose} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/60 hover:text-white"><X size={24} /></button>
             </div>
 
