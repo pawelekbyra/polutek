@@ -15,6 +15,7 @@ interface Toast {
 
 interface ToastContextType {
   addToast: (message: string, type: ToastType) => void;
+  toasts: Toast[];
 }
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
@@ -57,30 +58,37 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <ToastContext.Provider value={{ addToast }}>
+    <ToastContext.Provider value={{ addToast, toasts }}>
       {children}
-      <div className="fixed bottom-0 inset-x-0 z-[100] flex flex-col items-center gap-2 pointer-events-none" style={{ paddingBottom: 'calc(var(--bottombar-height, 0px) + 10px)' }}>
-        <AnimatePresence>
-          {toasts.map((toast) => (
-            <motion.div
-              key={toast.id}
-              layout
-              initial={{ opacity: 0, y: 50, scale: 0.3 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
-              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-              className="pointer-events-auto"
-            >
-              <div
-                className="flex items-center gap-3 bg-black/80 backdrop-blur-md text-white shadow-lg rounded-full py-2 px-4"
-              >
-                {ToastIcons[toast.type]}
-                <span className="text-sm font-medium">{toast.message}</span>
-              </div>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </div>
     </ToastContext.Provider>
+  );
+};
+
+export const ToastContainer = () => {
+  const { toasts } = useToast();
+
+  return (
+    <div className="absolute bottom-0 inset-x-0 z-[10000] flex flex-col items-center gap-2 pointer-events-none" style={{ paddingBottom: 'calc(var(--bottombar-height, 0px) + 20px)' }}>
+      <AnimatePresence>
+        {toasts.map((toast) => (
+          <motion.div
+            key={toast.id}
+            layout
+            initial={{ opacity: 0, y: 50, scale: 0.3 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
+            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+            className="pointer-events-auto"
+          >
+            <div
+              className="flex items-center gap-3 bg-black/80 backdrop-blur-md text-white shadow-lg rounded-full py-2 px-4 border border-white/10"
+            >
+              {ToastIcons[toast.type]}
+              <span className="text-sm font-medium">{toast.message}</span>
+            </div>
+          </motion.div>
+        ))}
+      </AnimatePresence>
+    </div>
   );
 };
