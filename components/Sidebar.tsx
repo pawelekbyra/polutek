@@ -111,8 +111,8 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   // Determine avatar border color
   // In Sidebar, this is the Author's avatar.
-  // Requirement: Author = Pink border.
-  const avatarBorderColor = 'border-pink-500';
+  // Requirement: Author = White border with white glow.
+  const avatarBorderColor = 'border-white';
 
   return (
     <aside
@@ -128,7 +128,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         <button
             onClick={handleOpenAuthorProfile}
             className={cn(
-                "w-full h-full flex items-center justify-center text-white bg-gray-600 rounded-full overflow-hidden border-2 shadow-[0_0_10px_rgba(250,204,21,0.5)]",
+                "w-full h-full flex items-center justify-center text-white bg-gray-600 rounded-full overflow-hidden border-2 shadow-[0_0_15px_rgba(255,255,255,0.5)]",
                 avatarBorderColor
             )}
         >

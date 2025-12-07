@@ -86,8 +86,8 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
 
     if (!authorId) return null;
 
-    // Requirement: Author Avatar = Purple border.
-    const avatarBorderColor = 'border-pink-500';
+    // Requirement: Author Avatar = White border.
+    const avatarBorderColor = 'border-white';
 
     return (
         <motion.div
@@ -144,7 +144,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                                     alt={profile.username}
                                     width={96}
                                     height={96}
-                                    className={cn("rounded-full object-cover w-24 h-24 border-2", avatarBorderColor)}
+                                    className={cn("rounded-full object-cover w-24 h-24 border-2 shadow-[0_0_15px_rgba(255,255,255,0.5)]", avatarBorderColor)}
                                 />
                             </div>
 
