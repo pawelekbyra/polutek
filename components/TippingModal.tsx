@@ -14,9 +14,7 @@ import StatusMessage from '@/components/ui/StatusMessage';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK!);
 
-// --- STABILIZACJA KONFIGURACJI ---
-// Wyciągnięcie stałych poza komponent zapobiega niepotrzebnym re-renderom,
-// co jest częstą przyczyną "migania" lub znikania Stripe Elements.
+// --- STABILIZACJA: Wygląd zdefiniowany poza komponentem ---
 const STRIPE_APPEARANCE = {
     theme: 'night' as const,
     variables: {
@@ -53,6 +51,17 @@ const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string,
     const [isElementReady, setIsElementReady] = useState(false);
     const { t } = useTranslation();
 
+    // --- STABILIZACJA: Opcje elementu zmemoizowane ---
+    // Zapobiega to przeładowywaniu elementu przy każdym renderze formularza
+    const paymentElementOptions = useMemo(() => ({
+        layout: 'tabs' as const,
+        fields: {
+            billingDetails: {
+                email: 'never' as const, // To gwarantuje ukrycie pola
+            }
+        }
+    }), []);
+
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
@@ -77,10 +86,8 @@ const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string,
     };
 
     return (
+        // FIX: w-full na formularzu jest kluczowe dla iframe Stripe
         <form onSubmit={handleSubmit} className="w-full">
-            {/* FIX RENDEROWANIA: Dodano 'w-full' i min-h. 
-               Czasami kontener ma 0px szerokości w flexboxie, co psuje renderowanie iframe'a Stripe.
-            */}
             <div className="mb-4 min-h-[220px] relative w-full">
                  {/* Loader */}
                  {!isElementReady && (
@@ -90,16 +97,7 @@ const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string,
                 )}
                 <div className={cn("transition-opacity duration-300 w-full", isElementReady ? "opacity-100" : "opacity-0")}>
                     <PaymentElement
-                        options={{
-                            layout: 'tabs',
-                            // --- FIX EMAILA ---
-                            // To polecenie definitywnie ukrywa input emaila w UI Stripe'a.
-                            fields: {
-                                billingDetails: {
-                                    email: 'never',
-                                }
-                            }
-                        }}
+                        options={paymentElementOptions}
                         onReady={() => setIsElementReady(true)}
                     />
                 </div>
@@ -303,12 +301,11 @@ const TippingModal = () => {
 
     return {
       clientSecret,
-      appearance: STRIPE_APPEARANCE, // Używamy stałej referencji
-      // --- FIX EMAILA ---
-      // Przekazujemy email jako domyślny, aby Stripe wiedział o nim.
+      appearance: STRIPE_APPEARANCE, // Stała referencja
       defaultValues: {
         billingDetails: {
-            email: formData.email,
+            // Ważne: Jeśli email jest pusty, przekazujemy undefined, aby Stripe nie zgłupiał
+            email: formData.email || undefined,
         }
       }
     };
@@ -637,7 +634,7 @@ const TippingModal = () => {
                         </div>
 
                         {clientSecret && stripeOptions && (
-                            // FIX RENDEROWANIA: width full
+                            // FIX: w-full jest konieczne dla Stripe wewnątrz flexa/motion
                             <div className="bg-transparent mt-2 min-h-[250px] relative w-full">
                                 <Elements 
                                     key={`${clientSecret}-${paymentStepKey}`}
