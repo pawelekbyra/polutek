@@ -115,7 +115,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
           height={isL0 ? 36 : 28}
           className="rounded-full object-cover border border-white/80"
         />
-        <UserBadge role={safeAuthor.role} />
+        <UserBadge role={safeAuthor.role} className="px-1 py-0 text-[8px] rounded-sm" />
       </div>
 
       <div className="flex-1 min-w-0">

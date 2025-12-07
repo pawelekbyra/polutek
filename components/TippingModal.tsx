@@ -180,7 +180,7 @@ const TippingModal = () => {
         const minAmount = formData.currency === 'PLN' ? 5.00 : 1.00;
         if (formData.amount < minAmount) {
             const message = formData.currency === 'PLN'
-                ? `Minimalna kwota to 5 PLN`
+                ? `Kwota mniejsza niż 5 PLN`
                 : `Minimalna kwota to 1 ${formData.currency}`;
             setValidationError(message);
             return;
