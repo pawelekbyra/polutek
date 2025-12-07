@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react';
 import Image from 'next/image';
-import { Heart, MessageSquare, User, CornerUpRight } from 'lucide-react';
+import { Heart, MessageSquare, User, Plus } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Ably from 'ably';
 import { ably } from '@/lib/ably-client';
@@ -140,9 +140,9 @@ const Sidebar: React.FC<SidebarProps> = ({
         </button>
          {showPlusIcon && (
              <div
-                className="absolute left-1/2 -translate-x-1/2 -bottom-1.5 w-5 h-5 rounded-full flex items-center justify-center text-white text-lg font-bold border-2 border-white pointer-events-none bg-primary"
+                className="absolute left-1/2 -translate-x-1/2 -bottom-1.5 w-5 h-5 rounded-full flex items-center justify-center text-white border-2 border-white pointer-events-none bg-primary"
               >
-                +
+                <Plus size={14} strokeWidth={4} />
               </div>
          )}
       </div>

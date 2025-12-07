@@ -149,7 +149,9 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                             </div>
 
                             {/* Name */}
-                            <h1 className="text-lg font-bold text-white mb-1">@{profile.username}</h1>
+                            <h1 className={cn("text-lg font-bold mb-1", profile.role === 'patron' ? "text-yellow-400" : "text-white")}>
+                                {profile.username}
+                            </h1>
 
                             {/* Badge */}
                             <div className="mb-2">
