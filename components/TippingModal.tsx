@@ -12,11 +12,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import StatusMessage from '@/components/ui/StatusMessage';
 
-// Inicjalizacja Stripe
+// Inicjalizacja Stripe - Wywołana RAZ poza komponentem
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK!);
 
-// --- KONFIGURACJA WYGLĄDU ---
-// Wyciągnięte na zewnątrz, aby referencja była stabilna
+// --- KONFIGURACJA WYGLĄDU (Stała, aby uniknąć re-renderów) ---
 const STRIPE_APPEARANCE = {
     theme: 'night' as const,
     variables: {
@@ -50,14 +49,15 @@ const CheckoutForm = ({ clientSecret, email, onClose, onBack }: { clientSecret: 
     const elements = useElements();
     const { addToast } = useToast();
     const [isProcessing, setIsProcessing] = useState(false);
+    const [isReady, setIsReady] = useState(false); // Nowy stan do śledzenia załadowania
     const { t } = useTranslation();
-    const [isReady, setIsReady] = useState(false); // Stan gotowości formularza
 
-    // Opcje elementu - loader: 'auto' jest kluczowy dla uniknięcia "pustego diva"
+    // MEMOIZACJA OPCJI - Kluczowe dla stabilności
+    // loader: 'auto' sprawia, że Stripe pokazuje szkielet (skeleton) zamiast pustego miejsca
     const paymentElementOptions = useMemo(() => ({
         layout: 'tabs' as const,
         readOnly: isProcessing,
-        loader: 'auto' as const, // TO ROZWIĄZUJE PROBLEM PUSTEGO RENDEROWANIA
+        loader: 'auto' as const, 
         fields: {
             billingDetails: {
                 email: 'never' as const,
@@ -110,8 +110,8 @@ const CheckoutForm = ({ clientSecret, email, onClose, onBack }: { clientSecret: 
 
     return (
         <form onSubmit={handleSubmit} className="w-full">
-            {/* Wrapper z minimalną wysokością zapobiega skakaniu layoutu i błędom obliczeń iframe */}
-            <div className="mb-4 min-h-[280px] w-full relative z-10">
+            {/* WRAPPER Z MIN-HEIGHT: Zapobiega skakaniu layoutu i znikaniu iframe przy animacjach */}
+            <div className="mb-4 min-h-[260px] w-full relative z-10">
                 <PaymentElement
                     id="payment-element"
                     options={paymentElementOptions}
@@ -133,6 +133,7 @@ const CheckoutForm = ({ clientSecret, email, onClose, onBack }: { clientSecret: 
                 </button>
                 <button
                     type="submit"
+                    // Blokujemy przycisk dopóki Stripe nie jest gotowy (isReady)
                     disabled={isProcessing || !stripe || !elements || !isReady}
                     className="flex-1 h-10 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
                 >
@@ -164,12 +165,14 @@ const TippingModal = () => {
     terms_accepted: false,
     recipient: '',
   });
+  
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [lastIntentConfig, setLastIntentConfig] = useState<{ amount: number, currency: string, email: string } | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-
-  // Dodajemy prosty licznik, aby wymusić remount tylko w krytycznych momentach
+  
+  // Klucz do wymuszania remountu Elements przy zmianie konfiguracji
   const [paymentStepKey, setPaymentStepKey] = useState(0);
+  
   const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
@@ -180,9 +183,11 @@ const TippingModal = () => {
     if (isLoggedIn) {
         setFormData(prev => ({ ...prev, email: user?.email || '' }));
     }
+    
+    // Reset stanu po zamknięciu
     if (!isTippingModalOpen) {
-        // Reset stanu po zamknięciu
-        const timer = setTimeout(() => {
+        // Małe opóźnienie resetu, aby animacja wyjścia wyglądała płynnie
+        const timeout = setTimeout(() => {
             setCurrentStep(0);
             setFormData(prev => ({ ...prev, create_account: false, terms_accepted: false, recipient: '' }));
             setIsCurrencyDropdownOpen(false);
@@ -191,8 +196,8 @@ const TippingModal = () => {
             setLastIntentConfig(null);
             setValidationError(null);
             setPaymentStepKey(0);
-        }, 300); // Czekamy aż animacja wyjścia się skończy
-        return () => clearTimeout(timer);
+        }, 500);
+        return () => clearTimeout(timeout);
     }
   }, [isLoggedIn, user, isTippingModalOpen]);
 
@@ -253,7 +258,7 @@ const TippingModal = () => {
             return;
         }
 
-        // Jeśli parametry się nie zmieniły, nie twórz nowego Intent
+        // Optymalizacja: Nie twórz nowego Intent jeśli nic się nie zmieniło
         if (clientSecret && lastIntentConfig &&
             lastIntentConfig.amount === formData.amount &&
             lastIntentConfig.currency === formData.currency &&
@@ -284,7 +289,8 @@ const TippingModal = () => {
                     currency: formData.currency,
                     email: formData.email
                 });
-                setPaymentStepKey(prev => prev + 1); // Wymuś odświeżenie Elements
+                // Inkrementacja klucza wymusi ponowne zamontowanie Elements z nowym sekretem
+                setPaymentStepKey(prev => prev + 1); 
                 setCurrentStep(3);
             } else {
                 addToast(data.error || t('errorCreatingPayment') || 'Błąd tworzenia płatności', 'error');
@@ -309,16 +315,20 @@ const TippingModal = () => {
   const totalSteps = isLoggedIn ? 3 : 4;
   const currentVisualStep = isLoggedIn && currentStep >= 1 ? currentStep - 1 : currentStep;
   const progress = ((currentVisualStep + 1) / totalSteps) * 100;
+
+  const suggestedAmounts = [10, 20, 50];
+  const currencies = ['PLN', 'EUR', 'USD', 'GBP'];
   const modalTitle = showTerms ? "Regulamin i Polityka" : "Bramka Napiwkowa";
 
-  // Opcje dla Elements - używamy useMemo z właściwymi zależnościami
+  // MEMOIZACJA OPCJI DLA ELEMENTS
+  // Ważne: loader: 'auto' tutaj też można dodać dla pewności
   const stripeOptions = useMemo(() => {
     if (!clientSecret) return undefined;
 
     return {
       clientSecret,
       appearance: STRIPE_APPEARANCE,
-      loader: 'auto' as const, // Kluczowe dla UX
+      loader: 'auto' as const,
       defaultValues: {
         billingDetails: {
             email: formData.email || undefined,
@@ -392,7 +402,7 @@ const TippingModal = () => {
                         transition={{ duration: 0.2 }}
                         className="space-y-3"
                     >
-                         <div className="text-left">
+                        <div className="text-left">
                             <p className="text-base font-medium text-white/90 tracking-wide">Komu chcesz wysłać napiwek?</p>
                         </div>
                         <div className="space-y-3 pt-1">
@@ -455,7 +465,7 @@ const TippingModal = () => {
                         <div className="text-left">
                             <p className="text-base font-medium text-white/90 tracking-wide">Czy chcesz utworzyć konto Patrona?</p>
                         </div>
-                         <div className="space-y-3">
+                        <div className="space-y-3">
                             {!isLoggedIn && (
                                 <div 
                                     className={cn(
@@ -507,7 +517,7 @@ const TippingModal = () => {
                         transition={{ duration: 0.2 }}
                         className="space-y-6 flex-1 relative z-10 h-full flex flex-col"
                     >
-                         {showTerms ? (
+                        {showTerms ? (
                              <div className="flex flex-col h-full overflow-hidden">
                                 <div className="flex-1 overflow-y-auto bg-black/20 border border-white/10 rounded-xl p-4 text-sm text-white/80 space-y-3 custom-scrollbar h-[50vh] max-h-[400px]">
                                     <p className="font-bold text-white">1. Postanowienia ogólne</p>
@@ -535,7 +545,7 @@ const TippingModal = () => {
                                     <h3 className="text-base font-medium text-white/90">Wybierz lub wpisz kwotę napiwku</h3>
                                 </div>
                                 <div className="grid grid-cols-3 gap-3">
-                                    {[10, 20, 50].map(amount => (
+                                    {suggestedAmounts.map(amount => (
                                         <button
                                             key={amount}
                                             onClick={() => {
@@ -586,7 +596,7 @@ const TippingModal = () => {
                                                     className="absolute top-0 right-0 w-full bg-[#2C2C2E] border border-white/10 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] overflow-hidden z-[9999]"
                                                 >
                                                     <div className="flex flex-col">
-                                                        {['PLN', 'EUR', 'USD', 'GBP'].map((currency) => (
+                                                        {currencies.map((currency) => (
                                                             <button
                                                                 key={currency}
                                                                 onClick={() => {
@@ -652,9 +662,10 @@ const TippingModal = () => {
                             </div>
                         </div>
 
-                        {/* UPEWNIAMY SIĘ, ŻE clientSecret JEST DOSTĘPNY PRZED RENDEROWANIEM */}
+                        {/* BEZPIECZNE RENDEROWANIE ELEMENTS */}
                         {clientSecret && stripeOptions ? (
                             <Elements 
+                                // Używamy złożonego klucza, aby wymusić remount tylko przy zmianie sekretu
                                 key={`${clientSecret}-${paymentStepKey}`}
                                 stripe={stripePromise} 
                                 options={stripeOptions}
@@ -667,7 +678,8 @@ const TippingModal = () => {
                                 />
                             </Elements>
                         ) : (
-                             <div className="flex items-center justify-center h-[280px]">
+                             // Fallback podczas pobierania sekretu
+                             <div className="flex items-center justify-center h-[260px]">
                                 <Loader2 className="animate-spin h-8 w-8 text-pink-600" />
                             </div>
                         )}
