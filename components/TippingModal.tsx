@@ -26,6 +26,7 @@ const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string,
     const elements = useElements();
     const { addToast } = useToast();
     const [isProcessing, setIsProcessing] = useState(false);
+    const [isReady, setIsReady] = useState(false);
     const { t } = useTranslation();
 
     const handleSubmit = async (event: React.FormEvent) => {
@@ -53,12 +54,20 @@ const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string,
 
     return (
         <form onSubmit={handleSubmit} className="w-full">
-            <div className="mb-4 min-h-[200px]">
-                <PaymentElement 
-                    options={{ 
-                        layout: 'tabs',
-                    }} 
-                />
+            <div className="mb-4 min-h-[200px] relative">
+                {!isReady && (
+                    <div className="absolute inset-0 flex items-center justify-center z-10">
+                        <Loader2 className="animate-spin w-8 h-8 text-pink-600" />
+                    </div>
+                )}
+                <div className={cn("transition-opacity duration-300", isReady ? "opacity-100" : "opacity-0")}>
+                    <PaymentElement
+                        options={{
+                            layout: 'tabs',
+                        }}
+                        onReady={() => setIsReady(true)}
+                    />
+                </div>
             </div>
             <div className="flex gap-3">
                 <button
@@ -69,7 +78,7 @@ const CheckoutForm = ({ clientSecret, onClose, onBack }: { clientSecret: string,
                     Wstecz
                 </button>
                 <button
-                    disabled={isProcessing || !stripe || !elements}
+                    disabled={isProcessing || !stripe || !elements || !isReady}
                     className="flex-1 h-10 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
                 >
                     {isProcessing ? (
@@ -103,7 +112,6 @@ const TippingModal = () => {
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [lastIntentConfig, setLastIntentConfig] = useState<{ amount: number, currency: string, email: string } | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [mountKey, setMountKey] = useState(0);
 
   const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
@@ -127,9 +135,6 @@ const TippingModal = () => {
         setClientSecret(null);
         setLastIntentConfig(null);
         setValidationError(null);
-    } else {
-        // Generate new key when modal opens to ensure fresh Stripe instance
-        setMountKey(Date.now());
     }
   }, [isLoggedIn, user, isTippingModalOpen]);
 
@@ -269,6 +274,7 @@ const TippingModal = () => {
       clientSecret,
       appearance: {
           theme: 'night' as const,
+          loader: 'auto' as const,
           variables: {
               colorPrimary: '#db2777', // bg-pink-600
               colorBackground: '#2C2C2E',
@@ -639,7 +645,7 @@ const TippingModal = () => {
                         {clientSecret && stripeOptions && (
                             <div className="bg-transparent mt-2 min-h-[250px] relative">
                                 <Elements 
-                                    key={`${clientSecret}-${mountKey}`}
+                                    key={clientSecret}
                                     stripe={stripePromise} 
                                     options={stripeOptions}
                                 >
