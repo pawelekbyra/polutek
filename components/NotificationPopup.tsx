@@ -170,7 +170,7 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({ isOpen, onClose }
   const { data, isLoading, error } = useQuery({
     queryKey: ['notifications'],
     queryFn: async () => {
-      const res = await fetch('/api/notifications');
+      const res = await fetch('/hidden_app/api/notifications');
       if (!res.ok) throw new Error('Failed to fetch');
       return res.json();
     },
@@ -179,7 +179,7 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({ isOpen, onClose }
 
   const markReadMutation = useMutation({
     mutationFn: async (id: string) => {
-        await fetch('/api/notifications/mark-as-read', {
+        await fetch('/hidden_app/api/notifications/mark-as-read', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ notificationId: id }),
@@ -210,7 +210,7 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({ isOpen, onClose }
 
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
-        await fetch(`/api/notifications/${id}`, {
+        await fetch(`/hidden_app/api/notifications/${id}`, {
             method: 'DELETE',
         });
     },

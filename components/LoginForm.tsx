@@ -28,7 +28,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
     const password = formData.get('password') as string;
 
     try {
-      const res = await fetch('/api/login', {
+      const res = await fetch('/hidden_app/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

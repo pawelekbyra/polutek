@@ -1,7 +1,7 @@
 {
   "crons": [
     {
-      "path": "/api/cron/bot-action",
+      "path": "/hidden_app/api/cron/bot-action",
       "schedule": "0 12 * * *"
     }
   ]

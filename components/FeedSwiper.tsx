@@ -16,7 +16,7 @@ import { shallow } from 'zustand/shallow';
 import { fetchComments, fetchAuthorProfile } from '@/lib/queries';
 
 const fetchSlides = async ({ pageParam = '' }) => {
-  const res = await fetch(`/api/slides?cursor=${pageParam}&limit=5`);
+  const res = await fetch(`/hidden_app/api/slides?cursor=${pageParam}&limit=5`);
   if (!res.ok) {
     throw new Error('Failed to fetch slides');
   }
