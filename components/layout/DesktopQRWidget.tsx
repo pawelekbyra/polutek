@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { QrCode, Smartphone } from 'lucide-react';
 
 const DesktopQRWidget = () => {
@@ -16,12 +17,14 @@ const DesktopQRWidget = () => {
       <div className="relative group">
         <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
         <div className="relative p-4 bg-white rounded-lg shadow-2xl">
-           {/* Placeholder QR - w produkcji można użyć biblioteki qrcode.react */}
-           <img
-             src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent('https://polutek-app.vercel.app')}`} // Fallback to public URL or current
-             alt="QR Code"
-             className="w-36 h-36 object-contain mix-blend-multiply opacity-90"
-           />
+          {/* Placeholder QR - w produkcji można użyć biblioteki qrcode.react */}
+          <Image
+            src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent('https://polutek-app.vercel.app')}`} // Fallback to public URL or current
+            alt="QR Code"
+            width={144}
+            height={144}
+            className="object-contain mix-blend-multiply opacity-90"
+          />
         </div>
       </div>
 
