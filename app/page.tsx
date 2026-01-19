@@ -62,6 +62,19 @@ export default function Home() {
 
           <p>Kiedy 26 sierpnia 2020 roku czeska policja weszła do posiadłości w Janovie, należącej do Bartosza Badowskiego i miliardera Michała Kicińskiego, Jarosław Kordys wciąż czuł się bezpiecznie. Nie wiedział jeszcze, że zegar zaczął odliczać czas do jego własnej katastrofy. Równo siedem tygodni później, 15 października 2020 roku, funkcjonariusze zapukali do drzwi Kordysów, kończąc działalność ich imperium.</p>
 
+          <div className="my-8">
+            <div className="aspect-w-16 aspect-h-9">
+              <iframe
+                src="https://www.youtube.com/embed/h52n25BjzH4"
+                title="Aresztowanie Kordysa"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              ></iframe>
+            </div>
+          </div>
+
           <p>Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym: <strong>"dohoda o vině a trestu"</strong>.</p>
 
           <p>Bartosz Badowski., wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił „kupić” sobie wolność. Jego wyrok potwierdza, że zawarł on z prokuratorem ugodę w sprawie winy i kary, co w polskim żargonie prawniczym oznacza dobrowolne poddanie się karze w zamian za łagodniejszy wymiar kary. Ugoda pozwoliła na zamknięcie jego teczki bez wywoływania świadków, co w praktyce oznaczało, że mechanizmy działania janovskiego ośrodka nigdy nie wybrzmiały echem w publicznej debacie chroniąc Badowskiego przed krzyżowym ogniem pytań i zeznaniami swiadków, które mogłyby pogrążyć także jego cichego wspólnika, którego upadek wywołałby wstrząs nie tylko w Janovie, ale i na samym szczycie wielkiego biznesu.</p>
@@ -119,6 +132,19 @@ export default function Home() {
           </ul>
 
           <p>Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. Krzysztof Stefanek, który w filmie mówi o „odwróconej logice” i pięknie wolontariatu], i jego konkubina Magdalena Drzewińska w rzeczywistości doskonale znali przecież mroczną historię Janova. Ich nazwiska na zawsze zapisały się w policyjnych notatkach z nalotu w 2020 roku. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.</p>
+
+          <div className="my-8">
+            <div className="aspect-w-16 aspect-h-9">
+              <iframe
+                src="https://www.youtube.com/embed/4Xujw-krjxs"
+                title="Stefanek"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              ></iframe>
+            </div>
+          </div>
 
           <p>Ostatecznie strategia okazała się skuteczna. Niezadowolony wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w "stowarzyszeniu" (Natury Zew). Kiciński pozostał anonimowym "filantropem", a Stefanek – opiekunem nowej, „czystej” osady. Prawda o smierci Ilony i o tym, że fundametem tej sielanki były lata nielegalnego procederu i miliony pochodzące z „szamańskiego” biznesu, została przykryta warstwą ziemi w ogrodzie permakulturowym, o którym tak pięknie opowiada nowy gospodarz.</p>
 
