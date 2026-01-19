@@ -57,7 +57,7 @@ const TopBar = () => {
   const { data: notificationData } = useQuery({
     queryKey: ['notifications'],
     queryFn: async () => {
-      const res = await fetch('/api/notifications');
+      const res = await fetch('/hidden_app/api/notifications');
       return res.json();
     },
     enabled: !!user,

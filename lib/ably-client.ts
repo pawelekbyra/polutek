@@ -2,4 +2,4 @@
 
 import Ably from 'ably';
 
-export const ably = new Ably.Realtime({ authUrl: '/api/ably-token' });
+export const ably = new Ably.Realtime({ authUrl: '/hidden_app/api/ably-token' });

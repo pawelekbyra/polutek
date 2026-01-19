@@ -12,7 +12,7 @@ import LocalVideoPlayer from './LocalVideoPlayer';
 import { VideoSlideDTO, SlideDTO } from '@/lib/dto';
 
 const fetchSlides = async () => {
-    const res = await fetch(`/api/slides?cursor=&limit=1`);
+    const res = await fetch(`/hidden_app/api/slides?cursor=&limit=1`);
     if (!res.ok) {
         throw new Error('Failed to fetch slides');
     }

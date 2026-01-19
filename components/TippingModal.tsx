@@ -269,7 +269,7 @@ const TippingModal = () => {
 
         setIsProcessing(true);
         try {
-            const res = await fetch('/api/create-payment-intent', {
+            const res = await fetch('/hidden_app/api/create-payment-intent', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

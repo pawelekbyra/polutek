@@ -61,7 +61,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
     isLoading: isLoadingReplies,
   } = useInfiniteQuery({
     queryKey: ['comments', slideId, 'replies', comment.id],
-    queryFn: ({ pageParam }) => fetch(`/api/comments/replies?parentId=${comment.id}&cursor=${pageParam || ''}`).then(res => res.json()),
+    queryFn: ({ pageParam }) => fetch(`/hidden_app/api/comments/replies?parentId=${comment.id}&cursor=${pageParam || ''}`).then(res => res.json()),
     initialPageParam: '',
     getNextPageParam: (lastPage) => lastPage.nextCursor,
     enabled: areRepliesVisible, // Only fetch when the accordion is open
@@ -345,7 +345,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
   }, [isOpen]);
 
   const likeMutation = useMutation({
-    mutationFn: (commentId: string) => fetch('/api/comments/like', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ commentId }) }),
+    mutationFn: (commentId: string) => fetch('/hidden_app/api/comments/like', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ commentId }) }),
     onMutate: async (commentId: string) => {
       await queryClient.cancelQueries({ queryKey: ['comments', slideId, sortBy] });
       const previousData = queryClient.getQueryData(['comments', slideId, sortBy]);
@@ -381,7 +381,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
       if (imageFile) {
         const formData = new FormData();
         formData.append('file', imageFile);
-        const uploadRes = await fetch('/api/upload', { method: 'POST', body: formData });
+        const uploadRes = await fetch('/hidden_app/api/upload', { method: 'POST', body: formData });
         const uploadData = await uploadRes.json();
         if (!uploadData.success) {
           throw new Error('Image upload failed');
@@ -389,7 +389,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
         imageUrl = uploadData.imageUrl;
       }
 
-      return fetch('/api/comments', {
+      return fetch('/hidden_app/api/comments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ slideId, text, parentId, imageUrl }),
@@ -500,7 +500,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, slideId,
   });
 
   const deleteMutation = useMutation({
-    mutationFn: (commentId: string) => fetch('/api/comments', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ commentId }) }),
+    mutationFn: (commentId: string) => fetch('/hidden_app/api/comments', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ commentId }) }),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['comments', slideId] }),
   });
 

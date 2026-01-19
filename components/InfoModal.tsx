@@ -31,7 +31,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
 
             try {
                 // Poniżej znajduje się koncepcyjne wywołanie API, które powinno stworzyć konto
-                const res = await fetch('/api/create-patron', {
+                const res = await fetch('/hidden_app/api/create-patron', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: mockEmail, password: mockPassword }),
