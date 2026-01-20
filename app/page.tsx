@@ -275,7 +275,7 @@ export default function Home() {
           </CaseFile>
 
           <p>
-            Do przesłuchania doszło 11 października 2023 rokuo godzinie 15:00  w Komisariacie Rzecznym Policji w Warszawie. W protokole Kiciński przyjął linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
+            Do przesłuchania doszło 11 października 2023 roku o godzinie 15:00  w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjął linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
           </p>
 
           <CaseFile title="Zeznanie do protokołu">
