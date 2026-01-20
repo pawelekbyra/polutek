@@ -144,7 +144,7 @@ export default function Home() {
           </p>
 
           <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" type="transcript">
-            &bdquo;oskarżony J. K. omawia z B., że dotarła do niego informacja, że w obiekcie w Janovie miała <span className="bg-red-100 text-red-900 font-bold px-1">zmarła jakaś kobieta</span>&rdquo;.
+            &bdquo;oskarżony J. K. omawia z B., że dotarła do niego informacja, że w obiekcie w Janovie  <span className="bg-red-100 text-red-900 font-bold px-1">zmarła jakaś kobieta</span>&rdquo;.
           </CaseFile>
 
           <p>
