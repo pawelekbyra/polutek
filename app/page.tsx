@@ -50,30 +50,28 @@ export default function Home() {
     <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
       
       {/* HEADER */}
-      <header className="pt-24 pb-8 px-4">
+      <header className="pt-20 pb-12 px-4 border-b border-stone-200">
         <div className="max-w-4xl mx-auto text-center">
           
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6 text-stone-900">
-            Dwa światy Wiedźmina: <br/>
+          <div className="inline-block mb-6 px-3 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase">
+            Śledztwo Dziennikarskie
+          </div>
+
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8 text-stone-900">
+            Dwa światy Wiedźmina <br/>
             <span className="text-stone-500 italic font-medium text-3xl md:text-5xl block mt-4">
               Mroczna tajemnica ayahuaski i milionerów z CD Projekt
             </span>
           </h1>
 
-          <div className="inline-block mb-10 px-4 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-stone-800">
-            Śledztwo Dziennikarskie
-          </div>
-
-          <div className="max-w-2xl mx-auto border-y border-stone-300 py-8">
-            <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
-              W cieniu głośnego procesu &bdquo;szamanów&rdquo; z polskiego establishmentu, dziennikarskie śledztwo ujawnia sieć powiązań prowadzącą do twórców globalnego hitu – gry &bdquo;Wiedźmin&rdquo;.
-            </p>
-          </div>
+          <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic max-w-2xl mx-auto py-4">
+            W cieniu głośnego procesu &bdquo;szamanów&rdquo; z polskiego establishmentu, dziennikarskie śledztwo ujawnia sieć powiązań prowadzącą do twórców globalnego hitu – gry &bdquo;Wiedźmin&rdquo;.
+          </p>
         </div>
       </header>
 
       {/* ARTYKUŁ */}
-      <article className="max-w-2xl mx-auto px-4 py-8 flex-grow">
+      <article className="max-w-2xl mx-auto px-4 py-12 flex-grow">
         
         <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-a:text-blue-800 hover:prose-a:text-blue-900 prose-blockquote:not-italic">
           
@@ -275,7 +273,7 @@ export default function Home() {
           </CaseFile>
 
           <p>
-            Do przesłuchania doszło 11 października 2023 roku o godzinie 15:00  w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjął linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
+            Do przesłuchania doszło 11 października 2023 roku w Komisariacie Rzecznym Policji w Warszawie. W protokole Kiciński przyjął linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
           </p>
 
           <CaseFile title="Zeznanie do protokołu">
@@ -419,7 +417,7 @@ export default function Home() {
           <div className="mt-8 flex items-start gap-4 bg-red-50 p-4 border border-red-100 rounded text-sm text-stone-700">
              <AlertCircle className="w-5 h-5 text-red-800 shrink-0 mt-0.5" />
              <div>
-               <strong>Nowe śledztwo:</strong> 6 maja 2024 roku Prokuratura Okręgowa w Częstochowie wszczęła śledztwo (3013-1.Ds.15.2024). Nie dotyczy ono wyłącznie udziału Kicińskiego w ayahuaskowym biznesie, ale przede wszystkim ma na celu wyjaśnienie tajemniczych okoliczności śmierci Ilony Lewandowskiej.
+               6 maja 2024 roku Prokuratura Okręgowa w Częstochowie wszczęła śledztwo (3013-1.Ds.15.2024). Nie dotyczy ono wyłącznie udziału Kicińskiego w ayahuaskowym biznesie, ale przede wszystkim ma na celu wyjaśnienie tajemniczych okoliczności śmierci Ilony Lewandowskiej.
              </div>
           </div>
 
