@@ -18,16 +18,16 @@ export default function Home() {
 
           <p>Analiza akt sądowych prowadzi do zdumiewających wniosków. W cieniu tego głośnego procesu toczył się drugi – cichy i błyskawiczny. Tropy prowadzą do posiadłości, której właścicielem okazał się miliarder – <strong>Michał Kiciński</strong>. W Janovie równolegle funkcjonował inny ayahuaskowy ośrodek, w którym – podobnie jak u Kordysów – odbywały się nielegalne ceremonie z użyciem psychodelików. Podczas gdy Kordysowie trafili na czołówki gazet i do celi, bliźniacza sprawa, w którą uwikłane jest nazwisko jednego z najbogatszych Polaków, zakończyła się na dyskretnym wyroku w zawieszeniu, o którym nikt nawet w mediach się nie zająknął.</p>
 
-          <blockquote className="border-l-4 border-gray-400 pl-4 italic text-gray-700 my-8">
-            <p>W uzasadnieniu wyroku Jarosława Kordysa (sygn. 30 T 5/2021) pojawia się postać świadka Bartosza B. Zgodnie z aktami: &bdquo;Świadek B. odnośnie osoby oskarżonego [Jarosława Kordysa.] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii&rdquo;. &bdquo;Świadek B. potwierdził, że i on sam w przeszłości prowadził warsztaty&rdquo;, a obecnie sam &bdquo;jest przedmiotem dochodzenia policji w Krnowie właśnie z powodu ceremonii&rdquo;.</p>
+          <blockquote className="bg-gray-100 p-6 rounded-lg my-8">
+            <p className="text-base text-gray-700">W uzasadnieniu wyroku Jarosława Kordysa (sygn. 30 T 5/2021) pojawia się postać świadka Bartosza B. Zgodnie z aktami: &bdquo;Świadek B. odnośnie osoby oskarżonego [Jarosława Kordysa.] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii&rdquo;. &bdquo;Świadek B. potwierdził, że i on sam w przeszłości prowadził warsztaty&rdquo;, a obecnie sam &bdquo;jest przedmiotem dochodzenia policji w Krnowie właśnie z powodu ceremonii&rdquo;.</p>
           </blockquote>
 
           <p>Akta ujawniają również skalę zarzutów wobec Bartosza B.: był podejrzany o przestępstwo niedozwolonej produkcji i obrotu środkami odurzającymi, m.in. w związku ze sprowadzeniem przesyłki z &bdquo;4,5 kg DMT&rdquo; w 2014 roku oraz innej z meskaliną i DMT w 2018 roku.</p>
 
           <p>Intrygujący fragment dotyczy własności &bdquo;bazy&rdquo;:</p>
 
-          <blockquote className="border-l-4 border-gray-400 pl-4 italic text-gray-700 my-8">
-            <p>&quot;Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem jednej dziesiątej nieruchomości&rdquo;. Do kogo należała reszta? Sąd wskazuje wprost: &bdquo;...w odniesieniu do nieruchomości będących współwłasnością Bartosza B. i Michala D. K.&rdquo;.</p>
+          <blockquote className="bg-gray-100 p-6 rounded-lg my-8">
+            <p className="text-base text-gray-700">&quot;Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem jednej dziesiątej nieruchomości&rdquo;. Do kogo należała reszta? Sąd wskazuje wprost: &bdquo;...w odniesieniu do nieruchomości będących współwłasnością Bartosza B. i Michala D. K.&rdquo;.</p>
           </blockquote>
 
           <p>W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać działkę w Janovie i za niewielką opłatą pobrać jej pełną historię (obręb: Janov u Krnova [656976], działka nr st. 281, numer arkusza własności: LV 127).</p>
@@ -38,20 +38,20 @@ export default function Home() {
 
           <p>Przełom w sprawie organizatorów ayahuaskowych ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysem. Kordys zadzwonił do Badowskiego wyraźnie zaniepokojony wieściami, które do niego dotarły. Bał się, że tragedia, o której huczało w kuluarach, może zniszczyć ich imperium.</p>
 
-          <blockquote className="border-l-4 border-gray-400 pl-4 italic text-gray-700 my-8">
-            <p>Sąd w uzasadnieniu wyroku precyzyjnie rekonstruuje ten moment: &bdquo;oskarżony J. K. omawia z B., że dotarła do niego informacja, że w obiekcie w Janovie miała zmarła jakaś kobieta&rdquo;. W rozmowie natychmiast pojawia się wątek zagrożenia ze strony osoby trzeciej – mężczyźni &bdquo;omawiają jakiegoś szantażystę, który chce iść na policję&rdquo;. Kordys wprost pyta wspólnika: &bdquo;W jakim zagrożeniu jest nasza praca?&rdquo;.</p>
+          <blockquote className="bg-gray-100 p-6 rounded-lg my-8">
+            <p className="text-base text-gray-700">Sąd w uzasadnieniu wyroku precyzyjnie rekonstruuje ten moment: &bdquo;oskarżony J. K. omawia z B., że dotarła do niego informacja, że w obiekcie w Janovie miała zmarła jakaś kobieta&rdquo;. W rozmowie natychmiast pojawia się wątek zagrożenia ze strony osoby trzeciej – mężczyźni &bdquo;omawiają jakiegoś szantażystę, który chce iść na policję&rdquo;. Kordys wprost pyta wspólnika: &bdquo;W jakim zagrożeniu jest nasza praca?&rdquo;.</p>
           </blockquote>
 
           <p>Odpowiedź na to pytanie znajduje się w aktach sprawy i nie pozostawia złudzeń co do intencji rozmówców.</p>
 
-          <blockquote className="border-l-4 border-gray-400 pl-4 italic text-gray-700 my-8">
-            <p>W wyroku czytamy: &bdquo;Z ich rozmowy wynika, że nie zajmowali i się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji.&quot; Dla sądu był to koronny dowód na to, że oskarżeni prowadzili nielegalny biznes, a nie działalność duchową – śmierć człowieka była dla nich jedynie &bdquo;psuciem interesów&rdquo;.</p>
+          <blockquote className="bg-gray-100 p-6 rounded-lg my-8">
+            <p className="text-base text-gray-700">W wyroku czytamy: &bdquo;Z ich rozmowy wynika, że nie zajmowali i się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji.&quot; Dla sądu był to koronny dowód na to, że oskarżeni prowadzili nielegalny biznes, a nie działalność duchową – śmierć człowieka była dla nich jedynie &bdquo;psuciem interesów&rdquo;.</p>
           </blockquote>
 
           <p>Cynizm tej konwersacji sięga zenitu chwilę później. Gdy tylko ustalili strategię uciszenia plotek, natychmiast przeszli do logistyki dostaw narkotyku. Sąd odnotowuje, że zaraz po dywagacjach o śmierci i szantażu, rozmówcy wracają do interesów:</p>
 
-          <blockquote className="border-l-4 border-gray-400 pl-4 italic text-gray-700 my-8">
-            <p>&bdquo;Następnie w rozmowie omawiają zamówienia &quot;herbaty&quot; z dżungli i to, czy im tego &quot;nie zepsują&rdquo;, ekscytując się nagraniem od dostawcy, który &bdquo;siedzi w dżungli i gotuje&rdquo;.</p>
+          <blockquote className="bg-gray-100 p-6 rounded-lg my-8">
+            <p className="text-base text-gray-700">&bdquo;Następnie w rozmowie omawiają zamówienia &quot;herbaty&quot; z dżungli i to, czy im tego &quot;nie zepsują&rdquo;, ekscytując się nagraniem od dostawcy, który &bdquo;siedzi w dżungli i gotuje&rdquo;.</p>
           </blockquote>
 
           <p>Dla policjantów, którzy słyszeli to w czasie rzeczywistym, przekaz był jasny: w obiekcie mogło dojść do tragedii, a sprawcy martwią się jedynie o ciągłość dostaw.</p>
@@ -61,8 +61,9 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-gray-900 mt-12 mb-6">Cena wolności i zdrady</h2>
 
           <p>Kiedy 26 sierpnia 2020 roku czeska policja weszła do posiadłości w Janovie, należącej do Bartosza Badowskiego i miliardera Michała Kicińskiego, Jarosław Kordys wciąż czuł się bezpiecznie. Nie wiedział jeszcze, że zegar zaczął odliczać czas do jego własnej katastrofy. Równo siedem tygodni później, 15 października 2020 roku, funkcjonariusze zapukali do drzwi Kordysów, kończąc działalność ich imperium.</p>
+        </div>
 
-          <div className="my-8">
+        <div className="my-8">
             <div className="aspect-w-16 aspect-h-9">
               <iframe
                 src="https://www.youtube.com/embed/h52n25BjzH4"
@@ -73,8 +74,9 @@ export default function Home() {
                 className="w-full h-full"
               ></iframe>
             </div>
-          </div>
+        </div>
 
+        <div className="prose prose-lg max-w-none">
           <p>Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym: <strong>&quot;dohoda o vině a trestu&quot;</strong>.</p>
 
           <p>Bartosz Badowski., wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił &bdquo;kupić&rdquo; sobie wolność. Jego wyrok potwierdza, że zawarł on z prokuratorem ugodę w sprawie winy i kary, co w polskim żargonie prawniczym oznacza dobrowolne poddanie się karze w zamian za łagodniejszy wymiar kary. Ugoda pozwoliła na zamknięcie jego teczki bez wywoływania świadków, co w praktyce oznaczało, że mechanizmy działania janovskiego ośrodka nigdy nie wybrzmiały echem w publicznej debacie chroniąc Badowskiego przed krzyżowym ogniem pytań i zeznaniami swiadków, które mogłyby pogrążyć także jego cichego wspólnika, którego upadek wywołałby wstrząs nie tylko w Janovie, ale i na samym szczycie wielkiego biznesu.</p>
@@ -83,8 +85,8 @@ export default function Home() {
 
           <p>Podczas gdy Bartosz Badowski – po swojej sierpniowej wpadce – przebywał już na wolności, u Kordysów rozpętało się piekło. Zaledwie 7 tygodni po cichym nalocie na Badowskiego, 15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów glosnego skandalu. W błysku policyjnych kogutów, &bdquo;szaman&rdquo; Jarosław i jego żona Karolina zostali wyprowadzeni w kajdankach. To, co dla Badowskiego skończyło się cichymi negocjacjami w gabinecie prokuratora, dla Kordysów stało się medialnym spektaklem upadku, którego drastyczne nagrania obiegły wiadomości w całej Europie.</p>
 
-          <blockquote className="border-l-4 border-gray-400 pl-4 italic text-gray-700 my-8">
-            <p>Na mocy wyroku (66 T 146/2021-323) z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia &bdquo;zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi i substancjami psychotropowymi oraz truciznami&rdquo;, o to, że: &bdquo;co najmniej od bliżej nieustalonej daty w 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne&rdquo; oraz, że w ramach tych pobytów: &bdquo;udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. ayahuascę zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)&rdquo; a także w tym celu w domu: &bdquo;przechowywał łącznie 1902,79 grama materiału roślinnego (rozdrobnionej masy drzewnej – kory), który zawierał łącznie 37,24 grama substancji czynnej dimetylotryptaminy (DMT) oraz 92,29 grama tzw. narkotyku marihuany o zawartości 13,78 grama substancji tetrahydrokannabinol (THC)&rdquo;.</p>
+          <blockquote className="bg-gray-100 p-6 rounded-lg my-8">
+            <p className="text-base text-gray-700">Na mocy wyroku (66 T 146/2021-323) z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia &bdquo;zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi i substancjami psychotropowymi oraz truciznami&rdquo;, o to, że: &bdquo;co najmniej od bliżej nieustalonej daty w 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne&rdquo; oraz, że w ramach tych pobytów: &bdquo;udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. ayahuascę zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)&rdquo; a także w tym celu w domu: &bdquo;przechowywał łącznie 1902,79 grama materiału roślinnego (rozdrobnionej masy drzewnej – kory), który zawierał łącznie 37,24 grama substancji czynnej dimetylotryptaminy (DMT) oraz 92,29 grama tzw. narkotyku marihuany o zawartości 13,78 grama substancji tetrahydrokannabinol (THC)&rdquo;.</p>
           </blockquote>
 
           <p>Bartosz Badowski., którego sprawa dotyczyła tego samego procederu, tych samych substancji i tego samego regionu, dzięki ugodzie i współpracy z wymiarem sprawiedliwości, zakończył sprawę wyrokiem w zawieszeniu.</p>
@@ -99,28 +101,28 @@ export default function Home() {
 
           <p>Konfrontacja Michała Kicińskiego z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23, a na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć zdarzeń w Janovie. Kiciński szybko zrozumiał, że to Niezadowolony musiał złożyć zawiadomienie. Jego reakcja była natychmiastowa - wysłał do niego wiadomość z propozycją swoistej formy zadośćuczynienia wszechświatowi:</p>
 
-          <blockquote className="border-l-4 border-gray-400 pl-4 italic text-gray-700 my-8">
-            <p>&bdquo;(...)Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu Widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu.(...)&rdquo;</p>
+          <blockquote className="bg-gray-100 p-6 rounded-lg my-8">
+            <p className="text-base text-gray-700">&bdquo;(...)Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu Widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu.(...)&rdquo;</p>
           </blockquote>
 
           <p>Do przesłuchania doszło 11 października 2023 roku w Komisariacie Rzecznym Policji w Warszawie. W protokole Kiciński przyjął linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości, zeznał on wówczas:</p>
 
-          <blockquote className="border-l-4 border-gray-400 pl-4 italic text-gray-700 my-8">
-            <p>&bdquo;Nie mam żadnej wiedzy co się działo na mojej farmie, w której jestem 90% udziałowcem (...) wynajmowałem tę nieruchomość.&rdquo;</p>
+          <blockquote className="bg-gray-100 p-6 rounded-lg my-8">
+            <p className="text-base text-gray-700">&bdquo;Nie mam żadnej wiedzy co się działo na mojej farmie, w której jestem 90% udziałowcem (...) wynajmowałem tę nieruchomość.&rdquo;</p>
           </blockquote>
 
           <p>Gdy w toku czynności padło kluczowe pytanie o jego własny udział w ceremoniach ayahuaski w Janovie, odpowiedź była lakoniczna:</p>
 
-          <blockquote className="border-l-4 border-gray-400 pl-4 italic text-gray-700 my-8">
-            <p>&bdquo;nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie odmawiam odpowiedzi&rdquo;</p>
+          <blockquote className="bg-gray-100 p-6 rounded-lg my-8">
+            <p className="text-base text-gray-700">&bdquo;nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie odmawiam odpowiedzi&rdquo;</p>
           </blockquote>
 
           <h2 className="text-3xl font-bold text-gray-900 mt-12 mb-6">Darowizna, czyli gorący kartofel</h2>
 
           <p>W listopadzie 2025 roku na kanale YouTube &bdquo;Osada Natury Zew&rdquo; pojawia się nagranie, w którym obecny gospodarz, Krzysztof Stefanek, snuje opowieść o powstaniu nowej osady. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy. Stefanek wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt &bdquo;znalazł się w jednych rękach&rdquo;. Kluczowy moment tej opowieści Stefanek datuje z niezwykłą precyzją tajemniczego filantropa:</p>
 
-          <blockquote className="border-l-4 border-gray-400 pl-4 italic text-gray-700 my-8">
-            <p>&bdquo;Ostatecznie 23 października 2023 roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie&quot;</p>
+          <blockquote className="bg-gray-100 p-6 rounded-lg my-8">
+            <p className="text-base text-gray-700">&bdquo;Ostatecznie 23 października 2023 roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie&quot;</p>
           </blockquote>
 
           <p>Stefanek przedstawia to jako efekt &bdquo;researchu&rdquo; darczyńcy, który rzekomo urzekł się wizją działalności non-profit. Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech w pozbywaniu się &bdquo;gorącego kartofla&rdquo;:</p>
@@ -132,11 +134,12 @@ export default function Home() {
           </ul>
 
           <p>Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. Krzysztof Stefanek, który w filmie mówi o &bdquo;odwróconej logice&rdquo; i pięknie wolontariatu], i jego konkubina Magdalena Drzewińska w rzeczywistości doskonale znali przecież mroczną historię Janova. Ich nazwiska na zawsze zapisały się w policyjnych notatkach z nalotu w 2020 roku. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.</p>
+        </div>
 
-          <div className="my-8">
-            <div className="aspect-w-16 aspect-h-9">
-              <iframe
-                src="https://www.youtube.com/embed/4Xujw-krjxs"
+        <div className="my-8">
+          <div className="aspect-w-16 aspect-h-9">
+            <iframe
+              src="https://www.youtube.com/embed/4Xujw-krjxs"
                 title="Stefanek"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -146,6 +149,7 @@ export default function Home() {
             </div>
           </div>
 
+        <div className="prose prose-lg max-w-none">
           <p>Ostatecznie strategia okazała się skuteczna. Niezadowolony wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &quot;stowarzyszeniu&quot; (Natury Zew). Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, &bdquo;czystej&rdquo; osady. Prawda o smierci Ilony i o tym, że fundametem tej sielanki były lata nielegalnego procederu i miliony pochodzące z &bdquo;szamańskiego&rdquo; biznesu, została przykryta warstwą ziemi w ogrodzie permakulturowym, o którym tak pięknie opowiada nowy gospodarz.</p>
 
           <p>Na tym jednak historia (na szczęście) się nie kończy. Niezadowolony jednak nie był zadowolony, bo &quot;zadoscuczynienie wszechswiatowi&quot; miało przecież trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli organizować turnusy wypoczynkowe z cennikiem darowizn zamiast paragonów. Choć poniżej załączone nagranie głosowe wskazuje, że wcześniej Stefan sam prosił go o wstawiennictwo (&bdquo;może mógłbyś przekonac michała żeby nas wsparł&rdquo;), nigdy Niezadowolonemu nawet za nienie podziękował. Wręcz przeciwnie – jako osobie z zadatkami na głośne mówienie prawdy, kategorycznie zakazał pojawiania się tam. W maju 2024 roku w Prokuraturze Rejonowej w Częstochowie ruszyło śledztwo.(3013-1.Ds.15.2024 ).Tym razem nie dotyczy ono tylko samych ceremonii i udziału Kicińskiego w ayahuaskowym biznesie, ale przede wszystkim ma na celu wyjaśnienie tajemniczych okoliczności śmierci Ilony Lewandowskiej.</p>
