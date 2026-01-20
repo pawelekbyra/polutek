@@ -483,7 +483,7 @@ export default function Home() {
               <h4 className="font-bold text-black mb-2 text-lg group-hover:underline">Archiwum: tribunydek.com</h4>
               <p className="mb-3 text-stone-700 font-medium">Zrzuty strony ośrodka w Nýdku (2016-2021).</p>
               <p className="text-stone-500 text-xs uppercase mb-4 font-bold bg-white inline-block px-2 py-1 border border-stone-200">
-                Instrukcja: Wejdź na archive.org i wpisz "tribunydek.com"
+                Instrukcja: Wejdź na archive.org i wpisz &quot;tribunydek.com&quot;
               </p>
               <a href="https://web.archive.org/web/*/tribunydek.com" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:text-blue-900 font-bold flex items-center gap-2 uppercase text-xs tracking-wide">
                 <Globe className="w-4 h-4" /> Zobacz w Wayback Machine
