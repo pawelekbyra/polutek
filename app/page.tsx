@@ -50,7 +50,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
       
       {/* HEADER */}
-      <header className="pt-24 pb-8 px-4 border-b border-stone-200">
+      <header className="pt-24 pb-8 px-4">
         <div className="max-w-4xl mx-auto text-center">
           
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6 text-stone-900">
@@ -60,18 +60,20 @@ export default function Home() {
             </span>
           </h1>
 
-          <div className="inline-block mb-8 px-4 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-stone-800">
+          <div className="inline-block mb-10 px-4 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-stone-800">
             Śledztwo Dziennikarskie
           </div>
 
-          <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic max-w-2xl mx-auto">
-            W cieniu głośnego procesu &bdquo;szamanów&rdquo; z polskiego establishmentu, dziennikarskie śledztwo ujawnia sieć powiązań prowadzącą do twórców globalnego hitu – gry &bdquo;Wiedźmin&rdquo;.
-          </p>
+          <div className="max-w-2xl mx-auto border-y border-stone-300 py-8">
+            <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
+              W cieniu głośnego procesu &bdquo;szamanów&rdquo; z polskiego establishmentu, dziennikarskie śledztwo ujawnia sieć powiązań prowadzącą do twórców globalnego hitu – gry &bdquo;Wiedźmin&rdquo;.
+            </p>
+          </div>
         </div>
       </header>
 
       {/* ARTYKUŁ */}
-      <article className="max-w-2xl mx-auto px-4 py-12 flex-grow">
+      <article className="max-w-2xl mx-auto px-4 py-8 flex-grow">
         
         <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-a:text-blue-800 hover:prose-a:text-blue-900 prose-blockquote:not-italic">
           
@@ -273,7 +275,7 @@ export default function Home() {
           </CaseFile>
 
           <p>
-            Do przesłuchania doszło 11 października 2023 roku w Komisariacie Rzecznym Policji w Warszawie. W protokole Kiciński przyjął linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
+            Do przesłuchania doszło 11 października 2023 rokuo godzinie 15:00  w Komisariacie Rzecznym Policji w Warszawie. W protokole Kiciński przyjął linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
           </p>
 
           <CaseFile title="Zeznanie do protokołu">
@@ -356,13 +358,6 @@ export default function Home() {
             Na tym jednak historia (na szczęście) się nie kończy. Choć nagrania wskazują, że <strong>Stefan</strong> prosił o wsparcie, ostatecznie po przejęciu nieruchomości zakazał autorowi zawiadomienia wstępu. Autor zawiadomienia był niezadowolony, bo &bdquo;zadośćuczynienie wszechświatowi&rdquo; miało trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem <strong>Stefan</strong> i <strong>Lena</strong>, pod płaszczykiem non-profit, zaczęli organizować turnusy wypoczynkowe z cennikiem darowizn zamiast paragonów.
           </p>
 
-          <div className="mt-8 flex items-start gap-4 bg-red-50 p-4 border border-red-100 rounded text-sm text-stone-700">
-             <AlertCircle className="w-5 h-5 text-red-800 shrink-0 mt-0.5" />
-             <div>
-               <strong>Nowe śledztwo:</strong> 6 maja 2024 roku Prokuratura Okręgowa w Częstochowie wszczęła śledztwo (3013-1.Ds.15.2024). Nie dotyczy ono wyłącznie udziału Kicińskiego w ayahuaskowym biznesie, ale przede wszystkim ma na celu wyjaśnienie tajemniczych okoliczności śmierci Ilony Lewandowskiej.
-             </div>
-          </div>
-
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Bliźniaczy ośrodek i drugi miliarder</h2>
 
           <p>
@@ -420,6 +415,14 @@ export default function Home() {
           <p>
             Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
           </p>
+
+          <div className="mt-8 flex items-start gap-4 bg-red-50 p-4 border border-red-100 rounded text-sm text-stone-700">
+             <AlertCircle className="w-5 h-5 text-red-800 shrink-0 mt-0.5" />
+             <div>
+               <strong>Nowe śledztwo:</strong> 6 maja 2024 roku Prokuratura Okręgowa w Częstochowie wszczęła śledztwo (3013-1.Ds.15.2024). Nie dotyczy ono wyłącznie udziału Kicińskiego w ayahuaskowym biznesie, ale przede wszystkim ma na celu wyjaśnienie tajemniczych okoliczności śmierci Ilony Lewandowskiej.
+             </div>
+          </div>
+
         </div>
 
         {/* STOPKA ŹRÓDŁOWA */}
