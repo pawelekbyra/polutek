@@ -63,7 +63,6 @@
   html, body {
     height: 100%;
     width: 100%;
-    overflow: hidden;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     @apply text-foreground;
     overscroll-behavior-y: contain; /* Prevent bounce scroll */
