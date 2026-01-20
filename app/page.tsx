@@ -67,7 +67,7 @@ export default function Home() {
           {/* LEAD Z KRESKAMI GÓRA/DÓŁ (BEZ PEŁNEJ SZEROKOŚCI) */}
           <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
             <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
-              W cieniu głośnego procesu &bdquo;szamanów&rdquo; z polskiego establishmentu, dziennikarskie śledztwo ujawnia sieć powiązań prowadzącą do twórców gry&bdquo;Wiedźmin&rdquo;.
+              W cieniu głośnego procesu &bdquo;szamanów&rdquo; z polskiego establishmentu, dziennikarskie śledztwo ujawnia sieć powiązań prowadzącą do twórców gry &bdquo;Wiedźmin&rdquo;.
             </p>
           </div>
         </div>
