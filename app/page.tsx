@@ -172,7 +172,7 @@ export default function Home() {
           </p>
 
           <CaseFile title="Kontynuacja rozmowy" type="transcript">
-            &bdquo;Następnie w rozmowie omawiają zamówienia &bdquo;herbaty&rdquo; z dżungli i to, czy im tego &bdquo;nie zepsują&rdquo;, ekscytując się nagraniem od dostawcy, który &bdquo;siedzi w dżungli i gotuje&rdquo;.
+            &bdquo;Następnie w rozmowie omawiają zamówienia &quot;herbaty&quot; z dżungli i to, czy im tego &quot;nie zepsują&quot;, ekscytując się nagraniem od dostawcy, który &quot;siedzi w dżungli i gotuje&quot;&rdquo;.
           </CaseFile>
 
           <p>
