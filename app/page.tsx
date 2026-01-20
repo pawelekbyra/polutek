@@ -61,20 +61,20 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-gray-900 mt-12 mb-6">Cena wolności i zdrady</h2>
 
           <p>Kiedy 26 sierpnia 2020 roku czeska policja weszła do posiadłości w Janovie, należącej do Bartosza Badowskiego i miliardera Michała Kicińskiego, Jarosław Kordys wciąż czuł się bezpiecznie. Nie wiedział jeszcze, że zegar zaczął odliczać czas do jego własnej katastrofy. Równo siedem tygodni później, 15 października 2020 roku, funkcjonariusze zapukali do drzwi Kordysów, kończąc działalność ich imperium.</p>
-
-          <div className="my-8">
-            <div className="aspect-w-16 aspect-h-9">
-              <iframe
-                src="https://www.youtube.com/embed/h52n25BjzH4"
-                title="Aresztowanie Kordysa"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              ></iframe>
-            </div>
+        </div>
+        <div className="my-8">
+          <div className="aspect-w-16 aspect-h-9">
+            <iframe
+              src="https://www.youtube.com/embed/h52n25BjzH4"
+              title="Aresztowanie Kordysa"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            ></iframe>
           </div>
-
+        </div>
+        <div className="prose prose-lg max-w-none">
           <p>Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym: <strong>&quot;dohoda o vině a trestu&quot;</strong>.</p>
 
           <p>Bartosz Badowski., wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił &bdquo;kupić&rdquo; sobie wolność. Jego wyrok potwierdza, że zawarł on z prokuratorem ugodę w sprawie winy i kary, co w polskim żargonie prawniczym oznacza dobrowolne poddanie się karze w zamian za łagodniejszy wymiar kary. Ugoda pozwoliła na zamknięcie jego teczki bez wywoływania świadków, co w praktyce oznaczało, że mechanizmy działania janovskiego ośrodka nigdy nie wybrzmiały echem w publicznej debacie chroniąc Badowskiego przed krzyżowym ogniem pytań i zeznaniami swiadków, które mogłyby pogrążyć także jego cichego wspólnika, którego upadek wywołałby wstrząs nie tylko w Janovie, ale i na samym szczycie wielkiego biznesu.</p>
@@ -132,20 +132,20 @@ export default function Home() {
           </ul>
 
           <p>Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. Krzysztof Stefanek, który w filmie mówi o &bdquo;odwróconej logice&rdquo; i pięknie wolontariatu], i jego konkubina Magdalena Drzewińska w rzeczywistości doskonale znali przecież mroczną historię Janova. Ich nazwiska na zawsze zapisały się w policyjnych notatkach z nalotu w 2020 roku. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.</p>
-
-          <div className="my-8">
-            <div className="aspect-w-16 aspect-h-9">
-              <iframe
-                src="https://www.youtube.com/embed/4Xujw-krjxs"
-                title="Stefanek"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              ></iframe>
-            </div>
+        </div>
+        <div className="my-8">
+          <div className="aspect-w-16 aspect-h-9">
+            <iframe
+              src="https://www.youtube.com/embed/4Xujw-krjxs"
+              title="Stefanek"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            ></iframe>
           </div>
-
+        </div>
+        <div className="prose prose-lg max-w-none">
           <p>Ostatecznie strategia okazała się skuteczna. Niezadowolony wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &quot;stowarzyszeniu&quot; (Natury Zew). Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, &bdquo;czystej&rdquo; osady. Prawda o smierci Ilony i o tym, że fundametem tej sielanki były lata nielegalnego procederu i miliony pochodzące z &bdquo;szamańskiego&rdquo; biznesu, została przykryta warstwą ziemi w ogrodzie permakulturowym, o którym tak pięknie opowiada nowy gospodarz.</p>
 
           <p>Na tym jednak historia (na szczęście) się nie kończy. Niezadowolony jednak nie był zadowolony, bo &quot;zadoscuczynienie wszechswiatowi&quot; miało przecież trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli organizować turnusy wypoczynkowe z cennikiem darowizn zamiast paragonów. Choć poniżej załączone nagranie głosowe wskazuje, że wcześniej Stefan sam prosił go o wstawiennictwo (&bdquo;może mógłbyś przekonac michała żeby nas wsparł&rdquo;), nigdy Niezadowolonemu nawet za nienie podziękował. Wręcz przeciwnie – jako osobie z zadatkami na głośne mówienie prawdy, kategorycznie zakazał pojawiania się tam. W maju 2024 roku w Prokuraturze Rejonowej w Częstochowie ruszyło śledztwo.(3013-1.Ds.15.2024 ).Tym razem nie dotyczy ono tylko samych ceremonii i udziału Kicińskiego w ayahuaskowym biznesie, ale przede wszystkim ma na celu wyjaśnienie tajemniczych okoliczności śmierci Ilony Lewandowskiej.</p>
