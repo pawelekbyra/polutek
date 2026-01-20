@@ -53,16 +53,16 @@ export default function Home() {
       <header className="pt-20 pb-8 px-4">
         <div className="max-w-4xl mx-auto text-center">
           
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6 text-stone-900">
+          <div className="inline-block mb-6 px-3 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase">
+            Śledztwo Dziennikarskie
+          </div>
+
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8 text-stone-900">
             Dwa światy Wiedźmina: <br/>
             <span className="text-stone-500 italic font-medium text-3xl md:text-5xl block mt-4">
               Mroczna tajemnica ayahuaski i milionerów z CD Projekt
             </span>
           </h1>
-
-          <div className="inline-block mb-10 px-4 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-stone-800">
-            Śledztwo Dziennikarskie
-          </div>
 
           {/* LEAD Z KRESKAMI GÓRA/DÓŁ (BEZ PEŁNEJ SZEROKOŚCI) */}
           <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
