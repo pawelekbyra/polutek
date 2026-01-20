@@ -58,9 +58,9 @@ export default function Home() {
           </div>
 
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8 text-stone-900">
-            Dwa światy Wiedźmina <br/>
+            Dwa światy Wiedźmina: <br/>
             <span className="text-stone-500 italic font-medium text-3xl md:text-5xl block mt-4">
-              Mroczna tajemnica ayahuaski i milionerów z CD Projekt
+              Mroczna tajemnica Ayahuaski i milionerów z CD Projekt
             </span>
           </h1>
 
