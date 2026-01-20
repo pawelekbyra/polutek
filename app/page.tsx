@@ -61,29 +61,25 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-gray-900 mt-12 mb-6">Cena wolności i zdrady</h2>
 
           <p>Kiedy 26 sierpnia 2020 roku czeska policja weszła do posiadłości w Janovie, należącej do Bartosza Badowskiego i miliardera Michała Kicińskiego, Jarosław Kordys wciąż czuł się bezpiecznie. Nie wiedział jeszcze, że zegar zaczął odliczać czas do jego własnej katastrofy. Równo siedem tygodni później, 15 października 2020 roku, funkcjonariusze zapukali do drzwi Kordysów, kończąc działalność ich imperium.</p>
-        </div>
 
-        <div className="my-8">
-            <div className="aspect-w-16 aspect-h-9">
-              <iframe
-                src="https://www.youtube.com/embed/h52n25BjzH4"
-                title="Aresztowanie Kordysa"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              ></iframe>
-            </div>
-        </div>
+          <div className="my-8 aspect-w-16 aspect-h-9">
+            <iframe
+              src="https://www.youtube.com/embed/h52n25BjzH4"
+              title="Aresztowanie Kordysa"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            ></iframe>
+          </div>
 
-        <div className="prose prose-lg max-w-none">
           <p>Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym: <strong>&quot;dohoda o vině a trestu&quot;</strong>.</p>
 
           <p>Bartosz Badowski., wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił &bdquo;kupić&rdquo; sobie wolność. Jego wyrok potwierdza, że zawarł on z prokuratorem ugodę w sprawie winy i kary, co w polskim żargonie prawniczym oznacza dobrowolne poddanie się karze w zamian za łagodniejszy wymiar kary. Ugoda pozwoliła na zamknięcie jego teczki bez wywoływania świadków, co w praktyce oznaczało, że mechanizmy działania janovskiego ośrodka nigdy nie wybrzmiały echem w publicznej debacie chroniąc Badowskiego przed krzyżowym ogniem pytań i zeznaniami swiadków, które mogłyby pogrążyć także jego cichego wspólnika, którego upadek wywołałby wstrząs nie tylko w Janovie, ale i na samym szczycie wielkiego biznesu.</p>
 
           <p>Cena wolnosci Badowskiego okazała się być wysoka dla kogo innego: Zeznania Bartosza B. stały się gwoździem do trumny jego przyjaciela Kordysa. Dla prokuratury był to bezcenny materiał dowodowy – zeznania Badowskiego pozwoliły prokuraturze domknąć łańcuch poszlak w sprawie Kordysów.</p>
 
-          <p>Podczas gdy Bartosz Badowski – po swojej sierpniowej wpadce – przebywał już na wolności, u Kordysów rozpętało się piekło. Zaledwie 7 tygodni po cichym nalocie na Badowskiego, 15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów glosnego skandalu. W błysku policyjnych kogutów, &bdquo;szaman&rdquo; Jarosław i jego żona Karolina zostali wyprowadzeni w kajdankach. To, co dla Badowskiego skończyło się cichymi negocjacjami w gabinecie prokuratora, dla Kordysów stało się medialnym spektaklem upadku, którego drastyczne nagrania obiegły wiadomości w całej Europie.</p>
+          <p>Podczas gdy Bartosz Badowski – po swojej sierpniowej wpadce – przebywał już na wolności, u Kordysów rozpętało się piekło. Zaledwie 7 tygodni po cichym nalocie na Badowskiego, 15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów glosnego skandalu. W błysku policyjnych kogutów, &bdquo;szaman&rdquo; Jarosław i jego żona Karolina zostali wyprowadzeni w kajdankach. To, co dla Badowskiego skończyło się cichimi negocjacjami w gabinecie prokuratora, dla Kordysów stało się medialnym spektaklem upadku, którego drastyczne nagrania obiegły wiadomości w całej Europie.</p>
 
           <blockquote className="bg-gray-100 p-6 rounded-lg my-8">
             <p className="text-base text-gray-700">Na mocy wyroku (66 T 146/2021-323) z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia &bdquo;zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi i substancjami psychotropowymi oraz truciznami&rdquo;, o to, że: &bdquo;co najmniej od bliżej nieustalonej daty w 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne&rdquo; oraz, że w ramach tych pobytów: &bdquo;udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. ayahuascę zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)&rdquo; a także w tym celu w domu: &bdquo;przechowywał łącznie 1902,79 grama materiału roślinnego (rozdrobnionej masy drzewnej – kory), który zawierał łącznie 37,24 grama substancji czynnej dimetylotryptaminy (DMT) oraz 92,29 grama tzw. narkotyku marihuany o zawartości 13,78 grama substancji tetrahydrokannabinol (THC)&rdquo;.</p>
@@ -102,7 +98,7 @@ export default function Home() {
           <p>Konfrontacja Michała Kicińskiego z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23, a na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć zdarzeń w Janovie. Kiciński szybko zrozumiał, że to Niezadowolony musiał złożyć zawiadomienie. Jego reakcja była natychmiastowa - wysłał do niego wiadomość z propozycją swoistej formy zadośćuczynienia wszechświatowi:</p>
 
           <blockquote className="bg-gray-100 p-6 rounded-lg my-8">
-            <p className="text-base text-gray-700">&bdquo;(...)Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu Widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu.(...)&rdquo;</p>
+            <p className="text-base text-gray-700">&bdquo;(...)Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu Widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu.(...)&rdquo;</p>
           </blockquote>
 
           <p>Do przesłuchania doszło 11 października 2023 roku w Komisariacie Rzecznym Policji w Warszawie. W protokole Kiciński przyjął linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości, zeznał on wówczas:</p>
@@ -134,25 +130,21 @@ export default function Home() {
           </ul>
 
           <p>Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. Krzysztof Stefanek, który w filmie mówi o &bdquo;odwróconej logice&rdquo; i pięknie wolontariatu], i jego konkubina Magdalena Drzewińska w rzeczywistości doskonale znali przecież mroczną historię Janova. Ich nazwiska na zawsze zapisały się w policyjnych notatkach z nalotu w 2020 roku. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.</p>
-        </div>
 
-        <div className="my-8">
-          <div className="aspect-w-16 aspect-h-9">
+          <div className="my-8 aspect-w-16 aspect-h-9">
             <iframe
               src="https://www.youtube.com/embed/4Xujw-krjxs"
-                title="Stefanek"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              ></iframe>
-            </div>
+              title="Stefanek"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            ></iframe>
           </div>
 
-        <div className="prose prose-lg max-w-none">
           <p>Ostatecznie strategia okazała się skuteczna. Niezadowolony wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &quot;stowarzyszeniu&quot; (Natury Zew). Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, &bdquo;czystej&rdquo; osady. Prawda o smierci Ilony i o tym, że fundametem tej sielanki były lata nielegalnego procederu i miliony pochodzące z &bdquo;szamańskiego&rdquo; biznesu, została przykryta warstwą ziemi w ogrodzie permakulturowym, o którym tak pięknie opowiada nowy gospodarz.</p>
 
-          <p>Na tym jednak historia (na szczęście) się nie kończy. Niezadowolony jednak nie był zadowolony, bo &quot;zadoscuczynienie wszechswiatowi&quot; miało przecież trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli organizować turnusy wypoczynkowe z cennikiem darowizn zamiast paragonów. Choć poniżej załączone nagranie głosowe wskazuje, że wcześniej Stefan sam prosił go o wstawiennictwo (&bdquo;może mógłbyś przekonac michała żeby nas wsparł&rdquo;), nigdy Niezadowolonemu nawet za nienie podziękował. Wręcz przeciwnie – jako osobie z zadatkami na głośne mówienie prawdy, kategorycznie zakazał pojawiania się tam. W maju 2024 roku w Prokuraturze Rejonowej w Częstochowie ruszyło śledztwo.(3013-1.Ds.15.2024 ).Tym razem nie dotyczy ono tylko samych ceremonii i udziału Kicińskiego w ayahuaskowym biznesie, ale przede wszystkim ma na celu wyjaśnienie tajemniczych okoliczności śmierci Ilony Lewandowskiej.</p>
+          <p>Na tym jednak historia (na szczęście) się nie kończy. Niezadowolony jednak nie był zadowolony, bo &quot;zadoscuczynienie wszechswiatowi&quot; miało przecież trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli organizować turnusy wypoczynkowe z cennikiem darowizn zamiast paragonów. Choč poniżej załączone nagranie głosowe wskazuje, że wcześniej Stefan sam prosił go o wstawiennictwo (&bdquo;może mógłbyś przekonac michała żeby nas wsparł&rdquo;), nigdy Niezadowolonemu nawet za nienie podziękował. Wręcz przeciwnie – jako osobie z zadatkami na głośne mówienie prawdy, kategorycznie zakazał pojawiania się tam. W maju 2024 roku w Prokuraturze Rejonowej w Częstochowie ruszyło śledztwo.(3013-1.Ds.15.2024 ).Tym razem nie dotyczy ono tylko samych ceremonii i udziału Kicińskiego w ayahuaskowym biznesie, ale przede wszystkim ma na celu wyjaśnienie tajemniczych okoliczności śmierci Ilony Lewandowskiej.</p>
 
           <h2 className="text-3xl font-bold text-gray-900 mt-12 mb-6">Bliźniaczy ośrodek i drugi miliarder</h2>
 
@@ -168,7 +160,7 @@ export default function Home() {
 
           <h2 className="text-3xl font-bold text-gray-900 mt-12 mb-6">Sprawiedliwość na sprzedaż?</h2>
 
-          <p>Historia Janova i Nýdka to opowieść o dwóch równoległych światach. W jednym – za kratami czeskich więzień – siedzą &bdquo;szamani&rdquo;, których nazwiska stały się synonimem narkotykowego skandalu. W drugim – na szczytach list Forbesa i w świetle jupiterów biznesowych konferencji – trwają ludzie, którzy tę infrastrukturę sfinansowali i udostępnili. Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?</p>
+          <p>Historia Janova i Nýdka to opowieść o dwóch równoległych światach. W jednym – za kratami czeskich więzień – siedzą &bdquo;szamani&rdquo;, których nazwiska stały się synonimem narkotykowego skandalu. W drugim – na szczytach list Forbesa i w świetle jupiterów biznesowych konferencji – trwają ludzie, którzy tę infrastrukturę sfinansowali i udostępnili. Choč miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?</p>
         </div>
 
         <footer className="mt-16 pt-8 border-t border-gray-300">
