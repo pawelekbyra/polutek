@@ -260,7 +260,7 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cisza po burzy i nowy porządek</h2>
 
           <p>
-            Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku 'Badiego' w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnego nalotu, pozostali lojalni wobec byłego szamana.
+            Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku &apos;Badiego&apos; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnego nalotu, pozostali lojalni wobec byłego szamana.
           </p>
 
           <p>
@@ -304,7 +304,7 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Darowizna, czyli gorący kartofel</h2>
 
           <p>
-            W listopadzie 2025 roku na kanale YouTube &bdquo;Osada Natury Zew&rdquo; pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, Krzysztof Stefanek, snuje opowieść o powstaniu &quot;Osady&quot;. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
+            W listopadzie 2025 roku na kanale YouTube &bdquo;Osada Natury Zew&rdquo; pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, Krzysztof Stefanek, snuje opowieść o powstaniu &bdquo;Osady&rdquo;. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
           </p>
 
           <p>
@@ -362,11 +362,11 @@ export default function Home() {
           </p>
 
           <p>
-            Ostatecznie strategia okazała się skuteczna. Autor zawiadomienia wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w "stowarzyszeniu" (Natury Zew). Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, &bdquo;czystej&rdquo; osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
+            Ostatecznie strategia okazała się skuteczna. Autor zawiadomienia wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &bdquo;stowarzyszeniu&rdquo; (Natury Zew). Kiciński pozostał anonimowym &bdquo;filantropem&rdquo;, a Stefanek – opiekunem nowej, &bdquo;czystej&rdquo; osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
           </p>
 
           <p>
-            Na tym jednak historia (na szczęście) się nie kończy. Choć nagrania wskazują, że Stefan prosił o wsparcie, ostatecznie po przejęciu nieruchomości zakazał autorowi zawiadomienia wstępu. Autor zawiadomienia był niezadowolony, bo "zadośćuczynienie wszechświatowi" miało trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli organizować turnusy wypoczynkowe z cennikiem darowizn zamiast paragonów.
+            Na tym jednak historia (na szczęście) się nie kończy. Choć nagrania wskazują, że Stefan prosił o wsparcie, ostatecznie po przejęciu nieruchomości zakazał autorowi zawiadomienia wstępu. Autor zawiadomienia był niezadowolony, bo &bdquo;zadośćuczynienie wszechświatowi&rdquo; miało trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli organizować turnusy wypoczynkowe z cennikiem darowizn zamiast paragonów.
           </p>
 
           <div className="mt-8 flex items-start gap-4 bg-red-50 p-4 border border-red-100 rounded text-sm text-stone-700">
@@ -391,7 +391,7 @@ export default function Home() {
           </p>
 
           <p>
-            Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej 'szamańskiej świątyni' – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, <strong>Marcin Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder w latach 2016-2021.
+            Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej &apos;szamańskiej świątyni&apos; – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, <strong>Marcin Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder w latach 2016-2021.
           </p>
 
           <p>
