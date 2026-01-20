@@ -288,7 +288,7 @@ export default function Home() {
           </p>
 
           <CaseFile title="Odpowiedź na pytanie o udział">
-            &bdquo;nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie odmawiam odpowiedzi&rdquo;
+            &bdquo;nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie <span className="bg-stone-200 px-1 border-b-2 border-stone-800 font-bold italic text-stone-900">odmawiam odpowiedzi</span>&rdquo;
           </CaseFile>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Darowizna, czy gorący kartofel</h2>
@@ -302,7 +302,7 @@ export default function Home() {
           </p>
 
           <CaseFile title="Wypowiedź K. Stefanka">
-            &bdquo;Ostatecznie 23 października 2023 roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie&quot;
+            &bdquo;Ostatecznie <span className="bg-yellow-100 border-b border-yellow-400 px-1">23 października 2023</span> roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie&quot;
           </CaseFile>
 
           <p>
@@ -356,7 +356,7 @@ export default function Home() {
           </p>
 
           <p>
-            Na tym jednak historia (na szczęście) się nie kończy. Choć nagrania wskazują, że <strong>Stefan</strong> prosił o wsparcie, ostatecznie po przejęciu nieruchomości zakazał autorowi zawiadomienia wstępu. Autor zawiadomienia był niezadowolony, bo &bdquo;zadośćuczynienie wszechświatowi&rdquo; miało trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem <strong>Stefan</strong> i <strong>Lena</strong>, pod płaszczykiem non-profit, zaczęli organizować turnusy wypoczynkowe z cennikiem darowizn zamiast paragonów.
+            Na tym jednak historia (na szczęście) się nie kończy. Choć nagrania wskazują, że Stefan prosił o wsparcie, ostatecznie po przejęciu nieruchomości zakazał autorowi zawiadomienia wstępu. Autor zawiadomienia był niezadowolony, bo &bdquo;zadośćuczynienie wszechświatowi&rdquo; miało trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli organizować turnusy wypoczynkowe z cennikiem darowizn zamiast paragonów.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Bliźniaczy ośrodek i drugi miliarder</h2>
@@ -366,7 +366,7 @@ export default function Home() {
           </p>
 
           <p>
-            Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów, prowadzone przez Piotra Bonawenturę Tracza. Chociaż witryna ośrodka już nie istnieje, archiwum internetu &bdquo;Wayback Machine&rdquo; zachowało zrzuty strony <em>tribunydek.com</em>. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
+            Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów, prowadzone przez <strong>Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu &bdquo;Wayback Machine&rdquo; zachowało zrzuty strony <em>tribunydek.com</em>. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
           </p>
 
           <p>
@@ -374,7 +374,7 @@ export default function Home() {
           </p>
 
           <p>
-            Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej &apos;szamańskiej świątyni&apos; – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, <strong>Marcin Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder w latach 2016-2021.
+            Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej &apos;szamańskiej świątyni&apos; – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, Marcin <strong>Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder w latach 2016-2021.
           </p>
 
           <p>
@@ -394,7 +394,7 @@ export default function Home() {
             <li className="flex items-start gap-3">
               <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
               <div>
-                <strong>15 czerwca 2021 r.</strong> – Marcin Iwiński sprzedaje nieruchomości w Nýdku.
+                <strong>15 czerwca 2021 r.</strong> – Marcin <strong>Iwiński</strong> sprzedaje nieruchomości w Nýdku.
               </div>
             </li>
           </ul>
@@ -427,7 +427,7 @@ export default function Home() {
         </div>
 
         {/* STOPKA ŹRÓDŁOWA */}
-        <footer className="mt-24 pt-12 border-t-2 border-stone-200 font-sans">
+        <footer className="mt-12 pt-12 border-t-2 border-stone-200 font-sans">
           <h3 className="text-xl font-bold text-stone-900 mb-8 uppercase tracking-widest flex items-center gap-2">
             <Search className="w-5 h-5" /> Dokumenty Źródłowe
           </h3>
@@ -488,4 +488,3 @@ export default function Home() {
     </main>
   );
 }
-
