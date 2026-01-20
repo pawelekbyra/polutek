@@ -1,5 +1,5 @@
 import React from 'react';
-import { Scale, FileText, Search, AlertCircle, User, Mail, MapPin, Globe, Calendar } from 'lucide-react';
+import { Scale, FileText, Search, AlertCircle, User, Mail, MapPin, Calendar, Globe } from 'lucide-react';
 
 // --- KOMPONENTY STYLU "NAJS" (LEKKI, ORYGINALNY) ---
 
@@ -47,28 +47,31 @@ const EvidenceVideo = ({ src, title, caption }: { src: string, title: string, ca
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif">
+    <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
       
       {/* HEADER */}
-      <header className="pt-20 pb-12 px-4 border-b border-stone-200">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-block mb-6 px-3 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase">
-            Śledztwo Dziennikarskie
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8 text-stone-900">
-            Dwa światy Wiedźmina <br/>
+      <header className="pt-24 pb-8 px-4 border-b border-stone-200">
+        <div className="max-w-4xl mx-auto text-center">
+          
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6 text-stone-900">
+            Dwa światy Wiedźmina: <br/>
             <span className="text-stone-500 italic font-medium text-3xl md:text-5xl block mt-4">
               Mroczna tajemnica ayahuaski i milionerów z CD Projekt
             </span>
           </h1>
-          <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic border-y border-stone-200 py-8 my-8">
+
+          <div className="inline-block mb-8 px-4 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-stone-800">
+            Śledztwo Dziennikarskie
+          </div>
+
+          <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic max-w-2xl mx-auto">
             W cieniu głośnego procesu &bdquo;szamanów&rdquo; z polskiego establishmentu, dziennikarskie śledztwo ujawnia sieć powiązań prowadzącą do twórców globalnego hitu – gry &bdquo;Wiedźmin&rdquo;.
           </p>
         </div>
       </header>
 
       {/* ARTYKUŁ */}
-      <article className="max-w-2xl mx-auto px-4 py-12">
+      <article className="max-w-2xl mx-auto px-4 py-12 flex-grow">
         
         <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-a:text-blue-800 hover:prose-a:text-blue-900 prose-blockquote:not-italic">
           
@@ -185,7 +188,7 @@ export default function Home() {
           </CaseFile>
 
           <p>
-            Podczas policyjnej interwencji zidentyfikowano tam &bdquo;15 obywateli Polski&rdquo;, którzy mieli brać udział w ceremonii. Wśród nich, stali bywalcy i bliscy znajomi Badowskiego – <strong>Krzysztof Stefanek i Lena Drzewińska</strong>, których obecność w momencie wkroczenia służb ma znaczenie w kontekście późniejszej ich roli w tej historii.
+            Podczas policyjnej interwencji zidentyfikowano tam &bdquo;15 obywateli Polski&rdquo;, którzy mieli brać udział w ceremonii. Wśród nich, stali bywalcy i bliscy znajomi Badowskiego – <strong>Krzysztof Stefanek</strong> i <strong>Lena Drzewińska</strong>, których obecność w momencie wkroczenia służb ma znaczenie w kontekście późniejszej ich roli w tej historii.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cena wolności i zdrady</h2>
@@ -198,7 +201,7 @@ export default function Home() {
             Podczas gdy Bartosz Badowski – po swojej sierpniowej wpadce – przebywał już na wolności, u Kordysów rozpętało się piekło. Zaledwie 7 tygodni po cichym nalocie na Badowskiego, 15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
           </p>
 
-          {/* WIDEO 1: Aresztowanie Kordysa - PRZESUNIĘTE TUTAJ */}
+          {/* WIDEO 1: Aresztowanie Kordysa */}
           <EvidenceVideo 
             src="https://www.youtube.com/embed/h52n25BjzH4" 
             title="Aresztowanie Kordysa"
@@ -244,7 +247,7 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cisza po burzy i nowy porządek</h2>
 
           <p>
-            Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku &apos;Badiego&apos; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnego nalotu, pozostali lojalni wobec byłego szamana.
+            Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej <strong>Krzysztof Stefanek</strong> i <strong>Magdalena Drzewińska</strong>. Ich obecność u boku &apos;Badiego&apos; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnego nalotu, pozostali lojalni wobec byłego szamana.
           </p>
 
           <p>
@@ -288,11 +291,11 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Darowizna, czyli gorący kartofel</h2>
 
           <p>
-            W listopadzie 2025 roku na kanale YouTube &bdquo;Osada Natury Zew&rdquo; pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, Krzysztof Stefanek, snuje opowieść o powstaniu &bdquo;Osady&rdquo;. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
+            W listopadzie 2025 roku na kanale YouTube &bdquo;Osada Natury Zew&rdquo; pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, <strong>Krzysztof Stefanek</strong>, snuje opowieść o powstaniu &bdquo;Osady&rdquo;. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
           </p>
 
           <p>
-            Stefanek wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt &bdquo;znalazł się w jednych rękach&rdquo;. Kluczowy moment tej opowieści Stefanek datuje z niezwykłą precyzją:
+            <strong>Stefanek</strong> wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt &bdquo;znalazł się w jednych rękach&rdquo;. Kluczowy moment tej opowieści <strong>Stefanek</strong> datuje z niezwykłą precyzją:
           </p>
 
           <CaseFile title="Wypowiedź K. Stefanka">
@@ -300,7 +303,7 @@ export default function Home() {
           </CaseFile>
 
           <p>
-            Stefanek przedstawia to jako efekt &bdquo;researchu&rdquo; darczyńcy, który rzekomo urzekł się wizją działalności non-profit.
+            <strong>Stefanek</strong> przedstawia to jako efekt &bdquo;researchu&rdquo; darczyńcy, który rzekomo urzekł się wizją działalności non-profit.
           </p>
 
           {/* WIDEO 2: Opowieść Stefanka */}
@@ -342,16 +345,23 @@ export default function Home() {
           </ul>
 
           <p>
-            Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. Krzysztof Stefanek, który w filmie mówi o &bdquo;odwróconej logice&rdquo; i pięknie wolontariatu, i jego konkubina Magdalena Drzewińska w rzeczywistości doskonale znali mroczną historię Janova i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
+            Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong>Krzysztof Stefanek</strong>, który w filmie mówi o &bdquo;odwróconej logice&rdquo; i pięknie wolontariatu, i jego konkubina <strong>Magdalena Drzewińska</strong> w rzeczywistości doskonale znali mroczną historię Janova i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
           </p>
 
           <p>
-            Ostatecznie strategia okazała się skuteczna. Autor zawiadomienia wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &bdquo;stowarzyszeniu&rdquo; (Natury Zew). Kiciński pozostał anonimowym &bdquo;filantropem&rdquo;, a Stefanek – opiekunem nowej, &bdquo;czystej&rdquo; osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
+            Ostatecznie strategia okazała się skuteczna. Autor zawiadomienia wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &bdquo;stowarzyszeniu&rdquo; (Natury Zew). Kiciński pozostał anonimowym &quot;filantropem&quot;, a <strong>Stefanek</strong> – opiekunem nowej, &bdquo;czystej&rdquo; osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
           </p>
 
           <p>
-            Na tym jednak historia (na szczęście) się nie kończy. Choć nagrania wskazują, że Stefan prosił o wsparcie, ostatecznie po przejęciu nieruchomości zakazał autorowi zawiadomienia wstępu. Autor zawiadomienia był niezadowolony, bo &bdquo;zadośćuczynienie wszechświatowi&rdquo; miało trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli organizować turnusy wypoczynkowe z cennikiem darowizn zamiast paragonów.
+            Na tym jednak historia (na szczęście) się nie kończy. Choć nagrania wskazują, że <strong>Stefan</strong> prosił o wsparcie, ostatecznie po przejęciu nieruchomości zakazał autorowi zawiadomienia wstępu. Autor zawiadomienia był niezadowolony, bo &bdquo;zadośćuczynienie wszechświatowi&rdquo; miało trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem <strong>Stefan</strong> i <strong>Lena</strong>, pod płaszczykiem non-profit, zaczęli organizować turnusy wypoczynkowe z cennikiem darowizn zamiast paragonów.
           </p>
+
+          <div className="mt-8 flex items-start gap-4 bg-red-50 p-4 border border-red-100 rounded text-sm text-stone-700">
+             <AlertCircle className="w-5 h-5 text-red-800 shrink-0 mt-0.5" />
+             <div>
+               <strong>Nowe śledztwo:</strong> 6 maja 2024 roku Prokuratura Okręgowa w Częstochowie wszczęła śledztwo (3013-1.Ds.15.2024). Nie dotyczy ono wyłącznie udziału Kicińskiego w ayahuaskowym biznesie, ale przede wszystkim ma na celu wyjaśnienie tajemniczych okoliczności śmierci Ilony Lewandowskiej.
+             </div>
+          </div>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Bliźniaczy ośrodek i drugi miliarder</h2>
 
@@ -410,32 +420,10 @@ export default function Home() {
           <p>
             Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
           </p>
-
-          <div className="mt-8 flex items-start gap-4 bg-red-50 p-4 border border-red-100 rounded text-sm text-stone-700">
-             <AlertCircle className="w-5 h-5 text-red-800 shrink-0 mt-0.5" />
-             <div>
-               <strong>Nowe śledztwo:</strong> 6 maja 2024 roku Prokuratura Okręgowa w Częstochowie wszczęła śledztwo (3013-1.Ds.15.2024). Nie dotyczy ono wyłącznie udziału Kicińskiego w ayahuaskowym biznesie, ale przede wszystkim ma na celu wyjaśnienie tajemniczych okoliczności śmierci Ilony Lewandowskiej.
-             </div>
-          </div>
-
-        </div>
-
-        {/* PROFIL DETEKTYWA (SUBTELNA WERSJA) */}
-        <div className="mt-16 mb-12 flex flex-col items-center justify-center gap-2 font-sans text-stone-500 text-sm border-t border-stone-200 pt-8 max-w-lg mx-auto">
-          <div className="flex items-center gap-2 mb-1">
-            <User className="w-4 h-4" />
-            <span className="font-bold text-stone-900 uppercase tracking-wider">Detektyw Polutek</span>
-            <span className="text-stone-400">|</span>
-            <span>Dziennikarz Śledczy</span>
-          </div>
-          <a href="mailto:detektyw.polutek@protonmail.com" className="flex items-center gap-2 hover:text-blue-700 transition-colors">
-            <Mail className="w-3 h-3" />
-            detektyw.polutek@protonmail.com
-          </a>
         </div>
 
         {/* STOPKA ŹRÓDŁOWA */}
-        <footer className="mt-12 pt-12 border-t-2 border-stone-200 font-sans">
+        <footer className="mt-24 pt-12 border-t-2 border-stone-200 font-sans">
           <h3 className="text-xl font-bold text-stone-900 mb-8 uppercase tracking-widest flex items-center gap-2">
             <Search className="w-5 h-5" /> Dokumenty Źródłowe
           </h3>
@@ -468,13 +456,31 @@ export default function Home() {
             <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
               <h4 className="font-bold text-stone-900 mb-1">Archiwum: tribunydek.com</h4>
               <p className="mb-2">Zrzuty strony ośrodka w Nýdku (2016-2021). <br/> <span className="text-stone-400 text-xs uppercase">Instrukcja:</span> Wejdź na archive.org i wpisz &quot;tribunydek.com&quot;</p>
-              <a href="https://web.archive.org/web/20190116171944/http://tribunydek.com/" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline font-bold flex items-center gap-2">
+              <a href="https://web.archive.org/web/*/tribunydek.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline font-bold flex items-center gap-2">
                 <Globe className="w-3 h-3" /> Zobacz w Wayback Machine
               </a>
             </div>
           </div>
         </footer>
       </article>
+
+      {/* STOPKA AUTORSKA (WIZYTÓWKA DETEKTYWA - NA DOLE) */}
+      <div className="bg-stone-100 border-t border-stone-200 py-12 mt-auto">
+        <div className="max-w-lg mx-auto text-center px-4">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 bg-white rounded-full shadow-sm border border-stone-200">
+              <User className="w-6 h-6 text-stone-700" />
+            </div>
+          </div>
+          <h3 className="font-serif text-lg font-bold text-stone-900 mb-1">Detektyw Polutek</h3>
+          <p className="font-sans text-xs uppercase tracking-widest text-stone-500 mb-6">Dziennikarz Śledczy &bull; Niezależne Media</p>
+          <a href="mailto:detektyw.polutek@protonmail.com" className="inline-flex items-center gap-2 text-stone-600 hover:text-stone-900 transition-colors text-sm hover:underline">
+            <Mail className="w-4 h-4" />
+            detektyw.polutek@protonmail.com
+          </a>
+        </div>
+      </div>
+
     </main>
   );
 }
