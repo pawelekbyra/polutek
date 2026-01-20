@@ -50,28 +50,31 @@ export default function Home() {
     <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
       
       {/* HEADER */}
-      <header className="pt-20 pb-12 px-4 border-b border-stone-200">
+      <header className="pt-20 pb-8 px-4">
         <div className="max-w-4xl mx-auto text-center">
           
-          <div className="inline-block mb-6 px-3 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase">
-            Śledztwo Dziennikarskie
-          </div>
-
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8 text-stone-900">
-            Dwa światy Wiedźmina <br/>
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6 text-stone-900">
+            Dwa światy Wiedźmina: <br/>
             <span className="text-stone-500 italic font-medium text-3xl md:text-5xl block mt-4">
               Mroczna tajemnica ayahuaski i milionerów z CD Projekt
             </span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic max-w-2xl mx-auto py-4">
-            W cieniu głośnego procesu &bdquo;szamanów&rdquo; z polskiego establishmentu, dziennikarskie śledztwo ujawnia sieć powiązań prowadzącą do twórców globalnego hitu – gry &bdquo;Wiedźmin&rdquo;.
-          </p>
+          <div className="inline-block mb-10 px-4 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-stone-800">
+            Śledztwo Dziennikarskie
+          </div>
+
+          {/* LEAD Z KRESKAMI GÓRA/DÓŁ (BEZ PEŁNEJ SZEROKOŚCI) */}
+          <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
+            <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
+              W cieniu głośnego procesu &bdquo;szamanów&rdquo; z polskiego establishmentu, dziennikarskie śledztwo ujawnia sieć powiązań prowadzącą do twórców globalnego hitu – gry &bdquo;Wiedźmin&rdquo;.
+            </p>
+          </div>
         </div>
       </header>
 
       {/* ARTYKUŁ */}
-      <article className="max-w-2xl mx-auto px-4 py-12 flex-grow">
+      <article className="max-w-2xl mx-auto px-4 py-8 flex-grow">
         
         <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-a:text-blue-800 hover:prose-a:text-blue-900 prose-blockquote:not-italic">
           
@@ -144,7 +147,7 @@ export default function Home() {
           </p>
 
           <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" type="transcript">
-            &bdquo;oskarżony J. K. omawia z B., że dotarła do niego informacja, że w obiekcie w Janovie  <span className="bg-red-100 text-red-900 font-bold px-1">zmarła jakaś kobieta</span>&rdquo;.
+            &bdquo;oskarżony J. K. omawia z B., że dotarła do niego informacja, że w obiekcie w Janovie miała <span className="bg-red-100 text-red-900 font-bold px-1">zmarła jakaś kobieta</span>&rdquo;.
           </CaseFile>
 
           <p>
