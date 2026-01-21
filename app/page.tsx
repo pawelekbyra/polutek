@@ -105,8 +105,8 @@ const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boo
                </div>
                
                <div className="flex-1 mx-3 h-8 bg-[#2a2a2a] rounded flex items-center justify-center overflow-hidden relative">
-                  <div className="absolute w-[120%] h-[1px] bg-stone-600 rotate-12 top-1/2"></div>
-                  <span className="text-[9px] font-mono text-stone-500 z-10 bg-[#2a2a2a] px-1">SIDE A</span>
+                 <div className="absolute w-[120%] h-[1px] bg-stone-600 rotate-12 top-1/2"></div>
+                 <span className="text-[9px] font-mono text-stone-500 z-10 bg-[#2a2a2a] px-1">SIDE A</span>
                </div>
 
                <div className="w-8 h-8 rounded-full border-2 border-stone-600 bg-[#111] flex items-center justify-center">
@@ -405,7 +405,7 @@ export default function Home() {
           </p>
 
           <CaseFile title="Wypowiedź K. Stefanka">
-            „Ostatecznie <span className="bg-emerald-100 border-b border-emerald-500 px-1">23 października 2023</span> roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w <span className="bg-emerald-100 border-b border-emerald-500 px-1">darowiźnie</span>&quot;
+            „Ostatecznie <span className="bg-yellow-200/50 border-b border-yellow-500 px-1 text-stone-900">23 października 2023</span> roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w <span className="bg-yellow-200/50 border-b border-yellow-500 px-1 text-stone-900">darowiźnie</span>"
           </CaseFile>
 
           <p>
@@ -455,7 +455,7 @@ export default function Home() {
           </p>
 
           <p>
-            Ostatecznie strategia okazała się skuteczna. Autor zawiadomienia wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w „stowarzyszeniu” (Natury Zew). Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, „czystej” osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
+            Ostatecznie strategia okazała się skuteczna. Autor zawiadomienia wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w <strong>„Stowarzyszeniu Natury Zew”</strong>. Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, „czystej” osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
           </p>
 
           <p>
