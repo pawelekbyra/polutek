@@ -378,7 +378,7 @@ export default function Home() {
           </p>
 
           <p>
-            Na tym jednak historia (na szczęście) się nie kończy. Choć nagrania wskazują, że Stefan prosił o wsparcie, ostatecznie po przejęciu nieruchomości zakazał autorowi zawiadomienia wstępu. Autor zawiadomienia był niezadowolony, bo &bdquo;zadośćuczynienie wszechświatowi&rdquo; miało trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli organizować turnusy wypoczynkowe z cennikiem darowizn zamiast paragonów.
+            Na tym jednak historia (na szczęście) się nie kończy. Choć zachowane nagranie wskazuje, że Stefanek zabiegał u autora zawiadomienia o pośrednictwo w uzyskaniu wsparcia od Kicińskiego, to po przejęciu nieruchomości nie tylko nigdy mu nie podziękował, a wręcz – widząc w nim osobę mającą tendencję do głośnego mówienia prawdy – kategorycznie zakazał mu wstępu. Autor zawiadomienia nie był zadowolony, bo &bdquo;zadośćuczynienie wszechświatowi&rdquo; miało trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli organizować turnusy wypoczynkowe z cennikiem darowizn zamiast paragonów.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Bliźniaczy ośrodek i drugi miliarder</h2>
