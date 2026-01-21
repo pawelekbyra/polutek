@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { Scale, FileText, Search, AlertCircle, User, Mail, MapPin, Calendar, Globe, CassetteTape, X } from 'lucide-react';
+import PasswordProtect from './components/PasswordProtect';
 
 // --- KOMPONENTY STYLU "NAJS" (LEKKI, ORYGINALNY) ---
 
@@ -138,10 +139,11 @@ export default function Home() {
   const [isAudioOpen, setIsAudioOpen] = useState(false);
 
   return (
-    <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
-      
-      {/* HEADER */}
-      <header className="pt-20 pb-8 px-4">
+    <PasswordProtect>
+      <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
+
+        {/* HEADER */}
+        <header className="pt-20 pb-8 px-4">
         <div className="max-w-4xl mx-auto text-center">
           
           <div className="inline-block mb-6 px-3 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase">
@@ -589,5 +591,6 @@ export default function Home() {
         src="/evidence/stefan-nagranie.mp3"
       />
     </main>
+    </PasswordProtect>
   );
 }
