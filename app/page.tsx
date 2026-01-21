@@ -43,7 +43,7 @@ const EvidenceVideo = ({ src, title, caption }: { src: string, title: string, ca
   </figure>
 );
 
-// NOWY, LŻEJSZY KOMPONENT CYTATU
+// LEKKI KOMPONENT CYTATU (PULL QUOTE)
 const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
   <div className="my-10 pl-6 border-l-[3px] border-stone-800/80">
     <p className="font-serif text-xl md:text-2xl italic text-stone-900 leading-relaxed mb-3">
@@ -269,11 +269,14 @@ export default function Home() {
             Będąc tak blisko Badowskiego, doskonale znali mroczne kulisy śmierci Ilony. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się jedynie o &bdquo;ciągłość dostaw&rdquo;, dowodzi, że w pełni akceptowali reguły zmowy milczenia.
           </p>
 
+          {/* NOWY NAGŁÓWEK */}
+          <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Kiciński</h2>
+
           <p>
             W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika z Janova. Michał Kiciński to nie jest postać, która o ayahuasce jedynie &bdquo;słyszała&rdquo; – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla &bdquo;Focusa&rdquo;, &bdquo;Newsweeka&rdquo;) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu &bdquo;medycyna&rdquo;, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera &bdquo;nową rzeczywistość&rdquo;.
           </p>
 
-          {/* NOWY LŻEJSZY KOMPONENT CYTATU - TERAZ TUTAJ */}
+          {/* PULL QUOTE */}
           <PullQuote 
             quote="Po ayahuasce jest szansa na to, żeby sobie nie ściemniać."
             author="Michał Kiciński"
