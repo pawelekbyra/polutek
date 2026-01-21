@@ -298,7 +298,7 @@ export default function Home() {
           </CaseFile>
 
           <p>
-            Do przesłuchania doszło 11 października 2023 rokuo godzinie 15:00  w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjął linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
+            Do przesłuchania doszło 11 października 2023 roku o godzinie 15:00  w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjął linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
           </p>
 
           <CaseFile title="Zeznanie do protokołu">
@@ -324,7 +324,7 @@ export default function Home() {
           </p>
 
           <CaseFile title="Wypowiedź K. Stefanka">
-            &bdquo;Ostatecznie <span className="bg-yellow-100 border-b border-yellow-400 px-1">23 października 2023</span> roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie&quot;
+            &bdquo;Ostatecznie <span className="bg-yellow-100 border-b border-yellow-400 px-1">23 października 2023</span> roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w <span className="bg-yellow-100 border-b border-yellow-400 px-1">darowiźnie</span>&quot;
           </CaseFile>
 
           <p>
