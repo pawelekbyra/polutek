@@ -405,7 +405,7 @@ export default function Home() {
           </p>
 
           <CaseFile title="Wypowiedź K. Stefanka">
-            „Ostatecznie <span className="bg-yellow-200/50 border-b border-yellow-500 px-1 text-stone-900">23 października 2023</span> roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w <span className="bg-yellow-200/50 border-b border-yellow-500 px-1 text-stone-900">darowiźnie</span>"
+            „Ostatecznie <span className="bg-yellow-200/50 border-b border-yellow-500 px-1 text-stone-900">23 października 2023</span> roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w <span className="bg-yellow-200/50 border-b border-yellow-500 px-1 text-stone-900">darowiźnie</span>&quot;
           </CaseFile>
 
           <p>
