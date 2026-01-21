@@ -453,11 +453,11 @@ export default function Home() {
           </p>
 
           <p>
-            Ostatecznie strategia okazała się skuteczna. Niezadowolony wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w „stowarzyszeniu” (Natury Zew). Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, „czystej” osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
+            Ostatecznie strategia okazała się skuteczna. Niezadowolony Klient wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w „stowarzyszeniu” (Natury Zew). Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, „czystej” osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
           </p>
 
           <p>
-            Na tym jednak historia (na szczęście) się nie kończy. Choć zachowane <button onClick={() => setIsAudioOpen(true)} className="inline-flex items-center align-baseline gap-1 font-sans text-lg text-red-900 hover:text-red-700 bg-red-50 hover:bg-red-100 px-1 rounded cursor-pointer transition-colors border-b-2 border-red-200">nagranie<CassetteTape className="w-4 h-4 mt-0.5" /></button> wskazuje, że Stefanek osobiście zabiegał u Niezadowolonego o pośrednictwo w uzyskaniu wsparcia od Kicińskiego, to po przejęciu nieruchomości nie tylko nigdy mu za nie nie podziękował, a wręcz – widząc w nim osobę mającą tendencję do głośnego mówienia prawdy – kategorycznie zakazał mu wstępu. Niezadowolony nie był więc zadowolony, bo „zadośćuczynienie wszechświatowi” miało trafić na hospicjum, a nie na „organizację krzak”. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli żyć z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów.
+            Na tym jednak historia (na szczęście) się nie kończy.  Niezadowolony Klient nie był  zadowolony, bo „zadośćuczynienie wszechświatowi” miało trafić na hospicjum, a nie na „organizację krzak”. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli żyć z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Bliźniaczy ośrodek i drugi miliarder</h2>
