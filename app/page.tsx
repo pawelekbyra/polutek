@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState } from 'react';
 import { Scale, FileText, Search, AlertCircle, User, Mail, MapPin, Calendar, Globe, CassetteTape, X } from 'lucide-react';
@@ -335,7 +336,7 @@ export default function Home() {
           </p>
 
           <p>
-            Reakcja miliardera na zainteresowanie organów ścigania była błyskawiczna. Zwrócił się bezpośrednio do autora zawiadomienia, wysyłając mu wiadomość mailową z propozycją swoistej pokuty. Zamiast wyjaśnień prokuratorskich, zaoferował przelew na cel charytatywny, nazywając lata nielegalnego procederu młodzieńczą naiwnością.
+            Reakcja miliardera na zainteresowanie organów ścigania była błyskawiczna. Zwrócił się bezpośrednio do Niezadowolonego klienta – autora zawiadomienia – wysyłając mu wiadomość mailową z propozycją swoistej pokuty. Zamiast wyjaśnień prokuratorskich zaoferował przelew na cel charytatywny, nazywając lata nielegalnego procederu młodzieńczą naiwnością.
           </p>
 
           <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email">
@@ -419,11 +420,11 @@ export default function Home() {
           </p>
 
           <p>
-            Ostatecznie strategia okazała się skuteczna. Autor zawiadomienia wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &bdquo;stowarzyszeniu&rdquo; (Natury Zew). Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, &bdquo;czystej&rdquo; osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
+            Ostatecznie strategia okazała się skuteczna. Niezadowolony wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &bdquo;stowarzyszeniu&rdquo; (Natury Zew). Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, &bdquo;czystej&rdquo; osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
           </p>
 
           <p>
-            Na tym jednak historia (na szczęście) się nie kończy. Choć zachowane <button onClick={() => setIsAudioOpen(true)} className="inline-flex items-center gap-1.5 font-sans font-bold text-sm bg-red-50 text-red-900/90 hover:bg-red-100 px-2 py-0.5 border-b-2 border-red-200/80 hover:border-red-300 rounded-sm cursor-pointer transition-colors"><CassetteTape className="w-4 h-4" />nagranie</button> wskazuje, że Stefanek osobiście zabiegał u autora zawiadomienia o pośrednictwo w uzyskaniu wsparcia od Kicińskiego, to po przejęciu nieruchomości nie tylko nigdy mu za nie nie podziękował, a wręcz – widząc w nim osobę mającą tendencję do głośnego mówienia prawdy – kategorycznie zakazał mu wstępu. Autor zawiadomienia nie był zadowolony, bo &bdquo;zadośćuczynienie wszechświatowi&rdquo; miało trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli żyć z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów.
+            Na tym jednak historia (na szczęście) się nie kończy. Choć zachowane <button onClick={() => setIsAudioOpen(true)} className="inline-flex items-center gap-1.5 font-sans font-bold text-sm bg-red-50 text-red-900/90 hover:bg-red-100 px-2 py-0.5 border-b-2 border-red-200/80 hover:border-red-300 rounded-sm cursor-pointer transition-colors"><CassetteTape className="w-4 h-4" />nagranie</button> wskazuje, że Stefanek osobiście zabiegał u Niezadowolonego  o pośrednictwo w uzyskaniu wsparcia od Kicińskiego, to po przejęciu nieruchomości nie tylko nigdy mu za nie nie podziękował, a wręcz – widząc w nim osobę mającą tendencję do głośnego mówienia prawdy – kategorycznie zakazał mu wstępu. Niezadowolony nie był więc zadowolony, bo &bdquo;zadośćuczynienie wszechświatowi&rdquo; miało trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli żyć z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Bliźniaczy ośrodek i drugi miliarder</h2>
