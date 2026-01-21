@@ -1,5 +1,6 @@
-import React from 'react';
-import { Scale, FileText, Search, AlertCircle, User, Mail, MapPin, Calendar, Globe } from 'lucide-react';
+"use client";
+import React, { useState } from 'react';
+import { Scale, FileText, Search, AlertCircle, User, Mail, MapPin, Calendar, Globe, CassetteTape, X } from 'lucide-react';
 
 // --- KOMPONENTY STYLU "NAJS" (LEKKI, ORYGINALNY) ---
 
@@ -55,9 +56,53 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
   </div>
 );
 
+const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boolean, onClose: () => void }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div
+      onClick={onClose}
+      className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-opacity duration-300"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="bg-stone-100 border-2 border-stone-400/50 shadow-2xl rounded-sm w-full max-w-md relative font-mono animate-fade-in"
+      >
+        <div className="bg-stone-800 text-stone-100 p-3 flex items-center justify-between text-xs uppercase tracking-widest">
+          <span>Dowód Rzeczowy #A-23</span>
+          <button onClick={onClose} className="text-stone-400 hover:text-white transition-colors">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <div className="p-8">
+          <div className="text-center mb-6">
+            <h3 className="font-bold text-stone-900 text-lg">Nagranie Głosowe</h3>
+            <p className="text-sm text-stone-500">Odtajnione zeznanie: K. Stefanek</p>
+          </div>
+
+          <audio controls className="w-full rounded-none">
+            <source src={src} type="audio/mpeg" />
+            Twoja przeglądarka nie obsługuje elementu audio.
+          </audio>
+        </div>
+
+        <div className="bg-stone-200/80 border-t border-stone-300/80 px-4 py-2 text-right">
+           <button onClick={onClose} className="text-xs font-sans bg-stone-700 text-white px-4 py-2 rounded-sm hover:bg-stone-900 transition-colors">
+            Zamknij
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
 // --- GŁÓWNY KOMPONENT ---
 
 export default function Home() {
+  const [isAudioOpen, setIsAudioOpen] = useState(false);
+
   return (
     <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
       
@@ -378,7 +423,7 @@ export default function Home() {
           </p>
 
           <p>
-            Na tym jednak historia (na szczęście) się nie kończy. Choć zachowane nagranie wskazuje, że Stefanek osobiście zabiegał u autora zawiadomienia o pośrednictwo w uzyskaniu wsparcia od Kicińskiego, to po przejęciu nieruchomości nie tylko nigdy mu za nie nie podziękował, a wręcz – widząc w nim osobę mającą tendencję do głośnego mówienia prawdy – kategorycznie zakazał mu wstępu. Autor zawiadomienia nie był zadowolony, bo &bdquo;zadośćuczynienie wszechświatowi&rdquo; miało trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli żyć z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów.
+            Na tym jednak historia (na szczęście) się nie kończy. Choć zachowane <button onClick={() => setIsAudioOpen(true)} className="inline-flex items-center gap-1.5 font-sans font-bold text-sm bg-red-50 text-red-900/90 hover:bg-red-100 px-2 py-0.5 border-b-2 border-red-200/80 hover:border-red-300 rounded-sm cursor-pointer transition-colors"><CassetteTape className="w-4 h-4" />nagranie</button> wskazuje, że Stefanek osobiście zabiegał u autora zawiadomienia o pośrednictwo w uzyskaniu wsparcia od Kicińskiego, to po przejęciu nieruchomości nie tylko nigdy mu za nie nie podziękował, a wręcz – widząc w nim osobę mającą tendencję do głośnego mówienia prawdy – kategorycznie zakazał mu wstępu. Autor zawiadomienia nie był zadowolony, bo &bdquo;zadośćuczynienie wszechświatowi&rdquo; miało trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli żyć z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Bliźniaczy ośrodek i drugi miliarder</h2>
@@ -507,6 +552,11 @@ export default function Home() {
         </div>
       </div>
 
+      <EvidenceAudioModal
+        isOpen={isAudioOpen}
+        onClose={() => setIsAudioOpen(false)}
+        src="/evidence/stefan-nagranie.mp3"
+      />
     </main>
   );
 }
