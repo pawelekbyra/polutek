@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, ArrowDown, ScrollText, Stamp } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, ArrowDown, ScrollText, Stamp, Map, Hash, Compass } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 
 // --- KOMPONENTY STYLU "NAJS" (LEKKI, ORYGINALNY) ---
@@ -57,27 +57,56 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
   </div>
 );
 
-// NOWE KOMPONENTY DO DANYCH TECHNICZNYCH
-const LocationDataBlock = () => (
-  <div className="flex flex-col items-center my-8 group cursor-default">
-    <div className="mb-2 text-stone-300 group-hover:text-stone-500 transition-colors animate-bounce">
-       <ArrowDown className="w-4 h-4" />
-    </div>
-    <div className="bg-[#F5F5F4] border border-stone-300 px-6 py-3 rounded-sm shadow-sm flex flex-col md:flex-row gap-x-6 gap-y-2 text-xs font-mono text-stone-700 items-center select-all">
-      <div className="flex items-center gap-2">
-        <MapPin className="w-3 h-3 text-stone-400" />
-        <span className="font-bold text-stone-500 uppercase tracking-wider">Obręb:</span>
-        <span>Janov u Krnova [656976]</span>
+// --- NOWY, ULEPSZONY KOMPONENT LOKALIZACJI (PropertyDossier) ---
+const PropertyDossier = ({ locationName, regionCode, plotNumber, lvNumber }: { locationName: string, regionCode: string, plotNumber: string, lvNumber: string }) => (
+  <div className="my-10 relative group max-w-lg mx-auto transform hover:scale-[1.01] transition-transform duration-300">
+    {/* Dekoracyjne "szpilki" */}
+    <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-4 bg-yellow-100/50 -rotate-1 z-0 border border-stone-200/50"></div>
+    
+    <div className="relative bg-white border border-stone-300 shadow-[4px_4px_0px_0px_rgba(28,25,23,0.1)] z-10">
+      {/* Nagłówek Karty */}
+      <div className="bg-[#1c1917] text-stone-200 px-4 py-3 flex justify-between items-center">
+        <div className="flex items-center gap-2">
+           <MapPin className="w-4 h-4 text-red-500" />
+           <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase">{locationName}</span>
+        </div>
+        <Compass className="w-4 h-4 text-stone-600 animate-[spin_10s_linear_infinite]" />
       </div>
-      <div className="hidden md:block w-px h-3 bg-stone-300"></div>
-      <div className="flex items-center gap-2">
-         <span className="font-bold text-stone-500 uppercase tracking-wider">Działka:</span>
-         <span>st. 281</span>
+
+      {/* Grid Danych */}
+      <div className="p-5 grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs bg-[url('https://www.transparenttextures.com/patterns/graphy.png')]">
+        
+        <div className="flex flex-col border-b md:border-b-0 md:border-r border-stone-200 pb-2 md:pb-0 md:pr-2">
+          <span className="text-[9px] uppercase text-stone-400 font-bold tracking-wider mb-1 flex items-center gap-1">
+            <Globe className="w-3 h-3" /> Kataster (Obręb)
+          </span>
+          <span className="text-stone-800 font-bold">{regionCode}</span>
+        </div>
+
+        <div className="flex flex-col border-b md:border-b-0 md:border-r border-stone-200 pb-2 md:pb-0 md:pr-2 md:pl-2">
+          <span className="text-[9px] uppercase text-stone-400 font-bold tracking-wider mb-1 flex items-center gap-1">
+            <Map className="w-3 h-3" /> Nr Działki
+          </span>
+          <span className="text-stone-800 font-bold bg-yellow-100/50 inline-block px-1 w-fit">{plotNumber}</span>
+        </div>
+
+        <div className="flex flex-col md:pl-2">
+          <span className="text-[9px] uppercase text-stone-400 font-bold tracking-wider mb-1 flex items-center gap-1">
+            <FileText className="w-3 h-3" /> Arkusz (LV)
+          </span>
+          <span className="text-stone-800 font-bold">{lvNumber}</span>
+        </div>
+      
       </div>
-      <div className="hidden md:block w-px h-3 bg-stone-300"></div>
-      <div className="flex items-center gap-2">
-         <span className="font-bold text-stone-500 uppercase tracking-wider">Arkusz (LV):</span>
-         <span>127</span>
+
+      {/* Stopka Karty - Dekoracyjna */}
+      <div className="border-t border-stone-200 bg-stone-50 px-4 py-2 flex justify-between items-center">
+        <span className="text-[8px] font-mono text-stone-400">SOURCE: ČÚZK (CZECH STATE ADMINISTRATION)</span>
+        <div className="flex gap-1">
+          <div className="w-2 h-2 rounded-full bg-stone-300"></div>
+          <div className="w-2 h-2 rounded-full bg-stone-300"></div>
+          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -263,8 +292,13 @@ export default function Home() {
             W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać działkę w Janovie i za niewielką opłatą pobrać jej pełną historię.
           </p>
           
-          {/* NOWY BLOK LOKALIZACJI */}
-          <LocationDataBlock />
+          {/* NOWY BLOK LOKALIZACJI: JANOV */}
+          <PropertyDossier 
+            locationName="Janov u Krnova"
+            regionCode="656976"
+            plotNumber="st. 281"
+            lvNumber="127"
+          />
 
           <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
             Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli Bartosz Badowski (1/10) oraz Michał Dawid Kiciński (9/10).
@@ -388,7 +422,7 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cisza po burzy i nowy porządek</h2>
 
           <p>
-            Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej <strong>Krzysztof Stefanek</strong> i <strong>Magdalena Drzewińska</strong>. Ich obecność u boku &apos;Badiego&apos; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnego nalotu, pozostali lojalni wobec byłego szamana.
+            Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej <strong>Krzysztof Stefanek</strong> i <strong>Magdalena Drzewińska</strong>. Ich obecność u boku 'Badiego' w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnego nalotu, pozostali lojalni wobec byłego szamana.
           </p>
 
           <p>
@@ -517,6 +551,14 @@ export default function Home() {
             Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości Nýdek, funkcjonował kolejny, bliźniaczy ośrodek.
           </p>
 
+          {/* NOWY BLOK LOKALIZACJI: NÝDEK (Dodany na prośbę) */}
+          <PropertyDossier 
+            locationName="Nýdek"
+            regionCode="708186"
+            plotNumber="st. 506/1"
+            lvNumber="832"
+          />
+
           <p>
             Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów, prowadzone przez <strong>Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu „Wayback Machine” zachowało zrzuty strony <em>tribunydek.com</em>. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
           </p>
@@ -526,7 +568,7 @@ export default function Home() {
           </p>
 
           <p>
-            Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej &apos;szamańskiej świątyni&apos; – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, <strong>Marcin Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder w latach 2016-2021.
+            Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej 'szamańskiej świątyni' – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, <strong>Marcin Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder w latach 2016-2021.
           </p>
 
           <p>
