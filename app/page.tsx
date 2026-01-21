@@ -320,7 +320,7 @@ export default function Home() {
           </p>
 
           <p>
-            <strong>Stefanek</strong> wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt &bdquo;znalazł się w jednych rękach&rdquo;. Kluczowy moment tej opowieści <strong>Stefanek</strong> datuje z niezwykłą precyzją:
+            Stefanek wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt &bdquo;znalazł się w jednych rękach&rdquo;. Kluczowy moment tej opowieści Stefanek datuje z niezwykłą precyzją:
           </p>
 
           <CaseFile title="Wypowiedź K. Stefanka">
@@ -328,7 +328,7 @@ export default function Home() {
           </CaseFile>
 
           <p>
-            <strong>Stefanek</strong> przedstawia to jako efekt &bdquo;researchu&rdquo; darczyńcy, który rzekomo urzekł się wizją działalności non-profit.
+            Stefanek przedstawia to jako efekt &bdquo;researchu&rdquo; darczyńcy, który rzekomo urzekł się wizją działalności non-profit.
           </p>
 
           {/* WIDEO 2: Opowieść Stefanka */}
@@ -374,7 +374,7 @@ export default function Home() {
           </p>
 
           <p>
-            Ostatecznie strategia okazała się skuteczna. Autor zawiadomienia wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &bdquo;stowarzyszeniu&rdquo; (Natury Zew). Kiciński pozostał anonimowym &quot;filantropem&quot;, a <strong>Stefanek</strong> – opiekunem nowej, &bdquo;czystej&rdquo; osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
+            Ostatecznie strategia okazała się skuteczna. Autor zawiadomienia wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &bdquo;stowarzyszeniu&rdquo; (Natury Zew). Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, &bdquo;czystej&rdquo; osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
           </p>
 
           <p>
@@ -396,7 +396,7 @@ export default function Home() {
           </p>
 
           <p>
-            Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej &apos;szamańskiej świątyni&apos; – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, Marcin <strong>Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder w latach 2016-2021.
+            Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej &apos;szamańskiej świątyni&apos; – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, <strong>Marcin Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder w latach 2016-2021.
           </p>
 
           <p>
@@ -416,7 +416,7 @@ export default function Home() {
             <li className="flex items-start gap-3">
               <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
               <div>
-                <strong>15 czerwca 2021 r.</strong> – Marcin <strong>Iwiński</strong> sprzedaje nieruchomości w Nýdku.
+                <strong>15 czerwca 2021 r.</strong> – <strong>Marcin Iwiński</strong> sprzedaje nieruchomości w Nýdku.
               </div>
             </li>
           </ul>
