@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, AlertCircle, User, Mail, MapPin, Calendar, Globe, CassetteTape, X } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, ArrowDown, ScrollText, Stamp } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 
 // --- KOMPONENTY STYLU "NAJS" (LEKKI, ORYGINALNY) ---
@@ -57,7 +57,49 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
   </div>
 );
 
-// --- NOWY STYL MODALA ---
+// NOWE KOMPONENTY DO DANYCH TECHNICZNYCH
+const LocationDataBlock = () => (
+  <div className="flex flex-col items-center my-8 group cursor-default">
+    <div className="mb-2 text-stone-300 group-hover:text-stone-500 transition-colors animate-bounce">
+       <ArrowDown className="w-4 h-4" />
+    </div>
+    <div className="bg-[#F5F5F4] border border-stone-300 px-6 py-3 rounded-sm shadow-sm flex flex-col md:flex-row gap-x-6 gap-y-2 text-xs font-mono text-stone-700 items-center select-all">
+      <div className="flex items-center gap-2">
+        <MapPin className="w-3 h-3 text-stone-400" />
+        <span className="font-bold text-stone-500 uppercase tracking-wider">Obręb:</span>
+        <span>Janov u Krnova [656976]</span>
+      </div>
+      <div className="hidden md:block w-px h-3 bg-stone-300"></div>
+      <div className="flex items-center gap-2">
+         <span className="font-bold text-stone-500 uppercase tracking-wider">Działka:</span>
+         <span>st. 281</span>
+      </div>
+      <div className="hidden md:block w-px h-3 bg-stone-300"></div>
+      <div className="flex items-center gap-2">
+         <span className="font-bold text-stone-500 uppercase tracking-wider">Arkusz (LV):</span>
+         <span>127</span>
+      </div>
+    </div>
+  </div>
+);
+
+const TransactionStamp = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
+  <div className="my-8 flex justify-start">
+    <div className="relative border border-stone-300 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)]">
+       <div className="bg-stone-100 h-full p-3 flex items-center justify-center border-r border-stone-200 border-dashed">
+          <Stamp className="w-5 h-5 text-stone-400" />
+       </div>
+       <div className="py-2">
+          <div className="text-[9px] uppercase tracking-[0.2em] text-stone-400 font-bold mb-1">{label}</div>
+          <div className="font-mono text-base font-bold text-stone-800">{value}</div>
+          {subDetails && <div className="text-[10px] text-stone-500 font-mono mt-1">{subDetails}</div>}
+       </div>
+    </div>
+  </div>
+);
+
+
+// --- STYL MODALA ---
 const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boolean, onClose: () => void }) => {
   if (!isOpen) return null;
 
@@ -184,7 +226,7 @@ export default function Home() {
           </p>
 
           <p>
-            W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa (sygn. 30 T 5/2021) pojawia się postać świadka Bartosza B. Zgodnie z aktami:
+            W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa (sygn. <strong>30 T 5/2021</strong>) pojawia się postać świadka Bartosza B. Zgodnie z aktami:
           </p>
 
           <CaseFile title="Zeznania świadka B.">
@@ -218,8 +260,11 @@ export default function Home() {
           </CaseFile>
 
           <p>
-            W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać działkę w Janovie i za niewielką opłatą pobrać jej pełną historię (obręb: Janov u Krnova [656976], działka nr st. 281, numer arkusza własności: LV 127).
+            W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać działkę w Janovie i za niewielką opłatą pobrać jej pełną historię.
           </p>
+          
+          {/* NOWY BLOK LOKALIZACJI */}
+          <LocationDataBlock />
 
           <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
             Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli Bartosz Badowski (1/10) oraz Michał Dawid Kiciński (9/10).
@@ -325,7 +370,7 @@ export default function Home() {
           </p>
 
           <p>
-            Na mocy wyroku (66 T 146/2021-323) z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”. Sąd ustalił, że:
+            Na mocy wyroku (<strong>66 T 146/2021-323</strong>) z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”. Sąd ustalił, że:
           </p>
 
           <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
@@ -507,8 +552,15 @@ export default function Home() {
           </ul>
 
           <p>
-            Nabywcą luksusowej posiadłości nie został inny inwestor, lecz sam <strong>Piotr Bonawentura Tracz</strong> – ten sam człowiek, który wcześniej pełnił tam rolę „szamana”. (numer sprawy w katastrze: V-2937/2021-832, obręb: Nýdek [708186]).
+            Nabywcą luksusowej posiadłości nie został inny inwestor, lecz sam <strong>Piotr Bonawentura Tracz</strong> – ten sam człowiek, który wcześniej pełnił tam rolę „szamana”.
           </p>
+
+          {/* NOWY BLOK TRANSAKCJI NYDEK */}
+          <TransactionStamp 
+            label="Nr Transakcji (Katastr)" 
+            value="V-2937/2021-832" 
+            subDetails="Obręb: Nýdek [708186]"
+          />
 
           <p>
             Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z „darowizną” Kicińskiego w Janovie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
@@ -534,7 +586,7 @@ export default function Home() {
           
           <div className="grid gap-4 text-sm text-stone-600">
             <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
-              <h4 className="font-bold text-stone-900 mb-1">Wyrok Bartosza B. (Sygn. 66 T 146/2021)</h4>
+              <h4 className="font-bold text-stone-900 mb-1">Wyrok Bartosza B. (Sygn. <strong>66 T 146/2021</strong>)</h4>
               <p className="mb-2">Sąd Rejonowy w Bruntalu.</p>
               <a href="https://infosoud.justice.cz/InfoSoud/file/29Si25_2022/1" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline font-bold flex items-center gap-2">
                 <FileText className="w-3 h-3" /> Pobierz PDF
@@ -542,7 +594,7 @@ export default function Home() {
             </div>
 
             <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
-              <h4 className="font-bold text-stone-900 mb-1">Sprawa karna Jarosława Kordysa (Sygn. 30 T 5/2020)</h4>
+              <h4 className="font-bold text-stone-900 mb-1">Sprawa karna Jarosława Kordysa (Sygn. <strong>30 T 5/2020</strong>)</h4>
               <p className="mb-2">Sąd Wojewódzki w Ostrawie.</p>
               <a href="https://infosoud.justice.cz/InfoSoud/public/search.jsp" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline font-bold flex items-center gap-2">
                 <Search className="w-3 h-3" /> Sprawdź w Rejestrze InfoSoud
