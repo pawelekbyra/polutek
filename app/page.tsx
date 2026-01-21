@@ -282,7 +282,7 @@ export default function Home() {
           </CaseFile>
 
           <p>
-            Podczas policyjnej interwencji zidentyfikowano tam „15 obywateli Polski”, którzy mieli brać udział w ceremonii. Wśród nich, stali bywalcy i bliscy znajomi Badowskiego – <strong>Krzysztof Stefanek</strong> i <strong>Lena Drzewińska</strong>, których obecność w momencie wkroczenia służb ma znaczenie w kontekście późniejszej ich roli w tej historii.
+            Podczas policyjnej interwencji zidentyfikowano tam 15 obywateli Polski, którzy mieli brać udział w ceremonii. Wśród nich, stali bywalcy i bliscy znajomi Badowskiego – <strong>Krzysztof Stefanek</strong> i <strong>Lena Drzewińska</strong>, których obecność w momencie wkroczenia służb ma znaczenie w kontekście późniejszej ich roli w tej historii.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cena wolności i zdrady</h2>
@@ -369,7 +369,7 @@ export default function Home() {
           </p>
 
           <p>
-            Reakcja miliardera na zainteresowanie organów ścigania była błyskawiczna. Zwrócił się bezpośrednio do Niezadowolonego Klienta – autora zawiadomienia – wysyłając mu wiadomość mailową z propozycją swoistej pokuty. Zamiast wyjaśnień prokuratorskich zaoferował przelew na cel charytatywny, nazywając lata nielegalnego procederu młodzieńczą naiwnością.
+            Reakcja miliardera na zainteresowanie organów ścigania była błyskawiczna. Zwrócił się bezpośrednio do  autora zawiadomienia – wysyłając mu wiadomość mailową z propozycją swoistej pokuty. Zamiast wyjaśnień prokuratorskich zaoferował przelew na cel charytatywny, nazywając lata nielegalnego procederu młodzieńczą naiwnością.
           </p>
 
           <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email">
@@ -453,7 +453,7 @@ export default function Home() {
           </p>
 
           <p>
-            Ostatecznie strategia okazała się skuteczna. Niezadowolony Klient wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w „stowarzyszeniu” (Natury Zew). Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, „czystej” osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
+            Ostatecznie strategia okazała się skuteczna. Autor zawiadomienia wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w „stowarzyszeniu” (Natury Zew). Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, „czystej” osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
           </p>
 
           <p>
