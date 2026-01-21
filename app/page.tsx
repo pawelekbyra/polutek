@@ -457,7 +457,7 @@ export default function Home() {
           </p>
 
           <p>
-            Na tym jednak historia (na szczęście) się nie kończy.  Niezadowolony Klient nie był  zadowolony, bo „zadośćuczynienie wszechświatowi” miało trafić na hospicjum, a nie na „organizację krzak”. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli żyć z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów.
+            Na tym jednak historia (na szczęście) się nie kończy.  Autor wycofanego zawiadomienia nie był  zadowolony, bo „zadośćuczynienie wszechświatowi” miało trafić na hospicjum, a nie na „organizację krzak”. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli żyć z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów.
           </p>
 
           <div className="my-8 p-6 border border-stone-300 bg-[#F5F5F4] rounded-sm text-stone-900">
@@ -578,7 +578,7 @@ export default function Home() {
           <p className="font-sans text-xs uppercase tracking-widest text-stone-500 mb-6">Dziennikarz Śledczy &bull; Niezależne Media</p>
           <a href="mailto:detektyw.polutek@protonmail.com" className="inline-flex items-center gap-2 text-stone-600 hover:text-stone-900 transition-colors text-sm hover:underline">
             <Mail className="w-4 h-4" />
-            detektyw.polutek@protonmail.com
+            pawelpolutek@protonmail.com
           </a>
         </div>
       </div>
