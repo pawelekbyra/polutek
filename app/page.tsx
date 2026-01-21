@@ -341,7 +341,7 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cisza po burzy i nowy porządek</h2>
 
           <p>
-            Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej <strong>Krzysztof Stefanek</strong> i <strong>Magdalena Drzewińska</strong>. Ich obecność u boku 'Badiego' w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnego nalotu, pozostali lojalni wobec byłego szamana.
+            Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej <strong>Krzysztof Stefanek</strong> i <strong>Magdalena Drzewińska</strong>. Ich obecność u boku &apos;Badiego&apos; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnego nalotu, pozostali lojalni wobec byłego szamana.
           </p>
 
           <p>
@@ -461,7 +461,7 @@ export default function Home() {
           </p>
 
           <div className="my-8 p-6 border border-stone-300 bg-[#F5F5F4] rounded-sm text-stone-900">
-             6 maja 2024 roku Prokuratura Okręgowa w Częstochowie wszczęła śledztwo (3013-1.Ds.15.2024). Nie dotyczy ono wyłącznie udziału Michała Kicińskiego w ayahuaskowym biznesie i kwestii zastanawiającej darowizny, ale przede wszystkim ma na celu wyjaśnienie tajemniczych okoliczności śmierci Ilony Lewandowskiej.
+             6 maja 2024 roku Prokuratura Okręgowa w Częstochowie wszczęła śledztwo (3013-1.Ds.15.2024). Nie dotyczy ono wyłącznie udziału Michała Kicińskiego w ayahuaskowym biznesie i kwesti zastanawiającej darowizny, ale przede wszystkim ma na celu wyjaśnienie tajemniczych okoliczności śmierci Ilony Lewandowskiej.
           </div>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Bliźniaczy ośrodek i drugi miliarder</h2>
@@ -479,7 +479,7 @@ export default function Home() {
           </p>
 
           <p>
-            Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej 'szamańskiej świątyni' – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, <strong>Marcin Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder w latach 2016-2021.
+            Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej &apos;szamańskiej świątyni&apos; – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, <strong>Marcin Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder w latach 2016-2021.
           </p>
 
           <p>
@@ -557,7 +557,7 @@ export default function Home() {
 
             <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
               <h4 className="font-bold text-stone-900 mb-1">Archiwum: tribunydek.com</h4>
-              <p className="mb-2">Zrzuty strony ośrodka w Nýdku (2016-2021). <br/> <span className="text-stone-400 text-xs uppercase">Instrukcja:</span> Wejdź na archive.org i wpisz "tribunydek.com"</p>
+              <p className="mb-2">Zrzuty strony ośrodka w Nýdku (2016-2021). <br/> <span className="text-stone-400 text-xs uppercase">Instrukcja:</span> Wejdź na archive.org i wpisz &quot;tribunydek.com&quot;</p>
               <a href="https://web.archive.org/web/*/tribunydek.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline font-bold flex items-center gap-2">
                 <Globe className="w-3 h-3" /> Zobacz w Wayback Machine
               </a>
