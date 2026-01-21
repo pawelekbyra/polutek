@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState } from 'react';
 import { Scale, FileText, Search, AlertCircle, User, Mail, MapPin, Calendar, Globe, CassetteTape, X } from 'lucide-react';
@@ -63,34 +62,41 @@ const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boo
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-opacity duration-300"
+      className="fixed inset-0 bg-stone-900/80 backdrop-blur-sm flex items-center justify-center z-[100] p-4 transition-all duration-300"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-stone-100 border-2 border-stone-400/50 shadow-2xl rounded-sm w-full max-w-md relative font-mono animate-fade-in"
+        className="bg-[#Fdfbf7] border border-stone-400 shadow-2xl rounded-sm w-full max-w-md relative font-mono animate-[fadeIn_0.3s_ease-out]"
       >
-        <div className="bg-stone-800 text-stone-100 p-3 flex items-center justify-between text-xs uppercase tracking-widest">
-          <span>Dowód Rzeczowy #A-23</span>
-          <button onClick={onClose} className="text-stone-400 hover:text-white transition-colors">
+        {/* Header Modala - Styl Akt */}
+        <div className="bg-stone-200 border-b border-stone-300 p-3 flex items-center justify-between text-xs uppercase tracking-widest text-stone-600">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+            <span>Dowód Rzeczowy #A-23</span>
+          </div>
+          <button onClick={onClose} className="hover:text-red-600 transition-colors">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         <div className="p-8">
-          <div className="text-center mb-6">
-            <h3 className="font-bold text-stone-900 text-lg">Nagranie Głosowe</h3>
-            <p className="text-sm text-stone-500">Odtajnione zeznanie: K. Stefanek</p>
+          <div className="text-center mb-8">
+            <div className="inline-block p-4 bg-stone-100 rounded-full mb-4 border border-stone-200">
+               <CassetteTape className="w-8 h-8 text-stone-700" />
+            </div>
+            <h3 className="font-bold text-stone-900 text-lg mb-1">Nagranie Głosowe</h3>
+            <p className="text-xs uppercase tracking-wider text-stone-500">Sygnatura: K. Stefanek / 2023</p>
           </div>
 
-          <audio controls className="w-full rounded-none">
+          <audio controls className="w-full h-10 accent-stone-700">
             <source src={src} type="audio/mpeg" />
             Twoja przeglądarka nie obsługuje elementu audio.
           </audio>
         </div>
 
-        <div className="bg-stone-200/80 border-t border-stone-300/80 px-4 py-2 text-right">
-           <button onClick={onClose} className="text-xs font-sans bg-stone-700 text-white px-4 py-2 rounded-sm hover:bg-stone-900 transition-colors">
-            Zamknij
+        <div className="bg-stone-100 border-t border-stone-200 px-4 py-3 text-right">
+           <button onClick={onClose} className="text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-stone-900 transition-colors px-4 py-2">
+            Zamknij Dowód
           </button>
         </div>
       </div>
@@ -370,7 +376,7 @@ export default function Home() {
           </p>
 
           <CaseFile title="Wypowiedź K. Stefanka">
-            &bdquo;Ostatecznie <span className="bg-yellow-100 border-b border-yellow-400 px-1">23 października 2023</span> roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w <span className="bg-yellow-100 border-b border-yellow-400 px-1">darowiźnie</span>&quot;
+            &bdquo;Ostatecznie <span className="bg-emerald-100 border-b border-emerald-500 px-1">23 października 2023</span> roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w <span className="bg-emerald-100 border-b border-emerald-500 px-1">darowiźnie</span>&quot;
           </CaseFile>
 
           <p>
@@ -424,7 +430,7 @@ export default function Home() {
           </p>
 
           <p>
-            Na tym jednak historia (na szczęście) się nie kończy. Choć zachowane <button onClick={() => setIsAudioOpen(true)} className="inline-flex items-center gap-1.5 font-sans font-bold text-sm bg-red-50 text-red-900/90 hover:bg-red-100 px-2 py-0.5 border-b-2 border-red-200/80 hover:border-red-300 rounded-sm cursor-pointer transition-colors"><CassetteTape className="w-4 h-4" />nagranie</button> wskazuje, że Stefanek osobiście zabiegał u Niezadowolonego  o pośrednictwo w uzyskaniu wsparcia od Kicińskiego, to po przejęciu nieruchomości nie tylko nigdy mu za nie nie podziękował, a wręcz – widząc w nim osobę mającą tendencję do głośnego mówienia prawdy – kategorycznie zakazał mu wstępu. Niezadowolony nie był więc zadowolony, bo &bdquo;zadośćuczynienie wszechświatowi&rdquo; miało trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli żyć z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów.
+            Na tym jednak historia (na szczęście) się nie kończy. Choć zachowane <button onClick={() => setIsAudioOpen(true)} className="inline-flex items-center align-baseline gap-1 font-sans font-bold text-lg text-red-900 hover:text-red-700 bg-red-50 hover:bg-red-100 px-1 rounded cursor-pointer transition-colors border-b-2 border-red-200">nagranie<CassetteTape className="w-4 h-4 mt-0.5" /></button> wskazuje, że Stefanek osobiście zabiegał u Niezadowolonego o pośrednictwo w uzyskaniu wsparcia od Kicińskiego, to po przejęciu nieruchomości nie tylko nigdy mu za nie nie podziękował, a wręcz – widząc w nim osobę mającą tendencję do głośnego mówienia prawdy – kategorycznie zakazał mu wstępu. Niezadowolony nie był więc zadowolony, bo &bdquo;zadośćuczynienie wszechświatowi&rdquo; miało trafić na hospicjum, a nie na &bdquo;organizację krzak&rdquo;. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli żyć z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Bliźniaczy ośrodek i drugi miliarder</h2>
@@ -553,9 +559,9 @@ export default function Home() {
         </div>
       </div>
 
-      <EvidenceAudioModal
-        isOpen={isAudioOpen}
-        onClose={() => setIsAudioOpen(false)}
+      <EvidenceAudioModal 
+        isOpen={isAudioOpen} 
+        onClose={() => setIsAudioOpen(false)} 
         src="/evidence/stefan-nagranie.mp3"
       />
     </main>
