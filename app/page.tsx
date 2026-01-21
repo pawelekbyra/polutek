@@ -1,5 +1,5 @@
 import React from 'react';
-import { Scale, FileText, Search, AlertCircle, User, Mail, MapPin, Calendar, Globe, Quote } from 'lucide-react';
+import { Scale, FileText, Search, AlertCircle, User, Mail, MapPin, Calendar, Globe } from 'lucide-react';
 
 // --- KOMPONENTY STYLU "NAJS" (LEKKI, ORYGINALNY) ---
 
@@ -43,20 +43,14 @@ const EvidenceVideo = ({ src, title, caption }: { src: string, title: string, ca
   </figure>
 );
 
-const PressClipping = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
-  <div className="my-12 mx-auto max-w-xl relative">
-    <div className="absolute -top-4 -left-4 text-stone-200">
-      <Quote className="w-12 h-12 transform -scale-x-100 opacity-50" />
-    </div>
-    <div className="relative z-10 bg-stone-50 p-8 border-l-4 border-stone-800 shadow-sm">
-      <p className="font-serif text-2xl md:text-3xl italic text-stone-800 mb-6 leading-tight">
-        „{quote}”
-      </p>
-      <div className="flex items-center gap-3 border-t border-stone-200 pt-4 font-sans text-xs tracking-widest uppercase text-stone-500">
-        <span className="font-bold text-stone-900">{author}</span>
-        <span className="w-1 h-1 bg-stone-400 rounded-full"></span>
-        <span>{source}</span>
-      </div>
+// NOWY, LŻEJSZY KOMPONENT CYTATU
+const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
+  <div className="my-10 pl-6 border-l-[3px] border-stone-800/80">
+    <p className="font-serif text-xl md:text-2xl italic text-stone-900 leading-relaxed mb-3">
+      „{quote}”
+    </p>
+    <div className="font-sans text-[10px] uppercase tracking-widest text-stone-500">
+      — <span className="font-bold text-stone-800">{author}</span>, {source}
     </div>
   </div>
 );
@@ -276,19 +270,15 @@ export default function Home() {
           </p>
 
           <p>
-            W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika z Janova. Michał Kiciński to nie jest postać, która o ayahuasce jedynie &bdquo;słyszała&rdquo; – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla &bdquo;Focusa&rdquo;, &bdquo;Newsweeka&rdquo;) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików.
+            W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika z Janova. Michał Kiciński to nie jest postać, która o ayahuasce jedynie &bdquo;słyszała&rdquo; – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla &bdquo;Focusa&rdquo;, &bdquo;Newsweeka&rdquo;) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu &bdquo;medycyna&rdquo;, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera &bdquo;nową rzeczywistość&rdquo;.
           </p>
 
-          {/* NOWY MODUŁ Z CYTATEM */}
-          <PressClipping 
+          {/* NOWY LŻEJSZY KOMPONENT CYTATU - TERAZ TUTAJ */}
+          <PullQuote 
             quote="Po ayahuasce jest szansa na to, żeby sobie nie ściemniać."
             author="Michał Kiciński"
             source="Newsweek, 30 maja 2016 r."
           />
-
-          <p>
-             Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu &bdquo;medycyna&rdquo;, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera &bdquo;nową rzeczywistość&rdquo;.
-          </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Wezwanie na policję i &quot;zadośćuczynienie&quot;</h2>
 
