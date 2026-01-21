@@ -324,7 +324,7 @@ export default function Home() {
           </p>
 
           <CaseFile title="Wypowiedź K. Stefanka">
-            &bdquo;Ostatecznie <span className="bg-emerald-100 border-b border-emerald-500 px-1">23 października 2023</span> roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w <span className="bg-emerald-100 border-b border-emerald-500 px-1">darowiźnie</span>&quot;
+            &bdquo;Ostatecznie <span className="bg-yellow-100 border-b border-yellow-400 px-1">23 października 2023</span> roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w <span className="bg-yellow-100 border-b border-yellow-400 px-1">darowiźnie</span>&quot;
           </CaseFile>
 
           <p>
