@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, ArrowDown, ScrollText, Stamp, Map, Hash, Compass } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 
 // --- KOMPONENTY STYLU "NAJS" (LEKKI, ORYGINALNY) ---
@@ -57,58 +57,36 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
   </div>
 );
 
-// --- NOWY, ULEPSZONY KOMPONENT LOKALIZACJI (PropertyDossier) ---
-const PropertyDossier = ({ locationName, regionCode, plotNumber, lvNumber }: { locationName: string, regionCode: string, plotNumber: string, lvNumber: string }) => (
-  <div className="my-10 relative group max-w-lg mx-auto transform hover:scale-[1.01] transition-transform duration-300">
-    {/* Dekoracyjne "szpilki" */}
-    <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-4 bg-yellow-100/50 -rotate-1 z-0 border border-stone-200/50"></div>
-    
-    <div className="relative bg-white border border-stone-300 shadow-[4px_4px_0px_0px_rgba(28,25,23,0.1)] z-10">
-      {/* Nagłówek Karty */}
-      <div className="bg-[#1c1917] text-stone-200 px-4 py-3 flex justify-between items-center">
-        <div className="flex items-center gap-2">
-           <MapPin className="w-4 h-4 text-red-500" />
-           <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase">{locationName}</span>
+// --- PASEK LOKALIZACJI (LocationStrip) ---
+const LocationStrip = ({ name, code, plot, lv }: { name: string, code: string, plot: string, lv: string }) => (
+  <div className="w-full border-y border-stone-300 bg-stone-50/50 py-2 my-10 flex flex-col md:flex-row items-center justify-between gap-y-2 gap-x-4 px-1 md:px-2 font-mono text-[10px] md:text-xs text-stone-600 tracking-tight select-all cursor-default hover:bg-stone-100 transition-colors">
+     
+     {/* LEWA STRONA: Nazwa z akcentem */}
+     <div className="flex items-center gap-3 w-full md:w-auto">
+        <div className="flex h-2 w-2 relative shrink-0">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
         </div>
-        <Compass className="w-4 h-4 text-stone-600 animate-[spin_10s_linear_infinite]" />
-      </div>
+        <span className="font-bold text-stone-900 uppercase tracking-widest">{name}</span>
+     </div>
 
-      {/* Grid Danych */}
-      <div className="p-5 grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs bg-[url('https://www.transparenttextures.com/patterns/graphy.png')]">
-        
-        <div className="flex flex-col border-b md:border-b-0 md:border-r border-stone-200 pb-2 md:pb-0 md:pr-2">
-          <span className="text-[9px] uppercase text-stone-400 font-bold tracking-wider mb-1 flex items-center gap-1">
-            <Globe className="w-3 h-3" /> Kataster (Obręb)
-          </span>
-          <span className="text-stone-800 font-bold">{regionCode}</span>
-        </div>
-
-        <div className="flex flex-col border-b md:border-b-0 md:border-r border-stone-200 pb-2 md:pb-0 md:pr-2 md:pl-2">
-          <span className="text-[9px] uppercase text-stone-400 font-bold tracking-wider mb-1 flex items-center gap-1">
-            <Map className="w-3 h-3" /> Nr Działki
-          </span>
-          <span className="text-stone-800 font-bold bg-yellow-100/50 inline-block px-1 w-fit">{plotNumber}</span>
-        </div>
-
-        <div className="flex flex-col md:pl-2">
-          <span className="text-[9px] uppercase text-stone-400 font-bold tracking-wider mb-1 flex items-center gap-1">
-            <FileText className="w-3 h-3" /> Arkusz (LV)
-          </span>
-          <span className="text-stone-800 font-bold">{lvNumber}</span>
-        </div>
-      
-      </div>
-
-      {/* Stopka Karty - Dekoracyjna */}
-      <div className="border-t border-stone-200 bg-stone-50 px-4 py-2 flex justify-between items-center">
-        <span className="text-[8px] font-mono text-stone-400">SOURCE: ČÚZK (CZECH STATE ADMINISTRATION)</span>
-        <div className="flex gap-1">
-          <div className="w-2 h-2 rounded-full bg-stone-300"></div>
-          <div className="w-2 h-2 rounded-full bg-stone-300"></div>
-          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-        </div>
-      </div>
-    </div>
+     {/* PRAWY STRONA: Dane techniczne w jednej linii */}
+     <div className="flex items-center justify-between md:justify-end gap-4 w-full md:w-auto border-t md:border-t-0 border-stone-200 pt-1 md:pt-0">
+        <span className="flex gap-1.5">
+           <span className="text-stone-400 uppercase hidden sm:inline">Obręb:</span>
+           <span className="font-medium text-stone-800">{code}</span>
+        </span>
+        <span className="text-stone-300 hidden md:inline">|</span>
+        <span className="flex gap-1.5">
+           <span className="text-stone-400 uppercase hidden sm:inline">Działka:</span>
+           <span className="font-medium text-stone-800">{plot}</span>
+        </span>
+         <span className="text-stone-300 hidden md:inline">|</span>
+         <span className="flex gap-1.5">
+           <span className="text-stone-400 uppercase hidden sm:inline">LV:</span>
+           <span className="font-medium text-stone-800">{lv}</span>
+        </span>
+     </div>
   </div>
 );
 
@@ -292,12 +270,12 @@ export default function Home() {
             W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać działkę w Janovie i za niewielką opłatą pobrać jej pełną historię.
           </p>
           
-          {/* NOWY BLOK LOKALIZACJI: JANOV */}
-          <PropertyDossier 
-            locationName="Janov u Krnova"
-            regionCode="656976"
-            plotNumber="st. 281"
-            lvNumber="127"
+          {/* PASEK LOKALIZACJI: JANOV */}
+          <LocationStrip 
+            name="JANOV U KRNOVA" 
+            code="656976" 
+            plot="st. 281" 
+            lv="127" 
           />
 
           <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
@@ -533,6 +511,13 @@ export default function Home() {
             Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong>Krzysztof Stefanek</strong>, który w filmie mówi o „odwróconej logice” i pięknie wolontariatu, i jego konkubina <strong>Magdalena Drzewińska</strong> w rzeczywistości doskonale znali mroczną historię Janova i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
           </p>
 
+          {/* NOWY BLOK TRANSAKCJI JANOV */}
+          <TransactionStamp 
+            label="Nr Transakcji (Katastr)" 
+            value="V-5821/2023-127" 
+            subDetails="Obręb: Janov u Krnova [656976]"
+          />
+
           <p>
             Ostatecznie strategia okazała się skuteczna. Autor zawiadomienia wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w <strong>„Stowarzyszeniu Natury Zew”</strong>. Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, „czystej” osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
           </p>
@@ -551,12 +536,12 @@ export default function Home() {
             Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości Nýdek, funkcjonował kolejny, bliźniaczy ośrodek.
           </p>
 
-          {/* NOWY BLOK LOKALIZACJI: NÝDEK (Dodany na prośbę) */}
-          <PropertyDossier 
-            locationName="Nýdek"
-            regionCode="708186"
-            plotNumber="st. 506/1"
-            lvNumber="832"
+          {/* PASEK LOKALIZACJI: NÝDEK */}
+          <LocationStrip 
+            name="NÝDEK" 
+            code="708186" 
+            plot="st. 506/1" 
+            lv="832" 
           />
 
           <p>
