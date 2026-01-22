@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
+import { VerdictModal } from '@/components/verdict/VerdictModal';
+import { VerdictTrigger } from '@/components/verdict/VerdictTrigger';
 
 // --- KOMPONENTY STYLU "NAJS" (LEKKI, ORYGINALNY) ---
 
@@ -187,6 +189,18 @@ const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boo
 
 export default function Home() {
   const [isAudioOpen, setIsAudioOpen] = useState(false);
+  const [isVerdictOpen, setIsVerdictOpen] = useState(false);
+
+  const verdictData = {
+    title: "Wyrok Bartosza B.",
+    signature: "Sygn. 66 T 146/2021",
+    pdfUrl: "/wyrok.pdf",
+    images: [
+      "/wyrok_page-0001.jpg",
+      "/wyrok_page-0002.jpg",
+      "/wyrok_page-0003.jpg",
+    ],
+  };
 
   return (
     <PasswordProtect>
@@ -383,7 +397,7 @@ export default function Home() {
           </p>
 
           <p>
-            Na mocy wyroku (66 T 146/2021-323) z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”. Sąd ustalił, że:
+            Na mocy wyroku <VerdictTrigger onClick={() => setIsVerdictOpen(true)} signature={verdictData.signature} /> z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”. Sąd ustalił, że:
           </p>
 
           <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
@@ -669,6 +683,15 @@ export default function Home() {
         isOpen={isAudioOpen} 
         onClose={() => setIsAudioOpen(false)} 
         src="/evidence/stefan-nagranie.mp3"
+      />
+
+      <VerdictModal
+        isOpen={isVerdictOpen}
+        onClose={() => setIsVerdictOpen(false)}
+        title={verdictData.title}
+        signature={verdictData.signature}
+        pdfUrl={verdictData.pdfUrl}
+        images={verdictData.images}
       />
     </main>
     </PasswordProtect>
