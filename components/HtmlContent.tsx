@@ -39,44 +39,60 @@ const HtmlContent: React.FC<HtmlContentProps> = ({
   }, [data.htmlContent]);
 
   const parsedContent = useMemo(() => {
-    let nydekReplaced = false;
+    const replacements = [
+      {
+        find: verdictData.signature,
+        replace: (key: number, text: string) => (
+          <SignatureTrigger
+            key={key}
+            onClick={() => openModal(verdictData)}
+            signature={text}
+          />
+        ),
+      },
+      {
+        find: /blizniaczy osrodek|bliźniaczy ośrodek/gi,
+        replace: (key: number, text: string) => (
+          <GalleryTrigger
+            key={key}
+            onClick={() => openModal(nydekGalleryData)}
+            label={text}
+          />
+        ),
+      },
+    ];
+
     const options: HTMLReactParserOptions = {
       replace: (domNode) => {
         if (domNode.type === 'text') {
           const text = (domNode as any).data;
+          let segments: (string | JSX.Element)[] = [text];
 
-          if (text.includes('[[VERDICT_TRIGGER]]')) {
-            const parts = text.split('[[VERDICT_TRIGGER]]');
-            return (
-              <>
-                {parts.map((part: string, index: number) => (
-                  <React.Fragment key={index}>
-                    {part}
-                    {index < parts.length - 1 && (
-                      <SignatureTrigger
-                        onClick={() => openModal(verdictData)}
-                        signature={verdictData.signature as string}
-                      />
-                    )}
-                  </React.Fragment>
-                ))}
-              </>
-            );
-          }
+          replacements.forEach(({ find, replace }) => {
+            if (!find) return;
 
-          if (!nydekReplaced && text.includes('blizniaczy osrodek')) {
-            nydekReplaced = true;
-            const parts = text.split('blizniaczy osrodek');
-            return (
-              <>
-                {parts[0]}
-                <GalleryTrigger
-                  onClick={() => openModal(nydekGalleryData)}
-                  label="blizniaczy osrodek"
-                />
-                {parts.slice(1).join('blizniaczy osrodek')}
-              </>
-            );
+            let newSegments: (string | JSX.Element)[] = [];
+            segments.forEach((segment) => {
+              if (typeof segment === 'string') {
+                const parts = segment.split(find);
+                const matches = segment.match(find);
+
+                parts.forEach((part, index) => {
+                  newSegments.push(part);
+                  if (index < parts.length - 1) {
+                    const match = matches ? matches[index] : '';
+                    newSegments.push(replace(index, match));
+                  }
+                });
+              } else {
+                newSegments.push(segment);
+              }
+            });
+            segments = newSegments;
+          });
+
+          if (segments.length > 1 || (segments.length === 1 && segments[0] !== text)) {
+            return <>{segments.map((s, i) => <React.Fragment key={i}>{s}</React.Fragment>)}</>;
           }
         }
       },
