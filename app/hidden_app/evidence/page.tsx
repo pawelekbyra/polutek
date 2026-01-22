@@ -30,14 +30,14 @@ export default function EvidencePage() {
       </p>
       <blockquote className="border-l-4 border-yellow-500 pl-4 my-4 italic text-stone-300">
           <p>
-            „(...) budynek rodzinny w miejscowości Janov (...), który jest częściowo
+            &bdquo;(...) budynek rodzinny w miejscowości Janov (...), który jest częściowo
             użytkowany do stałego zamieszkania, a częściowo jako komercyjny
-            obiekt noclegowy”
+            obiekt noclegowy&rdquo;
           </p>
           <br />
           <p>
-            "Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem
-            jednej dziesiątej nieruchomości"
+            &quot;Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem
+            jednej dziesiątej nieruchomości&quot;
           </p>
         </blockquote>
 
