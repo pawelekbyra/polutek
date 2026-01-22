@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Download } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 
 // --- KOMPONENTY STYLU "NAJS" (LEKKI, ORYGINALNY) ---
@@ -90,17 +90,31 @@ const LocationStrip = ({ name, code, plot, lv }: { name: string, code: string, p
   </div>
 );
 
+// --- NOWY KOMPONENT TRANSAKCJI Z POBIERANIEM ---
 const TransactionStamp = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
   <div className="my-8 flex justify-start">
-    <div className="relative border border-stone-300 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)]">
+    <div className="relative border border-stone-300 bg-white p-1 rounded-sm flex items-center shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] hover:shadow-[3px_3px_0px_0px_rgba(231,229,228,1)] transition-shadow">
+       
+       {/* Ikona pieczątki */}
        <div className="bg-stone-100 h-full p-3 flex items-center justify-center border-r border-stone-200 border-dashed">
           <Stamp className="w-5 h-5 text-stone-400" />
        </div>
-       <div className="py-2">
+
+       {/* Dane transakcji */}
+       <div className="py-2 px-4 flex-grow">
           <div className="text-[9px] uppercase tracking-[0.2em] text-stone-400 font-bold mb-1">{label}</div>
           <div className="font-mono text-base font-bold text-stone-800">{value}</div>
           {subDetails && <div className="text-[10px] text-stone-500 font-mono mt-1">{subDetails}</div>}
        </div>
+
+       {/* Separator */}
+       <div className="h-8 w-px bg-stone-200 mx-2"></div>
+
+       {/* Przycisk Pobierania */}
+       <a href="#" className="flex flex-col items-center justify-center px-4 py-1 group hover:bg-stone-50 transition-colors rounded-sm cursor-pointer" title="Pobierz dokument źródłowy (PDF)">
+          <Download className="w-4 h-4 text-stone-400 mb-1 group-hover:text-blue-700 group-hover:scale-110 transition-all" />
+          <span className="text-[8px] font-sans font-bold uppercase tracking-widest text-stone-400 group-hover:text-blue-800">Pobierz</span>
+       </a>
     </div>
   </div>
 );
