@@ -2,12 +2,12 @@
 
 import { ScanText } from "lucide-react";
 
-type VerdictTriggerProps = {
+type SignatureTriggerProps = {
   onClick: () => void;
   signature: string;
 };
 
-export const VerdictTrigger = ({ onClick, signature }: VerdictTriggerProps) => {
+export const SignatureTrigger = ({ onClick, signature }: SignatureTriggerProps) => {
   return (
     <button
       onClick={onClick}

@@ -49,6 +49,7 @@
     "emoji-picker-react": "^4.15.2",
     "framer-motion": "^11.18.2",
     "hls.js": "^1.5.14",
+    "html-react-parser": "^5.2.11",
     "jose": "^6.1.0",
     "jsdom": "^26.1.0",
     "lucide-react": "^0.395.0",
