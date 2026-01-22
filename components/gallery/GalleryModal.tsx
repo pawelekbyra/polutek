@@ -4,32 +4,33 @@ import { X, Download, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { GalleryData } from "@/lib/evidence-data";
 
-type VerdictModalProps = {
+type GalleryModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  title: string;
-  signature: string;
-  pdfUrl: string;
-  images: string[];
+  data: GalleryData | null;
 };
 
-export const VerdictModal = ({
+export const GalleryModal = ({
   isOpen,
   onClose,
-  title,
-  signature,
-  pdfUrl,
-  images,
-}: VerdictModalProps) => {
+  data,
+}: GalleryModalProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextImage = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    if (data) {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % data.images.length);
+    }
   };
 
   const prevImage = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    if (data) {
+      setCurrentIndex(
+        (prevIndex) => (prevIndex - 1 + data.images.length) % data.images.length
+      );
+    }
   };
 
   useEffect(() => {
@@ -41,6 +42,8 @@ export const VerdictModal = ({
     }
     return () => document.body.classList.remove("noscroll");
   }, [isOpen]);
+
+  if (!data) return null;
 
   return (
     <AnimatePresence>
@@ -62,8 +65,12 @@ export const VerdictModal = ({
           >
             <header className="flex items-center justify-between p-4 border-b border-stone-800">
               <div>
-                <h2 className="text-lg font-semibold text-white">{title}</h2>
-                <p className="text-sm font-mono text-yellow-300">{signature}</p>
+                <h2 className="text-lg font-semibold text-white">{data.title}</h2>
+                {data.signature && (
+                  <p className="text-sm font-mono text-yellow-300">
+                    {data.signature}
+                  </p>
+                )}
               </div>
               <button
                 onClick={onClose}
@@ -83,8 +90,8 @@ export const VerdictModal = ({
                   className="relative w-full h-full"
                 >
                   <Image
-                    src={images[currentIndex]}
-                    alt={`Verdict page ${currentIndex + 1}`}
+                    src={data.images[currentIndex]}
+                    alt={`Page ${currentIndex + 1}`}
                     fill
                     style={{ objectFit: 'contain' }}
                     unoptimized
@@ -92,7 +99,7 @@ export const VerdictModal = ({
                 </motion.div>
               </AnimatePresence>
 
-              {images.length > 1 && (
+              {data.images.length > 1 && (
                 <>
                   <button
                     onClick={prevImage}
@@ -111,22 +118,24 @@ export const VerdictModal = ({
             </div>
             <footer className="flex items-center justify-between p-4 border-t border-stone-800">
               <div>
-                {images.length > 0 && (
+                {data.images.length > 0 && (
                   <span className="text-sm text-stone-400">
-                    Page {currentIndex + 1} of {images.length}
+                    Page {currentIndex + 1} of {data.images.length}
                   </span>
                 )}
               </div>
-              <a
-                href={pdfUrl}
-                download
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold bg-yellow-600 text-black rounded-md hover:bg-yellow-500 transition-colors"
-              >
-                <Download className="w-4 h-4" />
-                <span>Download Original PDF</span>
-              </a>
+              {data.pdfUrl && (
+                <a
+                  href={data.pdfUrl}
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold bg-yellow-600 text-black rounded-md hover:bg-yellow-500 transition-colors"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Download Original PDF</span>
+                </a>
+              )}
             </footer>
           </motion.div>
         </motion.div>
