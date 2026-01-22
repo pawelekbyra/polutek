@@ -11,21 +11,29 @@ const PasswordProtect: FC<PasswordProtectProps> = ({ children }) => {
   const [password, setPassword] = useState("");
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [error, setError] = useState(false);
+  const [message, setMessage] = useState("");
 
-  const correctPassword = "pukpukktotamhipopotam";
+  const oldPassword = "pukpukktotamhipopotam";
+  const newPassword = "ichtroje";
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
     setError(false);
+    setMessage("");
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (password === correctPassword) {
+    if (password === newPassword) {
       setIsUnlocked(true);
       setError(false);
+      setMessage("");
+    } else if (password === oldPassword) {
+      setError(false);
+      setMessage("Zmienilem haslo. Zapytaj mnie o nowe haslo");
     } else {
       setError(true);
+      setMessage("");
     }
   };
 
@@ -34,31 +42,32 @@ const PasswordProtect: FC<PasswordProtectProps> = ({ children }) => {
   }
 
   return (
-    <div className="bg-stone-950 text-stone-300 min-h-screen flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-stone-900 rounded-lg shadow-2xl shadow-stone-950/50 p-8 border border-stone-800">
-        <div className="text-center mb-6">
-          <Lock size={48} className="mx-auto text-stone-500" />
-          <h1 className="text-2xl font-serif mt-4 text-stone-200">Dostęp Zastrzeżony</h1>
-          <p className="text-stone-400 mt-2">Wymagana autoryzacja w celu uzyskania dostępu do akt sprawy.</p>
+    <div className="bg-gray-100 text-gray-800 min-h-screen flex items-center justify-center p-4 font-serif">
+      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+        <div className="text-center mb-8">
+          <Lock size={48} className="mx-auto text-gray-400" />
+          <h1 className="text-3xl font-serif mt-4 text-gray-900">Dostęp Zastrzeżony</h1>
+          <p className="text-gray-500 mt-2">Wymagana autoryzacja w celu uzyskania dostępu.</p>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="relative">
-            <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-500" />
+            <KeyRound className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="password"
               value={password}
               onChange={handlePasswordChange}
               placeholder="Wprowadź hasło..."
               className={
-                "w-full bg-stone-800 border border-stone-700 rounded-md py-3 pl-12 pr-4 text-stone-200 placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-600 focus:border-transparent transition-all" +
-                (error ? " ring-2 ring-red-500/50" : "")
+                "w-full bg-gray-50 border border-gray-300 rounded-lg py-3 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all" +
+                (error ? " ring-2 ring-red-500/50 border-red-500/50" : "")
               }
             />
           </div>
-          {error && <p className="text-red-500 text-sm mt-2 text-center">Nieprawidłowe hasło. Spróbuj ponownie.</p>}
+          {error && <p className="text-red-600 text-sm mt-3 text-center">Nieprawidłowe hasło. Spróbuj ponownie.</p>}
+          {message && <p className="text-blue-600 text-sm mt-3 text-center">{message}</p>}
           <button
             type="submit"
-            className="w-full bg-stone-700 hover:bg-stone-600 text-stone-200 font-bold py-3 px-4 rounded-md mt-6 transition-colors duration-300"
+            className="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg mt-6 transition-colors duration-300 shadow-md hover:shadow-lg"
           >
             Odblokuj Dostęp
           </button>
