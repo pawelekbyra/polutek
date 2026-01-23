@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
-// ZMIANA: Używamy aliasu @/ aby wskazać na folder components w głównym katalogu, a nie w app/
+// Import komponentu galerii
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 
-// Definicja typu danych galerii (zgodna z oczekiwaniami GalleryModal)
+// Definicja typu danych galerii
 type GalleryData = {
   title: string;
   images: string[];
@@ -13,7 +13,8 @@ type GalleryData = {
   pdfUrl?: string;
 };
 
-// DANE DO GALERII
+// --- DANE DO GALERII ---
+
 const GALLERY_NYDEK: GalleryData = {
   title: "Posiadłość w Nýdku (Archiwum)",
   images: [
@@ -23,19 +24,32 @@ const GALLERY_NYDEK: GalleryData = {
   signature: "LV 832"
 };
 
-const GALLERY_WYROK: GalleryData = {
-  title: "Wyrok Sądu (Uzasadnienie)",
+// Wyrok Kordysa (30 T 5/2021)
+const GALLERY_WYROK_KORDYS: GalleryData = {
+  title: "Uzasadnienie wyroku: Jarosław K.",
   images: [
     "/wyrok_page-0001.jpg",
     "/wyrok_page-0002.jpg",
     "/wyrok_page-0003.jpg"
   ],
   signature: "30 T 5/2021",
+  pdfUrl: "/wyrok.pdf" // Placeholder lub ten sam plik jeśli są powiązane w demo
+};
+
+// Wyrok Badiego (66 T 146/2021) - NOWOŚĆ
+const GALLERY_WYROK_BADI: GalleryData = {
+  title: "Wyrok skazujący: Bartosz B.",
+  images: [
+    "/wyrok_page-0001.jpg", // Używamy tych samych zasobów dla celów demonstracyjnych
+    "/wyrok_page-0002.jpg",
+    "/wyrok_page-0003.jpg"
+  ],
+  signature: "66 T 146/2021",
   pdfUrl: "/wyrok.pdf"
 };
 
 
-// --- KOMPONENTY STYLU "NAJS" (LEKKI, ORYGINALNY) ---
+// --- KOMPONENTY STYLU "NAJS" ---
 
 const CaseFile = ({ title, children, type = 'evidence' }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email' }) => (
   <div className="my-8 border border-stone-300 bg-white shadow-sm rounded-sm overflow-hidden break-inside-avoid">
@@ -77,7 +91,6 @@ const EvidenceVideo = ({ src, title, caption }: { src: string, title: string, ca
   </figure>
 );
 
-// LEKKI KOMPONENT CYTATU (PULL QUOTE)
 const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
   <div className="my-10 pl-6 border-l-[3px] border-stone-800/80">
     <p className="font-serif text-xl md:text-2xl italic text-stone-900 leading-relaxed mb-3">
@@ -89,11 +102,9 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
   </div>
 );
 
-// --- PASEK LOKALIZACJI (LocationStrip) ---
 const LocationStrip = ({ name, code, plot, lv, onClick }: { name: string, code: string, plot: string, lv: string, onClick?: () => void }) => (
   <div className="w-full border-y border-stone-300 bg-stone-50/50 py-2 my-10 flex flex-col md:flex-row items-center justify-between gap-y-2 gap-x-4 px-1 md:px-2 font-mono text-[10px] md:text-xs text-stone-600 tracking-tight select-all cursor-default hover:bg-stone-100 transition-colors">
      
-     {/* LEWA STRONA: Nazwa z akcentem */}
      <div className="flex items-center gap-3 w-full md:w-auto">
         <div className="flex h-2 w-2 relative shrink-0">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -112,7 +123,6 @@ const LocationStrip = ({ name, code, plot, lv, onClick }: { name: string, code: 
         )}
      </div>
 
-     {/* PRAWY STRONA: Dane techniczne w jednej linii */}
      <div className="flex items-center justify-between md:justify-end gap-4 w-full md:w-auto border-t md:border-t-0 border-stone-200 pt-1 md:pt-0">
         <span className="flex gap-1.5">
            <span className="text-stone-400 uppercase hidden sm:inline">Obręb:</span>
@@ -132,7 +142,6 @@ const LocationStrip = ({ name, code, plot, lv, onClick }: { name: string, code: 
   </div>
 );
 
-// --- KOMPONENT TRANSAKCJI (Uproszczony) ---
 const TransactionStamp = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
   <div className="my-8 flex justify-start">
     <div className="relative border border-stone-300 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)]">
@@ -148,8 +157,6 @@ const TransactionStamp = ({ label, value, subDetails }: { label: string, value: 
   </div>
 );
 
-
-// --- STYL MODALA ---
 const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boolean, onClose: () => void }) => {
   if (!isOpen) return null;
 
@@ -162,14 +169,11 @@ const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boo
         onClick={(e) => e.stopPropagation()}
         className="bg-[#1a1a1a] shadow-2xl rounded-lg w-full max-w-sm relative overflow-hidden animate-[fadeIn_0.3s_ease-out] border border-stone-700"
       >
-        {/* Górny pasek dekoracyjny */}
         <div className="h-1 w-full bg-gradient-to-r from-red-800 via-red-600 to-red-800"></div>
 
         <div className="p-6 relative">
-          {/* Tło tekstura */}
           <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] pointer-events-none"></div>
 
-          {/* Header */}
           <div className="flex justify-between items-start mb-6">
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -189,7 +193,6 @@ const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boo
             </button>
           </div>
 
-          {/* Wizualizacja kasety */}
           <div className="bg-stone-800 rounded border border-stone-700 p-4 mb-6 shadow-inner relative group">
             <div className="flex justify-between items-center bg-black/40 rounded px-3 py-4 border border-stone-600/50">
                <div className="w-8 h-8 rounded-full border-2 border-stone-600 bg-[#111] flex items-center justify-center">
@@ -210,7 +213,6 @@ const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boo
             </div>
           </div>
 
-          {/* Player */}
           <div className="bg-stone-200 rounded p-1">
             <audio controls className="w-full h-8 accent-stone-900 focus:outline-none">
               <source src={src} type="audio/mpeg" />
@@ -232,11 +234,14 @@ export default function Home() {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryData, setGalleryData] = useState<GalleryData | null>(null);
 
-  const openGallery = (type: 'nydek' | 'wyrok') => {
+  // Funkcja otwierająca odpowiednią galerię
+  const openGallery = (type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi') => {
     if (type === 'nydek') {
       setGalleryData(GALLERY_NYDEK);
-    } else {
-      setGalleryData(GALLERY_WYROK);
+    } else if (type === 'wyrok_kordys') {
+      setGalleryData(GALLERY_WYROK_KORDYS);
+    } else if (type === 'wyrok_badi') {
+      setGalleryData(GALLERY_WYROK_BADI);
     }
     setIsGalleryOpen(true);
   };
@@ -260,7 +265,6 @@ export default function Home() {
             </span>
           </h1>
 
-          {/* LEAD Z KRESKAMI GÓRA/DÓŁ (BEZ PEŁNEJ SZEROKOŚCI) */}
           <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
             <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
               W cieniu głośnego procesu „szamanów” z polskiego establishmentu, dziennikarskie śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.
@@ -287,7 +291,7 @@ export default function Home() {
           </p>
 
           <p>
-            W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa (sygn. <button onClick={() => openGallery('wyrok')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz skan wyroku">30 T 5/2021</button>) pojawia się postać świadka <strong>Bartosza B.</strong>
+            W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa (sygn. <button onClick={() => openGallery('wyrok_kordys')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz skan wyroku">30 T 5/2021</button>) pojawia się postać świadka <strong>Bartosza B.</strong>
           </p>
           
           <p>
@@ -414,8 +418,6 @@ export default function Home() {
             Podczas gdy Bartosz Badowski – po swojej sierpniowej wpadce – przebywał już na wolności, u Kordysów rozpętało się piekło. Zaledwie 7 tygodni po cichym nalocie na Badowskiego, 15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
           </p>
 
-          {/* WIDEO 1: (PRZENIESIONE NIŻEJ) */}
-
           <p>
             Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym:
           </p>
@@ -436,7 +438,6 @@ export default function Home() {
             Cena wolności Badowskiego okazała się być wysoka dla kogo innego: Zeznania Bartosza B. stały się gwoździem do trumny jego znajomego po fachu, Jarosława. Dla prokuratury był to bezcenny materiał dowodowy – zeznania Badowskiego pozwoliły prokuraturze domknąć łańcuch poszlak w sprawie Kordysów.
           </p>
 
-          {/* WIDEO 1: Aresztowanie Kordysa (PRZENIESIONE TUTAJ) */}
           <EvidenceVideo 
             src="https://www.youtube.com/embed/h52n25BjzH4" 
             title="Aresztowanie Kordysa"
@@ -444,7 +445,7 @@ export default function Home() {
           />
 
           <p>
-            Na mocy wyroku (66 T 146/2021-323) z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”. Sąd ustalił, że:
+            Na mocy wyroku (<button onClick={() => openGallery('wyrok_badi')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz wyrok Bartosza B.">66 T 146/2021-323</button>) z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”. Sąd ustalił, że:
           </p>
 
           <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
@@ -469,14 +470,12 @@ export default function Home() {
             Będąc tak blisko Badowskiego, doskonale znali mroczne kulisy śmierci Ilony. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się jedynie o „ciągłość dostaw”, dowodzi, że w pełni akceptowali reguły zmowy milczenia.
           </p>
 
-          {/* NOWY NAGŁÓWEK */}
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Kiciński</h2>
 
           <p>
             W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika z Janova. Michał Kiciński to nie jest postać, która o ayahuasce jedynie „słyszała” – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla „Focusa”, „Newsweeka”) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu „medycyna”, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera „nową rzeczywistość”.
           </p>
 
-          {/* PULL QUOTE */}
           <PullQuote 
             quote="Po ayahuasce jest szansa na to, żeby sobie nie ściemniać."
             author="Michał Kiciński"
@@ -531,7 +530,6 @@ export default function Home() {
             Stefanek przedstawia to jako efekt „researchu” darczyńcy, który rzekomo urzekł się wizją działalności non-profit.
           </p>
 
-          {/* WIDEO 2: Opowieść Stefanka */}
           <EvidenceVideo 
             src="https://www.youtube.com/embed/4Xujw-krjxs" 
             title="Stefanek o darowiźnie"
@@ -571,7 +569,6 @@ export default function Home() {
               &darr;
             </li>
             
-            {/* WYRÓŻNIONA DATA */}
             <li className="flex items-start gap-3">
               <Calendar className="w-5 h-5 text-orange-600 shrink-0 mt-3" />
               <div className="bg-orange-50 border border-orange-200 p-4 rounded-sm shadow-sm w-full relative overflow-hidden">
@@ -596,7 +593,6 @@ export default function Home() {
             Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong>Krzysztof Stefanek</strong>, który w filmie mówi o „odwróconej logice” i pięknie wolontariatu, i jego konkubina <strong>Magdalena Drzewińska</strong> w rzeczywistości doskonale znali mroczną historię Janova i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
           </p>
 
-          {/* NOWY BLOK TRANSAKCJI JANOV */}
           <TransactionStamp 
             label="Nr Transakcji (Katastr)" 
             value="V-5821/2023-127" 
@@ -621,7 +617,6 @@ export default function Home() {
             Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości Nýdek, funkcjonował kolejny, bliźniaczy ośrodek.
           </p>
 
-          {/* PASEK LOKALIZACJI: NÝDEK (INTERAKTYWNY) */}
           <LocationStrip 
             name="NÝDEK" 
             code="708186" 
@@ -668,7 +663,6 @@ export default function Home() {
             Nabywcą luksusowej posiadłości nie został inny inwestor, lecz sam <strong>Piotr Bonawentura Tracz</strong> – ten sam człowiek, który wcześniej pełnił tam rolę „szamana”.
           </p>
 
-          {/* NOWY BLOK TRANSAKCJI NYDEK */}
           <TransactionStamp 
             label="Nr Transakcji (Katastr)" 
             value="V-2937/2021-832" 
@@ -689,7 +683,6 @@ export default function Home() {
             Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
           </p>
 
-          {/* NOTA WERYFIKACYJNA */}
           <div className="mt-16 mb-8 p-6 bg-stone-50 border border-stone-200 shadow-sm rounded-sm">
             <div className="flex items-start gap-3">
               <Scale className="w-5 h-5 text-stone-400 mt-1 shrink-0" />
@@ -704,7 +697,6 @@ export default function Home() {
             </div>
           </div>
           
-           {/* NOTA EDYTORSKA - NOWY ELEMENT */}
           <div className="my-10 p-4 border border-blue-200 bg-blue-50/30 rounded text-xs text-blue-900/70 font-sans flex items-start gap-3">
             <Info className="w-4 h-4 mt-0.5 shrink-0" />
             <p>
@@ -756,7 +748,6 @@ export default function Home() {
         </footer>
       </article>
 
-      {/* STOPKA AUTORSKA (WIZYTÓWKA DETEKTYWA - NA DOLE) */}
       <div className="bg-stone-100 border-t border-stone-200 py-12 mt-auto">
         <div className="max-w-lg mx-auto text-center px-4">
           <div className="flex justify-center mb-4">
