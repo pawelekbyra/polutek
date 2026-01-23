@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info } from 'lucide-react';
+import Image from 'next/image';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 
@@ -508,10 +509,12 @@ export default function Home() {
           </p>
 
           <div className="my-8 flex flex-col items-center">
-            <img 
-              src="/wezwanie_kicinski.png" 
+            <Image
+              src="/wezwanie_kicinski.png"
               alt="Wezwanie na policję"
-              className="w-48 rounded shadow-md border border-stone-200 cursor-pointer hover:opacity-90 transition-opacity"
+              width={192}
+              height={272}
+              className="w-48 h-auto rounded shadow-md border border-stone-200 cursor-pointer hover:opacity-90 transition-opacity"
               onClick={() => openGallery('wezwanie_kicinski')}
             />
             <p className="text-xs text-stone-500 mt-2 font-mono uppercase tracking-wider w-48 text-center">

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useMemo, useState } from 'react';
-import { HtmlSlideDataDTO } from '@/lib/dto';
 import DOMPurify from 'dompurify';
 import parse, { domToReact, HTMLReactParserOptions, Element } from 'html-react-parser';
 import { GalleryData, verdictData, nydekGalleryData } from '@/lib/evidence-data';
@@ -10,7 +9,7 @@ import { SignatureTrigger } from './gallery/SignatureTrigger';
 import { GalleryTrigger } from './gallery/GalleryTrigger';
 
 interface HtmlContentProps {
-  data: HtmlSlideDataDTO;
+  data: any;
   isActive: boolean;
 }
 
