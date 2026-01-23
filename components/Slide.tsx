@@ -9,24 +9,18 @@ import { shallow } from 'zustand/shallow';
 import { AnimatePresence, motion } from 'framer-motion';
 import PlayIcon from './icons/PlayIcon';
 import PauseIcon from './icons/PauseIcon';
-import Sidebar from './Sidebar';
-import { useUser } from '@/context/UserContext';
 import { cn } from '@/lib/utils';
 import SecretOverlay from './SecretOverlay';
 import PwaOverlay from './PwaOverlay';
 import { DEFAULT_AVATAR_URL } from '@/lib/constants';
 import LocalVideoPlayer from './LocalVideoPlayer';
-import { useQueryClient } from '@tanstack/react-query';
-import { fetchComments, fetchAuthorProfile } from '@/lib/queries';
-
 import HtmlContent from './HtmlContent';
+import { usePWAStatus } from '@/hooks/usePWAStatus';
 
 interface SlideUIProps {
     slide: SlideDTO;
     isLocked?: boolean;
 }
-
-import { usePWAStatus } from '@/hooks/usePWAStatus';
 
 const SlideUI = ({ slide, isLocked = false }: SlideUIProps) => {
     const {
@@ -47,9 +41,6 @@ const SlideUI = ({ slide, isLocked = false }: SlideUIProps) => {
     const iconTimer = useRef<NodeJS.Timeout | null>(null);
 
     const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        // If locked, we do NOT want to toggle play. We want clicks to go through to overlay (or just be ignored here)
-        // But since this container has pointer-events-none when locked (see return), this might not be reachable.
-        // Keeping logic just in case.
         if (isLocked) return;
 
         if (e.target === e.currentTarget) {
@@ -82,9 +73,7 @@ const SlideUI = ({ slide, isLocked = false }: SlideUIProps) => {
         )}
         onClick={handleContainerClick}
       >
-        {/* Top gradient */}
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
-        {/* Bottom gradient */}
         <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/70 via-black/40 to-transparent pointer-events-none" />
 
         <AnimatePresence>
@@ -107,7 +96,6 @@ const SlideUI = ({ slide, isLocked = false }: SlideUIProps) => {
             )}
         </AnimatePresence>
 
-        {/* UI Controls Container - Added bottom padding/margin to lift it up */}
         <div className="relative z-20 pointer-events-none w-full max-w-[calc(100%-60px)] flex flex-col items-start text-left mb-2 pb-[calc(env(safe-area-inset-bottom)+10px)]">
             <div className="flex items-center gap-2 mb-2 pointer-events-auto max-w-full">
                 <Image 
@@ -124,16 +112,8 @@ const SlideUI = ({ slide, isLocked = false }: SlideUIProps) => {
             {slide.data && 'description' in slide.data && <p className="text-sm opacity-90 truncate w-full">{slide.data.description}</p>}
         </div>
 
-        <Sidebar
-            slideId={slide.id}
-            initialLikes={slide.initialLikes}
-            initialIsLiked={slide.isLiked}
-            commentsCount={slide.initialComments}
-            authorId={slide.userId}
-            authorAvatar={slide.avatar || DEFAULT_AVATAR_URL}
-        />
+        <div />
 
-        {/* Hide video controls if locked? Usually yes. */}
         {isVideoSlide && !isLocked && (
             <div className="pointer-events-auto w-full px-2">
                 <VideoControls
@@ -149,64 +129,25 @@ const SlideUI = ({ slide, isLocked = false }: SlideUIProps) => {
     );
 };
 
-// --- Main Slide Component ---
-
 interface SlideProps {
     slide: SlideDTO;
     priorityLoad?: boolean;
 }
 
 const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
-    const { isLoggedIn } = useUser();
     const activeSlideId = useStore(state => state.activeSlide?.id);
     const { isStandalone } = usePWAStatus();
 
-    // Determine active status: must be selected AND not locked by overlay
-    // But overlay is checked below. If overlay is active, video should be paused.
-
-    const isLockedSecret = slide.accessLevel === 'SECRET_PATRON' && !isLoggedIn;
+    const isLockedSecret = slide.accessLevel === 'SECRET_PATRON';
     const isLockedPWA = slide.accessLevel === 'SECRET_PWA' && !isStandalone;
     const isLocked = isLockedSecret || isLockedPWA;
 
     const isActive = activeSlideId === slide.id;
     const shouldPlay = isActive && !isLocked;
 
-    const queryClient = useQueryClient();
-
-    // Prefetch comments and author profile logic
-    useEffect(() => {
-        if (isActive && slide?.id) {
-            // Prefetch Comments (Infinite Query to match CommentsModal)
-            try {
-                queryClient.prefetchInfiniteQuery({
-                    queryKey: ['comments', slide.id],
-                    queryFn: ({ pageParam }) => fetchComments({ pageParam, slideId: slide.id }),
-                    initialPageParam: '',
-                    staleTime: 1000 * 60 * 5,
-                });
-            } catch (err) {
-                console.error("Prefetch comments error:", err);
-            }
-
-            // Prefetch Author Profile
-            if (slide.userId) {
-                try {
-                    queryClient.prefetchQuery({
-                        queryKey: ['author', slide.userId],
-                        queryFn: () => fetchAuthorProfile(slide.userId),
-                        staleTime: 1000 * 60 * 5,
-                    });
-                } catch (err) {
-                    console.error("Prefetch author error:", err);
-                }
-            }
-        }
-    }, [isActive, slide?.id, slide?.userId, queryClient]);
-
     const renderContent = () => {
         switch (slide.type) {
             case 'video':
-                // Pass shouldPlay instead of just isActive to control playback under overlay
                 return <LocalVideoPlayer slide={slide as VideoSlideDTO} isActive={shouldPlay} shouldLoad={priorityLoad} />;
             case 'html':
                 return (
@@ -222,16 +163,13 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
 
     return (
         <div className="relative w-full h-full z-10 bg-black">
-            {/* Background Content with Blur if locked */}
             <div className={cn("w-full h-full transition-all duration-300", isLocked && "blur-md brightness-50")}>
                 {renderContent()}
             </div>
 
-            {/* Overlays (Rendered on top without blur) - z-10 */}
             {isLockedSecret && <SecretOverlay />}
             {isLockedPWA && <PwaOverlay />}
 
-            {/* UI (Always rendered, but pointer-events managed) - z-20 */}
             <SlideUI slide={slide} isLocked={isLocked} />
         </div>
     );

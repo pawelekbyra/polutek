@@ -7,34 +7,10 @@ const withSerwist = withSerwistInit({
 });
 
 const nextConfig = {
+  output: 'export',
   productionBrowserSourceMaps: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'i.pravatar.cc',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'pawelperfect.pl',
-        port: '',
-        pathname: '/wp-content/uploads/**',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.public.blob.vercel-storage.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'api.qrserver.com',
-        port: '',
-        pathname: '/v1/create-qr-code/**',
-      },
-    ],
+    unoptimized: true,
   },
 };
 
