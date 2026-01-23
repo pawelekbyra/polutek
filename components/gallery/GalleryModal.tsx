@@ -85,6 +85,7 @@ export const GalleryModal = ({ isOpen, onClose, data }: GalleryModalProps) => {
               // @ts-ignore
               ref={flipBook}
               className="w-full h-full"
+              style={{}}
               startPage={0}
               drawShadow={true}
               flippingTime={1000}
