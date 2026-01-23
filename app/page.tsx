@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, AlertCircle } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 
@@ -274,22 +274,6 @@ export default function Home() {
         
         <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-a:text-blue-800 hover:prose-a:text-blue-900 prose-blockquote:not-italic">
           
-          {/* NOWA KLAUZULA PRAWNA NA POCZĄTKU */}
-          <div className="mb-14 p-6 bg-[#f7f7f5] border-l-4 border-stone-400 rounded-r-sm shadow-sm flex flex-col md:flex-row items-start gap-4">
-            <div className="p-2 bg-white rounded-full border border-stone-200 shrink-0">
-               <ShieldCheck className="w-6 h-6 text-stone-600" />
-            </div>
-            <div className="text-sm text-stone-700 font-sans leading-relaxed">
-              <strong className="block text-stone-900 text-xs uppercase tracking-widest mb-2 border-b border-stone-200 pb-1">Nota Prawna / Disclaimer</strong>
-              <p>
-                Wszystkie informacje zawarte w poniższym materiale oparte są wyłącznie na faktach wynikających z dokumentacji urzędowej. Przedstawiona historia została zrekonstruowana na podstawie jawnych akt sądowych oraz publicznych rejestrów nieruchomości.
-              </p>
-              <p className="mt-2">
-                W celu zachowania pełnej obiektywności i transparentności, w treść artykułu włączono kopie dokumentów (PDF). Sekcja „Dokumenty źródłowe” zawiera pełny wykaz sygnatur oraz bezpośrednie odnośniki do państwowych baz danych (Katastr, InfoSoud), co umożliwia każdemu czytelnikowi samodzielną i niezależną weryfikację historii gruntów w Janovie i Nýdku u źródła.
-              </p>
-            </div>
-          </div>
-
           <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed">
             Większość Polaków kojarzy sprawę polskich „szamanów” ayahuaski z głośnym aresztowaniem małżeństwa Kordysów w 2020 roku. Media pokazywały policyjne nagrania z nalotu, pisały o sekcie. Dla przeciętnego obserwatora sprawa wydawała się zamknięta: policja złapała „szamana” Kordysa i jego żonę, sąd wymierzył surowy wyroki 8,5 roku dla Jarosława i 5,5 lat więzienia dla Karoliny, a finałem było spektakularne ułaskawienie przez czeskiego prezydenta po dwóch latach odsiadki.
           </p>
@@ -699,9 +683,14 @@ export default function Home() {
 
         {/* STOPKA ŹRÓDŁOWA */}
         <footer className="mt-12 pt-12 border-t-2 border-stone-200 font-sans">
-          <h3 className="text-xl font-bold text-stone-900 mb-8 uppercase tracking-widest flex items-center gap-2">
-            <Search className="w-5 h-5" /> Dokumenty Źródłowe
-          </h3>
+          <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
+            <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2">
+              <Search className="w-5 h-5" /> Dokumenty Źródłowe
+            </h3>
+            <p className="text-xs text-stone-500 text-right max-w-lg italic leading-tight">
+              Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.
+            </p>
+          </div>
           
           <div className="grid gap-4 text-sm text-stone-600">
             <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
