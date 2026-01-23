@@ -301,8 +301,10 @@ export default function Home() {
             W Janovie równolegle funkcjonował inny ayahuaskowy ośrodek, w którym – podobnie jak u Kordysów – odbywały się nielegalne ceremonie z użyciem psychodelików. Podczas gdy Kordysowie trafili na czołówki gazet i do celi, bliźniacza sprawa, w którą uwikłane jest nazwisko jednego z najbogatszych Polaków, zakończyła się na dyskretnym wyroku w zawieszeniu, o którym nikt nawet w mediach się nie zająknął.
           </p>
 
+          <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Świadek B.</h2>
+
           <p>
-            W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa (sygn. <button onClick={() => openGallery('wyrok_kordys')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz skan wyroku">30 T 5/2021</button>) pojawia się postać świadka <strong>Bartosza B.</strong>
+            W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa o sygnaturze <button onClick={() => openGallery('wyrok_kordys')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz skan wyroku">30 T 5/2021</button> pojawia się postać świadka <strong>Bartosza B.</strong>
           </p>
           
           <p>
@@ -456,7 +458,7 @@ export default function Home() {
           />
 
           <p>
-            <button onClick={() => openGallery('wyrok_badi')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz wyrok Bartosza B.">Na mocy wyroku</button> (sygn. 66 T 146/2021) z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”. Sąd ustalił, że:
+             Na mocy wyroku o sygnaturze <button onClick={() => openGallery('wyrok_badi')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz wyrok Bartosza B.">66 T 146/2021</button> z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”. Sąd ustalił, że:
           </p>
 
           <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
@@ -512,14 +514,6 @@ export default function Home() {
           </div>
 
           <p>
-             Reakcja miliardera na zainteresowanie organów ścigania była błyskawiczna. Zwrócił się bezpośrednio do autora zawiadomienia – wysyłając mu wiadomość mailową z propozycją swoistej pokuty. Zamiast wyjaśnień prokuratorskich zaoferował przelew na cel charytatywny, nazywając lata nielegalnego procederu młodzieńczą naiwnością.
-          </p>
-
-          <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email">
-            „(...)Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu.(...)”
-          </CaseFile>
-
-          <p>
             Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
           </p>
 
@@ -533,6 +527,14 @@ export default function Home() {
 
           <CaseFile title="Odpowiedź na pytanie o udział">
             „nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie <span className="bg-stone-200 px-1 border-b-2 border-stone-800 font-bold italic text-stone-900">odmawiam odpowiedzi</span>”
+          </CaseFile>
+
+          <p>
+             Reakcja miliardera na zainteresowanie organów ścigania była błyskawiczna. Zwrócił się bezpośrednio do autora zawiadomienia – wysyłając mu wiadomość mailową z propozycją swoistej pokuty. Zamiast wyjaśnień prokuratorskich zaoferował przelew na cel charytatywny, nazywając lata nielegalnego procederu młodzieńczą naiwnością.
+          </p>
+
+          <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email">
+            „(...)Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu.(...)”
           </CaseFile>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Darowizna, czy gorący kartofel</h2>
@@ -640,7 +642,7 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Bliźniaczy ośrodek i drugi miliarder</h2>
 
           <p>
-            Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości Nýdek, funkcjonował kolejny, <button onClick={() => openGallery('nieruchomosci_2')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz galerię zdjęć">bliźniaczy ośrodek</button>.
+            Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości <button onClick={() => openGallery('nieruchomosci_2')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz galerię zdjęć">Nýdek</button>, funkcjonował kolejny, bliźniaczy ośrodek.
           </p>
 
           <LocationStrip 
@@ -660,7 +662,7 @@ export default function Home() {
           </p>
 
           <p>
-            Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej &apos;szamańskiej świątyni&apos; – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, <strong>Marcin Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder w latach 2016-2021.
+            Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej &apos;szamańskiej świątyni&apos; – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, <strong>Marcin Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder i gdzie zginął człowiek w latach 2016-2021.
           </p>
 
           <p>
