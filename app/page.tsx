@@ -1,7 +1,38 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
+import { GalleryModal } from './components/gallery/GalleryModal';
+
+// Definicja typu danych galerii (zgodna z oczekiwaniami GalleryModal)
+type GalleryData = {
+  title: string;
+  images: string[];
+  signature?: string;
+  pdfUrl?: string;
+};
+
+// DANE DO GALERII
+const GALLERY_NYDEK: GalleryData = {
+  title: "Posiadłość w Nýdku (Archiwum)",
+  images: [
+    "/Nydek1.jpg",
+    "/Nydek2.jpg"
+  ],
+  signature: "LV 832"
+};
+
+const GALLERY_WYROK: GalleryData = {
+  title: "Wyrok Sądu (Uzasadnienie)",
+  images: [
+    "/wyrok_page-0001.jpg",
+    "/wyrok_page-0002.jpg",
+    "/wyrok_page-0003.jpg"
+  ],
+  signature: "30 T 5/2021",
+  pdfUrl: "/wyrok.pdf"
+};
+
 
 // --- KOMPONENTY STYLU "NAJS" (LEKKI, ORYGINALNY) ---
 
@@ -58,7 +89,7 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
 );
 
 // --- PASEK LOKALIZACJI (LocationStrip) ---
-const LocationStrip = ({ name, code, plot, lv }: { name: string, code: string, plot: string, lv: string }) => (
+const LocationStrip = ({ name, code, plot, lv, onClick }: { name: string, code: string, plot: string, lv: string, onClick?: () => void }) => (
   <div className="w-full border-y border-stone-300 bg-stone-50/50 py-2 my-10 flex flex-col md:flex-row items-center justify-between gap-y-2 gap-x-4 px-1 md:px-2 font-mono text-[10px] md:text-xs text-stone-600 tracking-tight select-all cursor-default hover:bg-stone-100 transition-colors">
      
      {/* LEWA STRONA: Nazwa z akcentem */}
@@ -67,7 +98,17 @@ const LocationStrip = ({ name, code, plot, lv }: { name: string, code: string, p
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
         </div>
-        <span className="font-bold text-stone-900 uppercase tracking-widest">{name}</span>
+        {onClick ? (
+          <button 
+            onClick={onClick}
+            className="font-bold text-stone-900 uppercase tracking-widest hover:text-blue-700 hover:underline transition-all text-left"
+            title="Kliknij, aby zobaczyć galerię zdjęć"
+          >
+            {name}
+          </button>
+        ) : (
+          <span className="font-bold text-stone-900 uppercase tracking-widest">{name}</span>
+        )}
      </div>
 
      {/* PRAWY STRONA: Dane techniczne w jednej linii */}
@@ -187,6 +228,17 @@ const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boo
 
 export default function Home() {
   const [isAudioOpen, setIsAudioOpen] = useState(false);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [galleryData, setGalleryData] = useState<GalleryData | null>(null);
+
+  const openGallery = (type: 'nydek' | 'wyrok') => {
+    if (type === 'nydek') {
+      setGalleryData(GALLERY_NYDEK);
+    } else {
+      setGalleryData(GALLERY_WYROK);
+    }
+    setIsGalleryOpen(true);
+  };
 
   return (
     <PasswordProtect>
@@ -234,7 +286,7 @@ export default function Home() {
           </p>
 
           <p>
-            W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa (sygn. 30 T 5/2021) pojawia się postać świadka <strong>Bartosza B.</strong>
+            W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa (sygn. <button onClick={() => openGallery('wyrok')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz skan wyroku">30 T 5/2021</button>) pojawia się postać świadka <strong>Bartosza B.</strong>
           </p>
           
           <p>
@@ -361,12 +413,7 @@ export default function Home() {
             Podczas gdy Bartosz Badowski – po swojej sierpniowej wpadce – przebywał już na wolności, u Kordysów rozpętało się piekło. Zaledwie 7 tygodni po cichym nalocie na Badowskiego, 15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
           </p>
 
-          {/* WIDEO 1: Aresztowanie Kordysa */}
-          <EvidenceVideo 
-            src="https://www.youtube.com/embed/h52n25BjzH4" 
-            title="Aresztowanie Kordysa"
-            caption="Policyjne nagranie z aresztowania małżeństwa Kordysów (Październik 2020)"
-          />
+          {/* WIDEO 1: (PRZENIESIONE NIŻEJ) */}
 
           <p>
             Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym:
@@ -387,6 +434,13 @@ export default function Home() {
           <p>
             Cena wolności Badowskiego okazała się być wysoka dla kogo innego: Zeznania Bartosza B. stały się gwoździem do trumny jego znajomego po fachu, Jarosława. Dla prokuratury był to bezcenny materiał dowodowy – zeznania Badowskiego pozwoliły prokuraturze domknąć łańcuch poszlak w sprawie Kordysów.
           </p>
+
+          {/* WIDEO 1: Aresztowanie Kordysa (PRZENIESIONE TUTAJ) */}
+          <EvidenceVideo 
+            src="https://www.youtube.com/embed/h52n25BjzH4" 
+            title="Aresztowanie Kordysa"
+            caption="Policyjne nagranie z aresztowania małżeństwa Kordysów (Październik 2020)"
+          />
 
           <p>
             Na mocy wyroku (66 T 146/2021-323) z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”. Sąd ustalił, że:
@@ -515,12 +569,17 @@ export default function Home() {
              <li className="flex items-center justify-center text-stone-400">
               &darr;
             </li>
+            
+            {/* WYRÓŻNIONA DATA */}
             <li className="flex items-start gap-3">
-              <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
-              <div>
-                <strong>23 października 2023 r.</strong> – Zaledwie 12 dni po kłopotliwym przesłuchaniu, gdy formalności własnościowe z Badim są już dopięte, następuje telefon do Stefanka z propozycją oddania majątku wartego miliony za darmo.
+              <Calendar className="w-5 h-5 text-orange-600 shrink-0 mt-3" />
+              <div className="bg-orange-50 border border-orange-200 p-4 rounded-sm shadow-sm w-full relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+                <strong className="text-orange-900 block mb-1 uppercase tracking-wider text-xs">Kluczowy moment</strong>
+                <span className="font-bold text-stone-900">23 października 2023 r.</span> – Zaledwie 12 dni po kłopotliwym przesłuchaniu, gdy formalności własnościowe z Badim są już dopięte, następuje telefon do Stefanka z propozycją oddania majątku wartego miliony za darmo.
               </div>
             </li>
+
             <li className="flex items-center justify-center text-stone-400">
               &darr;
             </li>
@@ -561,12 +620,13 @@ export default function Home() {
             Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości Nýdek, funkcjonował kolejny, bliźniaczy ośrodek.
           </p>
 
-          {/* PASEK LOKALIZACJI: NÝDEK */}
+          {/* PASEK LOKALIZACJI: NÝDEK (INTERAKTYWNY) */}
           <LocationStrip 
             name="NÝDEK" 
             code="708186" 
             plot="st. 506/1" 
-            lv="832" 
+            lv="832"
+            onClick={() => openGallery('nydek')}
           />
 
           <p>
@@ -642,6 +702,14 @@ export default function Home() {
               </div>
             </div>
           </div>
+          
+           {/* NOTA EDYTORSKA - NOWY ELEMENT */}
+          <div className="my-10 p-4 border border-blue-200 bg-blue-50/30 rounded text-xs text-blue-900/70 font-sans flex items-start gap-3">
+            <Info className="w-4 h-4 mt-0.5 shrink-0" />
+            <p>
+              <strong>Nota edytorska:</strong> Wszelkie zamieszczone w artykule skany dokumentów i zdjęcia (w tym galeria Nýdek i wyroki sądowe) są autentycznymi plikami włączonymi w strukturę strony w celu ułatwienia odbioru materiału dowodowego. Dla zapewnienia absolutnej pewności co do ich pochodzenia, czytelnik może zweryfikować ich treść pobierając oryginały bezpośrednio z oficjalnych państwowych rejestrów, do których linki znajdują się w sekcji poniżej.
+            </p>
+          </div>
 
         </div>
 
@@ -708,6 +776,12 @@ export default function Home() {
         isOpen={isAudioOpen} 
         onClose={() => setIsAudioOpen(false)} 
         src="/evidence/stefan-nagranie.mp3"
+      />
+      
+      <GalleryModal
+        isOpen={isGalleryOpen}
+        onClose={() => setIsGalleryOpen(false)}
+        data={galleryData}
       />
     </main>
     </PasswordProtect>
