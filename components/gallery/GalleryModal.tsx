@@ -60,7 +60,7 @@ export const GalleryModal = ({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="w-[90vw] h-[90vh] max-w-4xl bg-[#121212] rounded-lg shadow-2xl flex flex-col"
+            className="w-screen h-screen bg-[#121212] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             <header className="flex items-center justify-between p-4 border-b border-stone-800">
