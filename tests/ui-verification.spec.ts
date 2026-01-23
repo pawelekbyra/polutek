@@ -1,36 +1,29 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('UI Verification', () => {
-  test('should correctly display the verdict gallery and centered image', async ({ page }) => {
-    // Navigate to the application
+  test('should correctly display the verdict gallery and floating controls', async ({ page }) => {
     await page.goto('http://localhost:3000');
-
-    // Enter the password
     await page.fill('input[type="password"]', 'szaman');
     await page.click('button[type="submit"]');
-
-    // Wait for the main content to load
     await page.waitForSelector('h1');
 
-    // Verify the "Wezwanie" image is centered
-    const wezwanieImage = page.locator('img[alt="Wezwanie na policję"]');
-    const imageContainer = wezwanieImage.locator('..'); // Parent element
-    await expect(imageContainer).toHaveClass(/items-center/);
-
-    // Click the button to open Badi's verdict gallery
     await page.click('button[title="Zobacz wyrok Bartosza B."]');
 
-    // Verify the gallery is full-screen
-    const galleryModal = page.locator('.fixed.inset-0.bg-black\\/80');
-    const galleryContent = galleryModal.locator('> div');
-    await expect(galleryContent).toHaveClass(/w-screen/);
-    await expect(galleryContent).toHaveClass(/h-screen/);
+    const galleryModal = page.locator('.fixed.inset-0.bg-black\\/90');
+    await expect(galleryModal).toBeVisible();
 
-    // Verify the download button text
-    const downloadButton = galleryModal.locator('a[download]');
-    await expect(downloadButton).toContainText('Pobierz PDF');
+    // Verify the close button is a floating overlay
+    const closeButton = galleryModal.locator('button[aria-label="Close gallery"]');
+    await expect(closeButton).toHaveClass(/absolute top-4 right-4/);
 
-    // Take a screenshot
+    // Verify the download button is a floating overlay
+    const downloadButton = galleryModal.locator('a[aria-label="Download PDF"]');
+    await expect(downloadButton).toBeVisible();
+
+    // Verify the page counter is a floating overlay
+    const pageCounter = galleryModal.locator('.absolute.bottom-4.left-1\\/2');
+    await expect(pageCounter).toBeVisible();
+
     await page.screenshot({ path: 'test-results/ui-verification.png', fullPage: true });
   });
 });

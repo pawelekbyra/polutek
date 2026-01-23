@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
+import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
 
 // Definicja typu danych galerii
 type GalleryData = {
@@ -54,6 +55,16 @@ const GALLERY_WEZWANIE_KICINSKI: GalleryData = {
   title: "Wezwanie dla Michała Kicińskiego",
   images: ["/wezwanie_kicinski.png"],
   signature: "WD-I-3186/23"
+};
+
+const GALLERY_JANOV: GalleryData = {
+  title: "Dokumentacja Nieruchomości: Janov",
+  images: [
+    "/gallery/janov/wyrok_page-0001.jpg",
+    "/gallery/janov/wyrok_page-0002.jpg",
+    "/gallery/janov/wyrok_page-0003.jpg",
+  ],
+  signature: "LV 127"
 };
 
 
@@ -242,7 +253,7 @@ export default function Home() {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryData, setGalleryData] = useState<GalleryData | null>(null);
 
-  const openGallery = (type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi' | 'nieruchomosci_2' | 'wezwanie_kicinski') => {
+  const openGallery = (type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi' | 'nieruchomosci_2' | 'wezwanie_kicinski' | 'janov') => {
     if (type === 'nydek') {
       setGalleryData(GALLERY_NYDEK);
     } else if (type === 'wyrok_kordys') {
@@ -253,6 +264,8 @@ export default function Home() {
       setGalleryData(GALLERY_NIERUCHOMOSCI_2);
     } else if (type === 'wezwanie_kicinski') {
       setGalleryData(GALLERY_WEZWANIE_KICINSKI);
+    } else if (type === 'janov') {
+      setGalleryData(GALLERY_JANOV);
     }
     setIsGalleryOpen(true);
   };
@@ -360,7 +373,7 @@ export default function Home() {
           </div>
 
           <p>
-            Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie „Michal D. K.”. Wspólnikiem w „bazie” był twórca Wiedźmina - jeden z najbogatszych Polaków.
+            Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie „Michal D. K.”. Wspólnikiem w <button onClick={() => openGallery('janov')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz dokumentację">„bazie”</button> był twórca Wiedźmina - jeden z najbogatszych Polaków.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Telefon, który pogrążył imperium</h2>
@@ -451,10 +464,9 @@ export default function Home() {
             Cena wolności Badowskiego okazała się być wysoka dla kogo innego: Zeznania Bartosza B. stały się gwoździem do trumny jego znajomego po fachu, Jarosława. Dla prokuratury był to bezcenny materiał dowodowy – zeznania Badowskiego pozwoliły prokuraturze domknąć łańcuch poszlak w sprawie Kordysów.
           </p>
 
-          <EvidenceVideo 
-            src="https://www.youtube.com/embed/h52n25BjzH4" 
-            title="Aresztowanie Kordysa"
-            caption="Policyjne nagranie z aresztowania małżeństwa Kordysów (Październik 2020)"
+          <ArticleVideoPlayer
+            src="/evidence/stefan/playlist.m3u8"
+            poster=""
           />
 
           <p>
