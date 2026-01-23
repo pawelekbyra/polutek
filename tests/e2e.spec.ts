@@ -45,3 +45,24 @@ test('should open the "nieruchomości 2" gallery when the trigger is clicked', a
   await expect(page.locator('img[src="/Nydek2.jpg"]')).toBeVisible();
   await expect(page.locator('img[src="/Nieruchomosc3.jpeg"]')).toBeVisible();
 });
+
+test('should open the wezwanie gallery when the trigger is clicked', async ({ page }) => {
+  await page.goto('http://localhost:3000');
+
+  // Enter password
+  await page.locator('input[type="password"]').fill('szaman');
+  await page.locator('button[type="submit"]').click();
+
+  // Wait for the main content to load
+  await page.waitForSelector('article');
+
+  // Click the trigger for the wezwanie gallery
+  await page.locator('button:has-text("wezwanie")').click();
+
+  // Verify the gallery modal is open
+  await expect(page.locator('.fixed.inset-0.z-50')).toBeVisible();
+  await expect(page.locator('h2')).toHaveText("Wezwanie dla Michała Kicińskiego");
+
+  // Verify the image is present
+  await expect(page.locator('img[src="/wezwanie_kicinski.png"]')).toBeVisible();
+});

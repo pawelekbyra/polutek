@@ -50,6 +50,12 @@ const GALLERY_NIERUCHOMOSCI_2: GalleryData = {
   images: ["/Nydek1.jpg", "/Nydek2.jpg", "/Nieruchomosc3.jpeg"],
 };
 
+const GALLERY_WEZWANIE_KICINSKI: GalleryData = {
+  title: "Wezwanie dla Michała Kicińskiego",
+  images: ["/wezwanie_kicinski.png"],
+  signature: "WD-I-3186/23"
+};
+
 
 // --- KOMPONENTY STYLU "NAJS" ---
 
@@ -236,7 +242,7 @@ export default function Home() {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryData, setGalleryData] = useState<GalleryData | null>(null);
 
-  const openGallery = (type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi' | 'nieruchomosci_2') => {
+  const openGallery = (type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi' | 'nieruchomosci_2' | 'wezwanie_kicinski') => {
     if (type === 'nydek') {
       setGalleryData(GALLERY_NYDEK);
     } else if (type === 'wyrok_kordys') {
@@ -245,6 +251,8 @@ export default function Home() {
       setGalleryData(GALLERY_WYROK_BADI);
     } else if (type === 'nieruchomosci_2') {
       setGalleryData(GALLERY_NIERUCHOMOSCI_2);
+    } else if (type === 'wezwanie_kicinski') {
+      setGalleryData(GALLERY_WEZWANIE_KICINSKI);
     }
     setIsGalleryOpen(true);
   };
@@ -488,7 +496,7 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Wezwanie na policję i &quot;zadośćuczynienie&quot;</h2>
 
           <p>
-            Konfrontacja Michała Kicińskiego z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie,  będzie dotyczyć zdarzeń w Janovie.
+            Konfrontacja Michała Kicińskiego z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał <button onClick={() => openGallery('wezwanie_kicinski')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz skan wezwania">wezwanie</button> do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie,  będzie dotyczyć zdarzeń w Janowie.
           </p>
 
           <p>
