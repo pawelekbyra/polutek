@@ -15,6 +15,7 @@ const PasswordProtect: FC<PasswordProtectProps> = ({ children }) => {
 
   const oldPassword = "pukpukktotamhipopotam";
   const newPassword = "ichtroje";
+  const testPassword = "szaman";
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -24,7 +25,7 @@ const PasswordProtect: FC<PasswordProtectProps> = ({ children }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (password === newPassword) {
+    if (password === newPassword || password === testPassword) {
       setIsUnlocked(true);
       setError(false);
       setMessage("");
