@@ -70,6 +70,7 @@ export const GalleryModal = ({ isOpen, onClose, data }: GalleryModalProps) => {
             className="w-full h-full"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* @ts-ignore: react-pageflip's types are outdated and incompatible with this project's React version. */}
             <HTMLFlipBook
               width={600}
               height={848}
