@@ -60,7 +60,7 @@ export const GalleryModal = ({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="w-[90vw] h-[90vh] max-w-4xl bg-[#121212] rounded-lg shadow-2xl flex flex-col"
+            className="w-screen h-screen bg-[#121212] shadow-2xl flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             <header className="flex items-center justify-between p-4 border-b border-stone-800">
@@ -133,7 +133,7 @@ export const GalleryModal = ({
                   className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold bg-yellow-600 text-black rounded-md hover:bg-yellow-500 transition-colors"
                 >
                   <Download className="w-4 h-4" />
-                  <span>Download Original PDF</span>
+                  <span>Pobierz PDF</span>
                 </a>
               )}
             </footer>
