@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
-// Import komponentu galerii
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 
 // Definicja typu danych galerii
@@ -24,7 +23,6 @@ const GALLERY_NYDEK: GalleryData = {
   signature: "LV 832"
 };
 
-// Wyrok Kordysa (30 T 5/2021)
 const GALLERY_WYROK_KORDYS: GalleryData = {
   title: "Uzasadnienie wyroku: Jarosław K.",
   images: [
@@ -33,14 +31,13 @@ const GALLERY_WYROK_KORDYS: GalleryData = {
     "/wyrok_page-0003.jpg"
   ],
   signature: "30 T 5/2021",
-  pdfUrl: "/wyrok.pdf" // Placeholder lub ten sam plik jeśli są powiązane w demo
+  pdfUrl: "/wyrok.pdf"
 };
 
-// Wyrok Badiego (66 T 146/2021) - NOWOŚĆ
 const GALLERY_WYROK_BADI: GalleryData = {
   title: "Wyrok skazujący: Bartosz B.",
   images: [
-    "/wyrok_page-0001.jpg", // Używamy tych samych zasobów dla celów demonstracyjnych
+    "/wyrok_page-0001.jpg",
     "/wyrok_page-0002.jpg",
     "/wyrok_page-0003.jpg"
   ],
@@ -234,7 +231,6 @@ export default function Home() {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryData, setGalleryData] = useState<GalleryData | null>(null);
 
-  // Funkcja otwierająca odpowiednią galerię
   const openGallery = (type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi') => {
     if (type === 'nydek') {
       setGalleryData(GALLERY_NYDEK);
@@ -683,25 +679,22 @@ export default function Home() {
             Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
           </p>
 
-          <div className="mt-16 mb-8 p-6 bg-stone-50 border border-stone-200 shadow-sm rounded-sm">
-            <div className="flex items-start gap-3">
-              <Scale className="w-5 h-5 text-stone-400 mt-1 shrink-0" />
-              <div className="text-sm font-sans text-stone-600 leading-relaxed space-y-3">
-                <p>
-                  Przedstawiona historia została zrekonstruowana wyłącznie na podstawie jawnych dokumentów urzędowych, akt sądowych oraz zapisów w publicznych rejestrach nieruchomości. Aby zapewnić pełną przejrzystość śledztwa, w treści artykułu zintegrowano kopie kluczowych dokumentów (PDF).
-                </p>
-                <p>
-                  Poniższa sekcja „Dokumenty Źródłowe” zawiera kompletny wykaz sygnatur i odnośników do państwowych baz danych (Katastr Nieruchomości, InfoSoud). Umożliwiają one każdemu czytelnikowi niezależną weryfikację autentyczności przytoczonych wyroków oraz historii własności gruntów w Janovie i Nýdku u źródła, bez pośrednictwa autora tekstu.
-                </p>
-              </div>
+          {/* NOWA SEKCJA DEKLARACJI - ELEGANCKI STYL */}
+          <div className="mt-20 mb-12 relative group">
+            <div className="absolute inset-0 flex items-center" aria-hidden="true">
+              <div className="w-full border-t border-stone-300"></div>
             </div>
-          </div>
-          
-          <div className="my-10 p-4 border border-blue-200 bg-blue-50/30 rounded text-xs text-blue-900/70 font-sans flex items-start gap-3">
-            <Info className="w-4 h-4 mt-0.5 shrink-0" />
-            <p>
-              <strong>Nota edytorska:</strong> Wszelkie zamieszczone w artykule skany dokumentów i zdjęcia (w tym galeria Nýdek i wyroki sądowe) są autentycznymi plikami włączonymi w strukturę strony w celu ułatwienia odbioru materiału dowodowego. Dla zapewnienia absolutnej pewności co do ich pochodzenia, czytelnik może zweryfikować ich treść pobierając oryginały bezpośrednio z oficjalnych państwowych rejestrów, do których linki znajdują się w sekcji poniżej.
-            </p>
+            <div className="relative flex justify-center">
+              <span className="bg-[#FDFBF7] px-4">
+                <ShieldCheck className="w-6 h-6 text-stone-400" />
+              </span>
+            </div>
+            <div className="mt-6 text-center max-w-2xl mx-auto">
+              <p className="font-sans text-xs font-bold tracking-[0.2em] text-stone-500 uppercase mb-3">Deklaracja Autorska</p>
+              <p className="font-serif text-lg text-stone-800 italic leading-relaxed">
+                Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające niezależną weryfikację danych, zamieszczono w sekcji „Dokumenty źródłowe”. Kluczowe dowody załączono w formacie PDF.
+              </p>
+            </div>
           </div>
 
         </div>
@@ -748,21 +741,7 @@ export default function Home() {
         </footer>
       </article>
 
-      <div className="bg-stone-100 border-t border-stone-200 py-12 mt-auto">
-        <div className="max-w-lg mx-auto text-center px-4">
-          <div className="flex justify-center mb-4">
-            <div className="p-3 bg-white rounded-full shadow-sm border border-stone-200">
-              <User className="w-6 h-6 text-stone-700" />
-            </div>
-          </div>
-          <h3 className="font-serif text-lg font-bold text-stone-900 mb-1">Detektyw Polutek</h3>
-          <p className="font-sans text-xs uppercase tracking-widest text-stone-500 mb-6">Dziennikarz Śledczy &bull; Niezależne Media</p>
-          <a href="mailto:detektyw.polutek@protonmail.com" className="inline-flex items-center gap-2 text-stone-600 hover:text-stone-900 transition-colors text-sm hover:underline">
-            <Mail className="w-4 h-4" />
-            pawelpolutek@protonmail.com
-          </a>
-        </div>
-      </div>
+      {/* STOPKA ZOSTAŁA USUNIĘTA ZGODNIE Z PROŚBĄ */}
 
       <EvidenceAudioModal 
         isOpen={isAudioOpen} 
