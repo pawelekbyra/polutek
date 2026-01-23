@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from 'react';
 import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info } from 'lucide-react';
-import Image from 'next/image';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 
@@ -497,30 +496,28 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Wezwanie na policję i &quot;zadośćuczynienie&quot;</h2>
 
           <p>
-            Reakcja miliardera na zainteresowanie organów ścigania była błyskawiczna. Zwrócił się bezpośrednio do  autora zawiadomienia – wysyłając mu wiadomość mailową z propozycją swoistej pokuty. Zamiast wyjaśnień prokuratorskich zaoferował przelew na cel charytatywny, nazywając lata nielegalnego procederu młodzieńczą naiwnością.
-          </p>
-
-          <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email">
-            „(...)Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu.(...)”
-          </CaseFile>
-
-          <p>
             Konfrontacja Michała Kicińskiego z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie, będzie dotyczyć zdarzeń w Janowie.
           </p>
 
           <div className="my-8 flex flex-col items-center">
-            <Image
-              src="/wezwanie_kicinski.png"
+            <img 
+              src="/wezwanie_kicinski.png" 
               alt="Wezwanie na policję"
-              width={192}
-              height={272}
-              className="w-48 h-auto rounded shadow-md border border-stone-200 cursor-pointer hover:opacity-90 transition-opacity"
+              className="w-48 rounded shadow-md border border-stone-200 cursor-pointer hover:opacity-90 transition-opacity"
               onClick={() => openGallery('wezwanie_kicinski')}
             />
             <p className="text-xs text-stone-500 mt-2 font-mono uppercase tracking-wider w-48 text-center">
               Skan wezwania (Kliknij)
             </p>
           </div>
+
+          <p>
+             Reakcja miliardera na zainteresowanie organów ścigania była błyskawiczna. Zwrócił się bezpośrednio do autora zawiadomienia – wysyłając mu wiadomość mailową z propozycją swoistej pokuty. Zamiast wyjaśnień prokuratorskich zaoferował przelew na cel charytatywny, nazywając lata nielegalnego procederu młodzieńczą naiwnością.
+          </p>
+
+          <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email">
+            „(...)Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu.(...)”
+          </CaseFile>
 
           <p>
             Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
@@ -629,7 +626,11 @@ export default function Home() {
           </p>
 
           <p>
-            Na tym jednak historia na szczęście się nie kończy.  Autor wycofanego zawiadomienia nie był  zadowolony, bo „zadośćuczynienie wszechświatowi” miało trafić na hospicjum, a nie na „organizację krzak”. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli żyć z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów.
+            Na tym jednak historia na szczęście się nie kończy. Po tym jak członkowie Stowarzyszenia Natury Zew świadomie wzbogacili się na tragedii Ilony, tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Teraz, pod płaszczykiem non-profit, żyją z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując przy tym gości i publicznie każdego, kto natrafi na ich sielankowe filmy w sieci.
+          </p>
+          
+          <p>
+            Autor wycofanego zawiadomienia nie był zadowolony, bo „zadośćuczynienie wszechświatowi” miało trafić na hospicjum, a nie na „organizację krzak”.
           </p>
 
           <div className="my-8 p-6 border border-stone-300 bg-[#F5F5F4] rounded-sm text-stone-900">
