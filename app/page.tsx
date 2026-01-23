@@ -45,6 +45,11 @@ const GALLERY_WYROK_BADI: GalleryData = {
   pdfUrl: "/wyrok.pdf"
 };
 
+const GALLERY_NIERUCHOMOSCI_2: GalleryData = {
+  title: "Kolejny bliźniaczy ośrodek",
+  images: ["/Nydek1.jpg", "/Nydek2.jpg", "/Nieruchomosc3.jpeg"],
+};
+
 
 // --- KOMPONENTY STYLU "NAJS" ---
 
@@ -231,13 +236,15 @@ export default function Home() {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryData, setGalleryData] = useState<GalleryData | null>(null);
 
-  const openGallery = (type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi') => {
+  const openGallery = (type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi' | 'nieruchomosci_2') => {
     if (type === 'nydek') {
       setGalleryData(GALLERY_NYDEK);
     } else if (type === 'wyrok_kordys') {
       setGalleryData(GALLERY_WYROK_KORDYS);
     } else if (type === 'wyrok_badi') {
       setGalleryData(GALLERY_WYROK_BADI);
+    } else if (type === 'nieruchomosci_2') {
+      setGalleryData(GALLERY_NIERUCHOMOSCI_2);
     }
     setIsGalleryOpen(true);
   };
@@ -441,7 +448,7 @@ export default function Home() {
           />
 
           <p>
-            Na mocy wyroku (<button onClick={() => openGallery('wyrok_badi')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz wyrok Bartosza B.">66 T 146/2021-323</button>) z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”. Sąd ustalił, że:
+            Na mocy wyroku (<button onClick={() => openGallery('wyrok_badi')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz wyrok Bartosza B.">sygnatury Badi&apos;ego wyroku</button>) z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”. Sąd ustalił, że:
           </p>
 
           <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
@@ -610,7 +617,7 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Bliźniaczy ośrodek i drugi miliarder</h2>
 
           <p>
-            Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości Nýdek, funkcjonował kolejny, bliźniaczy ośrodek.
+            Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości Nýdek, funkcjonował kolejny, <button onClick={() => openGallery('nieruchomosci_2')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz galerię zdjęć">bliźniaczy ośrodek</button>.
           </p>
 
           <LocationStrip 
