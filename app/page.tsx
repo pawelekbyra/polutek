@@ -499,7 +499,7 @@ export default function Home() {
             Konfrontacja Michała Kicińskiego z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie, będzie dotyczyć zdarzeń w Janowie.
           </p>
 
-          <div className="my-8">
+          <div className="my-8 flex flex-col items-center">
             <img 
               src="/wezwanie_kicinski.png" 
               alt="Wezwanie na policję"

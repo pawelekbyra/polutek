@@ -60,7 +60,7 @@ export const GalleryModal = ({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="w-[90vw] h-[90vh] max-w-4xl bg-[#121212] rounded-lg shadow-2xl flex flex-col"
+            className="w-full h-full bg-[#121212] shadow-2xl flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             <header className="flex items-center justify-between p-4 border-b border-stone-800">
@@ -103,12 +103,14 @@ export const GalleryModal = ({
                 <>
                   <button
                     onClick={prevImage}
+                    aria-label="Previous image"
                     className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full text-white hover:bg-black/80 transition-colors z-10"
                   >
                     <ChevronLeft className="w-6 h-6" />
                   </button>
                   <button
                     onClick={nextImage}
+                    aria-label="Next image"
                     className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full text-white hover:bg-black/80 transition-colors z-10"
                   >
                     <ChevronRight className="w-6 h-6" />
