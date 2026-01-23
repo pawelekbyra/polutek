@@ -496,8 +496,20 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Wezwanie na policję i &quot;zadośćuczynienie&quot;</h2>
 
           <p>
-            Konfrontacja Michała Kicińskiego z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał <button onClick={() => openGallery('wezwanie_kicinski')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz skan wezwania">wezwanie</button> do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie,  będzie dotyczyć zdarzeń w Janowie.
+            Konfrontacja Michała Kicińskiego z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie, będzie dotyczyć zdarzeń w Janowie.
           </p>
+
+          <div className="my-8">
+            <img 
+              src="/wezwanie_kicinski.png" 
+              alt="Wezwanie na policję"
+              className="w-full rounded shadow-md border border-stone-200 cursor-pointer"
+              onClick={() => openGallery('wezwanie_kicinski')}
+            />
+            <p className="text-xs text-center text-stone-500 mt-2 font-mono uppercase tracking-wider">
+              Skan wezwania (Kliknij, aby powiększyć)
+            </p>
+          </div>
 
           <p>
             Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
