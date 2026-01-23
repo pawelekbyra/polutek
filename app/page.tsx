@@ -503,17 +503,13 @@ export default function Home() {
             <img 
               src="/wezwanie_kicinski.png" 
               alt="Wezwanie na policję"
-              className="w-full rounded shadow-md border border-stone-200 cursor-pointer"
+              className="w-48 rounded shadow-md border border-stone-200 cursor-pointer hover:opacity-90 transition-opacity"
               onClick={() => openGallery('wezwanie_kicinski')}
             />
-            <p className="text-xs text-center text-stone-500 mt-2 font-mono uppercase tracking-wider">
-              Skan wezwania (Kliknij, aby powiększyć)
+            <p className="text-xs text-stone-500 mt-2 font-mono uppercase tracking-wider w-48 text-center">
+              Skan wezwania (Kliknij)
             </p>
           </div>
-
-          <p>
-            Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
-          </p>
 
           <p>
             Reakcja miliardera na zainteresowanie organów ścigania była błyskawiczna. Zwrócił się bezpośrednio do  autora zawiadomienia – wysyłając mu wiadomość mailową z propozycją swoistej pokuty. Zamiast wyjaśnień prokuratorskich zaoferował przelew na cel charytatywny, nazywając lata nielegalnego procederu młodzieńczą naiwnością.
@@ -522,6 +518,10 @@ export default function Home() {
           <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email">
             „(...)Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu.(...)”
           </CaseFile>
+
+          <p>
+            Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
+          </p>
 
           <CaseFile title="Zeznanie do protokołu">
             „Nie mam żadnej wiedzy co się działo na mojej farmie, w której jestem 90% udziałowcem (...) wynajmowałem tę nieruchomość.”
@@ -596,7 +596,7 @@ export default function Home() {
               <Calendar className="w-5 h-5 text-orange-600 shrink-0 mt-3" />
               <div className="bg-orange-50 border border-orange-200 p-4 rounded-sm shadow-sm w-full relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
-                <strong className="text-orange-900 block mb-1 uppercase tracking-wider text-xs">Kluczowy moment</strong>
+                {/* ZNACZNIK ORANGE ZOSTAŁ, USUNIĘTO TYLKO NAPIS "KLUCZOWY MOMENT" */}
                 <span className="font-bold text-stone-900">23 października 2023 r.</span> – Zaledwie 12 dni po kłopotliwym przesłuchaniu, gdy formalności własnościowe z Badim są już dopięte, następuje telefon do Stefanka z propozycją oddania majątku wartego miliony za darmo.
               </div>
             </li>
@@ -710,11 +710,11 @@ export default function Home() {
 
         {/* STOPKA ŹRÓDŁOWA */}
         <footer className="mt-12 pt-12 border-t-2 border-stone-200 font-sans">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
-            <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2">
+          <div className="mb-8">
+            <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
               <Search className="w-5 h-5" /> Dokumenty Źródłowe
             </h3>
-            <p className="text-xs text-stone-500 text-right max-w-lg italic leading-tight">
+            <p className="text-base text-stone-800 leading-relaxed text-left">
               Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.
             </p>
           </div>
