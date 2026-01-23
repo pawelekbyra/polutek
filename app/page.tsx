@@ -303,7 +303,11 @@ export default function Home() {
         <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-a:text-blue-800 hover:prose-a:text-blue-900 prose-blockquote:not-italic">
           
           <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed">
-            Większość Polaków kojarzy sprawę polskich „szamanów” ayahuaski z głośnym aresztowaniem małżeństwa Kordysów w 2020 roku. Media pokazywały policyjne nagrania z nalotu, pisały o sekcie. Dla przeciętnego obserwatora sprawa wydawała się zamknięta: policja złapała „szamana” Kordysa i jego żonę, sąd wymierzył surowy wyroki 8,5 roku dla Jarosława i 5,5 lat więzienia dla Karoliny, a finałem było spektakularne ułaskawienie przez czeskiego prezydenta po dwóch latach odsiadki.
+            W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów. Policyjny nalot, aresztowanie Jarosława i Karoliny Kordysów, a następnie surowe wyroki (8,5 oraz 5,5 roku więzienia) za organizowanie ceremonii z użyciem ayahuaski.
+          </p>
+
+          <p>
+            Ayahuaska to tradycyjny wywar z amazońskich roślin o silnym działaniu halucynogennym. Ze względu na wysoką zawartość DMT – substancji psychodelicznej wywołującej intensywne wizje i zmiany stanu świadomości – jej posiadanie i podawanie jest w Polsce i Czechach nielegalne. Finałem medialnego spektaklu Kordysów było spektakularne ułaskawienie przez czeskiego prezydenta po dwóch latach odsiadki.
           </p>
 
           <p>
@@ -379,7 +383,7 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Telefon, który pogrążył imperium</h2>
 
           <p>
-            Przełom w sprawie organizatorów ayahuaskowych ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysem.
+            Przełom w sprawie organizatorów ayahuaskowych ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysów.
           </p>
 
           <p>
