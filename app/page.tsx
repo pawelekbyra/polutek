@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
-import { GalleryModal } from './components/gallery/GalleryModal';
+// ZMIANA: Używamy aliasu @/ aby wskazać na folder components w głównym katalogu, a nie w app/
+import { GalleryModal } from '@/components/gallery/GalleryModal';
 
 // Definicja typu danych galerii (zgodna z oczekiwaniami GalleryModal)
 type GalleryData = {
