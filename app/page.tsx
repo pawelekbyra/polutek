@@ -234,7 +234,11 @@ export default function Home() {
           </p>
 
           <p>
-            W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa (sygn. 30 T 5/2021) pojawia się postać świadka <strong>Bartosza B.</strong> Zgodnie z aktami:
+            W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa (sygn. 30 T 5/2021) pojawia się postać świadka <strong>Bartosza B.</strong>
+          </p>
+          
+          <p>
+            Zgodnie z aktami:
           </p>
 
           <CaseFile title="Zeznania świadka B.">
@@ -256,7 +260,9 @@ export default function Home() {
           </p>
 
           <CaseFile title="Własność nieruchomości">
-            &quot;Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem jednej dziesiątej nieruchomości”.
+            "(...) budynek rodzinny w miejscowości Janov (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy”
+            <br/><br/>
+            "Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem jednej dziesiątej nieruchomości”.
           </CaseFile>
 
           <p>
@@ -425,7 +431,7 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Wezwanie na policję i &quot;zadośćuczynienie&quot;</h2>
 
           <p>
-            Konfrontacja Michała Kicińskiego z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć zdarzeń w Janovie.
+            Konfrontacja Michała Kicińskiego z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie,  będzie dotyczyć zdarzeń w Janovie.
           </p>
 
           <p>
@@ -437,7 +443,7 @@ export default function Home() {
           </CaseFile>
 
           <p>
-            Do przesłuchania doszło 11 października 2023 roku o godzinie 15:00  w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjął linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
+            Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
           </p>
 
           <CaseFile title="Zeznanie do protokołu">
@@ -494,7 +500,7 @@ export default function Home() {
             <li className="flex items-start gap-3">
               <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
               <div>
-                <strong>11 października 2023 r.</strong> – Miliarder staje przed policją, odmawiając zeznań na temat swojej przeszłości w tym miejscu.
+                <strong>3 października 2023 r.</strong> – Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów w nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
               </div>
             </li>
             <li className="flex items-center justify-center text-stone-400">
@@ -503,7 +509,25 @@ export default function Home() {
             <li className="flex items-start gap-3">
               <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
               <div>
-                <strong>23 października 2023 r.</strong> – Zaledwie 12 dni po kłopotliwym przesłuchaniu, następuje telefon z propozycją oddania majątku wartego miliony za darmo.
+                <strong>11 października 2023 r.</strong> – Miliarder staje przed policją. Do protokołu odmawia zeznań na temat swojej przeszłości w tym miejscu.
+              </div>
+            </li>
+             <li className="flex items-center justify-center text-stone-400">
+              &darr;
+            </li>
+            <li className="flex items-start gap-3">
+              <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
+              <div>
+                <strong>23 października 2023 r.</strong> – Zaledwie 12 dni po kłopotliwym przesłuchaniu, gdy formalności własnościowe z Badim są już dopięte, następuje telefon do Stefanka z propozycją oddania majątku wartego miliony za darmo.
+              </div>
+            </li>
+            <li className="flex items-center justify-center text-stone-400">
+              &darr;
+            </li>
+            <li className="flex items-start gap-3">
+              <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
+              <div>
+                <strong>21 grudnia 2023 r.</strong> – Finał operacji. Kiciński formalnie przekazuje Janov w formie darowizny. Nieruchomość trafia do stowarzyszenia „non-profit” – fasadowej organizacji „krzak”, zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
               </div>
             </li>
           </ul>
@@ -524,7 +548,7 @@ export default function Home() {
           </p>
 
           <p>
-            Na tym jednak historia (na szczęście) się nie kończy.  Autor wycofanego zawiadomienia nie był  zadowolony, bo „zadośćuczynienie wszechświatowi” miało trafić na hospicjum, a nie na „organizację krzak”. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli żyć z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów.
+            Na tym jednak historia na szczęście się nie kończy.  Autor wycofanego zawiadomienia nie był  zadowolony, bo „zadośćuczynienie wszechświatowi” miało trafić na hospicjum, a nie na „organizację krzak”. Tymczasem Stefan i Lena, pod płaszczykiem non-profit, zaczęli żyć z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów.
           </p>
 
           <div className="my-8 p-6 border border-stone-300 bg-[#F5F5F4] rounded-sm text-stone-900">
@@ -603,6 +627,21 @@ export default function Home() {
           <p>
             Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
           </p>
+
+          {/* NOTA WERYFIKACYJNA */}
+          <div className="mt-16 mb-8 p-6 bg-stone-50 border border-stone-200 shadow-sm rounded-sm">
+            <div className="flex items-start gap-3">
+              <Scale className="w-5 h-5 text-stone-400 mt-1 shrink-0" />
+              <div className="text-sm font-sans text-stone-600 leading-relaxed space-y-3">
+                <p>
+                  Przedstawiona historia została zrekonstruowana wyłącznie na podstawie jawnych dokumentów urzędowych, akt sądowych oraz zapisów w publicznych rejestrach nieruchomości. Aby zapewnić pełną przejrzystość śledztwa, w treści artykułu zintegrowano kopie kluczowych dokumentów (PDF).
+                </p>
+                <p>
+                  Poniższa sekcja „Dokumenty Źródłowe” zawiera kompletny wykaz sygnatur i odnośników do państwowych baz danych (Katastr Nieruchomości, InfoSoud). Umożliwiają one każdemu czytelnikowi niezależną weryfikację autentyczności przytoczonych wyroków oraz historii własności gruntów w Janovie i Nýdku u źródła, bez pośrednictwa autora tekstu.
+                </p>
+              </div>
+            </div>
+          </div>
 
         </div>
 
