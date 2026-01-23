@@ -82,8 +82,20 @@ export const GalleryModal = ({ isOpen, onClose, data }: GalleryModalProps) => {
               showCover={true}
               mobileScrollSupport={true}
               onFlip={onPage}
+              // @ts-ignore
               ref={flipBook}
               className="w-full h-full"
+              startPage={0}
+              drawShadow={true}
+              flippingTime={1000}
+              usePortrait={true}
+              startZIndex={0}
+              autoSize={true}
+              clickEventForward={true}
+              useMouseEvents={true}
+              swipeDistance={30}
+              showPageCorners={true}
+              disableFlipByClick={false}
             >
               {data.images.map((src, index) => (
                 <div className="page bg-[#111] flex items-center justify-center" key={index}>
