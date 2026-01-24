@@ -323,7 +323,7 @@ export default function Home() {
         <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-a:text-blue-800 hover:prose-a:text-blue-900 prose-blockquote:not-italic">
           
           <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed">
-            W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich &quot;szamanów&quot; w Czechach. Policyjny nalot, aresztowanie Jarosława i Karoliny Kordysów, a następnie surowe wyroki - 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na podawaniu klientom egzotycznego psychodeliku - ayahuaski.
+            W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich &quot;szamanów&quot; w czeskich Hermanovicach. Policyjny nalot, aresztowanie Jarosława i Karoliny Kordysów, a następnie surowe wyroki - 8,5 oraz 5,5 roku więzienia za prowadzenie  biznesu polegającego na podawaniu klientom egzotycznego psychodeliku - ayahuaski.
           </p>
 
           <p>
@@ -509,7 +509,7 @@ export default function Home() {
           </CaseFile>
 
           <p>
-            Podczas gdy Jarosław Kordys został skazany na 8,5 roku pozbawienia wolności Bartosz Badowski, którego sprawa dotyczyła tego samego procederu, tych samych substancji, regionu i czasu trwania działalności, dzięki ugodzie i współpracy z wymiarem sprawiedliwości, zakończył sprawę wyrokiem w zawieszeniu.
+            Podczas, gdy Jarosław Kordys został skazany na 8,5 roku pozbawienia wolności Bartosz Badowski, którego sprawa dotyczyła tego samego procederu, tych samych substancji, regionu i czasu trwania działalności, dzięki ugodzie i współpracy z wymiarem sprawiedliwości, zakończył sprawę wyrokiem w zawieszeniu.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cisza po burzy i nowy porządek</h2>
@@ -700,7 +700,7 @@ export default function Home() {
           </p>
 
           <p>
-            Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej &apos;szamańskiej świątyni&apos; – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, Marcin Iwiński. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder i gdzie zginął człowiek w latach 2016-2021.
+            Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej &apos;szamańskiej świątyni&apos; – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, Marcin Iwiński. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder  w latach 2016-2020.
           </p>
 
           <p>
