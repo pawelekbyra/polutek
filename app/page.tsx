@@ -2,8 +2,7 @@
 import React, { useState } from 'react';
 import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
-import { ImageViewer } from '@/components/gallery/ImageViewer';
-import { VerdictFlipbook } from '@/components/gallery/VerdictFlipbook';
+import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
 
 // Definicja typu danych galerii
@@ -808,19 +807,11 @@ export default function Home() {
         src="/evidence/stefan-nagranie.mp3"
       />
       
-      {galleryData?.type === 'verdict' ? (
-        <VerdictFlipbook
-          isOpen={isGalleryOpen}
-          onClose={() => setIsGalleryOpen(false)}
-          data={galleryData}
-        />
-      ) : (
-        <ImageViewer
-          isOpen={isGalleryOpen}
-          onClose={() => setIsGalleryOpen(false)}
-          data={galleryData}
-        />
-      )}
+      <GalleryModal
+        isOpen={isGalleryOpen}
+        onClose={() => setIsGalleryOpen(false)}
+        data={galleryData}
+      />
     </main>
     </PasswordProtect>
   );
