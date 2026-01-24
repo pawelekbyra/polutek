@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, Paperclip } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
@@ -25,7 +25,6 @@ const GALLERY_NYDEK: GalleryData = {
   signature: "LV 832"
 };
 
-// POPRAWIONA GALERIA KORDYSA (25 stron, poprawna ścieżka)
 const GALLERY_WYROK_KORDYS: GalleryData = {
   title: "Uzasadnienie wyroku: Jarosław K.",
   images: Array.from({ length: 25 }, (_, i) => 
@@ -394,38 +393,23 @@ export default function Home() {
             lv="127" 
           />
 
-          {/* NOTATKA SŁUŻBOWA - NOWY STYL BEZ WYKRESU */}
-          <div className="relative my-10 mx-2 md:mx-0 p-6 bg-[#fdfbf7] shadow-[0_3px_10px_rgb(0,0,0,0.1)] border border-stone-200 rotate-[1deg]">
-            {/* Spinacz */}
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-stone-400">
-               <Paperclip className="w-8 h-8 rotate-[15deg]" />
-            </div>
-
-            <div className="text-center mb-6">
-                <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-stone-400 border-b border-stone-300 pb-1">Analiza Własnościowa</span>
-            </div>
-
-            <p className="font-mono text-sm leading-relaxed text-stone-700 text-center mb-6">
-               <button onClick={() => openGallery('janov')} className="text-blue-800 hover:text-blue-900 font-bold border-b border-blue-800/30 transition-colors">Pobrany dokument</button> nie pozostawia wątpliwości. <br/>
-               Stan prawny nieruchomości w latach 2012–2023:
-            </p>
-
-            <div className="flex flex-col gap-4 max-w-sm mx-auto font-mono text-sm border-t border-b border-stone-200 py-4 border-dashed">
-                <div className="flex justify-between items-end">
-                    <span className="text-stone-500">Udział mniejszościowy:</span>
-                    <span className="font-bold text-stone-800">Bartosz Badowski (10%)</span>
-                </div>
-                 <div className="flex justify-between items-end">
-                    <span className="text-stone-500">Udział większościowy:</span>
-                    <span className="font-bold text-red-700 decoration-red-600 decoration-2 underline underline-offset-4">Michał Dawid Kiciński (90%)</span>
-                </div>
-            </div>
+          <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
+            <button onClick={() => openGallery('janov')} className="text-blue-700 hover:underline font-bold transition-colors">Pobrany dokument</button> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
             
-            <div className="text-right mt-2">
-                 <span className="text-[9px] font-mono text-stone-400">Źródło: Katastr Nemovitostí, LV 127</span>
+            <div className="mt-6 flex flex-col items-center justify-center not-italic">
+                {/* Lista */}
+                <div className="flex flex-col gap-3 font-mono text-sm">
+                    <div className="flex items-center gap-3">
+                        <div className="w-4 h-4 rounded-sm" style={{backgroundColor: 'rgba(59, 130, 246, 0.5)'}}></div>
+                        <span><strong>Bartosz Badowski</strong> (10%)</span>
+                    </div>
+                     <div className="flex items-center gap-3">
+                        <div className="w-4 h-4 rounded-sm" style={{backgroundColor: 'rgba(239, 68, 68, 0.5)'}}></div>
+                        <span className="decoration-red-600 decoration-4 underline underline-offset-4">Michał Dawid Kiciński (90%)</span>
+                    </div>
+                </div>
             </div>
           </div>
-
 
           <p>
             Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie „Michal D. K.”. Wspólnikiem w szamana był twórca Wiedźmina - jeden z najbogatszych Polaków.
@@ -519,9 +503,6 @@ export default function Home() {
             Cena wolności Badowskiego okazała się być wysoka dla jego kolegi z branży. Zeznania &quot;Badiego&quot; były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak w sprawie Kordysów.
           </p>
 
-          <p className="text-xs text-stone-500 mb-2 font-mono uppercase tracking-wider">
-            Materiał Wideo: Policyjne nagranie z aresztowania małżeństwa Kordysów (Październik 2020)
-          </p>
           <ArticleVideoPlayer
             src="/evidence/stefan/playlist.m3u8"
             poster=""
@@ -625,9 +606,6 @@ export default function Home() {
             Stefanek przedstawia to jako efekt „researchu” darczyńcy, który rzekomo urzekł się wizją działalności non-profit.
           </p>
 
-          <p className="text-xs text-stone-500 mb-2 font-mono uppercase tracking-wider">
-            Materiał Wideo: Krzysztof Stefanek opowiada o „cudownym” otrzymaniu darowizny (Materiał z 2025 r.)
-          </p>
           <EvidenceVideo 
             src="https://www.youtube.com/embed/4Xujw-krjxs" 
             title="Stefanek o darowiźnie"
