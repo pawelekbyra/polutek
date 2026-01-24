@@ -28,33 +28,12 @@ const GALLERY_NYDEK: GalleryData = {
 const GALLERY_WYROK_KORDYS: GalleryData = {
   title: "Uzasadnienie wyroku: Jarosław K.",
   images: [
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0001.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0002.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0003.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0004.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0005.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0006.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0007.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0008.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0009.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0010.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0011.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0012.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0013.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0014.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0015.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0016.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0017.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0018.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0019.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0020.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0021.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0022.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0023.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0024.jpg",
-    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0025.jpg"
+    "/gallery/wyrok_korydsa/wyrok_page-0001.jpg",
+    "/gallery/wyrok_korydsa/wyrok_page-0002.jpg",
+    "/gallery/wyrok_korydsa/wyrok_page-0003.jpg"
   ],
   signature: "30 T 5/2021",
+  pdfUrl: "/wyrok.pdf",
   type: 'verdict'
 };
 
@@ -405,7 +384,7 @@ export default function Home() {
           </CaseFile>
 
           <p>
-            W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać działkę w Janovie i za niewielką opłatą pobrać jej pełną historię.
+            W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <span className="text-blue-700 underline cursor-pointer hover:text-blue-900 transition-colors" title="Link nieaktywny">działkę w Janovie</span> i za niewielką opłatą pobrać jej pełną historię.
           </p>
           
           {/* PASEK LOKALIZACJI: JANOV */}
@@ -417,11 +396,32 @@ export default function Home() {
           />
 
           <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
-            Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli <strong>Bartosz Badowski</strong> (1/10) oraz <strong>Michał Dawid Kiciński</strong> (9/10).
+            Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
+            
+            <div className="mt-6 flex flex-col md:flex-row items-center gap-8 justify-center not-italic">
+                {/* Lista */}
+                <div className="flex flex-col gap-3 font-mono text-sm">
+                    <div className="flex items-center gap-3">
+                        <div className="w-4 h-4 rounded-sm bg-stone-400"></div>
+                        <span><strong>Bartosz Badowski</strong> (10%)</span>
+                    </div>
+                     <div className="flex items-center gap-3">
+                        <div className="w-4 h-4 rounded-sm bg-stone-800"></div>
+                        <span><strong>Michał Dawid Kiciński</strong> (90%)</span>
+                    </div>
+                </div>
+
+                {/* Wykres Kołowy CSS */}
+                <div className="relative w-24 h-24 rounded-full shadow-inner border border-stone-300" 
+                     style={{
+                        background: 'conic-gradient(#a8a29e 0% 10%, #292524 10% 100%)'
+                     }}>
+                </div>
+            </div>
           </div>
 
           <p>
-            Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie „Michal D. K.”. Wspólnikiem w <button onClick={() => openGallery('janov')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz dokumentację">„bazie”</button> był twórca Wiedźmina - jeden z najbogatszych Polaków.
+            Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie „Michal D. K.”. Wspólnikiem w szamana był twórca Wiedźmina - jeden z najbogatszych Polaków.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Telefon, który pogrążył imperium</h2>
@@ -509,7 +509,7 @@ export default function Home() {
           </p>
 
           <p>
-            Cena wolności Badowskiego okazała się być wysoka dla kogo innego. Zeznania Badowskiego stały się gwoździem do trumny jego kolegi z branży. Dla prokuratury był to bezcenny materiał dowodowy, który pozwolił domknąć łańcuch poszlak w sprawie Kordysów.
+            Cena wolności Badowskiego okazała się być wysoka dla jego kolegi z branży. Zeznania &quot;Badiego&quot; były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak w sprawie Kordysów.
           </p>
 
           <p className="text-xs text-stone-500 mb-2 font-mono uppercase tracking-wider">
