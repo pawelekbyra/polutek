@@ -412,7 +412,7 @@ export default function Home() {
           </div>
 
           <p>
-            Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie „Michal D. K.”. Wspólnikiem w  nieruchomości, która służyła za bazę dla nielegalnego procederu organizacji ayahuaskowych ceremonii, był twórca Wiedźmina – jeden z najbogatszych Polaków.”
+            Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie „Michal D. K.”. Wspólnikiem szamana był twórca Wiedźmina.
 
           </p>
 
