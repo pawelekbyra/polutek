@@ -116,8 +116,23 @@ export const VerdictFlipbook = ({ isOpen, onClose, data }: VerdictFlipbookProps)
                 showCover={true}
                 mobileScrollSupport={true}
                 onFlip={onPage}
+                // The `ref` prop is incorrectly typed in the library,
+                // so we need to use `@ts-ignore` to avoid a type error.
+                // @ts-ignore
                 ref={flipBook}
                 className="shadow-2xl"
+                style={{}}
+                startPage={0}
+                drawShadow={true}
+                flippingTime={1000}
+                usePortrait={true}
+                startZIndex={0}
+                autoSize={true}
+                clickEventForward={false}
+                useMouseEvents={true}
+                swipeDistance={30}
+                showPageCorners={true}
+                disableFlipByClick={false}
               >
                 {data.images.map((src, index) => (
                   <Page key={index}>

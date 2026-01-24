@@ -4,8 +4,8 @@ test('should open the Badi verdict gallery when the trigger is clicked', async (
   await page.goto('http://localhost:3000');
   await page.locator('input[type="password"]').fill('szaman');
   await page.locator('button[type="submit"]').click();
-  await page.waitForSelector('article');
 
+  await page.waitForSelector('article');
   await page.locator('button[title="Zobacz wyrok Bartosza B."]').click();
 
   const galleryModal = page.locator('.fixed.inset-0.z-50');
@@ -21,8 +21,8 @@ test('should open the wezwanie gallery when the trigger is clicked', async ({ pa
   await page.goto('http://localhost:3000');
   await page.locator('input[type="password"]').fill('szaman');
   await page.locator('button[type="submit"]').click();
-  await page.waitForSelector('article');
 
+  await page.waitForSelector('article');
   await page.locator('img[alt="Wezwanie na policję"]').click();
 
   const imageViewer = page.locator('.fixed.inset-0.z-50');
@@ -34,8 +34,8 @@ test('should open the Janov gallery when "bazie" is clicked', async ({ page }) =
   await page.goto('http://localhost:3000');
   await page.locator('input[type="password"]').fill('szaman');
   await page.locator('button[type="submit"]').click();
-  await page.waitForSelector('article');
 
+  await page.waitForSelector('article');
   await page.locator('button:has-text("„bazie”")').click();
 
   const imageViewer = page.locator('.fixed.inset-0.z-50');
