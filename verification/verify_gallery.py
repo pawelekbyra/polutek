@@ -23,37 +23,45 @@ def run(playwright):
     except Exception as e:
         print(f"Password handling error: {e}")
 
-    # 3. Verify VERDICT (Flipbook)
-    print("Opening VERDICT gallery...")
+    # 3. Verify VERDICT (Vertical Scroll)
+    print("Opening VERDICT gallery (Vertical Mode)...")
     try:
         trigger = page.get_by_role("button", name="30 T 5/2021")
         trigger.click()
         print("Waiting for Verdict modal...")
         expect(page.get_by_text("Uzasadnienie wyroku: Jarosław K.")).to_be_visible()
         page.wait_for_timeout(2000)
-        page.screenshot(path="verification/verdict_mode.png")
+        page.screenshot(path="verification/verdict_vertical_mode.png")
+
+        # Verify it has vertical scroll structure (not Flipbook)
+        # Look for the footer "KONIEC DOKUMENTU" which is specific to VerticalGalleryViewer
+        expect(page.get_by_text("— KONIEC DOKUMENTU —")).to_be_visible()
 
         # Close modal
-        page.get_by_label("Close").click()
-        # Wait for it to disappear
+        page.get_by_label("Close gallery").click()
         expect(page.get_by_text("Uzasadnienie wyroku: Jarosław K.")).not_to_be_visible()
 
     except Exception as e:
          print(f"Verdict verification failed: {e}")
 
-    # 4. Verify PHOTO GALLERY (PhotoViewer)
-    print("Opening PHOTO gallery...")
+    # 4. Verify PHOTO GALLERY (PhotoViewer) via NEW NYDEK TRIGGER
+    print("Opening PHOTO gallery via Nydek trigger...")
     try:
-        # Click the button that opens 'janov' gallery. Text is „bazie”
-        trigger = page.get_by_role("button", name="„bazie”")
+        # Locate the new trigger in text: "w miejscowości Nýdek"
+        # We look for the button with text "Nýdek"
+        trigger = page.get_by_role("button", name="Nýdek").first
         trigger.click()
 
         print("Waiting for Photo modal...")
-        # Title for janov is "Dokumentacja Nieruchomości: Janov"
-        expect(page.get_by_text("Dokumentacja Nieruchomości: Janov")).to_be_visible()
+        # Title for nydek is "Posiadłość w Nýdku (Archiwum)"
+        expect(page.get_by_text("Posiadłość w Nýdku (Archiwum)")).to_be_visible()
 
         page.wait_for_timeout(2000)
-        page.screenshot(path="verification/photo_mode.png")
+        page.screenshot(path="verification/photo_mode_nydek.png")
+
+        # Verify it is PhotoViewer (arrows)
+        # Check for fullscreen button
+        expect(page.get_by_label("Enter fullscreen")).to_be_visible()
 
     except Exception as e:
          print(f"Photo gallery verification failed: {e}")
