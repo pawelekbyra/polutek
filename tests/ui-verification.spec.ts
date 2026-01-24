@@ -9,19 +9,19 @@ test.describe('UI Verification', () => {
 
     await page.click('button[title="Zobacz wyrok Bartosza B."]');
 
-    const galleryModal = page.locator('.fixed.inset-0.bg-black\\/90');
-    await expect(galleryModal).toBeVisible();
+    const flipbookModal = page.locator('.fixed.inset-0.z-50');
+    await expect(flipbookModal).toBeVisible();
 
-    // Verify the close button is a floating overlay
-    const closeButton = galleryModal.locator('button[aria-label="Close gallery"]');
-    await expect(closeButton).toHaveClass(/absolute top-4 right-4/);
+    // Verify the close button is in the top-right corner
+    const closeButton = flipbookModal.locator('button[aria-label="Close"]');
+    await expect(closeButton).toBeVisible();
 
-    // Verify the download button is a floating overlay
-    const downloadButton = galleryModal.locator('a[aria-label="Download PDF"]');
+    // Verify the download button is in the bottom controls
+    const downloadButton = flipbookModal.locator('a:has-text("Pobierz PDF")');
     await expect(downloadButton).toBeVisible();
 
-    // Verify the page counter is a floating overlay
-    const pageCounter = galleryModal.locator('.absolute.bottom-4.left-1\\/2');
+    // Verify the page counter is visible and has the correct text
+    const pageCounter = flipbookModal.locator('.font-mono.text-sm:has-text("Strona 1 z")');
     await expect(pageCounter).toBeVisible();
 
     await page.screenshot({ path: 'test-results/ui-verification.png', fullPage: true });

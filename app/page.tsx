@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
-import { GalleryModal } from '@/components/gallery/GalleryModal';
+import { ImageViewer } from '@/components/gallery/ImageViewer';
+import { VerdictFlipbook } from '@/components/gallery/VerdictFlipbook';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
 
 // Definicja typu danych galerii
@@ -11,6 +12,7 @@ type GalleryData = {
   images: string[];
   signature?: string;
   pdfUrl?: string;
+  type?: 'verdict' | 'gallery';
 };
 
 // --- DANE DO GALERII ---
@@ -27,12 +29,13 @@ const GALLERY_NYDEK: GalleryData = {
 const GALLERY_WYROK_KORDYS: GalleryData = {
   title: "Uzasadnienie wyroku: Jarosław K.",
   images: [
-    "/wyrok_page-0001.jpg",
-    "/wyrok_page-0002.jpg",
-    "/wyrok_page-0003.jpg"
+    "/gallery/wyrok_korydsa/wyrok_page-0001.jpg",
+    "/gallery/wyrok_korydsa/wyrok_page-0002.jpg",
+    "/gallery/wyrok_korydsa/wyrok_page-0003.jpg"
   ],
   signature: "30 T 5/2021",
-  pdfUrl: "/wyrok.pdf"
+  pdfUrl: "/wyrok.pdf",
+  type: 'verdict'
 };
 
 const GALLERY_WYROK_BADI: GalleryData = {
@@ -43,7 +46,8 @@ const GALLERY_WYROK_BADI: GalleryData = {
     "/wyrok_page-0003.jpg"
   ],
   signature: "66 T 146/2021",
-  pdfUrl: "/wyrok.pdf"
+  pdfUrl: "/wyrok.pdf",
+  type: 'verdict'
 };
 
 const GALLERY_NIERUCHOMOSCI_2: GalleryData = {
@@ -804,11 +808,19 @@ export default function Home() {
         src="/evidence/stefan-nagranie.mp3"
       />
       
-      <GalleryModal
-        isOpen={isGalleryOpen}
-        onClose={() => setIsGalleryOpen(false)}
-        data={galleryData}
-      />
+      {galleryData?.type === 'verdict' ? (
+        <VerdictFlipbook
+          isOpen={isGalleryOpen}
+          onClose={() => setIsGalleryOpen(false)}
+          data={galleryData}
+        />
+      ) : (
+        <ImageViewer
+          isOpen={isGalleryOpen}
+          onClose={() => setIsGalleryOpen(false)}
+          data={galleryData}
+        />
+      )}
     </main>
     </PasswordProtect>
   );
