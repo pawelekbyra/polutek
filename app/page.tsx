@@ -28,12 +28,33 @@ const GALLERY_NYDEK: GalleryData = {
 const GALLERY_WYROK_KORDYS: GalleryData = {
   title: "Uzasadnienie wyroku: Jarosław K.",
   images: [
-    "/gallery/wyrok_korydsa/wyrok_page-0001.jpg",
-    "/gallery/wyrok_korydsa/wyrok_page-0002.jpg",
-    "/gallery/wyrok_korydsa/wyrok_page-0003.jpg"
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0001.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0002.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0003.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0004.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0005.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0006.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0007.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0008.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0009.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0010.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0011.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0012.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0013.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0014.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0015.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0016.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0017.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0018.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0019.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0020.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0021.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0022.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0023.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0024.jpg",
+    "/gallery/wyrok_kordysa/30T_5_2021-1_page-0025.jpg"
   ],
   signature: "30 T 5/2021",
-  pdfUrl: "/wyrok.pdf",
   type: 'verdict'
 };
 
