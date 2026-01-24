@@ -485,7 +485,7 @@ export default function Home() {
           </p>
 
           <p>
-            Cena wolności Badowskiego okazała się być wysoka dla kogo innego. Zeznania Badowskiego stały się gwoździem do trumny jego kolegi z branży, Jarosława. Dla prokuratury był to bezcenny materiał dowodowy – zeznania Badowskiego pozwoliły prokuraturze domknąć łańcuch poszlak w sprawie Kordysów.
+            Cena wolności Badowskiego okazała się być wysoka dla kogo innego. Zeznania Badowskiego stały się gwoździem do trumny jego kolegi z branży. Dla prokuratury był to bezcenny materiał dowodowy, który pozwolił domknąć łańcuch poszlak w sprawie Kordysów.
           </p>
 
           <p className="text-xs text-stone-500 mb-2 font-mono uppercase tracking-wider">
@@ -525,7 +525,7 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Kiciński</h2>
 
           <p>
-            W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika z Janova. Michał Kiciński to nie jest postać, która o ayahuasce jedynie „słyszała” – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla „Focusa”, „Newsweeka”) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu „medycyna”, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera „nową rzeczywistość”.
+            W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika. Michał Kiciński to nie jest postać, która o ayahuasce jedynie „słyszała” – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla „Focusa”, „Newsweeka”) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu „medycyna”, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera „nową rzeczywistość”.
           </p>
 
           <PullQuote 
