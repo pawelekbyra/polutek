@@ -381,7 +381,7 @@ export default function Home() {
           </CaseFile>
 
           <p>
-            W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <button onClick={() => openGallery('janov')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz dokumentację">działkę w Janovie</button> i za niewielką opłatą pobrać jej pełną historię.
+            W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać działkę w Janovie i za niewielką opłatą pobrać jej pełną historię.
           </p>
           
           {/* PASEK LOKALIZACJI: JANOV */}
@@ -390,7 +390,6 @@ export default function Home() {
             code="656976" 
             plot="st. 281" 
             lv="127" 
-            onClick={() => openGallery('janov')}
           />
 
           <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
@@ -398,7 +397,7 @@ export default function Home() {
           </div>
 
           <p>
-            Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie „Michal D. K.”. Wspólnikiem szamana w <button onClick={() => openGallery('janov')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz dokumentację">Janovie</button> był twórca Wiedźmina - jeden z najbogatszych Polaków.
+            Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie „Michal D. K.”. Wspólnikiem w <button onClick={() => openGallery('janov')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz dokumentację">„bazie”</button> był twórca Wiedźmina - jeden z najbogatszych Polaków.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Telefon, który pogrążył imperium</h2>
@@ -516,7 +515,7 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cisza po burzy i nowy porządek</h2>
 
           <p>
-            Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku &apos;Badiego&apos; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz lany, którzy mimo tego, że sami byli obecni podczas policyjnego nalotu, pozostali lojalni wobec byłego szamana.
+            Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku &apos;Badiego&apos; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnego nalotu, pozostali lojalni wobec byłego szamana.
           </p>
 
           <p>
@@ -580,19 +579,237 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Darowizna, czy gorący kartofel</h2>
 
           <p>
-            W listopadzie 2025 roku na kanale YouTube „Osada Natury Zew” pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, Krzysztof Stefanek, snuje opowieść o powstaniu „Osady”. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobrze.
+            W listopadzie 2025 roku na kanale YouTube „Osada Natury Zew” pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, Krzysztof Stefanek, snuje opowieść o powstaniu „Osady”. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
           </p>
+
+          <p>
+            Stefanek wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt „znalazł się w jednych rękach”. Kluczowy moment tej opowieści Stefanek datuje z niezwykłą precyzją:
+          </p>
+
+          <CaseFile title="Wypowiedź K. Stefanka">
+            „Ostatecznie 23 października 2023 roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie&quot;
+          </CaseFile>
+
+          <p>
+            Stefanek przedstawia to jako efekt „researchu” darczyńcy, który rzekomo urzekł się wizją działalności non-profit.
+          </p>
+
+          <p className="text-xs text-stone-500 mb-2 font-mono uppercase tracking-wider">
+            Materiał Wideo: Krzysztof Stefanek opowiada o „cudownym” otrzymaniu darowizny (Materiał z 2025 r.)
+          </p>
+          <EvidenceVideo 
+            src="https://www.youtube.com/embed/4Xujw-krjxs" 
+            title="Stefanek o darowiźnie"
+            caption="Krzysztof Stefanek opowiada o „cudownym” otrzymaniu darowizny (Materiał z 2025 r.)"
+          />
+
+          <p>
+            Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech w pozbywaniu się „gorącego kartofla”:
+          </p>
+
+          <ul className="list-none space-y-4 my-8 font-mono text-sm border-l-2 border-stone-300 pl-4">
+            <li className="flex items-start gap-3">
+              <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
+              <div>
+                <strong>21 września 2023 r.</strong> – Michał Kiciński odbiera wezwanie na przesłuchanie w sprawie Janova.
+              </div>
+            </li>
+            <li className="flex items-center justify-center text-stone-400">
+              &darr;
+            </li>
+            <li className="flex items-start gap-3">
+              <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
+              <div>
+                <strong>3 października 2023 r.</strong> – Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów w nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
+              </div>
+            </li>
+            <li className="flex items-center justify-center text-stone-400">
+              &darr;
+            </li>
+            <li className="flex items-start gap-3">
+              <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
+              <div>
+                <strong>11 października 2023 r.</strong> – Miliarder staje przed policją. Do protokołu odmawia zeznań na temat swojej przeszłości w tym miejscu.
+              </div>
+            </li>
+             <li className="flex items-center justify-center text-stone-400">
+              &darr;
+            </li>
+            
+            <li className="flex items-start gap-3">
+              <Calendar className="w-5 h-5 text-orange-600 shrink-0 mt-3" />
+              <div className="bg-orange-50 border border-orange-200 p-4 rounded-sm shadow-sm w-full relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+                <span className="font-bold text-stone-900">23 października 2023 r.</span> – Zaledwie 12 dni po kłopotliwym przesłuchaniu, gdy formalności własnościowe z Badim są już dopięte, następuje telefon do Stefanka z propozycją oddania majątku wartego miliony za darmo.
+              </div>
+            </li>
+
+            <li className="flex items-center justify-center text-stone-400">
+              &darr;
+            </li>
+            <li className="flex items-start gap-3">
+              <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
+              <div>
+                <strong>21 grudnia 2023 r.</strong> – Finał operacji. Kiciński formalnie przekazuje Janov w formie darowizny. Nieruchomość trafia do stowarzyszenia „non-profit” – fasadowej organizacji „krzak”, zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
+              </div>
+            </li>
+          </ul>
+
+          <p>
+            Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. Krzysztof Stefanek, który w filmie mówi o „odwróconej logice” i pięknie wolontariatu, i jego konkubina Magdalena Drzewińska w rzeczywistości doskonale znali mroczną historię Janova i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
+          </p>
+
+          <TransactionStamp 
+            label="Nr Transakcji (Katastr)" 
+            value="V-5821/2023-127" 
+            subDetails="Obręb: Janov u Krnova [656976]"
+          />
+
+          <p>
+            Ostatecznie strategia okazała się skuteczna. Autor zawiadomienia wycofał sprawę, śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w „Stowarzyszeniu Natury Zew”. Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, „czystej” osady. Prawda o śmierci Ilony i o tym, że fundamentem tej sielanki były lata nielegalnego procederu, została przykryta warstwą ziemi w ogrodzie permakulturowym.
+          </p>
+
+          <p>
+            Na tym jednak historia na szczęście się nie kończy. Autor wycofanego zawiadomienia nie był zadowolony, bo &quot;zadośćuczynienie wszechświatowi&quot; miało trafić na hospicjum, a nie na „organizację krzak”. Tymczasem na tragedii Ilony świadomie wzbogacili się członkowie Stowarzyszenia Natury Zew, a tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Teraz, pod płaszczykiem non-profit, żyją z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując gości i publicznie każdego, kto natrafi na ich sielankowe filmy w sieci.
+          </p>
+          
+          <div className="my-8 p-6 border border-stone-300 bg-[#F5F5F4] rounded-sm text-stone-900">
+             6 maja 2024 roku Prokuratura Okręgowa w Częstochowie wszczęła śledztwo (3013-1.Ds.15.2024). Nie dotyczy ono wyłącznie udziału Michała Kicińskiego w ayahuaskowym biznesie i kwestii zastanawiającej darowizny, ale przede wszystkim ma na celu wyjaśnienie tajemniczych okoliczności śmierci Ilony Lewandowskiej.
+          </div>
+
+          <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Jeszcze jeden ośrodek i jeszcze jeden miliarder</h2>
+
+          <p>
+            Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości Nýdek, funkcjonował kolejny, bliźniaczy ośrodek.
+          </p>
+
+          <LocationStrip 
+            name="NÝDEK" 
+            code="708186" 
+            plot="st. 506/1" 
+            lv="832"
+            onClick={() => openGallery('nydek')}
+          />
+
+          <p>
+            Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów, prowadzone przez Piotra Bonawenturę Tracza. Chociaż witryna ośrodka już nie istnieje, archiwum internetu „Wayback Machine” zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
+          </p>
+
+          <p>
+            Skoro wiemy już, czym ten dom był, kluczowym pytaniem staje się: do kogo należał?
+          </p>
+
+          <p>
+            Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej &apos;szamańskiej świątyni&apos; – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, Marcin Iwiński. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder i gdzie zginął człowiek w latach 2016-2021.
+          </p>
+
+          <p>
+            Jeszcze bardziej zastanawiające jest to, co stało się z tą nieruchomością w momencie zagrożenia. Gdy 15.10.2020 roku aresztowano Kordysa, nad środowiskiem zawisło widmo policyjnych nalotów. Dokumenty urzędowe odsłaniają niepokojącą zbieżność dat:
+          </p>
+
+          <ul className="list-none space-y-4 my-8 font-mono text-sm border-l-2 border-stone-300 pl-4">
+             <li className="flex items-start gap-3">
+              <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
+              <div>
+                <strong>15 października 2020 r.</strong> – Policyjny szturm na ośrodek Kordysów. W środowisku wybucha panika.
+              </div>
+            </li>
+            <li className="flex items-center justify-center text-stone-400">
+              &darr;
+            </li>
+            <li className="flex items-start gap-3">
+              <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
+              <div>
+                <strong>15 czerwca 2021 r.</strong> – Marcin Iwiński sprzedaje nieruchomości w Nýdek.
+              </div>
+            </li>
+          </ul>
+
+          <p>
+            Nabywcą luksusowej posiadłości nie został inny inwestor, lecz sam Piotr Bonawentura Tracz – ten sam człowiek, który wcześniej pełnił tam rolę „szamana”.
+          </p>
+
+          <TransactionStamp 
+            label="Nr Transakcji (Katastr)" 
+            value="V-2937/2021-832" 
+            subDetails="Obręb: Nýdek [708186]"
+          />
+
+          <p>
+            Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z „darowizną” Kicińskiego w Janovie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
+          </p>
+
+          <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Sprawiedliwość na sprzedaż?</h2>
+
+          <p>
+            Historia Janova i Nýdka to opowieść o dwóch równoległych światach. W jednym – za kratami czeskich więzień – siedzą „szamani”, których nazwiska stały się synonimem skandalu. W drugim – na szczytach list Forbesa – trwają ludzie, którzy tę infrastrukturę sfinansowali.
+          </p>
+
+          <p>
+            Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
+          </p>
+
         </div>
+
+        {/* STOPKA ŹRÓDŁOWA */}
+        <footer className="mt-12 pt-12 border-t-2 border-stone-200 font-sans">
+          <div className="mb-8">
+            <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
+              <Search className="w-5 h-5" /> Dokumenty Źródłowe
+            </h3>
+            <p className="text-base text-stone-800 leading-relaxed text-left">
+              Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.
+            </p>
+          </div>
+          
+          <div className="grid gap-4 text-sm text-stone-600">
+            <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+              <h4 className="font-bold text-stone-900 mb-1">Wyrok Bartosza B. (Sygn. <strong>66 T 146/2021</strong>)</h4>
+              <p className="mb-2">Sąd Rejonowy w Bruntalu.</p>
+              <a href="https://infosoud.justice.cz/InfoSoud/file/29Si25_2022/1" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline font-bold flex items-center gap-2">
+                <FileText className="w-3 h-3" /> Pobierz PDF
+              </a>
+            </div>
+
+            <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+              <h4 className="font-bold text-stone-900 mb-1">Sprawa karna Jarosława Kordysa (Sygn. <strong>30 T 5/2020</strong>)</h4>
+              <p className="mb-2">Sąd Wojewódzki w Ostrawie.</p>
+              <a href="https://infosoud.justice.cz/InfoSoud/public/search.jsp" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline font-bold flex items-center gap-2">
+                <Search className="w-3 h-3" /> Sprawdź w Rejestrze InfoSoud
+              </a>
+            </div>
+
+            <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+              <h4 className="font-bold text-stone-900 mb-1">Księgi Wieczyste (ČÚZK)</h4>
+              <p className="mb-2">Działka Janov (656976, nr 281) & Nýdek (708186, nr 506).</p>
+              <a href="https://nahlizenidokn.cuzk.cz/" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline font-bold flex items-center gap-2">
+                <MapPin className="w-3 h-3" /> Weryfikuj online
+              </a>
+            </div>
+
+            <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+              <h4 className="font-bold text-stone-900 mb-1">Archiwum: tribunydek.com</h4>
+              <p className="mb-2">Zrzuty strony ośrodka w Nýdku (2016-2021). <br/> <span className="text-stone-400 text-xs uppercase">Instrukcja:</span> Wejdź na archive.org i wpisz &quot;tribunydek.com&quot;</p>
+              <a href="https://web.archive.org/web/*/tribunydek.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline font-bold flex items-center gap-2">
+                <Globe className="w-3 h-3" /> Zobacz w Wayback Machine
+              </a>
+            </div>
+          </div>
+        </footer>
       </article>
 
-      {/* MODALE */}
-      <GalleryModal 
+      <EvidenceAudioModal 
+        isOpen={isAudioOpen} 
+        onClose={() => setIsAudioOpen(false)} 
+        src="/evidence/stefan-nagranie.mp3"
+      />
+      
+      <GalleryModal
         isOpen={isGalleryOpen}
         onClose={() => setIsGalleryOpen(false)}
         data={galleryData}
       />
-      
-      </main>
+    </main>
     </PasswordProtect>
   );
 }
