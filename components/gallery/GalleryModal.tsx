@@ -1,6 +1,6 @@
 "use client";
 
-import { FlipbookViewer } from './FlipbookViewer';
+import { VerticalGalleryViewer } from './VerticalGalleryViewer';
 import { PhotoViewer } from './PhotoViewer';
 
 // Shared type definition
@@ -23,7 +23,8 @@ export const GalleryModal = ({ isOpen, onClose, data }: GalleryModalProps) => {
 
   // Dispatch based on type
   if (data.type === 'verdict') {
-    return <FlipbookViewer isOpen={isOpen} onClose={onClose} data={data} />;
+    // Restore vertical scroll for verdicts as requested
+    return <VerticalGalleryViewer isOpen={isOpen} onClose={onClose} data={data} />;
   }
 
   // Default to PhotoViewer for 'gallery' or undefined type
