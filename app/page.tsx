@@ -344,7 +344,7 @@ export default function Home() {
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Świadek B.</h2>
 
           <p>
-            W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa o sygnaturze <button onClick={() => openGallery('wyrok_kordys')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz skan wyroku">30 T 5/2021</button> pojawia się postać świadka Bartosza B.
+            W obszernym i publicznie dostępnym uzasadnieniu <button onClick={() => openGallery('wyrok_kordys')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz skan wyroku">wyroku Jarosława Kordysa</button> o sygnaturze 30 T 5/2021 pojawia się postać świadka Bartosza B.
           </p>
           
           <p>
@@ -384,7 +384,7 @@ export default function Home() {
           </CaseFile>
 
           <p>
-            W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <span className="text-blue-700 underline cursor-pointer hover:text-blue-900 transition-colors" title="Link nieaktywny">działkę w Janovie</span> i za niewielką opłatą pobrać jej pełną historię.
+            W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać działkę w Janovie i za niewielką opłatą pobrać jej pełną historię.
           </p>
           
           {/* PASEK LOKALIZACJI: JANOV */}
@@ -396,25 +396,25 @@ export default function Home() {
           />
 
           <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
-            Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
+            <button onClick={() => openGallery('janov')} className="text-blue-700 hover:underline font-bold transition-colors">Pobrany dokument</button> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
             
             <div className="mt-6 flex flex-col md:flex-row items-center gap-8 justify-center not-italic">
                 {/* Lista */}
                 <div className="flex flex-col gap-3 font-mono text-sm">
                     <div className="flex items-center gap-3">
-                        <div className="w-4 h-4 rounded-sm bg-stone-400"></div>
+                        <div className="w-4 h-4 rounded-sm" style={{backgroundColor: 'rgba(59, 130, 246, 0.5)'}}></div>
                         <span><strong>Bartosz Badowski</strong> (10%)</span>
                     </div>
                      <div className="flex items-center gap-3">
-                        <div className="w-4 h-4 rounded-sm bg-stone-800"></div>
-                        <span><strong>Michał Dawid Kiciński</strong> (90%)</span>
+                        <div className="w-4 h-4 rounded-sm" style={{backgroundColor: 'rgba(239, 68, 68, 0.5)'}}></div>
+                        <span className="decoration-red-600 decoration-4 underline underline-offset-4">Michał Dawid Kiciński (90%)</span>
                     </div>
                 </div>
 
                 {/* Wykres Kołowy CSS */}
-                <div className="relative w-24 h-24 rounded-full shadow-inner border border-stone-300" 
+                <div className="relative w-24 h-24 rounded-full shadow-sm border border-stone-200" 
                      style={{
-                        background: 'conic-gradient(#a8a29e 0% 10%, #292524 10% 100%)'
+                        background: 'conic-gradient(rgba(59, 130, 246, 0.5) 0% 10%, rgba(239, 68, 68, 0.5) 10% 100%)'
                      }}>
                 </div>
             </div>
