@@ -12,15 +12,17 @@ const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs"
 const KORDYS_IMAGES_CID = "bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm";
 const KORDYS_IMAGES_URL = `${PINATA_GATEWAY}/${KORDYS_IMAGES_CID}`;
 
-// 2. DOWODY BADIEGO (Nowy folder - zdjęcia wyroku 66 T 146/2021)
+// 2. DOWODY BADIEGO (Zdjęcia wyroku 66 T 146/2021)
 const BADI_IMAGES_CID = "bafybeifdgw2zosj6lz2qg3d33aye4bd4vcz3rtrix2jbw3wwjhvxxjrk6q";
 const BADI_IMAGES_URL = `${PINATA_GATEWAY}/${BADI_IMAGES_CID}`;
 
 // 3. WIDEO STEFANA (HLS)
 const VIDEO_CID = "bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u";
 
-// 4. LINK DO PDF Z WYROKIEM KORDYSA
+// 4. LINKI DO PLIKÓW PDF (Pełne wyroki)
 const KORDYS_PDF_URL = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq"; 
+// 👇 NOWY LINK DO PDF BADIEGO 👇
+const BADI_PDF_URL = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza";
 
 // Definicja typu danych galerii
 type GalleryData = {
@@ -44,7 +46,7 @@ const generateKordysPages = (count: number) => {
 };
 
 // Generator dla wyroku Badiego (3 strony)
-// Format: "wyrok_page-0001.jpg" (zgodnie z Twoim zrzutem ekranu)
+// Format: "wyrok_page-0001.jpg"
 const generateBadiPages = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
     const pageNumber = String(i + 1).padStart(4, '0');
@@ -55,8 +57,7 @@ const generateBadiPages = (count: number) => {
 
 // --- DANE DO GALERII (Z IPFS) ---
 
-// Uwaga: Te galerie korzystają jeszcze ze starych linków (jeśli ich nie zaktualizowałeś na IPFS).
-// Jeśli Nydek też ma nowy CID, trzeba go tu podmienić. Na razie zostawiam stary EVIDENCE_CID dla reszty.
+// Stary CID dla pozostałych zdjęć (Nydek, Janov itp.) - dopóki ich nie przeniesiesz do nowych folderów
 const OLD_EVIDENCE_URL = `${PINATA_GATEWAY}/bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm`;
 
 const GALLERY_NYDEK: GalleryData = {
@@ -78,10 +79,9 @@ const GALLERY_WYROK_KORDYS: GalleryData = {
 
 const GALLERY_WYROK_BADI: GalleryData = {
   title: "Wyrok skazujący: Bartosz B.",
-  // Generujemy 3 strony z nowego folderu Badiego
   images: generateBadiPages(3), 
   signature: "66 T 146/2021",
-  // pdfUrl: ... (Jeśli wgrasz PDF Badiego, tu wkleisz link)
+  pdfUrl: BADI_PDF_URL, // 👈 Podpięty nowy PDF
   type: 'verdict'
 };
 
@@ -398,10 +398,17 @@ export default function Home() {
                {/* Linki do dokumentów */}
                <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <h4 className="font-bold text-stone-900">Wyrok Bartosza B.</h4>
-                  <p>Sygn. 66 T 146/2021</p>
+                  <p className="mb-2">Sygn. 66 T 146/2021</p>
+                  <a 
+                    href={BADI_PDF_URL} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-blue-700 hover:underline font-bold flex items-center gap-2"
+                  >
+                    <FileText className="w-3 h-3" /> Pobierz Pełny Wyrok (PDF)
+                  </a>
                </div>
                
-               {/* SEKACJA Z PRZYCISKIEM POBIERANIA PDF */}
                <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <h4 className="font-bold text-stone-900">Sprawa Kordysa</h4>
                   <p className="mb-2">Sygn. 30 T 5/2020</p>
