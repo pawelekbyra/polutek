@@ -295,8 +295,7 @@ export default function Home() {
         <article className="max-w-2xl mx-auto px-4 py-8 flex-grow">
           
           {/* KONFIGURACJA STYLÓW TEKSTU I LINKÓW (NOIR STYLE - BEZ NIEBIESKIEGO) */}
-          <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic
-            prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:border-b-2 prose-a:border-stone-300 hover:prose-a:bg-stone-100 hover:prose-a:border-stone-800 transition-colors">
+          <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic">
             
             <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed">
               W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich &quot;szamanów&quot; w czeskich Hermanovicach. Policyjny nalot, aresztowanie Jarosława i Karoliny Kordysów, a następnie surowe wyroki - 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
@@ -317,7 +316,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Świadek B.</h2>
 
             <p>
-              W obszernym i publicznie dostępnym uzasadnieniu <button onClick={() => openGallery('wyrok_kordys')} title="Zobacz skan wyroku">wyroku</button> Jarosława Kordysa o sygnaturze 30 T 5/2021 pojawia się postać świadka Bartosza B.
+              W obszernym i publicznie dostępnym uzasadnieniu <button onClick={() => openGallery('wyrok_kordys')} title="Zobacz skan wyroku" className="font-bold text-stone-900 underline decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> Jarosława Kordysa o sygnaturze 30 T 5/2021 pojawia się postać świadka Bartosza B.
             </p>
             
             <p>
@@ -357,7 +356,7 @@ export default function Home() {
             </CaseFile>
 
             <p>
-              W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <button onClick={() => openGallery('janov')}>działkę w Janovie</button> i za niewielką opłatą pobrać jej pełną historię.
+              W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <button onClick={() => openGallery('janov')} className="font-bold text-stone-900 underline decoration-stone-400 hover:bg-stone-100 transition-colors">działkę w Janovie</button> i za niewielką opłatą pobrać jej pełną historię.
             </p>
             
             <LocationStamp 
@@ -369,7 +368,7 @@ export default function Home() {
             />
 
             <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
-              <button onClick={() => openGallery('janov')} className="underline font-bold decoration-stone-400 hover:bg-stone-200 transition-colors">Pobrany dokument</button> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
+              <button onClick={() => openGallery('janov')} className="font-bold text-stone-900 underline decoration-stone-400 hover:bg-stone-100 transition-colors">Pobrany dokument</button> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
               
               <div className="mt-6 flex flex-col items-center justify-center not-italic">
                   <div className="flex flex-col gap-3 font-mono text-sm">
@@ -478,7 +477,7 @@ export default function Home() {
             </p>
 
             <p>
-               Na mocy <button onClick={() => openGallery('wyrok_badi')} title="Zobacz wyrok Bartosza B.">wyroku</button> o sygnaturze 66 T 146/2021 z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”.
+               Na mocy <button onClick={() => openGallery('wyrok_badi')} title="Zobacz wyrok Bartosza B." className="font-bold text-stone-900 underline decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> o sygnaturze 66 T 146/2021 z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”.
             </p>
             
             <p className="font-bold text-stone-900 mb-2">
@@ -670,7 +669,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Jeszcze jeden ośrodek i jeszcze jeden miliarder</h2>
 
             <p>
-              Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości <strong>Nýdek</strong>, funkcjonował <button onClick={() => openGallery('nydek')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz galerię">kolejny, bliźniaczy ośrodek</button>.
+              Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości <strong>Nýdek</strong>, funkcjonował <button onClick={() => openGallery('nydek')} className="font-bold text-stone-900 underline decoration-stone-400 hover:bg-stone-100 transition-colors">kolejny, bliźniaczy ośrodek</button>.
             </p>
 
             <LocationStamp 
@@ -755,13 +754,13 @@ export default function Home() {
           {/* STOPKA ŹRÓDŁOWA */}
           <footer className="mt-0 pt-8 border-none font-sans">
              
-             {/* NAGŁÓWEK SEKCJ */}
-             <div className="mb-8">
-               <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
+             {/* NAGŁÓWEK SEKCJ Z MAŁĄ KRESKĄ */}
+             <div className="mb-8 text-center">
+               <div className="w-16 h-1 bg-stone-300 mx-auto mb-6"></div> {/* MAŁA KRESKA NA ŚRODKU */}
+               <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center justify-center gap-2 mb-4">
                  <Search className="w-5 h-5" /> Dokumenty Źródłowe
                </h3>
-               <div className="border-b-4 border-stone-300 w-full mb-6"></div> {/* SZEROKA LINIA POD NAPISAM */}
-               <p className="text-base text-stone-800 italic">Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.</p>
+               <p className="text-base text-stone-800 italic max-w-2xl mx-auto">Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.</p>
              </div>
              
              {/* NOWA KOMPAKTOWA SIATKA Z DOKUMENTAMI */}
