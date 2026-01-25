@@ -8,14 +8,18 @@ import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
 // --- KONFIGURACJA IPFS (NIEZATAPIALNE DOWODY) ---
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 
-// 1. CID Folderu ze zdjęciami (Wyroki, dokumenty)
-const EVIDENCE_CID = "bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm";
-const EVIDENCE_URL = `${PINATA_GATEWAY}/${EVIDENCE_CID}`;
+// 1. DOWODY KORDYSA (Zdjęcia wyroku 30 T 5/2021)
+const KORDYS_IMAGES_CID = "bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm";
+const KORDYS_IMAGES_URL = `${PINATA_GATEWAY}/${KORDYS_IMAGES_CID}`;
 
-// 2. CID Folderu z FILMEM (Wideo Stefana - HLS)
+// 2. DOWODY BADIEGO (Nowy folder - zdjęcia wyroku 66 T 146/2021)
+const BADI_IMAGES_CID = "bafybeifdgw2zosj6lz2qg3d33aye4bd4vcz3rtrix2jbw3wwjhvxxjrk6q";
+const BADI_IMAGES_URL = `${PINATA_GATEWAY}/${BADI_IMAGES_CID}`;
+
+// 3. WIDEO STEFANA (HLS)
 const VIDEO_CID = "bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u";
 
-// 3. LINK DO PDF Z WYROKIEM KORDYSA (Zaktualizowany)
+// 4. LINK DO PDF Z WYROKIEM KORDYSA
 const KORDYS_PDF_URL = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq"; 
 
 // Definicja typu danych galerii
@@ -29,32 +33,37 @@ type GalleryData = {
 
 // --- FUNKCJE POMOCNICZE DO GENEROWANIA ŚCIEŻEK ---
 
-// Generator dla wyroku (100 stron)
-const generateVerdictPages = (folderName: string, count: number) => {
+// Generator dla wyroku Kordysa (95 stron)
+// Format: "30T 5 2021-1_page-0001.jpg"
+const generateKordysPages = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
-    const fileName = `${i + 1}.jpg`; 
-    return `${EVIDENCE_URL}/${folderName}/${fileName}`;
+    const pageNumber = String(i + 1).padStart(4, '0');
+    const fileName = `30T 5 2021-1_page-${pageNumber}.jpg`;
+    return `${KORDYS_IMAGES_URL}/${fileName}`;
   });
 };
 
-// Specjalny generator dla wyroku Kordysa (95 stron, specyficzne nazwy plików)
-const generateKordysPages = (count: number) => {
+// Generator dla wyroku Badiego (3 strony)
+// Format: "wyrok_page-0001.jpg" (zgodnie z Twoim zrzutem ekranu)
+const generateBadiPages = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
-    // Zamienia liczbę na format czterocyfrowy (np. 1 -> "0001")
     const pageNumber = String(i + 1).padStart(4, '0');
-    // Format: "30T 5 2021-1_page-0001.jpg"
-    const fileName = `30T 5 2021-1_page-${pageNumber}.jpg`;
-    return `${EVIDENCE_URL}/${fileName}`;
+    const fileName = `wyrok_page-${pageNumber}.jpg`;
+    return `${BADI_IMAGES_URL}/${fileName}`;
   });
 };
 
 // --- DANE DO GALERII (Z IPFS) ---
 
+// Uwaga: Te galerie korzystają jeszcze ze starych linków (jeśli ich nie zaktualizowałeś na IPFS).
+// Jeśli Nydek też ma nowy CID, trzeba go tu podmienić. Na razie zostawiam stary EVIDENCE_CID dla reszty.
+const OLD_EVIDENCE_URL = `${PINATA_GATEWAY}/bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm`;
+
 const GALLERY_NYDEK: GalleryData = {
   title: "Posiadłość w Nýdku (Archiwum)",
   images: [
-    `${EVIDENCE_URL}/nydek/Nydek1.jpg`,
-    `${EVIDENCE_URL}/nydek/Nydek2.jpg`
+    `${OLD_EVIDENCE_URL}/nydek/Nydek1.jpg`,
+    `${OLD_EVIDENCE_URL}/nydek/Nydek2.jpg`
   ],
   signature: "LV 832"
 };
@@ -63,63 +72,60 @@ const GALLERY_WYROK_KORDYS: GalleryData = {
   title: "Pełne uzasadnienie wyroku: Jarosław K.",
   images: generateKordysPages(95),
   signature: "30 T 5/2021",
-  pdfUrl: KORDYS_PDF_URL, // Używamy linku zdefiniowanego na górze
+  pdfUrl: KORDYS_PDF_URL,
   type: 'verdict'
 };
 
 const GALLERY_WYROK_BADI: GalleryData = {
   title: "Wyrok skazujący: Bartosz B.",
-  images: [
-    `${EVIDENCE_URL}/wyrok_badi/wyrok_page-0001.jpg`,
-    `${EVIDENCE_URL}/wyrok_badi/wyrok_page-0002.jpg`,
-    `${EVIDENCE_URL}/wyrok_badi/wyrok_page-0003.jpg`
-  ],
+  // Generujemy 3 strony z nowego folderu Badiego
+  images: generateBadiPages(3), 
   signature: "66 T 146/2021",
-  pdfUrl: `${EVIDENCE_URL}/wyrok_badi/wyrok.pdf`,
+  // pdfUrl: ... (Jeśli wgrasz PDF Badiego, tu wkleisz link)
   type: 'verdict'
 };
 
 const GALLERY_NIERUCHOMOSCI_2: GalleryData = {
   title: "Kolejny bliźniaczy ośrodek",
   images: [
-    `${EVIDENCE_URL}/nydek/Nydek1.jpg`, 
-    `${EVIDENCE_URL}/nydek/Nydek2.jpg`, 
-    `${EVIDENCE_URL}/nydek/Nieruchomosc3.jpeg`
+    `${OLD_EVIDENCE_URL}/nydek/Nydek1.jpg`, 
+    `${OLD_EVIDENCE_URL}/nydek/Nydek2.jpg`, 
+    `${OLD_EVIDENCE_URL}/nydek/Nieruchomosc3.jpeg`
   ],
 };
 
 const GALLERY_WEZWANIE_KICINSKI: GalleryData = {
   title: "Wezwanie dla Michała Kicińskiego",
-  images: [`${EVIDENCE_URL}/wezwanie/wezwanie_kicinski.png`],
+  images: [`${OLD_EVIDENCE_URL}/wezwanie/wezwanie_kicinski.png`],
   signature: "WD-I-3186/23"
 };
 
 const GALLERY_JANOV: GalleryData = {
   title: "Dokumentacja Nieruchomości: Janov",
   images: [
-    `${EVIDENCE_URL}/gallery/janov/janov1.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov2.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov3.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov4.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov5.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov6.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov8.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov9.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov11.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov12.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov13.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov14.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov15.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov16.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov17.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov18.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov19.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov20.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov21.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov23.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov24.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov25.jpg`,
-    `${EVIDENCE_URL}/gallery/janov/janov26.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov1.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov2.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov3.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov4.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov5.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov6.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov8.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov9.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov11.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov12.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov13.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov14.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov15.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov16.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov17.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov18.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov19.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov20.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov21.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov23.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov24.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov25.jpg`,
+    `${OLD_EVIDENCE_URL}/gallery/janov/janov26.jpg`,
   ],
   signature: "LV 127"
 };
