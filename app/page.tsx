@@ -174,7 +174,6 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
   </div>
 );
 
-// NOWY KOMPONENT: LocationStamp (Zastępuje LocationStrip)
 const LocationStamp = ({ name, code, plot, lv, onClick }: { name: string, code: string, plot: string, lv: string, onClick?: () => void }) => (
   <div className="my-8 flex justify-start">
     <button 
@@ -361,13 +360,13 @@ export default function Home() {
               W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <button onClick={() => openGallery('janov')}>działkę w Janovie</button> i za niewielką opłatą pobrać jej pełną historię.
             </p>
             
-            <LocationStamp 
-              name="JANOV U KRNOVA" 
-              code="656976" 
-              plot="st. 281" 
-              lv="127" 
-              onClick={() => openGallery('janov')}
-            />
+            <LocationStamp 
+              name="JANOV U KRNOVA" 
+              code="656976" 
+              plot="st. 281" 
+              lv="127" 
+              onClick={() => openGallery('janov')}
+            />
 
             <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
               <button onClick={() => openGallery('janov')} className="underline font-bold decoration-stone-400 hover:bg-stone-200 transition-colors">Pobrany dokument</button> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
@@ -674,13 +673,13 @@ export default function Home() {
               Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości <strong>Nýdek</strong>, funkcjonował <button onClick={() => openGallery('nydek')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz galerię">kolejny, bliźniaczy ośrodek</button>.
             </p>
 
-            <LocationStamp 
-              name="NÝDEK" 
-              code="708186" 
-              plot="st. 506/1" 
-              lv="832"
-              onClick={() => openGallery('nydek')}
-            />
+            <LocationStamp 
+              name="NÝDEK" 
+              code="708186" 
+              plot="st. 506/1" 
+              lv="832"
+              onClick={() => openGallery('nydek')}
+            />
 
             <p>
               Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów, prowadzone przez Piotra Bonawenturę Tracza. Chociaż witryna ośrodka już nie istnieje, archiwum internetu „Wayback Machine” zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
@@ -740,21 +739,15 @@ export default function Home() {
               Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
             </p>
 
-            {/* NOWA WIZYTÓWKA AUTORA - STYL "STEMPEL/RAPORT" */}
-            <div className="mt-12 mb-8 flex justify-end">
-              <div className="inline-flex flex-col items-start bg-stone-50 p-4 border-2 border-stone-300 border-dashed rounded-sm relative shadow-sm">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-1 flex items-center gap-1">
-                  <PenTool className="w-3 h-3" /> Sporządził:
-                </span>
-                <span className="font-serif text-2xl font-bold text-stone-800 italic pr-2">
-                  Marlow
-                </span>
-                <div className="w-full h-px bg-stone-200 my-2"></div>
-                <a href="mailto:marlow.contact@proton.me" className="text-stone-500 font-mono text-xs hover:text-stone-800 transition-colors flex items-center gap-2">
-                    <Mail className="w-3 h-3" />
-                    marlow.contact@proton.me
-                </a>
-              </div>
+            {/* WIZYTÓWKA AUTORA: Prosty, czysty tekst */}
+            <div className="mt-8 mb-8 flex flex-col items-end">
+                <div className="text-right">
+                    <p className="font-serif font-bold text-stone-900 text-xl leading-none mb-1">Autor: Marlow</p>
+                    <a href="mailto:marlow.contact@proton.me" className="text-stone-500 font-mono text-xs hover:text-stone-800 transition-colors flex items-center justify-end gap-2">
+                        <Mail className="w-3 h-3" />
+                        marlow.contact@proton.me
+                    </a>
+                </div>
             </div>
 
           </div>
@@ -762,13 +755,13 @@ export default function Home() {
           {/* STOPKA ŹRÓDŁOWA */}
           <footer className="mt-0 pt-8 border-none font-sans">
              
-             {/* NAGŁÓWEK SEKCJ Z CIENSZĄ LINIĄ */}
-             <div className="mb-8">
-               <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
+             {/* NAGŁÓWEK SEKCJ Z MAŁĄ KRESKĄ */}
+             <div className="mb-8 text-center">
+               <div className="w-16 h-1 bg-stone-300 mx-auto mb-6"></div> {/* MAŁA KRESKA NA ŚRODKU */}
+               <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center justify-center gap-2 mb-4">
                  <Search className="w-5 h-5" /> Dokumenty Źródłowe
                </h3>
-               <div className="border-b border-stone-300 w-full mb-6"></div> {/* CIENKA LINIA (border-b) */}
-               <p className="text-base text-stone-800 italic">Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.</p>
+               <p className="text-base text-stone-800 italic max-w-2xl mx-auto">Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.</p>
              </div>
              
              {/* NOWA KOMPAKTOWA SIATKA Z DOKUMENTAMI */}
@@ -918,7 +911,8 @@ export default function Home() {
              </div>
 
              {/* SEKCJA WEB3 */}
-             <div className="mt-12 text-center border-t border-stone-200 pt-6">
+             <div className="mt-12 mb-8 text-center border-t border-stone-200 pt-6">
+                 <div className="w-16 h-1 bg-stone-300 mx-auto mb-6"></div> {/* MAŁA KRESKA NA ŚRODKU */}
                 <p className="text-xs text-stone-500 font-mono uppercase tracking-widest mb-2 flex items-center justify-center gap-2">
                   <ShieldCheck className="w-4 h-4" />
                   Zasoby Niezatapialne (Web3)
