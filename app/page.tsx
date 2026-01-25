@@ -264,19 +264,12 @@ export default function Home() {
             <div className="inline-block mb-6 px-3 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase">
               Śledztwo Dziennikarskie
             </div>
-            
-            <h1 className="mb-8 text-stone-900">
-              <span className="block text-2xl md:text-4xl font-serif text-stone-500 mb-2 tracking-wide">
-                Ayahuasca:
-              </span>
-              <span className="block text-5xl md:text-7xl font-bold leading-none tracking-tight">
-                Eliksir Wiedźmina
-              </span>
-              <span className="block text-xl md:text-3xl text-stone-500 italic font-medium mt-6 max-w-3xl mx-auto">
-                Mroczna tajemnica milionerów z CD Projekt
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8 text-stone-900">
+              Ayahuasca: Eliksir Wiedźmina
+              <span className="text-stone-900 italic font-bold text-3xl md:text-5xl ml-3">
+                  – Mroczna tajemnica milionerów z CD Projekt
               </span>
             </h1>
-
             <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
               <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
                 W cieniu głośnego procesu, dziennikarskie śledztwo ujawnia jak twórcy gry &bdquo;Wiedźmin&rdquo; finansowali &quot;szamańskie&quot; podziemie.
@@ -413,7 +406,7 @@ export default function Home() {
             </div>
 
             <p>
-              Dla sądu był to koronny dowód na to, że oskarżeni prowadzili nielegalny biznes, a nie działalność duchową – śmierć człowieka była dla nich jedynie „psuciem interesów”.
+              Para sądu był to koronny dowód na to, że oskarżeni prowadzili nielegalny biznes, a nie działalność duchową – śmierć człowieka była dla nich jedynie „psuciem interesów”.
             </p>
 
             <p>
@@ -493,7 +486,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cisza po burzy i nowy porządek</h2>
 
             <p>
-              Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku &apos;Badiego&apos; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnego nalotu, pozostali lojalni wobec byłego szamana.
+              Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku &apos;Badiego&apos; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej nalotu, pozostali lojalni wobec byłego szamana.
             </p>
 
             <p>
@@ -623,7 +616,7 @@ export default function Home() {
                 <Calendar className="w-5 h-5 text-orange-600 shrink-0 mt-3" />
                 <div className="bg-orange-50 border border-orange-200 p-4 rounded-sm shadow-sm w-full relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
-                  <span className="font-bold text-stone-900">23 października 2023 r.</span> – Zaledwie 12 dni po kłopotliwym przesłuchaniu, gdy formalności własnościowe z Badim są już dopięte, następuje telefon do Stefanka z propozycją oddania majątku wartego miliony za darmo.
+                  <span className="font-bold text-stone-900">23 października 2023 r.</span> – Zaledwie 12 dni po kłopotliwym przesłuchaniu, gdy formalności własnościowe z Badim are już dopięte, następuje telefon do Stefanka z propozycją oddania majątku wartego miliony za darmo.
                 </div>
               </li>
 
@@ -666,7 +659,7 @@ export default function Home() {
               Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości <strong>Nýdek</strong>, funkcjonowało <button onClick={() => openGallery('nydek')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">kolejny, bliźniaczy ośrodek</button>.
             </p>
 
-         
+          
             <p>
               Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów, prowadzone przez Piotra Bonawenturę Tracza. Chociaż witryna ośrodka już nie istnieje, archiwum internetu „Wayback Machine” zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
             </p>
