@@ -5,6 +5,16 @@ import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
 
+// --- KONFIGURACJA IPFS (NIEZATAPIALNE DOWODY) ---
+const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
+
+// 1. CID Folderu ze zdjęciami (Wyroki, dokumenty)
+const EVIDENCE_CID = "bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm";
+const EVIDENCE_URL = `${PINATA_GATEWAY}/${EVIDENCE_CID}`;
+
+// 2. CID Folderu z FILMEM (Wideo Stefana - HLS)
+const VIDEO_CID = "bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u";
+
 // Definicja typu danych galerii
 type GalleryData = {
   title: string;
@@ -14,80 +24,95 @@ type GalleryData = {
   type?: 'verdict' | 'gallery';
 };
 
-// --- DANE DO GALERII ---
+// --- FUNKCJE POMOCNICZE DO GENEROWANIA ŚCIEŻEK ---
+
+// Generator dla wyroku (100 stron)
+// Zakładam, że pliki w folderze IPFS nazywają się: 1.jpg, 2.jpg... itd.
+const generateVerdictPages = (folderName: string, count: number) => {
+  return Array.from({ length: count }, (_, i) => {
+    // Jeśli Twoje pliki mają zera (np. 001.jpg), użyj: String(i + 1).padStart(3, '0')
+    // Tutaj zakładam prostą numerację 1.jpg, 2.jpg...
+    const fileName = `${i + 1}.jpg`; 
+    return `${EVIDENCE_URL}/${folderName}/${fileName}`;
+  });
+};
+
+// --- DANE DO GALERII (Z IPFS) ---
 
 const GALLERY_NYDEK: GalleryData = {
   title: "Posiadłość w Nýdku (Archiwum)",
   images: [
-    "/Nydek1.jpg",
-    "/Nydek2.jpg"
+    `${EVIDENCE_URL}/nydek/Nydek1.jpg`,
+    `${EVIDENCE_URL}/nydek/Nydek2.jpg`
   ],
   signature: "LV 832"
 };
 
 const GALLERY_WYROK_KORDYS: GalleryData = {
-  title: "Uzasadnienie wyroku: Jarosław K.",
-  images: Array.from({ length: 25 }, (_, i) => 
-    `/gallery/wyrok_kordysa/30T_5_2021-1_page-${String(i + 1).padStart(4, '0')}.jpg`
-  ),
+  title: "Pełne uzasadnienie wyroku: Jarosław K.",
+  // Generuje 100 stron z folderu 'wyrok_kordys' na IPFS
+  images: generateVerdictPages('wyrok_kordys', 100),
   signature: "30 T 5/2021",
-  pdfUrl: "/wyrok.pdf",
+  pdfUrl: `${EVIDENCE_URL}/wyrok_kordys/calosc.pdf`,
   type: 'verdict'
 };
 
 const GALLERY_WYROK_BADI: GalleryData = {
   title: "Wyrok skazujący: Bartosz B.",
   images: [
-    "/wyrok_page-0001.jpg",
-    "/wyrok_page-0002.jpg",
-    "/wyrok_page-0003.jpg"
+    `${EVIDENCE_URL}/wyrok_badi/wyrok_page-0001.jpg`,
+    `${EVIDENCE_URL}/wyrok_badi/wyrok_page-0002.jpg`,
+    `${EVIDENCE_URL}/wyrok_badi/wyrok_page-0003.jpg`
   ],
   signature: "66 T 146/2021",
-  pdfUrl: "/wyrok.pdf",
+  pdfUrl: `${EVIDENCE_URL}/wyrok_badi/wyrok.pdf`,
   type: 'verdict'
 };
 
 const GALLERY_NIERUCHOMOSCI_2: GalleryData = {
   title: "Kolejny bliźniaczy ośrodek",
-  images: ["/Nydek1.jpg", "/Nydek2.jpg", "/Nieruchomosc3.jpeg"],
+  images: [
+    `${EVIDENCE_URL}/nydek/Nydek1.jpg`, 
+    `${EVIDENCE_URL}/nydek/Nydek2.jpg`, 
+    `${EVIDENCE_URL}/nydek/Nieruchomosc3.jpeg`
+  ],
 };
 
 const GALLERY_WEZWANIE_KICINSKI: GalleryData = {
   title: "Wezwanie dla Michała Kicińskiego",
-  images: ["/wezwanie_kicinski.png"],
+  images: [`${EVIDENCE_URL}/wezwanie/wezwanie_kicinski.png`],
   signature: "WD-I-3186/23"
 };
 
 const GALLERY_JANOV: GalleryData = {
   title: "Dokumentacja Nieruchomości: Janov",
   images: [
-    "/gallery/janov/janov1.jpg",
-    "/gallery/janov/janov2.jpg",
-    "/gallery/janov/janov3.jpg",
-    "/gallery/janov/janov4.jpg",
-    "/gallery/janov/janov5.jpg",
-    "/gallery/janov/janov6.jpg",
-    "/gallery/janov/janov8.jpg",
-    "/gallery/janov/janov9.jpg",
-    "/gallery/janov/janov11.jpg",
-    "/gallery/janov/janov12.jpg",
-    "/gallery/janov/janov13.jpg",
-    "/gallery/janov/janov14.jpg",
-    "/gallery/janov/janov15.jpg",
-    "/gallery/janov/janov16.jpg",
-    "/gallery/janov/janov17.jpg",
-    "/gallery/janov/janov18.jpg",
-    "/gallery/janov/janov19.jpg",
-    "/gallery/janov/janov20.jpg",
-    "/gallery/janov/janov21.jpg",
-    "/gallery/janov/janov23.jpg",
-    "/gallery/janov/janov24.jpg",
-    "/gallery/janov/janov25.jpg",
-    "/gallery/janov/janov26.jpg",
+    `${EVIDENCE_URL}/gallery/janov/janov1.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov2.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov3.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov4.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov5.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov6.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov8.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov9.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov11.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov12.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov13.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov14.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov15.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov16.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov17.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov18.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov19.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov20.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov21.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov23.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov24.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov25.jpg`,
+    `${EVIDENCE_URL}/gallery/janov/janov26.jpg`,
   ],
   signature: "LV 127"
 };
-
 
 // --- KOMPONENTY STYLU "NAJS" ---
 
@@ -113,24 +138,6 @@ const LegalNote = ({ term, children }: { term: string, children: React.ReactNode
   </div>
 );
 
-const EvidenceVideo = ({ src, title, caption }: { src: string, title: string, caption: string }) => (
-  <figure className="my-12">
-    <div className="aspect-w-16 aspect-h-9 bg-black rounded-sm shadow-lg overflow-hidden relative group">
-      <iframe
-        src={src}
-        title={title}
-        className="w-full h-full opacity-90 group-hover:opacity-100 transition-opacity"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
-    </div>
-    <figcaption className="mt-3 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
-      <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Wideo:</span>
-      {caption}
-    </figcaption>
-  </figure>
-);
-
 const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
   <div className="my-10 pl-6 border-l-[3px] border-stone-800/80">
     <p className="font-serif text-xl md:text-2xl italic text-stone-900 leading-relaxed mb-3">
@@ -144,7 +151,7 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
 
 const LocationStrip = ({ name, code, plot, lv, onClick }: { name: string, code: string, plot: string, lv: string, onClick?: () => void }) => (
   <div className="w-full border-y border-stone-300 bg-stone-50/50 py-2 my-10 flex flex-col md:flex-row items-center justify-between gap-y-2 gap-x-4 px-1 md:px-2 font-mono text-[10px] md:text-xs text-stone-600 tracking-tight select-all cursor-default hover:bg-stone-100 transition-colors">
-      
+     
      <div className="flex items-center gap-3 w-full md:w-auto">
         <div className="flex h-2 w-2 relative shrink-0">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -275,19 +282,15 @@ export default function Home() {
   const [galleryData, setGalleryData] = useState<GalleryData | null>(null);
 
   const openGallery = (type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi' | 'nieruchomosci_2' | 'wezwanie_kicinski' | 'janov') => {
-    if (type === 'nydek') {
-      setGalleryData(GALLERY_NYDEK);
-    } else if (type === 'wyrok_kordys') {
-      setGalleryData(GALLERY_WYROK_KORDYS);
-    } else if (type === 'wyrok_badi') {
-      setGalleryData(GALLERY_WYROK_BADI);
-    } else if (type === 'nieruchomosci_2') {
-      setGalleryData(GALLERY_NIERUCHOMOSCI_2);
-    } else if (type === 'wezwanie_kicinski') {
-      setGalleryData(GALLERY_WEZWANIE_KICINSKI);
-    } else if (type === 'janov') {
-      setGalleryData(GALLERY_JANOV);
-    }
+    const maps = {
+      nydek: GALLERY_NYDEK,
+      wyrok_kordys: GALLERY_WYROK_KORDYS,
+      wyrok_badi: GALLERY_WYROK_BADI,
+      nieruchomosci_2: GALLERY_NIERUCHOMOSCI_2,
+      wezwanie_kicinski: GALLERY_WEZWANIE_KICINSKI,
+      janov: GALLERY_JANOV
+    };
+    setGalleryData(maps[type]);
     setIsGalleryOpen(true);
   };
 
@@ -391,6 +394,7 @@ export default function Home() {
             code="656976" 
             plot="st. 281" 
             lv="127" 
+            onClick={() => openGallery('janov')}
           />
 
           <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
@@ -554,7 +558,7 @@ export default function Home() {
 
           <div className="my-8 flex flex-col items-center">
             <img 
-              src="/wezwanie_kicinski.png" 
+              src={`${EVIDENCE_URL}/wezwanie/wezwanie_kicinski.png`} 
               alt="Wezwanie na policję"
               className="w-48 rounded shadow-md border border-stone-200 cursor-pointer hover:opacity-90 transition-opacity"
               onClick={() => openGallery('wezwanie_kicinski')}
@@ -606,11 +610,20 @@ export default function Home() {
             Stefanek przedstawia to jako efekt „researchu” darczyńcy, który rzekomo urzekł się wizją działalności non-profit.
           </p>
 
-          <EvidenceVideo 
-            src="https://www.youtube.com/embed/4Xujw-krjxs" 
-            title="Stefanek o darowiźnie"
-            caption="Krzysztof Stefanek opowiada o „cudownym” otrzymaniu darowizny (Materiał z 2025 r.)"
-          />
+          {/* ZMIANA: Zastąpiono EvidenceVideo komponentem ArticleVideoPlayer z IPFS */}
+          <div className="my-12">
+            <p className="text-xs text-stone-500 mb-2 font-mono uppercase tracking-wider">
+               Materiał Wideo: Stefanek o darowiźnie (Kopia bezpieczeństwa na IPFS)
+            </p>
+            <ArticleVideoPlayer 
+              src={`${PINATA_GATEWAY}/${VIDEO_CID}/master.m3u8`} 
+              poster=""
+            />
+             <div className="mt-3 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
+              <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Wideo:</span>
+              Krzysztof Stefanek opowiada o „cudownym” otrzymaniu darowizny (Materiał z 2025 r.)
+            </div>
+          </div>
 
           <p>
             Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech w pozbywaniu się „gorącego kartofla”:
@@ -644,7 +657,7 @@ export default function Home() {
              <li className="flex items-center justify-center text-stone-400">
               &darr;
             </li>
-            
+             
             <li className="flex items-start gap-3">
               <Calendar className="w-5 h-5 text-orange-600 shrink-0 mt-3" />
               <div className="bg-orange-50 border border-orange-200 p-4 rounded-sm shadow-sm w-full relative overflow-hidden">
@@ -812,7 +825,7 @@ export default function Home() {
         onClose={() => setIsAudioOpen(false)} 
         src="/evidence/stefan-nagranie.mp3"
       />
-      
+       
       <GalleryModal
         isOpen={isGalleryOpen}
         onClose={() => setIsGalleryOpen(false)}
