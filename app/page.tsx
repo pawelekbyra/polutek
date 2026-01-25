@@ -200,7 +200,7 @@ const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boo
                 <span className="flex h-2 w-2 relative"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span></span>
                 <span className="text-[10px] font-mono text-stone-400 uppercase tracking-[0.2em]">Dowód #A-23</span>
               </div>
-              {/* NAPRAWIONO: Użycie encji &quot; zamiast " wewnątrz tekstu */}
+              {/* NAPRAWA: Zamiast bezpośrednich cudzysłowów, używamy &quot; */}
               <h3 className="text-stone-100 font-serif text-xl italic tracking-wide">&quot;Rozmowa w ogrodzie&quot;</h3>
             </div>
             <button onClick={onClose} className="text-stone-500 hover:text-white transition-colors p-1 hover:bg-white/10 rounded-full"><X className="w-5 h-5" /></button>
@@ -261,7 +261,7 @@ export default function Home() {
             </h1>
             <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
               <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
-                W cieniu głośnego procesu „szamanów” z polskiego establishmentu, dziennikarskie śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.
+                W cieniu głośnego procesu &bdquo;szamanów&rdquo; z polskiego establishmentu, dziennikarskie śledztwo ujawnia sieć powiązań prowadzącą do twórców gry &bdquo;Wiedźmin&rdquo;.
               </p>
             </div>
           </div>
@@ -293,19 +293,19 @@ export default function Home() {
             </p>
 
             <CaseFile title="Zeznania świadka B.">
-              „Świadek B. odnośnie osoby oskarżonego [Jarosława Kordysa] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii”.
+              &bdquo;Świadek B. odnośnie osoby oskarżonego [Jarosława Kordysa] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii&rdquo;.
               <br/><br/>
-              „Świadek B. potwierdził, że i on sam w przeszłości prowadził warsztaty”.
+              &bdquo;Świadek B. potwierdził, że i on sam w przeszłości prowadził warsztaty&rdquo;.
             </CaseFile>
 
             <CaseFile title="Własność nieruchomości">
-              „(...) budynek rodzinny w miejscowości Janov (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy”
+              &bdquo;(...) budynek rodzinny w miejscowości Janov (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy&rdquo;
               <br/><br/>
-              „Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem jednej dziesiątej nieruchomości”.
+              &bdquo;Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem jednej dziesiątej nieruchomości&rdquo;.
             </CaseFile>
 
             <p>Do kogo należała reszta? Sąd wskazuje wprost:</p>
-            <CaseFile title="Ustalenia Sądu">„...w odniesieniu do nieruchomości będących współwłasnością Bartosza B. i Michala D. K.”.</CaseFile>
+            <CaseFile title="Ustalenia Sądu">&bdquo;...w odniesieniu do nieruchomości będących współwłasnością Bartosza B. i Michala D. K.&rdquo;.</CaseFile>
 
             <LocationStrip name="JANOV U KRNOVA" code="656976" plot="st. 281" lv="127" onClick={() => openGallery('janov')} />
 
@@ -317,11 +317,11 @@ export default function Home() {
             <p>Przełom nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na podsłuchu.</p>
             
             <CaseFile title="Rekonstrukcja rozmowy" type="transcript">
-              „oskarżony J. K. omawia z B., że dotarła do niego informacja, że w obiekcie w Janovie zmarła jakaś kobieta”.
+              &bdquo;oskarżony J. K. omawia z B., że dotarła do niego informacja, że w obiekcie w Janovie zmarła jakaś kobieta&rdquo;.
             </CaseFile>
             
             <CaseFile title="Kontynuacja rozmowy" type="transcript">
-              „Następnie w rozmowie omawiają zamówienia &quot;herbaty&quot; z dżungli i to, czy im tego &quot;nie zepsują”, ekscytując się nagraniem od dostawcy...”
+              &bdquo;Następnie w rozmowie omawiają zamówienia &quot;herbaty&quot; z dżungli i to, czy im tego &quot;nie zepsują&rdquo;, ekscytując się nagraniem od dostawcy...&rdquo;
             </CaseFile>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cena wolności i zdrady</h2>
@@ -334,7 +334,7 @@ export default function Home() {
             <p>Zeznania &quot;Badiego&quot; były bezcenne dla prokuratury. Na mocy wyroku <button onClick={() => openGallery('wyrok_badi')} className="text-blue-700 hover:underline font-bold px-1 transition-colors">66 T 146/2021</button> Badowski został skazany, ale w zawieszeniu.</p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Darowizna, czy gorący kartofel</h2>
-            <p>W 2025 Krzysztof Stefanek opowiada o "cudownej darowiźnie" w filmie:</p>
+            <p>W 2025 Krzysztof Stefanek opowiada o &quot;cudownej darowiźnie&quot; w filmie:</p>
 
             <div className="my-12">
               <p className="text-xs text-stone-500 mb-2 font-mono uppercase tracking-wider">
@@ -346,7 +346,7 @@ export default function Home() {
               />
                <div className="mt-3 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
                 <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Wideo:</span>
-                Krzysztof Stefanek opowiada o „cudownym” otrzymaniu darowizny (Materiał z 2025 r.)
+                Krzysztof Stefanek opowiada o &bdquo;cudownym&rdquo; otrzymaniu darowizny (Materiał z 2025 r.)
               </div>
             </div>
 
