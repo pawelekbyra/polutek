@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, PenTool } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
@@ -742,15 +742,21 @@ export default function Home() {
               Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
             </p>
 
-            {/* PODPIS AUTORA (ZMIANA: "Autor: Marlow") */}
-            <div className="mt-8 mb-8 flex flex-col items-end">
-                <div className="border-r-4 border-stone-900 pr-4 text-right">
-                    <p className="font-sans font-bold text-stone-500 text-sm leading-none mb-1">Autor: Marlow</p>
-                    <a href="mailto:marlow.contact@proton.me" className="text-stone-400 font-mono text-[10px] hover:text-stone-700 transition-colors flex items-center justify-end gap-2">
-                        <Mail className="w-3 h-3" />
-                        marlow.contact@proton.me
-                    </a>
-                </div>
+            {/* NOWA WIZYTÓWKA AUTORA - STYL "STEMPEL/RAPORT" */}
+            <div className="mt-12 mb-8 flex justify-end">
+              <div className="inline-flex flex-col items-start bg-stone-50 p-4 border-2 border-stone-300 border-dashed rounded-sm relative shadow-sm">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-1 flex items-center gap-1">
+                  <PenTool className="w-3 h-3" /> Sporządził:
+                </span>
+                <span className="font-serif text-2xl font-bold text-stone-800 italic pr-2">
+                  Marlow
+                </span>
+                <div className="w-full h-px bg-stone-200 my-2"></div>
+                <a href="mailto:marlow.contact@proton.me" className="text-stone-500 font-mono text-xs hover:text-stone-800 transition-colors flex items-center gap-2">
+                    <Mail className="w-3 h-3" />
+                    marlow.contact@proton.me
+                </a>
+              </div>
             </div>
 
           </div>
@@ -758,12 +764,12 @@ export default function Home() {
           {/* STOPKA ŹRÓDŁOWA */}
           <footer className="mt-0 pt-8 border-none font-sans">
              
-             {/* NAGŁÓWEK SEKCJ */}
+             {/* NAGŁÓWEK SEKCJ Z CIENSZĄ LINIĄ */}
              <div className="mb-8">
                <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
                  <Search className="w-5 h-5" /> Dokumenty Źródłowe
                </h3>
-               <div className="border-b-4 border-stone-300 w-full mb-6"></div> {/* SZEROKA LINIA POD NAPISAM */}
+               <div className="border-b border-stone-300 w-full mb-6"></div> {/* CIENKA LINIA (border-b) */}
                <p className="text-base text-stone-800">Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.</p>
              </div>
              
