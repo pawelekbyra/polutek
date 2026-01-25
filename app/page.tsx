@@ -16,10 +16,14 @@ const KORDYS_IMAGES_URL = `${PINATA_GATEWAY}/${KORDYS_IMAGES_CID}`;
 const BADI_IMAGES_CID = "bafybeifdgw2zosj6lz2qg3d33aye4bd4vcz3rtrix2jbw3wwjhvxxjrk6q";
 const BADI_IMAGES_URL = `${PINATA_GATEWAY}/${BADI_IMAGES_CID}`;
 
-// 3. WIDEO STEFANA (HLS - Hosting IPFS)
+// 3. DOWODY NYDEK (Nowy folder ze zdjęciami)
+const NYDEK_IMAGES_CID = "bafybeidabdztfvfa7ycie5q47xfby7jiqtuwt6oddccuujpvjxqzd4ofpa";
+const NYDEK_IMAGES_URL = `${PINATA_GATEWAY}/${NYDEK_IMAGES_CID}`;
+
+// 4. WIDEO STEFANA (HLS - Hosting IPFS)
 const VIDEO_CID = "bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u";
 
-// 4. LINKI DO PLIKÓW PDF (Pełne wyroki na IPFS)
+// 5. LINKI DO PLIKÓW PDF (Pełne wyroki na IPFS)
 const KORDYS_PDF_URL = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq";
 const BADI_PDF_URL = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza";
 
@@ -35,7 +39,6 @@ type GalleryData = {
 // --- FUNKCJE POMOCNICZE DO GENEROWANIA ŚCIEŻEK ---
 
 // Generator dla wyroku Kordysa (95 stron)
-// Format plików: "30T 5 2021-1_page-0001.jpg"
 const generateKordysPages = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
     const pageNumber = String(i + 1).padStart(4, '0');
@@ -45,7 +48,6 @@ const generateKordysPages = (count: number) => {
 };
 
 // Generator dla wyroku Badiego (3 strony)
-// Format plików: "wyrok_page-0001.jpg"
 const generateBadiPages = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
     const pageNumber = String(i + 1).padStart(4, '0');
@@ -56,14 +58,18 @@ const generateBadiPages = (count: number) => {
 
 // --- DANE DO GALERII (Z IPFS) ---
 
-// Stary CID dla pozostałych zdjęć (Nydek, Janov, Wezwanie) - używamy starego folderu
+// Stary CID dla pozostałych zdjęć (Janov, Wezwanie) - używamy starego folderu
 const OLD_EVIDENCE_URL = `${PINATA_GATEWAY}/bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm`;
 
 const GALLERY_NYDEK: GalleryData = {
   title: "Posiadłość w Nýdku (Archiwum)",
   images: [
-    `${OLD_EVIDENCE_URL}/nydek/Nydek1.jpg`,
-    `${OLD_EVIDENCE_URL}/nydek/Nydek2.jpg`
+    `${NYDEK_IMAGES_URL}/nydek01.jpg`,
+    `${NYDEK_IMAGES_URL}/nydek02.jpg`,
+    `${NYDEK_IMAGES_URL}/nydek03.jpg`,
+    `${NYDEK_IMAGES_URL}/nydek04.jpg`,
+    `${NYDEK_IMAGES_URL}/nydek05.jpg`,
+    `${NYDEK_IMAGES_URL}/nydek06.jpeg` // Uwaga: ten plik ma rozszerzenie .jpeg
   ],
   signature: "LV 832"
 };
@@ -87,9 +93,9 @@ const GALLERY_WYROK_BADI: GalleryData = {
 const GALLERY_NIERUCHOMOSCI_2: GalleryData = {
   title: "Kolejny bliźniaczy ośrodek",
   images: [
-    `${OLD_EVIDENCE_URL}/nydek/Nydek1.jpg`, 
-    `${OLD_EVIDENCE_URL}/nydek/Nydek2.jpg`, 
-    `${OLD_EVIDENCE_URL}/nydek/Nieruchomosc3.jpeg`
+    `${NYDEK_IMAGES_URL}/nydek01.jpg`,
+    `${NYDEK_IMAGES_URL}/nydek02.jpg`,
+    `${NYDEK_IMAGES_URL}/nydek03.jpg`
   ],
 };
 
@@ -285,7 +291,6 @@ export default function Home() {
           </div>
         </header>
 
-        {/* ARTYKUŁ */}
         <article className="max-w-2xl mx-auto px-4 py-8 flex-grow">
           <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-a:text-blue-800 hover:prose-a:text-blue-900 prose-blockquote:not-italic">
             
@@ -658,7 +663,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Jeszcze jeden ośrodek i jeszcze jeden miliarder</h2>
 
             <p>
-              Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości <button onClick={() => openGallery('nydek')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz galerię">Nýdek</button>, funkcjonował kolejny, bliźniaczy ośrodek.
+              Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości <strong>Nýdek</strong>, funkcjonował <button onClick={() => openGallery('nydek')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz galerię">kolejny, bliźniaczy ośrodek</button>.
             </p>
 
             <LocationStrip 
