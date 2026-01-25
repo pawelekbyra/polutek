@@ -822,8 +822,18 @@ export default function Home() {
                </div>
              </div>
 
-             {/* SEKJA WEB3 */}
-             <div className="mt-8 pt-8 border-t border-stone-300 text-center">
+             {/* NOWA SEKCJA: KRYPTO WSPARCIE (PRZENIESIONA WYŻEJ) */}
+             <div className="mt-8 pt-8 border-t border-stone-300 text-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                <p className="text-[10px] text-stone-400 font-mono uppercase tracking-widest mb-2">
+                  Wsparcie infrastruktury & serwerów (ETH / ERC-20)
+                </p>
+                <div className="font-mono text-[10px] md:text-xs text-stone-500 select-all bg-stone-100 inline-block px-2 py-1 rounded border border-stone-200">
+                  0x1234...TUTAJ_TWOJ_ADRES_PORTFELA...5678
+                </div>
+             </div>
+
+             {/* SEKJA WEB3 (TERAZ NA SAMYM DOLE) */}
+             <div className="mt-8 text-center">
                 <p className="text-xs text-stone-500 font-mono uppercase tracking-widest mb-2 flex items-center justify-center gap-2">
                   <ShieldCheck className="w-4 h-4" />
                   Zasoby Niezatapialne (Web3)
@@ -836,16 +846,6 @@ export default function Home() {
                 >
                   kutasinskigate.eth.limo
                 </a>
-             </div>
-
-             {/* NOWA SEKCJA: KRYPTO WSPARCIE */}
-             <div className="mt-8 text-center opacity-60 hover:opacity-100 transition-opacity duration-300">
-                <p className="text-[10px] text-stone-400 font-mono uppercase tracking-widest mb-2">
-                  Wsparcie infrastruktury & serwerów (ETH / ERC-20)
-                </p>
-                <div className="font-mono text-[10px] md:text-xs text-stone-500 select-all bg-stone-100 inline-block px-2 py-1 rounded border border-stone-200">
-                  0x1234...TUTAJ_TWOJ_ADRES_PORTFELA...5678
-                </div>
              </div>
           </footer>
         </article>
