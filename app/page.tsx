@@ -739,11 +739,11 @@ export default function Home() {
               Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
             </p>
 
-            {/* WIZYTÓWKA AUTORA: Prosty, czysty tekst */}
+            {/* PODPIS AUTORA (ZMIANA: "Autor: Marlow") */}
             <div className="mt-8 mb-8 flex flex-col items-end">
-                <div className="text-right">
+                <div className="border-r-4 border-stone-900 pr-4 text-right">
                     <p className="font-serif font-bold text-stone-900 text-xl leading-none mb-1">Autor: Marlow</p>
-                    <a href="mailto:marlow.contact@proton.me" className="text-stone-500 font-mono text-xs hover:text-stone-800 transition-colors flex items-center justify-end gap-2">
+                    <a href="mailto:marlow.contact@proton.me" className="text-stone-600 font-mono text-xs hover:text-blue-700 transition-colors flex items-center justify-end gap-2">
                         <Mail className="w-3 h-3" />
                         marlow.contact@proton.me
                     </a>
@@ -755,13 +755,13 @@ export default function Home() {
           {/* STOPKA ŹRÓDŁOWA */}
           <footer className="mt-0 pt-8 border-none font-sans">
              
-             {/* NAGŁÓWEK SEKCJ Z MAŁĄ KRESKĄ */}
-             <div className="mb-8 text-center">
-               <div className="w-16 h-1 bg-stone-300 mx-auto mb-6"></div> {/* MAŁA KRESKA NA ŚRODKU */}
-               <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center justify-center gap-2 mb-4">
+             {/* NAGŁÓWEK SEKCJ */}
+             <div className="mb-8">
+               <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
                  <Search className="w-5 h-5" /> Dokumenty Źródłowe
                </h3>
-               <p className="text-base text-stone-800 italic max-w-2xl mx-auto">Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.</p>
+               <div className="border-b-4 border-stone-300 w-full mb-6"></div> {/* SZEROKA LINIA POD NAPISAM */}
+               <p className="text-base text-stone-800 italic">Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.</p>
              </div>
              
              {/* NOWA KOMPAKTOWA SIATKA Z DOKUMENTAMI */}
@@ -911,8 +911,7 @@ export default function Home() {
              </div>
 
              {/* SEKCJA WEB3 */}
-             <div className="mt-12 mb-8 text-center border-t border-stone-200 pt-6">
-                 <div className="w-16 h-1 bg-stone-300 mx-auto mb-6"></div> {/* MAŁA KRESKA NA ŚRODKU */}
+             <div className="mt-12 text-center border-t border-stone-200 pt-6">
                 <p className="text-xs text-stone-500 font-mono uppercase tracking-widest mb-2 flex items-center justify-center gap-2">
                   <ShieldCheck className="w-4 h-4" />
                   Zasoby Niezatapialne (Web3)
