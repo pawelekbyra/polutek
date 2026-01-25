@@ -769,8 +769,8 @@ export default function Home() {
                <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
                  <Search className="w-5 h-5" /> Dokumenty Źródłowe
                </h3>
-               <div className="border-b border-stone-300 w-full mb-6"></div> {/* CIENKA LINIA (border-b) */}
-               <p className="text-base text-stone-800">Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.</p>
+               <div className="border-b-4 border-stone-300 w-full mb-6"></div> {/* SZEROKA LINIA (border-b-4) */}
+               <p className="text-base text-stone-800 italic">Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.</p>
              </div>
              
              {/* NOWA KOMPAKTOWA SIATKA Z DOKUMENTAMI */}
