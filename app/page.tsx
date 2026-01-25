@@ -27,11 +27,9 @@ type GalleryData = {
 // --- FUNKCJE POMOCNICZE DO GENEROWANIA ŚCIEŻEK ---
 
 // Generator dla wyroku (100 stron)
-// Zakładam, że pliki w folderze IPFS nazywają się: 1.jpg, 2.jpg... itd.
 const generateVerdictPages = (folderName: string, count: number) => {
   return Array.from({ length: count }, (_, i) => {
-    // Jeśli Twoje pliki mają zera (np. 001.jpg), użyj: String(i + 1).padStart(3, '0')
-    // Tutaj zakładam prostą numerację 1.jpg, 2.jpg...
+    // Zakładamy prostą numerację 1.jpg, 2.jpg...
     const fileName = `${i + 1}.jpg`; 
     return `${EVIDENCE_URL}/${folderName}/${fileName}`;
   });
@@ -50,7 +48,6 @@ const GALLERY_NYDEK: GalleryData = {
 
 const GALLERY_WYROK_KORDYS: GalleryData = {
   title: "Pełne uzasadnienie wyroku: Jarosław K.",
-  // Generuje 100 stron z folderu 'wyrok_kordys' na IPFS
   images: generateVerdictPages('wyrok_kordys', 100),
   signature: "30 T 5/2021",
   pdfUrl: `${EVIDENCE_URL}/wyrok_kordys/calosc.pdf`,
@@ -615,8 +612,12 @@ export default function Home() {
             <p className="text-xs text-stone-500 mb-2 font-mono uppercase tracking-wider">
                Materiał Wideo: Stefanek o darowiźnie (Kopia bezpieczeństwa na IPFS)
             </p>
+            {/* WAŻNA POPRAWKA:
+                Podmieniona nazwa pliku na poprawną z folderu na IPFS.
+                Wcześniej było "master.m3u8" co powodowało błąd 404 (szary kwadracik).
+            */}
             <ArticleVideoPlayer 
-              src={`${PINATA_GATEWAY}/${VIDEO_CID}/master.m3u8`} 
+              src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDown.com_YouTube_Media_4Xujw-krjxs_1080p.m3u8`} 
               poster=""
             />
              <div className="mt-3 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
