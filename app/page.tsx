@@ -69,7 +69,7 @@ const GALLERY_NYDEK: GalleryData = {
     `${NYDEK_IMAGES_URL}/nydek03.jpg`,
     `${NYDEK_IMAGES_URL}/nydek04.jpg`,
     `${NYDEK_IMAGES_URL}/nydek05.jpg`,
-    `${NYDEK_IMAGES_URL}/nydek06.jpeg` // Uwaga: ten plik ma rozszerzenie .jpeg
+    `${NYDEK_IMAGES_URL}/nydek06.jpeg`
   ],
   signature: "LV 832"
 };
@@ -474,7 +474,7 @@ export default function Home() {
             </p>
 
             <p>
-               Na mocy wyroku o sygnaturze <button onClick={() => openGallery('wyrok_badi')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz wyrok Bartosza B.">66 T 146/2021</button> z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”. Sąd ustalił, że:
+               Na mocy <button onClick={() => openGallery('wyrok_badi')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz wyrok Bartosza B.">wyroku</button> o sygnaturze 66 T 146/2021 z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”. Sąd ustalił, że:
             </p>
 
             <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
