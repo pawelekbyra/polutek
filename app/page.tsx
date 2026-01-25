@@ -266,12 +266,12 @@ export default function Home() {
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8 text-stone-900">
               Ayahuasca- Eliksir Wiedźmina <br/>
               <span className="text-stone-500 italic font-medium text-3xl md:text-5xl block mt-4">
-                Mroczna tajemnica Ayahuaski <br /> i milionerów z CD Projekt
+                Mroczna tajemnica milionerów<br /> z CD Projekt
               </span>
             </h1>
             <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
               <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
-                W cieniu głośnego procesu &bdquo;szamanów&rdquo; z polskiego establishmentu, dziennikarskie śledztwo ujawnia sieć powiązań prowadzącą do twórców gry &bdquo;Wiedźmin&rdquo;.
+                W cieniu głośnego procesu, dziennikarskie śledztwo ujawnia jak twórcy gry &bdquo;Wiedźmin&rdquo finansowali "szamańskie" podziemie;.
               </p>
             </div>
           </div>
