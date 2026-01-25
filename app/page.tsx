@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
@@ -16,14 +16,18 @@ const KORDYS_IMAGES_URL = `${PINATA_GATEWAY}/${KORDYS_IMAGES_CID}`;
 const BADI_IMAGES_CID = "bafybeifdgw2zosj6lz2qg3d33aye4bd4vcz3rtrix2jbw3wwjhvxxjrk6q";
 const BADI_IMAGES_URL = `${PINATA_GATEWAY}/${BADI_IMAGES_CID}`;
 
-// 3. DOWODY NYDEK (Nowy folder ze zdjęciami)
+// 3. DOWODY NYDEK (Folder ze zdjęciami)
 const NYDEK_IMAGES_CID = "bafybeidabdztfvfa7ycie5q47xfby7jiqtuwt6oddccuujpvjxqzd4ofpa";
 const NYDEK_IMAGES_URL = `${PINATA_GATEWAY}/${NYDEK_IMAGES_CID}`;
 
-// 4. WIDEO STEFANA (HLS - Hosting IPFS)
+// 4. DOWODY JANOV (Folder ze zdjęciami - NOWY LINK)
+const JANOV_IMAGES_CID = "bafybeia6rid25dw5t46mwmgwu4coa3t6qp34vcno4mcnqxuixplpyfmvly";
+const JANOV_IMAGES_URL = `${PINATA_GATEWAY}/${JANOV_IMAGES_CID}`;
+
+// 5. WIDEO STEFANA (HLS - Hosting IPFS)
 const VIDEO_CID = "bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u";
 
-// 5. LINKI DO PLIKÓW PDF (Pełne wyroki na IPFS)
+// 6. LINKI DO PLIKÓW PDF (Pełne wyroki na IPFS)
 const KORDYS_PDF_URL = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq";
 const BADI_PDF_URL = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza";
 
@@ -58,7 +62,7 @@ const generateBadiPages = (count: number) => {
 
 // --- DANE DO GALERII (Z IPFS) ---
 
-// Stary CID dla pozostałych zdjęć (Janov, Wezwanie) - używamy starego folderu
+// Stary CID dla pozostałych (Wezwanie) - używamy starego folderu
 const OLD_EVIDENCE_URL = `${PINATA_GATEWAY}/bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm`;
 
 const GALLERY_NYDEK: GalleryData = {
@@ -108,29 +112,29 @@ const GALLERY_WEZWANIE_KICINSKI: GalleryData = {
 const GALLERY_JANOV: GalleryData = {
   title: "Dokumentacja Nieruchomości: Janov",
   images: [
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov1.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov2.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov3.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov4.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov5.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov6.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov8.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov9.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov11.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov12.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov13.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov14.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov15.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov16.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov17.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov18.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov19.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov20.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov21.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov23.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov24.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov25.jpg`,
-    `${OLD_EVIDENCE_URL}/gallery/janov/janov26.jpg`,
+    `${JANOV_IMAGES_URL}/janov01.jpg`,
+    `${JANOV_IMAGES_URL}/janov02.jpg`,
+    `${JANOV_IMAGES_URL}/janov04.jpg`,
+    `${JANOV_IMAGES_URL}/janov06.jpg`,
+    `${JANOV_IMAGES_URL}/janov07.jpg`,
+    `${JANOV_IMAGES_URL}/janov08.jpg`,
+    `${JANOV_IMAGES_URL}/janov09.jpg`,
+    `${JANOV_IMAGES_URL}/janov10.jpg`,
+    `${JANOV_IMAGES_URL}/janov11.jpg`,
+    `${JANOV_IMAGES_URL}/janov12.jpg`,
+    `${JANOV_IMAGES_URL}/janov13.jpg`,
+    `${JANOV_IMAGES_URL}/janov14.jpg`,
+    `${JANOV_IMAGES_URL}/janov15.jpg`,
+    `${JANOV_IMAGES_URL}/janov16.jpg`,
+    `${JANOV_IMAGES_URL}/janov17.jpg`,
+    `${JANOV_IMAGES_URL}/janov18.jpg`,
+    `${JANOV_IMAGES_URL}/janov19.jpg`,
+    `${JANOV_IMAGES_URL}/janov20.jpg`,
+    `${JANOV_IMAGES_URL}/janov21.jpg`,
+    `${JANOV_IMAGES_URL}/janov23.jpg`,
+    `${JANOV_IMAGES_URL}/janov24.jpg`,
+    `${JANOV_IMAGES_URL}/janov25.jpg`,
+    `${JANOV_IMAGES_URL}/janov26.jpg`,
   ],
   signature: "LV 127"
 };
@@ -353,7 +357,7 @@ export default function Home() {
             </CaseFile>
 
             <p>
-              W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać działkę w Janovie i za niewielką opłatą pobrać jej pełną historię.
+              W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <button onClick={() => openGallery('janov')} className="text-blue-700 hover:underline font-bold transition-colors">działkę w Janovie</button> i za niewielką opłatą pobrać jej pełną historię.
             </p>
             
             <LocationStrip 
@@ -575,7 +579,6 @@ export default function Home() {
               <p className="text-xs text-stone-500 mb-2 font-mono uppercase tracking-wider">
                  Materiał Wideo: Stefanek o darowiźnie (Kopia bezpieczeństwa na IPFS)
               </p>
-              {/* --- WIDEO HLS --- */}
               <ArticleVideoPlayer 
                 src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`} 
                 poster=""
@@ -774,6 +777,22 @@ export default function Home() {
                   <h4 className="font-bold text-stone-900">Księgi Wieczyste (ČÚZK)</h4>
                   <p>Weryfikuj online: nahlizenidokn.cuzk.cz</p>
                </div>
+             </div>
+
+             {/* SEKJA WEB3 */}
+             <div className="mt-8 pt-8 border-t border-stone-300 text-center">
+                <p className="text-xs text-stone-500 font-mono uppercase tracking-widest mb-2 flex items-center justify-center gap-2">
+                  <ShieldCheck className="w-4 h-4" />
+                  Zasoby Niezatapialne (Web3)
+                </p>
+                <a 
+                  href="https://kutasinskigate.eth.limo" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="font-mono text-sm text-stone-400 hover:text-stone-900 transition-colors"
+                >
+                  kutasinskigate.eth.limo
+                </a>
              </div>
           </footer>
         </article>
