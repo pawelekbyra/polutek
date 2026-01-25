@@ -15,6 +15,9 @@ const EVIDENCE_URL = `${PINATA_GATEWAY}/${EVIDENCE_CID}`;
 // 2. CID Folderu z FILMEM (Wideo Stefana - HLS)
 const VIDEO_CID = "bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u";
 
+// 3. LINK DO PDF Z WYROKIEM KORDYSA (Zaktualizowany)
+const KORDYS_PDF_URL = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq"; 
+
 // Definicja typu danych galerii
 type GalleryData = {
   title: string;
@@ -24,17 +27,23 @@ type GalleryData = {
   type?: 'verdict' | 'gallery';
 };
 
-// --- GENERATORY ŚCIEŻEK DO ZDJĘĆ ---
+// --- FUNKCJE POMOCNICZE DO GENEROWANIA ŚCIEŻEK ---
+
+// Generator dla wyroku (100 stron)
+const generateVerdictPages = (folderName: string, count: number) => {
+  return Array.from({ length: count }, (_, i) => {
+    const fileName = `${i + 1}.jpg`; 
+    return `${EVIDENCE_URL}/${folderName}/${fileName}`;
+  });
+};
 
 // Specjalny generator dla wyroku Kordysa (95 stron, specyficzne nazwy plików)
-// Format plików z Twojego IPFS: "30T 5 2021-1_page-0001.jpg"
 const generateKordysPages = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
-    // Zamienia liczbę na format czterocyfrowy (np. 1 -> "0001", 95 -> "0095")
+    // Zamienia liczbę na format czterocyfrowy (np. 1 -> "0001")
     const pageNumber = String(i + 1).padStart(4, '0');
-    // Nazwa pliku dokładnie taka jak na Twoim zrzucie ekranu
+    // Format: "30T 5 2021-1_page-0001.jpg"
     const fileName = `30T 5 2021-1_page-${pageNumber}.jpg`;
-    // Pliki są w głównym katalogu tego CID, więc nie dodajemy podfolderu
     return `${EVIDENCE_URL}/${fileName}`;
   });
 };
@@ -52,10 +61,9 @@ const GALLERY_NYDEK: GalleryData = {
 
 const GALLERY_WYROK_KORDYS: GalleryData = {
   title: "Pełne uzasadnienie wyroku: Jarosław K.",
-  // Generujemy 95 stron używając poprawnego nazewnictwa
   images: generateKordysPages(95),
   signature: "30 T 5/2021",
-  pdfUrl: `${EVIDENCE_URL}/wyrok_kordys/calosc.pdf`,
+  pdfUrl: KORDYS_PDF_URL, // Używamy linku zdefiniowanego na górze
   type: 'verdict'
 };
 
@@ -386,10 +394,21 @@ export default function Home() {
                   <h4 className="font-bold text-stone-900">Wyrok Bartosza B.</h4>
                   <p>Sygn. 66 T 146/2021</p>
                </div>
+               
+               {/* SEKACJA Z PRZYCISKIEM POBIERANIA PDF */}
                <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <h4 className="font-bold text-stone-900">Sprawa Kordysa</h4>
-                  <p>Sygn. 30 T 5/2020</p>
+                  <p className="mb-2">Sygn. 30 T 5/2020</p>
+                  <a 
+                    href={KORDYS_PDF_URL} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-blue-700 hover:underline font-bold flex items-center gap-2"
+                  >
+                    <FileText className="w-3 h-3" /> Pobierz Pełny Wyrok (PDF)
+                  </a>
                </div>
+
                <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <h4 className="font-bold text-stone-900">Księgi Wieczyste (ČÚZK)</h4>
                   <p>Weryfikuj online: nahlizenidokn.cuzk.cz</p>
