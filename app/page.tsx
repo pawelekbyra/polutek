@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, FileJson } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
@@ -296,7 +296,10 @@ export default function Home() {
         </header>
 
         <article className="max-w-2xl mx-auto px-4 py-8 flex-grow">
-          <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-a:text-blue-800 hover:prose-a:text-blue-900 prose-blockquote:not-italic">
+          
+          {/* KONFIGURACJA STYLÓW TEKSTU I LINKÓW (NOIR STYLE - BEZ NIEBIESKIEGO) */}
+          <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic
+            prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:border-b-2 prose-a:border-stone-300 hover:prose-a:bg-stone-100 hover:prose-a:border-stone-800 transition-colors">
             
             <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed">
               W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich &quot;szamanów&quot; w czeskich Hermanovicach. Policyjny nalot, aresztowanie Jarosława i Karoliny Kordysów, a następnie surowe wyroki - 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
@@ -317,7 +320,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Świadek B.</h2>
 
             <p>
-              W obszernym i publicznie dostępnym uzasadnieniu <button onClick={() => openGallery('wyrok_kordys')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz skan wyroku">wyroku</button> Jarosława Kordysa o sygnaturze 30 T 5/2021 pojawia się postać świadka Bartosza B.
+              W obszernym i publicznie dostępnym uzasadnieniu <button onClick={() => openGallery('wyrok_kordys')} title="Zobacz skan wyroku">wyroku</button> Jarosława Kordysa o sygnaturze 30 T 5/2021 pojawia się postać świadka Bartosza B.
             </p>
             
             <p>
@@ -357,7 +360,7 @@ export default function Home() {
             </CaseFile>
 
             <p>
-              W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <button onClick={() => openGallery('janov')} className="text-blue-700 hover:underline font-bold transition-colors">działkę w Janovie</button> i za niewielką opłatą pobrać jej pełną historię.
+              W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <button onClick={() => openGallery('janov')}>działkę w Janovie</button> i za niewielką opłatą pobrać jej pełną historię.
             </p>
             
             <LocationStrip 
@@ -369,7 +372,7 @@ export default function Home() {
             />
 
             <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
-              <button onClick={() => openGallery('janov')} className="text-blue-700 hover:underline font-bold transition-colors">Pobrany dokument</button> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
+              <button onClick={() => openGallery('janov')} className="underline font-bold decoration-stone-400 hover:bg-stone-200 transition-colors">Pobrany dokument</button> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
               
               <div className="mt-6 flex flex-col items-center justify-center not-italic">
                   <div className="flex flex-col gap-3 font-mono text-sm">
@@ -478,7 +481,7 @@ export default function Home() {
             </p>
 
             <p>
-               Na mocy <button onClick={() => openGallery('wyrok_badi')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz wyrok Bartosza B.">wyroku</button> o sygnaturze 66 T 146/2021 z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”.
+               Na mocy <button onClick={() => openGallery('wyrok_badi')} title="Zobacz wyrok Bartosza B.">wyroku</button> o sygnaturze 66 T 146/2021 z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”.
             </p>
             
             <p className="font-bold text-stone-900 mb-2">
@@ -741,9 +744,9 @@ export default function Home() {
 
             {/* PODPIS AUTORA (ZMIANA: "Autor: Marlow") */}
             <div className="mt-8 mb-8 flex flex-col items-end">
-                <div className="border-r-4 border-stone-800 pr-4 text-right">
-                    <p className="font-serif font-bold text-stone-900 text-xl leading-none mb-1">Autor: Marlow</p>
-                    <a href="mailto:marlow.contact@proton.me" className="text-stone-600 font-mono text-xs hover:text-blue-700 transition-colors flex items-center justify-end gap-2">
+                <div className="border-r-2 border-stone-300 pr-4 text-right">
+                    <p className="font-sans font-bold text-stone-500 text-sm leading-none mb-1">Autor: Marlow</p>
+                    <a href="mailto:marlow.contact@proton.me" className="text-stone-400 font-mono text-[10px] hover:text-stone-700 transition-colors flex items-center justify-end gap-2">
                         <Mail className="w-3 h-3" />
                         marlow.contact@proton.me
                     </a>
@@ -760,7 +763,7 @@ export default function Home() {
                <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
                  <Search className="w-5 h-5" /> Dokumenty Źródłowe
                </h3>
-               <div className="border-t border-stone-300 my-6 w-16"></div> {/* Mała linia ozdobna */}
+               <div className="border-b-4 border-stone-300 w-full mb-6"></div> {/* SZEROKA LINIA POD NAPISAM */}
                <p className="text-base text-stone-800">Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.</p>
              </div>
              
@@ -830,17 +833,29 @@ export default function Home() {
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia Własności i Transakcje</h4>
-                      <div className="font-mono text-[10px] text-stone-500 mt-1 space-y-1">
-                        <p><span className="font-bold">Janov:</span> Darowizna (V-5821/2023)</p>
-                        <p><span className="font-bold">Nýdek:</span> Sprzedaż (V-2937/2021)</p>
+                      
+                      <div className="mt-2 space-y-1">
+                        <div className="flex items-center gap-2 text-[10px] text-stone-600 border-b border-stone-100 pb-1">
+                           <span className="font-bold w-20">Janov (LV 127):</span>
+                           <span className="font-mono bg-stone-50 px-1 rounded select-all">V-5821/2023</span> (Darowizna)
+                        </div>
+                         <div className="flex items-center gap-2 text-[10px] text-stone-600 border-b border-stone-100 pb-1">
+                           <span className="font-bold w-20">Nýdek (LV 832):</span>
+                           <span className="font-mono bg-stone-50 px-1 rounded select-all">V-2937/2021</span> (Sprzedaż)
+                        </div>
                       </div>
+
                     </div>
+                  </div>
+                  <div className="border-t border-stone-100 pt-2 mt-2">
                     <a 
-                      href="#" 
-                      className="shrink-0 bg-stone-100 text-stone-400 cursor-not-allowed px-3 py-1 text-xs font-bold rounded border border-stone-200 flex items-center gap-2"
-                      title="Plik PDF w przygotowaniu"
+                      href="https://nahlizenidokn.cuzk.cz" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider"
                     >
-                      <Download className="w-3 h-3" /> Pobierz PDF
+                      <Globe className="w-3 h-3" />
+                      Otwórz Rejestr (nahlizenidokn.cuzk.cz)
                     </a>
                   </div>
                </div>
