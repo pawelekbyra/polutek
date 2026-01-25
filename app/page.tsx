@@ -607,17 +607,13 @@ export default function Home() {
             Stefanek przedstawia to jako efekt „researchu” darczyńcy, który rzekomo urzekł się wizją działalności non-profit.
           </p>
 
-          {/* ZMIANA: Zastąpiono EvidenceVideo komponentem ArticleVideoPlayer z IPFS */}
           <div className="my-12">
             <p className="text-xs text-stone-500 mb-2 font-mono uppercase tracking-wider">
                Materiał Wideo: Stefanek o darowiźnie (Kopia bezpieczeństwa na IPFS)
             </p>
-            {/* WAŻNA POPRAWKA:
-                Podmieniona nazwa pliku na poprawną z folderu na IPFS.
-                Wcześniej było "master.m3u8" co powodowało błąd 404 (szary kwadracik).
-            */}
+            {/* --- WAŻNE: Tutaj podmieniono nazwę pliku na poprawną z linku IPFS --- */}
             <ArticleVideoPlayer 
-              src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDown.com_YouTube_Media_4Xujw-krjxs_1080p.m3u8`} 
+              src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`} 
               poster=""
             />
              <div className="mt-3 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
