@@ -277,7 +277,7 @@ export default function Home() {
 
             <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
               <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
-                W cieniu głośnego procesu, dziennikarskie śledztwo ujawnia jak twórcy gry &bdquo;Wiedźmin&rdquo; finansowali &quot;szamańskie&quot; podziemie.
+                Ayahuasca, policyjne naloty, podsłuchy, i tragedia na "ceremonii" o której nikt nie miał się dowiedzieć. Przerywamy zmowę milczenia. W cieniu głośnego procesu dziennikarskie śledztwo ujawnia, jak twórcy gry „Wiedźmin” finansowali „szamańskie” podziemie.”
               </p>
             </div>
           </div>
