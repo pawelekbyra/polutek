@@ -308,7 +308,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Świadek B.</h2>
 
             <p>
-              W obszernym i publicznie dostępnym uzasadnieniu <button onClick={() => openGallery('wyrok_kordys')} title="Zobacz skan wyroku" className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> Jarosława Kordysa o sygnaturze 30 T 5/2021 pojawia się postać świadka Bartosza B.
+              W obszernym i publicznie dostępnym uzasadnieniu <button onClick={() => openGallery('wyrok_kordys')} title="Zobacz skan wyroku" className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> Jarosława Kordysa pojawia się postać świadka Bartosza B.
             </p>
             
             <p>
@@ -469,7 +469,7 @@ export default function Home() {
             </p>
 
             <p>
-               Na mocy <button onClick={() => openGallery('wyrok_badi')} title="Zobacz wyrok Bartosza B." className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> o sygnaturze 66 T 146/2021 z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”.
+               Na mocy <button onClick={() => openGallery('wyrok_badi')} title="Zobacz wyrok Bartosza B." className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”.
             </p>
             
             <p className="font-bold text-stone-900 mb-2">
