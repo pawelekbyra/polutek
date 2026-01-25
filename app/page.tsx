@@ -5,15 +5,14 @@ import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
 
-// --- KONFIGURACJA IPFS (TWOJE NIEZATAPIALNE DANE) ---
+// --- KONFIGURACJA IPFS (NIEZATAPIALNE DOWODY) ---
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 
-// 1. CID Folderu z DOWODAMI (Zdjęcia, Wyroki)
-// To jest ten link, który podałeś: ...b3kscufj3uwj6z36tm
+// 1. CID Folderu ze zdjęciami (Wyroki, dokumenty)
 const EVIDENCE_CID = "bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm";
 const EVIDENCE_URL = `${PINATA_GATEWAY}/${EVIDENCE_CID}`;
 
-// 2. CID Folderu z FILMEM (Wideo Stefana)
+// 2. CID Folderu z FILMEM (Wideo Stefana - HLS)
 const VIDEO_CID = "bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u";
 
 // Definicja typu danych galerii
@@ -25,18 +24,18 @@ type GalleryData = {
   type?: 'verdict' | 'gallery';
 };
 
-// --- GENERATOR STRON WYROKU ---
-// Funkcja tworzy listę 100 linków do zdjęć (1.jpg, 2.jpg... 100.jpg)
+// --- FUNKCJE POMOCNICZE DO GENEROWANIA ŚCIEŻEK ---
+
+// Generator dla wyroku (100 stron)
 const generateVerdictPages = (folderName: string, count: number) => {
   return Array.from({ length: count }, (_, i) => {
-    // UWAGA: Zakładam, że pliki nazywają się po prostu "1.jpg", "2.jpg".
-    // Jeśli mają zera (np. "page-001.jpg"), trzeba tu zmienić formatowanie.
+    // Zakładamy prostą numerację 1.jpg, 2.jpg...
     const fileName = `${i + 1}.jpg`; 
     return `${EVIDENCE_URL}/${folderName}/${fileName}`;
   });
 };
 
-// --- DANE DO GALERII (Z SIECI IPFS) ---
+// --- DANE DO GALERII (Z IPFS) ---
 
 const GALLERY_NYDEK: GalleryData = {
   title: "Posiadłość w Nýdku (Archiwum)",
@@ -49,7 +48,6 @@ const GALLERY_NYDEK: GalleryData = {
 
 const GALLERY_WYROK_KORDYS: GalleryData = {
   title: "Pełne uzasadnienie wyroku: Jarosław K.",
-  // Tutaj generujemy 100 stron z folderu 'wyrok_kordys'
   images: generateVerdictPages('wyrok_kordys', 100),
   signature: "30 T 5/2021",
   pdfUrl: `${EVIDENCE_URL}/wyrok_kordys/calosc.pdf`,
@@ -113,7 +111,7 @@ const GALLERY_JANOV: GalleryData = {
   signature: "LV 127"
 };
 
-// --- KOMPONENTY STYLU "NAJS" (CaseFile, LegalNote itp.) ---
+// --- KOMPONENTY STYLU "NAJS" ---
 
 const CaseFile = ({ title, children, type = 'evidence' }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email' }) => (
   <div className="my-8 border border-stone-300 bg-white shadow-sm rounded-sm overflow-hidden break-inside-avoid">
@@ -202,9 +200,18 @@ const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boo
                 <span className="flex h-2 w-2 relative"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span></span>
                 <span className="text-[10px] font-mono text-stone-400 uppercase tracking-[0.2em]">Dowód #A-23</span>
               </div>
-              <h3 className="text-stone-100 font-serif text-xl italic tracking-wide">„Rozmowa w ogrodzie”</h3>
+              {/* NAPRAWIONO: Użycie encji &quot; zamiast " wewnątrz tekstu */}
+              <h3 className="text-stone-100 font-serif text-xl italic tracking-wide">&quot;Rozmowa w ogrodzie&quot;</h3>
             </div>
             <button onClick={onClose} className="text-stone-500 hover:text-white transition-colors p-1 hover:bg-white/10 rounded-full"><X className="w-5 h-5" /></button>
+          </div>
+          <div className="bg-stone-800 rounded border border-stone-700 p-4 mb-6 shadow-inner relative group">
+            <div className="flex justify-between items-center bg-black/40 rounded px-3 py-4 border border-stone-600/50">
+               <div className="w-8 h-8 rounded-full border-2 border-stone-600 bg-[#111] flex items-center justify-center"><div className="w-2 h-2 bg-stone-700 rounded-full"></div></div>
+               <div className="flex-1 mx-3 h-8 bg-[#2a2a2a] rounded flex items-center justify-center overflow-hidden relative"><div className="absolute w-[120%] h-[1px] bg-stone-600 rotate-12 top-1/2"></div><span className="text-[9px] font-mono text-stone-500 z-10 bg-[#2a2a2a] px-1">SIDE A</span></div>
+               <div className="w-8 h-8 rounded-full border-2 border-stone-600 bg-[#111] flex items-center justify-center"><div className="w-2 h-2 bg-stone-700 rounded-full"></div></div>
+            </div>
+            <div className="mt-3 text-center"><span className="font-mono text-[10px] text-stone-400 uppercase tracking-wider block">K. Stefanek / 2023</span></div>
           </div>
           <div className="bg-stone-200 rounded p-1">
             <audio controls className="w-full h-8 accent-stone-900 focus:outline-none">
