@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
@@ -739,11 +739,11 @@ export default function Home() {
               Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
             </p>
 
-            {/* PODPIS AUTORA (ZMIANA) */}
-            <div className="mt-12 mb-12 flex flex-col items-end">
-                <div className="text-right">
-                    <p className="font-bold text-stone-900 text-lg font-serif">Detektyw Polutek</p>
-                    <p className="text-stone-500 italic text-sm mb-2">dziennikarz śledczy</p>
+            {/* PODPIS AUTORA (ZMIANA: ZWARTY STYL) */}
+            <div className="mt-8 mb-12 flex flex-col items-end">
+                <div className="border-r-4 border-stone-800 pr-4 text-right">
+                    <p className="font-serif font-bold text-stone-900 text-xl leading-none mb-1">Detektyw Polutek</p>
+                    <p className="font-sans text-stone-500 text-xs uppercase tracking-widest mb-2">dziennikarz śledczy</p>
                     <a href="mailto:pawelpolutek@protonmail.com" className="text-stone-600 font-mono text-xs hover:text-blue-700 transition-colors flex items-center justify-end gap-2">
                         <Mail className="w-3 h-3" />
                         pawelpolutek@protonmail.com
@@ -842,18 +842,37 @@ export default function Home() {
                   </a>
                </div>
 
-               {/* 4. KSIĘGI WIECZYSTE */}
+               {/* 4. KSIĘGI WIECZYSTE (ROZBUDOWANE) */}
                <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <h4 className="font-bold text-stone-900 mb-1">Księgi Wieczyste (ČÚZK)</h4>
-                  <p className="font-mono text-[10px] text-stone-500 mt-1 mb-2">Rejestr publiczny</p>
+                  <p className="font-mono text-[10px] text-stone-500 mt-1 mb-2">Oficjalny rejestr publiczny</p>
+                  
                   <a 
                     href="https://nahlizenidokn.cuzk.cz" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="text-stone-600 hover:text-blue-700 flex items-center gap-2 text-xs font-bold"
+                    className="text-stone-600 hover:text-blue-700 flex items-center gap-2 text-xs font-bold mb-4"
                   >
-                    <Globe className="w-3 h-3" /> Otwórz Rejestr
+                    <Globe className="w-3 h-3" /> Otwórz Rejestr (nahlizenidokn.cuzk.cz)
                   </a>
+
+                  {/* INSTRUKCJA POBIERANIA AKT */}
+                  <div className="mt-3 pt-3 border-t border-stone-100 bg-stone-50 p-3 rounded">
+                    <p className="text-[10px] font-bold text-stone-700 mb-2 uppercase tracking-wide">
+                      Jak samodzielnie pobrać akta transakcji?
+                    </p>
+                    <ul className="list-decimal pl-4 space-y-2 text-[10px] text-stone-600 font-medium">
+                       <li>Wejdź na stronę katastru i wybierz opcję <strong className="text-stone-900">"Vyhledat řízení"</strong> (Wyszukaj postępowanie).</li>
+                       <li>
+                          Aby sprawdzić darowiznę Janova (Kiciński &rarr; Fundacja), w polu "Číslo řízení" wpisz:
+                          <span className="block font-mono text-xs font-bold text-blue-800 bg-white border border-stone-200 p-1 mt-1 select-all">V-5821/2023</span>
+                       </li>
+                       <li>
+                          Aby sprawdzić sprzedaż Nýdka (Iwiński &rarr; Tracz), w polu "Číslo řízení" wpisz:
+                          <span className="block font-mono text-xs font-bold text-blue-800 bg-white border border-stone-200 p-1 mt-1 select-all">V-2937/2021</span>
+                       </li>
+                    </ul>
+                  </div>
                </div>
 
              </div>
