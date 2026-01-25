@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
@@ -862,13 +862,13 @@ export default function Home() {
                       Jak samodzielnie pobrać akta transakcji?
                     </p>
                     <ul className="list-decimal pl-4 space-y-2 text-[10px] text-stone-600 font-medium">
-                       <li>Wejdź na stronę katastru i wybierz opcję <strong className="text-stone-900">"Vyhledat řízení"</strong> (Wyszukaj postępowanie).</li>
+                       <li>Wejdź na stronę katastru i wybierz opcję <strong className="text-stone-900">&quot;Vyhledat řízení&quot;</strong> (Wyszukaj postępowanie).</li>
                        <li>
-                          Aby sprawdzić darowiznę Janova (Kiciński &rarr; Fundacja), w polu "Číslo řízení" wpisz:
+                          Aby sprawdzić darowiznę Janova (Kiciński &rarr; Fundacja), w polu &quot;Číslo řízení&quot; wpisz:
                           <span className="block font-mono text-xs font-bold text-blue-800 bg-white border border-stone-200 p-1 mt-1 select-all">V-5821/2023</span>
                        </li>
                        <li>
-                          Aby sprawdzić sprzedaż Nýdka (Iwiński &rarr; Tracz), w polu "Číslo řízení" wpisz:
+                          Aby sprawdzić sprzedaż Nýdka (Iwiński &rarr; Tracz), w polu &quot;Číslo řízení&quot; wpisz:
                           <span className="block font-mono text-xs font-bold text-blue-800 bg-white border border-stone-200 p-1 mt-1 select-all">V-2937/2021</span>
                        </li>
                     </ul>
