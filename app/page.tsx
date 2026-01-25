@@ -41,8 +41,6 @@ type GalleryData = {
 };
 
 // --- FUNKCJE POMOCNICZE DO GENEROWANIA ŚCIEŻEK ---
-
-// Generator dla wyroku Kordysa (95 stron)
 const generateKordysPages = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
     const pageNumber = String(i + 1).padStart(4, '0');
@@ -51,7 +49,6 @@ const generateKordysPages = (count: number) => {
   });
 };
 
-// Generator dla wyroku Badiego (3 strony)
 const generateBadiPages = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
     const pageNumber = String(i + 1).padStart(4, '0');
@@ -60,9 +57,7 @@ const generateBadiPages = (count: number) => {
   });
 };
 
-// --- DANE DO GALERII (Z IPFS) ---
-
-// Stary CID dla pozostałych (Wezwanie)
+// --- DANE DO GALERII ---
 const OLD_EVIDENCE_URL = `${PINATA_GATEWAY}/bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm`;
 
 const GALLERY_NYDEK: GalleryData = {
@@ -92,15 +87,6 @@ const GALLERY_WYROK_BADI: GalleryData = {
   signature: "66 T 146/2021",
   pdfUrl: BADI_PDF_URL,
   type: 'verdict'
-};
-
-const GALLERY_NIERUCHOMOSCI_2: GalleryData = {
-  title: "Kolejny bliźniaczy ośrodek",
-  images: [
-    `${NYDEK_IMAGES_URL}/nydek01.jpg`,
-    `${NYDEK_IMAGES_URL}/nydek02.jpg`,
-    `${NYDEK_IMAGES_URL}/nydek03.jpg`
-  ],
 };
 
 const GALLERY_WEZWANIE_KICINSKI: GalleryData = {
@@ -178,10 +164,10 @@ const LocationStamp = ({ name, code, plot, lv, onClick }: { name: string, code: 
   <div className="my-8 flex justify-start">
     <button 
       onClick={onClick}
-      className="relative border border-stone-300 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] hover:border-blue-300 transition-colors text-left group"
+      className="relative border border-stone-300 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] hover:border-stone-400 transition-colors text-left group"
     >
-       <div className="bg-stone-100 h-full p-3 flex items-center justify-center border-r border-stone-200 border-dashed group-hover:bg-blue-50 transition-colors">
-          <HouseIcon className="w-5 h-5 text-stone-400 group-hover:text-blue-500 transition-colors" />
+       <div className="bg-stone-100 h-full p-3 flex items-center justify-center border-r border-stone-200 border-dashed transition-colors">
+          <HouseIcon className="w-5 h-5 text-stone-400" />
        </div>
        <div className="py-2">
           <div className="text-[9px] uppercase tracking-[0.2em] text-stone-400 font-bold mb-1 flex items-center gap-2">
@@ -255,12 +241,11 @@ export default function Home() {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryData, setGalleryData] = useState<GalleryData | null>(null);
 
-  const openGallery = (type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi' | 'nieruchomosci_2' | 'wezwanie_kicinski' | 'janov') => {
+  const openGallery = (type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi' | 'wezwanie_kicinski' | 'janov') => {
     const maps = {
       nydek: GALLERY_NYDEK,
       wyrok_kordys: GALLERY_WYROK_KORDYS,
       wyrok_badi: GALLERY_WYROK_BADI,
-      nieruchomosci_2: GALLERY_NIERUCHOMOSCI_2,
       wezwanie_kicinski: GALLERY_WEZWANIE_KICINSKI,
       janov: GALLERY_JANOV
     };
@@ -294,8 +279,9 @@ export default function Home() {
 
         <article className="max-w-2xl mx-auto px-4 py-8 flex-grow">
           
-          {/* KONFIGURACJA STYLÓW TEKSTU I LINKÓW (NOIR STYLE - BEZ NIEBIESKIEGO) */}
-          <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic">
+          {/* KONFIGURACJA STYLÓW TEKSTU I LINKÓW (PODWÓJNE PODKREŚLENIE) */}
+          <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic
+            prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-400 hover:prose-a:bg-stone-100 transition-colors">
             
             <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed">
               W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich &quot;szamanów&quot; w czeskich Hermanovicach. Policyjny nalot, aresztowanie Jarosława i Karoliny Kordysów, a następnie surowe wyroki - 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
@@ -316,7 +302,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Świadek B.</h2>
 
             <p>
-              W obszernym i publicznie dostępnym uzasadnieniu <button onClick={() => openGallery('wyrok_kordys')} title="Zobacz skan wyroku" className="font-bold text-stone-900 underline decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> Jarosława Kordysa o sygnaturze 30 T 5/2021 pojawia się postać świadka Bartosza B.
+              W obszernym i publicznie dostępnym uzasadnieniu <button onClick={() => openGallery('wyrok_kordys')} title="Zobacz skan wyroku" className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> Jarosława Kordysa o sygnaturze 30 T 5/2021 pojawia się postać świadka Bartosza B.
             </p>
             
             <p>
@@ -356,7 +342,7 @@ export default function Home() {
             </CaseFile>
 
             <p>
-              W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <button onClick={() => openGallery('janov')} className="font-bold text-stone-900 underline decoration-stone-400 hover:bg-stone-100 transition-colors">działkę w Janovie</button> i za niewielką opłatą pobrać jej pełną historię.
+              W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <button onClick={() => openGallery('janov')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">działkę w Janovie</button> i za niewielką opłatą pobrać jej pełną historię.
             </p>
             
             <LocationStamp 
@@ -368,7 +354,7 @@ export default function Home() {
             />
 
             <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
-              <button onClick={() => openGallery('janov')} className="font-bold text-stone-900 underline decoration-stone-400 hover:bg-stone-100 transition-colors">Pobrany dokument</button> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
+              <button onClick={() => openGallery('janov')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">Pobrany dokument</button> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
               
               <div className="mt-6 flex flex-col items-center justify-center not-italic">
                   <div className="flex flex-col gap-3 font-mono text-sm">
@@ -378,7 +364,7 @@ export default function Home() {
                       </div>
                        <div className="flex items-center gap-3">
                           <div className="w-4 h-4 rounded-sm" style={{backgroundColor: 'rgba(239, 68, 68, 0.5)'}}></div>
-                          <span className="decoration-red-600 decoration-4 underline underline-offset-4">Michał Dawid Kiciński (90%)</span>
+                          <span className="decoration-red-600 decoration-4 underline underline-offset-4 font-bold">Michał Dawid Kiciński (90%)</span>
                       </div>
                   </div>
               </div>
@@ -477,7 +463,7 @@ export default function Home() {
             </p>
 
             <p>
-               Na mocy <button onClick={() => openGallery('wyrok_badi')} title="Zobacz wyrok Bartosza B." className="font-bold text-stone-900 underline decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> o sygnaturze 66 T 146/2021 z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”.
+               Na mocy <button onClick={() => openGallery('wyrok_badi')} title="Zobacz wyrok Bartosza B." className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> o sygnaturze 66 T 146/2021 z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”.
             </p>
             
             <p className="font-bold text-stone-900 mb-2">
@@ -659,7 +645,7 @@ export default function Home() {
             </p>
 
             <p>
-              Na tym jednak historia na szczęście się nie kończy. Autor wycofanego zawiadomienia nie był zadowolony, bo &quot;zadośćuczynienie wszechświatowi&quot; miało trafić na hospicjum, a nie na „organizację krzak”. Tymczasem na tragedii Ilony świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Teraz, pod płaszczykiem non-profit, żyją z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując gości i publicznie każdego, kto natrafi na ich sielankowe filmy w sieci.
+              Na tym jednak historia na szczęście się nie kończy. Autor wycofanego zawiadomienia nie był zadowolony, bo &quot;zadośćuczynienie wszechświatowi&quot; miało trafić na hospicjum, a nie na „organizację krzak”. Tymczasem na tragedii Ilony świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Teraz, pod płaszczykiem non-profit, żyją z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując gości i publicznie każdego, kto natrafi na ich sielankowe filmy in sieci.
             </p>
              
             <div className="my-8 p-6 border border-stone-300 bg-[#F5F5F4] rounded-sm text-stone-900">
@@ -669,7 +655,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Jeszcze jeden ośrodek i jeszcze jeden miliarder</h2>
 
             <p>
-              Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości <strong>Nýdek</strong>, funkcjonował <button onClick={() => openGallery('nydek')} className="font-bold text-stone-900 underline decoration-stone-400 hover:bg-stone-100 transition-colors">kolejny, bliźniaczy ośrodek</button>.
+              Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości <strong>Nýdek</strong>, funkcjonowało <button onClick={() => openGallery('nydek')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">lustrzane ogniwo systemu</button>.
             </p>
 
             <LocationStamp 
@@ -738,12 +724,11 @@ export default function Home() {
               Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
             </p>
 
-            {/* PODPIS AUTORA (ZMIANA: "Autor: Marlow") */}
+            {/* WIZYTÓWKA AUTORA: Prosty, czysty tekst z szarą linią */}
             <div className="mt-8 mb-8 flex flex-col items-end">
-                <div className="border-r-4 border-stone-900 pr-4 text-right">
-                    <p className="font-serif font-bold text-stone-900 text-xl leading-none mb-1">Autor: Marlow</p>
-                    <a href="mailto:marlow.contact@proton.me" className="text-stone-600 font-mono text-xs hover:text-blue-700 transition-colors flex items-center justify-end gap-2">
-                        <Mail className="w-3 h-3" />
+                <div className="border-r-2 border-stone-300 pr-4 text-right">
+                    <p className="font-serif font-bold text-stone-700 text-base leading-none mb-1">Autor: Marlow</p>
+                    <a href="mailto:marlow.contact@proton.me" className="text-stone-400 font-mono text-[11px] no-underline hover:text-stone-600 transition-colors">
                         marlow.contact@proton.me
                     </a>
                 </div>
@@ -754,16 +739,18 @@ export default function Home() {
           {/* STOPKA ŹRÓDŁOWA */}
           <footer className="mt-0 pt-8 border-none font-sans">
              
-             {/* NAGŁÓWEK SEKCJ Z MAŁĄ KRESKĄ */}
-             <div className="mb-8 text-center">
-               <div className="w-16 h-1 bg-stone-300 mx-auto mb-6"></div> {/* MAŁA KRESKA NA ŚRODKU */}
-               <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center justify-center gap-2 mb-4">
+             {/* NAGŁÓWEK SEKCJ */}
+             <div className="mb-8">
+               <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
                  <Search className="w-5 h-5" /> Dokumenty Źródłowe
                </h3>
-               <p className="text-base text-stone-800 italic max-w-2xl mx-auto">Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.</p>
+               <div className="border-b border-stone-300 w-full mb-6"></div>
+               <p className="text-base text-stone-800 italic text-left">
+                 Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.
+               </p>
              </div>
              
-             {/* NOWA KOMPAKTOWA SIATKA Z DOKUMENTAMI */}
+             {/* KOMPAKTOWA SIATKA Z DOKUMENTAMI */}
              <div className="grid gap-4 text-sm text-stone-600">
                
                {/* 1. WYROK KORDYSA */}
@@ -777,7 +764,7 @@ export default function Home() {
                       href={KORDYS_PDF_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2"
+                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
                     >
                       <FileText className="w-3 h-3" /> Pobierz PDF
                     </a>
@@ -787,7 +774,7 @@ export default function Home() {
                       href="https://msp.gov.cz/web/krajsky-soud-v-ostrave/zakladni-informace/-/clanek/informace-rok-2022"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider"
+                      className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-200"
                     >
                       <Globe className="w-3 h-3" />
                       Weryfikuj na msp.gov.cz
@@ -806,7 +793,7 @@ export default function Home() {
                       href={BADI_PDF_URL} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2"
+                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
                     >
                       <FileText className="w-3 h-3" /> Pobierz PDF
                     </a>
@@ -816,7 +803,7 @@ export default function Home() {
                       href="https://msp.gov.cz/documents/22409/2997339/29Si+25-2022+p%C5%99%C3%ADloha+%C4%8D.+1.pdf" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider"
+                      className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-200"
                     >
                       <Globe className="w-3 h-3" />
                       Weryfikuj oryginał (29 Si 25/2022)
@@ -824,52 +811,48 @@ export default function Home() {
                   </div>
                </div>
 
-               {/* 3. KSIĘGI WIECZYSTE (UPROSZCZONE I KONKRETNE) */}
+               {/* 3. KSIĘGI WIECZYSTE */}
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col justify-between gap-4 mb-2">
                     <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia Własności i Transakcje</h4>
                     
                     <div className="space-y-2">
-                      {/* POZYCJA 1: JANOV HISTORIA */}
                       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-100 pb-2 last:border-0">
                           <div className="text-[10px] text-stone-600">
                               <span className="font-bold block">Historia własności: Janov (LV 127)</span>
                               <span className="font-mono text-stone-400">Pełny odpis z rejestru</span>
                           </div>
-                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 cursor-default">
+                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
                               <Download className="w-3 h-3" /> Pobierz PDF
                           </a>
                       </div>
 
-                      {/* POZYCJA 2: NYDEK HISTORIA */}
                       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-100 pb-2 last:border-0">
                           <div className="text-[10px] text-stone-600">
                               <span className="font-bold block">Historia własności: Nýdek (LV 832)</span>
                               <span className="font-mono text-stone-400">Pełny odpis z rejestru</span>
                           </div>
-                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 cursor-default">
+                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
                               <Download className="w-3 h-3" /> Pobierz PDF
                           </a>
                       </div>
 
-                      {/* POZYCJA 3: DAROWIZNA JANOV */}
                       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-100 pb-2 last:border-0">
                           <div className="text-[10px] text-stone-600">
                               <span className="font-bold block">Transakcja: Darowizna Janov</span>
                               <span className="font-mono text-stone-400">Sygnatura: V-5821/2023</span>
                           </div>
-                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 cursor-default">
+                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
                               <Download className="w-3 h-3" /> Pobierz PDF
                           </a>
                       </div>
 
-                      {/* POZYCJA 4: SPRZEDAŻ NYDEK */}
                       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-1">
                           <div className="text-[10px] text-stone-600">
                               <span className="font-bold block">Transakcja: Sprzedaż Nýdek</span>
                               <span className="font-mono text-stone-400">Sygnatura: V-2937/2021</span>
                           </div>
-                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 cursor-default">
+                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
                               <Download className="w-3 h-3" /> Pobierz PDF
                           </a>
                       </div>
@@ -881,7 +864,7 @@ export default function Home() {
                       href="https://nahlizenidokn.cuzk.cz" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider"
+                      className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-200"
                     >
                       <Globe className="w-3 h-3" />
                       Otwórz Rejestr (nahlizenidokn.cuzk.cz)
@@ -889,7 +872,7 @@ export default function Home() {
                   </div>
                </div>
 
-               {/* 4. ARCHIWUM STRONY NYDEK (NA KOŃCU) */}
+               {/* 4. ARCHIWUM STRONY NYDEK */}
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
@@ -900,7 +883,7 @@ export default function Home() {
                       href="https://web.archive.org/web/*/tribunydek.com" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="shrink-0 bg-stone-50 text-stone-600 px-3 py-1 text-xs font-bold rounded border border-stone-200 hover:bg-stone-100 transition-colors flex items-center gap-2"
+                      className="shrink-0 bg-stone-50 text-stone-600 px-3 py-1 text-xs font-bold rounded border border-stone-200 hover:bg-stone-100 transition-colors flex items-center gap-2 underline decoration-double decoration-stone-300"
                     >
                       <History className="w-3 h-3" /> Wayback Machine
                     </a>
@@ -910,7 +893,8 @@ export default function Home() {
              </div>
 
              {/* SEKCJA WEB3 */}
-             <div className="mt-12 text-center border-t border-stone-200 pt-6">
+             <div className="mt-16 text-center">
+                <div className="w-24 h-px bg-stone-300 mx-auto mb-6"></div>
                 <p className="text-xs text-stone-500 font-mono uppercase tracking-widest mb-2 flex items-center justify-center gap-2">
                   <ShieldCheck className="w-4 h-4" />
                   Zasoby Niezatapialne (Web3)
@@ -919,7 +903,7 @@ export default function Home() {
                   href="https://kutasinskigate.eth.limo" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="font-mono text-sm text-stone-400 hover:text-stone-900 transition-colors"
+                  className="font-mono text-sm text-stone-400 hover:text-stone-900 transition-colors underline decoration-double decoration-stone-200"
                 >
                   kutasinskigate.eth.limo
                 </a>
