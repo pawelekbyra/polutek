@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, ExternalLink, History } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
@@ -749,61 +749,27 @@ export default function Home() {
                </h3>
                <p className="text-base text-stone-800">Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.</p>
              </div>
+             
+             {/* NOWA KOMPAKTOWA SIATKA Z DOKUMENTAMI */}
              <div className="grid gap-4 text-sm text-stone-600">
-               {/* Linki do dokumentów */}
-               <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
-                  <h4 className="font-bold text-stone-900 mb-1">Wyrok Bartosza B.</h4>
-                  <p className="mb-2 font-mono text-xs">Sygn. 66 T 146/2021 (Sąd Rejonowy w Bruntalu)</p>
-                  
-                  {/* Link do Twojego PDF z IPFS */}
-                  <a 
-                    href={BADI_PDF_URL} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="text-blue-700 hover:underline font-bold flex items-center gap-2 mb-3"
-                  >
-                    <FileText className="w-3 h-3" /> Pobierz Pełny Wyrok (PDF)
-                  </a>
-
-                  {/* Sekcja weryfikacji rządowej */}
-                  <div className="border-t border-stone-100 pt-2 mt-2">
-                    <p className="text-[10px] text-stone-500 mb-1">
-                      <strong>Weryfikacja niezależna:</strong> Dokument udostępniony przez Ministerstwo Sprawiedliwości (MSp) w trybie informacji publicznej.
-                    </p>
-                    <a 
-                      href="https://msp.gov.cz/documents/22409/2997339/29Si+25-2022+p%C5%99%C3%ADloha+%C4%8D.+1.pdf" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider"
-                    >
-                      <Globe className="w-3 h-3" />
-                      Otwórz oryginał (msp.gov.cz)
-                    </a>
-                    <p className="text-[9px] text-stone-300 mt-1 font-mono">
-                      Sygn. akt udostępnienia: 29 Si 25/2022
-                    </p>
-                  </div>
-               </div>
                
-               <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
-                  <h4 className="font-bold text-stone-900 mb-1">Wyrok Jarosława Kordysa</h4>
-                  <p className="mb-2 font-mono text-xs">Sygn. 30 T 5/2020 (Sąd Wojewódzki w Ostrawie)</p>
-
-                  {/* Link do PDF z IPFS */}
-                  <a
-                    href={KORDYS_PDF_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-700 hover:underline font-bold flex items-center gap-2 mb-3"
-                  >
-                    <FileText className="w-3 h-3" /> Pobierz Pełny Wyrok (PDF)
-                  </a>
-
-                  {/* Sekcja weryfikacji */}
-                  <div className="border-t border-stone-100 pt-2 mt-2">
-                    <p className="text-[10px] text-stone-500 mb-1">
-                      <strong>Weryfikacja niezależna:</strong> Wyrok jest dostępny w biuletynie informacji publicznej Sądu w Ostrawie.
-                    </p>
+               {/* 1. WYROK KORDYSA (TERAZ PIERWSZY) */}
+               <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                    <div>
+                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Wyrok Jarosława Kordysa</h4>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">Sygn. 30 T 5/2020</p>
+                    </div>
+                    <a
+                      href={KORDYS_PDF_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2"
+                    >
+                      <FileText className="w-3 h-3" /> Pobierz PDF
+                    </a>
+                  </div>
+                  <div className="border-t border-stone-100 pt-2">
                     <a
                       href="https://msp.gov.cz/web/krajsky-soud-v-ostrave/zakladni-informace/-/clanek/informace-rok-2022"
                       target="_blank"
@@ -811,15 +777,76 @@ export default function Home() {
                       className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider"
                     >
                       <Globe className="w-3 h-3" />
-                      Przejdź do strony rządowej (szukaj: 30 T 5/2020)
+                      Weryfikuj na msp.gov.cz
                     </a>
                   </div>
                </div>
 
-               <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
-                  <h4 className="font-bold text-stone-900">Księgi Wieczyste (ČÚZK)</h4>
-                  <p>Weryfikuj online: nahlizenidokn.cuzk.cz</p>
+               {/* 2. WYROK BADOWSKIEGO (TERAZ DRUGI, ZMIENIONA NAZWA) */}
+               <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                    <div>
+                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Wyrok Bartosza Badowskiego</h4>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">Sygn. 66 T 146/2021</p>
+                    </div>
+                    <a 
+                      href={BADI_PDF_URL} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2"
+                    >
+                      <FileText className="w-3 h-3" /> Pobierz PDF
+                    </a>
+                  </div>
+                  <div className="border-t border-stone-100 pt-2">
+                    <a 
+                      href="https://msp.gov.cz/documents/22409/2997339/29Si+25-2022+p%C5%99%C3%ADloha+%C4%8D.+1.pdf" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider"
+                    >
+                      <Globe className="w-3 h-3" />
+                      Weryfikuj oryginał (29 Si 25/2022)
+                    </a>
+                  </div>
                </div>
+
+               {/* 3. ARCHIWUM STRONY NYDEK (NOWA SEKCJA) */}
+               <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                    <div>
+                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Strona Ośrodka w Nýdku</h4>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">Archiwum: tribunydek.com</p>
+                    </div>
+                    <a 
+                      href="https://web.archive.org/web/*/tribunydek.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="shrink-0 bg-stone-50 text-stone-600 px-3 py-1 text-xs font-bold rounded border border-stone-200 hover:bg-stone-100 transition-colors flex items-center gap-2"
+                    >
+                      <History className="w-3 h-3" /> Wayback Machine
+                    </a>
+                  </div>
+               </div>
+
+               {/* 4. KSIĘGI WIECZYSTE */}
+               <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                    <div>
+                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Księgi Wieczyste (ČÚZK)</h4>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">Rejestr publiczny</p>
+                    </div>
+                    <a 
+                      href="https://nahlizenidokn.cuzk.cz" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="shrink-0 bg-stone-50 text-stone-600 px-3 py-1 text-xs font-bold rounded border border-stone-200 hover:bg-stone-100 transition-colors flex items-center gap-2"
+                    >
+                      <Globe className="w-3 h-3" /> Otwórz Rejestr
+                    </a>
+                  </div>
+               </div>
+
              </div>
 
              {/* NOWA SEKCJA: KRYPTO WSPARCIE (PRZENIESIONA WYŻEJ) */}
