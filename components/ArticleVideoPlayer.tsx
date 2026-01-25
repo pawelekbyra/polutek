@@ -25,18 +25,19 @@ const ArticleVideoPlayer: React.FC<ArticleVideoPlayerProps> = ({ src, poster }) 
 
   return (
     <div className="my-12">
-      {/* ZMIANA: Usunięto 'aspect-w-16 aspect-h-9'. 
-         Dodano style={{ aspectRatio: '1920 / 820' }} aby pasowało idealnie do formatu Twojego wideo.
+      {/* POPRAWKA:
+          1. Zmieniono aspectRatio na '16 / 9', aby pasowało do standardu wideo i mieściło kontrolki.
+          2. Zmieniono object-cover na object-contain, aby wideo zawsze mieściło się w ramce bez ucinania krawędzi.
       */}
       <div 
         className="w-full bg-black rounded-sm shadow-lg overflow-hidden relative group"
-        style={{ aspectRatio: '1920 / 820' }}
+        style={{ aspectRatio: '16 / 9' }}
       >
         <video
           ref={videoRef}
           controls
           poster={poster}
-          className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+          className="w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
         />
       </div>
     </div>
