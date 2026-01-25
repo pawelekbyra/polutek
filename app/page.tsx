@@ -270,7 +270,7 @@ export default function Home() {
               <span className="block text-5xl md:text-7xl font-bold leading-none tracking-tight">
                 Eliksir Wiedźmina
               </span>
-              <span className="block text-2xl md:text-5xl text-stone-500 italic font-medium mt-6 max-w-3xl mx-auto">
+            <span className="block text-2xl md:text-5xl text-stone-500 italic font-medium mt-6 max-w-3xl mx-auto">
                 Mroczna tajemnica twórców CD Projekt
               </span>
             </h1>
