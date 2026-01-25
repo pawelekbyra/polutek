@@ -20,7 +20,7 @@ const BADI_IMAGES_URL = `${PINATA_GATEWAY}/${BADI_IMAGES_CID}`;
 const NYDEK_IMAGES_CID = "bafybeidabdztfvfa7ycie5q47xfby7jiqtuwt6oddccuujpvjxqzd4ofpa";
 const NYDEK_IMAGES_URL = `${PINATA_GATEWAY}/${NYDEK_IMAGES_CID}`;
 
-// 4. DOWODY JANOV (Folder ze zdjęciami - NOWY LINK)
+// 4. DOWODY JANOV (Folder ze zdjęciami)
 const JANOV_IMAGES_CID = "bafybeia6rid25dw5t46mwmgwu4coa3t6qp34vcno4mcnqxuixplpyfmvly";
 const JANOV_IMAGES_URL = `${PINATA_GATEWAY}/${JANOV_IMAGES_CID}`;
 
@@ -62,7 +62,7 @@ const generateBadiPages = (count: number) => {
 
 // --- DANE DO GALERII (Z IPFS) ---
 
-// Stary CID dla pozostałych (Wezwanie) - używamy starego folderu
+// Stary CID dla pozostałych (Wezwanie)
 const OLD_EVIDENCE_URL = `${PINATA_GATEWAY}/bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm`;
 
 const GALLERY_NYDEK: GalleryData = {
@@ -281,10 +281,11 @@ export default function Home() {
             <div className="inline-block mb-6 px-3 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase">
               Śledztwo Dziennikarskie
             </div>
+            {/* ZMIANA W TYTULE: PRZENIESIENIE "I" DO NOWEJ LINII */}
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8 text-stone-900">
               Dwa światy Wiedźmina: <br/>
               <span className="text-stone-500 italic font-medium text-3xl md:text-5xl block mt-4">
-                Mroczna tajemnica Ayahuaski i milionerów z CD Projekt
+                Mroczna tajemnica Ayahuaski <br /> i milionerów z CD Projekt
               </span>
             </h1>
             <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
@@ -450,7 +451,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cena wolności i zdrady</h2>
 
             <p>
-              Kiedy 26 sierpnia 2020 roku czeska policja weszła do posiadłości w Janovie, należącej do Bartosza Badowskiego i miliardera Michała Kicińskiego, Jarosław Kordys w Hermanovicach wciąż czuł się bezpiecznie. Nie wiedział jeszcze, że zegar zaczął odliczać czas do jego własnej katastrofy. Zaledwie 7 tygodni po cichym nalocie na Badowskiego policja zapukała do Kordysów.
+              Kiedy 26 sierpnia 2020 roku czeska policja weszła do posiadłości w Janovie, należącej do Bartosza Badowskiego i miliardera Michała Kicińskiego, Jarosław Kordys wciąż czuł się bezpiecznie. Nie wiedział jeszcze, że zegar zaczął odliczać czas do jego własnej katastrofy. Zaledwie 7 tygodni po cichym nalocie na Badowskiego policja zapukała do Kordysów.
             </p>
 
             <p>
@@ -478,7 +479,12 @@ export default function Home() {
             </p>
 
             <p>
-               Na mocy <button onClick={() => openGallery('wyrok_badi')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz wyrok Bartosza B.">wyroku</button> o sygnaturze 66 T 146/2021 z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”. Sąd ustalił, że:
+               Na mocy <button onClick={() => openGallery('wyrok_badi')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz wyrok Bartosza B.">wyroku</button> o sygnaturze 66 T 146/2021 z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”.
+            </p>
+            
+            {/* ZMIANA: WYCIĄGNIĘCIE I POGRUBIENIE "SĄD USTALIŁ" */}
+            <p className="font-bold text-stone-900 mb-2">
+              Sąd ustalił, że:
             </p>
 
             <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
@@ -728,7 +734,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Sprawiedliwość na sprzedaż?</h2>
 
             <p>
-              Historia Hermanovic, Janova i Nýdka to opowieść o dwóch równoległych światach. W jednym – za kraty czeskich więzień – trafiają „szamani”, których nazwiska stały się synonimem skandalu. W drugim – na szczytach list Forbesa – trwają ludzie, którzy tę infrastrukturę sfinansowali.
+              Historia Janova i Nýdka to opowieść o dwóch równoległych światach. W jednym – za kratami czeskich więzień – siedzą „szamani”, których nazwiska stały się synonimem skandalu. W drugim – na szczytach list Forbesa – trwają ludzie, którzy tę infrastrukturę sfinansowali.
             </p>
 
             <p>
@@ -793,6 +799,16 @@ export default function Home() {
                 >
                   kutasinskigate.eth.limo
                 </a>
+             </div>
+
+             {/* NOWA SEKCJA: KRYPTO WSPARCIE */}
+             <div className="mt-8 text-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                <p className="text-[10px] text-stone-400 font-mono uppercase tracking-widest mb-2">
+                  Wsparcie infrastruktury & serwerów (ETH / ERC-20)
+                </p>
+                <div className="font-mono text-[10px] md:text-xs text-stone-500 select-all bg-stone-100 inline-block px-2 py-1 rounded border border-stone-200">
+                  0x1234...TUTAJ_TWOJ_ADRES_PORTFELA...5678
+                </div>
              </div>
           </footer>
         </article>
