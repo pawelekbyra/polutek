@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, ExternalLink } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
@@ -281,7 +281,6 @@ export default function Home() {
             <div className="inline-block mb-6 px-3 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase">
               Śledztwo Dziennikarskie
             </div>
-            {/* ZMIANA W TYTULE: PRZENIESIENIE "I" DO NOWEJ LINII */}
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8 text-stone-900">
               Dwa światy Wiedźmina: <br/>
               <span className="text-stone-500 italic font-medium text-3xl md:text-5xl block mt-4">
@@ -482,7 +481,6 @@ export default function Home() {
                Na mocy <button onClick={() => openGallery('wyrok_badi')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz wyrok Bartosza B.">wyroku</button> o sygnaturze 66 T 146/2021 z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”.
             </p>
             
-            {/* ZMIANA: WYCIĄGNIĘCIE I POGRUBIENIE "SĄD USTALIŁ" */}
             <p className="font-bold text-stone-900 mb-2">
               Sąd ustalił, że:
             </p>
@@ -767,16 +765,34 @@ export default function Home() {
                </div>
                
                <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
-                  <h4 className="font-bold text-stone-900">Sprawa Kordysa</h4>
-                  <p className="mb-2">Sygn. 30 T 5/2020</p>
-                  <a 
-                    href={KORDYS_PDF_URL} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="text-blue-700 hover:underline font-bold flex items-center gap-2"
+                  <h4 className="font-bold text-stone-900 mb-1">Wyrok Jarosława Kordysa</h4>
+                  <p className="mb-2 font-mono text-xs">Sygn. 30 T 5/2020 (Sąd Wojewódzki w Ostrawie)</p>
+
+                  {/* Link do PDF z IPFS */}
+                  <a
+                    href={KORDYS_PDF_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-700 hover:underline font-bold flex items-center gap-2 mb-3"
                   >
                     <FileText className="w-3 h-3" /> Pobierz Pełny Wyrok (PDF)
                   </a>
+
+                  {/* Sekcja weryfikacji */}
+                  <div className="border-t border-stone-100 pt-2 mt-2">
+                    <p className="text-[10px] text-stone-500 mb-1">
+                      <strong>Weryfikacja niezależna:</strong> Wyrok jest dostępny w biuletynie informacji publicznej Sądu w Ostrawie.
+                    </p>
+                    <a
+                      href="https://msp.gov.cz/web/krajsky-soud-v-ostrave/zakladni-informace/-/clanek/informace-rok-2022"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider"
+                    >
+                      <Globe className="w-3 h-3" />
+                      Przejdź do strony rządowej (szukaj: 30 T 5/2020)
+                    </a>
+                  </div>
                </div>
 
                <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
