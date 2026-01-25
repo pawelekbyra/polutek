@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, ExternalLink, History } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
@@ -739,6 +739,18 @@ export default function Home() {
               Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
             </p>
 
+            {/* PODPIS AUTORA (ZMIANA) */}
+            <div className="mt-12 mb-12 flex flex-col items-end">
+                <div className="text-right">
+                    <p className="font-bold text-stone-900 text-lg font-serif">Detektyw Polutek</p>
+                    <p className="text-stone-500 italic text-sm mb-2">dziennikarz śledczy</p>
+                    <a href="mailto:pawelpolutek@protonmail.com" className="text-stone-600 font-mono text-xs hover:text-blue-700 transition-colors flex items-center justify-end gap-2">
+                        <Mail className="w-3 h-3" />
+                        pawelpolutek@protonmail.com
+                    </a>
+                </div>
+            </div>
+
           </div>
 
           {/* STOPKA ŹRÓDŁOWA */}
@@ -750,26 +762,27 @@ export default function Home() {
                <p className="text-base text-stone-800">Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.</p>
              </div>
              
-             {/* NOWA KOMPAKTOWA SIATKA Z DOKUMENTAMI */}
+             {/* POWRÓT DO PIONOWEGO UKŁADU KAFELKÓW (REVERT) */}
              <div className="grid gap-4 text-sm text-stone-600">
                
                {/* 1. WYROK KORDYSA */}
-               <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
-                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                    <div>
-                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Wyrok Jarosława Kordysa</h4>
-                      <p className="font-mono text-[10px] text-stone-500 mt-1">Sygn. 30 T 5/2020</p>
-                    </div>
-                    <a
-                      href={KORDYS_PDF_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2"
-                    >
-                      <FileText className="w-3 h-3" /> Pobierz PDF
-                    </a>
-                  </div>
-                  <div className="border-t border-stone-100 pt-2">
+               <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+                  <h4 className="font-bold text-stone-900 mb-1">Wyrok Jarosława Kordysa</h4>
+                  <p className="mb-2 font-mono text-xs">Sygn. 30 T 5/2020 (Sąd Wojewódzki w Ostrawie)</p>
+
+                  <a
+                    href={KORDYS_PDF_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-700 hover:underline font-bold flex items-center gap-2 mb-3"
+                  >
+                    <FileText className="w-3 h-3" /> Pobierz Pełny Wyrok (PDF)
+                  </a>
+
+                  <div className="border-t border-stone-100 pt-2 mt-2">
+                    <p className="text-[10px] text-stone-500 mb-1">
+                      <strong>Weryfikacja niezależna:</strong> Wyrok jest dostępny w biuletynie informacji publicznej Sądu w Ostrawie.
+                    </p>
                     <a
                       href="https://msp.gov.cz/web/krajsky-soud-v-ostrave/zakladni-informace/-/clanek/informace-rok-2022"
                       target="_blank"
@@ -777,28 +790,29 @@ export default function Home() {
                       className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider"
                     >
                       <Globe className="w-3 h-3" />
-                      Weryfikuj na msp.gov.cz
+                      Przejdź do strony rządowej (szukaj: 30 T 5/2020)
                     </a>
                   </div>
                </div>
 
                {/* 2. WYROK BADOWSKIEGO */}
-               <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
-                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                    <div>
-                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Wyrok Bartosza Badowskiego</h4>
-                      <p className="font-mono text-[10px] text-stone-500 mt-1">Sygn. 66 T 146/2021</p>
-                    </div>
-                    <a 
-                      href={BADI_PDF_URL} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2"
-                    >
-                      <FileText className="w-3 h-3" /> Pobierz PDF
-                    </a>
-                  </div>
-                  <div className="border-t border-stone-100 pt-2">
+               <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+                  <h4 className="font-bold text-stone-900 mb-1">Wyrok Bartosza Badowskiego</h4>
+                  <p className="mb-2 font-mono text-xs">Sygn. 66 T 146/2021 (Sąd Rejonowy w Bruntalu)</p>
+                  
+                  <a 
+                    href={BADI_PDF_URL} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-blue-700 hover:underline font-bold flex items-center gap-2 mb-3"
+                  >
+                    <FileText className="w-3 h-3" /> Pobierz Pełny Wyrok (PDF)
+                  </a>
+
+                  <div className="border-t border-stone-100 pt-2 mt-2">
+                    <p className="text-[10px] text-stone-500 mb-1">
+                      <strong>Weryfikacja niezależna:</strong> Dokument udostępniony przez Ministerstwo Sprawiedliwości (MSp) w trybie informacji publicznej.
+                    </p>
                     <a 
                       href="https://msp.gov.cz/documents/22409/2997339/29Si+25-2022+p%C5%99%C3%ADloha+%C4%8D.+1.pdf" 
                       target="_blank" 
@@ -806,89 +820,56 @@ export default function Home() {
                       className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider"
                     >
                       <Globe className="w-3 h-3" />
-                      Weryfikuj oryginał (29 Si 25/2022)
+                      Otwórz oryginał (msp.gov.cz)
                     </a>
+                    <p className="text-[9px] text-stone-300 mt-1 font-mono">
+                      Sygn. akt udostępnienia: 29 Si 25/2022
+                    </p>
                   </div>
                </div>
 
                {/* 3. ARCHIWUM STRONY NYDEK */}
-               <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
-                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                    <div>
-                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Strona Ośrodka w Nýdku</h4>
-                      <p className="font-mono text-[10px] text-stone-500 mt-1">Archiwum: tribunydek.com</p>
-                    </div>
-                    <a 
-                      href="https://web.archive.org/web/*/tribunydek.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="shrink-0 bg-stone-50 text-stone-600 px-3 py-1 text-xs font-bold rounded border border-stone-200 hover:bg-stone-100 transition-colors flex items-center gap-2"
-                    >
-                      <History className="w-3 h-3" /> Wayback Machine
-                    </a>
-                  </div>
+               <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+                  <h4 className="font-bold text-stone-900 mb-1">Strona Ośrodka w Nýdku</h4>
+                  <p className="font-mono text-[10px] text-stone-500 mt-1 mb-2">Archiwum: tribunydek.com</p>
+                  <a 
+                    href="https://web.archive.org/web/*/tribunydek.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-stone-600 hover:text-blue-700 flex items-center gap-2 text-xs font-bold"
+                  >
+                    <History className="w-3 h-3" /> Zobacz w Wayback Machine
+                  </a>
                </div>
 
                {/* 4. KSIĘGI WIECZYSTE */}
-               <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
-                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                    <div>
-                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Księgi Wieczyste (ČÚZK)</h4>
-                      <p className="font-mono text-[10px] text-stone-500 mt-1">Rejestr publiczny</p>
-                    </div>
-                    <a 
-                      href="https://nahlizenidokn.cuzk.cz" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="shrink-0 bg-stone-50 text-stone-600 px-3 py-1 text-xs font-bold rounded border border-stone-200 hover:bg-stone-100 transition-colors flex items-center gap-2"
-                    >
-                      <Globe className="w-3 h-3" /> Otwórz Rejestr
-                    </a>
-                  </div>
+               <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+                  <h4 className="font-bold text-stone-900 mb-1">Księgi Wieczyste (ČÚZK)</h4>
+                  <p className="font-mono text-[10px] text-stone-500 mt-1 mb-2">Rejestr publiczny</p>
+                  <a 
+                    href="https://nahlizenidokn.cuzk.cz" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-stone-600 hover:text-blue-700 flex items-center gap-2 text-xs font-bold"
+                  >
+                    <Globe className="w-3 h-3" /> Otwórz Rejestr
+                  </a>
                </div>
 
              </div>
 
-             {/* SEKCJA KONTAKTOWA */}
-             <div className="mt-16 border-t border-stone-300 pt-8 pb-4">
-                <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-                  
-                  {/* KONTAKT */}
-                  <div>
-                    <p className="text-[10px] font-bold text-stone-900 uppercase tracking-widest mb-1">
-                      Niezależne Dziennikarstwo Śledcze
-                    </p>
-                    <p className="text-sm text-stone-600 mb-2">
-                      Masz informacje w tej sprawie? Gwarantuję pełną anonimowość.
-                    </p>
-                    <a 
-                      href="mailto:redakcja.sledcza@proton.me" 
-                      className="inline-flex items-center gap-2 text-stone-900 font-mono font-bold bg-stone-100 px-3 py-1 rounded border border-stone-200 hover:bg-stone-200 transition-colors"
-                    >
-                      <Mail className="w-4 h-4" /> redakcja.sledcza@proton.me
-                    </a>
-                  </div>
-
-                  {/* KRYPTO WSPARCIE */}
-                  <div className="opacity-70 hover:opacity-100 transition-opacity">
-                    <p className="text-[10px] font-bold text-stone-900 uppercase tracking-widest mb-1">
-                      Wsparcie Niezależnego Śledztwa
-                    </p>
-                    <div className="flex flex-col gap-1 items-center md:items-end">
-                      <code className="text-[10px] font-mono text-stone-500 bg-stone-50 px-2 py-1 border border-stone-200 rounded select-all">
-                        ETH: 0x1234...TWOJ_ADRES...5678
-                      </code>
-                      <span className="text-[9px] text-stone-400 italic">
-                        Środki przeznaczane na hosting, VPN i analizę prawną.
-                      </span>
-                    </div>
-                  </div>
-
+             {/* KRYPTO WSPARCIE */}
+             <div className="mt-8 pt-8 border-t border-stone-300 text-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                <p className="text-[10px] text-stone-400 font-mono uppercase tracking-widest mb-2">
+                  Wsparcie infrastruktury & serwerów (ETH / ERC-20)
+                </p>
+                <div className="font-mono text-[10px] md:text-xs text-stone-500 select-all bg-stone-100 inline-block px-2 py-1 rounded border border-stone-200">
+                  0x1234...TUTAJ_TWOJ_ADRES_PORTFELA...5678
                 </div>
              </div>
 
              {/* SEKCJA WEB3 */}
-             <div className="mt-12 text-center border-t border-stone-200 pt-6">
+             <div className="mt-8 text-center">
                 <p className="text-xs text-stone-500 font-mono uppercase tracking-widest mb-2 flex items-center justify-center gap-2">
                   <ShieldCheck className="w-4 h-4" />
                   Zasoby Niezatapialne (Web3)
