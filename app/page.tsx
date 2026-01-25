@@ -264,12 +264,19 @@ export default function Home() {
             <div className="inline-block mb-6 px-3 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase">
               Śledztwo Dziennikarskie
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8 text-stone-900">
-              Ayahuasca: Eliksir Wiedźmina
-              <span className="text-stone-500 italic font-medium text-3xl md:text-5xl ml-3">
-                 – Mroczna tajemnica milionerów z CD Projekt
+            
+            <h1 className="mb-8 text-stone-900">
+              <span className="block text-2xl md:text-4xl font-serif text-stone-500 mb-2 tracking-wide">
+                Ayahuasca:
+              </span>
+              <span className="block text-5xl md:text-7xl font-bold leading-none tracking-tight">
+                Eliksir Wiedźmina
+              </span>
+              <span className="block text-xl md:text-3xl text-stone-500 italic font-medium mt-6 max-w-3xl mx-auto">
+                Mroczna tajemnica milionerów z CD Projekt
               </span>
             </h1>
+
             <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
               <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
                 W cieniu głośnego procesu, dziennikarskie śledztwo ujawnia jak twórcy gry &bdquo;Wiedźmin&rdquo; finansowali &quot;szamańskie&quot; podziemie.
