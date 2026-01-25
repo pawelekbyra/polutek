@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, FileJson } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
@@ -744,7 +744,7 @@ export default function Home() {
 
             {/* PODPIS AUTORA (ZMIANA: "Autor: Marlow") */}
             <div className="mt-8 mb-8 flex flex-col items-end">
-                <div className="border-r-2 border-stone-300 pr-4 text-right">
+                <div className="border-r-4 border-stone-900 pr-4 text-right">
                     <p className="font-sans font-bold text-stone-500 text-sm leading-none mb-1">Autor: Marlow</p>
                     <a href="mailto:marlow.contact@proton.me" className="text-stone-400 font-mono text-[10px] hover:text-stone-700 transition-colors flex items-center justify-end gap-2">
                         <Mail className="w-3 h-3" />
@@ -756,7 +756,7 @@ export default function Home() {
           </div>
 
           {/* STOPKA ŹRÓDŁOWA */}
-          <footer className="mt-12 pt-12 border-t border-stone-300 font-sans">
+          <footer className="mt-0 pt-8 border-none font-sans">
              
              {/* NAGŁÓWEK SEKCJ */}
              <div className="mb-8">
@@ -830,23 +830,56 @@ export default function Home() {
 
                {/* 3. KSIĘGI WIECZYSTE (UPROSZCZONE I KONKRETNE) */}
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
-                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                    <div>
-                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia Własności i Transakcje</h4>
-                      
-                      <div className="mt-2 space-y-1">
-                        <div className="flex items-center gap-2 text-[10px] text-stone-600 border-b border-stone-100 pb-1">
-                           <span className="font-bold w-20">Janov (LV 127):</span>
-                           <span className="font-mono bg-stone-50 px-1 rounded select-all">V-5821/2023</span> (Darowizna)
-                        </div>
-                         <div className="flex items-center gap-2 text-[10px] text-stone-600 border-b border-stone-100 pb-1">
-                           <span className="font-bold w-20">Nýdek (LV 832):</span>
-                           <span className="font-mono bg-stone-50 px-1 rounded select-all">V-2937/2021</span> (Sprzedaż)
-                        </div>
+                  <div className="flex flex-col justify-between gap-4 mb-2">
+                    <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia Własności i Transakcje</h4>
+                    
+                    <div className="space-y-2">
+                      {/* POZYCJA 1: JANOV HISTORIA */}
+                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-100 pb-2 last:border-0">
+                          <div className="text-[10px] text-stone-600">
+                              <span className="font-bold block">Historia własności: Janov (LV 127)</span>
+                              <span className="font-mono text-stone-400">Pełny odpis z rejestru</span>
+                          </div>
+                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 cursor-default">
+                              <Download className="w-3 h-3" /> Pobierz PDF
+                          </a>
                       </div>
 
+                      {/* POZYCJA 2: NYDEK HISTORIA */}
+                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-100 pb-2 last:border-0">
+                          <div className="text-[10px] text-stone-600">
+                              <span className="font-bold block">Historia własności: Nýdek (LV 832)</span>
+                              <span className="font-mono text-stone-400">Pełny odpis z rejestru</span>
+                          </div>
+                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 cursor-default">
+                              <Download className="w-3 h-3" /> Pobierz PDF
+                          </a>
+                      </div>
+
+                      {/* POZYCJA 3: DAROWIZNA JANOV */}
+                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-100 pb-2 last:border-0">
+                          <div className="text-[10px] text-stone-600">
+                              <span className="font-bold block">Transakcja: Darowizna Janov</span>
+                              <span className="font-mono text-stone-400">Sygnatura: V-5821/2023</span>
+                          </div>
+                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 cursor-default">
+                              <Download className="w-3 h-3" /> Pobierz PDF
+                          </a>
+                      </div>
+
+                      {/* POZYCJA 4: SPRZEDAŻ NYDEK */}
+                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-1">
+                          <div className="text-[10px] text-stone-600">
+                              <span className="font-bold block">Transakcja: Sprzedaż Nýdek</span>
+                              <span className="font-mono text-stone-400">Sygnatura: V-2937/2021</span>
+                          </div>
+                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 cursor-default">
+                              <Download className="w-3 h-3" /> Pobierz PDF
+                          </a>
+                      </div>
                     </div>
                   </div>
+
                   <div className="border-t border-stone-100 pt-2 mt-2">
                     <a 
                       href="https://nahlizenidokn.cuzk.cz" 
