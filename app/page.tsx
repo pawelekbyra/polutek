@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from 'react';
 import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, PenTool, Home as HouseIcon } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
@@ -217,9 +218,9 @@ const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boo
           </div>
           <div className="bg-stone-800 rounded border border-stone-700 p-4 mb-6 shadow-inner relative group">
             <div className="flex justify-between items-center bg-black/40 rounded px-3 py-4 border border-stone-600/50">
-               <div className="w-8 h-8 rounded-full border-2 border-stone-600 bg-[#111] flex items-center justify-center"><div className="w-2 h-2 bg-stone-700 rounded-full"></div></div>
-               <div className="flex-1 mx-3 h-8 bg-[#2a2a2a] rounded flex items-center justify-center overflow-hidden relative"><div className="absolute w-[120%] h-[1px] bg-stone-600 rotate-12 top-1/2"></div><span className="text-[9px] font-mono text-stone-500 z-10 bg-[#2a2a2a] px-1">SIDE A</span></div>
-               <div className="w-8 h-8 rounded-full border-2 border-stone-600 bg-[#111] flex items-center justify-center"><div className="w-2 h-2 bg-stone-700 rounded-full"></div></div>
+                <div className="w-8 h-8 rounded-full border-2 border-stone-600 bg-[#111] flex items-center justify-center"><div className="w-2 h-2 bg-stone-700 rounded-full"></div></div>
+                <div className="flex-1 mx-3 h-8 bg-[#2a2a2a] rounded flex items-center justify-center overflow-hidden relative"><div className="absolute w-[120%] h-[1px] bg-stone-600 rotate-12 top-1/2"></div><span className="text-[9px] font-mono text-stone-500 z-10 bg-[#2a2a2a] px-1">SIDE A</span></div>
+                <div className="w-8 h-8 rounded-full border-2 border-stone-600 bg-[#111] flex items-center justify-center"><div className="w-2 h-2 bg-stone-700 rounded-full"></div></div>
             </div>
             <div className="mt-3 text-center"><span className="font-mono text-[10px] text-stone-400 uppercase tracking-wider block">K. Stefanek / 2023</span></div>
           </div>
@@ -264,14 +265,14 @@ export default function Home() {
               Śledztwo Dziennikarskie
             </div>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8 text-stone-900">
-              Ayahuasca- Eliksir Wiedźmina <br/>
+              Ayahuasca: Eliksir Wiedźmina <br/>
               <span className="text-stone-500 italic font-medium text-3xl md:text-5xl block mt-4">
                 Mroczna tajemnica milionerów<br /> z CD Projekt
               </span>
             </h1>
             <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
               <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
-                W cieniu głośnego procesu, dziennikarskie śledztwo ujawnia jak twórcy gry &bdquo;Wiedźmin&rdquo finansowali "szamańskie" podziemie;.
+                W cieniu głośnego procesu, dziennikarskie śledztwo ujawnia jak twórcy gry &bdquo;Wiedźmin&rdquo; finansowali &quot;szamańskie&quot; podziemie.
               </p>
             </div>
           </div>
@@ -566,7 +567,7 @@ export default function Home() {
 
             <div className="my-12">
               <p className="text-xs text-stone-500 mb-2 font-mono uppercase tracking-wider">
-                 Materiał Wideo: Stefanek o darowiźnie (Kopia bezpieczeństwa na IPFS)
+                  Materiał Wideo: Stefanek o darowiźnie (Kopia bezpieczeństwa na IPFS)
               </p>
               <ArticleVideoPlayer 
                 src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`} 
@@ -738,7 +739,7 @@ export default function Home() {
 
           {/* STOPKA ŹRÓDŁOWA */}
           <footer className="mt-0 pt-8 border-none font-sans">
-             
+              
              {/* NAGŁÓWEK SEKCJ */}
              <div className="mb-8">
                <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
