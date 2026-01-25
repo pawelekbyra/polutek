@@ -24,14 +24,18 @@ type GalleryData = {
   type?: 'verdict' | 'gallery';
 };
 
-// --- FUNKCJE POMOCNICZE DO GENEROWANIA ŚCIEŻEK ---
+// --- GENERATORY ŚCIEŻEK DO ZDJĘĆ ---
 
-// Generator dla wyroku (100 stron)
-const generateVerdictPages = (folderName: string, count: number) => {
+// Specjalny generator dla wyroku Kordysa (95 stron, specyficzne nazwy plików)
+// Format plików z Twojego IPFS: "30T 5 2021-1_page-0001.jpg"
+const generateKordysPages = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
-    // Zakładamy prostą numerację 1.jpg, 2.jpg...
-    const fileName = `${i + 1}.jpg`; 
-    return `${EVIDENCE_URL}/${folderName}/${fileName}`;
+    // Zamienia liczbę na format czterocyfrowy (np. 1 -> "0001", 95 -> "0095")
+    const pageNumber = String(i + 1).padStart(4, '0');
+    // Nazwa pliku dokładnie taka jak na Twoim zrzucie ekranu
+    const fileName = `30T 5 2021-1_page-${pageNumber}.jpg`;
+    // Pliki są w głównym katalogu tego CID, więc nie dodajemy podfolderu
+    return `${EVIDENCE_URL}/${fileName}`;
   });
 };
 
@@ -48,7 +52,8 @@ const GALLERY_NYDEK: GalleryData = {
 
 const GALLERY_WYROK_KORDYS: GalleryData = {
   title: "Pełne uzasadnienie wyroku: Jarosław K.",
-  images: generateVerdictPages('wyrok_kordys', 100),
+  // Generujemy 95 stron używając poprawnego nazewnictwa
+  images: generateKordysPages(95),
   signature: "30 T 5/2021",
   pdfUrl: `${EVIDENCE_URL}/wyrok_kordys/calosc.pdf`,
   type: 'verdict'
@@ -200,7 +205,6 @@ const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boo
                 <span className="flex h-2 w-2 relative"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span></span>
                 <span className="text-[10px] font-mono text-stone-400 uppercase tracking-[0.2em]">Dowód #A-23</span>
               </div>
-              {/* NAPRAWA: Zamiast bezpośrednich cudzysłowów, używamy &quot; */}
               <h3 className="text-stone-100 font-serif text-xl italic tracking-wide">&quot;Rozmowa w ogrodzie&quot;</h3>
             </div>
             <button onClick={onClose} className="text-stone-500 hover:text-white transition-colors p-1 hover:bg-white/10 rounded-full"><X className="w-5 h-5" /></button>
