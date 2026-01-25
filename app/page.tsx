@@ -753,7 +753,7 @@ export default function Home() {
              {/* NOWA KOMPAKTOWA SIATKA Z DOKUMENTAMI */}
              <div className="grid gap-4 text-sm text-stone-600">
                
-               {/* 1. WYROK KORDYSA (TERAZ PIERWSZY) */}
+               {/* 1. WYROK KORDYSA */}
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
@@ -782,7 +782,7 @@ export default function Home() {
                   </div>
                </div>
 
-               {/* 2. WYROK BADOWSKIEGO (TERAZ DRUGI, ZMIENIONA NAZWA) */}
+               {/* 2. WYROK BADOWSKIEGO */}
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
@@ -811,7 +811,7 @@ export default function Home() {
                   </div>
                </div>
 
-               {/* 3. ARCHIWUM STRONY NYDEK (NOWA SEKCJA) */}
+               {/* 3. ARCHIWUM STRONY NYDEK */}
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
@@ -849,18 +849,46 @@ export default function Home() {
 
              </div>
 
-             {/* NOWA SEKCJA: KRYPTO WSPARCIE (PRZENIESIONA WYŻEJ) */}
-             <div className="mt-8 pt-8 border-t border-stone-300 text-center opacity-60 hover:opacity-100 transition-opacity duration-300">
-                <p className="text-[10px] text-stone-400 font-mono uppercase tracking-widest mb-2">
-                  Wsparcie infrastruktury & serwerów (ETH / ERC-20)
-                </p>
-                <div className="font-mono text-[10px] md:text-xs text-stone-500 select-all bg-stone-100 inline-block px-2 py-1 rounded border border-stone-200">
-                  0x1234...TUTAJ_TWOJ_ADRES_PORTFELA...5678
+             {/* SEKCJA KONTAKTOWA */}
+             <div className="mt-16 border-t border-stone-300 pt-8 pb-4">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+                  
+                  {/* KONTAKT */}
+                  <div>
+                    <p className="text-[10px] font-bold text-stone-900 uppercase tracking-widest mb-1">
+                      Niezależne Dziennikarstwo Śledcze
+                    </p>
+                    <p className="text-sm text-stone-600 mb-2">
+                      Masz informacje w tej sprawie? Gwarantuję pełną anonimowość.
+                    </p>
+                    <a 
+                      href="mailto:redakcja.sledcza@proton.me" 
+                      className="inline-flex items-center gap-2 text-stone-900 font-mono font-bold bg-stone-100 px-3 py-1 rounded border border-stone-200 hover:bg-stone-200 transition-colors"
+                    >
+                      <Mail className="w-4 h-4" /> redakcja.sledcza@proton.me
+                    </a>
+                  </div>
+
+                  {/* KRYPTO WSPARCIE */}
+                  <div className="opacity-70 hover:opacity-100 transition-opacity">
+                    <p className="text-[10px] font-bold text-stone-900 uppercase tracking-widest mb-1">
+                      Wsparcie Niezależnego Śledztwa
+                    </p>
+                    <div className="flex flex-col gap-1 items-center md:items-end">
+                      <code className="text-[10px] font-mono text-stone-500 bg-stone-50 px-2 py-1 border border-stone-200 rounded select-all">
+                        ETH: 0x1234...TWOJ_ADRES...5678
+                      </code>
+                      <span className="text-[9px] text-stone-400 italic">
+                        Środki przeznaczane na hosting, VPN i analizę prawną.
+                      </span>
+                    </div>
+                  </div>
+
                 </div>
              </div>
 
-             {/* SEKJA WEB3 (TERAZ NA SAMYM DOLE) */}
-             <div className="mt-8 text-center">
+             {/* SEKCJA WEB3 */}
+             <div className="mt-12 text-center border-t border-stone-200 pt-6">
                 <p className="text-xs text-stone-500 font-mono uppercase tracking-widest mb-2 flex items-center justify-center gap-2">
                   <ShieldCheck className="w-4 h-4" />
                   Zasoby Niezatapialne (Web3)
