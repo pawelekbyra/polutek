@@ -266,18 +266,18 @@ export default function Home() {
             </div>
             
             <h1 className="mb-8 text-stone-900">
-          
+              
               <span className="block text-5xl md:text-7xl font-bold leading-none tracking-tight">
                 Eliksir Wiedźmina
               </span>
-            <span className="block text-2xl md:text-5xl text-stone-500 italic font-medium mt-6 max-w-3xl mx-auto">
+              <span className="block text-2xl md:text-4xl text-stone-500 italic font-medium mt-6 max-w-3xl mx-auto">
                 Mroczna tajemnica twórców CD Projekt
               </span>
             </h1>
 
             <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
               <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
-                Ayahuasca, policyjne naloty, podsłuchy, i tragedia na "ceremonii" o której nikt nie miał się dowiedzieć. Przerywamy zmowę milczenia. W cieniu głośnego procesu dziennikarskie śledztwo ujawnia, jak twórcy gry „Wiedźmin” finansowali „szamańskie” podziemie.”
+                Ayahuasca, policyjne naloty, podsłuchy i tragedia na &quot;ceremonii&quot;, o której nikt nie miał się dowiedzieć. Przerywamy zmowę milczenia. W cieniu głośnego procesu dziennikarskie śledztwo ujawnia, jak twórcy gry „Wiedźmin” finansowali „szamańskie” podziemie.
               </p>
             </div>
           </div>
