@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, ExternalLink } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
@@ -752,16 +752,37 @@ export default function Home() {
              <div className="grid gap-4 text-sm text-stone-600">
                {/* Linki do dokumentów */}
                <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
-                  <h4 className="font-bold text-stone-900">Wyrok Bartosza B.</h4>
-                  <p className="mb-2">Sygn. 66 T 146/2021</p>
+                  <h4 className="font-bold text-stone-900 mb-1">Wyrok Bartosza B.</h4>
+                  <p className="mb-2 font-mono text-xs">Sygn. 66 T 146/2021 (Sąd Rejonowy w Bruntalu)</p>
+                  
+                  {/* Link do Twojego PDF z IPFS */}
                   <a 
                     href={BADI_PDF_URL} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="text-blue-700 hover:underline font-bold flex items-center gap-2"
+                    className="text-blue-700 hover:underline font-bold flex items-center gap-2 mb-3"
                   >
                     <FileText className="w-3 h-3" /> Pobierz Pełny Wyrok (PDF)
                   </a>
+
+                  {/* Sekcja weryfikacji rządowej */}
+                  <div className="border-t border-stone-100 pt-2 mt-2">
+                    <p className="text-[10px] text-stone-500 mb-1">
+                      <strong>Weryfikacja niezależna:</strong> Dokument udostępniony przez Ministerstwo Sprawiedliwości (MSp) w trybie informacji publicznej.
+                    </p>
+                    <a 
+                      href="https://msp.gov.cz/documents/22409/2997339/29Si+25-2022+p%C5%99%C3%ADloha+%C4%8D.+1.pdf" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider"
+                    >
+                      <Globe className="w-3 h-3" />
+                      Otwórz oryginał (msp.gov.cz)
+                    </a>
+                    <p className="text-[9px] text-stone-300 mt-1 font-mono">
+                      Sygn. akt udostępnienia: 29 Si 25/2022
+                    </p>
+                  </div>
                </div>
                
                <div className="p-4 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
