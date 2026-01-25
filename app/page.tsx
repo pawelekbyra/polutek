@@ -264,7 +264,7 @@ export default function Home() {
               Śledztwo Dziennikarskie
             </div>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8 text-stone-900">
-              Eliksir Wiedźmina: <br/>
+              Ayahuasca- Eliksir Wiedźmina <br/>
               <span className="text-stone-500 italic font-medium text-3xl md:text-5xl block mt-4">
                 Mroczna tajemnica Ayahuaski <br /> i milionerów z CD Projekt
               </span>
