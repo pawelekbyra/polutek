@@ -271,7 +271,7 @@ export default function Home() {
                 Eliksir Wiedźmina
               </span>
               <span className="block text-xl md:text-3xl text-stone-500 italic font-medium mt-6 max-w-3xl mx-auto">
-                Mroczna tajemnica milionerów z CD Projekt
+                Mroczna tajemnica twórców CD Projekt
               </span>
             </h1>
 
