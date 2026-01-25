@@ -7,10 +7,18 @@ const withSerwist = withSerwistInit({
 });
 
 const nextConfig = {
-  output: 'export',
+  output: 'export', // Generuje statyczny HTML (ważne dla "niezatapialności")
   productionBrowserSourceMaps: true,
   images: {
-    unoptimized: true,
+    unoptimized: true, // Wymagane przy 'export' (Next nie może optymalizować zdjęć bez serwera)
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'yellow-elegant-porpoise-917.mypinata.cloud', // Twoja bramka IPFS
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 };
 
