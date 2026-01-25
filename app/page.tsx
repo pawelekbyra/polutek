@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, PenTool } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, PenTool, Home as HouseIcon } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
@@ -174,28 +174,26 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
   </div>
 );
 
-const LocationStrip = ({ name, code, plot, lv, onClick }: { name: string, code: string, plot: string, lv: string, onClick?: () => void }) => (
-  <div className="w-full border-y border-stone-300 bg-stone-50/50 py-2 my-10 flex flex-col md:flex-row items-center justify-between gap-y-2 gap-x-4 px-1 md:px-2 font-mono text-[10px] md:text-xs text-stone-600 tracking-tight select-all cursor-default hover:bg-stone-100 transition-colors">
-     <div className="flex items-center gap-3 w-full md:w-auto">
-        <div className="flex h-2 w-2 relative shrink-0">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
-        </div>
-        {onClick ? (
-          <button onClick={onClick} className="font-bold text-stone-900 uppercase tracking-widest hover:text-blue-700 hover:underline transition-all text-left">
-            {name}
-          </button>
-        ) : (
-          <span className="font-bold text-stone-900 uppercase tracking-widest">{name}</span>
-        )}
-     </div>
-     <div className="flex items-center justify-between md:justify-end gap-4 w-full md:w-auto border-t md:border-t-0 border-stone-200 pt-1 md:pt-0">
-        <span className="flex gap-1.5"><span className="text-stone-400 uppercase hidden sm:inline">Obręb:</span><span className="font-medium text-stone-800">{code}</span></span>
-        <span className="text-stone-300 hidden md:inline">|</span>
-        <span className="flex gap-1.5"><span className="text-stone-400 uppercase hidden sm:inline">Działka:</span><span className="font-medium text-stone-800">{plot}</span></span>
-        <span className="text-stone-300 hidden md:inline">|</span>
-        <span className="flex gap-1.5"><span className="text-stone-400 uppercase hidden sm:inline">LV:</span><span className="font-medium text-stone-800">{lv}</span></span>
-     </div>
+// NOWY KOMPONENT: LocationStamp (Zastępuje LocationStrip)
+const LocationStamp = ({ name, code, plot, lv, onClick }: { name: string, code: string, plot: string, lv: string, onClick?: () => void }) => (
+  <div className="my-8 flex justify-start">
+    <button 
+      onClick={onClick}
+      className="relative border border-stone-300 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] hover:border-blue-300 transition-colors text-left group"
+    >
+       <div className="bg-stone-100 h-full p-3 flex items-center justify-center border-r border-stone-200 border-dashed group-hover:bg-blue-50 transition-colors">
+          <HouseIcon className="w-5 h-5 text-stone-400 group-hover:text-blue-500 transition-colors" />
+       </div>
+       <div className="py-2">
+          <div className="text-[9px] uppercase tracking-[0.2em] text-stone-400 font-bold mb-1 flex items-center gap-2">
+            {name} <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+          </div>
+          <div className="font-mono text-base font-bold text-stone-800">LV {lv}</div>
+          <div className="text-[10px] text-stone-500 font-mono mt-1">
+            Działka: {plot} <span className="text-stone-300 mx-1">|</span> Obręb: {code}
+          </div>
+       </div>
+    </button>
   </div>
 );
 
@@ -363,13 +361,13 @@ export default function Home() {
               W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <button onClick={() => openGallery('janov')}>działkę w Janovie</button> i za niewielką opłatą pobrać jej pełną historię.
             </p>
             
-            <LocationStrip 
-              name="JANOV U KRNOVA" 
-              code="656976" 
-              plot="st. 281" 
-              lv="127" 
-              onClick={() => openGallery('janov')}
-            />
+            <LocationStamp 
+              name="JANOV U KRNOVA" 
+              code="656976" 
+              plot="st. 281" 
+              lv="127" 
+              onClick={() => openGallery('janov')}
+            />
 
             <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
               <button onClick={() => openGallery('janov')} className="underline font-bold decoration-stone-400 hover:bg-stone-200 transition-colors">Pobrany dokument</button> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
@@ -676,13 +674,13 @@ export default function Home() {
               Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku. Jednak nieco dalej od Janova, w miejscowości <strong>Nýdek</strong>, funkcjonował <button onClick={() => openGallery('nydek')} className="text-blue-700 hover:underline font-bold hover:bg-blue-50 px-1 rounded transition-colors" title="Zobacz galerię">kolejny, bliźniaczy ośrodek</button>.
             </p>
 
-            <LocationStrip 
-              name="NÝDEK" 
-              code="708186" 
-              plot="st. 506/1" 
-              lv="832"
-              onClick={() => openGallery('nydek')}
-            />
+            <LocationStamp 
+              name="NÝDEK" 
+              code="708186" 
+              plot="st. 506/1" 
+              lv="832"
+              onClick={() => openGallery('nydek')}
+            />
 
             <p>
               Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów, prowadzone przez Piotra Bonawenturę Tracza. Chociaż witryna ośrodka już nie istnieje, archiwum internetu „Wayback Machine” zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
@@ -769,7 +767,7 @@ export default function Home() {
                <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
                  <Search className="w-5 h-5" /> Dokumenty Źródłowe
                </h3>
-               <div className="border-b-4 border-stone-300 w-full mb-6"></div> {/* SZEROKA LINIA (border-b-4) */}
+               <div className="border-b border-stone-300 w-full mb-6"></div> {/* CIENKA LINIA (border-b) */}
                <p className="text-base text-stone-800 italic">Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.</p>
              </div>
              
