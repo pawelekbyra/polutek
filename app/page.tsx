@@ -362,61 +362,46 @@ export default function Home() {
               onClick={() => openGallery('janov')}
             />
 
-            {/* URZĘDOWY WYCIĄG Z KSIĘGI WIECZYSTEJ - POPRAWIONY STYL */}
-            <div className="my-12 p-8 bg-white border border-stone-300 shadow-sm relative overflow-hidden break-inside-avoid">
-              {/* Znak wodny / Tło dokumentu */}
+            {/* ZMIENIONY BLOK - ORYGINALNY TEKST, NOWY STYL, LUPA */}
+            <div className="my-10 p-6 bg-white border border-stone-300 shadow-sm relative overflow-hidden group">
+              {/* Tło dokumentu - stempel */}
               <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
-                <Stamp className="w-32 h-32 -rotate-12 text-stone-900" />
+                <Stamp className="w-24 h-24 rotate-12" />
               </div>
 
               <div className="relative z-10">
-                <div className="flex justify-between items-start border-b-2 border-stone-800 pb-4 mb-6">
-                  <div>
-                    <h3 className="font-sans font-bold text-xs uppercase tracking-[0.3em] text-stone-500 mb-1">
-                      KATASTR NEMOVITOSTÍ ČR
-                    </h3>
-                    <p className="font-serif italic text-stone-400 text-xs">Informace o vlastnictví (2012–2023)</p>
-                  </div>
-                  <div className="text-right font-mono text-[10px] text-stone-400">
-                    LV 127 <br /> JANOV U KRNOVA
-                  </div>
-                </div>
+                 <p className="font-serif italic text-stone-800 font-medium leading-relaxed mb-6">
+                   <button onClick={() => openGallery('janov')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">Pobrany dokument</button> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
+                 </p>
+                  
+                 <div className="space-y-0 border border-stone-200 font-mono text-sm not-italic">
+                   {/* Wiersz 1 */}
+                   <div className="flex border-b border-stone-200">
+                      <div className="w-12 bg-stone-50 flex items-center justify-center border-r border-stone-200">
+                         <div className="w-4 h-4 rounded-sm" style={{backgroundColor: 'rgba(59, 130, 246, 0.5)'}}></div>
+                      </div>
+                      <div className="flex-1 p-3 text-stone-700 flex items-center">
+                         <span className="font-bold mr-2">Bartosz Badowski</span> (10%)
+                      </div>
+                   </div>
+                   
+                   {/* Wiersz 2 */}
+                   <div className="flex">
+                      <div className="w-12 bg-stone-50 flex items-center justify-center border-r border-stone-200">
+                         <div className="w-4 h-4 rounded-sm" style={{backgroundColor: 'rgba(239, 68, 68, 0.5)'}}></div>
+                      </div>
+                      <div className="flex-1 p-3 text-red-900 bg-red-50/10 flex items-center">
+                         <span className="decoration-red-600 decoration-4 underline underline-offset-4 font-bold mr-2">Michał Dawid Kiciński</span> (90%)
+                      </div>
+                   </div>
+                 </div>
 
-                <p className="font-serif text-stone-700 leading-relaxed mb-6 text-sm md:text-base">
-                  <button 
-                    onClick={() => openGallery('janov')} 
-                    className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-50 transition-colors"
-                  >
-                    Analiza zabezpieczonego dokumentu
-                  </button>{" "}
-                  wykazuje stan prawny nieruchomości w krytycznym okresie. Struktura udziałów była niezmienna przez blisko dekadę:
-                </p>
-
-                <div className="space-y-0 border border-stone-200">
-                  {/* Wiersz 1 */}
-                  <div className="flex border-b border-stone-200">
-                    <div className="w-1/3 bg-stone-50 p-3 border-r border-stone-200 font-sans text-[10px] font-bold uppercase tracking-wider text-stone-500 flex items-center">
-                      Vlastník (90%)
-                    </div>
-                    <div className="w-2/3 p-3 font-mono text-sm font-bold text-red-900 bg-red-50/30 flex items-center">
-                      Michał Dawid Kiciński
-                    </div>
-                  </div>
-                  {/* Wiersz 2 */}
-                  <div className="flex">
-                    <div className="w-1/3 bg-stone-50 p-3 border-r border-stone-200 font-sans text-[10px] font-bold uppercase tracking-wider text-stone-500 flex items-center">
-                      Spoluvlastník (10%)
-                    </div>
-                    <div className="w-2/3 p-3 font-mono text-sm text-stone-700 flex items-center">
-                      Bartosz Badowski
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-6 flex items-center gap-2 text-[10px] font-mono text-stone-400 italic">
-                  <Info className="w-3 h-3" />
-                  <span>Dane zweryfikowane z oficjalnym rejestrem nahlizenidokn.cuzk.cz</span>
-                </div>
+                 {/* Przycisk lupy - symulacja */}
+                 <div className="mt-4 flex justify-end">
+                    <button className="text-stone-400 hover:text-stone-900 transition-colors p-2 hover:bg-stone-100 rounded-full cursor-pointer">
+                       <Search className="w-5 h-5" />
+                    </button>
+                 </div>
               </div>
             </div>
 
@@ -704,7 +689,7 @@ export default function Home() {
             </p>
 
             <p>
-              Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit, żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki. 
+              Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit, żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki.  „Zadośćuczynienie wszechświatowi” miało  trafić na hospicjum, a nie na „organizację krzak”. Autor wycofanego zawiadomienia nie był zadowolony.
             </p>
              
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Nýdek</h2>
