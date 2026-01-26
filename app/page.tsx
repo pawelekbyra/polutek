@@ -648,7 +648,7 @@ export default function Home() {
             </p>
 
             <p>
-              Na tym jednak historia na szczęście się nie kończy. Autor wycofanego zawiadomienia nie był zadowolony.  &quot;Zadośćuczynienie wszechświatowi&quot; miało przecież trafić na hospicjum, a nie na „organizację krzak”. Tymczasem na tragedii Ilony świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit, zaczęli żyć z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując gości i publicznie każdego, kto natrafi na ich sielankowe filmiki.
+              Na tym jednak historia na szczęście się nie kończy. Autor wycofanego zawiadomienia nie był zadowolony.  &quot;Zadośćuczynienie wszechświatowi&quot; miało przecież trafić na hospicjum, a nie na „organizację krzak”. Tymczasem na tragedii Ilony świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit, zaczęli żyć z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki.
             </p>
              
             <div className="my-8 p-6 border border-stone-300 bg-[#F5F5F4] rounded-sm text-stone-900">
@@ -663,7 +663,7 @@ export default function Home() {
 
          
             <p>
-              Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów, prowadzone przez Piotra Bonawenturę Tracza. Chociaż witryna ośrodka już nie istnieje, archiwum internetu „Wayback Machine” zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
+              Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez Piotra Bonawenturę Tracza. Chociaż witryna ośrodka już nie istnieje, archiwum internetu „Wayback Machine” zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
             </p>
 
             <p>
