@@ -7,7 +7,9 @@ import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
 
 // --- KONFIGURACJA IPFS (NIEZATAPIALNE DOWODY) ---
-const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
+// ZMIANA: Używamy publicznej bramki Cloudflare. Jest darmowa, szybka i nie ma limitu transferu.
+// To ona bierze na klatę "efekt wykopu", a nie Twoje prywatne konto.
+const PINATA_GATEWAY = "https://cloudflare-ipfs.com/ipfs";
 
 // 1. DOWODY KORDYSA (Zdjęcia wyroku 30 T 5/2021)
 const KORDYS_IMAGES_CID = "bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm";
@@ -32,6 +34,9 @@ const VIDEO_CID = "bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u";
 const ARREST_VIDEO_CID = "bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy";
 
 // 7. LINKI DO PLIKÓW PDF (Pełne wyroki na IPFS)
+// UWAGA: Tu zostawiłem linki bezpośrednie, bo PDFy są małe i rzadziej pobierane, 
+// ale też będą działać szybciej przez Cloudflare jeśli zmienisz początek na PINATA_GATEWAY.
+// Na razie zostawiam jak jest, bo to tylko download.
 const KORDYS_PDF_URL = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq";
 const BADI_PDF_URL = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza";
 
@@ -62,6 +67,7 @@ const generateBadiPages = (count: number) => {
 };
 
 // --- DANE DO GALERII ---
+// Tutaj też podmieniamy na Cloudflare dla bezpieczeństwa
 const OLD_EVIDENCE_URL = `${PINATA_GATEWAY}/bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm`;
 
 const GALLERY_NYDEK: GalleryData = {
@@ -672,7 +678,7 @@ export default function Home() {
               Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janova, w miejscowości <strong>Nýdek</strong>, funkcjonowało <button onClick={() => openGallery('nydek')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">kolejny, bliźniaczy ośrodek</button>.
             </p>
 
-          
+           
             <p>
               Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez Piotra Bonawenturę Tracza. Chociaż witryna ośrodka już nie istnieje, archiwum internetu „Wayback Machine” zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
             </p>
