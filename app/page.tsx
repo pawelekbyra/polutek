@@ -7,8 +7,6 @@ import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
 
 // --- KONFIGURACJA IPFS (NIEZATAPIALNE DOWODY) ---
-// ZMIANA: Używamy publicznej bramki Cloudflare. Jest darmowa, szybka i nie ma limitu transferu.
-// To ona bierze na klatę "efekt wykopu", a nie Twoje prywatne konto.
 const PINATA_GATEWAY = "https://cloudflare-ipfs.com/ipfs";
 
 // 1. DOWODY KORDYSA (Zdjęcia wyroku 30 T 5/2021)
@@ -34,9 +32,6 @@ const VIDEO_CID = "bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u";
 const ARREST_VIDEO_CID = "bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy";
 
 // 7. LINKI DO PLIKÓW PDF (Pełne wyroki na IPFS)
-// UWAGA: Tu zostawiłem linki bezpośrednie, bo PDFy są małe i rzadziej pobierane, 
-// ale też będą działać szybciej przez Cloudflare jeśli zmienisz początek na PINATA_GATEWAY.
-// Na razie zostawiam jak jest, bo to tylko download.
 const KORDYS_PDF_URL = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq";
 const BADI_PDF_URL = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza";
 
@@ -67,7 +62,6 @@ const generateBadiPages = (count: number) => {
 };
 
 // --- DANE DO GALERII ---
-// Tutaj też podmieniamy na Cloudflare dla bezpieczeństwa
 const OLD_EVIDENCE_URL = `${PINATA_GATEWAY}/bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm`;
 
 const GALLERY_NYDEK: GalleryData = {
@@ -462,7 +456,7 @@ export default function Home() {
                   src={`${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`} 
                   poster=""
                />
-               <div className="mt-3 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
+               <div className="mt-1 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
                   <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Operacyjny:</span>
                   Nagranie z policyjnego nalotu na ośrodek w Hermanovicach (15.10.2020)
                </div>
@@ -492,7 +486,7 @@ export default function Home() {
                Na mocy <button onClick={() => openGallery('wyrok_badi')} title="Zobacz wyrok Bartosza B." className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”.
             </p>
             
-            <p className="font-bold text-stone-900 mb-2">
+            <p>
               Sąd ustalił, że:
             </p>
 
@@ -592,11 +586,11 @@ export default function Home() {
             </p>
 
             <div className="my-12">
-                    <ArticleVideoPlayer 
+                  <ArticleVideoPlayer 
                 src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`} 
                 poster=""
               />
-               <div className="mt-3 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
+               <div className="mt-1 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
                 <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Wideo:</span>
                 Krzysztof Stefanek opowiada o „cudownym” otrzymaniu darowizny (Materiał z 2025 r.)
               </div>
@@ -671,14 +665,14 @@ export default function Home() {
             <p>
               Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit, żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki.  „Zadośćuczynienie wszechświatowi” miało  trafić na hospicjum, a nie na „organizację krzak”. Autor wycofanego zawiadomienia nie był zadowolony.
             </p>
-             
+              
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Nýdek</h2>
 
             <p>
               Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janova, w miejscowości <strong>Nýdek</strong>, funkcjonowało <button onClick={() => openGallery('nydek')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">kolejny, bliźniaczy ośrodek</button>.
             </p>
 
-           
+            
             <p>
               Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez Piotra Bonawenturę Tracza. Chociaż witryna ośrodka już nie istnieje, archiwum internetu „Wayback Machine” zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
             </p>
@@ -744,32 +738,12 @@ export default function Home() {
               Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
             </p>
 
-            {/* WIZYTÓWKA AUTORA: Prosty, czysty tekst z szarą linią */}
-            <div className="mt-16 mb-8 flex flex-col items-end">
-                <div className="border-r-2 border-stone-300 pr-4 text-right">
-                    <p className="font-serif font-bold text-stone-900 text-lg leading-none mb-2">Autor: Marlow</p>
-                    <a href="mailto:marlow.contact@proton.me" className="font-mono text-xs text-stone-400 no-underline hover:text-stone-600 transition-colors">
-                        marlow.contact@proton.me
-                    </a>
-                </div>
-            </div>
-
-            {/* RAMKA ZE ŚLEDZTWEM */}
-            <div className="my-12 p-6 border-l-4 border-red-600 bg-red-50/60 backdrop-blur-sm text-stone-900 shadow-lg relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-10">
-                    <Scale className="w-24 h-24 text-red-900" />
-                </div>
-                <div className="flex items-center gap-2 mb-4">
-                    <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
-                    <span className="font-bold text-red-900 uppercase tracking-widest text-xs">Update 2024</span>
-                </div>
-                <p className="font-medium relative z-10 mb-4 leading-relaxed">
-                    6 maja 2024 roku Prokuratura Okręgowa w Częstochowie wszczęła śledztwo. Postępowanie nie dotyczy wyłącznie udziału Michała Kicińskiego w ayahuaskowym biznesie i kwestii zastanawiającej darowizny, ale przede wszystkim ma na celu wyjaśnienie tajemniczych okoliczności śmierci Ilony Lewandowskiej.
-                </p>
-                <div className="border-t border-red-200 pt-3 mt-2">
-                    <span className="text-xs text-red-800 font-mono uppercase tracking-widest block mb-1">Sygnatura akt:</span>
-                    <span className="font-mono text-lg font-bold text-red-900 select-all">3013-1.Ds.15.2024</span>
-                </div>
+            {/* WIZYTÓWKA AUTORA */}
+            <div className="mt-8 mb-8 text-right">
+                <p className="mb-1">Marlow</p>
+                <a href="mailto:marlow.contact@proton.me" className="no-underline hover:text-stone-600 transition-colors">
+                    marlow.contact@proton.me
+                </a>
             </div>
 
           </div>
@@ -860,7 +834,7 @@ export default function Home() {
                               <span className="font-bold block">Historia własności: Janov (LV 127)</span>
                               <span className="font-mono text-stone-400">Pełny odpis z rejestru</span>
                           </div>
-                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
+                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300 cursor-pointer">
                               <Download className="w-3 h-3" /> Pobierz PDF
                           </a>
                       </div>
@@ -870,7 +844,7 @@ export default function Home() {
                               <span className="font-bold block">Historia własności: Nýdek (LV 832)</span>
                               <span className="font-mono text-stone-400">Pełny odpis z rejestru</span>
                           </div>
-                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
+                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300 cursor-pointer">
                               <Download className="w-3 h-3" /> Pobierz PDF
                           </a>
                       </div>
@@ -880,7 +854,7 @@ export default function Home() {
                               <span className="font-bold block">Transakcja: Darowizna Janov</span>
                               <span className="font-mono text-stone-400">Sygnatura: V-5821/2023</span>
                           </div>
-                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
+                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300 cursor-pointer">
                               <Download className="w-3 h-3" /> Pobierz PDF
                           </a>
                       </div>
@@ -890,7 +864,7 @@ export default function Home() {
                               <span className="font-bold block">Transakcja: Sprzedaż Nýdek</span>
                               <span className="font-mono text-stone-400">Sygnatura: V-2937/2021</span>
                           </div>
-                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
+                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300 cursor-pointer">
                               <Download className="w-3 h-3" /> Pobierz PDF
                           </a>
                       </div>
