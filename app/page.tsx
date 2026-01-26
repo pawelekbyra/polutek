@@ -6,7 +6,7 @@ import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
 
-// --- KONFIGURACJA IPFS (POPRAWIONA NA DEDYKOWANĄ BRAMĘ) ---
+// --- KONFIGURACJA IPFS (DEDYKOWANA BRAMA) ---
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 
 // 1. DOWODY KORDYSA (Zdjęcia wyroku 30 T 5/2021)
@@ -447,7 +447,6 @@ export default function Home() {
               15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
             </p>
 
-            {/* USUNIĘTO 'aspect-video' i 'bg-black' - TERAZ POJEMNIK DOPASUJE SIĘ DO TREŚCI */}
             <div className="my-12 w-full rounded-sm overflow-hidden shadow-md">
                <ArticleVideoPlayer 
                   src={`${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`} 
@@ -581,7 +580,6 @@ export default function Home() {
               Stefanek przedstawia to jako efekt „researchu” darczyńcy, który rzekomo urzekła wizja działalności non-profit.
             </p>
 
-            {/* USUNIĘTO 'aspect-video' i 'bg-black' - TERAZ POJEMNIK DOPASUJE SIĘ DO TREŚCI */}
             <div className="my-12 w-full rounded-sm overflow-hidden shadow-md">
                   <ArticleVideoPlayer 
                 src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`} 
@@ -758,6 +756,7 @@ export default function Home() {
              
              <div className="grid gap-4 text-sm text-stone-600">
                
+               {/* 1. WYROK KORDYSA */}
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
@@ -786,6 +785,7 @@ export default function Home() {
                   </div>
                </div>
 
+               {/* 2. WYROK BADOWSKIEGO */}
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
@@ -814,54 +814,21 @@ export default function Home() {
                   </div>
                </div>
 
+               {/* 3. HISTORIA JANOV */}
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
-                  <div className="flex flex-col justify-between gap-4 mb-2">
-                    <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia Własności i Transakcje</h4>
-                      
-                    <div className="space-y-2">
-                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-100 pb-2 last:border-0">
-                          <div className="text-[10px] text-stone-600">
-                              <span className="font-bold block">Historia własności: Janov (LV 127)</span>
-                              <span className="font-mono text-stone-400">Pełny odpis z rejestru</span>
-                          </div>
-                          <a href="#" className="cursor-pointer shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
-                              <Download className="w-3 h-3" /> Pobierz PDF
-                          </a>
-                      </div>
-
-                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-100 pb-2 last:border-0">
-                          <div className="text-[10px] text-stone-600">
-                              <span className="font-bold block">Historia własności: Nýdek (LV 832)</span>
-                              <span className="font-mono text-stone-400">Pełny odpis z rejestru</span>
-                          </div>
-                          <a href="#" className="cursor-pointer shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
-                              <Download className="w-3 h-3" /> Pobierz PDF
-                          </a>
-                      </div>
-
-                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-100 pb-2 last:border-0">
-                          <div className="text-[10px] text-stone-600">
-                              <span className="font-bold block">Transakcja: Darowizna Janov</span>
-                              <span className="font-mono text-stone-400">Sygnatura: V-5821/2023</span>
-                          </div>
-                          <a href="#" className="cursor-pointer shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
-                              <Download className="w-3 h-3" /> Pobierz PDF
-                          </a>
-                      </div>
-
-                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-1">
-                          <div className="text-[10px] text-stone-600">
-                              <span className="font-bold block">Transakcja: Sprzedaż Nýdek</span>
-                              <span className="font-mono text-stone-400">Sygnatura: V-2937/2021</span>
-                          </div>
-                          <a href="#" className="cursor-pointer shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
-                              <Download className="w-3 h-3" /> Pobierz PDF
-                          </a>
-                      </div>
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                    <div>
+                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: Janov</h4>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">LV 127 | Obręb 656976</p>
                     </div>
+                    <a 
+                      href="#" 
+                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
+                    >
+                      <Download className="w-3 h-3" /> Pobierz PDF
+                    </a>
                   </div>
-
-                  <div className="border-t border-stone-100 pt-2 mt-2">
+                  <div className="border-t border-stone-100 pt-2">
                     <a 
                       href="https://nahlizenidokn.cuzk.cz" 
                       target="_blank" 
@@ -869,11 +836,93 @@ export default function Home() {
                       className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-200"
                     >
                       <Globe className="w-3 h-3" />
-                      Otwórz Rejestr (nahlizenidokn.cuzk.cz)
+                      Weryfikuj na nahlizenidokn.cuzk.cz
                     </a>
                   </div>
                </div>
 
+               {/* 4. HISTORIA NYDEK */}
+               <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                    <div>
+                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: Nýdek</h4>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">LV 832 | Obręb 708186</p>
+                    </div>
+                    <a 
+                      href="#" 
+                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
+                    >
+                      <Download className="w-3 h-3" /> Pobierz PDF
+                    </a>
+                  </div>
+                  <div className="border-t border-stone-100 pt-2">
+                    <a 
+                      href="https://nahlizenidokn.cuzk.cz" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-200"
+                    >
+                      <Globe className="w-3 h-3" />
+                      Weryfikuj na nahlizenidokn.cuzk.cz
+                    </a>
+                  </div>
+               </div>
+
+               {/* 5. DAROWIZNA JANOV */}
+               <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                    <div>
+                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Akt Notarialny: Darowizna (Janov)</h4>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">Sygnatura: V-5821/2023</p>
+                    </div>
+                    <a 
+                      href="#" 
+                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
+                    >
+                      <Download className="w-3 h-3" /> Pobierz PDF
+                    </a>
+                  </div>
+                  <div className="border-t border-stone-100 pt-2">
+                    <a 
+                      href="https://nahlizenidokn.cuzk.cz" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-200"
+                    >
+                      <Globe className="w-3 h-3" />
+                      Weryfikuj na nahlizenidokn.cuzk.cz
+                    </a>
+                  </div>
+               </div>
+
+               {/* 6. SPRZEDAŻ NYDEK */}
+               <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                    <div>
+                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Akt Notarialny: Sprzedaż (Nýdek)</h4>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">Sygnatura: V-2937/2021</p>
+                    </div>
+                    <a 
+                      href="#" 
+                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
+                    >
+                      <Download className="w-3 h-3" /> Pobierz PDF
+                    </a>
+                  </div>
+                  <div className="border-t border-stone-100 pt-2">
+                    <a 
+                      href="https://nahlizenidokn.cuzk.cz" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-[10px] text-stone-400 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-200"
+                    >
+                      <Globe className="w-3 h-3" />
+                      Weryfikuj na nahlizenidokn.cuzk.cz
+                    </a>
+                  </div>
+               </div>
+
+               {/* 7. WAYBACK MACHINE */}
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
