@@ -724,30 +724,31 @@ export default function Home() {
               Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
             </p>
 
-            <div className="my-16 p-6 border-l-4 border-red-600 bg-red-50/60 backdrop-blur-sm text-stone-900 shadow-lg relative overflow-hidden">
+            {/* WIZYTÓWKA AUTORA: Prosty, czysty tekst z szarą linią */}
+            <div className="mt-16 mb-8 flex flex-col items-end">
+                <div className="border-r-2 border-stone-300 pr-4 text-right">
+                    <p className="font-serif font-bold text-stone-900 text-lg leading-none mb-2">Autor: Marlow</p>
+                    <a href="mailto:marlow.contact@proton.me" className="font-mono text-xs text-stone-400 no-underline hover:text-stone-600 transition-colors">
+                        marlow.contact@proton.me
+                    </a>
+                </div>
+            </div>
+
+            {/* RAMKA ZE ŚLEDZTWEM */}
+            <div className="my-12 p-6 border-l-4 border-red-600 bg-red-50/60 backdrop-blur-sm text-stone-900 shadow-lg relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-4 opacity-10">
                     <Scale className="w-24 h-24 text-red-900" />
                 </div>
-                <h3 className="font-bold text-lg mb-4 flex items-center gap-2 text-red-900">
+                <div className="flex items-center gap-2 mb-4">
                     <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
-                    Status Śledztwa (Update 2024)
-                </h3>
+                    <span className="font-bold text-red-900 uppercase tracking-widest text-xs">Update 2024</span>
+                </div>
                 <p className="font-medium relative z-10 mb-4 leading-relaxed">
                     6 maja 2024 roku Prokuratura Okręgowa w Częstochowie wszczęła śledztwo. Postępowanie nie dotyczy wyłącznie udziału Michała Kicińskiego w ayahuaskowym biznesie i kwestii zastanawiającej darowizny, ale przede wszystkim ma na celu wyjaśnienie tajemniczych okoliczności śmierci Ilony Lewandowskiej.
                 </p>
                 <div className="border-t border-red-200 pt-3 mt-2">
                     <span className="text-xs text-red-800 font-mono uppercase tracking-widest block mb-1">Sygnatura akt:</span>
                     <span className="font-mono text-lg font-bold text-red-900 select-all">3013-1.Ds.15.2024</span>
-                </div>
-            </div>
-
-            {/* WIZYTÓWKA AUTORA: Prosty, czysty tekst z szarą linią */}
-            <div className="mt-8 mb-8 flex flex-col items-end">
-                <div className="border-r-2 border-stone-300 pr-4 text-right">
-                    <p className="font-serif font-bold text-stone-700 text-base leading-none mb-1">Autor: Marlow</p>
-                    <a href="mailto:marlow.contact@proton.me" className="text-stone-400 font-mono text-[11px] no-underline hover:text-stone-600 transition-colors">
-                        marlow.contact@proton.me
-                    </a>
                 </div>
             </div>
 
