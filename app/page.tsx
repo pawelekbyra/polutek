@@ -197,7 +197,8 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
       „{quote}”
     </p>
     <div className="font-mono text-xs uppercase tracking-widest text-[#00f0ff]">
-      <span className="text-[#fcee0a] font-bold">NETRUNNER: {author}</span> // {source}
+      {/* FIX: ' // ' is now wrapped in {'...'} to avoid comment error */}
+      <span className="text-[#fcee0a] font-bold">NETRUNNER: {author}</span> {'//'} {source}
     </div>
   </div>
 );
@@ -639,7 +640,8 @@ export default function Home() {
               />
                <div className="mt-2 text-[10px] text-[#fcee0a] font-mono flex items-center gap-2">
                  <Video className="w-3 h-3" />
-                 <span className="uppercase tracking-widest">NAGRANIE: "DAROWIZNA" (2025)</span>
+                 {/* FIX: Escaped quotes below: "DAROWIZNA" -> &quot;DAROWIZNA&quot; */}
+                 <span className="uppercase tracking-widest">NAGRANIE: &quot;DAROWIZNA&quot; (2025)</span>
                </div>
             </div>
 
