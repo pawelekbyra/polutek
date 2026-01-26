@@ -645,7 +645,7 @@ export default function Home() {
             />
 
             <p>
-              Ostatecznie strategia okazała się skuteczna. Śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w „Stowarzyszeniu Natury Zew”. Kiciński pozostał anonimowym „filantropem”, a Stefanek – opiekunem nowej, „czystej” osady.
+              Ostatecznie strategia okazała się skuteczna. Śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w „stowarzyszeniu”. Kiciński pozostał anonimowym „filantropem”, a Stefanek – opiekunem nowej, „czystej” osady.
             </p>
 
             <p>
@@ -935,3 +935,4 @@ export default function Home() {
     </PasswordProtect>
   );
 }
+
