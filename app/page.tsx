@@ -7,8 +7,6 @@ import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
 
 // --- KONFIGURACJA IPFS (POPRAWIONA NA DEDYKOWANĄ BRAMĘ) ---
-// Zmieniono z publicznego cloudflare-ipfs na Twoją dedykowaną bramę Pinata,
-// aby uniknąć blokad (Rate Limiting) i błędów ładowania mediów.
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 
 // 1. DOWODY KORDYSA (Zdjęcia wyroku 30 T 5/2021)
@@ -449,7 +447,8 @@ export default function Home() {
               15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
             </p>
 
-            <div className="my-12 relative w-full aspect-video bg-stone-900 rounded-sm overflow-hidden shadow-md">
+            {/* ZMIANA TŁA NA CZARNE (bg-black) ŻEBY UNIKNĄĆ SZARYCH PASÓW */}
+            <div className="my-12 relative w-full aspect-video bg-black rounded-sm overflow-hidden shadow-md">
                <ArticleVideoPlayer 
                   src={`${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`} 
                   poster=""
@@ -582,7 +581,8 @@ export default function Home() {
               Stefanek przedstawia to jako efekt „researchu” darczyńcy, który rzekomo urzekła wizja działalności non-profit.
             </p>
 
-            <div className="my-12 relative w-full aspect-video bg-stone-900 rounded-sm overflow-hidden shadow-md">
+            {/* ZMIANA TŁA NA CZARNE (bg-black) ŻEBY UNIKNĄĆ SZARYCH PASÓW */}
+            <div className="my-12 relative w-full aspect-video bg-black rounded-sm overflow-hidden shadow-md">
                   <ArticleVideoPlayer 
                 src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`} 
                 poster=""
