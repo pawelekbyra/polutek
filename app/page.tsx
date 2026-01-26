@@ -290,7 +290,8 @@ export default function Home() {
           </div>
         </header>
 
-        <article className="max-w-2xl mx-auto px-4 py-8 flex-grow">
+        {/* ZMIANA: Zmniejszono padding-bottom (pb-0) w artykule, aby przybliżyć stopkę */}
+        <article className="max-w-2xl mx-auto px-4 pt-8 pb-0 flex-grow">
           
           <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic
             prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-400 hover:prose-a:bg-stone-100 transition-colors">
@@ -733,16 +734,17 @@ export default function Home() {
               Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
             </p>
 
-            <div className="mt-4 flex justify-end">
+            {/* ZMIANA: Usunięto email z podpisu */}
+            <div className="mt-8 mb-4 flex justify-end">
                <div className="text-right">
-                  <span className="block">Marlow</span>
-                  <a href="mailto:marlow.contact@proton.me" className="text-sm text-stone-500 no-underline hover:text-stone-800 transition-colors">marlow.contact@proton.me</a>
+                  <span className="block font-bold text-stone-900">Marlow</span>
                </div>
             </div>
 
           </div>
 
-          <footer className="mt-0 pt-8 border-none font-sans">
+          {/* ZMIANA: Zmniejszono margines górny (mt-4 zamiast mt-0/dużego odstępu) */}
+          <footer className="mt-4 pt-8 border-none font-sans">
               
              <div className="mb-8">
                <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
@@ -763,11 +765,12 @@ export default function Home() {
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Wyrok Jarosława Kordysa</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">Sygn. 30 T 5/2020</p>
                     </div>
+                    {/* ZMIANA: Dodano w-40 justify-center */}
                     <a
                       href={KORDYS_PDF_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
+                      className="shrink-0 w-40 justify-center bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
                     >
                       <FileText className="w-3 h-3" /> Pobierz PDF
                     </a>
@@ -792,11 +795,12 @@ export default function Home() {
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Wyrok Bartosza Badowskiego</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">Sygn. 66 T 146/2021</p>
                     </div>
+                    {/* ZMIANA: Dodano w-40 justify-center */}
                     <a 
                       href={BADI_PDF_URL} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
+                      className="shrink-0 w-40 justify-center bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
                     >
                       <FileText className="w-3 h-3" /> Pobierz PDF
                     </a>
@@ -821,9 +825,10 @@ export default function Home() {
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: Janov</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">LV 127 | Obręb 656976</p>
                     </div>
+                    {/* ZMIANA: Dodano w-40 justify-center */}
                     <a 
                       href="#" 
-                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
+                      className="shrink-0 w-40 justify-center bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
                     >
                       <Download className="w-3 h-3" /> Pobierz PDF
                     </a>
@@ -848,9 +853,10 @@ export default function Home() {
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: Nýdek</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">LV 832 | Obręb 708186</p>
                     </div>
+                    {/* ZMIANA: Dodano w-40 justify-center */}
                     <a 
                       href="#" 
-                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
+                      className="shrink-0 w-40 justify-center bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
                     >
                       <Download className="w-3 h-3" /> Pobierz PDF
                     </a>
@@ -875,9 +881,10 @@ export default function Home() {
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Akt Notarialny: Darowizna (Janov)</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">Sygnatura: V-5821/2023</p>
                     </div>
+                    {/* ZMIANA: Dodano w-40 justify-center */}
                     <a 
                       href="#" 
-                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
+                      className="shrink-0 w-40 justify-center bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
                     >
                       <Download className="w-3 h-3" /> Pobierz PDF
                     </a>
@@ -902,9 +909,10 @@ export default function Home() {
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Akt Notarialny: Sprzedaż (Nýdek)</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">Sygnatura: V-2937/2021</p>
                     </div>
+                    {/* ZMIANA: Dodano w-40 justify-center */}
                     <a 
                       href="#" 
-                      className="shrink-0 bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
+                      className="shrink-0 w-40 justify-center bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
                     >
                       <Download className="w-3 h-3" /> Pobierz PDF
                     </a>
@@ -929,11 +937,12 @@ export default function Home() {
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Archiwalna Strona Ośrodka w Nýdku</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">Archiwum: tribunydek.com</p>
                     </div>
+                    {/* ZMIANA: Dodano w-40 justify-center, aby był identyczny jak inne */}
                     <a 
                       href="https://web.archive.org/web/*/tribunydek.com" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="shrink-0 bg-stone-50 text-stone-600 px-3 py-1 text-xs font-bold rounded border border-stone-200 hover:bg-stone-100 transition-colors flex items-center gap-2 underline decoration-double decoration-stone-300"
+                      className="shrink-0 w-40 justify-center bg-stone-50 text-stone-600 px-3 py-1 text-xs font-bold rounded border border-stone-200 hover:bg-stone-100 transition-colors flex items-center gap-2 underline decoration-double decoration-stone-300"
                     >
                       <History className="w-3 h-3" /> Wayback Machine
                     </a>
@@ -956,6 +965,10 @@ export default function Home() {
                 >
                   kutasinskigate.eth.limo
                 </a>
+                {/* ZMIANA: Dodano email na samym dole stopki */}
+                <div className="mt-8 text-[10px] text-stone-300 font-mono">
+                  marlow.contact@proton.me
+                </div>
              </div>
           </footer>
         </article>
