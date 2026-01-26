@@ -366,15 +366,13 @@ export default function Home() {
               onClick={() => openGallery('janov')}
             />
 
-            <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
+            <p>
                <button onClick={() => openGallery('janov')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">Pobrany dokument</button> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
-               <div className="mt-6 flex flex-col items-center justify-center not-italic">
-                  <div className="flex flex-col gap-2 font-mono text-sm text-center">
-                      <span>Bartosz Badowski (10%)</span>
-                      <span className="text-red-700 font-bold">Michał Dawid Kiciński (90%)</span>
-                  </div>
-               </div>
-            </div>
+               <br/>
+               Bartosz Badowski (10%)
+               <br/>
+               <strong>Michał Dawid Kiciński (90%)</strong>
+            </p>
 
             <p>
               Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie „Michal D. K.”. Wspólnikiem szamana był twórca „Wiedźmina” – jeden z najbogatszych Polaków.
@@ -468,7 +466,7 @@ export default function Home() {
             </LegalNote>
 
             <p>
-              Bartosz &quot;Badi&quot; Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił „kupić” sobie wolność.
+              Bartosz "Badi" Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił „kupić” sobie wolność.
             </p>
 
             <p>
