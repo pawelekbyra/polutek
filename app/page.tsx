@@ -451,7 +451,7 @@ export default function Home() {
               15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
             </p>
 
-            <div className="my-12 not-prose w-full">
+            <div className="my-12">
                <ArticleVideoPlayer 
                   src={`${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`} 
                   poster=""
@@ -585,8 +585,8 @@ export default function Home() {
               Stefanek przedstawia to jako efekt „researchu” darczyńcy, który rzekomo urzekła wizja działalności non-profit.
             </p>
 
-            <div className="my-12 not-prose w-full">
-                  <ArticleVideoPlayer 
+            <div className="my-12">
+                    <ArticleVideoPlayer 
                 src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`} 
                 poster=""
               />
@@ -665,7 +665,7 @@ export default function Home() {
             <p>
               Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit, żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki.  „Zadośćuczynienie wszechświatowi” miało  trafić na hospicjum, a nie na „organizację krzak”. Autor wycofanego zawiadomienia nie był zadowolony.
             </p>
-              
+             
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Nýdek</h2>
 
             <p>
@@ -738,12 +738,12 @@ export default function Home() {
               Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
             </p>
 
-            {/* WIZYTÓWKA AUTORA */}
-            <div className="mt-8 mb-8 text-right">
-                <p className="mb-1">Marlow</p>
-                <a href="mailto:marlow.contact@proton.me" className="no-underline hover:text-stone-600 transition-colors">
-                    marlow.contact@proton.me
-                </a>
+            {/* WIZYTÓWKA AUTORA: Prosta, na dole tekstu */}
+            <div className="mt-4 flex justify-end">
+               <div className="text-right">
+                  <span className="block">Marlow</span>
+                  <a href="mailto:marlow.contact@proton.me" className="text-sm text-stone-500 no-underline hover:text-stone-800 transition-colors">marlow.contact@proton.me</a>
+               </div>
             </div>
 
           </div>
@@ -834,7 +834,7 @@ export default function Home() {
                               <span className="font-bold block">Historia własności: Janov (LV 127)</span>
                               <span className="font-mono text-stone-400">Pełny odpis z rejestru</span>
                           </div>
-                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300 cursor-pointer">
+                          <a href="#" className="cursor-pointer shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
                               <Download className="w-3 h-3" /> Pobierz PDF
                           </a>
                       </div>
@@ -844,7 +844,7 @@ export default function Home() {
                               <span className="font-bold block">Historia własności: Nýdek (LV 832)</span>
                               <span className="font-mono text-stone-400">Pełny odpis z rejestru</span>
                           </div>
-                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300 cursor-pointer">
+                          <a href="#" className="cursor-pointer shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
                               <Download className="w-3 h-3" /> Pobierz PDF
                           </a>
                       </div>
@@ -854,7 +854,7 @@ export default function Home() {
                               <span className="font-bold block">Transakcja: Darowizna Janov</span>
                               <span className="font-mono text-stone-400">Sygnatura: V-5821/2023</span>
                           </div>
-                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300 cursor-pointer">
+                          <a href="#" className="cursor-pointer shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
                               <Download className="w-3 h-3" /> Pobierz PDF
                           </a>
                       </div>
@@ -864,7 +864,7 @@ export default function Home() {
                               <span className="font-bold block">Transakcja: Sprzedaż Nýdek</span>
                               <span className="font-mono text-stone-400">Sygnatura: V-2937/2021</span>
                           </div>
-                          <a href="#" className="shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300 cursor-pointer">
+                          <a href="#" className="cursor-pointer shrink-0 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1 underline decoration-double decoration-blue-300">
                               <Download className="w-3 h-3" /> Pobierz PDF
                           </a>
                       </div>
