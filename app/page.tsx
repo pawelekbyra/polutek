@@ -6,8 +6,10 @@ import PasswordProtect from './components/PasswordProtect';
 import { GalleryModal } from '@/components/gallery/GalleryModal';
 import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
 
-// --- KONFIGURACJA IPFS (NIEZATAPIALNE DOWODY) ---
-const PINATA_GATEWAY = "https://cloudflare-ipfs.com/ipfs";
+// --- KONFIGURACJA IPFS (POPRAWIONA NA DEDYKOWANĄ BRAMĘ) ---
+// Zmieniono z publicznego cloudflare-ipfs na Twoją dedykowaną bramę Pinata,
+// aby uniknąć blokad (Rate Limiting) i błędów ładowania mediów.
+const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 
 // 1. DOWODY KORDYSA (Zdjęcia wyroku 30 T 5/2021)
 const KORDYS_IMAGES_CID = "bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm";
@@ -32,8 +34,8 @@ const VIDEO_CID = "bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u";
 const ARREST_VIDEO_CID = "bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy";
 
 // 7. LINKI DO PLIKÓW PDF (Pełne wyroki na IPFS)
-const KORDYS_PDF_URL = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq";
-const BADI_PDF_URL = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza";
+const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
+const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
 
 // Definicja typu danych galerii
 type GalleryData = {
@@ -62,8 +64,6 @@ const generateBadiPages = (count: number) => {
 };
 
 // --- DANE DO GALERII ---
-const OLD_EVIDENCE_URL = `${PINATA_GATEWAY}/bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm`;
-
 const GALLERY_NYDEK: GalleryData = {
   title: "Posiadłość w Nýdku (Archiwum)",
   images: [
@@ -95,7 +95,7 @@ const GALLERY_WYROK_BADI: GalleryData = {
 
 const GALLERY_WEZWANIE_KICINSKI: GalleryData = {
   title: "Wezwanie dla Michała Kicińskiego",
-  images: [`${OLD_EVIDENCE_URL}/wezwanie/wezwanie_kicinski.png`],
+  images: [`${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`],
   signature: "WD-I-3186/23"
 };
 
@@ -170,7 +170,6 @@ const LocationStamp = ({ name, code, plot, lv, onClick }: { name: string, code: 
       onClick={onClick}
       className="relative border border-stone-300 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] hover:border-stone-400 transition-colors text-left group"
     >
-       {/* LUPKA (Search Icon) - top right */}
        <div className="absolute top-1 right-1 text-stone-300 group-hover:text-stone-500 transition-colors">
          <Search className="w-3 h-3" />
        </div>
@@ -194,7 +193,6 @@ const LocationStamp = ({ name, code, plot, lv, onClick }: { name: string, code: 
 const TransactionStamp = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
   <div className="my-8 flex justify-start">
     <div className="relative border border-stone-300 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] group hover:border-stone-400 transition-colors cursor-default">
-       {/* LUPKA (Search Icon) - top right */}
        <div className="absolute top-1 right-1 text-stone-300 group-hover:text-stone-500 transition-colors">
          <Search className="w-3 h-3" />
        </div>
@@ -271,7 +269,6 @@ export default function Home() {
     <PasswordProtect>
       <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
 
-        {/* HEADER */}
         <header className="pt-20 pb-8 px-4">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block mb-6 px-3 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase">
@@ -279,7 +276,6 @@ export default function Home() {
             </div>
             
             <h1 className="mb-8 text-stone-900">
-              
               <span className="block text-5xl md:text-7xl font-bold leading-none tracking-tight">
                 Eliksir Wiedźmina
               </span>
@@ -298,7 +294,6 @@ export default function Home() {
 
         <article className="max-w-2xl mx-auto px-4 py-8 flex-grow">
           
-          {/* KONFIGURACJA STYLÓW TEKSTU I LINKÓW (PODWÓJNE PODKREŚLENIE) */}
           <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic
             prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-400 hover:prose-a:bg-stone-100 transition-colors">
             
@@ -372,7 +367,6 @@ export default function Home() {
               onClick={() => openGallery('janov')}
             />
 
-            {/* ZWYKŁY TEKST W RAMCE - ZGODNIE Z PROŚBĄ */}
             <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
                <button onClick={() => openGallery('janov')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">Pobrany dokument</button> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
                <div className="mt-6 flex flex-col items-center justify-center not-italic">
@@ -455,12 +449,10 @@ export default function Home() {
               15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
             </p>
 
-            {/* POPRAWKA 1: WIDEO Z ARESZTOWANIA */}
-            {/* Dodano klasy 'aspect-video', 'bg-stone-900', 'w-full' do kontenera */}
             <div className="my-12 relative w-full aspect-video bg-stone-900 rounded-sm overflow-hidden shadow-md">
                <ArticleVideoPlayer 
-                 src={`${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`} 
-                 poster=""
+                  src={`${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`} 
+                  poster=""
                />
             </div>
              <div className="mt-1 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
@@ -511,7 +503,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cisza po burzy</h2>
 
             <p>
-              Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku „Badiego” w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnego nalotu, pozostali lojalni wobec byłego szamana.
+              Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku „Badiego” w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
             </p>
 
             <p>
@@ -533,13 +525,12 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">„Błąd z Badim”</h2>
 
             <p>
-               Michała Kiciński wiedział o Ilonie.  Jego konfrontacja z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć „pobytu w Janowie”.
+               Michała Kiciński wiedział o Ilonie. Jego konfrontacja z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć „pobytu w Janowie”.
             </p>
 
             <div className="my-8 flex flex-col items-center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
-                src={`${OLD_EVIDENCE_URL}/wezwanie/wezwanie_kicinski.png`} 
+                src={`${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`} 
                 alt="Wezwanie na policję"
                 className="w-48 rounded shadow-md border border-stone-200 cursor-pointer hover:opacity-90 transition-opacity"
                 onClick={() => openGallery('wezwanie_kicinski')}
@@ -591,8 +582,6 @@ export default function Home() {
               Stefanek przedstawia to jako efekt „researchu” darczyńcy, który rzekomo urzekła wizja działalności non-profit.
             </p>
 
-            {/* POPRAWKA 2: WIDEO STEFANKA */}
-            {/* Dodano klasy 'aspect-video', 'bg-stone-900', 'w-full' do kontenera */}
             <div className="my-12 relative w-full aspect-video bg-stone-900 rounded-sm overflow-hidden shadow-md">
                   <ArticleVideoPlayer 
                 src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`} 
@@ -746,7 +735,6 @@ export default function Home() {
               Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
             </p>
 
-            {/* WIZYTÓWKA AUTORA: Prosta, na dole tekstu */}
             <div className="mt-4 flex justify-end">
                <div className="text-right">
                   <span className="block">Marlow</span>
@@ -756,10 +744,8 @@ export default function Home() {
 
           </div>
 
-          {/* STOPKA ŹRÓDŁOWA */}
           <footer className="mt-0 pt-8 border-none font-sans">
               
-             {/* NAGŁÓWEK SEKCJ */}
              <div className="mb-8">
                <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
                  <Search className="w-5 h-5" /> Dokumenty Źródłowe
@@ -770,10 +756,8 @@ export default function Home() {
                </p>
              </div>
              
-             {/* KOMPAKTOWA SIATKA Z DOKUMENTAMI */}
              <div className="grid gap-4 text-sm text-stone-600">
                
-               {/* 1. WYROK KORDYSA */}
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
@@ -802,7 +786,6 @@ export default function Home() {
                   </div>
                </div>
 
-               {/* 2. WYROK BADOWSKIEGO */}
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
@@ -831,7 +814,6 @@ export default function Home() {
                   </div>
                </div>
 
-               {/* 3. KSIĘGI WIECZYSTE */}
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col justify-between gap-4 mb-2">
                     <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia Własności i Transakcje</h4>
@@ -892,7 +874,6 @@ export default function Home() {
                   </div>
                </div>
 
-               {/* 4. ARCHIWUM STRONY NYDEK */}
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
@@ -912,7 +893,6 @@ export default function Home() {
 
              </div>
 
-             {/* SEKCJA WEB3 */}
              <div className="mt-16 text-center">
                 <div className="w-24 h-px bg-stone-300 mx-auto mb-6"></div>
                 <p className="text-xs text-stone-500 font-mono uppercase tracking-widest mb-2 flex items-center justify-center gap-2">
