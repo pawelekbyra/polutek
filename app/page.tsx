@@ -455,16 +455,18 @@ export default function Home() {
               15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
             </p>
 
-            <div className="my-12">
+            {/* POPRAWKA 1: WIDEO Z ARESZTOWANIA */}
+            {/* Dodano klasy 'aspect-video', 'bg-stone-900', 'w-full' do kontenera */}
+            <div className="my-12 relative w-full aspect-video bg-stone-900 rounded-sm overflow-hidden shadow-md">
                <ArticleVideoPlayer 
                  src={`${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`} 
                  poster=""
                />
-               <div className="mt-1 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
-                  <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Operacyjny:</span>
-                  Nagranie z policyjnego nalotu na ośrodek w Hermanovicach (15.10.2020)
-               </div>
             </div>
+             <div className="mt-1 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
+                 <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Operacyjny:</span>
+                 Nagranie z policyjnego nalotu na ośrodek w Hermanovicach (15.10.2020)
+              </div>
 
             <p>
               Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym:
@@ -589,16 +591,18 @@ export default function Home() {
               Stefanek przedstawia to jako efekt „researchu” darczyńcy, który rzekomo urzekła wizja działalności non-profit.
             </p>
 
-            <div className="my-12">
-                    <ArticleVideoPlayer 
+            {/* POPRAWKA 2: WIDEO STEFANKA */}
+            {/* Dodano klasy 'aspect-video', 'bg-stone-900', 'w-full' do kontenera */}
+            <div className="my-12 relative w-full aspect-video bg-stone-900 rounded-sm overflow-hidden shadow-md">
+                  <ArticleVideoPlayer 
                 src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`} 
                 poster=""
               />
-               <div className="mt-1 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
+            </div>
+             <div className="mt-1 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
                 <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Wideo:</span>
                 Krzysztof Stefanek opowiada o „cudownym” otrzymaniu darowizny (Materiał z 2025 r.)
               </div>
-            </div>
 
             <p>
               Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech w pozbywaniu się „gorącego kartofla”:
@@ -831,7 +835,7 @@ export default function Home() {
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col justify-between gap-4 mb-2">
                     <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia Własności i Transakcje</h4>
-                     
+                      
                     <div className="space-y-2">
                       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-100 pb-2 last:border-0">
                           <div className="text-[10px] text-stone-600">
