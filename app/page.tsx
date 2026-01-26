@@ -457,7 +457,7 @@ export default function Home() {
             </LegalNote>
 
             <p>
-              Bartosz "Badi" Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił „kupić” sobie wolność.
+              Bartosz &quot;Badi&quot; Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił „kupić” sobie wolność.
             </p>
 
             <p>
@@ -517,6 +517,7 @@ export default function Home() {
             </p>
 
             <div className="my-8 flex flex-col items-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
                 src={`${OLD_EVIDENCE_URL}/wezwanie/wezwanie_kicinski.png`} 
                 alt="Wezwanie na policję"
