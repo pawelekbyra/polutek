@@ -362,20 +362,61 @@ export default function Home() {
               onClick={() => openGallery('janov')}
             />
 
-            <div className="my-10 p-6 bg-stone-100 border-l-2 border-stone-400 italic text-stone-800 font-medium">
-              <button onClick={() => openGallery('janov')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">Pobrany dokument</button> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
-              
-              <div className="mt-6 flex flex-col items-center justify-center not-italic">
-                  <div className="flex flex-col gap-3 font-mono text-sm">
-                      <div className="flex items-center gap-3">
-                          <div className="w-4 h-4 rounded-sm" style={{backgroundColor: 'rgba(59, 130, 246, 0.5)'}}></div>
-                          <span><strong>Bartosz Badowski</strong> (10%)</span>
-                      </div>
-                       <div className="flex items-center gap-3">
-                          <div className="w-4 h-4 rounded-sm" style={{backgroundColor: 'rgba(239, 68, 68, 0.5)'}}></div>
-                          <span className="decoration-red-600 decoration-4 underline underline-offset-4 font-bold">Michał Dawid Kiciński (90%)</span>
-                      </div>
+            {/* URZĘDOWY WYCIĄG Z KSIĘGI WIECZYSTEJ - POPRAWIONY STYL */}
+            <div className="my-12 p-8 bg-white border border-stone-300 shadow-sm relative overflow-hidden break-inside-avoid">
+              {/* Znak wodny / Tło dokumentu */}
+              <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+                <Stamp className="w-32 h-32 -rotate-12 text-stone-900" />
+              </div>
+
+              <div className="relative z-10">
+                <div className="flex justify-between items-start border-b-2 border-stone-800 pb-4 mb-6">
+                  <div>
+                    <h3 className="font-sans font-bold text-xs uppercase tracking-[0.3em] text-stone-500 mb-1">
+                      KATASTR NEMOVITOSTÍ ČR
+                    </h3>
+                    <p className="font-serif italic text-stone-400 text-xs">Informace o vlastnictví (2012–2023)</p>
                   </div>
+                  <div className="text-right font-mono text-[10px] text-stone-400">
+                    LV 127 <br /> JANOV U KRNOVA
+                  </div>
+                </div>
+
+                <p className="font-serif text-stone-700 leading-relaxed mb-6 text-sm md:text-base">
+                  <button 
+                    onClick={() => openGallery('janov')} 
+                    className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-50 transition-colors"
+                  >
+                    Analiza zabezpieczonego dokumentu
+                  </button>{" "}
+                  wykazuje stan prawny nieruchomości w krytycznym okresie. Struktura udziałów była niezmienna przez blisko dekadę:
+                </p>
+
+                <div className="space-y-0 border border-stone-200">
+                  {/* Wiersz 1 */}
+                  <div className="flex border-b border-stone-200">
+                    <div className="w-1/3 bg-stone-50 p-3 border-r border-stone-200 font-sans text-[10px] font-bold uppercase tracking-wider text-stone-500 flex items-center">
+                      Vlastník (90%)
+                    </div>
+                    <div className="w-2/3 p-3 font-mono text-sm font-bold text-red-900 bg-red-50/30 flex items-center">
+                      Michał Dawid Kiciński
+                    </div>
+                  </div>
+                  {/* Wiersz 2 */}
+                  <div className="flex">
+                    <div className="w-1/3 bg-stone-50 p-3 border-r border-stone-200 font-sans text-[10px] font-bold uppercase tracking-wider text-stone-500 flex items-center">
+                      Spoluvlastník (10%)
+                    </div>
+                    <div className="w-2/3 p-3 font-mono text-sm text-stone-700 flex items-center">
+                      Bartosz Badowski
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 flex items-center gap-2 text-[10px] font-mono text-stone-400 italic">
+                  <Info className="w-3 h-3" />
+                  <span>Dane zweryfikowane z oficjalnym rejestrem nahlizenidokn.cuzk.cz</span>
+                </div>
               </div>
             </div>
 
@@ -453,8 +494,8 @@ export default function Home() {
 
             <div className="my-12">
                <ArticleVideoPlayer 
-                  src={`${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`} 
-                  poster=""
+                 src={`${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`} 
+                 poster=""
                />
                <div className="mt-1 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
                   <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Operacyjny:</span>
@@ -827,7 +868,7 @@ export default function Home() {
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col justify-between gap-4 mb-2">
                     <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia Własności i Transakcje</h4>
-                    
+                     
                     <div className="space-y-2">
                       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-100 pb-2 last:border-0">
                           <div className="text-[10px] text-stone-600">
