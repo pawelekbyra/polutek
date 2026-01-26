@@ -876,7 +876,7 @@ export default function Home() {
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
-                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Akt Notarialny: Darowizna (Janov)</h4>
+                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Darowizna (Janov)</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">Sygnatura: V-5821/2023</p>
                     </div>
                     {/* ZMIANA: Dodano w-40 justify-center */}
@@ -904,7 +904,7 @@ export default function Home() {
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
-                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Akt Notarialny: Sprzedaż (Nýdek)</h4>
+                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Sprzedaż (Nýdek)</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">Sygnatura: V-2937/2021</p>
                     </div>
                     {/* ZMIANA: Dodano w-40 justify-center */}
