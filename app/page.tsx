@@ -114,7 +114,6 @@ const GALLERY_JANOV: GalleryData = {
 
 // --- NOWE STYLE KOMPONENTÓW ---
 
-// ZMIANA: Ciemna teczka z aktami, czcionka maszynowa
 const CaseFile = ({ title, children, type = 'evidence' }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email' }) => (
   <div className="my-10 border-l-2 border-red-800 bg-zinc-900/50 rounded-r-sm overflow-hidden break-inside-avoid shadow-[0_4px_20px_-5px_rgba(0,0,0,0.5)]">
     <div className="bg-zinc-900 border-b border-zinc-800 px-4 py-3 flex items-center gap-3 text-[10px] font-mono text-zinc-400 uppercase tracking-widest">
@@ -128,7 +127,6 @@ const CaseFile = ({ title, children, type = 'evidence' }: { title: string, child
   </div>
 );
 
-// ZMIANA: Ostrzeżenie prawne w stylu "Warning"
 const LegalNote = ({ term, children }: { term: string, children: React.ReactNode }) => (
   <div className="my-12 flex gap-5 p-6 bg-amber-950/20 border border-amber-900/30 rounded-lg backdrop-blur-sm">
     <Scale className="w-6 h-6 text-amber-600 shrink-0 mt-1" />
@@ -139,7 +137,7 @@ const LegalNote = ({ term, children }: { term: string, children: React.ReactNode
   </div>
 );
 
-// ZMIANA: Cytat jak wycinek z gazety lub transkrypt
+// FIX: Usunięto błąd "react/jsx-no-comment-textnodes" poprzez zmianę '//' na '<span>|</span>'
 const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
   <div className="my-14 pl-8 border-l-[1px] border-zinc-700 relative">
     <div className="absolute -left-[9px] top-0 text-3xl leading-none text-zinc-700 font-serif">“</div>
@@ -148,12 +146,13 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
     </p>
     <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500 flex gap-2 items-center">
        <div className="h-px w-8 bg-zinc-700"></div>
-       <span className="font-bold text-zinc-400">{author}</span> // {source}
+       <span className="font-bold text-zinc-400">{author}</span>
+       <span className="text-zinc-600 mx-1">|</span>
+       <span>{source}</span>
     </div>
   </div>
 );
 
-// ZMIANA: Wygląd "Karty z bazy danych" (ciemny)
 const LocationStamp = ({ name, code, plot, lv, onClick }: { name: string, code: string, plot: string, lv: string, onClick?: () => void }) => (
   <div className="my-8 flex justify-start">
     <button 
@@ -180,7 +179,6 @@ const LocationStamp = ({ name, code, plot, lv, onClick }: { name: string, code: 
   </div>
 );
 
-// ZMIANA: Wygląd stempla urzędowego (negatyw)
 const TransactionStamp = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
   <div className="my-8 flex justify-start opacity-90">
     <div className="relative border border-dashed border-zinc-600 bg-zinc-950 p-1 pr-6 rounded-sm flex items-center gap-4 cursor-default">
@@ -196,7 +194,6 @@ const TransactionStamp = ({ label, value, subDetails }: { label: string, value: 
   </div>
 );
 
-// --- MODAL AUDIO (Drobne poprawki kolorów) ---
 const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boolean, onClose: () => void }) => {
   if (!isOpen) return null;
   return (
@@ -252,7 +249,6 @@ export default function Home() {
     setIsGalleryOpen(true);
   };
 
-  // ZMIANA: Główne tło strony na ciemne (Zinc-950)
   return (
     <PasswordProtect>
       <main className="min-h-screen bg-zinc-950 text-zinc-300 selection:bg-red-900 selection:text-white font-sans flex flex-col relative">
@@ -285,7 +281,6 @@ export default function Home() {
 
         <article className="max-w-2xl mx-auto px-4 pt-8 pb-0 flex-grow relative z-10">
           
-          {/* ZMIANA: Prose Invert (Tryb ciemny dla tekstu) + zmiana fontów na bardziej techniczne w nagłówkach */}
           <div className="prose prose-invert prose-zinc prose-lg max-w-none 
             prose-headings:font-mono prose-headings:uppercase prose-headings:tracking-widest prose-headings:text-zinc-200 prose-headings:font-normal
             prose-p:font-sans prose-p:text-zinc-400 prose-p:leading-8
