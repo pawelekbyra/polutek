@@ -2,9 +2,11 @@
 
 import React, { useState } from 'react';
 import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, PenTool, Home as HouseIcon } from 'lucide-react';
-import PasswordProtect from './components/PasswordProtect';
-import { GalleryModal } from '@/components/gallery/GalleryModal';
-import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
+import {
+  CaseFile, LegalNote, PullQuote, LocationStamp, TransactionStamp,
+  EvidenceAudioModal, ArticleVideoPlayer, SimpleGalleryModal,
+  GalleryData
+} from './components';
 
 // --- KONFIGURACJA IPFS (DEDYKOWANA BRAMA) ---
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
@@ -35,14 +37,6 @@ const ARREST_VIDEO_CID = "bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzin
 const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
 const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
 
-// Definicja typu danych galerii
-type GalleryData = {
-  title: string;
-  images: string[];
-  signature?: string;
-  pdfUrl?: string;
-  type?: 'verdict' | 'gallery';
-};
 
 // --- FUNKCJE POMOCNICZE DO GENEROWANIA ŚCIEŻEK ---
 const generateKordysPages = (count: number) => {
@@ -127,123 +121,6 @@ const GALLERY_JANOV: GalleryData = {
   signature: "LV 127"
 };
 
-// --- KOMPONENTY UI ---
-
-const CaseFile = ({ title, children, type = 'evidence' }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email' }) => (
-  <div className="my-8 border border-stone-300 bg-white shadow-sm rounded-sm overflow-hidden break-inside-avoid">
-    <div className="bg-stone-100 border-b border-stone-200 px-4 py-2 flex items-center gap-2 text-xs font-mono text-stone-500 uppercase tracking-wider">
-      {type === 'email' ? <Mail className="w-4 h-4" /> : type === 'transcript' ? <Search className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
-      <span>{title}</span>
-    </div>
-    <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-stone-800 bg-[url('https://www.transparenttextures.com/patterns/subtle-paper.png')] italic">
-      {children}
-    </div>
-  </div>
-);
-
-const LegalNote = ({ term, children }: { term: string, children: React.ReactNode }) => (
-  <div className="my-10 flex gap-4 p-5 bg-blue-50/50 border-l-4 border-blue-900/80 rounded-r-lg">
-    <Scale className="w-6 h-6 text-blue-900/80 shrink-0 mt-1" />
-    <div>
-      <strong className="block font-serif text-blue-900 text-lg mb-2">{term}</strong>
-      <div className="text-stone-700 text-sm leading-relaxed">{children}</div>
-    </div>
-  </div>
-);
-
-const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
-  <div className="my-10 pl-6 border-l-[3px] border-stone-800/80">
-    <p className="font-serif text-xl md:text-2xl italic text-stone-900 leading-relaxed mb-3">
-      „{quote}”
-    </p>
-    <div className="font-sans text-[10px] uppercase tracking-widest text-stone-500">
-      — <span className="font-bold text-stone-800">{author}</span>, {source}
-    </div>
-  </div>
-);
-
-const LocationStamp = ({ name, code, plot, lv, onClick }: { name: string, code: string, plot: string, lv: string, onClick?: () => void }) => (
-  <div className="my-8 flex justify-start">
-    <button 
-      onClick={onClick}
-      className="relative border border-stone-300 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] hover:border-stone-400 transition-colors text-left group"
-    >
-       <div className="absolute top-1 right-1 text-stone-300 group-hover:text-stone-500 transition-colors">
-         <Search className="w-3 h-3" />
-       </div>
-
-       <div className="bg-stone-100 h-full p-3 flex items-center justify-center border-r border-stone-200 border-dashed transition-colors">
-          <HouseIcon className="w-5 h-5 text-stone-400" />
-       </div>
-       <div className="py-2">
-          <div className="text-[9px] uppercase tracking-[0.2em] text-stone-400 font-bold mb-1 flex items-center gap-2">
-            {name} <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </div>
-          <div className="font-mono text-base font-bold text-stone-800">LV {lv}</div>
-          <div className="text-[10px] text-stone-500 font-mono mt-1">
-            Działka: {plot} <span className="text-stone-300 mx-1">|</span> Obręb: {code}
-          </div>
-       </div>
-    </button>
-  </div>
-);
-
-const TransactionStamp = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
-  <div className="my-8 flex justify-start">
-    <div className="relative border border-stone-300 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] group hover:border-stone-400 transition-colors cursor-default">
-       <div className="absolute top-1 right-1 text-stone-300 group-hover:text-stone-500 transition-colors">
-         <Search className="w-3 h-3" />
-       </div>
-
-       <div className="bg-stone-100 h-full p-3 flex items-center justify-center border-r border-stone-200 border-dashed">
-          <Stamp className="w-5 h-5 text-stone-400" />
-       </div>
-       <div className="py-2">
-          <div className="text-[9px] uppercase tracking-[0.2em] text-stone-400 font-bold mb-1">{label}</div>
-          <div className="font-mono text-base font-bold text-stone-800">{value}</div>
-          {subDetails && <div className="text-[10px] text-stone-500 font-mono mt-1">{subDetails}</div>}
-       </div>
-    </div>
-  </div>
-);
-
-const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boolean, onClose: () => void }) => {
-  if (!isOpen) return null;
-  return (
-    <div onClick={onClose} className="fixed inset-0 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center z-[100] p-4 transition-all duration-300">
-      <div onClick={(e) => e.stopPropagation()} className="bg-[#1a1a1a] shadow-2xl rounded-lg w-full max-w-sm relative overflow-hidden animate-[fadeIn_0.3s_ease-out] border border-stone-700">
-        <div className="h-1 w-full bg-gradient-to-r from-red-800 via-red-600 to-red-800"></div>
-        <div className="p-6 relative">
-          <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] pointer-events-none"></div>
-          <div className="flex justify-between items-start mb-6">
-            <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="flex h-2 w-2 relative"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span></span>
-                <span className="text-[10px] font-mono text-stone-400 uppercase tracking-[0.2em]">Dowód #A-23</span>
-              </div>
-              <h3 className="text-stone-100 font-serif text-xl italic tracking-wide">„Rozmowa w ogrodzie”</h3>
-            </div>
-            <button onClick={onClose} className="text-stone-500 hover:text-white transition-colors p-1 hover:bg-white/10 rounded-full"><X className="w-5 h-5" /></button>
-          </div>
-          <div className="bg-stone-800 rounded border border-stone-700 p-4 mb-6 shadow-inner relative group">
-            <div className="flex justify-between items-center bg-black/40 rounded px-3 py-4 border border-stone-600/50">
-                <div className="w-8 h-8 rounded-full border-2 border-stone-600 bg-[#111] flex items-center justify-center"><div className="w-2 h-2 bg-stone-700 rounded-full"></div></div>
-                <div className="flex-1 mx-3 h-8 bg-[#2a2a2a] rounded flex items-center justify-center overflow-hidden relative"><div className="absolute w-[120%] h-[1px] bg-stone-600 rotate-12 top-1/2"></div><span className="text-[9px] font-mono text-stone-500 z-10 bg-[#2a2a2a] px-1">SIDE A</span></div>
-                <div className="w-8 h-8 rounded-full border-2 border-stone-600 bg-[#111] flex items-center justify-center"><div className="w-2 h-2 bg-stone-700 rounded-full"></div></div>
-            </div>
-            <div className="mt-3 text-center"><span className="font-mono text-[10px] text-stone-400 uppercase tracking-wider block">K. Stefanek / 2023</span></div>
-          </div>
-          <div className="bg-stone-200 rounded p-1">
-            <audio controls className="w-full h-8 accent-stone-900 focus:outline-none">
-              <source src={src} type="audio/mpeg" />
-            </audio>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 // --- GŁÓWNY KOMPONENT STRONY ---
 
 export default function Home() {
@@ -264,7 +141,6 @@ export default function Home() {
   };
 
   return (
-    <PasswordProtect>
       <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
 
         <header className="pt-20 pb-8 px-4">
@@ -290,7 +166,6 @@ export default function Home() {
           </div>
         </header>
 
-        {/* ZMIANA: Zmniejszono padding-bottom (pb-0) w artykule, aby przybliżyć stopkę */}
         <article className="max-w-2xl mx-auto px-4 pt-8 pb-0 flex-grow">
           
           <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic
@@ -732,7 +607,6 @@ export default function Home() {
               Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
             </p>
 
-            {/* ZMIANA: Usunięto email z podpisu */}
             <div className="mt-8 mb-4 flex justify-end">
                <div className="text-right">
                   <span className="block font-bold text-stone-900">Marlow</span>
@@ -741,7 +615,6 @@ export default function Home() {
 
           </div>
 
-          {/* ZMIANA: Zmniejszono margines górny (mt-4 zamiast mt-0/dużego odstępu) */}
           <footer className="mt-4 pt-8 border-none font-sans">
               
              <div className="mb-8">
@@ -963,7 +836,6 @@ export default function Home() {
                 >
                   kutasinskigate.eth.limo
                 </a>
-                {/* ZMIANA: Dodano email na samym dole stopki */}
                 <div className="mt-8 text-[10px] text-stone-300 font-mono">
                   marlow.contact@proton.me
                 </div>
@@ -972,8 +844,7 @@ export default function Home() {
         </article>
 
         <EvidenceAudioModal isOpen={isAudioOpen} onClose={() => setIsAudioOpen(false)} src="/evidence/stefan-nagranie.mp3" />
-        <GalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} data={galleryData} />
+        <SimpleGalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} data={galleryData} />
       </main>
-    </PasswordProtect>
   );
 }
