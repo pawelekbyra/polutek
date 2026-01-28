@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react"; // <--- 1. DODAJ IMPORT
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -29,6 +30,7 @@ export default function RootLayout({
       </head>
       <body className={`antialiased ${inter.className}`}>
         {children}
+        <Analytics /> {/* <--- 2. DODAJ KOMPONENT TUŻ PRZED ZAMKNIĘCIEM BODY */}
       </body>
     </html>
   );
