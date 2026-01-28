@@ -1,10 +1,16 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, PenTool, Home as HouseIcon } from 'lucide-react';
-import PasswordProtect from './components/PasswordProtect';
-import { GalleryModal } from '@/components/gallery/GalleryModal';
-import ArticleVideoPlayer from '@/components/ArticleVideoPlayer';
+import Hls from 'hls.js';
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+// --- UTILS ---
+
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 // --- KONFIGURACJA IPFS (DEDYKOWANA BRAMA) ---
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
@@ -128,6 +134,72 @@ const GALLERY_JANOV: GalleryData = {
 };
 
 // --- KOMPONENTY UI ---
+
+const ArticleVideoPlayer = ({ src, poster }: { src: string; poster: string; }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(src);
+        hls.attachMedia(video);
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = src;
+      }
+    }
+  }, [src]);
+
+  return (
+    <div className="my-12 w-full bg-black rounded-sm shadow-lg overflow-hidden">
+      <video
+        ref={videoRef}
+        controls
+        poster={poster}
+        className="w-full h-auto block"
+      />
+    </div>
+  );
+};
+
+const SimpleGalleryModal = ({ isOpen, onClose, data }: { isOpen: boolean; onClose: () => void; data: GalleryData | null }) => {
+    if (!isOpen || !data) return null;
+
+    return (
+      <div className="fixed inset-0 z-[100] bg-stone-900/95 flex flex-col animate-in fade-in duration-200">
+        <div className="flex items-center justify-between p-4 border-b border-white/10 bg-black/20">
+          <h2 className="text-stone-200 font-serif text-lg truncate pr-4">{data.title}</h2>
+          <button onClick={onClose} className="p-2 text-stone-400 hover:text-white transition-colors bg-white/5 rounded-full">
+              <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="max-w-3xl mx-auto space-y-4">
+              {data.images.map((img, idx) => (
+                  <div key={idx} className="bg-black shadow-lg">
+                      <img
+                          src={img}
+                          alt={`${data.title} - page ${idx + 1}`}
+                          loading="lazy"
+                          className="w-full h-auto block"
+                      />
+                  </div>
+              ))}
+          </div>
+        </div>
+
+        {data.pdfUrl && (
+            <div className="p-4 border-t border-white/10 bg-black/20 text-center">
+                <a href={data.pdfUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-stone-300 hover:text-white underline decoration-dotted">
+                    <Download className="w-4 h-4" /> Pobierz pełny plik PDF
+                </a>
+            </div>
+        )}
+      </div>
+    );
+  }
 
 const CaseFile = ({ title, children, type = 'evidence' }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email' }) => (
   <div className="my-8 border border-stone-300 bg-white shadow-sm rounded-sm overflow-hidden break-inside-avoid">
@@ -264,7 +336,7 @@ export default function Home() {
   };
 
   return (
-    <PasswordProtect>
+
       <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
 
         <header className="pt-20 pb-8 px-4">
@@ -972,8 +1044,8 @@ export default function Home() {
         </article>
 
         <EvidenceAudioModal isOpen={isAudioOpen} onClose={() => setIsAudioOpen(false)} src="/evidence/stefan-nagranie.mp3" />
-        <GalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} data={galleryData} />
+        <SimpleGalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} data={galleryData} />
       </main>
-    </PasswordProtect>
+
   );
 }
