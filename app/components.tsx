@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import {
   Scale, FileText, Search, Mail, Stamp, X,
-  Home as HouseIcon, ExternalLink
+  Home as HouseIcon, ExternalLink, ChevronLeft, ChevronRight, Lock
 } from 'lucide-react';
 import Hls from 'hls.js';
 
@@ -15,6 +15,58 @@ export type GalleryData = {
   pdfUrl?: string;
   type?: 'verdict' | 'gallery';
 };
+
+// --- Password Protect Component ---
+export const PasswordProtect = ({ children }: { children: React.ReactNode }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [input, setInput] = useState('');
+  const [error, setError] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (input === 'enter') {
+      setIsAuthenticated(true);
+      setError(false);
+    } else {
+      setError(true);
+      setInput('');
+    }
+  };
+
+  if (isAuthenticated) {
+    return <>{children}</>;
+  }
+
+  return (
+    <div className="fixed inset-0 bg-[#0a0a0a] flex items-center justify-center z-[9999]">
+      <div className="w-full max-w-md p-8">
+        <div className="text-center mb-10">
+           <Lock className="w-12 h-12 text-stone-500 mx-auto mb-4" />
+           <h1 className="text-stone-300 text-xl font-mono tracking-[0.2em] uppercase">Zasoby Zabezpieczone</h1>
+        </div>
+
+        <form onSubmit={handleSubmit} className="relative">
+          <input
+            type="password"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Wprowadź hasło..."
+            className="w-full bg-[#111] border-b border-stone-700 text-center text-stone-200 text-2xl py-4 focus:outline-none focus:border-stone-400 font-serif placeholder:text-stone-800 transition-colors"
+            autoFocus
+          />
+          {error && (
+            <div className="absolute top-full left-0 w-full text-center mt-4 animate-pulse">
+              <span className="text-red-900 bg-red-500/10 px-3 py-1 text-xs font-mono uppercase tracking-widest border border-red-900/30 rounded">
+                Błędne hasło
+              </span>
+            </div>
+          )}
+        </form>
+      </div>
+    </div>
+  );
+};
+
 
 // --- UI Components ---
 
@@ -162,53 +214,135 @@ export const ArticleVideoPlayer: React.FC<{ src: string; poster: string }> = ({ 
 };
 
 export const SimpleGalleryModal: React.FC<{ isOpen: boolean; onClose: () => void; data: GalleryData | null }> = ({ isOpen, onClose, data }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Reset index when data opens
+  useEffect(() => {
+    if (isOpen) setCurrentIndex(0);
+  }, [isOpen]);
+
+  const nextImage = useCallback(() => {
+    if (data) {
+      setCurrentIndex((prev) => (prev + 1) % data.images.length);
+    }
+  }, [data]);
+
+  const prevImage = useCallback(() => {
+    if (data) {
+      setCurrentIndex((prev) => (prev - 1 + data.images.length) % data.images.length);
+    }
+  }, [data]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!isOpen || !data) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (data.type !== 'verdict') {
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'ArrowLeft') prevImage();
+      }
+      if (e.key === 'Escape') onClose();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, data, nextImage, prevImage, onClose]);
+
   if (!isOpen || !data) return null;
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-8" onClick={onClose}>
-      <div
-        className="relative bg-[#FDFBF7] w-full max-w-4xl h-full md:h-[90vh] rounded-sm overflow-hidden flex flex-col shadow-2xl animate-[fadeIn_0.3s_ease-out]"
-        onClick={e => e.stopPropagation()}
-      >
+  // --- RENDER VERDICT MODE (Vertical Scroll, Full Screen) ---
+  if (data.type === 'verdict') {
+    return (
+      <div className="fixed inset-0 z-50 flex flex-col bg-stone-900 text-white" onClick={onClose}>
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-stone-200 bg-white">
+        <div className="flex items-center justify-between p-4 bg-black/50 backdrop-blur-md z-10 shrink-0" onClick={e => e.stopPropagation()}>
           <div>
-            <h3 className="font-serif text-lg md:text-xl font-bold text-stone-900">{data.title}</h3>
-            <p className="font-mono text-xs text-stone-500 uppercase tracking-wider">{data.signature || 'Dokumentacja'}</p>
+            <h3 className="font-serif text-lg text-white/90">{data.title}</h3>
+            <p className="font-mono text-xs text-stone-400 uppercase tracking-wider">{data.signature}</p>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-stone-100 rounded-full transition-colors text-stone-600 hover:text-stone-900">
-            <X className="w-6 h-6" />
-          </button>
+          <div className="flex items-center gap-4">
+             {data.pdfUrl && (
+                <a
+                  href={data.pdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-3 py-1 bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-wider transition-colors rounded-sm"
+                >
+                  <FileText className="w-4 h-4" /> PDF
+                </a>
+             )}
+            <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-colors">
+              <X className="w-6 h-6" />
+            </button>
+          </div>
         </div>
 
-        {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto p-4 md:p-8 bg-stone-100/50">
-          <div className="flex flex-col gap-4 items-center">
+        {/* Scrollable Container */}
+        <div className="flex-1 overflow-y-auto p-0 md:p-8 bg-[#1a1a1a]" onClick={onClose}>
+           <div className="max-w-4xl mx-auto flex flex-col gap-1 min-h-full" onClick={e => e.stopPropagation()}>
              {data.images.map((img, idx) => (
                <img
                  key={idx}
                  src={img}
                  alt={`Strona ${idx + 1}`}
-                 className="w-full h-auto shadow-md border border-stone-200"
+                 className="w-full h-auto shadow-2xl block"
                  loading="lazy"
                />
              ))}
+           </div>
+        </div>
+      </div>
+    );
+  }
+
+  // --- RENDER GALLERY MODE (Carousel, Full Screen) ---
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black" onClick={onClose}>
+      {/* Background blur/image */}
+      <div
+        className="absolute inset-0 opacity-20 blur-3xl scale-110"
+        style={{ backgroundImage: `url(${data.images[currentIndex]})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+      />
+
+      {/* Controls & Content */}
+      <div className="relative z-10 w-full h-full flex flex-col" onClick={e => e.stopPropagation()}>
+
+        {/* Header */}
+        <div className="absolute top-0 left-0 w-full p-4 flex items-start justify-between bg-gradient-to-b from-black/80 to-transparent">
+          <div>
+             <h3 className="text-white font-serif text-xl drop-shadow-md">{data.title}</h3>
+             <p className="text-stone-300 font-mono text-xs mt-1">{currentIndex + 1} / {data.images.length}</p>
           </div>
+          <button onClick={onClose} className="text-white/80 hover:text-white p-2">
+            <X className="w-8 h-8 drop-shadow-md" />
+          </button>
         </div>
 
-        {/* Footer with PDF Link if available */}
-        {data.pdfUrl && (
-           <div className="p-4 border-t border-stone-200 bg-white flex justify-end">
-              <a
-                href={data.pdfUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-stone-900 text-white text-sm font-bold uppercase tracking-wider hover:bg-stone-700 transition-colors rounded-sm"
-              >
-                <FileText className="w-4 h-4" /> Pobierz pełny PDF
-              </a>
-           </div>
-        )}
+        {/* Main Image Area */}
+        <div className="flex-1 flex items-center justify-center p-4">
+           {/* Prev Button */}
+           <button
+             onClick={prevImage}
+             className="absolute left-2 md:left-8 p-3 rounded-full bg-black/40 hover:bg-black/70 text-white transition-all backdrop-blur-sm group"
+           >
+             <ChevronLeft className="w-8 h-8 group-hover:-translate-x-1 transition-transform" />
+           </button>
+
+           <img
+             src={data.images[currentIndex]}
+             alt={`${data.title} - ${currentIndex + 1}`}
+             className="max-h-full max-w-full object-contain shadow-2xl animate-[fadeIn_0.3s_ease-out]"
+           />
+
+           {/* Next Button */}
+           <button
+             onClick={nextImage}
+             className="absolute right-2 md:right-8 p-3 rounded-full bg-black/40 hover:bg-black/70 text-white transition-all backdrop-blur-sm group"
+           >
+             <ChevronRight className="w-8 h-8 group-hover:translate-x-1 transition-transform" />
+           </button>
+        </div>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, PenTool, Home as HouseIcon } from 'lucide-react';
 import {
   CaseFile, LegalNote, PullQuote, LocationStamp, TransactionStamp,
-  EvidenceAudioModal, ArticleVideoPlayer, SimpleGalleryModal,
+  EvidenceAudioModal, ArticleVideoPlayer, SimpleGalleryModal, PasswordProtect,
   GalleryData
 } from './components';
 
@@ -66,7 +66,8 @@ const GALLERY_NYDEK: GalleryData = {
     `${NYDEK_IMAGES_URL}/nydek05.jpg`,
     `${NYDEK_IMAGES_URL}/nydek06.jpeg`
   ],
-  signature: "LV 832"
+  signature: "LV 832",
+  type: 'gallery'
 };
 
 const GALLERY_WYROK_KORDYS: GalleryData = {
@@ -88,7 +89,8 @@ const GALLERY_WYROK_BADI: GalleryData = {
 const GALLERY_WEZWANIE_KICINSKI: GalleryData = {
   title: "Wezwanie dla Michała Kicińskiego",
   images: [`${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`],
-  signature: "WD-I-3186/23"
+  signature: "WD-I-3186/23",
+  type: 'gallery'
 };
 
 const GALLERY_JANOV: GalleryData = {
@@ -118,7 +120,8 @@ const GALLERY_JANOV: GalleryData = {
     `${JANOV_IMAGES_URL}/janov25.jpg`,
     `${JANOV_IMAGES_URL}/janov26.jpg`,
   ],
-  signature: "LV 127"
+  signature: "LV 127",
+  type: 'gallery'
 };
 
 // --- GŁÓWNY KOMPONENT STRONY ---
@@ -141,6 +144,7 @@ export default function Home() {
   };
 
   return (
+    <PasswordProtect>
       <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
 
         <header className="pt-20 pb-8 px-4">
@@ -846,5 +850,6 @@ export default function Home() {
         <EvidenceAudioModal isOpen={isAudioOpen} onClose={() => setIsAudioOpen(false)} src="/evidence/stefan-nagranie.mp3" />
         <SimpleGalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} data={galleryData} />
       </main>
+    </PasswordProtect>
   );
 }
