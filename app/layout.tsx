@@ -1,8 +1,5 @@
-
-import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,9 +32,8 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
         <meta name="theme-color" content="#000000" />
       </head>
-      <body className={cn("antialiased", inter.className)}>
+      <body className={`antialiased ${inter.className}`}>
         {children}
-        <Analytics />
       </body>
     </html>
   );
