@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, PenTool, Home as HouseIcon } from 'lucide-react';
 import {
   CaseFile, LegalNote, PullQuote, LocationStamp, TransactionStamp,
-  EvidenceAudioModal, ArticleVideoPlayer, SimpleGalleryModal,
+  EvidenceAudioModal, ArticleVideoPlayer, GalleryModal,
   GalleryData
 } from './components';
 
@@ -844,7 +844,7 @@ export default function Home() {
         </article>
 
         <EvidenceAudioModal isOpen={isAudioOpen} onClose={() => setIsAudioOpen(false)} src="/evidence/stefan-nagranie.mp3" />
-        <SimpleGalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} data={galleryData} />
+        <GalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} data={galleryData} />
       </main>
   );
 }
