@@ -37,6 +37,9 @@ const ARREST_VIDEO_CID = "bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzin
 const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
 const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
 
+// 8. LINKI ZEWNĘTRZNE (Wayback Machine)
+const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://munaysonqo.com/retreats/";
+
 
 // --- FUNKCJE POMOCNICZE DO GENEROWANIA ŚCIEŻEK ---
 const generateKordysPages = (count: number) => {
@@ -534,6 +537,26 @@ export default function Home() {
             <p>
               Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit, żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki.  „Zadośćuczynienie wszechświatowi” miało  trafić na hospicjum, a nie na „organizację krzak”. Autor wycofanego zawiadomienia nie był zadowolony.
             </p>
+
+            {/* --- NOWA SEKCJA: GLOBALNE CZYSZCZENIE (PERU) --- */}
+            
+            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Globalne czyszczenie</h2>
+
+            <p>
+              Linia obrony miliardera, oparta na rzekomej nieświadomości tego, co działo się w jego czeskiej posiadłości, kruszy się ostatecznie w zderzeniu z faktami na temat jego inwestycji za oceanem. Kiciński nie był biernym właścicielem nieruchomości w Janovie – był aktywnym promotorem psychodelicznej turystyki na skalę światową.
+            </p>
+
+            <p>
+              W Peru, w samym sercu Świętej Doliny Inków, miliarder stworzył luksusowy ośrodek <strong>Munay Sonqo</strong> (kecz. <em>Kochające Serce</em>). Przez lata oficjalna strona internetowa tego kompleksu kusiła gości ofertą ceremonii z wykorzystaniem „świętych roślin”, wprost wymieniając <strong>ayahuascę</strong>. To dowód na to, że Janov nie był incydentem, lecz europejską filią przemyślanej, globalnej strategii.
+            </p>
+
+            <p>
+              Co jednak najbardziej uderzające – cyfrowe ślady tej działalności zaczęły być zacierane dokładnie w tym samym czasie, gdy w Polsce Kiciński odbierał wezwania na policję.
+            </p>
+
+            <p>
+              Archiwum Internetu (Wayback Machine) ujawnia, że pod koniec 2023 roku, równolegle z pospiesznym pozbywaniem się udziałów w Janovie, z peruwiańskiej strony internetowej wyparowała oferta ceremonii ayahuaski, zastąpiona bezpiecznym marketingiem „wellness i jogi”. Operacja „czyszczenia” wizerunku była skoordynowana na obu kontynentach.
+            </p>
              
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Nýdek</h2>
 
@@ -636,7 +659,6 @@ export default function Home() {
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Wyrok Jarosława Kordysa</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">Sygn. 30 T 5/2020</p>
                     </div>
-                    {/* ZMIANA: Dodano w-40 justify-center */}
                     <a
                       href={KORDYS_PDF_URL}
                       target="_blank"
@@ -666,7 +688,6 @@ export default function Home() {
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Wyrok Bartosza Badowskiego</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">Sygn. 66 T 146/2021</p>
                     </div>
-                    {/* ZMIANA: Dodano w-40 justify-center */}
                     <a 
                       href={BADI_PDF_URL} 
                       target="_blank" 
@@ -696,7 +717,6 @@ export default function Home() {
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: Janov</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">LV 127 | Obręb 656976</p>
                     </div>
-                    {/* ZMIANA: Dodano w-40 justify-center */}
                     <a 
                       href="#" 
                       className="shrink-0 w-40 justify-center bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
@@ -724,7 +744,6 @@ export default function Home() {
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: Nýdek</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">LV 832 | Obręb 708186</p>
                     </div>
-                    {/* ZMIANA: Dodano w-40 justify-center */}
                     <a 
                       href="#" 
                       className="shrink-0 w-40 justify-center bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
@@ -752,7 +771,6 @@ export default function Home() {
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Darowizna (Janov)</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">Sygnatura: V-5821/2023</p>
                     </div>
-                    {/* ZMIANA: Dodano w-40 justify-center */}
                     <a 
                       href="#" 
                       className="shrink-0 w-40 justify-center bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
@@ -780,7 +798,6 @@ export default function Home() {
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Sprzedaż (Nýdek)</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">Sygnatura: V-2937/2021</p>
                     </div>
-                    {/* ZMIANA: Dodano w-40 justify-center */}
                     <a 
                       href="#" 
                       className="shrink-0 w-40 justify-center bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold rounded border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-2 underline decoration-double decoration-blue-300"
@@ -801,16 +818,33 @@ export default function Home() {
                   </div>
                </div>
 
-               {/* 7. WAYBACK MACHINE */}
+               {/* 7. WAYBACK MACHINE - NYDEK */}
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
-                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Archiwalna Strona Ośrodka w Nýdku</h4>
+                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Archiwalna Strona: Nýdek</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">Archiwum: tribunydek.com</p>
                     </div>
-                    {/* ZMIANA: Dodano w-40 justify-center, aby był identyczny jak inne */}
                     <a 
                       href="https://web.archive.org/web/*/tribunydek.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="shrink-0 w-40 justify-center bg-stone-50 text-stone-600 px-3 py-1 text-xs font-bold rounded border border-stone-200 hover:bg-stone-100 transition-colors flex items-center gap-2 underline decoration-double decoration-stone-300"
+                    >
+                      <History className="w-3 h-3" /> Wayback Machine
+                    </a>
+                  </div>
+               </div>
+
+                {/* 8. WAYBACK MACHINE - MUNAY SONQO (PERU) */}
+               <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                    <div>
+                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Archiwalna Strona: Munay Sonqo</h4>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">Archiwum: munaysonqo.com (Peru)</p>
+                    </div>
+                    <a 
+                      href={MUNAY_WAYBACK_URL}
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="shrink-0 w-40 justify-center bg-stone-50 text-stone-600 px-3 py-1 text-xs font-bold rounded border border-stone-200 hover:bg-stone-100 transition-colors flex items-center gap-2 underline decoration-double decoration-stone-300"
