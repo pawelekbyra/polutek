@@ -201,9 +201,9 @@ export default function Home() {
             </p>
 
             <CaseFile title="Zeznania świadka B.">
-              „Świadek B. odnośnie osoby oskarżonego [<strong>Jarosława Kordysa</strong>] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii”.
+              „Świadek <strong>B.</strong> odnośnie osoby oskarżonego [<strong>Jarosława Kordysa</strong>] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii”.
               <br/><br/>
-              „Świadek B. potwierdził, że i on sam w przeszłości prowadził warsztaty”, a obecnie sam „jest przedmiotem dochodzenia policji w <strong>Krnowie</strong> właśnie z powodu ceremonii”.
+              „Świadek <strong>B.</strong> potwierdził, że i on sam w przeszłości prowadził warsztaty”, a obecnie sam „jest przedmiotem dochodzenia policji w Krnowie właśnie z powodu ceremonii”.
             </CaseFile>
 
             <p>
@@ -211,7 +211,7 @@ export default function Home() {
             </p>
 
             <CaseFile title="Zarzuty wobec Bartosza B.">
-              „(...) wymieniony był sprawdzany w związku z występkiem niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi (...) albowiem miał w roku 2014 zlecić przesłanie na swój adres przesyłki pocztowej przechwyconej na lotnisku w <strong>Lipsku</strong> RFN zawierającej 4,5 kg DMT, a 6.6.2018 miało dojść do zatrzymania przesyłki pocztowej we <strong>Frankfurcie nad Menem</strong> RFN zawierającej 2000 g meskaliny i 38,6 g substancji DMT.”
+              „(...) wymieniony był sprawdzany w związku z występkiem niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi (...) albowiem miał w roku 2014 zlecić przesłanie na swój adres przesyłki pocztowej przechwyconej na lotnisku w <strong>Lipsku</strong> RFN zawierającej 4,5 kg DMT, a 6.6.2018 miało dojść do zatrzymania przesyłki pocztowej we Frankfurcie nad Menem RFN zawierającej 2000 g meskaliny i 38,6 g substancji DMT.”
             </CaseFile>
 
             <p>
@@ -424,7 +424,7 @@ export default function Home() {
             </CaseFile>
 
             <p>
-              Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji <strong>Warszawa</strong> II. W protokole <strong>Kiciński</strong> przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
+              Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w<strong> Komendzie Rejonowej Policji Warszawa II</strong> . W protokole <strong>Kiciński</strong> przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
             </p>
 
             <CaseFile title="Zeznanie do protokołu">
