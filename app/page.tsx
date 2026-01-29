@@ -564,7 +564,7 @@ export default function Home() {
               Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od <strong>Janova</strong>, w miejscowości <strong>Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.
             </p>
 
-            
+             
             <p>
               Relacje świadków wskazują, że w <button onClick={() => openGallery('nydek')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">posiadłości w <strong>Nýdku</strong></button> odbywały się regularne ceremonie o charakterze zbliżonym do tych u <strong>Kordysów</strong> i <strong>Badowskiego</strong>, prowadzone przez <strong>Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu &quot;Wayback Machine&quot; zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
             </p>
@@ -587,7 +587,7 @@ export default function Home() {
             />
 
             <p>
-              Oznacza to, że nie jeden lecz obaj legendarni założyciele <strong>CD Projekt</strong>, na czeskim pograniczu posiadali nieruchomosci, w których odpłatnie oferowano te same substancje zakazane. 
+              <span className="bg-yellow-200 px-1 font-bold text-stone-900 shadow-sm">Oznacza to, że nie jeden lecz obaj legendarni założyciele <strong>CD Projekt</strong>, na czeskim pograniczu posiadali nieruchomosci, w których odpłatnie oferowano te same substancje zakazane.</span>
             </p>
 
             <p>
