@@ -448,7 +448,7 @@ export default function Home() {
             </p>
 
             <p>
-              Fakt, że <strong>Kiciński</strong> w momencie przesłuchania zarządzał legalnym biznesem <strong>ayahuaskowym</strong> w <strong>Ameryce Południowej</strong>, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do charakteru wydarzeń w <strong>Janovie</strong>. Co znamienne, niedługo po wizycie na komendzie w <strong>Warszawie</strong>, oferta ceremonii &quot;świętych roślin&quot; zniknęła z oficjalnej witryny peruwiańskiego kurortu. Ślad po niej zachowały jednak cyfrowe archiwa Wayback Machine.
+              Fakt, że <strong>Kiciński</strong> w momencie przesłuchania zarządzał legalnym biznesem <strong>ayahuaskowym</strong> w <strong>Ameryce Południowej</strong>, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalnści w <strong>Janovie</strong>. Co znamienne, niedługo po wizycie na komendzie w <strong>Warszawie</strong>, oferta ceremonii &quot;świętych roślin&quot; zniknęła z oficjalnej witryny peruwiańskiego kurortu. Ślad po niej zachowały jednak cyfrowe archiwa Wayback Machine.
             </p>
 
             <p>
