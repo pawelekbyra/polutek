@@ -587,7 +587,7 @@ export default function Home() {
             />
 
             <p>
-              Oznacza to, że nie jeden lecz obaj legendarni założyciele CD Projekt, na czeskim pograniczu posiadali nieruchomosci, w których serwowano zakazany wywar z dżungli. 
+              Oznacza to, że nie jeden lecz obaj legendarni założyciele <strong>CD Projekt</strong>, na czeskim pograniczu posiadali nieruchomosci, w których serwowano substancje zakazane przez prawo. 
             </p>
 
             <p>
