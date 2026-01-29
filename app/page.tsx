@@ -163,7 +163,7 @@ export default function Home() {
 
             <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
               <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
-                Ayahuasca, policyjne naloty i tragedia, o której nikt się miał nie dowiedzieć. W cieniu głośnego procesu dziennikarskie śledztwo ujawnia, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
+                Ayahuasca, policyjne naloty i tragedia, o której nikt się miał nie dowiedzieć. W cieniu głośnego procesu dziennikarskie śledztwo ujawnia, jak twórcy gry "Wiedźmin" finansowali szamańskie podziemie.
               </p>
             </div>
           </div>
@@ -175,7 +175,7 @@ export default function Home() {
             prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-400 hover:prose-a:bg-stone-100 transition-colors">
             
             <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed">
-              W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. „ceremonii”, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
+              W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. "ceremonii", podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
             </p>
 
             <p>
@@ -201,9 +201,9 @@ export default function Home() {
             </p>
 
             <CaseFile title="Zeznania świadka B.">
-              „Świadek <strong>B.</strong> odnośnie osoby oskarżonego [<strong>Jarosława Kordysa</strong>] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii”.
+              "Świadek <strong>B.</strong> odnośnie osoby oskarżonego [<strong>Jarosława Kordysa</strong>] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii".
               <br/><br/>
-              „Świadek <strong>B.</strong> potwierdził, że i on sam w przeszłości prowadził warsztaty”, a obecnie sam „jest przedmiotem dochodzenia policji w Krnowie właśnie z powodu ceremonii”.
+              "Świadek <strong>B.</strong> potwierdził, że i on sam w przeszłości prowadził warsztaty", a obecnie sam "jest przedmiotem dochodzenia policji w Krnowie właśnie z powodu ceremonii".
             </CaseFile>
 
             <p>
@@ -211,17 +211,17 @@ export default function Home() {
             </p>
 
             <CaseFile title="Zarzuty wobec Bartosza B.">
-              „(...) wymieniony był sprawdzany w związku z występkiem niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi (...) albowiem miał w roku 2014 zlecić przesłanie na swój adres przesyłki pocztowej przechwyconej na lotnisku w <strong>Lipsku</strong> RFN zawierającej 4,5 kg DMT, a 6.6.2018 miało dojść do zatrzymania przesyłki pocztowej we Frankfurcie nad Menem RFN zawierającej 2000 g meskaliny i 38,6 g substancji DMT.”
+              "(...) wymieniony był sprawdzany w związku z występkiem niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi (...) albowiem miał w roku 2014 zlecić przesłanie na swój adres przesyłki pocztowej przechwyconej na lotnisku w <strong>Lipsku</strong> RFN zawierającej 4,5 kg DMT, a 6.6.2018 miało dojść do zatrzymania przesyłki pocztowej we Frankfurcie nad Menem RFN zawierającej 2000 g meskaliny i 38,6 g substancji DMT."
             </CaseFile>
 
             <p>
-              Intrygujący fragment dotyczy własności „bazy”. Dokumenty stwierdzają:
+              Intrygujący fragment dotyczy własności "bazy". Dokumenty stwierdzają:
             </p>
 
             <CaseFile title="Własność nieruchomości">
-              „(...) budynek rodzinny w miejscowości <strong>Janov</strong> (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy”
+              "(...) budynek rodzinny w miejscowości <strong>Janov</strong> (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy"
               <br/><br/>
-              „Świadek [<strong>Bartosz B.</strong>] potwierdził, że w <strong>Janowie</strong> jest właścicielem jednej dziesiątej nieruchomości”.
+              "Świadek [<strong>Bartosz B.</strong>] potwierdził, że w <strong>Janowie</strong> jest właścicielem jednej dziesiątej nieruchomości".
             </CaseFile>
 
             <p>
@@ -229,7 +229,7 @@ export default function Home() {
             </p>
 
             <CaseFile title="Ustalenia Sądu">
-              „...w odniesieniu do nieruchomości będących współwłasnością <strong>Bartosza B.</strong> i Michala D. K.”.
+              "...w odniesieniu do nieruchomości będących współwłasnością <strong>Bartosza B.</strong> i Michala D. K.".
             </CaseFile>
 
             <p>
@@ -245,7 +245,7 @@ export default function Home() {
             />
 
             <p>
-            Pobrany dokumentnie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
+            Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
                <br/>
                <strong>Bartosz Badowski (10%)</strong>
                <br/>
@@ -253,7 +253,7 @@ export default function Home() {
             </p>
 
             <p>
-              Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie „Michal D. K.”. <span className="bg-yellow-200 px-1 font-bold text-stone-900 shadow-sm">Wspólnikiem szamana był twórca „Wiedźmina” – jeden z najbogatszych Polaków.</span>
+              Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie "Michal D. K.". <span className="bg-yellow-200 px-1 font-bold text-stone-900 shadow-sm">Wspólnikiem szamana był twórca "Wiedźmina" – jeden z najbogatszych Polaków.</span>
             </p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Na podsłuchu</h2>
@@ -267,7 +267,7 @@ export default function Home() {
             </p>
 
             <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" type="transcript">
-              „oskarżony J. K. omawia z B., że dotarła do niego informacja, że w obiekcie w <strong>Janovie</strong> zmarła jakaś kobieta”.
+              "oskarżony J. K. omawia z B., że dotarła do niego informacja, że w obiekcie w <strong>Janovie</strong> zmarła jakaś kobieta".
             </CaseFile>
 
             <p>
@@ -275,7 +275,7 @@ export default function Home() {
             </p>
 
             <CaseFile title="Pytanie Kordysa" type="transcript">
-              „W jakim zagrożeniu jest nasza praca?”
+              "W jakim zagrożeniu jest nasza praca?"
             </CaseFile>
 
             <p>
@@ -283,11 +283,11 @@ export default function Home() {
             </p>
 
             <div className="my-8 pl-6 border-l-4 border-stone-900 font-serif italic text-xl text-stone-800">
-              „Z ich rozmowy wynika, że nie zajmowali  się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji.”
+              "Z ich rozmowy wynika, że nie zajmowali się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji."
             </div>
 
             <p>
-              Sla sądu był to koronny dowód na to, że oskarżeni prowadzili nielegalny biznes, a nie działalność duchową – śmierć człowieka była dla nich jedynie „psuciem interesów”.
+              Dla sądu był to koronny dowód na to, że oskarżeni prowadzili nielegalny biznes, a nie działalność duchową – śmierć człowieka była dla nich jedynie "psuciem interesów".
             </p>
 
             <p>
@@ -295,7 +295,7 @@ export default function Home() {
             </p>
 
             <CaseFile title="Kontynuacja rozmowy" type="transcript">
-              „Następnie w rozmowie omawiają zamówienia «herbaty» z dżungli i to, czy im tego «nie zepsują», ekscytując się nagraniem od dostawcy, który «siedzi w dżungli i gotuje».”
+              "Następnie w rozmowie omawiają zamówienia 'herbaty' z dżungli i to, czy im tego 'nie zepsują', ekscytując się nagraniem od dostawcy, który 'siedzi w dżungli i gotuje'."
             </CaseFile>
 
             <p>
@@ -307,7 +307,7 @@ export default function Home() {
             </p>
 
             <CaseFile title="Protokół rewizji">
-              „w nieruchomości zabezpieczono rzeczy... oprócz marihuany zabezpieczono również substancje zawierające DMT o objętości ok. 2 kg”.
+              "w nieruchomości zabezpieczono rzeczy... oprócz marihuany zabezpieczono również substancje zawierające DMT o objętości ok. 2 kg".
             </CaseFile>
 
             <p>
@@ -344,7 +344,7 @@ export default function Home() {
             </LegalNote>
 
             <p>
-              <strong>Bartosz „Badi” Badowski</strong>, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił „kupić” sobie wolność.
+              <strong>Bartosz "Badi" Badowski</strong>, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił "kupić" sobie wolność.
             </p>
 
             <p>
@@ -352,11 +352,11 @@ export default function Home() {
             </p>
 
             <p>
-              Cena wolności <strong>Badowskiego</strong> okazała się być wysoka dla jego kolegi z branży. Zeznania „Badiego” były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak w sprawie <strong>Kordysów</strong>.
+              Cena wolności <strong>Badowskiego</strong> okazała się być wysoka dla jego kolegi z branży. Zeznania "Badiego" były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak w sprawie <strong>Kordysów</strong>.
             </p>
 
             <p>
-               Na mocy <button onClick={() => openGallery('wyrok_badi')} title="Zobacz wyrok Bartosza B." className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> z dnia 2 listopada 2021 roku <strong>Bartosz Badowski</strong> został uznany winnym popełnienia „zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi”.
+               Na mocy <button onClick={() => openGallery('wyrok_badi')} title="Zobacz wyrok Bartosza B." className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> z dnia 2 listopada 2021 roku <strong>Bartosz Badowski</strong> został uznany winnym popełnienia "zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi".
             </p>
             
             <p>
@@ -364,11 +364,11 @@ export default function Home() {
             </p>
 
             <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
-              „co najmniej od bliżej nieustalonej daty w 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne”
+              "co najmniej od bliżej nieustalonej daty w 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne"
               <br/><br/>
-              „udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. ayahuascę zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)”
+              "udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. ayahuascę zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)"
               <br/><br/>
-              „przechowywał łącznie 1902,79 grama materiału roślinnego (...), który zawierał łącznie 37,24 grama substancji czynnej dimetylotryptaminy (DMT) oraz 92,29 grama tzw. narkotyku marihuany”.
+              "przechowywał łącznie 1902,79 grama materiału roślinnego (...), który zawierał łącznie 37,24 grama substancji czynnej dimetylotryptaminy (DMT) oraz 92,29 grama tzw. narkotyku marihuany".
             </CaseFile>
 
             <p>
@@ -378,17 +378,17 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cisza po burzy</h2>
 
             <p>
-              Choć <strong>Badowski</strong> zaprzestał prowadzenia działalności szamańskiej, posiadłość w <strong>Janovie</strong> nie opustoszała – zamieszkali z nim wspomniani wcześniej <strong>Krzysztof Stefanek</strong> i <strong>Magdalena Drzewińska</strong>. Ich obecność u boku „Badiego” w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
+              Choć <strong>Badowski</strong> zaprzestał prowadzenia działalności szamańskiej, posiadłość w <strong>Janovie</strong> nie opustoszała – zamieszkali z nim wspomniani wcześniej <strong>Krzysztof Stefanek</strong> i <strong>Magdalena Drzewińska</strong>. Ich obecność u boku "Badiego" w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
             </p>
 
             <p>
-              Będąc tak blisko <strong>Badowskiego</strong>, doskonale znali mroczną tajemnicę śmierci <strong>Ilony</strong>. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się  o „ciągłość dostaw”, dowodzi, że w pełni akceptowali reguły zmowy milczenia.
+              Będąc tak blisko <strong>Badowskiego</strong>, doskonale znali mroczną tajemnicę śmierci <strong>Ilony</strong>. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się o "ciągłość dostaw", dowodzi, że w pełni akceptowali reguły zmowy milczenia.
             </p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Kiciński</h2>
 
             <p>
-              W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika. <strong>Michał Kiciński</strong> to nie jest postać, która o ayahuasce jedynie „słyszała” – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla „Focusa”, „Newsweeka”) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. <strong>Kiciński</strong> publicznie opowiada o lekcjach pokory, jakie dała mu „medycyna”, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera „nową rzeczywistość”.
+              W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika. <strong>Michał Kiciński</strong> to nie jest postać, która o ayahuasce jedynie "słyszała" – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla "Focusa", "Newsweeka") z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. <strong>Kiciński</strong> publicznie opowiada o lekcjach pokory, jakie dała mu "medycyna", o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera "nową rzeczywistość".
             </p>
 
             <PullQuote 
@@ -397,10 +397,10 @@ export default function Home() {
               source="Newsweek, 30 maja 2016 r."
             />
 
-            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">„Błąd z Badim”</h2>
+            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">"Błąd z Badim"</h2>
 
             <p>
-               <strong>Michała Kiciński</strong> wiedział o <strong>Ilonie</strong>. Jego konfrontacja z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć „pobytu w <strong>Janowie</strong>”.
+               <strong>Michał Kiciński</strong> wiedział o <strong>Ilonie</strong>. Jego konfrontacja z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć "pobytu w <strong>Janowie</strong>".
             </p>
 
             <div className="my-8 flex flex-col items-center">
@@ -420,7 +420,7 @@ export default function Home() {
             </p>
 
             <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email">
-              „(...) Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu. (...)”
+              "(...) Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu. (...)"
             </CaseFile>
 
             <p>
@@ -428,7 +428,7 @@ export default function Home() {
             </p>
 
             <CaseFile title="Zeznanie do protokołu">
-              „Nie mam żadnej wiedzy co się działo na mojej farmie, w której jestem 90% udziałowcem (...) wynajmowałem tę nieruchomość.”
+              "Nie mam żadnej wiedzy co się działo na mojej farmie, w której jestem 90% udziałowcem (...) wynajmowałem tę nieruchomość."
             </CaseFile>
 
             <p>
@@ -436,7 +436,7 @@ export default function Home() {
             </p>
 
             <CaseFile title="Odpowiedź na pytanie o udział">
-              „nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie odmawiam odpowiedzi”
+              "nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie odmawiam odpowiedzi"
             </CaseFile>
 
             <p>
@@ -448,33 +448,33 @@ export default function Home() {
             </p>
 
             <p>
-              Fakt, że <strong>Kiciński</strong> w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w <strong>Ameryce Południowej</strong>, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do charakteru wydarzeń w <strong>Janovie</strong>. Co znamienne, niedługo po wizycie na komendzie w <strong>Warszawie</strong>, oferta ceremonii „świętych roślin” zniknęła z oficjalnej witryny peruwiańskiego kurortu. Ślad po niej zachowały jednak cyfrowe archiwa Wayback Machine.
+              Fakt, że <strong>Kiciński</strong> w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w <strong>Ameryce Południowej</strong>, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do charakteru wydarzeń w <strong>Janovie</strong>. Co znamienne, niedługo po wizycie na komendzie w <strong>Warszawie</strong>, oferta ceremonii "świętych roślin" zniknęła z oficjalnej witryny peruwiańskiego kurortu. Ślad po niej zachowały jednak cyfrowe archiwa Wayback Machine.
             </p>
 
             <p>
-              Co na to sam „Badi"?
+              Co na to sam "Badi"?
             </p>
 
             <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
-              „Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem. (...) Mam też dowody, że Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.”
+              "Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł 'wynajem'. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem. (...) Mam też dowody, że Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy."
             </CaseFile>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Anonimowy filantrop</h2>
 
             <p>
-              W listopadzie 2025 roku na kanale YouTube „<strong>Osada Natury Zew</strong>” pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, <strong>Krzysztof Stefanek</strong>, snuje opowieść o powstaniu „Osady”. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
+              W listopadzie 2025 roku na kanale YouTube "<strong>Osada Natury Zew</strong>" pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, <strong>Krzysztof Stefanek</strong>, snuje opowieść o powstaniu "Osady". W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
             </p>
 
             <p>
-              <strong>Stefanek</strong> wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt „znalazł się w jednych rękach”. Kluczowy moment tej opowieści <strong>Stefanek</strong> datuje z niezwykłą precyzją:
+              <strong>Stefanek</strong> wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt "znalazł się w jednych rękach". Kluczowy moment tej opowieści <strong>Stefanek</strong> datuje z niezwykłą precyzją:
             </p>
 
             <CaseFile title="Wypowiedź K. Stefanka">
-              „Ostatecznie 23 października 2023 roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie”
+              "Ostatecznie 23 października 2023 roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie"
             </CaseFile>
 
             <p>
-              <strong>Stefanek</strong> przedstawia to jako efekt „researchu” darczyńcy, który rzekomo urzekła wizja działalności non-profit.
+              <strong>Stefanek</strong> przedstawia to jako efekt "researchu" darczyńcy, który rzekomo urzekła wizja działalności non-profit.
             </p>
 
             <div className="my-12 w-full rounded-sm overflow-hidden shadow-md">
@@ -485,11 +485,11 @@ export default function Home() {
             </div>
              <div className="mt-1 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
                 <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Wideo:</span>
-                <strong>Krzysztof Stefanek</strong> opowiada o „cudownym” otrzymaniu darowizny (Materiał z 2025 r.)
+                <strong>Krzysztof Stefanek</strong> opowiada o "cudownym" otrzymaniu darowizny (Materiał z 2025 r.)
               </div>
 
             <p>
-              Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech w pozbywaniu się „gorącego kartofla”:
+              Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech w pozbywaniu się "gorącego kartofla":
             </p>
 
             <ul className="list-none space-y-4 my-8 font-mono text-sm border-l-2 border-stone-300 pl-4">
@@ -535,13 +535,13 @@ export default function Home() {
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
-                  <strong>21 grudnia 2023 r.</strong> – Finał operacji. <strong>Kiciński</strong> formalnie przekazuje <strong>Janov</strong> w formie darowizny. Nieruchomość trafia do stowarzyszenia „non-profit” – fasadowej organizacji „krzak”, zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
+                  <strong>21 grudnia 2023 r.</strong> – Finał operacji. <strong>Kiciński</strong> formalnie przekazuje <strong>Janov</strong> w formie darowizny. Nieruchomość trafia do stowarzyszenia "non-profit" – fasadowej organizacji "krzak", zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
                 </div>
               </li>
             </ul>
 
             <p>
-              Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong>Krzysztof Stefanek</strong>, który w filmie mówi o „odwróconej logice” i pięknie wolontariatu, i jego konkubina <strong>Magdalena Drzewińska</strong> w rzeczywistości doskonale znali mroczną historię <strong>Janova</strong> i tajemnicę śmierci <strong>Ilony</strong>. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
+              Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong>Krzysztof Stefanek</strong>, który w filmie mówi o "odwróconej logice" i pięknie wolontariatu, i jego konkubina <strong>Magdalena Drzewińska</strong> w rzeczywistości doskonale znali mroczną historię <strong>Janova</strong> i tajemnicę śmierci <strong>Ilony</strong>. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
             </p>
 
             <TransactionStamp 
@@ -551,11 +551,11 @@ export default function Home() {
             />
 
             <p>
-              Ostatecznie strategia okazała się skuteczna. Śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w „stowarzyszeniu”. <strong>Kiciński</strong> pozostał anonimowym „filantropem”, a <strong>Stefanek</strong> – opiekunem nowej, „czystej” osady.
+              Ostatecznie strategia okazała się skuteczna. Śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w "stowarzyszeniu". <strong>Kiciński</strong> pozostał anonimowym "filantropem", a <strong>Stefanek</strong> – opiekunem nowej, "czystej" osady.
             </p>
 
             <p>
-              Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit <strong>Stowarzyszenie Natury Zew</strong> żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki. „Zadośćuczynienie wszechświatowi” miało  trafić na hospicjum, a nie na „organizację krzak”. 
+              Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit <strong>Stowarzyszenie Natury Zew</strong> żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki. "Zadośćuczynienie wszechświatowi" miało trafić na hospicjum, a nie na "organizację krzak". 
             </p>
               
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Nýdek</h2>
@@ -566,7 +566,7 @@ export default function Home() {
 
             
             <p>
-              Relacje świadków wskazują, że w posiadłości w <strong>Nýdku</strong> odbywały się regularne ceremonie o charakterze zbliżonym do tych u <strong>Kordysów</strong> i <strong>Badowskiego</strong>, prowadzone przez <strong>Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu „Wayback Machine” zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
+              Relacje świadków wskazują, że w posiadłości w <strong>Nýdku</strong> odbywały się regularne ceremonie o charakterze zbliżonym do tych u <strong>Kordysów</strong> i <strong>Badowskiego</strong>, prowadzone przez <strong>Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu "Wayback Machine" zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
             </p>
 
             <p>
@@ -587,7 +587,7 @@ export default function Home() {
             />
 
             <p>
-              Oznacza to, że nie jeden lecz obaj legendarni założyciele CD Projekt, na czeskim pograniczu posiadali nieruchomosci, w których serwowano zakazany wywar z dżungli. 
+              Oznacza to, że nie jeden lecz obaj legendarni założyciele CD Projekt, na czeskim pograniczu posiadali nieruchomości, w których serwowano zakazany wywar z dżungli. 
             </p>
 
             <p>
@@ -623,7 +623,7 @@ export default function Home() {
             />
 
             <p>
-              Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z „darowizną” <strong>Kicińskiego</strong> w <strong>Janovie</strong> pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
+              Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z "darowizną" <strong>Kicińskiego</strong> w <strong>Janovie</strong> pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
             </p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Sprawiedliwość na sprzedaż?</h2>
@@ -642,7 +642,7 @@ export default function Home() {
                </div>
             </div>
 
-            {/* --- SEKCJA: STATUS PRAWNY (ZMODYFIKOWANA - STYL 'NAJS' BEZ IKON) --- */}
+            {/* --- SEKCJA: STATUS PRAWNY --- */}
             <div className="mt-12 mb-12 py-4 px-5 bg-stone-50 shadow-sm">
                <div className="border-l-4 border-red-900 pl-4">
                   <h4 className="font-bold text-red-900 uppercase tracking-widest mb-2 text-xs">
@@ -654,7 +654,7 @@ export default function Home() {
                      <li>W sprawie nieumyślnego spowodowania śmierci <strong>Ilony Lewandowskiej</strong> <span className="text-stone-500">(Sygn. PR 3 Ds 124.2024)</span>.</li>
                   </ul>
                   <div className="text-[10px] font-bold text-red-800 border-t border-red-100 pt-2 tracking-wide">
-                    Nadzór nad postępowaniami objął Zastępca Prokuratora Okręgowego.
+                     Nadzór nad postępowaniami objął Zastępca Prokuratora Okręgowego.
                   </div>
                </div>
             </div>
@@ -670,7 +670,7 @@ export default function Home() {
                </h3>
                <div className="border-b border-stone-300 w-full mb-6"></div>
                <p className="text-base text-stone-800 italic text-left">
-                 Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.
+                 Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Poniżej znajduje się lista dokumentów umożliwiająca niezależną weryfikację danych w bazach państwowych (Katastr, InfoSoud).
                </p>
              </div>
              
