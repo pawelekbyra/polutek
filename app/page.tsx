@@ -452,7 +452,7 @@ export default function Home() {
             </p>
 
             <p>
-              Co na to <strong> &quot;Badiego&quot; </strong>?
+              Co na to <strong>Bartosz Badowski</strong>?
             </p>
 
             <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
