@@ -452,7 +452,7 @@ export default function Home() {
             </p>
 
             <p>
-              Co na to sam &quot;Badi&quot;?
+              Co na to &quot;Badi&quot;?
             </p>
 
             <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
