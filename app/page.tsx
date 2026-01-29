@@ -439,9 +439,19 @@ export default function Home() {
               „nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie odmawiam odpowiedzi”
             </CaseFile>
 
+            {/* --- NOWA WSTAWKA: MUNAY SONQO (PERU) --- */}
             <p>
-              Wiarygodność tego zaprzeczenia kruszy się w zderzeniu z faktami zza oceanu. W dniu przesłuchania, należący do Kicińskiego ośrodek <strong>Munay Sonqo</strong> w Peru wciąż oficjalnie oferował ceremonie z ayahuascą. Zmowa milczenia objęła także ten wątek – oferta „świętych roślin” zniknęła z peruwiańskiej strony internetowej dokładnie w tym samym czasie, gdy miliarder w pośpiechu pozbywał się udziałów w Janovie.
+              W kontekście złożonych zeznań warto zauważyć, że miliarder jest właścicielem luksusowego ośrodka <strong>Munay Sonqo</strong> w Peru, o którym wielokrotnie wspominał w wywiadach.
             </p>
+            
+            <p>
+              W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego oferował tam w pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które w Czechach są zakazane, co przez lata było wprost eksponowane na stronie internetowej.
+            </p>
+
+            <p>
+              Fakt, że Kiciński w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w Ameryce Południowej, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do charakteru wydarzeń w Janovie. Co znamienne, niedługo po wizycie na komendzie w Warszawie, oferta ceremonii „świętych roślin” zniknęła z oficjalnej witryny peruwiańskiego kurortu. Ślad po niej zachowały jednak cyfrowe archiwa Wayback Machine.
+            </p>
+            {/* ------------------------------------------- */}
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Anonimowy filantrop</h2>
 
