@@ -581,7 +581,7 @@ export default function Home() {
             />
 
             <p>
-              Oznacza to,że nie jeden obydwaj założyciele  gigantycznej firmy gamingowej CD PROJECT kupuje nieruchomości w tej samej okolicy na czeskim pograniczu i w obu tych miejscach szamani gotują nielegalny wywary z dżungli. Przypadek? Nie sądzę.
+              Oznacza to,że nie jeden lecz obydwaj założyciele  gigantycznej firmy gamingowej kupili nieruchomości w tej samej okolicy na czeskim pograniczu i w obu tych miejscach szamani oferowali nielegalny wywary z dżungli. Być może to tylko ironiczny zbieg okolicznosci.
             </p>
 
             <p>
