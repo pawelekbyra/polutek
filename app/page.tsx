@@ -570,6 +570,10 @@ export default function Home() {
             <p>
               Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej szamańskiej świątyni – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za CD Projekt, Marcin Iwiński. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder.
             </p>
+            <p>
+              Oznacza to,że nie jeden  lecz dwóch założycieli tej samej gigantycznej firmy gamingowej kupuje nieruchomości w tej samej okolicy na czeskim pograniczu i w obu tych domach szamani gotują nielegalny wywary z dżungli. Przypadek? Nie sądzę.
+            </p>
+
             <LocationStamp 
               name="NÝDEK" 
               code="708186" 
