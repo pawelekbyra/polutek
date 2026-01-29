@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react"; // <--- 1. DODAJ IMPORT
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,17 +12,21 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <head>
-        <title>Dwa światy Wiedźmina: Mroczna tajemnica ayahuaski i milionerów z CD Projekt</title>
+        {/* ZMIANA 1: Główny tytuł w karcie przeglądarki */}
+        <title>Eliksir Wiedźmina</title>
+        
         <meta name="description" content="W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”." />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="Dwa światy Wiedźmina: Mroczna tajemnica ayahuaski i milionerów z CD Projekt" />
+        {/* ZMIANA 2: Tytuł dla Facebooka/LinkedIn */}
+        <meta property="og:title" content="Eliksir Wiedźmina" />
         <meta property="og:description" content="W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”." />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:title" content="Dwa światy Wiedźmina: Mroczna tajemnica ayahuaski i milionerów z CD Projekt" />
+        {/* ZMIANA 3: Tytuł dla Twittera/X */}
+        <meta property="twitter:title" content="Eliksir Wiedźmina" />
         <meta property="twitter:description" content="W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”." />
 
         <meta name="robots" content="noindex, nofollow" />
@@ -30,7 +34,7 @@ export default function RootLayout({
       </head>
       <body className={`antialiased ${inter.className}`}>
         {children}
-        <Analytics /> {/* <--- 2. DODAJ KOMPONENT TUŻ PRZED ZAMKNIĘCIEM BODY */}
+        <Analytics />
       </body>
     </html>
   );
