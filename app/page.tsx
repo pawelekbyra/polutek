@@ -424,7 +424,7 @@ export default function Home() {
             </CaseFile>
 
             <p>
-              Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w<strong> Komendzie Rejonowej Policji Warszawa II</strong> . W protokole <strong>Kiciński</strong> przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
+              Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji <strong>Warszawa</strong> II. W protokole <strong>Kiciński</strong> przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
             </p>
 
             <CaseFile title="Zeznanie do protokołu">
@@ -451,6 +451,15 @@ export default function Home() {
             <p>
               Fakt, że <strong>Kiciński</strong> w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w <strong>Ameryce Południowej</strong>, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do charakteru wydarzeń w <strong>Janovie</strong>. Co znamienne, niedługo po wizycie na komendzie w <strong>Warszawie</strong>, oferta ceremonii „świętych roślin” zniknęła z oficjalnej witryny peruwiańskiego kurortu. Ślad po niej zachowały jednak cyfrowe archiwa Wayback Machine.
             </p>
+            
+            <p className="mt-8 font-bold text-stone-900">
+              Jak to komentuje sam Bartosz Badowski?
+            </p>
+
+            <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
+              „Przelewy wysyłałem z mojego konta ING [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem. (...) Mam też dowody, że Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.”
+            </CaseFile>
+
             {/* ------------------------------------------- */}
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Anonimowy filantrop</h2>
@@ -581,7 +590,7 @@ export default function Home() {
             />
 
             <p>
-              Oznacza to, że nie jeden lecz obaj legendarni założyciele  <strong>CD Projekt</strong> na czeskim pograniczu posiadali nieruchomości, w których -za około 1500zł- serwowano zakazany wywar z dżungli. Zastanawiające.
+              Oznacza to, że nie jeden lecz obaj legendarni założyciele  <strong>CD Projekt</strong>  kupili nieruchomości  na czeskim pograniczu i w obu tych miejscach szamani oferowali zakazany wywar z dżungli. Zastanawiające.
             </p>
 
             <p>
