@@ -568,7 +568,7 @@ export default function Home() {
             </p>
 
             <p>
-              Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej szamańskiej świątyni – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za <strong>CD Projekt</strong>, <strong>Marcin Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder.
+              Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej szamańskiej świątyni – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za gamingowym gigantem , <strong>Marcin Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder.
             </p>
             
 
@@ -581,7 +581,7 @@ export default function Home() {
             />
 
             <p>
-              Oznacza to, że nie jeden lecz obydwaj założyciele  gamingowego giganta kupili nieruchomości  na czeskim pograniczu i w obu tych miejscach szamani oferowali nielegalny wywar z dżungli. Zastanawiające.
+              Oznacza to, że nie jeden lecz dwaj legendarni założyciele  <strong>CD Projekt</strong>  kupili nieruchomości  na czeskim pograniczu i w obu tych miejscach szamani oferowali Ayahuasce, nielegalny wywar z dżungli. Zastanawiające.
             </p>
 
             <p>
