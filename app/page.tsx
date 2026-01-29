@@ -587,7 +587,7 @@ export default function Home() {
             />
 
             <p>
-              Oznacza to, że nie jeden lecz obaj legendarni założyciele  <strong>CD Projekt</strong>  kupili nieruchomości  na czeskim pograniczu i w obu tych miejscach szamani oferowali zakazany wywar z dżungli. Zastanawiające.
+              Oznacza to, że nie jeden lecz obaj legendarni założyciele  <strong>CD Projekt</strong> , na czeskim mieli nieruchomosci, w których, za około 1500zł, serwowano  zakazany wywar z dżunglia- ayahuasce. 
             </p>
 
             <p>
