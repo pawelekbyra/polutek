@@ -249,7 +249,8 @@ export default function Home() {
                <br/>
                <strong>Bartosz Badowski (10%)</strong>
                <br/>
-               <strong className="text-red-700">Michał Dawid Kiciński (90%)</strong>
+               {/* ZMIANA: Usunięto text-red-700, dodano underline decoration-red-600 decoration-4 underline-offset-4 */}
+               <strong className="text-stone-900 underline decoration-red-600 decoration-4 underline-offset-4">Michał Dawid Kiciński (90%)</strong>
             </p>
 
             <p>
