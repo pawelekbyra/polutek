@@ -581,7 +581,7 @@ export default function Home() {
             />
 
             <p>
-              Oznacza to,że nie jeden lecz obydwaj założyciele  gigantycznej firmy gamingowej kupili nieruchomości w tej samej okolicy na czeskim pograniczu i w obu tych miejscach szamani oferowali nielegalny wywar z dżungli. Zastanawiające.
+              Oznacza to,że nie jeden lecz obydwaj założyciele  gamingowego giganta kupili nieruchomości w tej samej okolicy na czeskim pograniczu i w obu tych miejscach szamani oferowali nielegalny wywar z dżungli. Zastanawiające.
             </p>
 
             <p>
