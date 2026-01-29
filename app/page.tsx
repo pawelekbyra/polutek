@@ -549,8 +549,7 @@ export default function Home() {
             </p>
 
             <p>
-              Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit, żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki.  „Zadośćuczynienie wszechświatowi” miało  trafić na hospicjum, a nie na „organizację krzak”. Autor wycofanego zawiadomienia nie był zadowolony.
-            </p>
+              Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit, żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki. Aprzecież „zadośćuczynienie wszechświatowi” miało  trafić na hospicjum, a nie na „organizację krzak”... 
              
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Nýdek</h2>
 
@@ -581,7 +580,7 @@ export default function Home() {
             />
 
             <p>
-              Oznacza to,że nie jeden lecz obydwaj założyciele  gamingowego giganta kupili nieruchomości  na czeskim pograniczu i w obu tych miejscach szamani oferowali nielegalny wywar z dżungli. Zastanawiające.
+              Oznacza to, że nie jeden lecz obydwaj założyciele  gamingowego giganta kupili nieruchomości  na czeskim pograniczu i w obu tych miejscach szamani oferowali nielegalny wywar z dżungli. Zastanawiające.
             </p>
 
             <p>
