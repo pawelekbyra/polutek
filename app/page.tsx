@@ -247,9 +247,9 @@ export default function Home() {
             <p>
             Pobrany dokumentnie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
                <br/>
-               Bartosz Badowski (10%)
+               <strong>Bartosz Badowski (10%)</strong>
                <br/>
-               <strong>Michał Dawid Kiciński (90%)</strong>
+               <strong className="text-red-700">Michał Dawid Kiciński (90%)</strong>
             </p>
 
             <p>
@@ -439,7 +439,7 @@ export default function Home() {
               „nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie odmawiam odpowiedzi”
             </CaseFile>
 
-            {/* --- NOWA WSTAWKA: MUNAY SONQO (PERU) --- */}
+            {/* --- WSTAWKA: MUNAY SONQO (PERU) --- */}
             <p>
               W kontekście złożonych zeznań warto zauważyć, że miliarder jest właścicielem luksusowego ośrodka <strong>Munay Sonqo</strong> w Peru, o którym wielokrotnie wspominał w wywiadach.
             </p>
@@ -630,7 +630,7 @@ export default function Home() {
                </div>
             </div>
 
-            {/* --- NOWA SEKCJA: STATUS PRAWNY (KROPKA NAD I) --- */}
+            {/* --- SEKCJA: STATUS PRAWNY --- */}
             <div className="mt-12 mb-12 p-5 bg-stone-100 border-l-4 border-red-800 text-sm font-sans text-stone-700 shadow-sm">
               <h4 className="font-bold text-red-900 uppercase tracking-widest mb-3 flex items-center gap-2">
                 <AlertCircle className="w-4 h-4" /> Status Prawny (2025/2026)
