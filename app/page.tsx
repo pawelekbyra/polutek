@@ -451,13 +451,11 @@ export default function Home() {
             <p>
               Fakt, że <strong>Kiciński</strong> w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w <strong>Ameryce Południowej</strong>, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do charakteru wydarzeń w <strong>Janovie</strong>. Co znamienne, niedługo po wizycie na komendzie w <strong>Warszawie</strong>, oferta ceremonii „świętych roślin” zniknęła z oficjalnej witryny peruwiańskiego kurortu. Ślad po niej zachowały jednak cyfrowe archiwa Wayback Machine.
             </p>
-            
-            <p className="mt-8 font-bold text-stone-900">
-              Jak to komentuje sam Bartosz Badowski?
+                          Jak to skomentuje sam Bartosz Badowski?
             </p>
 
             <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
-              „Przelewy wysyłałem z mojego konta ING [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem. (...) Mam też dowody, że Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.”
+              „Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem. (...) Mam też dowody, że Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.”
             </CaseFile>
 
             {/* ------------------------------------------- */}
