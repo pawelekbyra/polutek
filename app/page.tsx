@@ -613,7 +613,7 @@ export default function Home() {
             </ul>
 
             <p>
-              Nabywcą luksusowej posiadłości nie został inny inwestor, lecz sam <strong>Piotr Bonawentura Tracz</strong> – ten sam człowiek, który wcześniej pełnił tam rolę szamana.
+              Nabywcą luksusowej posiadłości nie został inny inwestor, lecz sam <strong>Piotr  Tracz</strong> – ten sam człowiek, który wcześniej pełnił tam rolę szamana.
             </p>
 
             <TransactionStamp 
