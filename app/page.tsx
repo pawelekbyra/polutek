@@ -221,7 +221,7 @@ export default function Home() {
             <CaseFile title="Własność nieruchomości">
               &quot;(...) budynek rodzinny w miejscowości <strong>Janov</strong> (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy&quot;
               <br/><br/>
-              &quot;Świadek [<strong>Bartosz B.</strong>] potwierdził, że w <strong>Janowie</strong> jest właścicielem jednej dziesiątej nieruchomości&quot;.
+              &quot;Świadek [<strong>Bartosz B.</strong>] potwierdził, że w <strong>Janovie</strong> jest właścicielem jednej dziesiątej nieruchomości&quot;.
             </CaseFile>
 
             <p>
@@ -259,7 +259,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Na podsłuchu</h2>
 
             <p>
-              Przełom w sprawie organizatorów <strong>ayahuaskowych</strong> ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon <strong>Kordysa</strong> był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy <strong>Badowskim</strong> i <strong>Kordysem</strong>.
+              Przełom w sprawie organizatorów ayahuaskowych ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon <strong>Kordysa</strong> był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy <strong>Badowskim</strong> i <strong>Kordysem</strong>.
             </p>
 
             <p>
@@ -352,7 +352,7 @@ export default function Home() {
             </p>
 
             <p>
-              Cena wolności <strong>Badowskiego</strong> okazała się być wysoka dla jego kolegi z branży. Zeznania &quot;<strong> Badiego</strong> &quot; były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak w sprawie <strong>Kordysów</strong>.
+              Cena wolności <strong>Badowskiego</strong> okazała się być wysoka dla jego kolegi z branży. Zeznania <strong> &quot;Badiego&quot; </strong> były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak w sprawie <strong>Kordysów</strong>.
             </p>
 
             <p>
@@ -378,7 +378,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cisza po burzy</h2>
 
             <p>
-              Choć <strong>Badowski</strong> zaprzestał prowadzenia działalności szamańskiej, posiadłość w <strong>Janovie</strong> nie opustoszała – zamieszkali z nim wspomniani wcześniej <strong>Krzysztof Stefanek</strong> i <strong>Magdalena Drzewińska</strong>. Ich obecność u boku &quot;<strong> Badiego</strong> &quot; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
+              Choć <strong>Badowski</strong> zaprzestał prowadzenia działalności szamańskiej, posiadłość w <strong>Janovie</strong> nie opustoszała – zamieszkali z nim wspomniani wcześniej <strong>Krzysztof Stefanek</strong> i <strong>Magdalena Drzewińska</strong>. Ich obecność u boku <strong> &quot;Badiego&quot; </strong>  w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
             </p>
 
             <p>
@@ -452,7 +452,7 @@ export default function Home() {
             </p>
 
             <p>
-              Co na to &quot;<strong> Badi</strong> &quot;?
+              Co na to <strong> &quot;Badiego&quot; </strong>?
             </p>
 
             <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
