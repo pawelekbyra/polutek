@@ -352,7 +352,7 @@ export default function Home() {
             </p>
 
             <p>
-              Cena wolności <strong>Badowskiego</strong> okazała się być wysoka dla jego kolegi z branży. Zeznania &quot;Badiego&quot; były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak w sprawie <strong>Kordysów</strong>.
+              Cena wolności <strong>Badowskiego</strong> okazała się być wysoka dla jego kolegi z branży. Zeznania &quot;<strong> Badiego</strong> &quot; były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak w sprawie <strong>Kordysów</strong>.
             </p>
 
             <p>
@@ -378,7 +378,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cisza po burzy</h2>
 
             <p>
-              Choć <strong>Badowski</strong> zaprzestał prowadzenia działalności szamańskiej, posiadłość w <strong>Janovie</strong> nie opustoszała – zamieszkali z nim wspomniani wcześniej <strong>Krzysztof Stefanek</strong> i <strong>Magdalena Drzewińska</strong>. Ich obecność u boku &quot;Badiego&quot; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
+              Choć <strong>Badowski</strong> zaprzestał prowadzenia działalności szamańskiej, posiadłość w <strong>Janovie</strong> nie opustoszała – zamieszkali z nim wspomniani wcześniej <strong>Krzysztof Stefanek</strong> i <strong>Magdalena Drzewińska</strong>. Ich obecność u boku &quot;<strong> Badiego</strong> &quot; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
             </p>
 
             <p>
@@ -424,7 +424,7 @@ export default function Home() {
             </CaseFile>
 
             <p>
-              Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji <strong>Warszawa</strong> II. W protokole <strong>Kiciński</strong> przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
+              Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w <strong>Komendzie Rejonowej Policji Warszawa II</strong> . W protokole <strong>Kiciński</strong> przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
             </p>
 
             <CaseFile title="Zeznanie do protokołu">
@@ -452,7 +452,7 @@ export default function Home() {
             </p>
 
             <p>
-              Co na to &quot;Badi&quot;?
+              Co na to &quot;<strong> Badi</strong> &quot;?
             </p>
 
             <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
