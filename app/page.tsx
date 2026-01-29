@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, PenTool, Home as HouseIcon } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, PenTool, Home as HouseIcon, AlertCircle } from 'lucide-react';
 import {
   CaseFile, LegalNote, PullQuote, LocationStamp, TransactionStamp,
   EvidenceAudioModal, ArticleVideoPlayer, GalleryModal,
@@ -629,6 +629,22 @@ export default function Home() {
                   <span className="block font-bold text-stone-900">Marlow</span>
                </div>
             </div>
+
+            {/* --- NOWA SEKCJA: STATUS PRAWNY (KROPKA NAD I) --- */}
+            <div className="mt-12 mb-12 p-5 bg-stone-100 border-l-4 border-red-800 text-sm font-sans text-stone-700 shadow-sm">
+              <h4 className="font-bold text-red-900 uppercase tracking-widest mb-3 flex items-center gap-2">
+                <AlertCircle className="w-4 h-4" /> Status Prawny (2025/2026)
+              </h4>
+              <p className="mb-2 font-bold text-stone-900">Prokuratura w Częstochowie prowadzi śledztwa:</p>
+              <ul className="list-disc list-inside space-y-1 mb-4 font-mono text-xs">
+                 <li>W sprawie organizacji ceremonii i udzielania środków odurzających <span className="text-stone-500">(Sygn. PR 3 Ds 125.2024)</span>.</li>
+                 <li>W sprawie nieumyślnego spowodowania śmierci Ilony Lewandowskiej <span className="text-stone-500">(Sygn. PR 3 Ds 124.2024)</span>.</li>
+              </ul>
+              <div className="text-xs font-bold text-red-800 border-t border-red-200 pt-2">
+                ⚠️ Nadzór nad postępowaniami objął Zastępca Prokuratora Okręgowego.
+              </div>
+            </div>
+            {/* ------------------------------------------------ */}
 
           </div>
 
