@@ -163,7 +163,7 @@ export default function Home() {
 
             <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
               <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
-                <strong>Ayahuasca</strong>, policyjne naloty i tragedia, o której nikt się miał nie dowiedzieć. W cieniu głośnego procesu dziennikarskie śledztwo ujawnia, jak twórcy gry &quot;Wiedźmin&quot; finansowali szamańskie podziemie.
+                Ayahuasca, policyjne naloty i tragedia, o której nikt się miał nie dowiedzieć. W cieniu głośnego procesu dziennikarskie śledztwo ujawnia, jak twórcy gry &quot;Wiedźmin&quot; finansowali szamańskie podziemie.
               </p>
             </div>
           </div>
@@ -187,7 +187,7 @@ export default function Home() {
             </p>
 
             <p>
-              W przygranicznym <strong>Janovie</strong> funkcjonował drugi, bliźniaczy <strong>ayahuaskowy</strong> ośrodek, którego współwłaścicielem okazał się miliarder – <strong>Michał Kiciński</strong>.
+              W przygranicznym <strong>Janovie</strong> funkcjonował drugi, bliźniaczy ayahuaskowy ośrodek, którego współwłaścicielem okazał się miliarder – <strong>Michał Kiciński</strong>.
             </p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Świadek B.</h2>
