@@ -229,7 +229,7 @@ export default function Home() {
             </p>
 
             <CaseFile title="Ustalenia Sądu">
-              &quot;...w odniesieniu do nieruchomości będących współwłasnością <strong>Bartosza B.</strong> i Michala D. K.&quot;.
+              &quot;...w odniesieniu do nieruchomości będących współwłasnością <strong>Bartosza B.</strong> i <strong>Michala D. K.</strong>strong>&quot;.
             </CaseFile>
 
             <p>
