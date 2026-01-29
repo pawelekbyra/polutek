@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, PenTool, Home as HouseIcon } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, PenTool, Home as HouseIcon, AlertCircle } from 'lucide-react';
 import {
   CaseFile, LegalNote, PullQuote, LocationStamp, TransactionStamp,
   EvidenceAudioModal, ArticleVideoPlayer, GalleryModal,
@@ -630,19 +630,21 @@ export default function Home() {
                </div>
             </div>
 
-            {/* --- SEKCJA: STATUS PRAWNY (ZMODYFIKOWANA) --- */}
-            <div className="mt-12 mb-12 p-4 bg-stone-50 border-l-4 border-red-900 text-sm font-sans text-stone-700 shadow-sm">
-              <h4 className="font-bold text-red-900 uppercase tracking-widest mb-2 text-xs">
-                 Status Prawny (2025/2026)
-              </h4>
-              <p className="mb-2 font-bold text-stone-900 text-xs">Prokuratura w Częstochowie prowadzi śledztwa:</p>
-              <ul className="list-disc list-inside space-y-1 mb-3 font-mono text-[10px]">
-                 <li>W sprawie organizacji ceremonii i udzielania środków odurzających <span className="text-stone-500">(Sygn. PR 3 Ds 125.2024)</span>.</li>
-                 <li>W sprawie nieumyślnego spowodowania śmierci Ilony Lewandowskiej <span className="text-stone-500">(Sygn. PR 3 Ds 124.2024)</span>.</li>
-              </ul>
-              <div className="text-[10px] font-bold text-red-800 border-t border-red-100 pt-2 tracking-wide">
-                Nadzór nad postępowaniami objął Zastępca Prokuratora Okręgowego.
-              </div>
+            {/* --- SEKCJA: STATUS PRAWNY (ZMODYFIKOWANA - STYL 'NAJS' BEZ IKON) --- */}
+            <div className="mt-12 mb-12 py-4 px-5 bg-stone-50 shadow-sm">
+               <div className="border-l-4 border-red-900 pl-4">
+                  <h4 className="font-bold text-red-900 uppercase tracking-widest mb-2 text-xs">
+                     Status Prawny (2025/2026)
+                  </h4>
+                  <p className="mb-2 font-bold text-stone-900 text-xs">Prokuratura w Częstochowie prowadzi śledztwa:</p>
+                  <ul className="list-disc list-inside space-y-1 mb-3 font-mono text-[10px]">
+                     <li>W sprawie organizacji ceremonii i udzielania środków odurzających <span className="text-stone-500">(Sygn. PR 3 Ds 125.2024)</span>.</li>
+                     <li>W sprawie nieumyślnego spowodowania śmierci Ilony Lewandowskiej <span className="text-stone-500">(Sygn. PR 3 Ds 124.2024)</span>.</li>
+                  </ul>
+                  <div className="text-[10px] font-bold text-red-800 border-t border-red-100 pt-2 tracking-wide">
+                    Nadzór nad postępowaniami objął Zastępca Prokuratora Okręgowego.
+                  </div>
+               </div>
             </div>
             {/* ------------------------------------------------ */}
 
@@ -880,9 +882,6 @@ export default function Home() {
                 >
                   kutasinskigate.eth.limo
                 </a>
-                <div className="mt-8 text-[10px] text-stone-300 font-mono">
-                  marlow.contact@proton.me
-                </div>
              </div>
           </footer>
         </article>
