@@ -587,7 +587,7 @@ export default function Home() {
             />
 
             <p>
-              Oznacza to, że nie jeden lecz obaj legendarni założyciele  <strong>CD Projekt</strong> , na czeskim pograniczu mieli nieruchomosci, w których -w ramach zorganizowanej działalnosci- serwano  zakazany wywar z dżunglia- ayahuasce. 
+              Oznacza to, że nie jeden lecz obaj legendarni założyciele  <strong>CD Projekt</strong> , na czeskim pograniczu mieli nieruchomosci, w których -w ramach zorganizowanej działalnosci- serwano  zakazany wywar z dżungli, ayahuasce. 
             </p>
 
             <p>
