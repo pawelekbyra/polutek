@@ -201,9 +201,9 @@ export default function Home() {
             </p>
 
             <CaseFile title="Zeznania świadka B.">
-              &quot;Świadek <strong>B.</strong> odnośnie osoby oskarżonego [<strong>Jarosława Kordysa</strong>] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii&quot;.
+             <strong> &quot;Świadek B.</strong> odnośnie osoby oskarżonego [<strong>Jarosława Kordysa</strong>] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii&quot;.
               <br/><br/>
-              &quot;Świadek <strong>B.</strong> potwierdził, że i on sam w przeszłości prowadził warsztaty&quot;, a obecnie sam &quot;jest przedmiotem dochodzenia policji w Krnowie właśnie z powodu ceremonii&quot;.
+              <strong>&quot;Świadek   B.</strong> potwierdził, że i on sam w przeszłości prowadził warsztaty&quot;, a obecnie sam &quot;jest przedmiotem dochodzenia policji w Krnowie właśnie z powodu ceremonii&quot;.
             </CaseFile>
 
             <p>
