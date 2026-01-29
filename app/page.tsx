@@ -439,6 +439,10 @@ export default function Home() {
               „nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie odmawiam odpowiedzi”
             </CaseFile>
 
+            <p>
+              Wiarygodność tego zaprzeczenia kruszy się w zderzeniu z faktami zza oceanu. W dniu przesłuchania, należący do Kicińskiego ośrodek <strong>Munay Sonqo</strong> w Peru wciąż oficjalnie oferował ceremonie z ayahuascą. Zmowa milczenia objęła także ten wątek – oferta „świętych roślin” zniknęła z peruwiańskiej strony internetowej dokładnie w tym samym czasie, gdy miliarder w pośpiechu pozbywał się udziałów w Janovie.
+            </p>
+
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Anonimowy filantrop</h2>
 
             <p>
@@ -537,31 +541,11 @@ export default function Home() {
             <p>
               Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit, żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki.  „Zadośćuczynienie wszechświatowi” miało  trafić na hospicjum, a nie na „organizację krzak”. Autor wycofanego zawiadomienia nie był zadowolony.
             </p>
-
-            {/* --- NOWA SEKCJA: GLOBALNE CZYSZCZENIE (PERU) --- */}
-            
-            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Globalne czyszczenie</h2>
-
-            <p>
-              Linia obrony miliardera, oparta na rzekomej nieświadomości tego, co działo się w jego czeskiej posiadłości, kruszy się ostatecznie w zderzeniu z faktami na temat jego inwestycji za oceanem. Kiciński nie był biernym właścicielem nieruchomości w Janovie – był aktywnym promotorem psychodelicznej turystyki na skalę światową.
-            </p>
-
-            <p>
-              W Peru, w samym sercu Świętej Doliny Inków, miliarder stworzył luksusowy ośrodek <strong>Munay Sonqo</strong> (kecz. <em>Kochające Serce</em>). Przez lata oficjalna strona internetowa tego kompleksu kusiła gości ofertą ceremonii z wykorzystaniem „świętych roślin”, wprost wymieniając <strong>ayahuascę</strong>. To dowód na to, że Janov nie był incydentem, lecz europejską filią przemyślanej, globalnej strategii.
-            </p>
-
-            <p>
-              Co jednak najbardziej uderzające – cyfrowe ślady tej działalności zaczęły być zacierane dokładnie w tym samym czasie, gdy w Polsce Kiciński odbierał wezwania na policję.
-            </p>
-
-            <p>
-              Archiwum Internetu (Wayback Machine) ujawnia, że pod koniec 2023 roku, równolegle z pospiesznym pozbywaniem się udziałów w Janovie, z peruwiańskiej strony internetowej wyparowała oferta ceremonii ayahuaski, zastąpiona bezpiecznym marketingiem „wellness i jogi”. Operacja „czyszczenia” wizerunku była skoordynowana na obu kontynentach.
-            </p>
              
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Nýdek</h2>
 
             <p>
-              Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janova, w miejscowości <strong>Nýdek</strong>, funkcjonowało <button onClick={() => openGallery('nydek')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">kolejny, bliźniaczy ośrodek</button>.
+              Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janova, w miejscowości <strong>Nýdek</strong>, funkcjonował <button onClick={() => openGallery('nydek')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">kolejny, bliźniaczy ośrodek</button>.
             </p>
 
             
