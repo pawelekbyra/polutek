@@ -452,7 +452,7 @@ export default function Home() {
             </p>
 
             <p>
-              Jak to skomentuje sam Bartosz Badowski?
+              Co na to sam „Badi"?
             </p>
 
             <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
