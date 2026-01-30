@@ -587,7 +587,7 @@ export default function Home() {
             />
 
             <p>
-              <span className="bg-yellow-200 px-1 font-bold text-stone-900 shadow-sm">Oznacza to, że nie jeden lecz obaj legendarni założyciele <strong>CD Projekt</strong>, na czeskim pograniczu posiadali nieruchomosci, w których odpłatnie oferowano te same substancje zakazane.</span>
+              <span className="bg-yellow-200 px-1 font-bold text-stone-900 shadow-sm">Oznacza to, że nie jeden lecz obaj legendarni założyciele <strong>CD Projekt</strong>, na czeskim pograniczu posiadali nieruchomosci, w których odpłatnie oferowano te same nielegalne substancje.</span>
             </p>
 
             <p>
