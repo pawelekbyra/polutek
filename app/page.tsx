@@ -576,7 +576,7 @@ export default function Home() {
             </p>
 
             <p>
-              Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej szamańskiej świątyni – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za gamingowym gigantem, <strong>Marcin Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się proceder.
+              Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej szamańskiej świątyni – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za gamingowym gigantem, <strong>Marcin Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder.
             </p>
             
 
@@ -675,9 +675,9 @@ export default function Home() {
                   </div>
                </div>
 
-               <div className="mt-4 flex items-start gap-3 text-sm text-stone-600 italic">
-                  <Info className="w-4 h-4 mt-0.5 shrink-0 text-stone-400" />
-                  <p>Postępowania toczą się w Prokuraturze Okręgowej w Częstochowie. Nadzór nad postępowaniami objął Zastępca Prokuratora Okręgowego.</p>
+               {/* ZMODYFIKOWANA STOPKA SEKCJI */}
+               <div className="mt-2 text-xs text-stone-500 font-sans">
+                  Postępowania toczą się w Prokuraturze Rejonowej w Częstochowie. Nadzór nad postępowaniami objął Zastępca Prokuratora Okręgowego.
                </div>
             </div>
             {/* ------------------------------------------------ */}
