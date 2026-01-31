@@ -644,20 +644,40 @@ export default function Home() {
                </div>
             </div>
 
-            {/* --- SEKCJA: STATUS PRAWNY (ZMODYFIKOWANA - STYL 'NAJS' BEZ IKON) --- */}
-            <div className="mt-12 mb-12 py-4 px-5 bg-stone-50 shadow-sm">
-               <div className="border-l-4 border-red-900 pl-4">
-                  <h4 className="font-bold text-red-900 uppercase tracking-widest mb-2 text-xs">
-                      Status Prawny (2025/2026)
-                  </h4>
-                  <p className="mb-2 font-bold text-stone-900 text-xs">Prokuratura w <strong>Częstochowie</strong> prowadzi śledztwa:</p>
-                  <ul className="list-disc list-inside space-y-1 mb-3 font-mono text-[10px]">
-                      <li>W sprawie organizacji ceremonii i udzielania środków odurzających <span className="text-stone-500">(Sygn. PR 3 Ds 125.2024)</span>.</li>
-                      <li>W sprawie nieumyślnego spowodowania śmierci <strong>Ilony Lewandowskiej</strong> <span className="text-stone-500">(Sygn. PR 3 Ds 124.2024)</span>.</li>
-                  </ul>
-                  <div className="text-[10px] font-bold text-red-800 border-t border-red-100 pt-2 tracking-wide">
-                      Nadzór nad postępowaniami objął Zastępca Prokuratora Okręgowego.
+            {/* --- SEKCJA: STATUS PRAWNY (ZMODYFIKOWANA TABELA) --- */}
+            <div className="my-12 border-y-2 border-stone-900 py-6">
+               <h3 className="font-sans font-bold text-lg uppercase tracking-widest text-stone-900 mb-6 flex items-center gap-2">
+                  <ShieldCheck className="w-5 h-5" />
+                  Status Prawny (2025/2026)
+               </h3>
+               
+               <div className="grid gap-px bg-stone-200 border border-stone-200">
+                  {/* Wiersz 1 */}
+                  <div className="bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                     <div>
+                        <span className="block font-serif text-stone-900 font-medium">Śledztwo w sprawie organizacji ceremonii</span>
+                        <span className="block text-xs text-stone-500 mt-1">oraz udzielania środków odurzających</span>
+                     </div>
+                     <span className="font-mono text-xs font-bold bg-stone-100 px-3 py-1.5 border border-stone-300 text-stone-600 rounded-sm shadow-sm whitespace-nowrap">
+                        PR 3 Ds 125.2024
+                     </span>
                   </div>
+
+                  {/* Wiersz 2 */}
+                  <div className="bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                     <div>
+                        <span className="block font-serif text-stone-900 font-medium">Śledztwo w sprawie śmierci Ilony Lewandowskiej</span>
+                        <span className="block text-xs text-stone-500 mt-1">nieumyślne spowodowanie śmierci</span>
+                     </div>
+                     <span className="font-mono text-xs font-bold bg-red-50 px-3 py-1.5 border border-red-100 text-red-800 rounded-sm shadow-sm whitespace-nowrap">
+                        PR 3 Ds 124.2024
+                     </span>
+                  </div>
+               </div>
+
+               <div className="mt-4 flex items-start gap-3 text-sm text-stone-600 italic">
+                  <Info className="w-4 h-4 mt-0.5 shrink-0 text-stone-400" />
+                  <p>Postępowania toczą się w Prokuraturze Rejonowej w Częstochowie. Nadzór nad postępowaniami objął Zastępca Prokuratora Okręgowego.</p>
                </div>
             </div>
             {/* ------------------------------------------------ */}
@@ -882,7 +902,7 @@ export default function Home() {
 
              </div>
 
-             <div className="mt-16 text-center">
+             <div className="mt-8 text-center">
                 <div className="w-24 h-px bg-stone-300 mx-auto mb-6"></div>
                 <p className="text-xs text-stone-500 font-mono uppercase tracking-widest mb-2 flex items-center justify-center gap-2">
                   <ShieldCheck className="w-4 h-4" />
