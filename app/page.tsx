@@ -7,6 +7,7 @@ import {
   EvidenceAudioModal, ArticleVideoPlayer, GalleryModal,
   GalleryData
 } from './components';
+import PasswordProtect from './components/PasswordProtect';
 
 // --- KONFIGURACJA IPFS (DEDYKOWANA BRAMA) ---
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
@@ -144,6 +145,7 @@ export default function Home() {
   };
 
   return (
+    <PasswordProtect>
       <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
 
         <header className="pt-20 pb-8 px-4">
@@ -901,5 +903,6 @@ export default function Home() {
         <EvidenceAudioModal isOpen={isAudioOpen} onClose={() => setIsAudioOpen(false)} src="/evidence/stefan-nagranie.mp3" />
         <GalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} data={galleryData} />
       </main>
+    </PasswordProtect>
   );
 }
