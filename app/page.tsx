@@ -677,7 +677,7 @@ export default function Home() {
 
                <div className="mt-4 flex items-start gap-3 text-sm text-stone-600 italic">
                   <Info className="w-4 h-4 mt-0.5 shrink-0 text-stone-400" />
-                  <p>Postępowania toczą się w Prokuraturze Rejonowej w Częstochowie. Nadzór nad postępowaniami objął Zastępca Prokuratora Okręgowego.</p>
+                  <p>Postępowania toczą się w Prokuraturze Okręgowej w Częstochowie. Nadzór nad postępowaniami objął Zastępca Prokuratora Okręgowego.</p>
                </div>
             </div>
             {/* ------------------------------------------------ */}
