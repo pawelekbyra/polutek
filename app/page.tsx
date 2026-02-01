@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, PenTool, Home as HouseIcon, AlertCircle } from 'lucide-react';
+import { Scale, FileText, Search, MapPin, Calendar, Globe, ShieldCheck, History, Download } from 'lucide-react';
 import {
   CaseFile, PullQuote, LocationStamp, TransactionStamp,
   EvidenceAudioModal, ArticleVideoPlayer, GalleryModal,
@@ -12,37 +12,37 @@ import PasswordProtect from './components/PasswordProtect';
 // --- KONFIGURACJA IPFS (DEDYKOWANA BRAMA) ---
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 
-// 1. DOWODY KORDYSA (Zdjęcia wyroku 30 T 5/2021)
+// 1. DOWODY KORDYSA
 const KORDYS_IMAGES_CID = "bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm";
 const KORDYS_IMAGES_URL = `${PINATA_GATEWAY}/${KORDYS_IMAGES_CID}`;
 
-// 2. DOWODY BADIEGO (Zdjęcia wyroku 66 T 146/2021)
+// 2. DOWODY BADIEGO
 const BADI_IMAGES_CID = "bafybeifdgw2zosj6lz2qg3d33aye4bd4vcz3rtrix2jbw3wwjhvxxjrk6q";
 const BADI_IMAGES_URL = `${PINATA_GATEWAY}/${BADI_IMAGES_CID}`;
 
-// 3. DOWODY NYDEK (Folder ze zdjęciami)
+// 3. DOWODY NYDEK
 const NYDEK_IMAGES_CID = "bafybeidabdztfvfa7ycie5q47xfby7jiqtuwt6oddccuujpvjxqzd4ofpa";
 const NYDEK_IMAGES_URL = `${PINATA_GATEWAY}/${NYDEK_IMAGES_CID}`;
 
-// 4. DOWODY JANOV (Folder ze zdjęciami)
+// 4. DOWODY JANOV
 const JANOV_IMAGES_CID = "bafybeia6rid25dw5t46mwmgwu4coa3t6qp34vcno4mcnqxuixplpyfmvly";
 const JANOV_IMAGES_URL = `${PINATA_GATEWAY}/${JANOV_IMAGES_CID}`;
 
-// 5. WIDEO STEFANA (HLS - Hosting IPFS)
+// 5. WIDEO STEFANA
 const VIDEO_CID = "bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u";
 
-// 6. WIDEO Z ARESZTOWANIA (HLS - Hosting IPFS)
+// 6. WIDEO Z ARESZTOWANIA
 const ARREST_VIDEO_CID = "bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy";
 
-// 7. LINKI DO PLIKÓW PDF (Pełne wyroki na IPFS)
+// 7. LINKI DO PLIKÓW PDF
 const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
 const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
 
-// 8. LINKI ZEWNĘTRZNE (Wayback Machine)
+// 8. LINKI ZEWNĘTRZNE
 const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://munaysonqo.com/retreats/";
 
 
-// --- FUNKCJE POMOCNICZE DO GENEROWANIA ŚCIEŻEK ---
+// --- FUNKCJE POMOCNICZE ---
 const generateKordysPages = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
     const pageNumber = String(i + 1).padStart(4, '0');
@@ -181,7 +181,7 @@ export default function Home() {
             </p>
 
             <p>
-              <strong>Ayahuaska</strong> to tradycyjny wywar z amazońskich roślin o silnym działaniu halucynogennym. Ze względu na wysoką zawartość DMT – substancji psychodelicznej wywołującej intensywne wizje i zmiany stanu świadomości, jej posiadanie i podawanie jest w <strong>Polsce</strong> i <strong>Czechach</strong> zabronione. Finałem medialnego spektaklu Kordysów było ułaskawienie przez czeskiego prezydenta po dwóch latach odsiadki.
+              Ayahuaska to tradycyjny wywar z amazońskich roślin o silnym działaniu halucynogennym. Ze względu na wysoką zawartość DMT – substancji psychodelicznej wywołującej intensywne wizje i zmiany stanu świadomości, jej posiadanie i podawanie jest w Polsce i Czechach zabronione. Finałem medialnego spektaklu Kordysów było ułaskawienie przez czeskiego prezydenta po dwóch latach odsiadki.
             </p>
 
             <p>
@@ -189,13 +189,13 @@ export default function Home() {
             </p>
 
             <p>
-              W przygranicznym <strong>Janovie</strong> funkcjonował drugi, bliźniaczy ayahuaskowy ośrodek, którego współwłaścicielem okazał się miliarder – <strong>Michał Kiciński</strong>.
+              W przygranicznym Janovie funkcjonował drugi, bliźniaczy ayahuaskowy ośrodek, którego współwłaścicielem okazał się miliarder – <strong>Michał Kiciński</strong>.
             </p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Świadek B.</h2>
 
             <p>
-              W obszernym i publicznie dostępnym uzasadnieniu <button onClick={() => openGallery('wyrok_kordys')} title="Zobacz skan wyroku" className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> <strong>Jarosława Kordysa</strong> pojawia się postać świadka <strong>Bartosza B.</strong>
+              W obszernym i publicznie dostępnym uzasadnieniu <button onClick={() => openGallery('wyrok_kordys')} title="Zobacz skan wyroku" className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> Jarosława Kordysa pojawia się postać świadka Bartosza B.
             </p>
             
             <p>
@@ -203,13 +203,13 @@ export default function Home() {
             </p>
 
             <CaseFile title="Zeznania świadka B.">
-             <strong> &quot;Świadek B.</strong> odnośnie osoby oskarżonego [<strong>Jarosława Kordysa</strong>] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii&quot;.
+              &quot;Świadek B. odnośnie osoby oskarżonego [Jarosława Kordysa] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii&quot;.
               <br/><br/>
-              <strong>&quot;Świadek   B.</strong> potwierdził, że i on sam w przeszłości prowadził warsztaty&quot;, a obecnie sam &quot;jest przedmiotem dochodzenia policji w Krnowie właśnie z powodu ceremonii&quot;.
+              &quot;Świadek B. potwierdził, że i on sam w przeszłości prowadził warsztaty&quot;, a obecnie sam &quot;jest przedmiotem dochodzenia policji w Krnowie właśnie z powodu ceremonii&quot;.
             </CaseFile>
 
             <p>
-              Akta ujawniają również skalę zarzutów wobec <strong>Bartosza B.</strong>:
+              Akta ujawniają również skalę zarzutów wobec Bartosza B.:
             </p>
 
             <CaseFile title="Zarzuty wobec Bartosza B.">
@@ -221,9 +221,9 @@ export default function Home() {
             </p>
 
             <CaseFile title="Własność nieruchomości">
-              &quot;(...) budynek rodzinny w miejscowości <strong>Janov</strong> (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy&quot;
+              &quot;(...) budynek rodzinny w miejscowości Janov (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy&quot;
               <br/><br/>
-              &quot;Świadek [<strong>Bartosz B.</strong>] potwierdził, że w <strong>Janovie</strong> jest właścicielem jednej dziesiątej nieruchomości&quot;.
+              &quot;Świadek [Bartosz B.] potwierdził, że w Janovie jest właścicielem jednej dziesiątej nieruchomości&quot;.
             </CaseFile>
 
             <p>
@@ -231,11 +231,11 @@ export default function Home() {
             </p>
 
             <CaseFile title="Ustalenia Sądu">
-              &quot;...w odniesieniu do nieruchomości będących współwłasnością <strong>Bartosza B.</strong> i <strong>Michała D. K.</strong>&quot;.
+              &quot;...w odniesieniu do nieruchomości będących współwłasnością Bartosza B. i Michała D. K.&quot;.
             </CaseFile>
 
             <p>
-              W <strong>Czechach</strong> księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <button onClick={() => openGallery('janov')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">działkę w <strong>Janovie</strong></button> i za niewielką opłatą pobrać jej pełną historię.
+              W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <button onClick={() => openGallery('janov')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">działkę w Janovie</button> i za niewielką opłatą pobrać jej pełną historię.
             </p>
             
             <LocationStamp 
@@ -249,31 +249,31 @@ export default function Home() {
             <p>
             Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
                <br/>
-               <strong>Bartosz Badowski (10%)</strong>
+               Bartosz Badowski (10%)
                <br/>
-               <strong className="text-stone-900 underline decoration-red-600 decoration-4 underline-offset-4">Michał Dawid Kiciński (90%)</strong>
+               <span className="bg-yellow-200/80 px-1 font-bold text-stone-900 box-decoration-clone">Michał Dawid Kiciński (90%)</span>
             </p>
 
             <p>
-              Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie &quot;Michal D. K.&quot;. <span className="bg-yellow-200 px-1 font-bold text-stone-900 shadow-sm">Wspólnikiem szamana był twórca &quot;Wiedźmina&quot; – jeden z najbogatszych Polaków.</span>
+              Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie &quot;Michal D. K.&quot;. Wspólnikiem szamana był twórca &quot;Wiedźmina&quot; – jeden z najbogatszych Polaków.
             </p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Na podsłuchu</h2>
 
             <p>
-              Przełom w sprawie organizatorów ayahuaskowych ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon <strong>Kordysa</strong> był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy <strong>Badowskim</strong> i <strong>Kordysem</strong>.
+              Przełom w sprawie organizatorów ayahuaskowych ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysem.
             </p>
 
             <p>
-              <strong>Kordys</strong> zadzwonił do <strong>Badowskiego</strong> wyraźnie zaniepokojony wieściami, które do niego dotarły. Bał się, że tragedia, o której huczało w kuluarach, może zniszczyć ich imperium. Sąd w uzasadnieniu wyroku precyzyjnie rekonstruuje ten moment:
+              Kordys zadzwonił do Badowskiego wyraźnie zaniepokojony wieściami, które do niego dotarły. Bał się, że tragedia, o której huczało w kuluarach, może zniszczyć ich imperium. Sąd w uzasadnieniu wyroku precyzyjnie rekonstruuje ten moment:
             </p>
 
             <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" type="transcript">
-              &quot;oskarżony [<strong>Jarosław Kordys</strong>] omawia z&nbsp;B., że dotarła do niego informacja, że w obiekcie w <strong>Janovie</strong> zmarła jakaś kobieta&quot;.
+              &quot;oskarżony [Jarosława Kordysa] omawia z&nbsp;B., że dotarła do niego informacja, że w obiekcie w Janovie zmarła jakaś kobieta&quot;.
             </CaseFile>
 
             <p>
-              W rozmowie pojawia się też wątek zagrożenia ze strony osoby trzeciej – mężczyźni omawiają szantażystę, który chce iść na policję. <strong>Kordys</strong> wprost pyta wspólnika:
+              W rozmowie pojawia się też wątek zagrożenia ze strony osoby trzeciej – mężczyźni omawiają szantażystę, który chce iść na policję. Kordys wprost pyta wspólnika:
             </p>
 
             <CaseFile title="Pytanie Kordysa" type="transcript">
@@ -281,7 +281,7 @@ export default function Home() {
             </CaseFile>
 
             <p>
-              Odpowiedź na to pytanie znajduje się w aktach sprawy i nie pozostawia złudzeń co do intencji rozmówców. W uzasadnieniu wyroku <strong>Kordysa</strong> czytamy:
+              Odpowiedź na to pytanie znajduje się w aktach sprawy i nie pozostawia złudzeń co do intencji rozmówców. W uzasadnieniu wyroku Kordysa czytamy:
             </p>
 
             <div className="my-8 pl-6 border-l-4 border-stone-900 font-serif italic text-xl text-stone-800">
@@ -305,7 +305,7 @@ export default function Home() {
             </p>
 
             <p>
-              Zaledwie dwa dni po tym telefonie, 26.08.2020 czescy policjanci weszli do posiadłości w <strong>Janovie</strong>. Efekty rewizji opisano w wyroku <strong>Kordysa</strong>:
+              Zaledwie dwa dni po tym telefonie, 26.08.2020 czescy policjanci weszli do posiadłości w Janovie. Efekty rewizji opisano w wyroku Kordysa:
             </p>
 
             <CaseFile title="Protokół rewizji">
@@ -313,13 +313,13 @@ export default function Home() {
             </CaseFile>
 
             <p>
-              Podczas policyjnej interwencji zidentyfikowano tam 15 obywateli <strong>Polski</strong>, którzy mieli brać udział w ceremonii. Wśród nich, stali bywalcy i bliscy znajomi <strong>Badowskiego</strong> – <strong>Krzysztof Stefanek</strong> i <strong>Lena Drzewińska</strong>, których obecność w momencie wkroczenia służb ma znaczenie w kontekście późniejszej ich roli w tej historii.
+              Podczas policyjnej interwencji zidentyfikowano tam 15 obywateli Polski, którzy mieli brać udział w ceremonii. Wśród nich, stali bywalcy i bliscy znajomi Badowskiego – <strong>Krzysztof Stefanek</strong> i <strong>Lena Drzewińska</strong>, których obecność w momencie wkroczenia służb ma znaczenie w kontekście późniejszej ich roli w tej historii.
             </p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cena wolności</h2>
 
             <p>
-              Kiedy 26 sierpnia 2020 roku czeska policja weszła do posiadłości w <strong>Janovie</strong>, należącej do <strong>Bartosza Badowskiego</strong> i miliardera <strong>Michała Kicińskiego</strong>, <strong>Jarosław Kordys</strong> w <strong>Hermanovicach</strong> wciąż czuł się bezpiecznie. Nie wiedział jeszcze, że zegar zaczął odliczać czas do jego własnej katastrofy. Zaledwie 7 tygodni po cichym nalocie na <strong>Badowskiego</strong> policja zapukała do <strong>Kordysów</strong>.
+              Kiedy 26 sierpnia 2020 roku czeska policja weszła do posiadłości w Janovie, należącej do Bartosza Badowskiego i miliardera Michała Kicińskiego, Jarosław Kordys w Hermanovicach wciąż czuł się bezpiecznie. Nie wiedział jeszcze, że zegar zaczął odliczać czas do jego własnej katastrofy. Zaledwie 7 tygodni po cichym nalocie na Badowskiego policja zapukała do Kordysów.
             </p>
 
             <p>
@@ -334,14 +334,13 @@ export default function Home() {
             </div>
              <div className="mt-1 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
                  <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Operacyjny:</span>
-                 Nagranie z policyjnego nalotu na ośrodek w <strong>Hermanovicach</strong> (15.10.2020)
+                 Nagranie z policyjnego nalotu na ośrodek w Hermanovicach (15.10.2020)
               </div>
 
             <p>
               Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym:
             </p>
 
-            {/* POPRAWIONA NOTA PRAWNA (WLANIE KOMPONENTU DO PAGE.TSX DLA LEPSZEJ KONTROLI STYLU) */}
             <div className="my-12 flex gap-4 p-5 bg-blue-50/50 border-l-4 border-blue-900/80 rounded-r-lg shadow-sm">
               <Scale className="w-8 h-8 text-blue-900/80 shrink-0 mt-1" />
               <div>
@@ -353,19 +352,19 @@ export default function Home() {
             </div>
 
             <p>
-              <strong>Bartosz &quot;Badi&quot; Badowski</strong>, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił &quot;kupić&quot; sobie wolność.
+              Bartosz &quot;Badi&quot; Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił &quot;kupić&quot; sobie wolność.
             </p>
 
             <p>
-              Ugoda pozwoliła na zamknięcie jego teczki bez wywoływania świadków, co w praktyce oznaczało, że mechanizmy działania janovskiego ośrodka nigdy nie wybrzmiały echem w publicznej debacie, chroniąc <strong>Badowskiego</strong> przed krzyżowym ogniem pytań i zeznaniami, które mogłyby pogrążyć także jego cichego wspólnika.
+              Ugoda pozwoliła na zamknięcie jego teczki bez wywoływania świadków, co w praktyce oznaczało, że mechanizmy działania janovskiego ośrodka nigdy nie wybrzmiały echem w publicznej debacie, chroniąc Badowskiego przed krzyżowym ogniem pytań i zeznaniami, które mogłyby pogrążyć także jego cichego wspólnika.
             </p>
 
             <p>
-              Cena wolności <strong>Badowskiego</strong> okazała się być wysoka dla jego kolegi z branży. Zeznania <strong> &quot;Badiego&quot; </strong> były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak w sprawie <strong>Kordysów</strong>.
+              Cena wolności Badowskiego okazała się być wysoka dla jego kolegi z branży. Zeznania &quot;Badiego&quot; były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak w sprawie Kordysów.
             </p>
 
             <p>
-               Na mocy <button onClick={() => openGallery('wyrok_badi')} title="Zobacz wyrok Bartosza B." className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> z dnia 2 listopada 2021 roku <strong>Bartosz Badowski</strong> został uznany winnym popełnienia &quot;zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi&quot;.
+               Na mocy <button onClick={() => openGallery('wyrok_badi')} title="Zobacz wyrok Bartosza B." className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia &quot;zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi&quot;.
             </p>
             
             <p>
@@ -375,29 +374,29 @@ export default function Home() {
             <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
               &quot;co najmniej od bliżej nieustalonej daty w 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne&quot;
               <br/><br/>
-              &quot;udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. <strong>ayahuascę</strong> zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)&quot;
+              &quot;udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. ayahuascę zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)&quot;
               <br/><br/>
               &quot;przechowywał łącznie 1902,79 grama materiału roślinnego (...), który zawierał łącznie 37,24 grama substancji czynnej dimetylotryptaminy (DMT) oraz 92,29 grama tzw. narkotyku marihuany&quot;.
             </CaseFile>
 
             <p>
-              Podczas, gdy <strong>Jarosław Kordys</strong> został skazany na 8,5 roku pozbawienia wolności <strong>Bartosz Badowski</strong>, którego sprawa dotyczyła tego samego procederu, tych samych substancji, regionu i czasu trwania działalności, dzięki ugodzie i współpracy z wymiarem sprawiedliwości, zakończył sprawę wyrokiem w zawieszeniu.
+              Podczas, gdy Jarosław Kordys został skazany na 8,5 roku pozbawienia wolności Bartosz Badowski, którego sprawa dotyczyła tego samego procederu, tych samych substancji, regionu i czasu trwania działalności, dzięki ugodzie i współpracy z wymiarem sprawiedliwości, zakończył sprawę wyrokiem w zawieszeniu.
             </p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cisza po burzy</h2>
 
             <p>
-              Choć <strong>Badowski</strong> zaprzestał prowadzenia działalności szamańskiej, posiadłość w <strong>Janovie</strong> nie opustoszała – zamieszkali z nim wspomniani wcześniej <strong>Krzysztof Stefanek</strong> i <strong>Magdalena Drzewińska</strong>. Ich obecność u boku <strong> &quot;Badiego&quot; </strong>  w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
+              Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku &quot;Badiego&quot; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
             </p>
 
             <p>
-              Będąc tak blisko <strong>Badowskiego</strong>, doskonale znali mroczną tajemnicę śmierci <strong>Ilony</strong>. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się  o &quot;ciągłość dostaw&quot;, dowodzi, że w pełni akceptowali reguły zmowy milczenia.
+              Będąc tak blisko Badowskiego, doskonale znali mroczną tajemnicę śmierci Ilony. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się  o &quot;ciągłość dostaw&quot;, dowodzi, że w pełni akceptowali reguły zmowy milczenia.
             </p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Kiciński</h2>
 
             <p>
-              W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika. <strong>Michał Kiciński</strong> to nie jest postać, która o <strong>ayahuasce</strong> jedynie &quot;słyszała&quot; – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla &quot;Focusa&quot;, &quot;Newsweeka&quot;) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. <strong>Kiciński</strong> publicznie opowiada o lekcjach pokory, jakie dała mu &quot;medycyna&quot;, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera &quot;nową rzeczywistość&quot;.
+              W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika. Michał Kiciński to nie jest postać, która o ayahuasce jedynie &quot;słyszała&quot; – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla &quot;Focusa&quot;, &quot;Newsweeka&quot;) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu &quot;medycyna&quot;, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera &quot;nową rzeczywistość&quot;.
             </p>
 
             <PullQuote 
@@ -409,7 +408,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">&quot;Błąd z Badim&quot;</h2>
 
             <p>
-               <strong>Michała Kiciński</strong> wiedział o <strong>Ilonie</strong>. Jego konfrontacja z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć &quot;pobytu w <strong>Janowie</strong>&quot;.
+               Michała Kiciński wiedział o Ilonie. Jego konfrontacja z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć &quot;pobytu w Janovie&quot;.
             </p>
 
             <div className="my-8 flex flex-col items-center">
@@ -433,7 +432,7 @@ export default function Home() {
             </CaseFile>
 
             <p>
-              Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w <strong>Komendzie Rejonowej Policji Warszawa II</strong> . W protokole <strong>Kiciński</strong> przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
+              Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
             </p>
 
             <CaseFile title="Zeznanie do protokołu">
@@ -441,7 +440,7 @@ export default function Home() {
             </CaseFile>
 
             <p>
-              Gdy w toku czynności padło kluczowe pytanie o jego własny udział w ceremoniach <strong>ayahuaski</strong> w <strong>Janovie</strong>, odpowiedź była lakoniczna:
+              Gdy w toku czynności padło kluczowe pytanie o jego własny udział w ceremoniach ayahuaski w Janovie, odpowiedź była lakoniczna:
             </p>
 
             <CaseFile title="Odpowiedź na pytanie o udział">
@@ -449,19 +448,19 @@ export default function Home() {
             </CaseFile>
 
             <p>
-              W kontekście złożonych zeznań warto zauważyć, że miliarder jest właścicielem luksusowego ośrodka <strong>Munay Sonqo</strong> w <strong>Peru</strong>, o którym wielokrotnie wspominał w wywiadach.
+              W kontekście złożonych zeznań warto zauważyć, że miliarder jest właścicielem luksusowego ośrodka Munay Sonqo w Peru, o którym wielokrotnie wspominał w wywiadach.
             </p>
             
             <p>
-              W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z <strong>ayahuascą</strong>. Ośrodek <strong>Kicińskiego</strong> oferował tam w pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które w <strong>Czechach</strong> są zakazane, co przez lata było wprost eksponowane na stronie internetowej.
+              W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego oferował tam w pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które w Czechach są zakazane, co przez lata było wprost eksponowane na stronie internetowej.
             </p>
 
             <p>
-              Fakt, że <strong>Kiciński</strong> w momencie przesłuchania zarządzał legalnym biznesem <strong>ayahuaskowym</strong> w <strong>Ameryce Południowej</strong>, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalnści w <strong>Janovie</strong>. Co znamienne, niedługo po wizycie na komendzie w <strong>Warszawie</strong>, oferta ceremonii &quot;świętych roślin&quot; zniknęła z oficjalnej witryny peruwiańskiego kurortu. Ślad po niej zachowały jednak cyfrowe archiwa Wayback Machine.
+              Fakt, że Kiciński w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w Ameryce Południowej, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalnści w Janovie. Co znamienne, niedługo po wizycie na komendzie w Warszawie, oferta ceremonii &quot;świętych roślin&quot; zniknęła z oficjalnej witryny peruwiańskiego kurortu. Ślad po niej zachowały jednak cyfrowe archiwa Wayback Machine.
             </p>
 
             <p>
-              Co na to <strong>Bartosz Badowski</strong>?
+              Co na to Bartosz Badowski?
             </p>
 
             <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
@@ -475,7 +474,7 @@ export default function Home() {
             </p>
 
             <p>
-              <strong>Stefanek</strong> wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt &quot;znalazł się w jednych rękach&quot;. Kluczowy moment tej opowieści <strong>Stefanek</strong> datuje z niezwykłą precyzją:
+              Stefanek wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt &quot;znalazł się w jednych rękach&quot;. Kluczowy moment tej opowieści Stefanek datuje z niezwykłą precyzją:
             </p>
 
             <CaseFile title="Wypowiedź K. Stefanka">
@@ -483,7 +482,7 @@ export default function Home() {
             </CaseFile>
 
             <p>
-              <strong>Stefanek</strong> przedstawia to jako efekt &quot;researchu&quot; darczyńcy, który rzekomo urzekła wizja działalności non-profit.
+              Stefanek przedstawia to jako efekt &quot;researchu&quot; darczyńcy, który rzekomo urzekła wizja działalności non-profit.
             </p>
 
             <div className="my-6 w-full rounded-sm overflow-hidden shadow-md">
@@ -506,14 +505,14 @@ export default function Home() {
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
-                  <strong>21 września 2023 r.</strong> – <strong>Michał Kiciński</strong> odbiera wezwanie na przesłuchanie w sprawie <strong>Janova</strong>.
+                  <strong>21 września 2023 r.</strong> – Michał Kiciński odbiera wezwanie na przesłuchanie w sprawie Janova.
                 </div>
               </li>
               
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
-                  <strong>3 października 2023 r.</strong> – Na tydzień przed wizytą na komendzie odkupuje od <strong>Bartosza Badowskiego</strong> jego 10% udziałów w nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
+                  <strong>3 października 2023 r.</strong> – Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów w nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
                 </div>
               </li>
               
@@ -528,20 +527,20 @@ export default function Home() {
                 <Calendar className="w-5 h-5 text-orange-600 shrink-0 mt-3" />
                 <div className="bg-orange-50 border border-orange-200 p-4 rounded-sm shadow-sm w-full relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
-                  <span className="font-bold text-stone-900">23 października 2023 r.</span> – Zaledwie 12 dni po kłopotliwym przesłuchaniu, gdy formalności własnościowe z Badim są już dopięte, następuje telefon do <strong>Stefanka</strong> z propozycją oddania majątku wartego miliony za darmo.
+                  <span className="font-bold text-stone-900">23 października 2023 r.</span> – Zaledwie 12 dni po kłopotliwym przesłuchaniu, gdy formalności własnościowe z Badim są już dopięte, następuje telefon do Stefanka z propozycją oddania majątku wartego miliony za darmo.
                 </div>
               </li>
 
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
-                  <strong>21 grudnia 2023 r.</strong> – Finał operacji. <strong>Kiciński</strong> formalnie przekazuje <strong>Janov</strong> w formie darowizny. Nieruchomość trafia do stowarzyszenia &quot;non-profit&quot; – fasadowej organizacji &quot;krzak&quot;, zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
+                  <strong>21 grudnia 2023 r.</strong> – Finał operacji. Kiciński formalnie przekazuje Janov w formie darowizny. Nieruchomość trafia do stowarzyszenia &quot;non-profit&quot; – fasadowej organizacji &quot;krzak&quot;, zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
                 </div>
               </li>
             </ul>
 
             <p>
-              Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong>Krzysztof Stefanek</strong>, który w filmie mówi o &quot;odwróconej logice&quot; i pięknie wolontariatu, i jego konkubina <strong>Magdalena Drzewińska</strong> w rzeczywistości doskonale znali mroczną historię <strong>Janova</strong> i tajemnicę śmierci <strong>Ilony</strong>. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
+              Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong>Krzysztof Stefanek</strong>, który w filmie mówi o &quot;odwróconej logice&quot; i pięknie wolontariatu, i jego konkubina <strong>Magdalena Drzewińska</strong> w rzeczywistości doskonale znali mroczną historię Janova i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
             </p>
 
             <TransactionStamp 
@@ -551,7 +550,7 @@ export default function Home() {
             />
 
             <p>
-              Ostatecznie strategia okazała się skuteczna. Śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &quot;stowarzyszeniu&quot;. <strong>Kiciński</strong> pozostał anonimowym &quot;filantropem&quot;, a <strong>Stefanek</strong> – opiekunem nowej, &quot;czystej&quot; osady.
+              Ostatecznie strategia okazała się skuteczna. Śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &quot;stowarzyszeniu&quot;. Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, &quot;czystej&quot; osady.
             </p>
 
             <p>
@@ -561,12 +560,12 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Nýdek</h2>
 
             <p>
-              Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od <strong>Janova</strong>, w miejscowości <strong>Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.
+              Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janova, w miejscowości <strong>Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.
             </p>
 
              
             <p>
-              Relacje świadków wskazują, że w <button onClick={() => openGallery('nydek')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">posiadłości w <strong>Nýdku</strong></button> odbywały się regularne ceremonie o charakterze zbliżonym do tych u <strong>Kordysów</strong> i <strong>Badowskiego</strong>, prowadzone przez <strong>Piotra &quot;Bonawenturę&quot; Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu &quot;Wayback Machine&quot; zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
+              Relacje świadków wskazują, że w <button onClick={() => openGallery('nydek')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">posiadłości w Nýdku</button> odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong>Piotra &quot;Bonawenturę&quot; Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu &quot;Wayback Machine&quot; zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
             </p>
 
             <p>
@@ -574,7 +573,7 @@ export default function Home() {
             </p>
 
             <p>
-              Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej szamańskiej świątyni – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za gamingowym gigantem, <strong>Marcin Iwiński</strong>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder.
+              Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej szamańskiej świątyni – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za gamingowym gigantem, <span className="bg-yellow-200/80 px-1 font-bold text-stone-900 box-decoration-clone">Marcin Iwiński</span>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder.
             </p>
             
 
@@ -587,33 +586,32 @@ export default function Home() {
             />
 
             <p>
-              <span className="bg-yellow-200 px-1 font-bold text-stone-900 shadow-sm">Oznacza to, że nie jeden lecz obaj legendarni założyciele <strong>CD Projekt</strong>, na czeskim pograniczu posiadali nieruchomosci, w których odpłatnie oferowano te same nielegalne substancje.</span>
+              <span className="bg-yellow-200 px-1 font-bold text-stone-900 shadow-sm">Oznacza to, że nie jeden lecz obaj legendarni założyciele CD Projekt, na czeskim pograniczu posiadali nieruchomosci, w których odpłatnie oferowano te same nielegalne substancje.</span>
             </p>
 
             <p>
-              Jeszcze bardziej zastanawiające jest to, co stało się z tą nieruchomością w momencie zagrożenia. Gdy 15.10.2020 roku aresztowano <strong>Kordysa</strong>, nad środowiskiem zawisło widmo policyjnych nalotów. Dokumenty urzędowe odsłaniają niepokojącą zbieżność dat:
+              Jeszcze bardziej zastanawiające jest to, co stało się z tą nieruchomością w momencie zagrożenia. Gdy 15.10.2020 roku aresztowano Kordysa, nad środowiskiem zawisło widmo policyjnych nalotów. Dokumenty urzędowe odsłaniają niepokojącą zbieżność dat:
             </p>
 
-            <ul className="list-none space-y-4 my-8 font-mono text-sm border-l-2 border-stone-300 pl-4">
+            {/* DRUGIE KALENDARIUM: TEŻ ZWIĘKSZONE ODSTĘPY */}
+            <ul className="list-none space-y-12 my-8 font-mono text-sm border-l-2 border-stone-300 pl-4">
                <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
-                  <strong>15 października 2020 r.</strong> – Policyjny szturm na ośrodek <strong>Kordysów</strong>. W środowisku wybucha panika.
+                  <strong>15 października 2020 r.</strong> – Policyjny szturm na ośrodek Kordysów. W środowisku wybucha panika.
                 </div>
               </li>
-              <li className="flex items-center justify-center text-stone-400">
-                &darr;
-              </li>
+              
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
-                  <strong>15 czerwca 2021 r.</strong> – <strong>Marcin Iwiński</strong> sprzedaje nieruchomości w <strong>Nýdku</strong>.
+                  <strong>15 czerwca 2021 r.</strong> – Marcin Iwiński sprzedaje nieruchomości w Nýdku.
                 </div>
               </li>
             </ul>
 
             <p>
-              Nabywcą luksusowej posiadłości nie został inny inwestor, lecz sam <strong>Piotr  Tracz</strong> – ten sam człowiek, który wcześniej pełnił tam rolę szamana.
+              Nabywcą luksusowej posiadłości nie został inny inwestor, lecz sam Piotr Tracz – ten sam człowiek, który wcześniej pełnił tam rolę szamana.
             </p>
 
             <TransactionStamp 
@@ -623,13 +621,13 @@ export default function Home() {
             />
 
             <p>
-              Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z &quot;darowizną&quot; <strong>Kicińskiego</strong> w <strong>Janovie</strong> pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
+              Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z &quot;darowizną&quot; Kicińskiego w Janovie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
             </p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Sprawiedliwość na sprzedaż?</h2>
 
             <p>
-              Historia <strong>Hermanovic</strong>, <strong>Janova</strong> i <strong>Nýdka</strong> to opowieść o dwóch równoległych światach. W jednym – za kraty czeskich więzień – trafiają szamani, których nazwiska stają się synonimem skandalu. W drugim – na szczytach list Forbesa – trwają ludzie, którzy tę infrastrukturę sfinansowali.
+              Historia Hermanovic, Janova i Nýdka to opowieść o dwóch równoległych światach. W jednym – za kraty czeskich więzień – trafiają szamani, których nazwiska stają się synonimem skandalu. W drugim – na szczytach list Forbesa – trwają ludzie, którzy tę infrastrukturę sfinansowali.
             </p>
 
             <p>
