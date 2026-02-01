@@ -177,7 +177,7 @@ export default function Home() {
             prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-400 hover:prose-a:bg-stone-100 transition-colors">
             
             <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed">
-              W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – <strong>ayahuaskę</strong>.
+              W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
             </p>
 
             <p>
@@ -195,7 +195,7 @@ export default function Home() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Świadek B.</h2>
 
             <p>
-              W obszernym i publicznie dostępnym uzasadnieniu <button onClick={() => openGallery('wyrok_kordys')} title="Zobacz skan wyroku" className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> <strong>Jarosława Kordysa</strong> pojawia się postać świadka <strong>Bartosza B.</strong>
+              W obszernym i publicznie dostępnym uzasadnieniu <button onClick={() => openGallery('wyrok_kordys')} title="Zobacz skan wyroku" className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</button> Jarosława Kordysa pojawia się postać świadka Bartosza B.
             </p>
             
             <p>
@@ -203,9 +203,9 @@ export default function Home() {
             </p>
 
             <CaseFile title="Zeznania świadka B.">
-             <strong> &quot;Świadek B.</strong> odnośnie osoby oskarżonego [<strong>Jarosława Kordysa</strong>] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii&quot;.
+              &quot;Świadek B. odnośnie osoby oskarżonego [Jarosława Kordysa] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii&quot;.
               <br/><br/>
-              <strong>&quot;Świadek B.</strong> potwierdził, że i on sam w przeszłości prowadził warsztaty&quot;, a obecnie sam &quot;jest przedmiotem dochodzenia policji w Krnowie właśnie z powodu ceremonii&quot;.
+              &quot;Świadek B. potwierdził, że i on sam w przeszłości prowadził warsztaty&quot;, a obecnie sam &quot;jest przedmiotem dochodzenia policji w Krnowie właśnie z powodu ceremonii&quot;.
             </CaseFile>
 
             <p>
@@ -221,9 +221,9 @@ export default function Home() {
             </p>
 
             <CaseFile title="Własność nieruchomości">
-              &quot;(...) budynek rodzinny w miejscowości <strong>Janov</strong> (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy&quot;
+              &quot;(...) budynek rodzinny w miejscowości Janov (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy&quot;
               <br/><br/>
-              &quot;Świadek [<strong>Bartosz B.</strong>] potwierdził, że w <strong>Janovie</strong> jest właścicielem jednej dziesiątej nieruchomości&quot;.
+              &quot;Świadek [<strong>Bartosz B.</strong>] potwierdził, że w Janovie jest właścicielem jednej dziesiątej nieruchomości&quot;.
             </CaseFile>
 
             <p>
@@ -249,7 +249,7 @@ export default function Home() {
             <p>
             Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
                <br/>
-               <strong>Bartosz Badowski</strong> (10%)
+               Bartosz Badowski (10%)
                <br/>
                <span className="bg-yellow-200/80 px-1 font-bold text-stone-900 box-decoration-clone">Michał Dawid Kiciński (90%)</span>
             </p>
@@ -269,7 +269,7 @@ export default function Home() {
             </p>
 
             <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" type="transcript">
-              &quot;oskarżony J. K. omawia z B., że dotarła do niego informacja, że w obiekcie w <strong>Janovie</strong> zmarła jakaś kobieta&quot;.
+              &quot;oskarżony J. K. omawia z B., że dotarła do niego informacja, że w obiekcie w Janovie zmarła jakaś kobieta&quot;.
             </CaseFile>
 
             <p>
@@ -326,7 +326,7 @@ export default function Home() {
               15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
             </p>
 
-            <div className="my-12 w-full rounded-sm overflow-hidden shadow-md">
+            <div className="my-6 w-full rounded-sm overflow-hidden shadow-md">
                <ArticleVideoPlayer 
                   src={`${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`} 
                   poster=""
@@ -346,7 +346,7 @@ export default function Home() {
             </LegalNote>
 
             <p>
-              <strong>Bartosz &quot;Badi&quot; Badowski</strong>, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił &quot;kupić&quot; sobie wolność.
+              Bartosz &quot;Badi&quot; Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił &quot;kupić&quot; sobie wolność.
             </p>
 
             <p>
@@ -368,7 +368,7 @@ export default function Home() {
             <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
               &quot;co najmniej od bliżej nieustalonej daty w 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne&quot;
               <br/><br/>
-              &quot;udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. <strong>ayahuascę</strong> zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)&quot;
+              &quot;udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. ayahuascę zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)&quot;
               <br/><br/>
               &quot;przechowywał łącznie 1902,79 grama materiału roślinnego (...), który zawierał łącznie 37,24 grama substancji czynnej dimetylotryptaminy (DMT) oraz 92,29 grama tzw. narkotyku marihuany&quot;.
             </CaseFile>
@@ -479,7 +479,7 @@ export default function Home() {
               Stefanek przedstawia to jako efekt &quot;researchu&quot; darczyńcy, który rzekomo urzekła wizja działalności non-profit.
             </p>
 
-            <div className="my-12 w-full rounded-sm overflow-hidden shadow-md">
+            <div className="my-6 w-full rounded-sm overflow-hidden shadow-md">
                    <ArticleVideoPlayer 
                 src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`} 
                 poster=""
@@ -501,26 +501,19 @@ export default function Home() {
                   <strong>21 września 2023 r.</strong> – Michał Kiciński odbiera wezwanie na przesłuchanie w sprawie Janova.
                 </div>
               </li>
-              <li className="flex items-center justify-center text-stone-400">
-                &darr;
-              </li>
+              
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
                   <strong>3 października 2023 r.</strong> – Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów w nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
                 </div>
               </li>
-              <li className="flex items-center justify-center text-stone-400">
-                &darr;
-              </li>
+              
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
                   <strong>11 października 2023 r.</strong> – Miliarder staje przed policją. Do protokołu odmawia zeznań na temat swojej przeszłości w tym miejscu.
                 </div>
-              </li>
-               <li className="flex items-center justify-center text-stone-400">
-                &darr;
               </li>
                
               <li className="flex items-start gap-3">
@@ -531,9 +524,6 @@ export default function Home() {
                 </div>
               </li>
 
-              <li className="flex items-center justify-center text-stone-400">
-                &darr;
-              </li>
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
@@ -603,9 +593,7 @@ export default function Home() {
                   <strong>15 października 2020 r.</strong> – Policyjny szturm na ośrodek Kordysów. W środowisku wybucha panika.
                 </div>
               </li>
-              <li className="flex items-center justify-center text-stone-400">
-                &darr;
-              </li>
+              
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
@@ -644,8 +632,8 @@ export default function Home() {
                </div>
             </div>
 
-            {/* --- SEKCJA: STATUS PRAWNY (ZMODYFIKOWANA TABELA) --- */}
-            <div className="my-12 border-y-2 border-stone-900 py-6">
+            {/* --- SEKCJA: STATUS PRAWNY (POPRAWIONA) --- */}
+            <div className="my-12 border-y-2 border-stone-900 py-8">
                <h3 className="font-sans font-bold text-lg uppercase tracking-widest text-stone-900 mb-6 flex items-center gap-2">
                   <ShieldCheck className="w-5 h-5" />
                   Status Prawny (2025/2026)
@@ -675,8 +663,8 @@ export default function Home() {
                   </div>
                </div>
 
-               {/* ZMODYFIKOWANA STOPKA SEKCJI */}
-               <div className="mt-2 text-xs text-stone-500 font-sans">
+               {/* POPRAWIONA STOPKA SEKCJI */}
+               <div className="mt-6 text-sm text-stone-600 font-sans text-center md:text-left">
                   Postępowania toczą się w Prokuraturze Rejonowej w Częstochowie. Nadzór nad postępowaniami objął Zastępca Prokuratora Okręgowego.
                </div>
             </div>
