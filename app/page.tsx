@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Scale, FileText, Search, MapPin, Calendar, Globe, ShieldCheck, History, Download } from 'lucide-react';
+import { Scale, FileText, Search, User, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, PenTool, Home as HouseIcon, AlertCircle } from 'lucide-react';
 import {
   CaseFile, PullQuote, LocationStamp, TransactionStamp,
   EvidenceAudioModal, ArticleVideoPlayer, GalleryModal,
@@ -12,37 +12,37 @@ import PasswordProtect from './components/PasswordProtect';
 // --- KONFIGURACJA IPFS (DEDYKOWANA BRAMA) ---
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 
-// 1. DOWODY KORDYSA
+// 1. DOWODY KORDYSA (Zdjęcia wyroku 30 T 5/2021)
 const KORDYS_IMAGES_CID = "bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm";
 const KORDYS_IMAGES_URL = `${PINATA_GATEWAY}/${KORDYS_IMAGES_CID}`;
 
-// 2. DOWODY BADIEGO
+// 2. DOWODY BADIEGO (Zdjęcia wyroku 66 T 146/2021)
 const BADI_IMAGES_CID = "bafybeifdgw2zosj6lz2qg3d33aye4bd4vcz3rtrix2jbw3wwjhvxxjrk6q";
 const BADI_IMAGES_URL = `${PINATA_GATEWAY}/${BADI_IMAGES_CID}`;
 
-// 3. DOWODY NYDEK
+// 3. DOWODY NYDEK (Folder ze zdjęciami)
 const NYDEK_IMAGES_CID = "bafybeidabdztfvfa7ycie5q47xfby7jiqtuwt6oddccuujpvjxqzd4ofpa";
 const NYDEK_IMAGES_URL = `${PINATA_GATEWAY}/${NYDEK_IMAGES_CID}`;
 
-// 4. DOWODY JANOV
+// 4. DOWODY JANOV (Folder ze zdjęciami)
 const JANOV_IMAGES_CID = "bafybeia6rid25dw5t46mwmgwu4coa3t6qp34vcno4mcnqxuixplpyfmvly";
 const JANOV_IMAGES_URL = `${PINATA_GATEWAY}/${JANOV_IMAGES_CID}`;
 
-// 5. WIDEO STEFANA
+// 5. WIDEO STEFANA (HLS - Hosting IPFS)
 const VIDEO_CID = "bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u";
 
-// 6. WIDEO Z ARESZTOWANIA
+// 6. WIDEO Z ARESZTOWANIA (HLS - Hosting IPFS)
 const ARREST_VIDEO_CID = "bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy";
 
-// 7. LINKI DO PLIKÓW PDF
+// 7. LINKI DO PLIKÓW PDF (Pełne wyroki na IPFS)
 const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
 const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
 
-// 8. LINKI ZEWNĘTRZNE
+// 8. LINKI ZEWNĘTRZNE (Wayback Machine)
 const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://munaysonqo.com/retreats/";
 
 
-// --- FUNKCJE POMOCNICZE ---
+// --- FUNKCJE POMOCNICZE DO GENEROWANIA ŚCIEŻEK ---
 const generateKordysPages = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
     const pageNumber = String(i + 1).padStart(4, '0');
@@ -177,7 +177,7 @@ export default function Home() {
             prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-400 hover:prose-a:bg-stone-100 transition-colors">
             
             <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed">
-              W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – <strong>ayahuaskę</strong>.
+              W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
             </p>
 
             <p>
@@ -231,7 +231,7 @@ export default function Home() {
             </p>
 
             <CaseFile title="Ustalenia Sądu">
-              &quot;...w odniesieniu do nieruchomości będących współwłasnością Bartosza B. i Michała D. K.&quot;.
+              &quot;...w odniesieniu do nieruchomości będących współwłasnością <strong>Bartosza B.</strong> i <strong>Michała D. K.</strong>&quot;.
             </CaseFile>
 
             <p>
@@ -269,7 +269,7 @@ export default function Home() {
             </p>
 
             <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" type="transcript">
-              &quot;oskarżony [Jarosława Kordysa] omawia z&nbsp;B., że dotarła do niego informacja, że w obiekcie w Janovie zmarła jakaś kobieta&quot;.
+              &quot;oskarżony [Jarosława Kordysa] omawia z&nbsp;B., że dotarła do niego informacja, że w obiekcie w Janovie <span className="underline decoration-red-600 decoration-4 underline-offset-4">zmarła jakaś kobieta</span>&quot;.
             </CaseFile>
 
             <p>
@@ -341,6 +341,7 @@ export default function Home() {
               Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym:
             </p>
 
+            {/* POPRAWIONA NOTA PRAWNA (WLANIE KOMPONENTU DO PAGE.TSX DLA LEPSZEJ KONTROLI STYLU) */}
             <div className="my-12 flex gap-4 p-5 bg-blue-50/50 border-l-4 border-blue-900/80 rounded-r-lg shadow-sm">
               <Scale className="w-8 h-8 text-blue-900/80 shrink-0 mt-1" />
               <div>
@@ -444,7 +445,7 @@ export default function Home() {
             </p>
 
             <CaseFile title="Odpowiedź na pytanie o udział">
-              &quot;nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie odmawiam odpowiedzi&quot;
+              &quot;nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie <span className="underline decoration-stone-900 decoration-4 underline-offset-4 font-bold">odmawiam odpowiedzi</span>&quot;
             </CaseFile>
 
             <p>
@@ -478,7 +479,7 @@ export default function Home() {
             </p>
 
             <CaseFile title="Wypowiedź K. Stefanka">
-              &quot;Ostatecznie 23 października 2023 roku ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie&quot;
+              &quot;Ostatecznie <span className="bg-yellow-200/80 px-1 font-bold box-decoration-clone">23 października 2023 roku</span> ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie&quot;
             </CaseFile>
 
             <p>
@@ -493,7 +494,7 @@ export default function Home() {
             </div>
              <div className="mt-1 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3">
                 <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Wideo:</span>
-                <strong>Krzysztof Stefanek</strong> opowiada o &quot;cudownym&quot; otrzymaniu darowizny (Materiał z 2025 r.)
+                Krzysztof Stefanek opowiada o &quot;cudownym&quot; otrzymaniu darowizny (Materiał z 2025 r.)
               </div>
 
             <p>
