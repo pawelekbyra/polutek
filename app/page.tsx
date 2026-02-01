@@ -756,7 +756,9 @@ export default function Home() {
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: <strong>Janov</strong></h4>
-                      <p className="font-mono text-[10px] text-stone-500 mt-1">LV 127 | Obręb 656976</p>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">
+                        LV 127 | Obręb 656976 <span className="block sm:inline sm:ml-2 text-stone-400">| Koszt: 100 CZK (~17 PLN)</span>
+                      </p>
                     </div>
                     <a 
                       href="#" 
@@ -783,7 +785,9 @@ export default function Home() {
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: <strong>Nýdek</strong></h4>
-                      <p className="font-mono text-[10px] text-stone-500 mt-1">LV 832 | Obręb 708186</p>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">
+                        LV 832 | Obręb 708186 <span className="block sm:inline sm:ml-2 text-stone-400">| Koszt: 100 CZK (~17 PLN)</span>
+                      </p>
                     </div>
                     <a 
                       href="#" 
@@ -810,7 +814,9 @@ export default function Home() {
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Darowizna (<strong>Janov</strong>)</h4>
-                      <p className="font-mono text-[10px] text-stone-500 mt-1">Sygnatura: V-5821/2023</p>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">
+                        Sygnatura: V-5821/2023 <span className="block sm:inline sm:ml-2 text-stone-400">| Koszt: 300 CZK (~52 PLN)</span>
+                      </p>
                     </div>
                     <a 
                       href="#" 
@@ -837,7 +843,9 @@ export default function Home() {
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Sprzedaż (<strong>Nýdek</strong>)</h4>
-                      <p className="font-mono text-[10px] text-stone-500 mt-1">Sygnatura: V-2937/2021</p>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">
+                        Sygnatura: V-2937/2021 <span className="block sm:inline sm:ml-2 text-stone-400">| Koszt: 300 CZK (~52 PLN)</span>
+                      </p>
                     </div>
                     <a 
                       href="#" 
