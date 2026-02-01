@@ -341,11 +341,11 @@ export default function Home() {
               Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym:
             </p>
 
-            {/* ZMODYFIKOWANA NOTA PRAWNA (WLANIE KOMPONENTU DO PAGE.TSX DLA LEPSZEJ KONTROLI STYLU) */}
+            {/* POPRAWIONA NOTA PRAWNA: NORMALNA WIELKOŚĆ, TYLKO POGRUBIONA */}
             <div className="my-12 flex gap-4 p-5 bg-blue-50/50 border-l-4 border-blue-900/80 rounded-r-lg shadow-sm">
               <Scale className="w-8 h-8 text-blue-900/80 shrink-0 mt-1" />
               <div>
-                <strong className="block font-serif text-blue-900 text-2xl mb-2 tracking-tight">Dohoda o vině a trestu</strong>
+                <strong className="block font-serif text-blue-900 text-lg font-bold mb-1">Dohoda o vině a trestu</strong>
                 <div className="text-stone-800 text-lg leading-relaxed">
                   Ugoda o winie i karze. Czeska procedura karna pozwalająca oskarżonemu na dobrowolne poddanie się karze w zamian za łagodniejszy wyrok, bez przeprowadzania pełnego procesu dowodowego i wzywania świadków.
                 </div>
@@ -501,7 +501,8 @@ export default function Home() {
               Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech w pozbywaniu się &quot;gorącego kartofla&quot;:
             </p>
 
-            <ul className="list-none space-y-4 my-8 font-mono text-sm border-l-2 border-stone-300 pl-4">
+            {/* POPRAWIONE KALENDARIUM: WIĘKSZE ODSTĘPY (space-y-12) */}
+            <ul className="list-none space-y-12 my-8 font-mono text-sm border-l-2 border-stone-300 pl-4">
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
@@ -593,7 +594,8 @@ export default function Home() {
               Jeszcze bardziej zastanawiające jest to, co stało się z tą nieruchomością w momencie zagrożenia. Gdy 15.10.2020 roku aresztowano Kordysa, nad środowiskiem zawisło widmo policyjnych nalotów. Dokumenty urzędowe odsłaniają niepokojącą zbieżność dat:
             </p>
 
-            <ul className="list-none space-y-4 my-8 font-mono text-sm border-l-2 border-stone-300 pl-4">
+            {/* DRUGIE KALENDARIUM: TEŻ ZWIĘKSZONE ODSTĘPY */}
+            <ul className="list-none space-y-12 my-8 font-mono text-sm border-l-2 border-stone-300 pl-4">
                <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
