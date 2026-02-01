@@ -326,7 +326,7 @@ export default function Home() {
               15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
             </p>
 
-            <div className="my-12 w-full rounded-sm overflow-hidden shadow-md">
+            <div className="my-6 w-full rounded-sm overflow-hidden shadow-md">
                <ArticleVideoPlayer 
                   src={`${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`} 
                   poster=""
@@ -341,9 +341,16 @@ export default function Home() {
               Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym:
             </p>
 
-            <LegalNote term="Dohoda o vině a trestu">
-              Ugoda o winie i karze. Czeska procedura karna pozwalająca oskarżonemu na dobrowolne poddanie się karze w zamian za łagodniejszy wyrok, bez przeprowadzania pełnego procesu dowodowego i wzywania świadków.
-            </LegalNote>
+            {/* POPRAWIONA NOTA PRAWNA (WLANIE KOMPONENTU DO PAGE.TSX DLA LEPSZEJ KONTROLI STYLU) */}
+            <div className="my-12 flex gap-4 p-5 bg-blue-50/50 border-l-4 border-blue-900/80 rounded-r-lg shadow-sm">
+              <Scale className="w-8 h-8 text-blue-900/80 shrink-0 mt-1" />
+              <div>
+                <strong className="block font-serif text-blue-900 text-lg font-bold mb-1">Dohoda o vině a trestu</strong>
+                <div className="text-stone-800 text-lg leading-relaxed">
+                  Ugoda o winie i karze. Czeska procedura karna pozwalająca oskarżonemu na dobrowolne poddanie się karze w zamian za łagodniejszy wyrok, bez przeprowadzania pełnego procesu dowodowego i wzywania świadków.
+                </div>
+              </div>
+            </div>
 
             <p>
               <strong>Bartosz &quot;Badi&quot; Badowski</strong>, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił &quot;kupić&quot; sobie wolność.
@@ -479,7 +486,7 @@ export default function Home() {
               <strong>Stefanek</strong> przedstawia to jako efekt &quot;researchu&quot; darczyńcy, który rzekomo urzekła wizja działalności non-profit.
             </p>
 
-            <div className="my-12 w-full rounded-sm overflow-hidden shadow-md">
+            <div className="my-6 w-full rounded-sm overflow-hidden shadow-md">
                    <ArticleVideoPlayer 
                 src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`} 
                 poster=""
@@ -494,33 +501,27 @@ export default function Home() {
               Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech w pozbywaniu się &quot;gorącego kartofla&quot;:
             </p>
 
-            <ul className="list-none space-y-4 my-8 font-mono text-sm border-l-2 border-stone-300 pl-4">
+            {/* POPRAWIONE KALENDARIUM: WIĘKSZE ODSTĘPY (space-y-12) */}
+            <ul className="list-none space-y-12 my-8 font-mono text-sm border-l-2 border-stone-300 pl-4">
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
                   <strong>21 września 2023 r.</strong> – <strong>Michał Kiciński</strong> odbiera wezwanie na przesłuchanie w sprawie <strong>Janova</strong>.
                 </div>
               </li>
-              <li className="flex items-center justify-center text-stone-400">
-                &darr;
-              </li>
+              
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
                   <strong>3 października 2023 r.</strong> – Na tydzień przed wizytą na komendzie odkupuje od <strong>Bartosza Badowskiego</strong> jego 10% udziałów w nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
                 </div>
               </li>
-              <li className="flex items-center justify-center text-stone-400">
-                &darr;
-              </li>
+              
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
                   <strong>11 października 2023 r.</strong> – Miliarder staje przed policją. Do protokołu odmawia zeznań na temat swojej przeszłości w tym miejscu.
                 </div>
-              </li>
-               <li className="flex items-center justify-center text-stone-400">
-                &darr;
               </li>
                
               <li className="flex items-start gap-3">
@@ -531,9 +532,6 @@ export default function Home() {
                 </div>
               </li>
 
-              <li className="flex items-center justify-center text-stone-400">
-                &darr;
-              </li>
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
@@ -568,7 +566,7 @@ export default function Home() {
 
              
             <p>
-              Relacje świadków wskazują, że w <button onClick={() => openGallery('nydek')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">posiadłości w <strong>Nýdku</strong></button> odbywały się regularne ceremonie o charakterze zbliżonym do tych u <strong>Kordysów</strong> i <strong>Badowskiego</strong>, prowadzone przez <strong>Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu &quot;Wayback Machine&quot; zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
+              Relacje świadków wskazują, że w <button onClick={() => openGallery('nydek')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">posiadłości w <strong>Nýdku</strong></button> odbywały się regularne ceremonie o charakterze zbliżonym do tych u <strong>Kordysów</strong> i <strong>Badowskiego</strong>, prowadzone przez <strong>Piotra &quot;Bonawenturę&quot; Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu &quot;Wayback Machine&quot; zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
             </p>
 
             <p>
@@ -644,8 +642,8 @@ export default function Home() {
                </div>
             </div>
 
-            {/* --- SEKCJA: STATUS PRAWNY (ZMODYFIKOWANA TABELA) --- */}
-            <div className="my-12 border-y-2 border-stone-900 py-6">
+            {/* --- SEKCJA: STATUS PRAWNY (POPRAWIONA) --- */}
+            <div className="my-12 border-y-2 border-stone-900 py-8">
                <h3 className="font-sans font-bold text-lg uppercase tracking-widest text-stone-900 mb-6 flex items-center gap-2">
                   <ShieldCheck className="w-5 h-5" />
                   Status Prawny (2025/2026)
@@ -675,8 +673,8 @@ export default function Home() {
                   </div>
                </div>
 
-               {/* ZMODYFIKOWANA STOPKA SEKCJI */}
-               <div className="mt-2 text-xs text-stone-500 font-sans">
+               {/* POPRAWIONA STOPKA SEKCJI */}
+               <div className="mt-6 text-sm text-stone-600 font-sans text-center md:text-left">
                   Postępowania toczą się w Prokuraturze Rejonowej w Częstochowie. Nadzór nad postępowaniami objął Zastępca Prokuratora Okręgowego.
                </div>
             </div>
@@ -761,7 +759,9 @@ export default function Home() {
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: <strong>Janov</strong></h4>
-                      <p className="font-mono text-[10px] text-stone-500 mt-1">LV 127 | Obręb 656976</p>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">
+                        LV 127 | Obręb 656976 <span className="block sm:inline sm:ml-2 text-stone-400">| Koszt: 100 CZK (~17 PLN)</span>
+                      </p>
                     </div>
                     <a 
                       href="#" 
@@ -788,7 +788,9 @@ export default function Home() {
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: <strong>Nýdek</strong></h4>
-                      <p className="font-mono text-[10px] text-stone-500 mt-1">LV 832 | Obręb 708186</p>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">
+                        LV 832 | Obręb 708186 <span className="block sm:inline sm:ml-2 text-stone-400">| Koszt: 100 CZK (~17 PLN)</span>
+                      </p>
                     </div>
                     <a 
                       href="#" 
@@ -815,7 +817,9 @@ export default function Home() {
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Darowizna (<strong>Janov</strong>)</h4>
-                      <p className="font-mono text-[10px] text-stone-500 mt-1">Sygnatura: V-5821/2023</p>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">
+                        Sygnatura: V-5821/2023 <span className="block sm:inline sm:ml-2 text-stone-400">| Koszt: 300 CZK (~52 PLN)</span>
+                      </p>
                     </div>
                     <a 
                       href="#" 
@@ -842,7 +846,9 @@ export default function Home() {
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
                       <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Sprzedaż (<strong>Nýdek</strong>)</h4>
-                      <p className="font-mono text-[10px] text-stone-500 mt-1">Sygnatura: V-2937/2021</p>
+                      <p className="font-mono text-[10px] text-stone-500 mt-1">
+                        Sygnatura: V-2937/2021 <span className="block sm:inline sm:ml-2 text-stone-400">| Koszt: 300 CZK (~52 PLN)</span>
+                      </p>
                     </div>
                     <a 
                       href="#" 
