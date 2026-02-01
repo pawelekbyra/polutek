@@ -255,7 +255,7 @@ export default function Home() {
             </p>
 
             <p>
-              Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie &quot;Michal D. K.&quot;. Wspólnikiem szamana był twórca &quot;Wiedźmina&quot; – jeden z najbogatszych Polaków.
+              Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie &quot;Michal D. K.&quot;. <span className="bg-yellow-200 px-1 font-bold text-stone-900 shadow-sm box-decoration-clone">Wspólnikiem szamana był twórca &quot;Wiedźmina&quot; – jeden z najbogatszych Polaków.</span>
             </p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Na podsłuchu</h2>
@@ -341,7 +341,6 @@ export default function Home() {
               Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym:
             </p>
 
-            {/* POPRAWIONA NOTA PRAWNA (WLANIE KOMPONENTU DO PAGE.TSX DLA LEPSZEJ KONTROLI STYLU) */}
             <div className="my-12 flex gap-4 p-5 bg-blue-50/50 border-l-4 border-blue-900/80 rounded-r-lg shadow-sm">
               <Scale className="w-8 h-8 text-blue-900/80 shrink-0 mt-1" />
               <div>
@@ -594,7 +593,6 @@ export default function Home() {
               Jeszcze bardziej zastanawiające jest to, co stało się z tą nieruchomością w momencie zagrożenia. Gdy 15.10.2020 roku aresztowano Kordysa, nad środowiskiem zawisło widmo policyjnych nalotów. Dokumenty urzędowe odsłaniają niepokojącą zbieżność dat:
             </p>
 
-            {/* DRUGIE KALENDARIUM: TEŻ ZWIĘKSZONE ODSTĘPY */}
             <ul className="list-none space-y-12 my-8 font-mono text-sm border-l-2 border-stone-300 pl-4">
                <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
@@ -641,9 +639,9 @@ export default function Home() {
                </div>
             </div>
 
-            {/* --- SEKCJA: STATUS PRAWNY (POPRAWIONA) --- */}
+            {/* --- SEKCJA: STATUS PRAWNY (POPRAWIONA I WYRÓWNANA) --- */}
             <div className="my-12 border-y-2 border-stone-900 py-8">
-               <h3 className="font-sans font-bold text-lg uppercase tracking-widest text-stone-900 mb-6 flex items-center gap-2">
+               <h3 className="font-sans font-bold text-lg uppercase tracking-widest text-stone-900 mb-8 flex items-center gap-2">
                   <ShieldCheck className="w-5 h-5" />
                   Status Prawny (2025/2026)
                </h3>
@@ -672,8 +670,8 @@ export default function Home() {
                   </div>
                </div>
 
-               {/* POPRAWIONA STOPKA SEKCJI */}
-               <div className="mt-6 text-sm text-stone-600 font-sans text-center md:text-left">
+               {/* POPRAWIONA STOPKA SEKCJI - RÓWNY ODSTĘP */}
+               <div className="mt-8 text-sm text-stone-600 font-sans text-center md:text-left">
                   Postępowania toczą się w Prokuraturze Rejonowej w Częstochowie. Nadzór nad postępowaniami objął Zastępca Prokuratora Okręgowego.
                </div>
             </div>
