@@ -522,7 +522,7 @@ export default function Home() {
                   <strong>11 października 2023 r.</strong> – Miliarder staje przed policją. Do protokołu odmawia zeznań na temat swojej przeszłości w tym miejscu.
                 </div>
               </li>
-               
+                
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-orange-600 shrink-0 mt-3" />
                 <div className="bg-orange-50 border border-orange-200 p-4 rounded-sm shadow-sm w-full relative overflow-hidden">
@@ -554,7 +554,7 @@ export default function Home() {
             </p>
 
             <p>
-              Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit <strong>Stowarzyszenie Natury Zew</strong> żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki. A przecież &quot;zadośćuczynienie wszechświatowi&quot; miało  trafić na hospicjum, a nie na &quot;organizację krzak&quot;. 
+              Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit <strong>Stowarzyszenie Natury Zew</strong> żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki. A przecież &quot;zadośćuczynienie wszechświatowi&quot; miało  trafić na hospicjum, a nie na &quot;organizację krzak&quot;.  
             </p>
               
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Nýdek</h2>
@@ -563,7 +563,7 @@ export default function Home() {
               Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janova, w miejscowości <strong>Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.
             </p>
 
-             
+              
             <p>
               Relacje świadków wskazują, że w <button onClick={() => openGallery('nydek')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">posiadłości w Nýdku</button> odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong>Piotra &quot;Bonawenturę&quot; Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu &quot;Wayback Machine&quot; zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
             </p>
@@ -654,7 +654,7 @@ export default function Home() {
                         <span className="block text-xs text-stone-500 mt-1">oraz udzielania środków odurzających</span>
                      </div>
                      <span className="font-mono text-xs font-bold bg-stone-100 px-3 py-1.5 border border-stone-300 text-stone-600 rounded-sm shadow-sm whitespace-nowrap">
-                        PR 3 Ds 125.2024
+                        3013-1.Ds.15.2024
                      </span>
                   </div>
 
@@ -665,7 +665,7 @@ export default function Home() {
                         <span className="block text-xs text-stone-500 mt-1">nieumyślne spowodowanie śmierci</span>
                      </div>
                      <span className="font-mono text-xs font-bold bg-red-50 px-3 py-1.5 border border-red-100 text-red-800 rounded-sm shadow-sm whitespace-nowrap">
-                        PR 3 Ds 124.2024
+                        3013-1.Ds.4.2026
                      </span>
                   </div>
                </div>
