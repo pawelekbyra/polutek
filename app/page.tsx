@@ -917,7 +917,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="font-mono text-sm text-stone-400 hover:text-stone-900 transition-colors underline decoration-double decoration-stone-200"
                 >
-                  kutasinskigate.eth.limo
+                  dziennikarzsledczy.eth.limo
                 </a>
              </div>
           </footer>
