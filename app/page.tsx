@@ -635,7 +635,7 @@ export default function Home() {
 
             <div className="mt-8 mb-4 flex justify-end">
                <div className="text-right">
-                  <span className="block font-bold text-stone-900">Marlow</span>
+                  <span className="block font-bold text-stone-900">Paweł P.</span>
                </div>
             </div>
 
@@ -912,7 +912,7 @@ export default function Home() {
                   Zasoby Niezatapialne (Web3)
                 </p>
                 <a 
-                  href="https://kutasinskigate.eth.limo" 
+                  href="https://dziennikarzsledczy.eth.limo" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="font-mono text-sm text-stone-400 hover:text-stone-900 transition-colors underline decoration-double decoration-stone-200"
