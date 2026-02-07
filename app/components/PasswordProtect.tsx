@@ -37,6 +37,10 @@ const PasswordProtect: FC<PasswordProtectProps> = ({ onUnlock }) => {
       onUnlock('chmurka');
       setError(false);
       setMessage("");
+    } else if (password === "wiadomosci") {
+      onUnlock('news');
+      setError(false);
+      setMessage("");
     } else if (password === oldPassword) {
       setError(false);
       setMessage("Zmienilem haslo. Zapytaj mnie o nowe haslo");

@@ -1,25 +1,62 @@
 "use client";
 
 import React, { useState } from 'react';
+import { ChevronLeft } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import ElixirArticle from './ElixirArticle';
 import StypulkowskaArticle from './StypulkowskaArticle';
 import ChmurkaArticle from './ChmurkaArticle';
+import NewsFeed from './NewsFeed';
 
 export default function Home() {
   const [unlockedArticle, setUnlockedArticle] = useState<string | null>(null);
+  const [isNewsMode, setIsNewsMode] = useState(false);
+
+  const handleUnlock = (id: string) => {
+    if (id === 'news') {
+      setIsNewsMode(true);
+      setUnlockedArticle('news');
+    } else {
+      setUnlockedArticle(id);
+    }
+  };
+
+  const handleBackToNews = () => {
+    setUnlockedArticle('news');
+  };
+
+  if (unlockedArticle === 'news') {
+    return <NewsFeed onUnlock={setUnlockedArticle} />;
+  }
+
+  const renderArticle = (component: React.ReactNode) => {
+    if (isNewsMode) {
+      return (
+        <>
+          <button
+            onClick={handleBackToNews}
+            className="fixed top-4 left-4 z-50 bg-stone-900 text-white px-4 py-2 rounded shadow-lg flex items-center gap-2 hover:bg-stone-800 transition-colors font-sans text-sm font-bold uppercase tracking-wider"
+          >
+            <ChevronLeft className="w-4 h-4" /> Powrót
+          </button>
+          {component}
+        </>
+      );
+    }
+    return component;
+  };
 
   if (unlockedArticle === 'elixir') {
-    return <ElixirArticle />;
+    return renderArticle(<ElixirArticle />);
   }
 
   if (unlockedArticle === 'stypulkowska') {
-    return <StypulkowskaArticle />;
+    return renderArticle(<StypulkowskaArticle />);
   }
 
   if (unlockedArticle === 'chmurka') {
-    return <ChmurkaArticle />;
+    return renderArticle(<ChmurkaArticle />);
   }
 
-  return <PasswordProtect onUnlock={setUnlockedArticle} />;
+  return <PasswordProtect onUnlock={handleUnlock} />;
 }
