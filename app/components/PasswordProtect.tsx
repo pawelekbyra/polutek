@@ -1,21 +1,20 @@
 "use client";
 
-import { useState, type FC, type ReactNode } from "react";
+import { useState, type FC } from "react";
 import { Lock, KeyRound } from "lucide-react";
 
 interface PasswordProtectProps {
-  children: ReactNode;
+  onUnlock: (articleId: string) => void;
 }
 
-const PasswordProtect: FC<PasswordProtectProps> = ({ children }) => {
+const PasswordProtect: FC<PasswordProtectProps> = ({ onUnlock }) => {
   const [password, setPassword] = useState("");
-  const [isUnlocked, setIsUnlocked] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
 
   const oldPassword = "pukpukktotamhipopotam";
-  const newPassword = "ichtroje";
-  const testPassword = "szaman";
+  const elixirPasswords = ["ichtroje", "szaman"];
+  const stypulkowskaPassword = "stypulkowska";
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -25,8 +24,12 @@ const PasswordProtect: FC<PasswordProtectProps> = ({ children }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (password === newPassword || password === testPassword) {
-      setIsUnlocked(true);
+    if (elixirPasswords.includes(password)) {
+      onUnlock('elixir');
+      setError(false);
+      setMessage("");
+    } else if (password === stypulkowskaPassword) {
+      onUnlock('stypulkowska');
       setError(false);
       setMessage("");
     } else if (password === oldPassword) {
@@ -37,10 +40,6 @@ const PasswordProtect: FC<PasswordProtectProps> = ({ children }) => {
       setMessage("");
     }
   };
-
-  if (isUnlocked) {
-    return <>{children}</>;
-  }
 
   return (
     <div className="bg-gray-100 text-gray-800 min-h-screen flex items-center justify-center p-4 font-serif">
