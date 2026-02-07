@@ -15,6 +15,7 @@ const PasswordProtect: FC<PasswordProtectProps> = ({ onUnlock }) => {
   const oldPassword = "pukpukktotamhipopotam";
   const elixirPasswords = ["ichtroje", "szaman"];
   const stypulkowskaPassword = "stypulkowska";
+  const chmurkaPassword = "chmurka";
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -30,6 +31,10 @@ const PasswordProtect: FC<PasswordProtectProps> = ({ onUnlock }) => {
       setMessage("");
     } else if (password === stypulkowskaPassword) {
       onUnlock('stypulkowska');
+      setError(false);
+      setMessage("");
+    } else if (password === chmurkaPassword) {
+      onUnlock('chmurka');
       setError(false);
       setMessage("");
     } else if (password === oldPassword) {
