@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Scale, FileText, Search, ShieldCheck, AlertCircle } from 'lucide-react';
-import { CaseFile, PullQuote } from './components';
+import { CaseFile, PullQuote } from '@/components/ui';
 
 export default function ChmurkaArticle() {
   return (

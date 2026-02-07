@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Scale, FileText, Search, User, Mail, ShieldCheck, AlertCircle } from 'lucide-react';
-import { CaseFile, PullQuote, LegalNote } from './components';
+import { CaseFile, PullQuote, LegalNote } from '@/components/ui';
 
 export default function StypulkowskaArticle() {
   return (

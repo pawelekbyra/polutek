@@ -53,6 +53,11 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      fontFamily: {
+        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui"],
+        serif: ["var(--font-playfair)", "ui-serif", "Georgia"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular"],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
