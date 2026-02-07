@@ -7,7 +7,7 @@ def verify_articles():
         page = browser.new_page()
 
         # Test Stypulkowska
-        print("Navigating to home page...")
+        print("Navigating to home page (Stypulkowska)...")
         try:
             page.goto("http://localhost:3000", timeout=60000)
         except Exception as e:
@@ -38,7 +38,7 @@ def verify_articles():
         print("Screenshot 'verification_stypulkowska.png' taken.")
 
         # Test Elixir
-        print("Navigating to home page...")
+        print("Navigating to home page (Elixir)...")
         page.goto("http://localhost:3000")
 
         print("Entering 'szaman' password...")
@@ -57,6 +57,27 @@ def verify_articles():
 
         page.screenshot(path="verification_elixir.png")
         print("Screenshot 'verification_elixir.png' taken.")
+
+        # Test Chmurka
+        print("Navigating to home page (Chmurka)...")
+        page.goto("http://localhost:3000")
+
+        print("Entering 'chmurka' password...")
+        page.fill('input[type="password"]', 'chmurka')
+        page.click('button[type="submit"]')
+
+        # Wait for content
+        page.wait_for_timeout(2000)
+
+        print("Verifying 'Chmurka' article...")
+        try:
+            expect(page.get_by_text("OGRABIONY ZE SPADKU")).to_be_visible(timeout=5000)
+            print("Verified 'OGRABIONY ZE SPADKU' is visible.")
+        except:
+            print("Failed to find 'OGRABIONY ZE SPADKU'. Taking screenshot.")
+
+        page.screenshot(path="verification_chmurka.png")
+        print("Screenshot 'verification_chmurka.png' taken.")
 
         browser.close()
 
