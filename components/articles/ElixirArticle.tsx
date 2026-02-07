@@ -6,7 +6,7 @@ import {
   CaseFile, PullQuote, LocationStamp, TransactionStamp,
   EvidenceAudioModal, ArticleVideoPlayer, GalleryModal,
   GalleryData
-} from './components';
+} from '@/components/ui';
 
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 
