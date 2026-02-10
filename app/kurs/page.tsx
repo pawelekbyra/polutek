@@ -1,245 +1,292 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Terminal,
   Database,
   Cpu,
   Zap,
   Rocket,
-  ChevronDown,
-  ChevronUp,
+  ChevronRight,
   Code2,
-  Globe,
   ShieldCheck,
   ArrowRight,
-  Sparkles
+  Sparkles,
+  Lock,
+  CheckCircle2,
+  Layers,
+  Globe
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const StepItem = ({ title, description, icon: Icon, stepNumber, isOpen, onClick }: any) => {
-  return (
-    <div className={`border-b border-white/10 transition-all ${isOpen ? 'bg-white/[0.02]' : ''}`}>
-      <button
-        onClick={onClick}
-        className="w-full py-6 px-4 flex items-center justify-between group"
-      >
-        <div className="flex items-center gap-4 text-left">
-          <div className={`w-10 h-10 rounded-lg flex items-center justify-center border transition-all ${isOpen ? 'bg-green-500 border-green-400 text-black' : 'bg-black border-white/10 text-green-500 group-hover:border-green-500/50'}`}>
-            <Icon className="w-5 h-5" />
-          </div>
-          <div>
-            <span className="text-xs font-mono text-green-500/60 uppercase tracking-widest">Krok {stepNumber}</span>
-            <h3 className="text-xl font-bold text-white">{title}</h3>
-          </div>
-        </div>
-        {isOpen ? <ChevronUp className="w-5 h-5 text-gray-500" /> : <ChevronDown className="w-5 h-5 text-gray-500" />}
-      </button>
+// Metadata is handled by the layout or generateMetadata in a server component.
+// Since this is 'use client', we can't export metadata from here.
+// However, the layout.tsx already has generateMetadata that handles SEO based on subdomain.
+// I will ensure layout.tsx is updated if needed, but for now I'll focus on the content.
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden"
+const PasswordGate = ({ onSuccess }: { onSuccess: () => void }) => {
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password.toLowerCase() === 'kurs') {
+      onSuccess();
+      localStorage.setItem('kurs_unlocked', 'true');
+    } else {
+      setError(true);
+      setTimeout(() => setError(false), 2000);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-neutral-950 flex items-center justify-center px-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="max-w-md w-full bg-neutral-900 border border-white/10 p-8 rounded-3xl shadow-2xl"
+      >
+        <div className="w-16 h-16 bg-green-500/10 border border-green-500/20 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+          <Lock className="w-8 h-8 text-green-400" />
+        </div>
+        <h2 className="text-2xl font-bold text-white text-center mb-2">Protokół Zablokowany</h2>
+        <p className="text-gray-400 text-center mb-8 text-sm">Podaj hasło dostępowe, aby odblokować Oficjalny Protokół Architekta 2026.</p>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="relative">
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Hasło..."
+              className={`w-full bg-black border ${error ? 'border-red-500' : 'border-white/10'} rounded-xl py-4 px-5 text-white placeholder:text-gray-600 focus:outline-none focus:border-green-500/50 transition-all`}
+            />
+            {error && <p className="text-red-500 text-xs mt-2 absolute">Nieprawidłowe hasło. Spróbuj ponownie.</p>}
+          </div>
+          <button
+            type="submit"
+            className="w-full py-4 bg-green-500 hover:bg-green-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-green-500/20"
           >
-            <div className="px-4 pb-8 pt-2 pl-16 text-gray-400 leading-relaxed max-w-2xl">
-              {description}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ODBLOKUJ DOSTĘP
+          </button>
+        </form>
+      </motion.div>
     </div>
   );
 };
 
-export default function ProtocolPage() {
-  const [openStep, setOpenStep] = useState(1);
+const FazaCard = ({ title, description, step, icon: Icon }: any) => (
+  <motion.div
+    whileHover={{ y: -5 }}
+    className="bg-neutral-900 border border-white/5 p-8 rounded-3xl hover:border-green-500/30 transition-all group"
+  >
+    <div className="flex items-start justify-between mb-6">
+      <div className="w-12 h-12 bg-black border border-white/10 rounded-2xl flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform">
+        <Icon className="w-6 h-6" />
+      </div>
+      <span className="text-xs font-mono text-white/20 uppercase tracking-widest">Faza 0{step}</span>
+    </div>
+    <h3 className="text-xl font-bold text-white mb-4 group-hover:text-green-400 transition-colors">{title}</h3>
+    <p className="text-gray-400 leading-relaxed text-sm">
+      {description}
+    </p>
+  </motion.div>
+);
 
-  const steps = [
-    {
-      title: "Setup (Zero Terminal)",
-      description: "Zapomnij o instalowaniu Pythona, Node.js czy Dockerów. W 2026 roku Twoim systemem operacyjnym jest przeglądarka i Cursor. Uruchamiamy środowisko w chmurze (Bolt.new), które jest gotowe do pracy w 3 sekundy. Zero błędów konfiguracji, 100% czasu na budowanie.",
-      icon: Terminal,
-    },
-    {
-      title: "The Prompt (Vibe Coding)",
-      description: (
-        <div className="space-y-4">
-          <p>Przestań uczyć się składni. Naucz się logiki i kontekstu. Vibe Coding to umiejętność dyrygowania modelami AI tak, by rozumiały Twoją wizję produktu.</p>
-          <div className="bg-black/50 border border-green-500/20 rounded-lg p-4 font-mono text-sm">
-            <span className="text-green-500">Golden Prompt:</span>
-            <p className="mt-2 text-gray-300">&quot;Jules, stwórz system subskrypcyjny SaaS używając Next.js i Stripe. Użyj architektury komponentowej, zaimplementuj middleware do ochrony tras i przygotuj schemat bazy danych dla użytkowników Premium.&quot;</p>
-          </div>
-        </div>
-      ),
-      icon: Code2,
-    },
-    {
-      title: "Database (Memory)",
-      description: "Twoja aplikacja potrzebuje mózgu. Supabase to Twój backend, który konfigurujesz w języku naturalnym. Tworzymy tabele, relacje i polityki bezpieczeństwa (RLS) bez pisania ani jednej linijki SQL. Twoje dane są bezpieczne, skalowalne i gotowe na tysiące użytkowników.",
-      icon: Database,
-    },
-    {
-      title: "Deployment (Launch)",
-      description: "Zakończyliśmy erę skomplikowanych serwerów. Jedno kliknięcie i Twoja aplikacja ląduje na Vercel. Globalna sieć CDN, automatyczne certyfikaty SSL i podgląd każdej zmiany na żywo. Twój SaaS jest dostępny dla całego świata pod Twoją własną domeną.",
-      icon: Rocket,
+export default function CoursePage() {
+  const [unlocked, setUnlocked] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem('kurs_unlocked') === 'true') {
+      setUnlocked(true);
     }
-  ];
+    setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) return <div className="min-h-screen bg-neutral-950" />;
+
+  if (!unlocked) {
+    return <PasswordGate onSuccess={() => setUnlocked(true)} />;
+  }
 
   return (
-    <div className="min-h-screen bg-[#050505] text-gray-100 font-sans selection:bg-green-500 selection:text-black overflow-x-hidden">
+    <div className="min-h-screen bg-neutral-950 text-gray-100 font-sans selection:bg-green-500 selection:text-black selection:text-black overflow-x-hidden">
 
-      {/* --- BACKGROUND EFFECTS --- */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-purple-900/20 blur-[120px] rounded-full" />
-        <div className="absolute top-[20%] -right-[5%] w-[30%] h-[30%] bg-green-900/10 blur-[100px] rounded-full" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-50 contrast-150" />
-      </div>
-
-      <nav className="relative z-50 border-b border-white/5 bg-black/50 backdrop-blur-xl">
+      {/* --- NAVBAR --- */}
+      <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-neutral-950/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-2 font-bold tracking-tighter text-xl">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span>ARCHITEKT</span>
-            <span className="text-white/20">/</span>
-            <span className="text-white/40 font-light">PROTOKÓŁ</span>
+            <span className="text-white">ARCHITEKT</span>
+            <span className="text-white/20 font-light">/</span>
+            <span className="text-green-400 font-mono text-sm">OS_2026</span>
           </div>
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-            <a href="#" className="hover:text-green-400 transition-colors">Metoda</a>
-            <a href="#" className="hover:text-green-400 transition-colors">Narzędzia</a>
-            <a href="#" className="hover:text-green-400 transition-colors">Case Study</a>
-          </div>
-          <button className="px-5 py-2.5 bg-white text-black text-sm font-bold rounded-full hover:bg-green-400 transition-all hover:scale-105">
-            DARMOWY WSTĘP
+          <button className="hidden md:flex items-center gap-2 text-sm font-bold text-white/60 hover:text-white transition-colors">
+            Moje Konto <ChevronRight className="w-4 h-4" />
           </button>
         </div>
       </nav>
 
-      <main className="relative z-10">
-        {/* --- HERO SECTION --- */}
-        <section className="pt-24 pb-20 px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-mono mb-8 uppercase tracking-widest"
-            >
-              <Zap className="w-3 h-3" /> Metoda Zero Terminala 2026
-            </motion.div>
+      {/* --- HERO SECTION --- */}
+      <header className="relative pt-40 pb-32 px-6 overflow-hidden">
+        {/* Background Gradients */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-green-500/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-[800px] h-[600px] bg-purple-900/10 blur-[100px] rounded-full pointer-events-none" />
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-8"
-            >
-              Protokół Architekta: <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-400 to-purple-500">
-                Zbuduj własne SaaS w weekend bez pisania kodu.
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-mono tracking-widest mb-8 uppercase"
+          >
+            <Zap className="w-3 h-3" /> Oficjalny Protokół Architekta 2026
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl md:text-8xl font-black tracking-tighter leading-none mb-8"
+          >
+            Przestań pisać kod. <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-400 to-purple-500">
+              Zacznij stawiać Systemy.
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed"
+          >
+            Zmień się z rzemieślnika w <strong>Dyrektora AI</strong>. Opanuj Metodę Zero Terminala i buduj dochodowe aplikacje SaaS w jeden weekend.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3 }}
+            className="flex flex-col md:flex-row items-center justify-center gap-6"
+          >
+            <button className="group relative px-10 py-5 bg-green-500 text-black font-black text-xl rounded-2xl overflow-hidden transition-all hover:scale-105 shadow-[0_0_30px_rgba(34,197,94,0.3)]">
+              <span className="relative z-10 flex items-center gap-2">
+                ROZPOCZNIJ TRANSFORMACJĘ <ArrowRight className="w-6 h-6" />
               </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed"
-            >
-              Era &quot;klepania kodu&quot; się skończyła. Wykorzystaj Cursor, Bolt i Supabase, by stać się <strong>Cyfrowym Architektem</strong> i stawiać systemy, które zarabiają.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            >
-              <button className="w-full sm:w-auto px-8 py-4 bg-green-500 text-black font-extrabold rounded-xl hover:bg-green-400 transition-all hover:scale-105 shadow-[0_0_20px_rgba(34,197,94,0.3)] flex items-center justify-center gap-2">
-                URUCHOM PROTOKÓŁ <ArrowRight className="w-5 h-5" />
-              </button>
-              <button className="w-full sm:w-auto px-8 py-4 bg-white/5 border border-white/10 rounded-xl font-bold hover:bg-white/10 transition-colors">
-                ZOBACZ DEMO
-              </button>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* --- THE GUIDE --- */}
-        <section className="py-24 px-6 border-y border-white/5 bg-white/[0.01]">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold mb-4">Instrukcja Operacyjna</h2>
-              <p className="text-gray-500">Cztery filary nowoczesnej architektury systemów AI.</p>
+              <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+            </button>
+            <div className="text-left">
+              <div className="text-2xl font-bold text-white">97 PLN</div>
+              <div className="text-xs text-green-500 font-mono uppercase tracking-widest">Dostęp Natychmiastowy</div>
             </div>
+          </motion.div>
+        </div>
+      </header>
 
-            <div className="border border-white/10 rounded-2xl bg-black overflow-hidden shadow-2xl">
-              {steps.map((step, idx) => (
-                <StepItem
-                  key={idx}
-                  stepNumber={idx + 1}
-                  title={step.title}
-                  description={step.description}
-                  icon={step.icon}
-                  isOpen={openStep === idx + 1}
-                  onClick={() => setOpenStep(openStep === idx + 1 ? 0 : idx + 1)}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* --- CTA SECTION --- */}
-        <section className="py-32 px-6">
-          <div className="max-w-5xl mx-auto relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-purple-500/20 blur-[100px] rounded-full opacity-50" />
-            <div className="relative bg-black border border-white/10 rounded-[3rem] p-8 md:p-20 text-center overflow-hidden">
-              <div className="absolute top-0 right-0 p-8 opacity-10">
-                <Sparkles className="w-32 h-32 text-green-500" />
-              </div>
-
-              <h2 className="text-4xl md:text-6xl font-bold mb-8">Gotowy na Deep-Dive?</h2>
-              <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-                Chcesz otrzymać pełną listę Złotych Promptów, gotowe schematy Supabase i dostęp do zamkniętej społeczności Architektów?
-              </p>
-
-              <div className="flex flex-col items-center gap-6">
-                <div className="inline-flex items-baseline gap-2">
-                  <span className="text-6xl font-black text-white">97 PLN</span>
-                  <span className="text-gray-500 line-through">297 PLN</span>
-                </div>
-
-                <button className="group relative px-12 py-6 bg-white text-black font-black text-2xl rounded-2xl transition-all hover:scale-105 overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-                  <span className="relative z-10 flex items-center gap-3">
-                    ODBIERZ PEŁNY DOSTĘP <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                </button>
-
-                <p className="text-sm text-gray-600 flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4" /> 30-dniowa gwarancja satysfakcji
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <footer className="py-12 border-t border-white/5 bg-black">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-gray-500 text-sm font-mono">
-            &copy; 2026 ARCHITEKT PROTOKÓŁ / stealth_mode.exe
-          </div>
-          <div className="flex items-center gap-6 opacity-30">
-             <Globe className="w-5 h-5" />
-             <Cpu className="w-5 h-5" />
-             <Sparkles className="w-5 h-5" />
-          </div>
-          <div className="text-gray-500 text-sm">
-            Built for the AI Era
+      {/* --- THE PROBLEM --- */}
+      <section className="py-24 border-y border-white/5 bg-neutral-900/50">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12">Dlaczego tradycyjne kursy nie działają?</h2>
+          <div className="text-lg md:text-xl text-gray-400 space-y-8 leading-relaxed">
+            <p>
+              Bo uczą Cię układania cegieł (składni), gdy Ty chcesz zaprojektować wieżowiec.
+              Większość kursów utknęła w 2015 roku, każąc Ci debugować przecinki w Pythonie.
+            </p>
+            <p className="bg-black/40 border border-white/10 p-8 rounded-3xl italic">
+              &quot;W erze AI znajomość pętli <code className="text-green-400">for</code> to przeszłość. Liczy się <strong>Vibe Coding</strong> – umiejętność dyrygowania modelami językowymi tak, by budowały kompletne produkty pod Twoje dyktando.&quot;
+            </p>
           </div>
         </div>
+      </section>
+
+      {/* --- PROTOCOL (THE SOLUTION) --- */}
+      <section className="py-32 px-6 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div className="max-w-2xl">
+            <h2 className="text-4xl md:text-6xl font-black mb-6">Protokół: 4 Kroki do SaaS</h2>
+            <p className="text-gray-500 text-lg">Od zera do działającego produktu na produkcji. Bez kompromisów.</p>
+          </div>
+          <div className="flex gap-2">
+            <div className="w-12 h-1 h-green-500 rounded-full" />
+            <div className="w-4 h-1 bg-white/10 rounded-full" />
+            <div className="w-4 h-1 bg-white/10 rounded-full" />
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <FazaCard
+            step={1}
+            title="Zero Terminala"
+            description="Konfiguracja środowiska bez instalowania czegokolwiek. Cursor AI jako Twój główny inżynier. Uruchamiamy stack w chmurze w 30 sekund."
+            icon={Terminal}
+          />
+          <FazaCard
+            step={2}
+            title="Złoty Prompt"
+            description="Jak rozmawiać z AI, żeby generowało gotowe moduły, a nie fragmenty tekstu. Techniki Prompt Engineeringu dla Architektów."
+            icon={Sparkles}
+          />
+          <FazaCard
+            step={3}
+            title="Skarbiec Danych"
+            description="Większość apek AI to wydmuszki. My nauczymy Cię dawać im pamięć przez Supabase. Twoja aplikacja będzie pamiętać użytkowników."
+            icon={Database}
+          />
+          <FazaCard
+            step={4}
+            title="Wielki Wybuch"
+            description="Publikacja na Vercel jednym kliknięciem. Własna domena w 15 minut. Automatyzacja deployu i obsługa płatności Stripe."
+            icon={Rocket}
+          />
+        </div>
+      </section>
+
+      {/* --- TECH STACK --- */}
+      <section className="py-24 bg-black">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p className="text-xs font-mono text-gray-600 uppercase tracking-[0.3em] mb-12">Narzędzia Twojej Władzy</p>
+          <div className="flex flex-wrap justify-center gap-12 md:gap-24 opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+            <div className="flex items-center gap-3 text-2xl font-bold"><Code2 className="w-8 h-8"/> Cursor</div>
+            <div className="flex items-center gap-3 text-2xl font-bold"><Zap className="w-8 h-8"/> Bolt</div>
+            <div className="flex items-center gap-3 text-2xl font-bold"><Layers className="w-8 h-8"/> Lovable</div>
+            <div className="flex items-center gap-3 text-2xl font-bold"><Database className="w-8 h-8"/> Supabase</div>
+            <div className="flex items-center gap-3 text-2xl font-bold"><Globe className="w-8 h-8"/> Vercel</div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- ABOUT --- */}
+      <section className="py-32 px-6">
+        <div className="max-w-4xl mx-auto bg-neutral-900 border border-white/10 rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-green-500/10 blur-[80px] rounded-full" />
+          <div className="relative z-10 flex flex-col md:flex-row gap-12 items-center">
+            <div className="w-32 h-32 rounded-3xl bg-black border border-white/10 flex items-center justify-center shrink-0 shadow-2xl">
+              <div className="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center font-black text-3xl text-black">P</div>
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold mb-4">O Autorze</h2>
+              <p className="text-gray-400 text-lg leading-relaxed mb-6">
+                &quot;Stworzone przez praktyka, który buduje, a nie tylko uczy. Projekt Polutek to manifestacja nowego podejścia do technologii, gdzie bariera wejścia do świata software house&apos;ów przestaje istnieć.&quot;
+              </p>
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-2 text-sm font-bold text-white">
+                  <CheckCircle2 className="w-4 h-4 text-green-500" /> 10+ Wdrożonych SaaS
+                </div>
+                <div className="flex items-center gap-2 text-sm font-bold text-white">
+                  <CheckCircle2 className="w-4 h-4 text-green-500" /> Społeczność 5k+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- FOOTER --- */}
+      <footer className="py-12 border-t border-white/5 bg-neutral-950 text-center">
+        <p className="text-gray-600 text-sm font-mono tracking-widest uppercase">
+          &copy; 2026 Polutek / Architekt Cyfrowy. Built with Vibe Coding.
+        </p>
       </footer>
     </div>
   );

@@ -8,17 +8,26 @@ const inter = Inter({ subsets: ["latin"] });
 export async function generateMetadata() {
   const headersList = headers();
   const host = headersList.get('host') || '';
-  const isSubdomain = host.startsWith('ai.');
+  const isSubdomain = host.includes('ai.');
 
-  const title = isSubdomain ? "Protokół Architekta" : "Eliksir Wiedźmina";
+  const title = isSubdomain
+    ? "Kurs Architekt Cyfrowy | Vibe Coding & Budowa SaaS z AI"
+    : "Eliksir Wiedźmina";
+
   const description = isSubdomain
-    ? "Metoda Zero Terminala. Wykorzystaj Cursor, Bolt i Supabase, by stać się Cyfrowym Architektem."
+    ? "Opanuj Metodę Zero Terminala. Zbuduj własną aplikację w weekend używając Cursor AI, Bolt i Supabase. Bez nauki składni."
     : "W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.";
+
+  const keywords = isSubdomain
+    ? ["vibe coding", "kurs cursor ai", "jak zrobić aplikację ai", "programowanie dla nietechnicznych", "bolt.new tutorial", "supabase dla początkujących"]
+    : [];
+
   const robots = isSubdomain ? "index, follow" : "noindex, nofollow";
 
   return {
     title,
     description,
+    keywords,
     robots,
     viewport: "width=device-width, initial-scale=1.0, viewport-fit=cover",
     openGraph: {
