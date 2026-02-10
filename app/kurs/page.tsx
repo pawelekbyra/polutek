@@ -1,274 +1,246 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Terminal, Database, Cpu, Zap, Lock, ChevronRight, Play, CheckCircle2, ArrowRight, KeyRound } from 'lucide-react';
+import {
+  Terminal,
+  Database,
+  Cpu,
+  Zap,
+  Rocket,
+  ChevronDown,
+  ChevronUp,
+  Code2,
+  Globe,
+  ShieldCheck,
+  ArrowRight,
+  Sparkles
+} from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const CourseLandingPage = () => {
-  const [isHovered, setIsHovered] = useState(false);
-
+const StepItem = ({ title, description, icon: Icon, stepNumber, isOpen, onClick }: any) => {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-gray-100 font-sans selection:bg-green-500 selection:text-black">
-
-      {/* --- NAVBAR --- */}
-      <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-[#0a0a0a]/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="text-xl font-bold tracking-tighter flex items-center gap-2">
-            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-            POLUTEK <span className="text-white/40 font-light">/ ARCHITEKT</span>
+    <div className={`border-b border-white/10 transition-all ${isOpen ? 'bg-white/[0.02]' : ''}`}>
+      <button
+        onClick={onClick}
+        className="w-full py-6 px-4 flex items-center justify-between group"
+      >
+        <div className="flex items-center gap-4 text-left">
+          <div className={`w-10 h-10 rounded-lg flex items-center justify-center border transition-all ${isOpen ? 'bg-green-500 border-green-400 text-black' : 'bg-black border-white/10 text-green-500 group-hover:border-green-500/50'}`}>
+            <Icon className="w-5 h-5" />
           </div>
-          <button className="hidden md:flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition-colors">
-            Logowanie <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
-      </nav>
-
-      {/* --- HERO SECTION --- */}
-      <header className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-hidden">
-        {/* Background Gradients */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-green-500/20 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-[800px] h-[600px] bg-purple-900/10 blur-[100px] rounded-full pointer-events-none" />
-
-        <div className="max-w-5xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-mono tracking-widest mb-8 uppercase">
-            <Zap className="w-3 h-3" /> Metoda 2026: Zero Terminala
-          </div>
-
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-tight mb-6">
-            Przestań pisać kod. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">
-              Zacznij stawiać systemy.
-            </span>
-          </h1>
-
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Era &quot;klepania kodu&quot; się skończyła. Nadeszła era <strong>Architektów Cyfrowych</strong>.
-            Naucz się zarządzać AI (Jules, Cursor), żeby zbudować i sprzedać własną aplikację SaaS w jeden weekend.
-          </p>
-
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-            <button
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              className="group relative px-8 py-4 bg-white text-black font-bold rounded-lg overflow-hidden transition-all hover:scale-105"
-            >
-              <div className="absolute inset-0 bg-green-400 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-              <span className="relative flex items-center gap-2">
-                DOŁĄCZ DO PROTOKOŁU <ChevronRight className="w-5 h-5" />
-              </span>
-            </button>
-            <button className="px-8 py-4 bg-white/5 border border-white/10 rounded-lg font-medium hover:bg-white/10 transition-colors flex items-center gap-2">
-              <Play className="w-4 h-4 text-green-500" /> Zobacz Demo (60s)
-            </button>
-          </div>
-
-          <p className="mt-6 text-sm text-gray-500">
-            Dostęp natychmiastowy • Gwarancja &quot;Zero Bullsh*t&quot; • Dożywotnie aktualizacje
-          </p>
-        </div>
-      </header>
-
-      {/* --- PROBLEM / SOLUTION (MANIFEST) --- */}
-      <section className="py-24 border-y border-white/5 bg-[#0d0d0d]">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <h2 className="text-3xl font-bold mb-6">Dlaczego Twoje &quot;Hello World&quot; nikogo nie obchodzi?</h2>
-            <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
-              <p>
-                Większość kursów uczy Cię składni języka z 2015 roku. Uczą Cię być murarzem, kiedy świat potrzebuje architektów.
-              </p>
-              <p>
-                <strong>Vibe Coding</strong> to zmiana paradygmatu. Zamiast walczyć z przecinkami w Pythonie, uczysz się &quot;zaklęć&quot; (Prompt Engineering), które zmuszają maszyny do pisania kodu za Ciebie.
-              </p>
-              <ul className="space-y-3 mt-4">
-                {[
-                  "Zero konfiguracji środowiska (Zero Terminal)",
-                  "Budowa pełnych aplikacji (Backend + Frontend)",
-                  "Własność kodu (GitHub), a nie zamknięty ekosystem",
-                  "Skupienie na produkcie i pieniądzach, nie na teorii"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-white">
-                    <CheckCircle2 className="w-6 h-6 text-green-500 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+            <span className="text-xs font-mono text-green-500/60 uppercase tracking-widest">Krok {stepNumber}</span>
+            <h3 className="text-xl font-bold text-white">{title}</h3>
+          </div>
+        </div>
+        {isOpen ? <ChevronUp className="w-5 h-5 text-gray-500" /> : <ChevronDown className="w-5 h-5 text-gray-500" />}
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden"
+          >
+            <div className="px-4 pb-8 pt-2 pl-16 text-gray-400 leading-relaxed max-w-2xl">
+              {description}
             </div>
-          </div>
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-purple-600 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-            <div className="relative bg-[#0a0a0a] border border-white/10 rounded-xl p-6 font-mono text-sm leading-relaxed overflow-hidden">
-              <div className="flex items-center gap-2 mb-4 border-b border-white/10 pb-4">
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <div className="w-3 h-3 rounded-full bg-green-500" />
-                <span className="ml-2 text-xs text-gray-500">jules-ai — agent</span>
-              </div>
-              <div className="space-y-4">
-                <div className="text-gray-500">{`// Ty (Architekt):`}</div>
-                <div className="text-green-400">
-                  {">"} Jules, stwórz klona Twittera. <br/>
-                  {">"} Stack: Next.js + Supabase. <br/>
-                  {">"} Styl: Cyberpunk. <br/>
-                  {">"} Funkcje: Logowanie, Posty, Lajki.
-                </div>
-                <div className="text-gray-500 mt-4">{`// Jules (Twoja Maszyna):`}</div>
-                <div className="text-purple-400">
-                  {">"} Analizuję... <br/>
-                  {">"} Generuję schemat bazy danych... [OK] <br/>
-                  {">"} Tworzę komponenty UI... [OK] <br/>
-                  {">"} Integruję autoryzację... [OK] <br/>
-                  {">"} Aplikacja gotowa. Deploy na Vercel? (T/N)
-                </div>
-                <div className="animate-pulse text-white mt-2">_</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- PROGRAM (PROTOKÓŁ) --- */}
-      <section className="py-24 px-6 max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold">Protokół: Od Zera do SaaS</h2>
-          <p className="text-gray-400 mt-4">Nie dostaniesz 40 godzin nudnych wideo. Dostaniesz instrukcję bojową.</p>
-        </div>
-
-        <div className="grid gap-8">
-          {[
-            {
-              title: "MODUŁ 0: RESET MINDSETU",
-              desc: "Przestań myśleć jak uczeń. Zacznij myśleć jak CEO. Konfiguracja 'Cyfrowego Biurka' (Cursor + Bolt).",
-              icon: <Terminal className="w-6 h-6 text-green-400" />
-            },
-            {
-              title: "SPRINT 1: WIELKI WYBUCH",
-              desc: "Twoja pierwsza aplikacja w 15 minut. Złoty Prompt, który stawia cały szkielet, zanim dopijesz kawę.",
-              icon: <Zap className="w-6 h-6 text-yellow-400" />
-            },
-            {
-              title: "SPRINT 2: SKARBIEC DANYCH",
-              desc: "Integracja z Supabase. Twoja aplikacja zyskuje pamięć. Logowanie, bazy danych, 'zapamiętywanie' użytkownika.",
-              icon: <Database className="w-6 h-6 text-purple-400" />
-            },
-            {
-              title: "SPRINT 3: WIRUSOWOŚĆ & DEPLOY",
-              desc: "Publikacja na Vercel. Podpinanie płatności (Stripe). Jak sprawić, żeby ludzie chcieli tego używać.",
-              icon: <Cpu className="w-6 h-6 text-blue-400" />
-            }
-          ].map((mod, i) => (
-            <div key={i} className="group flex flex-col md:flex-row gap-6 p-8 rounded-2xl bg-white/5 border border-white/5 hover:border-green-500/30 transition-all hover:bg-white/[0.07]">
-              <div className="w-12 h-12 rounded-full bg-black border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                {mod.icon}
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2 flex items-center gap-3">
-                  {mod.title}
-                  {i === 0 && <span className="text-xs bg-green-900/50 text-green-400 px-2 py-0.5 rounded border border-green-500/20">DARMOWY WSTĘP</span>}
-                </h3>
-                <p className="text-gray-400 leading-relaxed">{mod.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* --- STACK SECTION --- */}
-      <section className="py-20 bg-gradient-to-b from-[#0a0a0a] to-[#111]">
-        <div className="text-center">
-          <p className="text-sm font-mono text-gray-500 uppercase tracking-widest mb-8">Narzędzia Twojej Władzy</p>
-          <div className="flex flex-wrap justify-center gap-12 opacity-50 hover:opacity-100 transition-opacity duration-500">
-             {/* Tu normalnie wstawiłbyś loga SVG, używam tekstu dla uproszczenia kodu */}
-             <span className="text-2xl font-bold text-white flex items-center gap-2"><Terminal className="w-6 h-6"/> Cursor</span>
-             <span className="text-2xl font-bold text-white flex items-center gap-2"><Database className="w-6 h-6"/> Supabase</span>
-             <span className="text-2xl font-bold text-white flex items-center gap-2"><Cpu className="w-6 h-6"/> Vercel</span>
-             <span className="text-2xl font-bold text-white flex items-center gap-2"><Zap className="w-6 h-6"/> Lovable</span>
-          </div>
-        </div>
-      </section>
-
-      {/* --- PRICING CTA --- */}
-      <section className="py-24 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-green-500/5" />
-        <div className="max-w-4xl mx-auto bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 md:p-12 relative z-10 text-center shadow-2xl shadow-green-900/20">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Zdobądź Protokół.</h2>
-          <p className="text-gray-400 text-lg mb-8 max-w-xl mx-auto">
-            To nie jest wydatek. To inwestycja w narzędzie, które pozwoli Ci budować aktywa cyfrowe. Cena jednej kolacji na mieście.
-          </p>
-
-          <div className="flex flex-col items-center gap-4">
-            <div className="text-5xl font-bold text-white">97 PLN <span className="text-lg text-gray-500 font-normal line-through">297 PLN</span></div>
-            <div className="text-green-400 text-sm font-medium animate-pulse">⚡ Oferta przedsprzedażowa (Beta)</div>
-
-            <button className="w-full md:w-auto px-12 py-5 bg-green-500 hover:bg-green-400 text-black font-bold text-xl rounded-xl transition-all shadow-lg shadow-green-500/20 mt-4 flex items-center justify-center gap-3">
-              <Lock className="w-5 h-5" /> KUPUJĘ DOSTĘP
-            </button>
-            <p className="text-xs text-gray-600 mt-4">
-              Bezpieczna płatność przez Stripe. 30 dni gwarancji satysfakcji.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* --- FOOTER --- */}
-      <footer className="py-12 border-t border-white/5 text-center text-gray-600 text-sm">
-        <p>&copy; 2026 Polutek / Architekt Cyfrowy. Wszystkie prawa zastrzeżone.</p>
-        <p className="mt-2">Built with Vibe Coding using Next.js & Tailwind.</p>
-      </footer>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
 
-export default function CoursePage() {
-  const [isUnlocked, setIsUnlocked] = useState(false);
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
+export default function ProtocolPage() {
+  const [openStep, setOpenStep] = useState(1);
 
-  const handlePasswordSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password === 'kurs') {
-      setIsUnlocked(true);
-      setError(false);
-    } else {
-      setError(true);
+  const steps = [
+    {
+      title: "Setup (Zero Terminal)",
+      description: "Zapomnij o instalowaniu Pythona, Node.js czy Dockerów. W 2026 roku Twoim systemem operacyjnym jest przeglądarka i Cursor. Uruchamiamy środowisko w chmurze (Bolt.new), które jest gotowe do pracy w 3 sekundy. Zero błędów konfiguracji, 100% czasu na budowanie.",
+      icon: Terminal,
+    },
+    {
+      title: "The Prompt (Vibe Coding)",
+      description: (
+        <div className="space-y-4">
+          <p>Przestań uczyć się składni. Naucz się logiki i kontekstu. Vibe Coding to umiejętność dyrygowania modelami AI tak, by rozumiały Twoją wizję produktu.</p>
+          <div className="bg-black/50 border border-green-500/20 rounded-lg p-4 font-mono text-sm">
+            <span className="text-green-500">Golden Prompt:</span>
+            <p className="mt-2 text-gray-300">&quot;Jules, stwórz system subskrypcyjny SaaS używając Next.js i Stripe. Użyj architektury komponentowej, zaimplementuj middleware do ochrony tras i przygotuj schemat bazy danych dla użytkowników Premium.&quot;</p>
+          </div>
+        </div>
+      ),
+      icon: Code2,
+    },
+    {
+      title: "Database (Memory)",
+      description: "Twoja aplikacja potrzebuje mózgu. Supabase to Twój backend, który konfigurujesz w języku naturalnym. Tworzymy tabele, relacje i polityki bezpieczeństwa (RLS) bez pisania ani jednej linijki SQL. Twoje dane są bezpieczne, skalowalne i gotowe na tysiące użytkowników.",
+      icon: Database,
+    },
+    {
+      title: "Deployment (Launch)",
+      description: "Zakończyliśmy erę skomplikowanych serwerów. Jedno kliknięcie i Twoja aplikacja ląduje na Vercel. Globalna sieć CDN, automatyczne certyfikaty SSL i podgląd każdej zmiany na żywo. Twój SaaS jest dostępny dla całego świata pod Twoją własną domeną.",
+      icon: Rocket,
     }
-  };
-
-  if (isUnlocked) {
-    return <CourseLandingPage />;
-  }
+  ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-gray-100 flex items-center justify-center p-6 font-sans">
-      <div className="w-full max-w-md bg-[#0d0d0d] border border-white/10 rounded-2xl p-8 shadow-2xl">
-        <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-green-500/20">
-            <Lock className="w-8 h-8 text-green-500" />
-          </div>
-          <h1 className="text-2xl font-bold tracking-tight">Dostęp do Kursu</h1>
-          <p className="text-gray-400 mt-2">Wprowadź hasło, aby odblokować Protokół.</p>
-        </div>
+    <div className="min-h-screen bg-[#050505] text-gray-100 font-sans selection:bg-green-500 selection:text-black overflow-x-hidden">
 
-        <form onSubmit={handlePasswordSubmit} className="space-y-4">
-          <div className="relative">
-            <KeyRound className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Hasło..."
-              className={`w-full bg-white/5 border ${error ? 'border-red-500' : 'border-white/10'} rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-green-500/50 transition-all`}
-              autoFocus
-            />
-          </div>
-          {error && <p className="text-red-500 text-sm text-center">Nieprawidłowe hasło. Spróbuj ponownie.</p>}
-          <button
-            type="submit"
-            className="w-full bg-green-500 hover:bg-green-400 text-black font-bold py-4 rounded-xl transition-all shadow-lg shadow-green-500/20"
-          >
-            Odblokuj
-          </button>
-        </form>
+      {/* --- BACKGROUND EFFECTS --- */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-purple-900/20 blur-[120px] rounded-full" />
+        <div className="absolute top-[20%] -right-[5%] w-[30%] h-[30%] bg-green-900/10 blur-[100px] rounded-full" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-50 contrast-150" />
       </div>
+
+      <nav className="relative z-50 border-b border-white/5 bg-black/50 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-2 font-bold tracking-tighter text-xl">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <span>ARCHITEKT</span>
+            <span className="text-white/20">/</span>
+            <span className="text-white/40 font-light">PROTOKÓŁ</span>
+          </div>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+            <a href="#" className="hover:text-green-400 transition-colors">Metoda</a>
+            <a href="#" className="hover:text-green-400 transition-colors">Narzędzia</a>
+            <a href="#" className="hover:text-green-400 transition-colors">Case Study</a>
+          </div>
+          <button className="px-5 py-2.5 bg-white text-black text-sm font-bold rounded-full hover:bg-green-400 transition-all hover:scale-105">
+            DARMOWY WSTĘP
+          </button>
+        </div>
+      </nav>
+
+      <main className="relative z-10">
+        {/* --- HERO SECTION --- */}
+        <section className="pt-24 pb-20 px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-mono mb-8 uppercase tracking-widest"
+            >
+              <Zap className="w-3 h-3" /> Metoda Zero Terminala 2026
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-8"
+            >
+              Protokół Architekta: <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-400 to-purple-500">
+                Zbuduj własne SaaS w weekend bez pisania kodu.
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed"
+            >
+              Era &quot;klepania kodu&quot; się skończyła. Wykorzystaj Cursor, Bolt i Supabase, by stać się <strong>Cyfrowym Architektem</strong> i stawiać systemy, które zarabiają.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            >
+              <button className="w-full sm:w-auto px-8 py-4 bg-green-500 text-black font-extrabold rounded-xl hover:bg-green-400 transition-all hover:scale-105 shadow-[0_0_20px_rgba(34,197,94,0.3)] flex items-center justify-center gap-2">
+                URUCHOM PROTOKÓŁ <ArrowRight className="w-5 h-5" />
+              </button>
+              <button className="w-full sm:w-auto px-8 py-4 bg-white/5 border border-white/10 rounded-xl font-bold hover:bg-white/10 transition-colors">
+                ZOBACZ DEMO
+              </button>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* --- THE GUIDE --- */}
+        <section className="py-24 px-6 border-y border-white/5 bg-white/[0.01]">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold mb-4">Instrukcja Operacyjna</h2>
+              <p className="text-gray-500">Cztery filary nowoczesnej architektury systemów AI.</p>
+            </div>
+
+            <div className="border border-white/10 rounded-2xl bg-black overflow-hidden shadow-2xl">
+              {steps.map((step, idx) => (
+                <StepItem
+                  key={idx}
+                  stepNumber={idx + 1}
+                  title={step.title}
+                  description={step.description}
+                  icon={step.icon}
+                  isOpen={openStep === idx + 1}
+                  onClick={() => setOpenStep(openStep === idx + 1 ? 0 : idx + 1)}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* --- CTA SECTION --- */}
+        <section className="py-32 px-6">
+          <div className="max-w-5xl mx-auto relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-purple-500/20 blur-[100px] rounded-full opacity-50" />
+            <div className="relative bg-black border border-white/10 rounded-[3rem] p-8 md:p-20 text-center overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-10">
+                <Sparkles className="w-32 h-32 text-green-500" />
+              </div>
+
+              <h2 className="text-4xl md:text-6xl font-bold mb-8">Gotowy na Deep-Dive?</h2>
+              <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+                Chcesz otrzymać pełną listę Złotych Promptów, gotowe schematy Supabase i dostęp do zamkniętej społeczności Architektów?
+              </p>
+
+              <div className="flex flex-col items-center gap-6">
+                <div className="inline-flex items-baseline gap-2">
+                  <span className="text-6xl font-black text-white">97 PLN</span>
+                  <span className="text-gray-500 line-through">297 PLN</span>
+                </div>
+
+                <button className="group relative px-12 py-6 bg-white text-black font-black text-2xl rounded-2xl transition-all hover:scale-105 overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                  <span className="relative z-10 flex items-center gap-3">
+                    ODBIERZ PEŁNY DOSTĘP <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                </button>
+
+                <p className="text-sm text-gray-600 flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4" /> 30-dniowa gwarancja satysfakcji
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="py-12 border-t border-white/5 bg-black">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="text-gray-500 text-sm font-mono">
+            &copy; 2026 ARCHITEKT PROTOKÓŁ / stealth_mode.exe
+          </div>
+          <div className="flex items-center gap-6 opacity-30">
+             <Globe className="w-5 h-5" />
+             <Cpu className="w-5 h-5" />
+             <Sparkles className="w-5 h-5" />
+          </div>
+          <div className="text-gray-500 text-sm">
+            Built for the AI Era
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
