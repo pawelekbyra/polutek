@@ -21,6 +21,9 @@ export async function generateMetadata() {
     description,
     robots,
     viewport: "width=device-width, initial-scale=1.0, viewport-fit=cover",
+    verification: {
+      google: "8Km43hssV9SnPrES3KoxeFPl2chfzGNJSZyKS7g65uY",
+    },
     openGraph: {
       title,
       description,
