@@ -1,28 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { SignJWT } from 'jose';
-import { cookies } from 'next/headers';
-import { db, User } from '@/lib/db';
-import { verifySession } from '@/lib/auth';
-
-const secretToUse = process.env.JWT_SECRET || 'dev_fallback_secret_not_for_production';
-
-if (!process.env.JWT_SECRET) {
-  console.warn("JWT_SECRET environment variable is not set. Using insecure fallback.");
-}
-
-const JWT_SECRET = new TextEncoder().encode(secretToUse);
-const COOKIE_NAME = 'session';
+import { prisma } from '@/lib/prisma';
+import { auth } from '@/auth';
 
 export const dynamic = 'force-dynamic';
 
 // PUT handler to update the user's profile
 export async function PUT(req: NextRequest) {
-    const payload = await verifySession();
+    const session = await auth();
 
-    if (!payload || !payload.user) {
+    if (!session || !session.user) {
         return NextResponse.json({ success: false, message: 'Not authenticated' }, { status: 401 });
     }
-    const currentUser = payload.user;
+    const currentUserId = session.user.id;
 
     try {
         const body = await req.json();
@@ -32,39 +21,24 @@ export async function PUT(req: NextRequest) {
             return NextResponse.json({ success: false, message: 'All fields are required.' }, { status: 400 });
         }
 
-        const existingUser = await db.findUserByEmail(email);
-        if (existingUser && existingUser.id !== currentUser.id) {
+        const existingUser = await prisma.user.findUnique({ where: { email } });
+        if (existingUser && existingUser.id !== currentUserId) {
             return NextResponse.json({ success: false, message: 'This email is already in use.' }, { status: 409 });
         }
 
-        const updates: Partial<User> = {
-            email,
-            displayName: `${firstName} ${lastName}`,
-        };
-
-        const updatedUser = await db.updateUser(currentUser.id, updates);
-
-        if (!updatedUser) {
-             return NextResponse.json({ success: false, message: 'User not found or failed to update.' }, { status: 404 });
-        }
-
-        // Re-issue the JWT with the updated user details
-        const { password, ...userPayload } = updatedUser;
-        const token = await new SignJWT({ user: userPayload })
-            .setProtectedHeader({ alg: 'HS256' })
-            .setIssuedAt()
-            .setExpirationTime('24h')
-            .sign(JWT_SECRET);
-
-        cookies().set(COOKIE_NAME, token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
-            path: '/',
-            maxAge: 60 * 60 * 24,
+        const updatedUser = await prisma.user.update({
+            where: { id: currentUserId },
+            data: {
+                email,
+                displayName: `${firstName} ${lastName}`,
+            }
         });
 
+        // With NextAuth + JWT strategy, the session will be updated in the next request
+        // because the 'jwt' callback in auth.ts is already configured to fetch fresh data from DB
+        // if the trigger is 'update' OR on session refresh.
 
+        const { password, ...userPayload } = updatedUser;
         return NextResponse.json({ success: true, data: userPayload });
 
     } catch (error) {

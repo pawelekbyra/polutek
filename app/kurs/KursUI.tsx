@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useStore } from '@/store/useStore';
 import {
   Zap,
   ArrowRight,
@@ -75,6 +76,8 @@ const ProtocolStep = ({ title, description, icon: Icon, stepNumber, isOpen, onCl
 
 export default function KursUI() {
   const [openStep, setOpenStep] = useState(1);
+  const setCommentsModal = useStore((state) => state.setCommentsModal);
+  const setTippingModal = useStore((state) => state.setTippingModal);
 
   const steps = [
     {
@@ -296,6 +299,32 @@ export default function KursUI() {
             <div className="inline-flex items-center gap-4 px-6 py-2 rounded-full border border-white/5 bg-white/5 text-gray-400 text-sm font-mono">
                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" /> Encrypted Identity verified
             </div>
+          </div>
+        </section>
+
+        {/* COMMUNITY & FEEDBACK (Global Components Showcase) */}
+        <section className="py-32 px-6 bg-green-500/5 border-y border-green-500/10">
+          <div className="max-w-4xl mx-auto text-center">
+             <h2 className="text-3xl font-black mb-8">DOŁĄCZ DO DYSKUSJI</h2>
+             <p className="text-gray-400 mb-12 max-w-2xl mx-auto">
+               Masz pytania dotyczące Protokołu? Chcesz podzielić się swoimi postępami? Skorzystaj z naszych globalnych modułów komunikacji.
+             </p>
+             <div className="flex flex-wrap justify-center gap-6">
+                <button
+                  onClick={() => setCommentsModal(true, 'ai-course-landing')}
+                  className="px-8 py-4 bg-neutral-900 border border-white/10 rounded-xl hover:border-green-500/50 transition-all flex items-center gap-3 group"
+                >
+                  <Box className="w-5 h-5 text-green-500" />
+                  <span>Otwórz Komentarze</span>
+                </button>
+                <button
+                  onClick={() => setTippingModal(true, 'ai-course-landing')}
+                  className="px-8 py-4 bg-neutral-900 border border-white/10 rounded-xl hover:border-green-500/50 transition-all flex items-center gap-3 group"
+                >
+                  <Sparkles className="w-5 h-5 text-purple-500" />
+                  <span>Wesprzyj Projekt</span>
+                </button>
+             </div>
           </div>
         </section>
       </main>

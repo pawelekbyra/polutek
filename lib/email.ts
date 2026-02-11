@@ -1,14 +1,12 @@
 import { Resend } from 'resend';
 
-// Use a placeholder key if the environment variable is missing to prevent build failures.
-// This is consistent with the project's handling of other secrets (e.g., Ably, Redis).
-const resendApiKey = process.env.RESEND_API_KEY || 're_123456789';
+const resendApiKey = process.env.RESEND_API_KEY;
 
-if (!process.env.RESEND_API_KEY) {
-  console.warn('RESEND_API_KEY is not set. Using dummy key for build/development.');
+if (!resendApiKey) {
+  console.warn('RESEND_API_KEY is not set. Email functionality will be disabled.');
 }
 
-const resend = new Resend(resendApiKey);
+const resend = new Resend(resendApiKey || 'missing_key');
 
 export async function sendPasswordResetLinkEmail(email: string, resetLink: string) {
   // This is a placeholder for a real email sending service (e.g., SendGrid, Mailgun).
