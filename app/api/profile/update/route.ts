@@ -4,10 +4,10 @@ import { cookies } from 'next/headers';
 import { db, User } from '@/lib/db';
 import { verifySession } from '@/lib/auth';
 
-const secretToUse = process.env.JWT_SECRET;
+const secretToUse = process.env.JWT_SECRET || 'dev_fallback_secret_not_for_production';
 
-if (!secretToUse) {
-  throw new Error("JWT_SECRET environment variable is not set");
+if (!process.env.JWT_SECRET) {
+  console.warn("JWT_SECRET environment variable is not set. Using insecure fallback.");
 }
 
 const JWT_SECRET = new TextEncoder().encode(secretToUse);

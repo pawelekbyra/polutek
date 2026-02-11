@@ -26,7 +26,7 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 interface CommentsModalProps {
   isOpen: boolean;
   onClose: () => void;
-  contentId: string | null; // Renamed from slideId to be generic
+  contentId: string | null; // Renamed from contentId to be generic
   initialCommentsCount: number;
 }
 
@@ -40,11 +40,11 @@ interface CommentItemProps {
   currentUserId?: string;
   lang: string;
   level?: number;
-  slideId: string | null;
+  contentId: string | null;
   lastRepliedParentId?: string | null;
 }
 
-const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, onReport, onAvatarClick, onStartReply, currentUserId, lang, level = 0, slideId, lastRepliedParentId }) => {
+const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, onReport, onAvatarClick, onStartReply, currentUserId, lang, level = 0, contentId, lastRepliedParentId }) => {
   const { t } = useTranslation();
   const [areRepliesVisible, setAreRepliesVisible] = useState(false);
 
@@ -60,7 +60,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
     hasNextPage: hasMoreReplies,
     isLoading: isLoadingReplies,
   } = useInfiniteQuery({
-    queryKey: ['comments', slideId, 'replies', comment.id],
+    queryKey: ['comments', contentId, 'replies', comment.id],
     queryFn: ({ pageParam }) => fetch(`/api/comments/replies?parentId=${comment.id}&cursor=${pageParam || ''}`).then(res => res.json()),
     initialPageParam: '',
     getNextPageParam: (lastPage) => lastPage.nextCursor,
@@ -105,7 +105,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
   };
 
   // Determine avatar border color based on role
-  // Patron = Yellow, Author = Purple (though author logic usually checks slideId matches userId, here we just check role 'patron')
+  // Patron = Yellow, Author = Purple (though author logic usually checks contentId matches userId, here we just check role 'patron')
   const isPatron = safeAuthor.role === 'patron';
   const isAuthor = safeAuthor.role === 'author'; // Or maybe check against slide author? For now just role.
 
@@ -208,7 +208,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, onLike, onDelete, on
                    <div className="flex justify-center p-2"><Loader2 className="animate-spin h-4 w-4 text-pink-400" /></div>
                 )}
                 {replies.map((reply) => (
-                  <MemoizedCommentItem key={reply.id} slideId={slideId} comment={reply} onLike={onLike} onDelete={onDelete} onReport={onReport} onAvatarClick={onAvatarClick} onStartReply={onStartReply} currentUserId={currentUserId} lang={lang} level={level + 1} lastRepliedParentId={lastRepliedParentId} />
+                  <MemoizedCommentItem key={reply.id} contentId={contentId} comment={reply} onLike={onLike} onDelete={onDelete} onReport={onReport} onAvatarClick={onAvatarClick} onStartReply={onStartReply} currentUserId={currentUserId} lang={lang} level={level + 1} lastRepliedParentId={lastRepliedParentId} />
                 ))}
                 {hasMoreReplies && (
                    <button onClick={() => fetchReplies()} disabled={isLoadingReplies} className="text-xs text-[#8F8F8F] font-semibold flex items-center gap-2">
@@ -272,7 +272,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, contentI
     data, error, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: ['comments', contentId, sortBy],
-    queryFn: ({ pageParam }) => fetchComments({ pageParam, slideId: contentId!, sortBy }),
+    queryFn: ({ pageParam }) => fetchComments({ pageParam, contentId: contentId!, sortBy }),
     initialPageParam: '',
     getNextPageParam: (lastPage) => lastPage.nextCursor,
     enabled: isOpen && !!contentId,
@@ -367,7 +367,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, contentI
     },
     onError: (err, variables, context) => {
       if (context?.previousData) {
-        queryClient.setQueryData(['comments', slideId, sortBy], context.previousData);
+        queryClient.setQueryData(['comments', contentId, sortBy], context.previousData);
       }
     },
     onSettled: () => {
@@ -392,7 +392,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, contentI
       return fetch('/api/comments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slideId: contentId, text, parentId, imageUrl }),
+        body: JSON.stringify({ contentId: contentId, text, parentId, imageUrl }),
       }).then(res => res.json());
     },
     onMutate: async ({ parentId, text, imageFile }) => {
@@ -558,7 +558,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({ isOpen, onClose, contentI
           {comments.map((comment) => (
             <MemoizedCommentItem
               key={comment.id}
-              slideId={contentId}
+              contentId={contentId}
               comment={comment}
               onLike={likeMutation.mutate}
               onDelete={async (id) => { await deleteMutation.mutateAsync(id); }}

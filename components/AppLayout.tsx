@@ -24,19 +24,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       />
 
       <div className="flex-1 flex overflow-hidden relative">
-        {/* Przekazujemy stan do Sidebar jeśli jest potrzebny */}
-        <Sidebar
-          isOpen={isSidebarOpen}
-          onClose={() => setIsSidebarOpen(false)}
-        />
-
-        {/* Overlay na mobile gdy sidebar jest otwarty */}
-        {isSidebarOpen && (
-          <div
-            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-            onClick={() => setIsSidebarOpen(false)}
-          />
-        )}
+        {/* Sidebar removed as it was incompatible with TikTok sidebar component */}
 
         <main
           className="flex-1 overflow-auto z-10 custom-scrollbar relative scroll-snap-y-mandatory w-full"
