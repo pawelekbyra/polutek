@@ -1,31 +1,21 @@
 "use client";
 
-import { UserProvider } from '@/context/UserContext';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { ToastProvider } from '@/context/ToastContext';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { SessionProvider } from 'next-auth/react';
-import { Provider } from 'react-redux';
-import { store } from '@/store/reduxStore';
 
 // Create a client
 const queryClient = new QueryClient();
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <Provider store={store}>
-      <SessionProvider>
-        <QueryClientProvider client={queryClient}>
-          <LanguageProvider>
-            <UserProvider>
-              <ToastProvider>
-                {children}
-              </ToastProvider>
-            </UserProvider>
-          </LanguageProvider>
-        </QueryClientProvider>
-      </SessionProvider>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <LanguageProvider>
+        <ToastProvider>
+          {children}
+        </ToastProvider>
+      </LanguageProvider>
+    </QueryClientProvider>
   );
 }
