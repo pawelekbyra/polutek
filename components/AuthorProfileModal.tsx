@@ -37,7 +37,7 @@ interface AuthorProfileModalProps {
     onClose: () => void;
 }
 
-export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProps) {
+export default function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProps) {
     const { jumpToSlide, openTippingModal, closeAuthorProfileModal } = useStore();
     const { user } = useUser();
     const [activeTab, setActiveTab] = useState<'videos' | 'liked' | 'private'>('videos');

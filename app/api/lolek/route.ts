@@ -1,7 +1,7 @@
 import {
   streamText,
   UIMessage,
-  convertToCoreMessages,
+  convertToModelMessages as convertToCoreMessages,
   tool,
   stepCountIs,
 } from 'ai';

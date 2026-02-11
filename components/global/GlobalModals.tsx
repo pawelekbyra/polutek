@@ -39,31 +39,35 @@ const GlobalModals = () => {
       />
 
       {activeModal === 'login' && (
-        <LoginForm isOpen={true} onClose={() => setActiveModal(null)} />
+        <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setActiveModal(null)}>
+           <div className="bg-neutral-900 rounded-2xl p-6 w-full max-w-sm border border-neutral-700 mx-4" onClick={(e) => e.stopPropagation()}>
+              <h2 className="text-xl font-bold text-white mb-4 text-center">Zaloguj się</h2>
+              <LoginForm onLoginSuccess={() => setActiveModal(null)} />
+              <button onClick={() => setActiveModal(null)} className="w-full text-neutral-500 text-sm hover:text-white transition-colors mt-2">Zamknij</button>
+           </div>
+        </div>
       )}
 
       {activeModal === 'account' && (
-        <AccountPanel isOpen={true} onClose={() => setActiveModal(null)} />
+        <AccountPanel onClose={() => setActiveModal(null)} />
       )}
 
       {isAuthorProfileModalOpen && activeAuthorId && (
         <AuthorProfileModal
-          isOpen={true}
           onClose={closeAuthorProfileModal}
-          userId={activeAuthorId}
+          authorId={activeAuthorId}
         />
       )}
 
       {isPatronProfileModalOpen && activePatronId && (
         <PatronProfileModal
-          isOpen={true}
           onClose={closePatronProfileModal}
-          userId={activePatronId}
+          patronId={activePatronId}
         />
       )}
 
       {isAdminModalOpen && (
-        <AdminModal isOpen={true} onClose={closeAdminModal} />
+        <AdminModal />
       )}
 
       {activeModal === 'info' && (

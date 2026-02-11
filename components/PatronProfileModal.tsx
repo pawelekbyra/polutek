@@ -15,7 +15,7 @@ interface PatronProfileModalProps {
     onClose: () => void;
 }
 
-export function PatronProfileModal({ patronId, onClose }: PatronProfileModalProps) {
+export default function PatronProfileModal({ patronId, onClose }: PatronProfileModalProps) {
     const { data: profile, isLoading, isError } = useQuery({
         queryKey: ['author', patronId],
         queryFn: () => fetchAuthorProfile(patronId),
