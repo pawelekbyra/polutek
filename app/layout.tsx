@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { headers } from "next/headers";
+import { Providers } from "@/components/Providers";
+import GlobalModals from "@/components/global/GlobalModals";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -42,7 +44,10 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body className={`antialiased ${inter.className}`}>
-        {children}
+        <Providers>
+          {children}
+          <GlobalModals />
+        </Providers>
         <Analytics />
       </body>
     </html>
