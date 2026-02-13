@@ -1,5 +1,0 @@
-import TigtongFeed from '@/app/components/TigtongFeed';
-
-export default function TigtongPage() {
-  return <TigtongFeed />;
-}

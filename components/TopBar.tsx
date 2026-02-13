@@ -16,14 +16,14 @@ export default function TopBar({ toggleSidebar, isSidebarOpen }: TopBarProps) {
   const { user } = useUser();
   const pathname = usePathname();
   const [showNotifications, setShowNotifications] = useState(false);
-  const [hasUnread, setHasUnread] = useState(false);
+  // const [hasUnread, setHasUnread] = useState(false);
 
-  useEffect(() => {
-    if (user?.notifications) {
-      const unread = user.notifications.some((n: any) => !n.read);
-      setHasUnread(unread);
-    }
-  }, [user?.notifications]);
+  // useEffect(() => {
+  //   if (user?.notifications) {
+  //     const unread = user.notifications.some((n: any) => !n.read);
+  //     setHasUnread(unread);
+  //   }
+  // }, [user?.notifications]);
 
   const getPageTitle = () => {
     if (pathname === '/') return 'Strona Główna';
@@ -60,13 +60,14 @@ export default function TopBar({ toggleSidebar, isSidebarOpen }: TopBarProps) {
             onClick={() => setShowNotifications(!showNotifications)}
           >
             <BellIcon className="w-6 h-6" />
-            {hasUnread && (
+            {/* {hasUnread && (
               <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-background" />
-            )}
+            )} */}
           </Button>
 
           {showNotifications && (
             <NotificationPopup
+              isOpen={true}
               onClose={() => setShowNotifications(false)}
             />
           )}

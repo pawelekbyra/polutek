@@ -45,7 +45,7 @@ export async function GET(
       },
     });
 
-    const formattedSlides = slides.map((slide) => {
+    const formattedSlides = slides.map((slide: any) => {
       let title = slide.title || 'Untitled';
       let thumbnailUrl = slide.thumbnailUrl || '/placeholder.jpg';
 

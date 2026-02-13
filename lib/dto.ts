@@ -1,33 +1,40 @@
-import { Prisma } from '@prisma/client';
-
 // --- Base Types from Prisma (Extended) ---
 
 // Public User Profile (stripped of sensitive data)
-export type PublicUser = Pick<Prisma.UserGetPayload<{}>, 'id' | 'username' | 'displayName' | 'avatar' | 'role'>;
+export type PublicUser = {
+    id: string;
+    username: string | null;
+    displayName: string | null;
+    avatar: string | null;
+    role: string;
+};
 
 // Comment with Relations (matching what the frontend needs)
 // Includes author, nested replies (recursive), and like count/status
-export type CommentWithRelations = Prisma.CommentGetPayload<{
-  include: {
+export type CommentWithRelations = {
+    id: string;
+    text: string;
+    imageUrl: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    authorId: string;
+    slideId: string;
+    parentId: string | null;
     author: {
-      select: {
-        id: true;
-        username: true;
-        displayName: true;
-        avatar: true;
-        role: true; // Added role for badge/border logic
-      };
+        id: string;
+        username: string | null;
+        displayName: string | null;
+        avatar: string | null;
+        role: string;
     };
-  };
-}> & {
-  isLiked: boolean; // Computed field indicating if the current user liked this
-  replies?: CommentWithRelations[]; // Recursive structure for client-side state
-  parentAuthorUsername?: string | null; // For displaying "@username" in nested replies
-  parentAuthorId?: string | null; // For linking to the parent author's profile
-  _count?: {
-    likes: number;
-    replies?: number; // Add reply count
-  };
+    isLiked: boolean;
+    replies?: CommentWithRelations[];
+    parentAuthorUsername?: string | null;
+    parentAuthorId?: string | null;
+    _count?: {
+        likes: number;
+        replies?: number;
+    };
 };
 
 // --- Slide Types (Consolidating Frontend & Backend) ---
@@ -36,7 +43,7 @@ export interface BaseSlideDTO {
   id: string;
   // Core data
   userId: string;
-  username: string;
+  username: string | null;
   avatar: string;
 
   // Metadata

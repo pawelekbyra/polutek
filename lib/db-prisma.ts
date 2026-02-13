@@ -317,7 +317,7 @@ export async function getPushSubscriptions(options: any): Promise<any[]> {
     const { userId } = options;
     if (userId) {
         const subs = await prisma.pushSubscription.findMany({ where: { userId }, select: { subscription: true } });
-        return subs.map(s => s.subscription);
+        return subs.map((s: any) => s.subscription);
     }
     return [];
 }
@@ -342,7 +342,7 @@ export async function getSlides(options: { limit?: number, cursor?: string, curr
 
     // We need 'isLiked'. Separate query or map.
     // Efficient way:
-    const slidesWithLikes = await Promise.all(slides.map(async s => {
+    const slidesWithLikes = await Promise.all(slides.map(async (s: any) => {
         let isLiked = false;
         if (currentUserId) {
             const like = await prisma.like.findUnique({ where: { authorId_slideId: { authorId: currentUserId, slideId: s.id } } });
@@ -376,8 +376,6 @@ function mapSlide(s: any): Slide {
     const content = s.content ? JSON.parse(s.content) : {};
     return {
         id: s.id,
-        x: s.x,
-        y: s.y,
         type: s.slideType as 'video' | 'html',
         userId: s.userId,
         username: s.username,
