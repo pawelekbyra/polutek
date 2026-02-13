@@ -27,6 +27,33 @@ export const viewport: Viewport = {
   initialScale: 1.0,
   viewportFit: "cover",
 };
+  const title = isSubdomain ? "Protokół Architekta" : "Eliksir Wiedźmina";
+  const description = isSubdomain
+    ? "Metoda Zero Terminala. Wykorzystaj Cursor, Bolt i Supabase, by stać się Cyfrowym Architektem."
+    : "W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.";
+  const robots = isSubdomain ? "index, follow" : "noindex, nofollow";
+
+  return {
+    title,
+    description,
+    robots,
+    // Weryfikacja dodana tylko dla subdomeny ai.
+    verification: isSubdomain ? {
+      google: "jnTrTJLZUFbMyRdILiSoJ9s8olIx1rITp1IqDHC7Ss4",
+    } : {},
+    viewport: "width=device-width, initial-scale=1.0, viewport-fit=cover",
+    openGraph: {
+      title,
+      description,
+      type: isSubdomain ? "website" : "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
+}
 
 export default function RootLayout({
   children,
