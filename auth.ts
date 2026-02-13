@@ -134,12 +134,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
                     return user;
                 }
 
-                // Fallback: Plain text check (for testing/recovery)
-                if (password === user.password) {
-                     console.log(`[AUTH-DEBUG] Login successful for user: ${user.username} (Plain text match - WARNING: Insecure password in DB)`);
-                     return user;
-                }
-
                 console.log(`[AUTH-DEBUG] Login failed: Invalid password for user '${user.username}'.`);
                 return null;
 
