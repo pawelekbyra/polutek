@@ -1,17 +1,32 @@
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-import { headers } from "next/headers";
 import { Providers } from "@/components/Providers";
-import GlobalModals from "@/components/global/GlobalModals";
 import "./globals.css";
+import type { Viewport } from 'next';
 
 const inter = Inter({ subsets: ["latin"] });
 
-export async function generateMetadata() {
-  const headersList = headers();
-  const host = headersList.get('host') || '';
-  const isSubdomain = host.startsWith('ai.');
+export const metadata = {
+  title: "Eliksir Wiedźmina",
+  description: "W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.",
+  robots: "index, follow",
+  openGraph: {
+    title: "Eliksir Wiedźmina",
+    description: "W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Eliksir Wiedźmina",
+    description: "W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.",
+  },
+};
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
+  viewportFit: "cover",
+};
   const title = isSubdomain ? "Protokół Architekta" : "Eliksir Wiedźmina";
   const description = isSubdomain
     ? "Metoda Zero Terminala. Wykorzystaj Cursor, Bolt i Supabase, by stać się Cyfrowym Architektem."
@@ -50,7 +65,6 @@ export default function RootLayout({
       <body className={`antialiased ${inter.className}`}>
         <Providers>
           {children}
-          <GlobalModals />
         </Providers>
         <Analytics />
       </body>
