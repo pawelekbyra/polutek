@@ -334,10 +334,7 @@ export async function getSlides(options: { limit?: number, cursor?: string, curr
     const slides = await prisma.slide.findMany({
         take: limit,
         orderBy: { createdAt: 'desc' },
-        cursor: cursor ? { createdAt: new Date(cursor) } : undefined, // Assuming cursor is ISO string? Or timestamp? Original used timestamp.
-        // If cursor is timestamp string "123456", new Date(parseInt(cursor))
-        // If cursor is ISO, new Date(cursor).
-        // Let's assume ISO for safety or handle logic.
+        cursor: cursor ? { id: cursor } : undefined,
     });
 
     // We need 'isLiked'. Separate query or map.
