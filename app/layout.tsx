@@ -22,6 +22,10 @@ export async function generateMetadata() {
     title,
     description,
     robots,
+    // Weryfikacja dodana tylko dla subdomeny ai.
+    verification: isSubdomain ? {
+      google: "jnTrTJLZUFbMyRdILiSoJ9s8olIx1rITp1IqDHC7Ss4",
+    } : {},
     viewport: "width=device-width, initial-scale=1.0, viewport-fit=cover",
     openGraph: {
       title,
