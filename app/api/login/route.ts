@@ -4,6 +4,8 @@ import { prisma } from '@/lib/prisma';
 import { AuthError } from 'next-auth';
 import { DEFAULT_AVATAR_URL } from '@/lib/constants';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: Request) {
   const body = await req.json();
   const { login, password } = body;

@@ -27,3 +27,6 @@ export { db };
 // Re-export all interfaces from db.interfaces to make them available
 // to any module that imports from 'lib/db'.
 export * from './db.interfaces';
+
+// EXPORT ALL FUNCTIONS DIRECTLY
+export * from './db-prisma';

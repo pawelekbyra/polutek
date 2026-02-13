@@ -98,7 +98,7 @@ export async function deleteUser(userId: string) {
         }
 
         // Manual Cascade Delete Transaction
-        await prisma.$transaction(async (tx) => {
+         await prisma.$transaction(async (tx: any) => {
             // 1. Delete Push Subscriptions
             await tx.pushSubscription.deleteMany({ where: { userId } });
 
@@ -125,7 +125,7 @@ export async function deleteUser(userId: string) {
             // We can delete all comments by author.
             const userComments = await tx.comment.findMany({ where: { authorId: userId }, select: { id: true } });
             if (userComments.length > 0) {
-                const commentIds = userComments.map(c => c.id);
+                 const commentIds = userComments.map((c: any) => c.id);
                 // Delete likes on these comments
                 await tx.commentLike.deleteMany({ where: { commentId: { in: commentIds } } });
                 // Replies will be deleted via cascade if we delete the comments?
@@ -138,7 +138,7 @@ export async function deleteUser(userId: string) {
             // 6. Handle User's Slides
             const userSlides = await tx.slide.findMany({ where: { userId }, select: { id: true } });
             if (userSlides.length > 0) {
-                const slideIds = userSlides.map(s => s.id);
+                 const slideIds = userSlides.map((s: any) => s.id);
 
                 // Delete likes on these slides
                 await tx.like.deleteMany({ where: { slideId: { in: slideIds } } });
@@ -147,7 +147,7 @@ export async function deleteUser(userId: string) {
                 // We need to find all comments on these slides first to delete their sub-relations (likes, replies)
                 // Or rely on the previous step? No, these are comments BY OTHERS on THIS USER'S slides.
                 const slideComments = await tx.comment.findMany({ where: { slideId: { in: slideIds } }, select: { id: true } });
-                const slideCommentIds = slideComments.map(c => c.id);
+                  const slideCommentIds = slideComments.map((c: any) => c.id);
 
                 if (slideCommentIds.length > 0) {
                      await tx.commentLike.deleteMany({ where: { commentId: { in: slideCommentIds } } });

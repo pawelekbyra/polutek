@@ -6,6 +6,8 @@ import * as bcrypt from 'bcryptjs';
 import { sendPasswordResetLinkEmail } from '@/lib/email';
 import { randomBytes } from 'crypto';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
     try {
         const { email } = await request.json();

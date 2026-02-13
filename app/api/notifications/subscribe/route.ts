@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
-import { savePushSubscription } from '@/lib/db-postgres';
+import { savePushSubscription } from '@/lib/db';
 
 export async function POST(req: NextRequest) {
   try {

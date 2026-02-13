@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import Stripe from 'stripe';
 import { stripe } from '@/lib/stripe';
-import { findUserByEmail, updateUser, createUser } from '@/lib/db-postgres';
+import { findUserByEmail, updateUser, createUser } from '@/lib/db';
 import { NotificationService } from '@/lib/notifications';
 import { sendWelcomeEmail } from '@/lib/email';
 import crypto from 'crypto';
@@ -15,8 +15,6 @@ export async function POST(req: Request) {
 
   try {
     if (!process.env.STRIPE_WEBHOOK_SECRET) {
-       // Allow bypassing signature check in dev if explicitly set, but standard is to require it.
-       // For this environment, we must assume it is set or we log error.
        console.error('STRIPE_WEBHOOK_SECRET is missing');
        throw new Error('STRIPE_WEBHOOK_SECRET is missing');
     }
@@ -34,7 +32,6 @@ export async function POST(req: Request) {
     if (event.type === 'payment_intent.succeeded') {
       const paymentIntent = event.data.object as Stripe.PaymentIntent;
 
-      // Get email from metadata or receipt_email
       const email = paymentIntent.metadata?.user_email || paymentIntent.receipt_email;
 
       if (email) {
@@ -46,7 +43,6 @@ export async function POST(req: Request) {
            console.log(`User found (ID: ${existingUser.id}), upgrading to patron...`);
            await updateUser(existingUser.id, { role: 'patron' });
 
-           // Notify existing user
            await NotificationService.send(
                existingUser.id,
                'system',
@@ -56,8 +52,6 @@ export async function POST(req: Request) {
         } else {
            if (paymentIntent.metadata.create_account === 'true') {
              console.log(`User not found, creating new patron account for ${email}...`);
-             // Create new user
-             // Generate a random password using crypto
              const tempPassword = crypto.randomBytes(4).toString('hex');
              const newUser = await createUser({
                  username: email.split('@')[0] + '_' + Math.floor(Math.random() * 1000),
@@ -65,13 +59,11 @@ export async function POST(req: Request) {
                  email: email,
                  password: tempPassword,
                  role: 'patron',
-                 avatar: undefined // Changed from null to undefined to fix type error
+                 avatar: undefined
              });
 
-             // Send welcome email
              await sendWelcomeEmail(email, tempPassword);
 
-             // Notify new user (Welcome handled by createUser, add specific Patron msg)
              await NotificationService.send(
                  newUser.id,
                  'system',
