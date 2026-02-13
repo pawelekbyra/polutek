@@ -1,5 +1,5 @@
 import TigtongFeed from '@/app/components/TigtongFeed';
 
-export default function TigtongPage() {
+export default function TingtongPage() {
   return <TigtongFeed />;
 }
