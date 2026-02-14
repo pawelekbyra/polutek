@@ -6,13 +6,15 @@ import BellIcon from '@/components/icons/BellIcon';
 import { useUser } from '@/context/UserContext';
 import { usePathname, useRouter } from 'next/navigation';
 import NotificationPopup from './NotificationPopup';
+import { cn } from '@/lib/utils';
 
 export interface TopBarProps {
   toggleSidebar: () => void;
   isSidebarOpen: boolean;
+  className?: string;
 }
 
-export default function TopBar({ toggleSidebar, isSidebarOpen }: TopBarProps) {
+export default function TopBar({ toggleSidebar, isSidebarOpen, className }: TopBarProps) {
   const { user } = useUser();
   const pathname = usePathname();
   const [showNotifications, setShowNotifications] = useState(false);
@@ -35,7 +37,7 @@ export default function TopBar({ toggleSidebar, isSidebarOpen }: TopBarProps) {
   };
 
   return (
-    <header className="sticky top-0 z-30 flex items-center justify-between px-4 py-3 bg-background/80 backdrop-blur-md border-b border-white/10 safe-top">
+    <header className={cn("sticky top-0 z-30 flex items-center justify-between px-4 py-3 bg-background/80 backdrop-blur-md border-b border-white/10 safe-top", className)}>
       <div className="flex items-center gap-3 flex-1 min-w-0">
         <Button
           variant="ghost"

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/db';
+import { getSlides } from '@/lib/db-prisma';
 import { auth } from '@/auth';
 
 export const dynamic = 'force-dynamic';
@@ -13,11 +13,7 @@ export async function GET(request: NextRequest) {
     const session = await auth();
     const currentUserId = session?.user?.id;
 
-    if (!db.getSlides) {
-        return NextResponse.json({ error: 'db.getSlides is not a function' }, { status: 500 });
-    }
-
-    const slides = await db.getSlides({ limit, cursor, currentUserId });
+    const slides = await getSlides({ limit, cursor, currentUserId });
 
     let nextCursor: string | null = null;
     if (slides.length === limit) {
@@ -29,8 +25,8 @@ export async function GET(request: NextRequest) {
       slides,
       nextCursor,
     });
-  } catch (error) {
-    console.error('Failed to fetch slides:', error);
+  } catch (error: any) {
+    console.error('Failed to fetch slides:', error?.message || error);
     return NextResponse.json({ error: 'Failed to fetch slides' }, { status: 500 });
   }
 }
