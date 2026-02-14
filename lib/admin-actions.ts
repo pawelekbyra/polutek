@@ -43,9 +43,9 @@ export async function getUsers(page = 1, limit = 10, search = '', roleFilter = '
 
         if (search) {
             where.OR = [
-                { email: { contains: search, mode: 'insensitive' } },
-                { username: { contains: search, mode: 'insensitive' } },
-                { displayName: { contains: search, mode: 'insensitive' } },
+                { email: { contains: search } },
+                { username: { contains: search } },
+                { displayName: { contains: search } },
             ];
         }
 

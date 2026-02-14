@@ -38,7 +38,6 @@ export async function checkDisplayNameAvailability(displayName: string) {
         where: {
             displayName: {
                 equals: name,
-                mode: 'insensitive'
             }
         },
         select: { id: true }
