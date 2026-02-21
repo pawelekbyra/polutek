@@ -147,7 +147,7 @@ export default function ElixirArticle() {
 
           <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
             <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
-              Ayahuasca, policyjne naloty i tragedia, o której nikt się miał nie dowiedzieć. Analiza akt sądowych i publicznych rejestrów  ujawnia, jak twórcy gry &quot;Wiedźmin&quot; finansowali szamańskie podziemie.
+              Ayahuasca, policyjne naloty i tragedia, o której nikt się miał nie dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry &quot;Wiedźmin&quot; finansowali szamańskie podziemie.
             </p>
           </div>
         </div>
