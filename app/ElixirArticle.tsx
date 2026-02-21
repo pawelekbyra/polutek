@@ -133,7 +133,7 @@ export default function ElixirArticle() {
       <header className="pt-20 pb-8 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-block mb-6 px-3 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase">
-            Śledztwo OSINT
+            www.kicinskigate.eth.limo
           </div>
 
           <h1 className="mb-8 text-stone-900">
@@ -897,7 +897,7 @@ export default function ElixirArticle() {
                 rel="noopener noreferrer"
                 className="font-mono text-sm text-stone-400 hover:text-stone-900 transition-colors underline decoration-double decoration-stone-200"
               >
-                dziennikarzsledczy.eth.limo
+                kicinskigate.eth.limo
               </a>
            </div>
         </footer>
