@@ -616,7 +616,7 @@ export default function ElixirArticle() {
 
           <div className="mt-8 mb-4 flex justify-end">
              <div className="text-right">
-                <span className="block font-bold text-stone-900">Paweł P.</span>
+                <span className="block font-bold text-stone-900">Narol Kawrocki</span>
              </div>
           </div>
 
