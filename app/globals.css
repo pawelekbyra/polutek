@@ -17,36 +17,44 @@
     --topbar-height: calc(var(--topbar-base-height) + var(--safe-area-top));
     --bottombar-height: calc(var(--bottombar-base-height) + var(--safe-area-bottom));
 
-    /* Shadcn/ui variables - adapted for the prototype's theme */
-    --background: 0 0% 0%; /* Black background */
-    --foreground: 0 0% 100%; /* White text */
+    /* Shadcn/ui variables - adapted for Light Mode */
+    --background: 0 0% 100%; /* White background */
+    --foreground: 240 10% 3.9%; /* Near black text */
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
 
-    --primary: 336 100% 50%; /* Accent color */
-    --primary-foreground: 210 40% 98%;
+    --primary: 262.1 83.3% 57.8%; /* Violet accent */
+    --primary-foreground: 210 20% 98%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
 
-    --accent: 336 100% 50%; /* Accent color */
-    --accent-foreground: 210 40% 98%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 336 100% 50%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 262.1 83.3% 57.8%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
+
+    /* Topbar remains black */
+    --topbar-background: 240 10% 3.9%;
+    --topbar-foreground: 0 0% 98%;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   }
 }
 
@@ -70,16 +78,16 @@
 
   /*
     Logic for Body Background:
-    - Default (Mobile): Black (#000000)
-    - Desktop (md:): Zinc-950 to blend with emulator frame
+    - Default (Mobile): White (#ffffff)
+    - Desktop (md:): Neutral-50 to blend with emulator frame
   */
   body {
-    background-color: #000000;
+    background-color: #ffffff;
   }
 
   @media (min-width: 768px) {
     body {
-      background-color: #09090b; /* zinc-950 */
+      background-color: #fafafa; /* neutral-50 */
       /* No flex needed here as DesktopDeviceFrame handles centering */
     }
     #app-layout {

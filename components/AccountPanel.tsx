@@ -10,6 +10,7 @@ import { useTranslation } from '@/context/LanguageContext';
 import { X } from 'lucide-react';
 import { Button } from './ui/button';
 import { useRouter } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
 interface AccountPanelProps {
   onClose: () => void;
@@ -42,28 +43,27 @@ const AccountPanel: React.FC<AccountPanelProps> = ({ onClose }) => {
 
   return (
     <motion.div
-      className="absolute inset-0 bg-black/80 z-[9999]"
+      className="absolute inset-0 bg-gray-900/40 backdrop-blur-md z-[9999]"
       initial={{ opacity: 0, pointerEvents: 'none' }}
       animate={{ opacity: 1, pointerEvents: 'auto' }}
       exit={{ opacity: 0, pointerEvents: 'none' }}
       onClick={onClose} // Close on overlay click
     >
       <motion.div
-        className="absolute top-0 left-0 h-full w-full max-w-md bg-gradient-to-br from-[#121212] to-[#1e1e1e] flex flex-col shadow-2xl"
-        // Zaktualizowana animacja: taka sama jak AuthorProfileModal, ale z lewej strony (x: -100%)
+        className="absolute top-0 left-0 h-full w-full max-w-md bg-white flex flex-col shadow-[32px_0_64px_-12px_rgba(0,0,0,0.14)]"
         initial={{ x: '-100%' }}
         animate={{ x: '0%' }}
         exit={{ x: '-100%' }}
         transition={{ type: 'spring', damping: 30, stiffness: 200 }}
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the panel
       >
-        {/* Top Bar - styled to be distinct but integrated */}
+        {/* Top Bar - Remains Black per requirement */}
         <div
-            className="relative flex-shrink-0 flex items-center justify-center bg-[#121212]/90 backdrop-blur-md border-b border-white/5 shadow-sm z-10"
+            className="relative flex-shrink-0 flex items-center justify-center bg-[#09090b] text-white border-b border-white/5 shadow-sm z-10"
             style={{ height: 'var(--topbar-height)', paddingTop: 'var(--safe-area-top)'}}
         >
           <div className="flex flex-col items-center gap-1">
-             <h2 className="text-base font-semibold text-white tracking-wide">{t('account') || 'Konto'}</h2>
+             <h2 className="text-lg font-black tracking-tight">{t('account') || 'Konto'}</h2>
           </div>
           <button
             onClick={onClose}
@@ -75,25 +75,34 @@ const AccountPanel: React.FC<AccountPanelProps> = ({ onClose }) => {
         </div>
 
         {/* Tabs Header */}
-        <div className="flex-shrink-0 flex bg-[#1a1a1a] border-b border-white/5">
+        <div className="flex-shrink-0 flex bg-gray-50 border-b border-gray-100 p-2 gap-1">
           <button
             onClick={() => handleTabClick('profile')}
             aria-label={t('profileTab')}
-            className={`flex-1 py-4 text-sm font-medium border-b-2 transition-all ${activeTab === 'profile' ? 'text-pink-500 border-pink-500 bg-white/5' : 'text-white/40 border-transparent hover:text-white/70 hover:bg-white/5'}`}
+            className={cn(
+                "flex-1 py-3 text-sm font-bold rounded-xl transition-all",
+                activeTab === 'profile' ? "bg-white text-violet-600 shadow-sm" : "text-gray-400 hover:text-gray-900"
+            )}
           >
             {t('profileTab')}
           </button>
           <button
             onClick={() => handleTabClick('password')}
             aria-label={t('passwordTab')}
-            className={`flex-1 py-4 text-sm font-medium border-b-2 transition-all ${activeTab === 'password' ? 'text-pink-500 border-pink-500 bg-white/5' : 'text-white/40 border-transparent hover:text-white/70 hover:bg-white/5'}`}
+            className={cn(
+                "flex-1 py-3 text-sm font-bold rounded-xl transition-all",
+                activeTab === 'password' ? "bg-white text-violet-600 shadow-sm" : "text-gray-400 hover:text-gray-900"
+            )}
           >
             {t('passwordTab')}
           </button>
           <button
             onClick={() => handleTabClick('delete')}
             aria-label={t('deleteTab')}
-            className={`flex-1 py-4 text-sm font-medium border-b-2 transition-all ${activeTab === 'delete' ? 'text-pink-500 border-pink-500 bg-white/5' : 'text-white/40 border-transparent hover:text-white/70 hover:bg-white/5'}`}
+            className={cn(
+                "flex-1 py-3 text-sm font-bold rounded-xl transition-all",
+                activeTab === 'delete' ? "bg-white text-violet-600 shadow-sm" : "text-gray-400 hover:text-gray-900"
+            )}
           >
             {t('deleteTab')}
           </button>

@@ -56,45 +56,47 @@ const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="absolute inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+          className="absolute inset-0 bg-gray-900/40 backdrop-blur-md z-50 flex items-center justify-center p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
         >
           <motion.div
-            className="modal-content bg-black/80 backdrop-blur-md text-white rounded-xl max-w-md w-full max-h-[80vh] flex flex-col border border-white/10"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            className="modal-content bg-white text-gray-900 rounded-[2.5rem] max-w-md w-full max-h-[80vh] flex flex-col border border-gray-100 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14)] overflow-hidden"
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            transition={{ type: "spring", duration: 0.5 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex-shrink-0 flex items-center justify-between p-4 border-b border-white/10">
-              <h2 id="infoTitle" className="text-lg font-semibold">
-                {t('infoModalTitle') || 'Information'}
+            <div className="flex-shrink-0 flex items-center justify-between p-8 border-b border-gray-50">
+              <h2 id="infoTitle" className="text-2xl font-black tracking-tight">
+                {t('infoModalTitle') || 'Informacje'}
               </h2>
               <button
                 onClick={onClose}
-                className="text-white/60 hover:text-white"
+                className="p-2 bg-gray-50 text-gray-400 hover:text-gray-900 rounded-full transition-all"
                 aria-label={t('closeInfoAriaLabel') || 'Close information'}
               >
                 <X size={24} />
               </button>
             </div>
-            <div className="modal-body flex-1 overflow-y-auto p-6 space-y-4 text-sm text-white/80">
-              <p>{t('infoModalBodyP1') || 'Lorem ipsum dolor sit amet...'}</p>
-              <p>{t('infoModalBodyP2') || 'Ut in nulla enim...'}</p>
-              <div className="tip-cta bg-white/5 border border-white/10 rounded-lg p-4 text-center">
-                <Coffee className="mx-auto text-pink-500 w-10 h-10 mb-2" />
-                <p className="text-sm">
-                  {t('infoModalBodyTip') || 'Enjoying the app? Leave a tip...'}
+            <div className="modal-body flex-1 overflow-y-auto p-8 space-y-6 text-[15px] font-medium text-gray-500 leading-relaxed">
+              <p>{t('infoModalBodyP1') || 'Witaj w ekosystemie Polutek OS.'}</p>
+              <p>{t('infoModalBodyP2') || 'To miejsce prywatnych badań i narzędzi nowej generacji.'}</p>
+              <div className="tip-cta bg-gray-50 border border-gray-100 rounded-[2rem] p-8 text-center shadow-sm">
+                <div className="w-16 h-16 bg-violet-100 rounded-2xl flex items-center justify-center text-violet-600 mx-auto mb-4">
+                    <Coffee size={32} />
+                </div>
+                <p className="text-sm font-bold text-gray-900 mb-6">
+                  {t('infoModalBodyTip') || 'Podoba Ci się projekt? Postaw kawę!'}
                 </p>
-                <button onClick={handleShowTipJar} className="mt-3 bg-pink-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-pink-600">
-                  {t('tipText') || 'Tip'}
+                <button onClick={handleShowTipJar} className="w-full bg-violet-600 text-white px-6 py-4 rounded-2xl text-base font-bold shadow-lg shadow-violet-200 hover:bg-violet-700 transition-all active:scale-95">
+                  {t('tipText') || 'Wesprzyj projekt'}
                 </button>
               </div>
-              <p>{t('infoModalBodyP3') || 'Donec id elit non mi porta...'}</p>
+              <p>{t('infoModalBodyP3') || 'Dziękujemy za bycie częścią społeczności.'}</p>
             </div>
           </motion.div>
         </motion.div>

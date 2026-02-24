@@ -1,7 +1,9 @@
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Providers } from "@/components/Providers";
+import '@mantine/core/styles.css';
 import "./globals.css";
+import { ColorSchemeScript } from '@mantine/core';
 import type { Viewport } from 'next';
 
 const inter = Inter({ subsets: ["latin"] });
@@ -35,6 +37,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl">
+      <head>
+        <ColorSchemeScript defaultColorScheme="light" />
+      </head>
       <body className={`antialiased ${inter.className}`}>
         <Providers>
           {children}

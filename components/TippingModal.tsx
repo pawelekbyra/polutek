@@ -17,29 +17,29 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK!);
 
 // --- KONFIGURACJA WYGLĄDU (Stała, aby uniknąć re-renderów) ---
 const STRIPE_APPEARANCE = {
-    theme: 'night' as const,
+    theme: 'flat' as const,
     variables: {
-        colorPrimary: '#db2777', // bg-pink-600
-        colorBackground: '#2C2C2E',
-        colorText: '#ffffff',
-        colorDanger: '#ff4444',
-        fontFamily: 'inherit',
-        borderRadius: '12px',
+        colorPrimary: '#7c3aed', // violet-600
+        colorBackground: '#f9fafb',
+        colorText: '#111827',
+        colorDanger: '#ef4444',
+        fontFamily: 'Inter, inherit',
+        borderRadius: '16px',
         spacingUnit: '4px',
     },
     rules: {
         '.Input': {
-            border: '1px solid rgba(255,255,255,0.1)',
-            backgroundColor: 'rgba(0,0,0,0.3)',
+            border: '2px solid #f3f4f6',
+            backgroundColor: '#ffffff',
         },
         '.Input:focus': {
-            border: '1px solid #db2777',
+            border: '2px solid #7c3aed',
         }
     }
 };
 
-const StripeLogo = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="75" height="33" viewBox="0 0 120 60" fillRule="evenodd" fill="#FFFFFF">
+const StripeLogo = ({ color = "#111827" }: { color?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="75" height="33" viewBox="0 0 120 60" fillRule="evenodd" fill={color}>
         <path d="M101.547 30.94c0-5.885-2.85-10.53-8.3-10.53-5.47 0-8.782 4.644-8.782 10.483 0 6.92 3.908 10.414 9.517 10.414 2.736 0 4.805-.62 6.368-1.494v-4.598c-1.563.782-3.356 1.264-5.632 1.264-2.23 0-4.207-.782-4.46-3.494h11.24c0-.3.046-1.494.046-2.046zM90.2 28.757c0-2.598 1.586-3.678 3.035-3.678 1.402 0 2.897 1.08 2.897 3.678zm-14.597-8.345c-2.253 0-3.7 1.057-4.506 1.793l-.3-1.425H65.73v26.805l5.747-1.218.023-6.506c.828.598 2.046 1.448 4.07 1.448 4.115 0 7.862-3.3 7.862-10.598-.023-6.667-3.816-10.3-7.84-10.3zm-1.38 15.84c-1.356 0-2.16-.483-2.713-1.08l-.023-8.53c.598-.667 1.425-1.126 2.736-1.126 2.092 0 3.54 2.345 3.54 5.356 0 3.08-1.425 5.38-3.54 5.38zm-16.4-17.196l5.77-1.24V13.15l-5.77 1.218zm0 1.747h5.77v20.115h-5.77zm-6.185 1.7l-.368-1.7h-4.966V40.92h5.747V27.286c1.356-1.77 3.655-1.448 4.368-1.195v-5.287c-.736-.276-3.425-.782-4.782 1.7zm-11.494-6.7L34.535 17l-.023 18.414c0 3.402 2.552 5.908 5.954 5.908 1.885 0 3.264-.345 4.023-.76v-4.667c-.736.3-4.368 1.356-4.368-2.046V25.7h4.368v-4.897h-4.37zm-15.54 10.828c0-.897.736-1.24 1.954-1.24a12.85 12.85 0 0 1 5.7 1.47V21.47c-1.908-.76-3.793-1.057-5.7-1.057-4.667 0-7.77 2.437-7.77 6.506 0 6.345 8.736 5.333 8.736 8.07 0 1.057-.92 1.402-2.207 1.402-1.908 0-4.345-.782-6.276-1.84v5.47c2.138.92 4.3 1.3 6.276 1.3 4.782 0 8.07-2.368 8.07-6.483-.023-6.85-8.782-5.632-8.782-8.207z"/>
     </svg>
 );
@@ -127,7 +127,7 @@ const CheckoutForm = ({ clientSecret, email, onClose, onBack }: { clientSecret: 
                     type="button"
                     onClick={onBack}
                     disabled={isProcessing}
-                    className="flex-1 px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5 disabled:opacity-50"
+                    className="flex-1 px-6 h-12 flex items-center justify-center rounded-2xl font-bold text-gray-500 bg-gray-50 hover:bg-gray-100 transition-all text-sm uppercase tracking-wide border border-gray-100 disabled:opacity-50"
                 >
                     Wstecz
                 </button>
@@ -135,7 +135,7 @@ const CheckoutForm = ({ clientSecret, email, onClose, onBack }: { clientSecret: 
                     type="submit"
                     // Blokujemy przycisk dopóki Stripe nie jest gotowy (isReady)
                     disabled={isProcessing || !stripe || !elements || !isReady}
-                    className="flex-1 h-10 rounded-xl font-bold text-white text-base bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 tracking-wider shadow-lg active:scale-[0.98] uppercase flex items-center justify-center gap-2"
+                    className="flex-1 h-12 rounded-2xl font-bold text-white text-base bg-violet-600 hover:bg-violet-700 transition-all disabled:opacity-50 tracking-wider shadow-lg shadow-violet-200 active:scale-[0.98] uppercase flex items-center justify-center gap-2"
                 >
                     {isProcessing ? (
                         <div className="flex items-center justify-center gap-2">
@@ -360,26 +360,26 @@ const TippingModal = () => {
             animate={{ x: '0%' }}
             exit={{ x: tippingModalOptions.fromLeft ? '-100%' : '100%' }}
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
-            className="relative w-[90%] max-w-[420px] max-h-[85vh] flex flex-col rounded-3xl bg-[#1C1C1E] shadow-2xl pointer-events-auto border border-white/10 overflow-visible"
+            className="relative w-[95%] max-w-[420px] max-h-[85vh] flex flex-col rounded-[2.5rem] bg-white shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14)] pointer-events-auto border border-gray-100 overflow-visible"
           >
 
         {/* NAGŁÓWEK */}
-        <div className="relative h-14 flex items-center justify-center px-6 text-center shrink-0 z-10 bg-[#1C1C1E] border-b border-white/5 rounded-t-3xl">
-            <h2 className="text-xl font-bold text-white/50 tracking-widest">
+        <div className="relative h-16 flex items-center justify-center px-6 text-center shrink-0 z-10 bg-white border-b border-gray-50 rounded-t-[2.5rem]">
+            <h2 className="text-xl font-black text-gray-900 tracking-tight">
                 {modalTitle}
             </h2>
             <button
                 onClick={closeTippingModal}
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-white/40 hover:text-white hover:bg-white/10 rounded-full transition-colors z-50"
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-50 rounded-full transition-all z-50"
             >
-                <X size={22} strokeWidth={2.5} />
+                <X size={24} />
             </button>
         </div>
 
         {/* PROGRESS BAR */}
-        <div className="h-1 w-full bg-white/5 relative overflow-hidden z-10">
+        <div className="h-1.5 w-full bg-gray-50 relative overflow-hidden z-10">
             <motion.div
-                className="h-full bg-pink-600"
+                className="h-full bg-violet-600"
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -388,7 +388,7 @@ const TippingModal = () => {
 
         {/* TREŚĆ */}
         <div className={cn(
-            "flex-1 overflow-y-auto px-6 pt-6 pb-0 flex flex-col relative z-10 text-white rounded-b-3xl custom-scrollbar",
+            "flex-1 overflow-y-auto px-8 pt-8 pb-0 flex flex-col relative z-10 text-gray-900 rounded-b-[2.5rem] custom-scrollbar",
             isCurrencyDropdownOpen && "z-30"
         )}>
             <AnimatePresence mode="wait" initial={false}>
@@ -403,48 +403,48 @@ const TippingModal = () => {
                         className="space-y-3"
                     >
                         <div className="text-left">
-                            <p className="text-base font-medium text-white/90 tracking-wide">Komu chcesz wysłać napiwek?</p>
+                            <p className="text-base font-bold text-gray-900 tracking-tight">Komu chcesz wysłać napiwek?</p>
                         </div>
-                        <div className="space-y-3 pt-1">
+                        <div className="space-y-4 pt-1">
                             <div
                                 className={cn(
-                                    "flex items-center justify-start h-10 px-3 gap-3 rounded-2xl cursor-pointer transition-all duration-300 group border",
+                                    "flex items-center justify-start h-14 px-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border-2",
                                     formData.recipient === 'Paweł'
-                                        ? "bg-[#2C2C2E] border-pink-600 shadow-[0_0_15px_rgba(219,39,119,0.15)]"
-                                        : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
+                                        ? "bg-violet-50 border-violet-600 shadow-sm"
+                                        : "bg-gray-50 border-gray-100 hover:border-gray-200 hover:bg-gray-100/50"
                                 )}
                                 onClick={() => setFormData(prev => ({ ...prev, recipient: 'Paweł' }))}
                             >
                                 <div className={cn(
-                                    "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all duration-300 shrink-0",
+                                    "w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 shrink-0",
                                     formData.recipient === 'Paweł'
-                                        ? "border-pink-600"
-                                        : "border-white/30 group-hover:border-white"
+                                        ? "border-violet-600"
+                                        : "border-gray-300 group-hover:border-gray-400"
                                 )}>
-                                    {formData.recipient === 'Paweł' && <div className="w-2.5 h-2.5 bg-pink-600 rounded-full" />}
+                                    {formData.recipient === 'Paweł' && <div className="w-3 h-3 bg-violet-600 rounded-full" />}
                                 </div>
-                                <span className={cn("text-base font-semibold transition-colors", formData.recipient === 'Paweł' ? "text-white" : "text-white/70 group-hover:text-white")}>
+                                <span className={cn("text-base font-bold transition-colors", formData.recipient === 'Paweł' ? "text-violet-900" : "text-gray-500 group-hover:text-gray-900")}>
                                     Pawłowi Polutkowi
                                 </span>
                             </div>
                             <div
                                 className={cn(
-                                    "flex items-center justify-start h-10 px-3 gap-3 rounded-2xl cursor-pointer transition-all duration-300 group border",
+                                    "flex items-center justify-start h-14 px-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border-2",
                                     formData.recipient === 'Nikt'
-                                        ? "bg-[#2C2C2E] border-white shadow-lg"
-                                        : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
+                                        ? "bg-gray-900 border-gray-900 shadow-lg"
+                                        : "bg-gray-50 border-gray-100 hover:border-gray-200 hover:bg-gray-100/50"
                                 )}
                                 onClick={() => setFormData(prev => ({ ...prev, recipient: 'Nikt' }))}
                             >
                                 <div className={cn(
-                                    "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all duration-300 shrink-0",
+                                    "w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 shrink-0",
                                     formData.recipient === 'Nikt'
                                         ? "border-white"
-                                        : "border-white/30 group-hover:border-white"
+                                        : "border-gray-300 group-hover:border-gray-400"
                                 )}>
-                                    {formData.recipient === 'Nikt' && <div className="w-2.5 h-2.5 bg-white rounded-full" />}
+                                    {formData.recipient === 'Nikt' && <div className="w-3 h-3 bg-white rounded-full" />}
                                 </div>
-                                <span className={cn("text-base font-semibold transition-colors", formData.recipient === 'Nikt' ? "text-white" : "text-white/70 group-hover:text-white")}>
+                                <span className={cn("text-base font-bold transition-colors", formData.recipient === 'Nikt' ? "text-white" : "text-gray-500 group-hover:text-gray-900")}>
                                     Nikomu
                                 </span>
                             </div>
@@ -460,46 +460,46 @@ const TippingModal = () => {
                         animate="animate"
                         exit="exit"
                         transition={{ duration: 0.2 }}
-                        className="space-y-3"
+                        className="space-y-4"
                     >
                         <div className="text-left">
-                            <p className="text-base font-medium text-white/90 tracking-wide">Czy chcesz utworzyć konto Patrona?</p>
+                            <p className="text-base font-bold text-gray-900 tracking-tight">Czy chcesz utworzyć konto Patrona?</p>
                         </div>
-                        <div className="space-y-3">
+                        <div className="space-y-4">
                             {!isLoggedIn && (
                                 <div
                                     className={cn(
-                                        "flex items-center justify-start h-10 px-3 gap-3 rounded-2xl cursor-pointer transition-all duration-300 group border",
+                                        "flex items-center justify-start h-14 px-4 gap-4 rounded-2xl cursor-pointer transition-all duration-300 group border-2",
                                         formData.create_account
-                                            ? "bg-[#2C2C2E] border-pink-600 shadow-[0_0_15px_rgba(219,39,119,0.15)]"
-                                            : "bg-[#2C2C2E] border-white/5 hover:border-white/20 hover:bg-[#3A3A3C]"
+                                            ? "bg-violet-50 border-violet-600 shadow-sm"
+                                            : "bg-gray-50 border-gray-100 hover:border-gray-200 hover:bg-gray-100/50"
                                     )}
                                     onClick={() => setFormData(prev => ({ ...prev, create_account: !prev.create_account }))}
                                 >
                                     <div className={cn(
-                                        "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all duration-300 shrink-0",
+                                        "w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 shrink-0",
                                         formData.create_account
-                                            ? "border-pink-600"
-                                            : "border-white/30 group-hover:border-white"
+                                            ? "border-violet-600"
+                                            : "border-gray-300 group-hover:border-gray-400"
                                     )}>
-                                        {formData.create_account && <div className="w-2.5 h-2.5 bg-pink-600 rounded-full" />}
+                                        {formData.create_account && <div className="w-3 h-3 bg-violet-600 rounded-full" />}
                                     </div>
-                                    <span className={cn("text-base font-semibold transition-colors", formData.create_account ? "text-white" : "text-white/70 group-hover:text-white")}>
+                                    <span className={cn("text-base font-bold transition-colors", formData.create_account ? "text-violet-900" : "text-gray-500 group-hover:text-gray-900")}>
                                         No jacha!
                                     </span>
                                 </div>
                             )}
-                            <div className={cn("space-y-2 overflow-hidden transition-all duration-500", (formData.create_account) ? "max-h-[200px] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2")}>
+                            <div className={cn("space-y-3 overflow-hidden transition-all duration-500", (formData.create_account) ? "max-h-[200px] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2")}>
                                 <div className="group relative">
                                     <input
                                         type="email"
                                         placeholder="Twój adres email"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        className="relative w-full bg-black/30 border border-white/10 rounded-xl h-10 px-3 text-white placeholder:text-white/30 focus:outline-none focus:bg-black/50 focus:border-pink-600 transition-all font-medium text-base"
+                                        className="relative w-full bg-white border-2 border-gray-100 rounded-2xl h-14 px-4 text-gray-900 placeholder:text-gray-300 focus:outline-none focus:border-violet-600 transition-all font-bold text-base shadow-sm"
                                     />
                                 </div>
-                                <p className="text-xs text-white/40 text-left px-2 font-medium">
+                                <p className="text-xs text-gray-400 text-left px-2 font-bold">
                                     Na podany adres e-mail otrzymasz dane do logowania.
                                 </p>
                             </div>
@@ -519,30 +519,24 @@ const TippingModal = () => {
                     >
                         {showTerms ? (
                              <div className="flex flex-col h-full overflow-hidden">
-                                <div className="flex-1 overflow-y-auto bg-black/20 border border-white/10 rounded-xl p-4 text-sm text-white/80 space-y-3 custom-scrollbar h-[50vh] max-h-[400px]">
-                                    <p className="font-bold text-white">1. Postanowienia ogólne</p>
-                                    <p>Korzystając z Bramki Napiwkowej, użytkownik (&quot;Darczyńca&quot;) oświadcza, że zapoznał się z niniejszym regulaminem i w pełni go akceptuje. Wpłaty są dobrowolne i mają charakter darowizny na rzecz twórcy (&quot;Beneficjent&quot;).</p>
+                                <div className="flex-1 overflow-y-auto bg-gray-50 border border-gray-100 rounded-[2rem] p-6 text-[13px] font-bold text-gray-500 space-y-4 custom-scrollbar h-[50vh] max-h-[400px]">
+                                    <p className="text-gray-900 uppercase tracking-wider text-xs font-black">1. Postanowienia ogólne</p>
+                                    <p>Korzystając z Bramki Napiwkowej, użytkownik oświadcza, że zapoznał się z niniejszym regulaminem. Wpłaty są dobrowolne i mają charakter darowizny.</p>
 
-                                    <p className="font-bold text-white">2. Płatności i Zwroty</p>
-                                    <p>Wszystkie transakcje są przetwarzane przez zewnętrznego operatora płatności Stripe. Serwis nie przechowywuje pełnych danych kart płatniczych. Z uwagi na charakter usługi (darowizna cyfrowa), wpłaty są bezzwrotne, chyba że przepisy prawa stanowią inaczej. Reklamacje dotyczące błędów technicznych należy zgłaszać w ciągu 14 dni.</p>
+                                    <p className="text-gray-900 uppercase tracking-wider text-xs font-black">2. Płatności i Zwroty</p>
+                                    <p>Wszystkie transakcje są przetwarzane przez Stripe. Z uwagi na charakter usługi (darowizna cyfrowa), wpłaty są bezzwrotne.</p>
 
-                                    <p className="font-bold text-white">3. Prywatność i Dane Osobowe</p>
-                                    <p>Administratorem danych jest właściciel serwisu. Podany adres e-mail przetwarzany jest wyłącznie w celu:</p>
-                                    <ul className="list-disc pl-5 space-y-1">
-                                        <li>Przesłania potwierdzenia transakcji.</li>
-                                        <li>Utworzenia konta Patrona (jeśli zaznaczono opcję).</li>
-                                        <li>Kontaktu w sprawach technicznych.</li>
-                                    </ul>
-                                    <p>Dane nie są udostępniane podmiotom trzecim w celach marketingowych.</p>
+                                    <p className="text-gray-900 uppercase tracking-wider text-xs font-black">3. Prywatność i Dane Osobowe</p>
+                                    <p>Podany adres e-mail przetwarzany jest wyłącznie w celu potwierdzenia transakcji lub utworzenia konta Patrona.</p>
 
-                                    <p className="font-bold text-white">4. Postanowienia końcowe</p>
+                                    <p className="text-gray-900 uppercase tracking-wider text-xs font-black">4. Postanowienia końcowe</p>
                                     <p>Regulamin może ulec zmianie. W sprawach nieuregulowanych decydują przepisy prawa polskiego.</p>
                                 </div>
                             </div>
                         ) : (
                             <>
                                 <div>
-                                    <h3 className="text-base font-medium text-white/90">Wybierz lub wpisz kwotę napiwku</h3>
+                                    <h3 className="text-base font-bold text-gray-900 tracking-tight">Wybierz kwotę napiwku</h3>
                                 </div>
                                 <div className="grid grid-cols-3 gap-3">
                                     {suggestedAmounts.map(amount => (
@@ -553,10 +547,10 @@ const TippingModal = () => {
                                                 setValidationError(null);
                                             }}
                                             className={cn(
-                                                "h-10 flex items-center justify-center rounded-xl font-bold transition-all border relative overflow-hidden group text-lg",
+                                                "h-14 flex items-center justify-center rounded-2xl font-black transition-all border-2 relative overflow-hidden group text-lg",
                                                 formData.amount === amount
-                                                    ? "bg-pink-600 border-pink-600 text-white shadow-lg"
-                                                    : "bg-[#2C2C2E] border-white/5 text-white/80 hover:bg-[#3A3A3C] hover:text-white"
+                                                    ? "bg-violet-600 border-violet-600 text-white shadow-lg shadow-violet-200"
+                                                    : "bg-gray-50 border-gray-100 text-gray-500 hover:border-gray-200 hover:bg-gray-100/50 hover:text-gray-900"
                                             )}
                                         >
                                             {amount} {formData.currency}
@@ -564,7 +558,7 @@ const TippingModal = () => {
                                     ))}
                                 </div>
                                 <div
-                                    className={cn("flex items-stretch h-10 relative transition-all", isCurrencyDropdownOpen ? "z-50" : "z-30")}
+                                    className={cn("flex items-stretch h-14 relative transition-all", isCurrencyDropdownOpen ? "z-50" : "z-30")}
                                     ref={dropdownRef}
                                 >
                                     <div className="relative flex-1 h-full">
@@ -575,25 +569,25 @@ const TippingModal = () => {
                                                 setFormData({ ...formData, amount: Number(e.target.value) });
                                                 setValidationError(null);
                                             }}
-                                            className="w-full h-full bg-black/30 border border-white/10 text-center text-xl font-black text-white rounded-l-xl focus:outline-none focus:bg-black/50 focus:border-pink-600 transition-all z-10 relative"
+                                            className="w-full h-full bg-white border-2 border-gray-100 text-center text-xl font-black text-gray-900 rounded-l-2xl focus:outline-none focus:border-violet-600 transition-all z-10 relative shadow-sm"
                                             placeholder="0"
                                         />
                                     </div>
-                                    <div className="relative h-full w-[100px]">
+                                    <div className="relative h-full w-[110px]">
                                         <div
-                                            className="h-full border border-l-0 border-white/10 bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-colors relative shrink-0 cursor-pointer px-4 rounded-r-xl flex items-center justify-between"
+                                            className="h-full border-2 border-l-0 border-gray-100 bg-gray-50 hover:bg-gray-100 transition-colors relative shrink-0 cursor-pointer px-4 rounded-r-2xl flex items-center justify-between"
                                             onClick={() => setIsCurrencyDropdownOpen(true)}
                                         >
-                                            <span className="font-bold text-base text-white select-none">{formData.currency}</span>
-                                            <ChevronDown className="w-5 h-5 text-white/50" />
+                                            <span className="font-black text-base text-gray-900 select-none">{formData.currency}</span>
+                                            <ChevronDown className="w-5 h-5 text-gray-400" />
                                         </div>
                                         <AnimatePresence>
                                             {isCurrencyDropdownOpen && (
                                                 <motion.div
-                                                    initial={{ opacity: 1, scale: 1 }}
-                                                    animate={{ opacity: 1, scale: 1 }}
-                                                    exit={{ opacity: 1, scale: 1 }}
-                                                    className="absolute top-0 right-0 w-full bg-[#2C2C2E] border border-white/10 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] overflow-hidden z-[9999]"
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: 10 }}
+                                                    className="absolute top-full right-0 mt-2 w-full bg-white border-2 border-gray-100 rounded-2xl shadow-xl overflow-hidden z-[9999]"
                                                 >
                                                     <div className="flex flex-col">
                                                         {currencies.map((currency) => (
@@ -604,15 +598,15 @@ const TippingModal = () => {
                                                                     setIsCurrencyDropdownOpen(false);
                                                                 }}
                                                                 className={cn(
-                                                                    "w-full flex items-center justify-between px-4 py-2 text-left font-bold transition-colors relative group text-white border-b border-white/5 last:border-0 h-10",
+                                                                    "w-full flex items-center justify-between px-4 py-3 text-left font-bold transition-colors relative group text-gray-700 border-b-2 border-gray-50 last:border-0",
                                                                     formData.currency === currency
-                                                                        ? "bg-white/10"
-                                                                        : "hover:bg-white/5"
+                                                                        ? "bg-violet-50 text-violet-600"
+                                                                        : "hover:bg-gray-50"
                                                                 )}
                                                             >
                                                                 <span className="text-base">{currency}</span>
                                                                 {formData.currency === currency && (
-                                                                    <Check size={20} className="text-pink-600" />
+                                                                    <Check size={20} className="text-violet-600" strokeWidth={3} />
                                                                 )}
                                                             </button>
                                                         ))}
@@ -623,22 +617,22 @@ const TippingModal = () => {
                                     </div>
                                 </div>
                                 <div
-                                    className="flex items-center justify-start gap-3 cursor-pointer group relative z-10 mt-2"
+                                    className="flex items-center justify-start gap-4 cursor-pointer group relative z-10 mt-2 p-2 rounded-xl hover:bg-gray-50 transition-all"
                                     onClick={() => {
                                         setFormData(prev => ({ ...prev, terms_accepted: !prev.terms_accepted }));
                                         setValidationError(null);
                                     }}
                                 >
                                     <div className={cn(
-                                        "w-5 h-5 rounded border flex items-center justify-center transition-all duration-200 shrink-0",
+                                        "w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all duration-200 shrink-0",
                                         formData.terms_accepted
-                                            ? "bg-pink-600 border-pink-600"
-                                            : "border-white/30 bg-transparent group-hover:border-white"
+                                            ? "bg-violet-600 border-violet-600"
+                                            : "border-gray-300 bg-white group-hover:border-gray-400"
                                     )}>
-                                        {formData.terms_accepted && <Check size={14} className="text-white" strokeWidth={3} />}
+                                        {formData.terms_accepted && <Check size={16} className="text-white" strokeWidth={3} />}
                                     </div>
-                                    <p className="text-sm font-medium text-white/50 group-hover:text-white transition-colors select-none text-left">
-                                        Akceptuję <span className="underline decoration-white/30 underline-offset-2 hover:text-white cursor-pointer" onClick={(e) => { e.stopPropagation(); setShowTerms(true); }}>Regulamin i Politykę Prywatności</span>
+                                    <p className="text-sm font-bold text-gray-400 group-hover:text-gray-900 transition-colors select-none text-left leading-tight">
+                                        Akceptuję <span className="underline decoration-violet-200 underline-offset-4 hover:text-violet-600 cursor-pointer" onClick={(e) => { e.stopPropagation(); setShowTerms(true); }}>Regulamin i Politykę Prywatności</span>
                                     </p>
                                 </div>
                             </>
@@ -654,11 +648,11 @@ const TippingModal = () => {
                         animate="animate"
                         exit="exit"
                         transition={{ duration: 0.2 }}
-                        className="space-y-4 flex-1 relative z-10 w-full"
+                        className="space-y-6 flex-1 relative z-10 w-full"
                     >
                         <div className="text-center">
-                            <div className="inline-block bg-[#2C2C2E] border border-white/10 text-white px-4 py-1.5 rounded-full shadow-lg">
-                                <span className="text-xl font-black">{formData.amount.toFixed(2)} {formData.currency}</span>
+                            <div className="inline-block bg-violet-600 text-white px-6 py-2 rounded-2xl shadow-xl shadow-violet-200">
+                                <span className="text-2xl font-black tracking-tight">{formData.amount.toFixed(2)} {formData.currency}</span>
                             </div>
                         </div>
 
@@ -679,8 +673,8 @@ const TippingModal = () => {
                             </Elements>
                         ) : (
                              // Fallback podczas pobierania sekretu
-                             <div className="flex items-center justify-center h-[260px]">
-                                <Loader2 className="animate-spin h-8 w-8 text-pink-600" />
+                             <div className="flex items-center justify-center h-[300px]">
+                                <Loader2 className="animate-spin h-10 w-10 text-violet-600" />
                             </div>
                         )}
                     </motion.div>
@@ -689,12 +683,12 @@ const TippingModal = () => {
         </div>
 
         {!showTerms && currentStep !== 3 && (
-             <div className={cn("px-6 pb-6 pt-4 flex flex-col gap-3 bg-transparent z-20 relative rounded-b-3xl", isCurrencyDropdownOpen && "z-10")}>
+             <div className={cn("px-8 pb-8 pt-6 flex flex-col gap-4 bg-white z-20 relative rounded-b-[2.5rem]", isCurrencyDropdownOpen && "z-10")}>
                 <div className="flex gap-3 w-full">
                     {currentStep > 0 && (
                         <button
                             onClick={handleBack}
-                            className="flex-1 px-6 h-10 flex items-center justify-center rounded-xl font-bold text-white bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all text-sm uppercase tracking-wide border border-white/5"
+                            className="flex-1 px-6 h-14 flex items-center justify-center rounded-2xl font-bold text-gray-500 bg-gray-50 hover:bg-gray-100 transition-all text-sm uppercase tracking-wide border border-gray-100"
                         >
                             Wstecz
                         </button>
@@ -702,11 +696,11 @@ const TippingModal = () => {
                     <button
                         onClick={handleNext}
                         disabled={isProcessing}
-                        className="group flex-1 h-10 flex items-center justify-center gap-2 rounded-xl font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-700 transition-all disabled:opacity-50 shadow-lg active:scale-[0.98]"
+                        className="group flex-1 h-14 flex items-center justify-center gap-2 rounded-2xl font-black uppercase tracking-widest text-white bg-violet-600 hover:bg-violet-700 transition-all disabled:opacity-50 shadow-lg shadow-violet-200 active:scale-[0.98]"
                     >
                         {isProcessing ? (
                             <div className="flex items-center gap-2">
-                                <Loader2 className="animate-spin h-5 w-5" />
+                                <Loader2 className="animate-spin h-6 w-6" />
                             </div>
                         ) : (
                             "ENTER"
@@ -722,19 +716,19 @@ const TippingModal = () => {
             </div>
         )}
 
-        <div className="pb-4 pt-4 flex items-center justify-center bg-[#1C1C1E] z-10 border-t border-white/5 rounded-b-3xl min-h-[50px]">
+        <div className="pb-6 pt-4 flex items-center justify-center bg-white z-10 border-t border-gray-50 rounded-b-[2.5rem] min-h-[60px]">
              {showTerms ? (
                   <button
                     onClick={() => setShowTerms(false)}
-                    className="w-auto px-4 py-2 rounded-lg font-bold text-white bg-[#3A3A3C] hover:bg-[#4A4A4C] transition-all text-xs uppercase tracking-wide"
+                    className="w-auto px-6 py-3 rounded-xl font-bold text-gray-500 bg-gray-50 hover:bg-gray-100 transition-all text-xs uppercase tracking-widest"
                   >
-                    Wróć
+                    Wróć do płatności
                   </button>
              ) : (
-                 <div className="flex items-center gap-0 opacity-40 hover:opacity-100 transition-all duration-300">
-                      <span className="text-[10px] text-white font-bold uppercase tracking-widest">Powered by</span>
+                 <div className="flex items-center gap-0 opacity-30 hover:opacity-100 transition-all duration-300 scale-90">
+                      <span className="text-[10px] text-gray-900 font-black uppercase tracking-widest">Powered by</span>
                       <div className="relative flex items-center -mt-px -ml-2">
-                          <StripeLogo />
+                          <StripeLogo color="#111827" />
                       </div>
                  </div>
              )}

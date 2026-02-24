@@ -33,73 +33,81 @@ export default function NavigationSidebar({ isOpen, onClose }: NavigationSidebar
   return (
     <div
       className={cn(
-        "fixed inset-y-0 left-0 z-50 w-64 bg-background border-r shadow-lg transform transition-transform duration-300 ease-in-out",
+        "fixed inset-y-0 left-0 z-50 w-72 bg-white border-r border-gray-100 shadow-2xl transform transition-transform duration-500 cubic-bezier(0.4, 0, 0.2, 1)",
         isOpen ? "translate-x-0" : "-translate-x-full"
       )}
       ref={sidebarRef}
     >
-      <div className="flex items-center justify-between p-4 border-b">
-        <h2 className="text-lg font-semibold">Menu</h2>
-        <button onClick={onClose} className="p-2 rounded-full hover:bg-muted">
-          <X size={20} />
-        </button>
+      <div className="flex flex-col p-8 border-b border-gray-50 bg-gray-50/30">
+        <div className="flex items-center justify-between mb-2">
+            <h2 className="text-2xl font-black text-gray-900 tracking-tight">Eksploruj</h2>
+            <button onClick={onClose} className="p-2 bg-white text-gray-400 hover:text-gray-900 rounded-full shadow-sm transition-all active:scale-90">
+                <X size={20} />
+            </button>
+        </div>
+        <p className="text-sm font-bold text-gray-400">Polutek OS Navigation</p>
       </div>
 
-      <nav className="flex flex-col p-4 gap-2">
+      <nav className="flex flex-col p-6 gap-3">
         <Link
           href="/"
-          className="flex items-center gap-3 p-3 rounded-md hover:bg-muted transition-colors"
+          className="flex items-center gap-4 p-4 rounded-2xl hover:bg-violet-50 hover:text-violet-600 font-bold transition-all group"
           onClick={onClose}
         >
-          <Home size={20} />
+          <Home size={22} className="text-gray-400 group-hover:text-violet-600 transition-colors" />
           <span>{t('home') || 'Strona główna'}</span>
         </Link>
 
         <Link
           href="/tingtong"
-          className="flex items-center gap-3 p-3 rounded-md hover:bg-muted transition-colors"
+          className="flex items-center gap-4 p-4 rounded-2xl hover:bg-violet-50 hover:text-violet-600 font-bold transition-all group"
           onClick={onClose}
         >
-          <span className="text-xl">🎵</span>
+          <span className="text-2xl grayscale group-hover:grayscale-0 transition-all">🎵</span>
           <span>TingTong</span>
         </Link>
+
+        <div className="h-px bg-gray-50 my-4 mx-4" />
 
         {user ? (
           <>
             <Link
               href="/profile"
-              className="flex items-center gap-3 p-3 rounded-md hover:bg-muted transition-colors"
+              className="flex items-center gap-4 p-4 rounded-2xl hover:bg-violet-50 hover:text-violet-600 font-bold transition-all group"
               onClick={onClose}
             >
-              <User size={20} />
-              <span>{t('profile') || 'Profil'}</span>
+              <User size={22} className="text-gray-400 group-hover:text-violet-600 transition-colors" />
+              <span>{t('profile') || 'Twój Profil'}</span>
             </Link>
             <Link
               href="/settings"
-              className="flex items-center gap-3 p-3 rounded-md hover:bg-muted transition-colors"
+              className="flex items-center gap-4 p-4 rounded-2xl hover:bg-violet-50 hover:text-violet-600 font-bold transition-all group"
               onClick={onClose}
             >
-              <Settings size={20} />
+              <Settings size={22} className="text-gray-400 group-hover:text-violet-600 transition-colors" />
               <span>{t('settings') || 'Ustawienia'}</span>
             </Link>
-            <button
-              onClick={() => {
-                logout();
-                onClose();
-              }}
-              className="flex items-center gap-3 p-3 rounded-md hover:bg-destructive/10 text-destructive transition-colors mt-auto"
-            >
-              <LogOut size={20} />
-              <span>{t('logout') || 'Wyloguj'}</span>
-            </button>
+
+            <div className="mt-auto pt-8">
+                <button
+                onClick={() => {
+                    logout();
+                    onClose();
+                }}
+                className="w-full flex items-center gap-4 p-4 rounded-2xl bg-red-50 text-red-500 font-bold transition-all hover:bg-red-100 active:scale-95"
+                >
+                <LogOut size={22} />
+                <span>{t('logout') || 'Wyloguj'}</span>
+                </button>
+            </div>
           </>
         ) : (
           <Link
             href="/login"
-            className="flex items-center gap-3 p-3 rounded-md hover:bg-muted transition-colors"
+            className="flex items-center gap-4 p-4 rounded-2xl bg-violet-600 text-white font-bold transition-all hover:bg-violet-700 shadow-lg shadow-violet-200"
             onClick={onClose}
           >
-            <User size={20} />
+            <User size={22} />
             <span>{t('login') || 'Zaloguj się'}</span>
           </Link>
         )}

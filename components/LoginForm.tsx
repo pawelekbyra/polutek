@@ -70,36 +70,43 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 px-4 pb-5">
-      <Input
-        type="text"
-        name="login"
-        placeholder="Email"
-        required
-        autoComplete="username"
-        className="bg-white border-2 border-black text-black placeholder:text-gray-500 font-mono focus:ring-2 focus:ring-pink-500"
-      />
-      <Input
-        type="password"
-        name="password"
-        placeholder={t('passwordPlaceholder')}
-        required
-        autoComplete="current-password"
-        className="bg-white border-2 border-black text-black placeholder:text-gray-500 font-mono focus:ring-2 focus:ring-pink-500"
-      />
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 px-6 pb-8">
+      <div className="space-y-4">
+        <Input
+            type="text"
+            name="login"
+            placeholder="Twój adres email"
+            required
+            autoComplete="username"
+            className="h-14 bg-gray-50 border-2 border-gray-100 text-gray-900 placeholder:text-gray-300 font-bold rounded-2xl px-4 focus:border-violet-600 focus:ring-4 focus:ring-violet-600/5 transition-all shadow-sm"
+        />
+        <Input
+            type="password"
+            name="password"
+            placeholder={t('passwordPlaceholder') || 'Hasło'}
+            required
+            autoComplete="current-password"
+            className="h-14 bg-gray-50 border-2 border-gray-100 text-gray-900 placeholder:text-gray-300 font-bold rounded-2xl px-4 focus:border-violet-600 focus:ring-4 focus:ring-violet-600/5 transition-all shadow-sm"
+        />
+      </div>
 
       <Button
         type="submit"
         variant="default"
         disabled={isLoading}
-        className="font-bold uppercase tracking-wider bg-pink-600 hover:bg-pink-700 flex items-center justify-center gap-2"
+        className="h-14 font-black uppercase tracking-widest bg-violet-600 hover:bg-violet-700 text-white rounded-2xl shadow-lg shadow-violet-200 flex items-center justify-center gap-3 transition-all active:scale-95 disabled:opacity-50 mt-2"
       >
-        {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
-        {isLoading ? t('loggingIn') : 'ENTER'}
+        {isLoading ? (
+            <Loader2 className="h-6 w-6 animate-spin" />
+        ) : (
+            'ZALOGUJ SIĘ'
+        )}
       </Button>
 
       {errorMessage && (
-        <p className="text-red-500 text-sm mt-2 text-center">{errorMessage}</p>
+        <div className="bg-red-50 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 animate-in fade-in slide-in-from-top-2">
+            {errorMessage}
+        </div>
       )}
     </form>
   );

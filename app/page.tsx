@@ -35,9 +35,9 @@ export default function Home() {
         <>
           <button
             onClick={handleBackToNews}
-            className="fixed top-4 left-4 z-50 bg-stone-900 text-white px-4 py-2 rounded shadow-lg flex items-center gap-2 hover:bg-stone-800 transition-colors font-sans text-sm font-bold uppercase tracking-wider"
+            className="fixed top-6 left-6 z-50 bg-violet-600 text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-2 hover:bg-violet-700 transition-all font-sans text-sm font-black uppercase tracking-widest active:scale-95"
           >
-            <ChevronLeft className="w-4 h-4" /> Powrót
+            <ChevronLeft className="w-5 h-5 stroke-[3]" /> Wróć
           </button>
           {component}
         </>

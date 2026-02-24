@@ -51,36 +51,55 @@ const PasswordProtect: FC<PasswordProtectProps> = ({ onUnlock }) => {
   };
 
   return (
-    <div className="bg-gray-100 text-gray-800 min-h-screen flex items-center justify-center p-4 font-serif">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-        <div className="text-center mb-8">
-          <Lock size={48} className="mx-auto text-gray-400" />
-          <h1 className="text-3xl font-serif mt-4 text-gray-900">Dostęp Zastrzeżony</h1>
-          <p className="text-gray-500 mt-2">Wymagana autoryzacja w celu uzyskania dostępu.</p>
+    <div className="bg-white text-gray-900 min-h-screen flex items-center justify-center p-6 font-sans">
+      <div className="w-full max-w-md bg-white rounded-[3rem] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14)] p-10 border border-gray-100 flex flex-col items-center">
+        <div className="w-20 h-20 bg-violet-100 rounded-[2rem] flex items-center justify-center text-violet-600 mb-8 shadow-sm">
+            <Lock size={40} />
         </div>
-        <form onSubmit={handleSubmit}>
+
+        <div className="text-center mb-10">
+          <h1 className="text-3xl font-black tracking-tighter text-gray-900">Dostęp Zastrzeżony</h1>
+          <p className="text-gray-400 font-bold mt-2 uppercase tracking-widest text-[10px]">Polutek Security Layer</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="w-full space-y-6">
           <div className="relative">
-            <KeyRound className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+            <KeyRound className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" size={24} />
             <input
               type="password"
               value={password}
               onChange={handlePasswordChange}
-              placeholder="Wprowadź hasło..."
+              placeholder="Hasło dostępowe"
               className={
-                "w-full bg-gray-50 border border-gray-300 rounded-lg py-3 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all" +
-                (error ? " ring-2 ring-red-500/50 border-red-500/50" : "")
+                "w-full h-16 bg-gray-50 border-2 border-gray-100 rounded-2xl pl-14 pr-4 text-gray-900 font-bold placeholder:text-gray-300 focus:outline-none focus:border-violet-600 focus:ring-4 focus:ring-violet-600/5 transition-all" +
+                (error ? " border-red-500 focus:border-red-600 focus:ring-red-500/5" : "")
               }
             />
           </div>
-          {error && <p className="text-red-600 text-sm mt-3 text-center">Nieprawidłowe hasło. Spróbuj ponownie.</p>}
-          {message && <p className="text-blue-600 text-sm mt-3 text-center">{message}</p>}
+
+          {error && (
+            <div className="bg-red-50 text-red-500 text-xs font-black p-4 rounded-xl text-center border border-red-100 animate-in fade-in slide-in-from-top-2 uppercase tracking-wider">
+                Nieprawidłowe hasło. Spróbuj ponownie.
+            </div>
+          )}
+
+          {message && (
+            <div className="bg-blue-50 text-blue-600 text-xs font-black p-4 rounded-xl text-center border border-blue-100 animate-in fade-in slide-in-from-top-2 uppercase tracking-wider">
+                {message}
+            </div>
+          )}
+
           <button
             type="submit"
-            className="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg mt-6 transition-colors duration-300 shadow-md hover:shadow-lg"
+            className="w-full h-16 bg-violet-600 hover:bg-violet-700 text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-violet-200 transition-all active:scale-[0.98] flex items-center justify-center gap-3"
           >
-            Odblokuj Dostęp
+            <span>ODBLOKUJ</span>
           </button>
         </form>
+
+        <p className="mt-12 text-[10px] font-black text-gray-300 uppercase tracking-[0.3em]">
+            © {new Date().getFullYear()} Polutek OS
+        </p>
       </div>
     </div>
   );

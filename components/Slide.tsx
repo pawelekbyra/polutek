@@ -77,15 +77,14 @@ const SlideUI = ({ slide, isLocked = false }: SlideUIProps) => {
     return (
       <div
         className={cn(
-            "absolute inset-0 z-20 p-4 flex flex-col justify-end text-white",
+            "absolute inset-0 z-20 p-6 flex flex-col justify-end text-white",
             isLocked && "pointer-events-none"
         )}
         onClick={handleContainerClick}
       >
-        {/* Top gradient */}
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
-        {/* Bottom gradient */}
-        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/70 via-black/40 to-transparent pointer-events-none" />
+        {/* Gradients for readability over any media */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/40 via-black/10 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-80 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
 
         <AnimatePresence>
             {!isLocked && showPlaybackIcon && (
@@ -96,32 +95,46 @@ const SlideUI = ({ slide, isLocked = false }: SlideUIProps) => {
                     exit={{ opacity: 0, scale: 1.2 }}
                     transition={{ duration: 0.2 }}
                 >
-                    <div className="bg-black/50 rounded-full p-4">
+                    <div className="bg-white/20 backdrop-blur-md rounded-full p-6 border border-white/10 shadow-2xl">
                         {isPlaying ? (
-                            <PlayIcon className="w-12 h-12 text-white" />
+                            <PlayIcon className="w-14 h-14 text-white shadow-lg" />
                         ) : (
-                            <PauseIcon className="w-12 h-12 text-white" />
+                            <PauseIcon className="w-14 h-14 text-white shadow-lg" />
                         )}
                     </div>
                 </motion.div>
             )}
         </AnimatePresence>
 
-        {/* UI Controls Container - Added bottom padding/margin to lift it up */}
-        <div className="relative z-20 pointer-events-none w-full max-w-[calc(100%-60px)] flex flex-col items-start text-left mb-2 pb-[calc(env(safe-area-inset-bottom)+10px)]">
-            <div className="flex items-center gap-2 mb-2 pointer-events-auto max-w-full">
-                <Image
-                    src={slide.avatar || DEFAULT_AVATAR_URL}
-                    alt={slide.username || 'User'}
-                    width={40}
-                    height={40}
-                    className="rounded-full border-2 border-yellow-400 shadow-[0_0_10px_rgba(250,204,21,0.5)] shrink-0"
-                />
-                <p className="font-bold text-lg truncate min-w-0">{slide.username}</p>
+        {/* UI Controls Container */}
+        <div className="relative z-20 pointer-events-none w-full max-w-[calc(100%-80px)] flex flex-col items-start text-left mb-4 pb-[calc(env(safe-area-inset-bottom)+10px)]">
+            <div className="flex items-center gap-3 mb-4 pointer-events-auto max-w-full group cursor-pointer">
+                <div className="relative">
+                    <Image
+                        src={slide.avatar || DEFAULT_AVATAR_URL}
+                        alt={slide.username || 'User'}
+                        width={48}
+                        height={48}
+                        className="rounded-2xl border-2 border-white/80 shadow-lg shrink-0 object-cover"
+                    />
+                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-violet-600 rounded-full border-2 border-white shadow-sm" />
+                </div>
+                <div className="flex flex-col">
+                    <p className="font-black text-lg tracking-tight drop-shadow-md">{slide.username}</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-white/70 drop-shadow-sm">Polutek Creator</p>
+                </div>
             </div>
 
-            {slide.data && 'title' in slide.data && <h2 className="text-xl font-semibold mb-1 truncate w-full">{slide.data.title}</h2>}
-            {slide.data && 'description' in slide.data && <p className="text-sm opacity-90 truncate w-full">{slide.data.description}</p>}
+            {slide.data && 'title' in slide.data && (
+                <h2 className="text-2xl font-black mb-1.5 truncate w-full tracking-tight drop-shadow-xl">
+                    {slide.data.title}
+                </h2>
+            )}
+            {slide.data && 'description' in slide.data && (
+                <p className="text-[14px] font-bold opacity-80 leading-snug w-full line-clamp-2 drop-shadow-md">
+                    {slide.data.description}
+                </p>
+            )}
         </div>
 
         <Sidebar
@@ -221,7 +234,7 @@ const Slide = memo<SlideProps>(({ slide, priorityLoad = false }) => {
     };
 
     return (
-        <div className="relative w-full h-full z-10 bg-black">
+        <div className="relative w-full h-full z-10 bg-white">
             {/* Background Content with Blur if locked */}
             <div className={cn("w-full h-full transition-all duration-300", isLocked && "blur-md brightness-50")}>
                 {renderContent()}

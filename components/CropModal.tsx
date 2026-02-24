@@ -162,26 +162,26 @@ const CropModal: React.FC<CropModalProps> = ({ isOpen, onClose, imageSrc, onCrop
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="absolute inset-0 bg-black/90 z-[999] flex items-center justify-center p-5"
+          className="absolute inset-0 bg-gray-900/40 backdrop-blur-md z-[999] flex items-center justify-center p-5"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="bg-[rgba(20,20,20,0.95)] rounded-2xl p-6 w-full max-w-md border border-white/10"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            className="bg-white rounded-[2.5rem] p-8 w-full max-w-md border border-gray-100 shadow-2xl"
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            transition={{ type: "spring", duration: 0.5 }}
           >
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-lg font-semibold text-white">{t('cropAvatarTitle')}</h3>
-              <Button variant="ghost" size="icon" onClick={onClose} disabled={isSaving} aria-label={t('closeCropModalAriaLabel')}>
-                <X className="h-5 w-5" />
+            <div className="flex justify-between items-center mb-8">
+              <h3 className="text-xl font-black text-gray-900 tracking-tight">{t('cropAvatarTitle')}</h3>
+              <Button variant="ghost" size="icon" onClick={onClose} disabled={isSaving} className="rounded-full hover:bg-gray-100" aria-label={t('closeCropModalAriaLabel')}>
+                <X className="h-6 w-6 text-gray-400" />
               </Button>
             </div>
 
-            <div className="relative w-full h-72 bg-black rounded-lg overflow-hidden mb-5 border-2 border-white/10 touch-none">
+            <div className="relative w-full h-72 bg-gray-50 rounded-3xl overflow-hidden mb-8 border-2 border-gray-100 touch-none shadow-inner">
               <canvas
                 ref={canvasRef}
                 className="w-full h-full cursor-grab active:cursor-grabbing"
@@ -200,22 +200,22 @@ const CropModal: React.FC<CropModalProps> = ({ isOpen, onClose, imageSrc, onCrop
               ></div>
             </div>
 
-            <div className="flex items-center gap-3 mb-5">
-              <Button variant="outline" size="icon" onClick={() => setScale(s => s * 0.9)} disabled={isSaving} aria-label={t('zoomOutAriaLabel')}><ZoomOut className="h-5 w-5" /></Button>
+            <div className="flex items-center gap-4 mb-8">
+              <Button variant="outline" size="icon" onClick={() => setScale(s => s * 0.9)} disabled={isSaving} className="rounded-xl border-gray-200" aria-label={t('zoomOutAriaLabel')}><ZoomOut className="h-5 w-5" /></Button>
               <Input
                 type="range"
                 min={0.1} max={3} step="0.01"
                 value={scale}
                 onChange={(e) => setScale(parseFloat(e.target.value))}
-                className="w-full"
+                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-violet-600"
                 disabled={isSaving}
                 aria-label={t('zoomSliderAriaLabel')}
               />
-              <Button variant="outline" size="icon" onClick={() => setScale(s => s * 1.1)} disabled={isSaving} aria-label={t('zoomInAriaLabel')}><ZoomIn className="h-5 w-5" /></Button>
+              <Button variant="outline" size="icon" onClick={() => setScale(s => s * 1.1)} disabled={isSaving} className="rounded-xl border-gray-200" aria-label={t('zoomInAriaLabel')}><ZoomIn className="h-5 w-5" /></Button>
             </div>
 
-            <Button onClick={handleSave} className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold" disabled={isSaving} aria-label={t('saveAvatarAriaLabel')}>
-              {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Check className="mr-2 h-4 w-4" />}
+            <Button onClick={handleSave} className="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-6 rounded-2xl shadow-lg shadow-violet-200 transition-all active:scale-95" disabled={isSaving} aria-label={t('saveAvatarAriaLabel')}>
+              {isSaving ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Check className="mr-2 h-5 w-5" />}
               {isSaving ? t('saving') : t('saveAvatarButton')}
             </Button>
           </motion.div>
