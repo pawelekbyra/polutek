@@ -27,11 +27,11 @@ interface Notification {
 
 const iconMap: Record<NotificationType, React.ReactNode> = {
   like: <Heart size={20} className="text-red-500 fill-current" />,
-  comment: <MessageSquare size={20} className="text-white/80" />,
-  follow: <UserPlus size={20} className="text-white/80" />,
-  message: <Mail size={20} className="text-white/80" />,
-  system: <Info size={20} className="text-blue-400" />,
-  welcome: <Rocket size={20} className="text-yellow-400" />,
+  comment: <MessageSquare size={20} className="text-violet-600" />,
+  follow: <UserPlus size={20} className="text-violet-600" />,
+  message: <Mail size={20} className="text-violet-600" />,
+  system: <Info size={20} className="text-blue-500" />,
+  welcome: <Rocket size={20} className="text-orange-500" />,
 };
 
 const NotificationItem: React.FC<{
@@ -72,37 +72,37 @@ const NotificationItem: React.FC<{
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className={`rounded-lg cursor-pointer transition-colors hover:bg-white/10 mb-1 ${isExpanded ? 'expanded' : ''}`}
+      className={`rounded-2xl cursor-pointer transition-all hover:bg-gray-50 mb-2 border border-transparent ${isExpanded ? 'bg-gray-50 border-gray-100 shadow-sm' : ''}`}
     >
-      <div className="flex items-start gap-3 p-3">
+      <div className="flex items-start gap-4 p-4">
         <div onClick={handleToggle} className="flex-shrink-0">
             {notification.type === 'system' || notification.type === 'welcome' ? (
-            <div className="w-10 h-10 rounded-full mt-1 bg-white/10 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-2xl mt-1 bg-violet-100 flex items-center justify-center text-violet-600 shadow-sm">
                 {iconMap[notification.type] || iconMap['system']}
             </div>
             ) : (
             <Image
                 src={notification.user?.avatar || '/default-avatar.png'}
                 alt={t('userAvatar', { user: notification.user?.displayName || 'User' })}
-                width={40}
-                height={40}
-                className={cn("w-10 h-10 rounded-full mt-1 object-cover border", avatarBorderClass)}
+                width={48}
+                height={48}
+                className={cn("w-12 h-12 rounded-2xl mt-1 object-cover border-2 shadow-sm", avatarBorderClass)}
             />
             )}
         </div>
 
         <div className="flex-1 flex flex-col" onClick={handleToggle}>
-          <p className="text-sm">
-            {notification.type !== 'system' && notification.type !== 'welcome' && <span className="font-bold">{notification.user?.displayName}</span>} {notification.preview}
+          <p className="text-[14px] leading-snug text-gray-900 font-medium">
+            {notification.type !== 'system' && notification.type !== 'welcome' && <span className="font-black">{notification.user?.displayName}</span>} {notification.preview}
           </p>
-          <span className="text-xs text-white/60 mt-1">{notification.time}</span>
+          <span className="text-[11px] font-bold text-gray-400 mt-1 uppercase tracking-wider">{notification.time}</span>
         </div>
 
-        <div className="flex items-center gap-2 pt-1">
-          {notification.unread && <div className="w-2 h-2 bg-pink-500 rounded-full" />}
+        <div className="flex items-center gap-3 pt-1">
+          {notification.unread && <div className="w-2.5 h-2.5 bg-violet-600 rounded-full shadow-[0_0_8px_rgba(124,58,237,0.5)]" />}
 
-          <div onClick={handleToggle}>
-             <ChevronDown size={14} className={`transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+          <div onClick={handleToggle} className="p-1 hover:bg-gray-200 rounded-full transition-colors">
+             <ChevronDown size={16} className={cn("text-gray-400 transition-transform duration-300", isExpanded && "rotate-180 text-gray-900")} />
           </div>
         </div>
       </div>
@@ -114,9 +114,11 @@ const NotificationItem: React.FC<{
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden"
           >
-            <p className="text-sm text-white/80 p-3 pt-0 whitespace-pre-line">
-              {getFullText()}
-            </p>
+            <div className="px-4 pb-4 pt-0">
+                <div className="bg-white rounded-xl p-3 border border-gray-100 text-[13px] text-gray-600 font-medium leading-relaxed shadow-inner">
+                   {getFullText()}
+                </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -296,33 +298,29 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({ isOpen, onClose }
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          // Zmiany: z-[80] (nad TopBar z-[60]), items-start (góra), pt-3 (odstęp od krawędzi)
-          className="absolute inset-0 z-[80] flex items-start justify-center bg-black/50 pt-3 md:pt-5"
+          className="absolute inset-0 z-[80] flex items-start justify-center bg-gray-900/40 backdrop-blur-sm pt-4 md:pt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
         >
           <motion.div
-            className="w-[350px] max-w-[calc(100vw-20px)] bg-[rgba(30,30,30,0.9)] border border-white/15 rounded-xl shadow-lg text-white flex flex-col"
-            style={{
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-            }}
-            // Zmiany: animacja y z góry (-10) a nie z dołu (10)
-            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            className="w-[400px] max-w-[calc(100vw-24px)] bg-white border border-gray-100 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] flex flex-col overflow-hidden"
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex-shrink-0 flex justify-between items-center p-4 border-b border-white/10">
-              <h3 className="font-semibold text-base">{t('notificationsTitle')}</h3>
-              <button onClick={onClose} className="text-white/70 hover:text-white transition-colors">
+            <div className="flex-shrink-0 flex justify-between items-center p-6 border-b border-gray-50 bg-gray-50/30">
+              <h3 className="font-black text-lg tracking-tight text-gray-900">{t('notificationsTitle') || 'Powiadomienia'}</h3>
+              <button onClick={onClose} className="p-2 bg-white text-gray-400 hover:text-gray-900 rounded-full shadow-sm transition-all active:scale-90">
                 <X size={20} />
               </button>
             </div>
-            {renderContent()}
+            <div className="p-2 bg-white">
+                {renderContent()}
+            </div>
           </motion.div>
         </motion.div>
       )}

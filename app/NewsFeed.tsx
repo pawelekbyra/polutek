@@ -43,26 +43,26 @@ export default function NewsFeed({ onUnlock }: NewsFeedProps) {
   const [heroArticle, ...otherArticles] = ARTICLES;
 
   return (
-    <div className="min-h-screen bg-stone-100 font-serif text-stone-900">
+    <div className="min-h-screen bg-white font-serif text-stone-900">
       {/* Header */}
-      <header className="bg-stone-900 text-stone-50 py-4 px-6 shadow-md">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <span className="font-bold tracking-widest text-lg uppercase">Wiadomości</span>
-            <span className="text-stone-500 text-sm">|</span>
-            <span className="text-stone-400 text-sm font-sans uppercase tracking-wider">Dziennikarstwo Śledcze</span>
+      <header className="bg-[#09090b] text-white py-6 px-8 shadow-2xl relative z-20">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <span className="font-black tracking-tighter text-2xl uppercase">POLUTEK NEWS</span>
+            <div className="w-1 h-6 bg-violet-600 rounded-full mx-2" />
+            <span className="text-gray-400 text-xs font-sans font-black uppercase tracking-[0.2em] hidden sm:inline">OS Intelligence</span>
           </div>
-          <div className="text-xs font-mono text-stone-500">
+          <div className="text-[10px] font-black font-sans uppercase tracking-widest text-gray-500">
             {new Date().toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' })}
           </div>
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 py-8 md:py-12">
+      <main className="max-w-7xl mx-auto px-6 py-12 md:py-20">
 
         {/* Hero Section */}
-        <section className="mb-16 group cursor-pointer" onClick={() => onUnlock(heroArticle.id)}>
-          <div className="relative h-[400px] md:h-[500px] w-full overflow-hidden rounded-sm shadow-xl">
+        <section className="mb-20 group cursor-pointer" onClick={() => onUnlock(heroArticle.id)}>
+          <div className="relative h-[500px] md:h-[650px] w-full overflow-hidden rounded-[3rem] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.2)] border border-gray-100">
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors z-10" />
             <img
               src={heroArticle.image}
@@ -88,38 +88,42 @@ export default function NewsFeed({ onUnlock }: NewsFeedProps) {
 
         {/* Grid Section */}
         <section>
-          <div className="flex items-center gap-4 mb-8">
-            <h2 className="text-2xl font-bold uppercase tracking-wide border-b-2 border-stone-900 pb-1">Pozostałe Artykuły</h2>
+          <div className="flex items-center gap-6 mb-12">
+            <h2 className="text-3xl font-black uppercase tracking-tighter text-gray-900">Archiwum Śledztw</h2>
+            <div className="flex-1 h-1.5 bg-gray-50 rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {otherArticles.map((article) => (
               <article
                 key={article.id}
-                className="bg-white rounded-sm shadow-sm hover:shadow-md transition-shadow cursor-pointer group flex flex-col h-full overflow-hidden"
+                className="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.08)] hover:shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14)] transition-all duration-500 cursor-pointer group flex flex-col h-full overflow-hidden border border-gray-50 active:scale-[0.98]"
                 onClick={() => onUnlock(article.id)}
               >
-                <div className="h-48 overflow-hidden relative">
+                <div className="h-64 overflow-hidden relative">
                   <img
                     src={article.image}
                     alt={article.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute top-0 left-0 bg-stone-900/80 text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider">
+                  <div className="absolute top-6 left-6 bg-violet-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
                     {article.category}
                   </div>
                 </div>
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-stone-900 mb-3 leading-snug group-hover:text-blue-900 transition-colors">
+                <div className="p-10 flex flex-col flex-grow">
+                  <h3 className="text-2xl font-black text-gray-900 mb-4 leading-tight tracking-tight group-hover:text-violet-600 transition-colors">
                     {article.title}
                   </h3>
-                  <p className="text-stone-600 text-sm leading-relaxed mb-4 flex-grow line-clamp-4">
+                  <p className="text-gray-500 font-medium text-base leading-relaxed mb-8 flex-grow line-clamp-4">
                     {article.excerpt}
                   </p>
-                  <div className="pt-4 border-t border-stone-100 flex justify-between items-center mt-auto">
-                    <span className="text-xs font-mono text-stone-400">Autor: Paweł Perfect</span>
-                    <span className="text-blue-900 font-sans text-xs font-bold uppercase flex items-center group-hover:underline decoration-blue-300 decoration-2 underline-offset-4">
-                      Więcej <ChevronRight className="w-3 h-3 ml-1" />
+                  <div className="pt-6 border-t border-gray-50 flex justify-between items-center mt-auto">
+                    <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-violet-600 rounded-full" />
+                        <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Perfect Intel</span>
+                    </div>
+                    <span className="text-violet-600 font-sans text-xs font-black uppercase tracking-widest flex items-center group-hover:translate-x-1 transition-transform">
+                      Czytaj <ChevronRight className="w-4 h-4 ml-1" />
                     </span>
                   </div>
                 </div>
@@ -130,7 +134,7 @@ export default function NewsFeed({ onUnlock }: NewsFeedProps) {
 
       </main>
 
-      <footer className="bg-stone-900 text-stone-400 py-8 px-6 mt-12 font-sans text-sm text-center">
+      <footer className="bg-[#09090b] text-gray-500 py-20 px-8 mt-20 font-sans text-sm text-center">
         <p>&copy; {new Date().getFullYear()} Wiadomości Śledcze. Wszelkie prawa zastrzeżone.</p>
         <p className="mt-2 text-xs text-stone-600 font-mono">Zasoby niezależne (IPFS/Web3)</p>
       </footer>

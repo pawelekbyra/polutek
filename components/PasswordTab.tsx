@@ -7,6 +7,7 @@ import { Loader2 } from 'lucide-react';
 import { useTranslation } from '@/context/LanguageContext';
 import { changePassword } from '@/lib/actions';
 import { useToast } from '@/context/ToastContext';
+import { cn } from '@/lib/utils';
 
 const PasswordTab: React.FC = () => {
   const { t } = useTranslation();
@@ -58,26 +59,26 @@ const PasswordTab: React.FC = () => {
   };
 
   return (
-    <div className="tab-pane active p-4" id="password-tab">
-      <div className="bg-white/5 border border-white/10 rounded-xl p-5">
-        <h3 className="text-lg font-bold mb-5 flex items-center gap-3 text-white">
-            <span className="w-1 h-6 bg-gradient-to-b from-pink-500 to-rose-500 rounded-full"></span>
+    <div className="tab-pane active p-6" id="password-tab">
+      <div className="bg-white border border-gray-100 rounded-[2.5rem] p-8 shadow-sm">
+        <h3 className="text-xl font-black mb-8 flex items-center gap-4 text-gray-900 tracking-tight">
+            <span className="w-2 h-8 bg-violet-600 rounded-full"></span>
             {t('changePasswordTitle')}
         </h3>
-        <form id="passwordForm" onSubmit={handlePasswordSubmit} className="space-y-4">
+        <form id="passwordForm" onSubmit={handlePasswordSubmit} className="space-y-6">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-white/80 ml-1">{t('currentPasswordLabel')}</label>
+            <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('currentPasswordLabel')}</label>
             <Input
                 type="password"
                 name="currentPassword"
                 placeholder={t('currentPasswordPlaceholder')}
                 required
                 autoComplete="current-password"
-                className="bg-black/20 border-white/10 text-white focus:border-pink-500/50 focus:bg-black/40 transition-all"
+                className="h-14 bg-gray-50 border-2 border-gray-100 text-gray-900 placeholder:text-gray-300 font-bold rounded-2xl px-4 focus:border-violet-600 focus:ring-4 focus:ring-violet-600/5 transition-all"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium text-white/80 ml-1">{t('newPasswordLabel')}</label>
+            <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('newPasswordLabel')}</label>
             <Input
                 type="password"
                 name="newPassword"
@@ -86,11 +87,11 @@ const PasswordTab: React.FC = () => {
                 placeholder={t('newPasswordPlaceholder')}
                 required
                 autoComplete="new-password"
-                className="bg-black/20 border-white/10 text-white focus:border-pink-500/50 focus:bg-black/40 transition-all"
+                className="h-14 bg-gray-50 border-2 border-gray-100 text-gray-900 placeholder:text-gray-300 font-bold rounded-2xl px-4 focus:border-violet-600 focus:ring-4 focus:ring-violet-600/5 transition-all"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium text-white/80 ml-1">{t('confirmPasswordLabel')}</label>
+            <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('confirmPasswordLabel')}</label>
             <Input
                 type="password"
                 name="confirmPassword"
@@ -99,15 +100,18 @@ const PasswordTab: React.FC = () => {
                 placeholder={t('confirmPasswordPlaceholder')}
                 required
                 autoComplete="new-password"
-                className={`bg-black/20 border-white/10 text-white focus:bg-black/40 transition-all ${confirmPassword && !passwordsMatch ? 'border-red-500 focus:border-red-500' : 'focus:border-pink-500/50'}`}
+                className={cn(
+                    "h-14 bg-gray-50 border-2 border-gray-100 text-gray-900 placeholder:text-gray-300 font-bold rounded-2xl px-4 transition-all focus:ring-4 focus:ring-violet-600/5",
+                    confirmPassword && !passwordsMatch ? 'border-red-500 focus:border-red-600' : 'focus:border-violet-600'
+                )}
             />
             {error && (
-                <p className="text-xs text-red-400 mt-1 ml-1 animate-in fade-in slide-in-from-top-1">
+                <p className="text-xs text-red-500 font-bold mt-2 ml-1 animate-in fade-in slide-in-from-top-1">
                     {error}
                 </p>
             )}
             {!error && (
-                <p className="text-xs text-white/50 mt-1 ml-1">
+                <p className="text-xs text-gray-400 font-bold mt-2 ml-1">
                   {t('passwordMinLength')}
                 </p>
             )}
@@ -116,10 +120,10 @@ const PasswordTab: React.FC = () => {
           <div className="pt-4">
             <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white font-semibold py-6 rounded-xl shadow-lg shadow-pink-900/20 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full h-16 bg-violet-600 hover:bg-violet-700 text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-violet-200 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={isSaving || !isFormValid}
             >
-                {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                {isSaving ? <Loader2 className="mr-2 h-6 w-6 animate-spin" /> : null}
                 {isSaving ? t('changingPassword') : t('changePasswordButton')}
             </Button>
           </div>

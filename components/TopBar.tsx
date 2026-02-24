@@ -37,18 +37,18 @@ export default function TopBar({ toggleSidebar, isSidebarOpen, className }: TopB
   };
 
   return (
-    <header className={cn("sticky top-0 z-30 flex items-center justify-between px-4 py-3 bg-background/80 backdrop-blur-md border-b border-white/10 safe-top", className)}>
+    <header className={cn("sticky top-0 z-30 flex items-center justify-between px-4 py-3 bg-[#09090b] text-white border-b border-white/5 safe-top", className)}>
       <div className="flex items-center gap-3 flex-1 min-w-0">
         <Button
           variant="ghost"
           size="icon"
           onClick={toggleSidebar}
-          className="text-foreground hover:bg-white/10 shrink-0"
+          className="text-white hover:bg-white/10 shrink-0 rounded-full"
         >
           <MenuIcon className="w-6 h-6" />
         </Button>
 
-        <h1 className="text-lg font-semibold truncate pr-2">
+        <h1 className="text-lg font-bold tracking-tight truncate pr-2">
           {getPageTitle()}
         </h1>
       </div>
@@ -58,7 +58,7 @@ export default function TopBar({ toggleSidebar, isSidebarOpen, className }: TopB
           <Button
             variant="ghost"
             size="icon"
-            className="text-foreground hover:bg-white/10"
+            className="text-white hover:bg-white/10 rounded-full"
             onClick={() => setShowNotifications(!showNotifications)}
           >
             <BellIcon className="w-6 h-6" />

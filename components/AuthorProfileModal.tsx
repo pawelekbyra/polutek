@@ -95,7 +95,7 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
             animate={{ x: '0%' }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 200 }}
-            className="absolute inset-0 z-[70] bg-[#121212] flex flex-col overflow-hidden"
+            className="absolute inset-0 z-[70] bg-white flex flex-col overflow-hidden"
             style={{
                 height: '100%',
                 width: '100%',
@@ -104,94 +104,94 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
             {/* Scrollable Content Container */}
             <div className="flex-1 overflow-y-auto custom-scrollbar relative">
 
-                {/* Top Bar - Now inside scroll view and relative (not sticky/fixed to viewport) */}
+                {/* Top Bar - Remains Black per user requirement for Topbar */}
                 <div
-                    className="flex items-center justify-between px-1 bg-black text-white border-b border-white/10 z-10 relative"
+                    className="flex items-center justify-between px-1 bg-[#09090b] text-white border-b border-white/5 z-10 relative"
                     style={{
                       height: 'var(--topbar-height)',
                       paddingTop: 'var(--safe-area-top)',
                     }}
                 >
                     <div className="flex justify-start w-12">
-                        <button onClick={onClose} className="p-2 -ml-2 text-white/80 hover:text-white transition-colors">
+                        <button onClick={onClose} className="p-2 -ml-2 text-white hover:text-white transition-colors">
                             <ChevronLeft size={28} />
                         </button>
                     </div>
                     <div className="flex justify-center flex-1">
-                        <span className="font-bold text-base truncate max-w-[200px] text-white">
+                        <span className="font-bold text-base truncate max-w-[200px] text-white tracking-tight">
                             {profile?.username || '...'}
                         </span>
                     </div>
-                    <div className="w-12" /> {/* Spacer to balance the back button */}
+                    <div className="w-12" />
                 </div>
                 {isLoading && !profile ? (
-                    <div className="flex-1 flex items-center justify-center h-full">
-                        <Loader2 className="h-8 w-8 animate-spin text-pink-400" />
+                    <div className="flex-1 flex items-center justify-center h-64">
+                        <Loader2 className="h-8 w-8 animate-spin text-violet-600" />
                     </div>
                 ) : isError ? (
-                    <div className="flex flex-col items-center justify-center h-full space-y-4 text-white/50">
-                        <p>Nie udało się załadować profilu.</p>
-                        <button onClick={onClose} className="text-white underline">Zamknij</button>
+                    <div className="flex flex-col items-center justify-center h-64 space-y-4 text-gray-400">
+                        <p className="font-bold">Nie udało się załadować profilu.</p>
+                        <button onClick={onClose} className="text-violet-600 font-bold underline">Zamknij</button>
                     </div>
                 ) : profile ? (
                     <div className="pb-20">
                         {/* Profile Header */}
-                        <div className="flex flex-col items-center pt-4 px-4">
+                        <div className="flex flex-col items-center pt-8 px-6">
                             {/* Avatar */}
-                            <div className="relative mb-2">
+                            <div className="relative mb-4">
                                 <Image
                                     src={profile.avatarUrl || DEFAULT_AVATAR_URL}
                                     alt={profile.username}
-                                    width={96}
-                                    height={96}
-                                    className={cn("rounded-full object-cover w-24 h-24 border-2 shadow-[0_0_15px_rgba(255,255,255,0.5)]", avatarBorderColor)}
+                                    width={120}
+                                    height={120}
+                                    className={cn("rounded-[2.5rem] object-cover w-32 h-32 border-4 border-gray-50 shadow-xl", "border-violet-100")}
                                 />
+                                <div className="absolute -bottom-2 -right-2">
+                                     <UserBadge role={profile.role} />
+                                </div>
                             </div>
 
                             {/* Name */}
-                            <h1 className={cn("text-lg font-bold mb-1", profile.role === 'patron' ? "text-yellow-400" : "text-white")}>
+                            <h1 className={cn("text-2xl font-black mb-1 tracking-tight text-gray-900")}>
                                 {profile.username}
                             </h1>
 
-                            {/* Badge */}
-                            <div className="mb-2">
-                                <UserBadge role={profile.role} />
-                            </div>
-
                             {/* Bio (Description) */}
                             {profile.bio ? (
-                                <p className="text-sm text-center text-white/90 whitespace-pre-wrap mb-3 px-2 leading-tight max-w-sm">
+                                <p className="text-[14px] text-center text-gray-500 font-medium whitespace-pre-wrap mb-6 px-4 leading-relaxed max-w-sm">
                                     {profile.bio}
                                 </p>
                             ) : (
-                                <p className="text-sm text-center text-white/40 mb-3 italic">Brak opisu</p>
+                                <p className="text-sm text-center text-gray-300 mb-6 italic">Brak opisu</p>
                             )}
 
                             {/* Stats */}
-                            <div className="flex items-center gap-6 mt-1 mb-4">
+                            <div className="flex items-center gap-8 mb-8 bg-gray-50/50 p-4 rounded-3xl border border-gray-100">
                                 <div className="flex flex-col items-center">
-                                    <span className="font-bold text-white text-lg">{formatCount(profile.slides.length)}</span>
-                                    <span className="text-xs text-white/60">Filmików</span>
+                                    <span className="font-black text-gray-900 text-lg">{formatCount(profile.slides.length)}</span>
+                                    <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Filmów</span>
                                 </div>
+                                <div className="w-px h-8 bg-gray-200" />
                                 <div className="flex flex-col items-center">
-                                    <span className="font-bold text-white text-lg">{formatCount(stats.followers)}</span>
-                                    <span className="text-xs text-white/60">Patronów</span>
+                                    <span className="font-black text-gray-900 text-lg">{formatCount(stats.followers)}</span>
+                                    <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Patronów</span>
                                 </div>
+                                <div className="w-px h-8 bg-gray-200" />
                                 <div className="flex flex-col items-center">
-                                    <span className="font-bold text-white text-lg">{formatCount(stats.likes)}</span>
-                                    <span className="text-xs text-white/60">Polubień</span>
+                                    <span className="font-black text-gray-900 text-lg">{formatCount(stats.likes)}</span>
+                                    <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Polubień</span>
                                 </div>
                             </div>
 
                             {/* Actions */}
-                            <div className="flex gap-2 w-full max-w-xs mb-4">
+                            <div className="flex gap-3 w-full max-w-md mb-8">
                                 <button
                                     onClick={togglePatron}
                                     disabled={isPatron}
-                                    className={`flex-grow py-2.5 rounded text-sm font-semibold transition-colors flex items-center justify-center gap-2 px-4
+                                    className={`flex-grow py-4 rounded-2xl text-sm font-bold transition-all flex items-center justify-center gap-2 px-6 shadow-lg active:scale-95
                                         ${isPatron
-                                            ? 'bg-emerald-600 hover:bg-emerald-700 text-white cursor-default'
-                                            : 'bg-[#FE2C55] text-white hover:bg-[#E0274B]'
+                                            ? 'bg-emerald-500 text-white shadow-emerald-100'
+                                            : 'bg-violet-600 text-white shadow-violet-200 hover:bg-violet-700'
                                         }`}
                                 >
                                     {isPatron ? (
@@ -200,46 +200,42 @@ export function AuthorProfileModal({ authorId, onClose }: AuthorProfileModalProp
                                         <>Zostań Patronem</>
                                     )}
                                 </button>
-                                <button className="p-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors flex items-center justify-center min-w-[40px]">
-                                    <Youtube size={20} />
+                                <button className="p-4 bg-gray-100 rounded-2xl hover:bg-gray-200 text-gray-600 transition-all flex items-center justify-center min-w-[56px] shadow-sm active:scale-90">
+                                    <Instagram size={24} />
                                 </button>
-                                <button className="p-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors flex items-center justify-center min-w-[40px]">
-                                    <Instagram size={20} />
-                                </button>
-                                {/* Facebook removed */}
-                                <button className="p-2.5 bg-[#3A3A3A] rounded hover:bg-[#4A4A4A] text-white transition-colors flex items-center justify-center min-w-[40px]">
-                                    <TiktokIcon size={20} />
+                                <button className="p-4 bg-gray-100 rounded-2xl hover:bg-gray-200 text-gray-600 transition-all flex items-center justify-center min-w-[56px] shadow-sm active:scale-90">
+                                    <TiktokIcon size={24} />
                                 </button>
                             </div>
                         </div>
 
                         {/* Tabs */}
-                        <div className="flex border-b border-white/10 mt-2 sticky top-0 bg-[#121212] z-10" style={{ top: 0 }}>
+                        <div className="flex border-b border-gray-50 mt-2 sticky top-0 bg-white/80 backdrop-blur-xl z-10" style={{ top: 0 }}>
                             <button
                                 onClick={() => setActiveTab('videos')}
-                                className={`flex-1 flex justify-center items-center py-3 relative transition-colors ${activeTab === 'videos' ? 'bg-[#1a1a1a] text-pink-500' : 'bg-[#121212] text-white/40 hover:bg-[#1a1a1a]/50'}`}
+                                className={`flex-1 flex justify-center items-center py-4 relative transition-all ${activeTab === 'videos' ? 'text-violet-600' : 'text-gray-400 hover:text-gray-600'}`}
                             >
-                                <Grid size={26} />
+                                <Grid size={24} strokeWidth={2.5} />
                                 {activeTab === 'videos' && (
-                                    <motion.div layoutId="activeTab" className="absolute bottom-0 w-full h-[2px] bg-pink-500" />
+                                    <motion.div layoutId="activeTabProfile" className="absolute bottom-0 w-8 h-1 bg-violet-600 rounded-full" />
                                 )}
                             </button>
                             <button
                                 onClick={() => setActiveTab('liked')}
-                                className={`flex-1 flex justify-center items-center py-3 relative transition-colors ${activeTab === 'liked' ? 'bg-[#1a1a1a] text-pink-500' : 'bg-[#121212] text-white/40 hover:bg-[#1a1a1a]/50'}`}
+                                className={`flex-1 flex justify-center items-center py-4 relative transition-all ${activeTab === 'liked' ? 'text-violet-600' : 'text-gray-400 hover:text-gray-600'}`}
                             >
-                                <Heart size={26} />
+                                <Heart size={24} strokeWidth={2.5} />
                                 {activeTab === 'liked' && (
-                                    <motion.div layoutId="activeTab" className="absolute bottom-0 w-full h-[2px] bg-pink-500" />
+                                    <motion.div layoutId="activeTabProfile" className="absolute bottom-0 w-8 h-1 bg-violet-600 rounded-full" />
                                 )}
                             </button>
                             <button
                                 onClick={() => setActiveTab('private')}
-                                className={`flex-1 flex justify-center items-center py-3 relative transition-colors ${activeTab === 'private' ? 'bg-[#1a1a1a] text-pink-500' : 'bg-[#121212] text-white/40 hover:bg-[#1a1a1a]/50'}`}
+                                className={`flex-1 flex justify-center items-center py-4 relative transition-all ${activeTab === 'private' ? 'text-violet-600' : 'text-gray-400 hover:text-gray-600'}`}
                             >
-                                <Lock size={26} />
+                                <Lock size={24} strokeWidth={2.5} />
                                 {activeTab === 'private' && (
-                                    <motion.div layoutId="activeTab" className="absolute bottom-0 w-full h-[2px] bg-pink-500" />
+                                    <motion.div layoutId="activeTabProfile" className="absolute bottom-0 w-8 h-1 bg-violet-600 rounded-full" />
                                 )}
                             </button>
                         </div>

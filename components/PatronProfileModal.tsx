@@ -28,48 +28,47 @@ export function PatronProfileModal({ patronId, onClose }: PatronProfileModalProp
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 z-[10100] flex items-center justify-center bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 z-[10100] flex items-center justify-center bg-gray-900/40 backdrop-blur-md"
             onClick={onClose}
         >
             <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ type: 'spring', damping: 20, stiffness: 250 }}
-                className="relative flex flex-col w-full max-w-sm bg-neutral-900 text-white rounded-2xl shadow-lg border border-neutral-700 mx-4 overflow-hidden"
+                initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                className="relative flex flex-col w-full max-w-sm bg-white text-gray-900 rounded-[2.5rem] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14)] border border-gray-100 mx-4 overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
             >
-                    <header className="relative flex items-center justify-center p-4 border-b border-neutral-800 shrink-0">
-                        <h2 className="text-lg font-semibold">Profil Użytkownika</h2>
-                        <button onClick={onClose} className="absolute p-1 right-3 top-3 rounded-full hover:bg-neutral-700">
+                    <header className="relative flex items-center justify-center p-6 border-b border-gray-50 shrink-0">
+                        <h2 className="text-xl font-black tracking-tight">Profil Użytkownika</h2>
+                        <button onClick={onClose} className="absolute p-2 right-4 top-4 bg-gray-50 text-gray-400 hover:text-gray-900 rounded-full transition-all">
                             <X size={20} />
                         </button>
                     </header>
 
-                    <main className="p-6">
+                    <main className="p-8">
                         {isLoading ? (
                             <PatronProfileSkeleton />
                         ) : isError ? (
-                            <div className="flex flex-col items-center justify-center h-full space-y-4">
+                            <div className="flex flex-col items-center justify-center h-full space-y-4 text-red-500 font-bold">
                                 <p>Nie udało się załadować profilu.</p>
                             </div>
                         ) : profile ? (
                             <div className="flex flex-col items-center text-center">
-                                <div className="relative w-24 h-24 mb-4 rounded-full">
+                                <div className="relative w-32 h-32 mb-6 rounded-[2rem] shadow-xl overflow-hidden border-4 border-gray-50">
                                     <Image
                                       src={profile.avatarUrl || DEFAULT_AVATAR_URL}
                                       alt={profile.username}
-                                      layout="fill"
-                                      objectFit="cover"
-                                      className="rounded-full border-2 border-white shadow-[0_0_15px_rgba(255,255,255,0.5)]"
+                                      fill
+                                      className="object-cover"
                                     />
                                 </div>
-                                <h3 className="text-2xl font-bold">{profile.username}</h3>
-                                <UserBadge role={profile.role} className="mb-2" />
+                                <h3 className="text-2xl font-black tracking-tight text-gray-900 mb-1">{profile.username}</h3>
+                                <UserBadge role={profile.role} className="mb-4 scale-110" />
                                 {profile.bio ? (
-                                    <p className="text-neutral-400 text-sm leading-relaxed mt-2">{profile.bio}</p>
+                                    <p className="text-gray-500 font-medium text-sm leading-relaxed mt-2">{profile.bio}</p>
                                 ) : (
-                                    <p className="text-neutral-600 text-sm italic">Brak opisu.</p>
+                                    <p className="text-gray-300 text-sm italic font-medium">Brak opisu.</p>
                                 )}
                             </div>
                         ) : null}

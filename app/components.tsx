@@ -99,31 +99,33 @@ export const TransactionStamp = ({ label, value, subDetails }: { label: string, 
 export const EvidenceAudioModal = ({ src, isOpen, onClose }: { src: string, isOpen: boolean, onClose: () => void }) => {
   if (!isOpen) return null;
   return (
-    <div onClick={onClose} className="fixed inset-0 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center z-[100] p-4 transition-all duration-300">
-      <div onClick={(e) => e.stopPropagation()} className="bg-[#1a1a1a] shadow-2xl rounded-lg w-full max-w-sm relative overflow-hidden animate-[fadeIn_0.3s_ease-out] border border-stone-700">
-        <div className="h-1 w-full bg-gradient-to-r from-red-800 via-red-600 to-red-800"></div>
-        <div className="p-6 relative">
-          <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] pointer-events-none"></div>
-          <div className="flex justify-between items-start mb-6">
+    <div onClick={onClose} className="fixed inset-0 bg-gray-900/40 backdrop-blur-md flex items-center justify-center z-[100] p-4 transition-all duration-300">
+      <div onClick={(e) => e.stopPropagation()} className="bg-white shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14)] rounded-[2.5rem] w-full max-w-md relative overflow-hidden animate-in fade-in zoom-in duration-300 border border-gray-100">
+        <div className="h-1.5 w-full bg-violet-600"></div>
+        <div className="p-8 relative">
+          <div className="flex justify-between items-start mb-8">
             <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="flex h-2 w-2 relative"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span></span>
-                <span className="text-[10px] font-mono text-stone-400 uppercase tracking-[0.2em]">Dowód #A-23</span>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="flex h-2.5 w-2.5 relative"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-violet-600"></span></span>
+                <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Nagranie Dowodowe #A-23</span>
               </div>
-              <h3 className="text-stone-100 font-serif text-xl italic tracking-wide">„Rozmowa w ogrodzie”</h3>
+              <h3 className="text-gray-900 font-black text-2xl tracking-tighter">„Rozmowa w ogrodzie”</h3>
             </div>
-            <button onClick={onClose} className="text-stone-500 hover:text-white transition-colors p-1 hover:bg-white/10 rounded-full"><X className="w-5 h-5" /></button>
+            <button onClick={onClose} className="text-gray-400 hover:text-gray-900 transition-all p-2 bg-gray-50 rounded-full"><X className="w-6 h-6" /></button>
           </div>
-          <div className="bg-stone-800 rounded border border-stone-700 p-4 mb-6 shadow-inner relative group">
-            <div className="flex justify-between items-center bg-black/40 rounded px-3 py-4 border border-stone-600/50">
-                <div className="w-8 h-8 rounded-full border-2 border-stone-600 bg-[#111] flex items-center justify-center"><div className="w-2 h-2 bg-stone-700 rounded-full"></div></div>
-                <div className="flex-1 mx-3 h-8 bg-[#2a2a2a] rounded flex items-center justify-center overflow-hidden relative"><div className="absolute w-[120%] h-[1px] bg-stone-600 rotate-12 top-1/2"></div><span className="text-[9px] font-mono text-stone-500 z-10 bg-[#2a2a2a] px-1">SIDE A</span></div>
-                <div className="w-8 h-8 rounded-full border-2 border-stone-600 bg-[#111] flex items-center justify-center"><div className="w-2 h-2 bg-stone-700 rounded-full"></div></div>
+          <div className="bg-gray-50 rounded-3xl border border-gray-100 p-6 mb-8 shadow-inner relative group">
+            <div className="flex justify-between items-center bg-white rounded-2xl px-4 py-6 border border-gray-100 shadow-sm">
+                <div className="w-10 h-10 rounded-full border-2 border-gray-100 bg-gray-50 flex items-center justify-center shadow-inner"><div className="w-3 h-3 bg-violet-200 rounded-full animate-pulse"></div></div>
+                <div className="flex-1 mx-4 h-10 bg-gray-50 rounded-xl flex items-center justify-center overflow-hidden relative border border-gray-100">
+                    <div className="absolute w-[120%] h-px bg-gray-200 rotate-12 top-1/2"></div>
+                    <span className="text-[10px] font-black text-gray-400 z-10 bg-gray-50 px-2 tracking-widest uppercase">Analog Source</span>
+                </div>
+                <div className="w-10 h-10 rounded-full border-2 border-gray-100 bg-gray-50 flex items-center justify-center shadow-inner"><div className="w-3 h-3 bg-violet-200 rounded-full animate-pulse"></div></div>
             </div>
-            <div className="mt-3 text-center"><span className="font-mono text-[10px] text-stone-400 uppercase tracking-wider block">K. Stefanek / 2023</span></div>
+            <div className="mt-4 text-center"><span className="font-black text-[10px] text-gray-400 uppercase tracking-[0.2em] block">Archiwum Perfect / 2023</span></div>
           </div>
-          <div className="bg-stone-200 rounded p-1">
-            <audio controls className="w-full h-8 accent-stone-900 focus:outline-none">
+          <div className="bg-violet-50 rounded-2xl p-2 border border-violet-100">
+            <audio controls className="w-full h-10 accent-violet-600 focus:outline-none">
               <source src={src} type="audio/mpeg" />
             </audio>
           </div>
@@ -206,35 +208,35 @@ export const GalleryModal: React.FC<{ isOpen: boolean; onClose: () => void; data
   const isVerdict = data.type === 'verdict';
 
   return (
-    <div className={`fixed inset-0 z-[100] flex flex-col ${isVerdict ? 'bg-stone-900/95' : 'bg-black'} backdrop-blur-sm animate-[fadeIn_0.2s_ease-out]`}>
+    <div className={`fixed inset-0 z-[100] flex flex-col bg-white backdrop-blur-xl animate-in fade-in duration-300`}>
       
       {/* TOOLBAR */}
-      <div className="flex items-center justify-between px-4 py-3 bg-black/40 border-b border-white/10 z-50 shrink-0">
-        <div className="text-white">
-          <h3 className="font-bold text-sm md:text-base leading-tight">{data.title}</h3>
-          <p className="font-mono text-[10px] text-stone-400 mt-1 uppercase tracking-wider">
+      <div className="flex items-center justify-between px-6 py-4 bg-white/80 border-b border-gray-100 z-50 shrink-0 backdrop-blur-md">
+        <div>
+          <h3 className="font-black text-gray-900 tracking-tighter">{data.title}</h3>
+          <p className="font-bold text-[10px] text-gray-400 mt-0.5 uppercase tracking-widest">
              {isVerdict ? `Dokument: ${data.images.length} stron` : `Zdjęcie ${currentIndex + 1} / ${data.images.length}`}
-             {data.signature && <span className="mx-2 text-stone-600">|</span>}
+             {data.signature && <span className="mx-2 text-gray-200">|</span>}
              {data.signature}
           </p>
         </div>
         
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           {data.pdfUrl && (
              <a
                href={data.pdfUrl}
                target="_blank"
                rel="noopener noreferrer"
-               className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-stone-800 text-stone-200 text-xs font-bold uppercase tracking-wider hover:bg-stone-700 transition-colors rounded-sm border border-white/10"
+               className="hidden md:flex items-center gap-2 px-4 py-2 bg-violet-600 text-white text-[10px] font-black uppercase tracking-widest hover:bg-violet-700 transition-all rounded-xl shadow-lg shadow-violet-200"
              >
-               <Download className="w-3 h-3" /> PDF
+               <Download className="w-4 h-4" /> PDF
              </a>
           )}
           <button 
             onClick={onClose} 
-            className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors"
+            className="p-2 bg-gray-50 hover:bg-gray-100 text-gray-400 hover:text-gray-900 rounded-full transition-all active:scale-90"
           >
-            <X className="w-5 h-5" />
+            <X className="w-6 h-6" />
           </button>
         </div>
       </div>
@@ -244,36 +246,36 @@ export const GalleryModal: React.FC<{ isOpen: boolean; onClose: () => void; data
         
         {isVerdict ? (
           // --- VERDICT MODE (SCROLLABLE VERTICAL) ---
-          <div className="w-full h-full overflow-y-auto p-4 md:p-8 flex justify-center bg-[#1a1a1a]">
-            <div className="flex flex-col gap-4 max-w-4xl w-full">
+          <div className="w-full h-full overflow-y-auto p-4 md:p-12 flex justify-center bg-gray-50/50">
+            <div className="flex flex-col gap-8 max-w-5xl w-full">
                {data.images.map((img, idx) => (
                  <div key={idx} className="relative group">
                    <img
                      src={img}
                      alt={`Strona ${idx + 1}`}
-                     className="w-full h-auto shadow-2xl border border-stone-700"
+                     className="w-full h-auto shadow-2xl border border-gray-100 rounded-lg bg-white"
                      loading="lazy"
                    />
-                   <div className="absolute top-2 right-2 bg-black/50 text-white text-[10px] px-2 py-1 rounded font-mono">
-                      #{idx + 1}
+                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-gray-900 text-[10px] px-3 py-1 rounded-full font-black shadow-sm border border-gray-100">
+                      STRONA {idx + 1}
                    </div>
                  </div>
                ))}
-               <div className="text-center py-8 text-stone-500 font-mono text-xs">
+               <div className="text-center py-20 text-gray-300 font-black uppercase tracking-[0.4em] text-xs">
                  --- KONIEC DOKUMENTU ---
                </div>
             </div>
           </div>
         ) : (
           // --- GALLERY MODE (CAROUSEL) ---
-          <div className="w-full h-full flex items-center justify-center p-2 md:p-10 relative">
+          <div className="w-full h-full flex items-center justify-center p-4 md:p-12 relative bg-gray-50/30">
             
             {/* Prev Button */}
             <button 
                onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-               className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-3 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-all z-20"
+               className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 p-4 bg-white shadow-xl text-gray-400 hover:text-violet-600 rounded-full transition-all z-20 hover:scale-110 active:scale-90 border border-gray-100"
             >
-              <ChevronLeft className="w-8 h-8 md:w-10 md:h-10" />
+              <ChevronLeft className="w-8 h-8" strokeWidth={3} />
             </button>
 
             {/* Image */}
@@ -281,25 +283,25 @@ export const GalleryModal: React.FC<{ isOpen: boolean; onClose: () => void; data
               <img
                 src={data.images[currentIndex]}
                 alt={`Zdjęcie ${currentIndex + 1}`}
-                className="max-w-full max-h-full object-contain drop-shadow-2xl"
+                className="max-w-full max-h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-2xl"
               />
             </div>
 
             {/* Next Button */}
             <button 
                onClick={(e) => { e.stopPropagation(); handleNext(); }}
-               className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-3 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-all z-20"
+               className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 p-4 bg-white shadow-xl text-gray-400 hover:text-violet-600 rounded-full transition-all z-20 hover:scale-110 active:scale-90 border border-gray-100"
             >
-              <ChevronRight className="w-8 h-8 md:w-10 md:h-10" />
+              <ChevronRight className="w-8 h-8" strokeWidth={3} />
             </button>
 
-            {/* Bottom Dots (Optional for navigation hints) */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 overflow-x-auto max-w-[80vw] p-2">
+            {/* Bottom Dots */}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 overflow-x-auto max-w-[80vw] p-3 bg-white/80 backdrop-blur-md rounded-full shadow-lg border border-gray-100">
                {data.images.map((_, idx) => (
                  <div 
                    key={idx}
                    onClick={() => setCurrentIndex(idx)}
-                   className={`w-1.5 h-1.5 rounded-full cursor-pointer transition-all ${idx === currentIndex ? 'bg-white scale-125' : 'bg-white/30 hover:bg-white/50'}`}
+                   className={`w-2 h-2 rounded-full cursor-pointer transition-all duration-300 ${idx === currentIndex ? 'bg-violet-600 w-6' : 'bg-gray-200 hover:bg-gray-300'}`}
                  />
                ))}
             </div>

@@ -16,7 +16,7 @@ export default function TingTongPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="w-full h-screen bg-black overflow-hidden relative">
+    <div className="w-full h-screen bg-white overflow-hidden relative">
         <TopBar
             toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
             isSidebarOpen={isSidebarOpen}
@@ -31,7 +31,7 @@ export default function TingTongPage() {
         {/* Overlay for sidebar when open on mobile (matches AppLayout logic) */}
         {isSidebarOpen && (
             <div
-                className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+                className="fixed inset-0 bg-gray-900/40 backdrop-blur-sm z-40 lg:hidden"
                 onClick={() => setIsSidebarOpen(false)}
             />
         )}
