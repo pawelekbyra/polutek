@@ -620,7 +620,8 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
 
           <div className="mt-8 mb-4 flex justify-end">
              <div className="text-right">
-                <span className="block font-bold text-stone-900">Banksy</span>
+                <span className="block font-bold text-stone-900">Detektyw Polutek</span>
+                <span className="block text-xs text-stone-500 font-sans mt-1 italic">detektyw.polutek@protonmail.com</span>
              </div>
           </div>
 
@@ -636,7 +637,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
                 <div className="bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                    <div>
                       <span className="block font-serif text-stone-900 font-medium">Śledztwo w sprawie organizacji ceremonii</span>
-                      <span className="block text-xs text-stone-500 mt-1">oraz udzielania środków odurzających</span>
+                      <span className="block text-xs text-stone-500 mt-1">Prokuratura Rejonowa w Częstochowie</span>
                    </div>
                    <span className="font-mono text-xs font-bold bg-stone-100 px-3 py-1.5 border border-stone-300 text-stone-600 rounded-sm shadow-sm whitespace-nowrap">
                       3013-1.Ds.15.2024
@@ -647,16 +648,30 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
                 <div className="bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                    <div>
                       <span className="block font-serif text-stone-900 font-medium">Śledztwo w sprawie śmierci Ilony Lewandowskiej</span>
-                      <span className="block text-xs text-stone-500 mt-1">nieumyślne spowodowanie śmierci</span>
+                      <span className="block text-xs text-stone-500 mt-1">Prokuratura Rejonowa w Częstochowie</span>
                    </div>
                    <span className="font-mono text-xs font-bold bg-red-50 px-3 py-1.5 border border-red-100 text-red-800 rounded-sm shadow-sm whitespace-nowrap">
                       3013-1.Ds.4.2026
                    </span>
                 </div>
+
+                {/* Wiersz 3 */}
+                <div className="bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                   <div>
+                      <span className="block font-serif text-stone-900 font-medium">Śledztwo w sprawie śmierci Wiktora B.</span>
+                      <span className="block text-xs text-stone-500 mt-1">Prokuratura Rejonowa w Pułtusku</span>
+                   </div>
+                   <div className="flex flex-col items-end gap-1">
+                      <span className="font-mono text-xs font-bold bg-stone-100 px-3 py-1.5 border border-stone-300 text-stone-600 rounded-sm shadow-sm whitespace-nowrap">
+                        4027-0. Ds. 1254.2024
+                      </span>
+                      <span className="text-[10px] font-sans font-bold text-orange-600 uppercase tracking-tighter">Śledztwo zawieszone</span>
+                   </div>
+                </div>
              </div>
 
              <div className="mt-8 text-sm text-stone-600 font-sans text-center md:text-left">
-                Postępowania toczą się w Prokuraturze Rejonowej w Częstochowie. Nadzór nad postępowaniami objął Zastępca Prokuratora Okręgowego.
+                Postępowania toczą się w wymienionych jednostkach Prokuratury. Nadzór nad sprawami w Częstochowie objął Zastępca Prokuratora Okręgowego.
              </div>
           </div>
           {/* ------------------------------------------------ */}

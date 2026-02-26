@@ -10,7 +10,7 @@ export default auth((req) => {
   const { nextUrl } = req;
   const hostname = req.headers.get("host");
 
-  if (hostname === "detektyw.polutek.pl" || hostname === "ai.polutek.pl") {
+  if (hostname === "detektyw.polutek.pl") {
     if (nextUrl.pathname === "/") {
       return NextResponse.rewrite(new URL("/elixir-public", req.url));
     }

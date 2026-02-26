@@ -12,11 +12,11 @@ Polutek OS utilizes a **Middleware-based Multi-tenancy** architecture. A single 
 
 ## 📦 Modules
 
-### 1. `detektyw.polutek.pl` (The Public Course Platform)
-The flagship educational portal for the **Digital Architect Protocol**.
-- **Focus:** Vibe Coding, AI-Assisted SaaS development, and "Zero Terminal" workflows.
+### 1. `detektyw.polutek.pl` (Public Investigative Portal)
+The public facing investigative journal for the **Polutek Detective Agency**.
+- **Focus:** Digital Noir investigative reports and public disclosure.
 - **Tech:** Next.js App Router, Framer Motion, Tailwind CSS.
-- **Access:** Publicly indexed and SEO optimized.
+- **Access:** Publicly accessible but `noindex, nofollow` protected.
 
 ### 2. `polutek.pl` (Private Research & Tools)
 A restricted environment for investigative research and internal tools.
