@@ -167,11 +167,11 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </p>
 
           <p>
-            Ayahuaska to tradycyjny wywar z amazońskich roślin o silnym działaniu halucynogennym. Ze względu na wysoką zawartość DMT – substancji psychodelicznej wywołującej intensywne wizje i zmiany stanu świadomości, jej posiadanie i podawanie jest w Polsce i Czechach zabronione. Finałem medialnego spektaklu Kordysów było ułaskawienie przez czeskiego prezydenta po dwóch latach odsiadki.
+            Ayahuaska to tradycyjny wywar z amazońskich roślin o silnym działaniu halucynogennym. Ze względu na wysoką zawartość DMT – substancji psychodelicznej wywołującej intensywne wizje i zmiany stanu świadomości, jej posiadanie i podawanie jest v Polsce i Czechach zabronione. Finałem medialnego spektaklu Kordysów było ułaskawienie przez czeskiego prezydenta po dwóch latach odsiadki.
           </p>
 
           <p>
-            Kurtyna opadła, temat ucichł. Ale czy to na pewno koniec tej historii? W cieniu tego głośnego procesu toczył się drugi – cichy i błyskawiczny, zakończony dyskretnym wyrokiem, o którym nikt nawet w mediach się nie zająknął. Analiza sądowych dokumentów prowadzi do zdumiewających wniosków.
+            Kurtyna opadła, temat ucichł. Ale czy to na pewno koniec tej historii? W cieniu tego głośnego procesu toczył się drugi – cichy i błyskawiczny, zakończony dyskretnym wyrokiem, o którym nikt nawet v mediach się nie zająknął. Analiza sądowych dokumentów prowadzi do zdumiewających wniosków.
           </p>
 
           <p>
@@ -189,9 +189,9 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </p>
 
           <CaseFile title="Zeznania świadka B.">
-            &quot;Świadek B. odnośnie osoby oskarżonego [Jarosława Kordysa] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii&quot;.
+            &quot;Świadek B. odnośnie osoby oskarżonego [Jarosława Kordysa] oświadczył, że zna się z nim ok. 8 lat, a poznali się v Holandii&quot;.
             <br/><br/>
-            &quot;Świadek B. potwierdził, że i on sam w przeszłości prowadził warsztaty&quot;, a obecnie sam &quot;jest przedmiotem dochodzenia policji v Krnowie właśnie z powodu ceremonii&quot;.
+            &quot;Świadek B. potwierdził, że i on sam v przeszłości prowadził warsztaty&quot;, a obecnie sam &quot;jest przedmiotem dochodzenia policji v Krnowie właśnie z powodu ceremonii&quot;.
           </CaseFile>
 
           <p>
@@ -199,7 +199,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </p>
 
           <CaseFile title="Zarzuty wobec Bartosza B.">
-            &quot;(...) wymieniony był sprawdzany w związku z występkiem niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi (...) albowiem miał w roku 2014 zlecić przesłanie na swój adres przesyłki pocztowej przechwyconej na lotnisku v Lipsku RFN zawierającej 4,5 kg DMT, a 6.6.2018 miało dojść do zatrzymania przesyłki pocztowej we Frankfurcie nad Menem RFN zawierającej 2000 g meskaliny i 38,6 g substancji DMT.&quot;
+            &quot;(...) wymieniony był sprawdzany v związku z występkiem niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi (...) albowiem miał v roku 2014 zlecić przesłanie na swój adres przesyłki pocztowej przechwyconej na lotnisku v Lipsku RFN zawierającej 4,5 kg DMT, a 6.6.2018 miało dojść do zatrzymania przesyłki pocztowej we Frankfurcie nad Menem RFN zawierającej 2000 g meskaliny i 38,6 g substancji DMT.&quot;
           </CaseFile>
 
           <p>
@@ -207,21 +207,21 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </p>
 
           <CaseFile title="Własność nieruchomości">
-            &quot;(...) budynek rodzinny w miejscowości Janov (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy&quot;
+            &quot;(...) budynek rodzinny v miejscowości Janov (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy&quot;
             <br/><br/>
-            &quot;Świadek [Bartosz B.] potwierdził, że w Janovie jest właścicielem jednej dziesiątej nieruchomości&quot;.
+            &quot;Świadek [Bartosz B.] potwierdził, że v Janovie jest właścicielem jednej dziesiątej nieruchomości&quot;.
           </CaseFile>
 
           <p>
-            Do kogo należała reszta? Sąd wskazuje wprost:
+            Do kogo należała reszta? Sąd wskazuje vprost:
           </p>
 
           <CaseFile title="Ustalenia Sądu">
-            &quot;...w odniesieniu do nieruchomości będących współwłasnością <strong>Bartosza B.</strong> i <strong>Michała D. K.</strong>&quot;.
+            &quot;...v odniesieniu do nieruchomości będących współwłasnością <strong>Bartosza B.</strong> i <strong>Michała D. K.</strong>&quot;.
           </CaseFile>
 
           <p>
-            W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <button onClick={() => openGallery('janov')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">działkę w Janovie</button> i za niewielką opłatą pobrać jej pełną historię.
+            W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <button onClick={() => openGallery('janov')} className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">działkę v Janovie</button> i za niewielką opłatą pobrać jej pełną historię.
           </p>
 
           <LocationStamp
@@ -233,7 +233,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           />
 
           <p>
-          Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
+          Pobrany dokument nie pozostawia wątpliwości: v latach 2012–2023 współwłaścicielami nieruchomości byli:
              <br/>
              Bartosz Badowski (10%)
              <br/>
@@ -241,25 +241,25 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </p>
 
           <p>
-            Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie &quot;Michal D. K.&quot;. <span className="bg-yellow-200 px-1 font-bold text-stone-900 shadow-sm box-decoration-clone">Wspólnikiem szamana był twórca &quot;Wiedźmina&quot; – jeden z najbogatszych Polaków.</span>
+            Drugie imię – Dawid – idealnie wypełnia lukę v zanonimizowanym skrócie &quot;Michal D. K.&quot;. <span className="bg-yellow-200 px-1 font-bold text-stone-900 shadow-sm box-decoration-clone">Wspólnikiem szamana był twórca &quot;Wiedźmina&quot; – jeden z najbogatszych Polaków.</span>
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Na podsłuchu</h2>
 
           <p>
-            Przełom w sprawie organizatorów ayahuaskowych ceremonii v 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysem.
+            Przełom v sprawie organizatorów ayahuaskowych ceremonii v 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy v dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysem.
           </p>
 
           <p>
-            Kordys zadzwonił do Badowskiego wyraźnie zaniepokojony wieściami, które do niego dotarły. Bał się, że tragedia, o której huczało w kuluarach, może zniszczyć ich imperium. Sąd w uzasadnieniu wyroku precyzyjnie rekonstruuje ten moment:
+            Kordys zadzwonił do Badowskiego wyraźnie zaniepokojony wieściami, które do niego dotarły. Bał się, że tragedia, o której huczało v kuluarach, może zniszczyć ich imperium. Sąd v uzasadnieniu wyroku precyzyjnie rekonstruuje ten moment:
           </p>
 
           <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" type="transcript">
-            &quot;oskarżony [Jarosława Kordysa] omawia z&nbsp;B., że dotarła do niego informacja, że w obiekcie v Janovie <span className="underline decoration-red-600 decoration-4 underline-offset-4">zmarła jakaś kobieta</span>&quot;.
+            &quot;oskarżony [Jarosława Kordysa] omawia z&nbsp;B., że dotarła do niego informacja, że v obiekcie v Janovie <span className="underline decoration-red-600 decoration-4 underline-offset-4">zmarła jakaś kobieta</span>&quot;.
           </CaseFile>
 
           <p>
-            W rozmowie pojawia się też wątek zagrożenia ze strony osoby trzeciej – mężczyźni omawiają szantażystę, który chce iść na policję. Kordys wprost pyta wspólnika:
+            W rozmowie pojawia się też wątek zagrożenia ze strony osoby trzeciej – mężczyźni omawiają szantażystę, który chce iść na policję. Kordys vprost pyta wspólnika:
           </p>
 
           <CaseFile title="Pytanie Kordysa" type="transcript">
@@ -267,7 +267,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </CaseFile>
 
           <p>
-            Odpowiedź na to pytanie znajduje się w aktach sprawy i nie pozostawia złudzeń co do intencji rozmówców. W uzasadnieniu wyroku Kordysa czytamy:
+            Odpowiedź na to pytanie znajduje się v aktach sprawy i nie pozostawia złudzeń co do intencji rozmówców. W uzasadnieniu wyroku Kordysa czytamy:
           </p>
 
           <div className="my-8 pl-6 border-l-4 border-stone-900 font-serif italic text-xl text-stone-800">
@@ -287,7 +287,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </CaseFile>
 
           <p>
-            Dla policjantów, którzy słyszeli to w czasie rzeczywistym, przekaz był jasny: w obiekcie mogło dojść do tragedii, a sprawcy martwili się jedynie o ciągłość dostaw.
+            Dla policjantów, którzy słyszeli to v czasie rzeczywistym, przekaz był jasny: v obiekcie mogło dojść do tragedii, a sprawcy martwili się jedynie o ciągłość dostaw.
           </p>
 
           <p>
@@ -295,7 +295,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </p>
 
           <CaseFile title="Protokół rewizji">
-            &quot;w nieruchomości zabezpieczono rzeczy... oprócz marihuany zabezpieczono również substancje zawierające DMT o objętości ok. 2 kg&quot;.
+            &quot;v nieruchomości zabezpieczono rzeczy... oprócz marihuany zabezpieczono również substancje zawierające DMT o objętości ok. 2 kg&quot;.
           </CaseFile>
 
           <p>
@@ -713,22 +713,6 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
 
            <div className="grid gap-4 text-sm text-stone-600">
 
-             {/* NOWE ŹRÓDŁO: ONET */}
-             <div className="p-3 bg-white border border-stone-200 hover:border-red-300 transition-colors shadow-sm">
-                <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                  <div>
-                    <h4 className="font-bold text-stone-900 text-sm leading-tight">Artykuł: <strong>Szamańskie ceremonie, tajemnicza śmierć i miliarderzy od „Wiedźmina”</strong></h4>
-                    <p className="font-mono text-[10px] text-stone-500 mt-1">Opublikowano: 3 marca 2026 | Onet.pl</p>
-                  </div>
-                  <div className="shrink-0 w-40 justify-center bg-stone-50 text-stone-400 px-3 py-1 text-xs font-bold rounded border border-stone-100 flex items-center gap-2 cursor-default">
-                    <ExternalLink className="w-3 h-3" /> Link nieaktywny
-                  </div>
-                </div>
-                <div className="border-t border-stone-100 pt-2 text-[10px] text-stone-400 font-mono italic">
-                  Źródło: onet.pl/wiadomosci/kraj/szamanskie-ceremonie-tajemnicza-smierc-i-miliarderzy-od-wiedzmina
-                </div>
-             </div>
-
              <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                   <div>
@@ -928,6 +912,24 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
                   >
                     <History className="w-3 h-3" /> Wayback Machine
                   </a>
+                </div>
+             </div>
+
+             {/* ONET JAKO OSTATNIE ŹRÓDŁO Z WYRÓŻNIENIEM */}
+             <div className="p-4 bg-red-50/50 border-2 border-red-200 hover:border-red-400 transition-all shadow-md">
+                <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                  <div>
+                    <h4 className="font-bold text-stone-900 text-sm leading-tight">
+                      Artykuł: <strong>Szamańskie ceremonie, tajemnicza śmierć i miliarderzy od „Wiedźmina”</strong>, <span className="underline decoration-red-600 decoration-2 underline-offset-4 text-red-700">Onet.pl</span>
+                    </h4>
+                    <p className="font-mono text-[10px] text-stone-500 mt-2 uppercase tracking-tighter">Opublikowano: 3 marca 2026</p>
+                  </div>
+                  <div className="shrink-0 w-40 justify-center bg-white/80 text-stone-400 px-3 py-1 text-xs font-bold rounded border border-red-100 flex items-center gap-2 cursor-default shadow-sm">
+                    <ExternalLink className="w-3 h-3" /> Link nieaktywny
+                  </div>
+                </div>
+                <div className="border-t border-red-100 pt-2 text-[10px] text-red-800/60 font-mono italic">
+                  onet.pl/wiadomosci/kraj/szamanskie-ceremonie-tajemnicza-smierc-i-miliarderzy-od-wiedzmina
                 </div>
              </div>
 
