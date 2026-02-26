@@ -8,6 +8,17 @@ const onBoardingPath = '/setup';
 
 export default auth((req) => {
   const { nextUrl } = req;
+  const hostname = req.headers.get("host");
+
+  if (hostname === "ai.polutek.pl") {
+    if (nextUrl.pathname === "/") {
+      return NextResponse.rewrite(new URL("/elixir-public", req.url));
+    }
+    if (nextUrl.pathname === "/elixir-public") {
+      return NextResponse.next();
+    }
+  }
+
   const session = req.auth;
   const isLoggedIn = !!session?.user;
 

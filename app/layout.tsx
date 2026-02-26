@@ -2,25 +2,32 @@ import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Providers } from "@/components/Providers";
 import "./globals.css";
-import type { Viewport } from 'next';
+import type { Viewport, Metadata } from 'next';
+import { headers } from 'next/headers';
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Eliksir Wiedźmina",
-  description: "W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.",
-  robots: "index, follow",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers();
+  const host = headersList.get('host');
+  const isAiPolutek = host === 'ai.polutek.pl';
+
+  return {
     title: "Eliksir Wiedźmina",
     description: "W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.",
-    type: "article",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Eliksir Wiedźmina",
-    description: "W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.",
-  },
-};
+    robots: isAiPolutek ? "noindex, nofollow" : "index, follow",
+    openGraph: {
+      title: "Eliksir Wiedźmina",
+      description: "W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.",
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Eliksir Wiedźmina",
+      description: "W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.",
+    },
+  };
+}
 
 export const viewport: Viewport = {
   width: "device-width",
