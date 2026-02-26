@@ -10,12 +10,12 @@ const inter = Inter({ subsets: ["latin"] });
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const host = headersList.get('host');
-  const isAiPolutek = host === 'detektyw.polutek.pl' || host === 'ai.polutek.pl';
+  const isPublicDomain = host === 'detektyw.polutek.pl';
 
   return {
     title: "Eliksir Wiedźmina",
     description: "W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.",
-    robots: isAiPolutek ? "noindex, nofollow" : "index, follow",
+    robots: isPublicDomain ? "noindex, nofollow" : "index, follow",
     openGraph: {
       title: "Eliksir Wiedźmina",
       description: "W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.",
