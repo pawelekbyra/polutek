@@ -5,7 +5,7 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
   const headersList = await headers();
   const host = headersList.get('host');
 
-  if (host === 'ai.polutek.pl') {
+  if (host === 'detektyw.polutek.pl' || host === 'ai.polutek.pl') {
     return {
       rules: {
         userAgent: '*',
