@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const host = headersList.get('host');
-  const isAiPolutek = host === 'ai.polutek.pl';
+  const isAiPolutek = host === 'detektyw.polutek.pl' || host === 'ai.polutek.pl';
 
   return {
     title: "Eliksir Wiedźmina",

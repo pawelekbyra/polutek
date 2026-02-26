@@ -12,7 +12,7 @@ Polutek OS utilizes a **Middleware-based Multi-tenancy** architecture. A single 
 
 ## 📦 Modules
 
-### 1. `ai.polutek.pl` (The Public Course Platform)
+### 1. `detektyw.polutek.pl` (The Public Course Platform)
 The flagship educational portal for the **Digital Architect Protocol**.
 - **Focus:** Vibe Coding, AI-Assisted SaaS development, and "Zero Terminal" workflows.
 - **Tech:** Next.js App Router, Framer Motion, Tailwind CSS.
