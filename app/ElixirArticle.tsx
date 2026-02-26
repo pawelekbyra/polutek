@@ -163,7 +163,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-400 hover:prose-a:bg-stone-100 transition-colors">
 
           <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed">
-            W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
+            W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów v czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
           </p>
 
           <p>
@@ -247,7 +247,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Na podsłuchu</h2>
 
           <p>
-            Przełom w sprawie organizatorów ayahuaskowych ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysem.
+            Przełom w sprawie organizatorów ayahuaskowych ceremonii v 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysem.
           </p>
 
           <p>
@@ -271,7 +271,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </p>
 
           <div className="my-8 pl-6 border-l-4 border-stone-900 font-serif italic text-xl text-stone-800">
-            &quot;Z ich rozmowy wynika, że nie zajmowali  się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji.&quot;
+            &quot;Z ich rozmowy wynika, że nie zajmowali się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji.&quot;
           </div>
 
           <p>
@@ -358,7 +358,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </p>
 
           <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
-            &quot;co najmniej od bliżej nieustalonej daty w 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne&quot;
+            &quot;co najmniej od bliżej nieustalanej daty v 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne&quot;
             <br/><br/>
             &quot;udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. ayahuascę zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)&quot;
             <br/><br/>
@@ -376,7 +376,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </p>
 
           <p>
-            Będąc tak blisko Badowskiego, doskonale znali mroczną tajemnicę śmierci Ilony. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się  o &quot;ciągłość dostaw&quot;, dowodzi, że w pełni akceptowali reguły zmowy milczenia.
+            Będąc tak blisko Badowskiego, doskonale znali mroczną tajemnicę śmierci Ilony. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się o &quot;ciągłość dostaw&quot;, dowodzi, że w pełni akceptowali reguły zmowy milczenia.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Kiciński</h2>
@@ -430,7 +430,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </p>
 
           <CaseFile title="Odpowiedź na pytanie o udział">
-            &quot;nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie <span className="underline decoration-stone-900 decoration-4 underline-offset-4 font-bold">odmawiam odpowiedzi</span>&quot;
+            &quot;nie brałem udziału w takich ceremoniach v latach 2016-2023, a o wcześniejszym okresie <span className="underline decoration-stone-900 decoration-4 underline-offset-4 font-bold">odmawiam odpowiedzi</span>&quot;
           </CaseFile>
 
           <p>
@@ -442,7 +442,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
 </p>
 
 <p>
-  Fakt, że Kiciński w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w Ameryce Południowej, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalności w Janovie.
+  Fakt, że Kiciński w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w Ameryce Południowej, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalności v Janovie.
 </p>
 
 <p>
@@ -450,7 +450,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
 </p>
 
           <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
-            &quot;Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.&quot;
+            &quot;Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji v Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.&quot;
           </CaseFile>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Anonimowy filantrop</h2>
@@ -497,7 +497,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
             <li className="flex items-start gap-3">
               <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
               <div>
-                <strong>3 października 2023 r.</strong> – Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów w nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
+                <strong>3 października 2023 r.</strong> – Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów v nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
               </div>
             </li>
 
@@ -525,7 +525,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </ul>
 
           <p>
-            Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong>Krzysztof Stefanek</strong>, który w filmie mówi o &quot;odwróconej logice&quot; i pięknie wolontariatu, i jego konkubina <strong>Magdalena Drzewińska</strong> w rzeczywistości doskonale znali mroczną historię Janova i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
+            Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong>Krzysztof Stefanek</strong>, który w filmie mówi o &quot;odwróconej logice&quot; i pięknie wolontariatu, i jego konkubina <strong>Magdalena Drzewińska</strong> v rzeczywistości doskonale znali mroczną historię Janova i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
           </p>
 
           <TransactionStamp
@@ -535,17 +535,17 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           />
 
           <p>
-            Ostatecznie strategia okazała się skuteczna. Śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &quot;stowarzyszeniu&quot;. Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, &quot;czystej&quot; osady.
+            Ostatecznie strategia okazała się skuteczna. Śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany v &quot;stowarzyszeniu&quot;. Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, &quot;czystej&quot; osady.
           </p>
 
           <p>
-            Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit <strong>Stowarzyszenie Natury Zew</strong> żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki. A przecież &quot;zadośćuczynienie wszechświatowi&quot; miało  trafić na hospicjum, a nie na &quot;organizację krzak&quot;.
+            Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit <strong>Stowarzyszenie Natury Zew</strong> żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki. A przecież &quot;zadośćuczynienie wszechświatowi&quot; miało trafić na hospicjum, a nie na &quot;organizację krzak&quot;.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Nýdek</h2>
 
           <p>
-            Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janova, w miejscowości <strong>Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.
+            Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janova, v miejscowości <strong>Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.
           </p>
 
 
@@ -575,7 +575,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </p>
 
           <p>
-            Jeszcze bardziej zastanawiające jest to, co stało się z tą nieruchomością w momencie zagrożenia. Gdy 15.10.2020 roku aresztowano Kordysa, nad środowiskiem zawisło widmo policyjnych nalotów. Dokumenty urzędowe odsłaniają niepokojącą zbieżność dat:
+            Jeszcze bardziej zastanawiające jest to, co stało się z tą nieruchomością v momencie zagrożenia. Gdy 15.10.2020 roku aresztowano Kordysa, nad środowiskiem zawisło widmo policyjnych nalotów. Dokumenty urzędowe odsłaniają niepokojącą zbieżność dat:
           </p>
 
           <ul className="list-none space-y-12 my-8 font-mono text-sm border-l-2 border-stone-300 pl-4">
@@ -605,19 +605,10 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           />
 
           <p>
-            Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z &quot;darowizną&quot; Kicińskiego w Janovie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
+            Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z &quot;darowizną&quot; Kicińskiego v Janovie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
           </p>
 
-          <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Sprawiedliwość na sprzedaż?</h2>
-
-          <p>
-            Historia Hermanovic, Janova i Nýdka to opowieść o dwóch równoległych światach. W jednym – za kraty czeskich więzień – trafiają szamani, których nazwiska stają się synonimem skandalu. W drugim – na szczytach list Forbesa – trwają ludzie, którzy tę infrastrukturę sfinansowali.
-          </p>
-
-          <p>
-            Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów w czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli w blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
-          </p>
-
+          {/* PRZESUNIĘTA SEKCJA WIKTOR B. */}
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Wiktor B.</h2>
 
           <p>
@@ -629,7 +620,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </p>
 
           <p>
-            Prowadzący obrzęd Wiktor B., brat głównego organizatora ceremonii znanego jako Badi, był tej nocy pod wpływem marihuany. Z relacji świadków wynika, że po śmierci kobiety podjął on natychmiastowe działania mające na celu zatuszowanie incydentu. Nakazał uczestnikom bezzwłoczne opuszczenie ośrodka. Czeskiej policji przedstawił fałszywą wersję zdarzeń, twierdząc, że Ilona L.-H. była jedynie gościem i została znaleziona martwa w łazience nad ranem. Służby początkowo nie nabrały podejrzeń, przyjmując tę relację za wiarygodną.
+            Prowadzący obrzęd Wiktor B., brat głównego organizatora ceremonii znanego jako Badi, był tej nocy pod wpływem marihuany. Z relacji świadków wynika, że po śmierci kobiety podjął on natychmiastowe działania mające na celu zatuszowanie incydentu. Nakazał uczestnikom bezzwłoczne opuszczenie ośrodka. Czeskiej policji przedstawił fałszywą wersję zdarzeń, twierdząc, że Ilona L.-H. była jedynie gościem i została znaleziona martwa v łazience nad ranem. Służby początkowo nie nabrały podejrzeń, przyjmując tę relację za wiarygodną.
           </p>
 
           <p>
@@ -637,11 +628,22 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           </p>
 
           <p>
-            Sytuacja uległa diametralnej zmianie 6 maja 2024 roku, gdy Prokuratura Okręgowa w Częstochowie wszczęła oficjalne śledztwo w sprawie działalności ośrodka oraz okoliczności śmierci Ilony L.-H. Kilka miesięcy po rozpoczęciu intensywnych działań przez polskich śledczych, w tajemniczych okolicznościach umiera Wiktor B.
+            Sytuacja uległa diametralnej zmianie 6 maja 2024 roku, gdy Prokuratura Okręgowa v Częstochowie wszczęła oficjalne śledztwo w sprawie działalności ośrodka oraz okoliczności śmierci Ilony L.-H. Kilka miesięcy po rozpoczęciu intensywnych działań przez polskich śledczych, w tajemniczych okolicznościach umiera Wiktor B.
           </p>
 
           <p>
-            Ciało mężczyzny odnaleziono w magazynie firmy, w której pracował przy montażu szaf serwerowych. Na jego ciele nie stwierdzono widocznych obrażeń wskazujących na użycie siły fizycznej. Mimo że od śmierci Wiktora B. minęło już ponad półtora roku, śledczy wciąż czekają na wyniki badań toksykologicznych, które mają kluczowe znaczenie dla wyjaśnienia, czy w organizmie mężczyzny znajdowały się substancje mogące przyczynić się do jego nagłego odejścia. Z tego względu obecnie śledztwo w sprawie jego tajemniczego zgonu pozostaje zawieszone.
+            Ciało mężczyzny odnaleziono v magazynie firmy, w której pracował przy montażu szaf serwerowych. Na jego ciele nie stwierdzono widocznych obrażeń wskazujących na użycie siły fizycznej. Mimo że od śmierci Wiktora B. minęło już ponad półtora roku, śledczy wciąż czekają na wyniki badań toksykologicznych, które mają kluczowe znaczenie dla wyjaśnienia, czy w organizmie mężczyzny znajdowały się substancje mogące przyczynić się do jego nagłego odejścia. Z tego względu obecnie śledztwo w sprawie jego tajemniczego zgonu pozostaje zawieszone.
+          </p>
+
+          {/* PRZESUNIĘTA SEKCJA SPRAWIEDLIWOŚĆ NA SPRZEDAŻ (FINAŁ) */}
+          <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Sprawiedliwość na sprzedaż?</h2>
+
+          <p>
+            Historia Hermanovic, Janova i Nýdka to opowieść o dwóch równoległych światach. W jednym – za kraty czeskich więzień – trafiają szamani, których nazwiska stają się synonimem skandalu. W drugim – na szczytach list Forbesa – trwają ludzie, którzy tę infrastrukturę sfinansowali.
+          </p>
+
+          <p>
+            Choć miliony płynące z cyfrowej rozrywki pozwoliły na budowę azylów v czeskich górach, nie zdołały kupić spokoju sumienia wobec śmierci, która przecięła ten psychodeliczny biznes. Dziś, gdy posiadłości zmieniają właścicieli v blasku darowizn i pospiesznych transakcji, pozostaje pytanie: czy sprawiedliwość, podobnie jak ayahuaskowe wizje, jest tylko iluzją i kwestią zasobności portfela?
           </p>
 
           <div className="mt-8 mb-4 flex justify-end">
@@ -651,7 +653,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
              </div>
           </div>
 
-          {/* --- SEKCJA: STATUS PRAWNY (POPRAWIONA I WYRÓWNANA) --- */}
+          {/* --- SEKCJA: STATUS PRAWNY --- */}
           <div className="my-12 border-y-2 border-stone-900 py-8">
              <h3 className="font-sans font-bold text-lg uppercase tracking-widest text-stone-900 mb-8 flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5" />
@@ -659,7 +661,6 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
              </h3>
 
              <div className="grid gap-px bg-stone-200 border border-stone-200">
-                {/* Wiersz 1 */}
                 <div className="bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                    <div>
                       <span className="block font-serif text-stone-900 font-medium">Śledztwo w sprawie organizacji ceremonii</span>
@@ -670,7 +671,6 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
                    </span>
                 </div>
 
-                {/* Wiersz 2 */}
                 <div className="bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                    <div>
                       <span className="block font-serif text-stone-900 font-medium">Śledztwo w sprawie śmierci Ilony Lewandowskiej</span>
@@ -681,7 +681,6 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
                    </span>
                 </div>
 
-                {/* Wiersz 3 */}
                 <div className="bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                    <div>
                       <span className="block font-serif text-stone-900 font-medium">Śledztwo w sprawie śmierci Wiktora B.</span>
@@ -697,10 +696,9 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
              </div>
 
              <div className="mt-8 text-sm text-stone-600 font-sans text-center md:text-left">
-                Postępowania toczą się w wymienionych jednostkach Prokuratury. Nadzór nad sprawami w Częstochowie objął Zastępca Prokuratora Okręgowego.
+                Postępowania toczą się v wymienionych jednostkach Prokuratury. Nadzór nad sprawami w Częstochowie objął Zastępca Prokuratora Okręgowego.
              </div>
           </div>
-          {/* ------------------------------------------------ */}
 
         </div>
 
@@ -718,7 +716,6 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
 
            <div className="grid gap-4 text-sm text-stone-600">
 
-             {/* 1. WYROK KORDYSA */}
              <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                   <div>
@@ -747,7 +744,6 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
                 </div>
              </div>
 
-             {/* 2. WYROK BADOWSKIEGO */}
              <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                   <div>
@@ -776,7 +772,6 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
                 </div>
              </div>
 
-             {/* 3. HISTORIA JANOV */}
              <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                   <div>
@@ -805,7 +800,6 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
                 </div>
              </div>
 
-             {/* 4. HISTORIA NYDEK */}
              <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                   <div>
@@ -834,7 +828,6 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
                 </div>
              </div>
 
-             {/* 5. DAROWIZNA JANOV */}
              <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                   <div>
@@ -863,7 +856,6 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
                 </div>
              </div>
 
-             {/* 6. SPRZEDAŻ NYDEK */}
              <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                   <div>
@@ -892,7 +884,6 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
                 </div>
              </div>
 
-             {/* 7. WAYBACK MACHINE - NYDEK */}
              <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                   <div>
@@ -910,7 +901,6 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
                 </div>
              </div>
 
-              {/* 8. WAYBACK MACHINE - MUNAY SONQO (PERU) */}
              <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                   <div>
