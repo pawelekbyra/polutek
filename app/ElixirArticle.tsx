@@ -612,7 +612,7 @@ export default function ElixirArticle({ customHeaderDomain }: ElixirArticleProps
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Wiktor B.</h2>
 
           <p>
-            3 marca Onet ujawnia opinii publicznej wstrząsające kulisy działalności ośrodka w czeskim Janovie, gdzie podczas szamańskich ceremonii z użyciem ayahuaski miało dojść do tragicznych zdarzeń. Dziennikarskie śledztwo koncentruje się na śmierci 54-letniej uczestniczki, Ilony L.-H.
+            3. marca 2026 Onet ujawnia opinii publicznej wstrząsające kulisy działalności ośrodka w czeskim Janovie, gdzie podczas szamańskich ceremonii z użyciem ayahuaski miało dojść do tragicznych zdarzeń. Dziennikarskie śledztwo koncentruje się na śmierci 54-letniej uczestniczki, Ilony L.-H.
           </p>
 
           <p>
