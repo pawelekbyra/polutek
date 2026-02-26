@@ -12,6 +12,15 @@ export default auth((req) => {
 
   if (hostname === "detektyw.polutek.pl") {
     if (nextUrl.pathname === "/") {
+      return NextResponse.rewrite(new URL("/fake-public", req.url));
+    }
+    if (nextUrl.pathname === "/fake-public") {
+      return NextResponse.next();
+    }
+  }
+
+  if (hostname === "ai.polutek.pl") {
+    if (nextUrl.pathname === "/") {
       return NextResponse.rewrite(new URL("/elixir-public", req.url));
     }
     if (nextUrl.pathname === "/elixir-public") {
