@@ -28,7 +28,7 @@ export default function ReactPage() {
         <div className="grid md:grid-cols-2 gap-8 my-10">
            <div className="p-6 bg-slate-50 rounded-xl border border-slate-200">
              <h4 className="font-bold mb-2 flex items-center gap-2 text-blue-600"><Zap className="w-5 h-5" /> Szybkość</h4>
-             <p className="text-sm text-slate-600">Generowanie boilerplate'u, hooków i typów w ułamku sekundy.</p>
+             <p className="text-sm text-slate-600">Generowanie boilerplate&apos;u, hooków i typów w ułamku sekundy.</p>
            </div>
            <div className="p-6 bg-slate-50 rounded-xl border border-slate-200">
              <h4 className="font-bold mb-2 flex items-center gap-2 text-blue-600"><Layout className="w-5 h-5" /> Spójność</h4>

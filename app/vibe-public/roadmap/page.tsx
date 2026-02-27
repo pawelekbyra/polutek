@@ -41,7 +41,7 @@ export default function RoadmapPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                <div className="px-6 py-3 bg-slate-100 rounded-full text-slate-700 font-bold">100% Darmowa</div>
                <div className="px-6 py-3 bg-slate-100 rounded-full text-slate-700 font-bold">Aktualizowana co tydzień</div>
-               <div className="px-6 py-3 bg-slate-100 rounded-full text-slate-700 font-bold">Zgodna z wizją Karpathy'ego</div>
+               <div className="px-6 py-3 bg-slate-100 rounded-full text-slate-700 font-bold">Zgodna z wizją Karpathy&apos;ego</div>
             </div>
          </div>
       </section>
