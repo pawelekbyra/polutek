@@ -6,22 +6,22 @@ import Link from 'next/link';
 
 const news = [
   {
-    date: "27 Lut 2025",
-    title: "DeepSeek-V3 bije rekordy popularności w Polsce",
-    desc: "Nowy model z Chin staje się głównym wyborem dla deweloperów szukających oszczędności przy zachowaniu logiki Claude 3.5.",
+    date: "04 Mar 2025",
+    title: "Claude 4 Opus zapowiedziany: Koniec z halucynacjami?",
+    desc: "Anthropic potwierdza prace nad nowym modelem, który ma 'rozumieć kod na poziomie fizyki'. Premiera spodziewana w Q3.",
     cat: "Modele"
   },
   {
-    date: "26 Lut 2025",
-    title: "Cursor wprowadza natywne wsparcie dla Agentic Workflows",
-    desc: "Najnowsza aktualizacja edytora pozwala agentom AI na samodzielne uruchamianie testów i naprawę błędów bez promptu.",
+    date: "02 Mar 2025",
+    title: "Windsurf ogłasza partnerstwo z AWS",
+    desc: "Nowa integracja pozwoli agentom AI na automatyczne skalowanie infrastruktury bezpośrednio z poziomu edytora kodu.",
     cat: "Narzędzia"
   },
   {
-    date: "25 Lut 2025",
-    title: "Andrej Karpathy ogłasza kurs 'Vibe Coding Mastery'",
-    desc: "Były szef AI w Tesli zapowiada program edukacyjny skupiony wyłącznie na programowaniu intencyjnym.",
-    cat: "Edukacja"
+    date: "01 Mar 2025",
+    title: "Polutek.pl przekracza 50k unikalnych użytkowników",
+    desc: "Vibe Coding staje się mainstreamem w polskim IT. Najpopularniejszym tematem pozostaje zarabianie na trenowaniu modeli.",
+    cat: "Społeczność"
   }
 ];
 

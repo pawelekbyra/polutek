@@ -44,8 +44,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
   if (host === 'polutek.pl' || host === 'www.polutek.pl' || host === 'vibecoding.polutek.pl' || host === 'www.vibecoding.polutek.pl' || host === 'localhost' || host === '127.0.0.1') {
     return {
-      title: "Polutek.pl - Vibe Coding i Przyszłość Programowania z AI",
-      description: "Największy polski portal o Vibe Codingu. Dowiedz się jak używać narzędzi Cursor i Claude oraz dlaczego Andrej Karpathy ogłosił nową erę IT.",
+      title: "Polutek.pl - Kurs Vibe Codingu i Narzędzia AI dla Programistów",
+      description: "Największy polski portal o Vibe Codingu. Kursy, tutoriale i porównania narzędzi AI: Cursor, Claude, Windsurf. Wejdź w programowanie intencyjne.",
       metadataBase: new URL(`${protocol}://${host}`),
       alternates: {
         canonical: '/',
@@ -58,9 +58,9 @@ export async function generateMetadata(): Promise<Metadata> {
           follow: true,
         },
       },
-      keywords: "vibe coding, polutek, ai coding, cursor editor, claude 3.5 sonnet, andrej karpathy, programowanie ai, przyszłość it",
+      keywords: "vibe coding kurs, polutek, programowanie intencyjne, narzędzia ai dla programistów, cursor tutorial pl, claude code, sztuczna inteligencja it",
       openGraph: {
-        title: "Polutek.pl - Vibe Coding i Przyszłość Programowania z AI",
+        title: "Polutek.pl - Kurs Vibe Codingu i Narzędzia AI dla Programistów",
         description: "Narzędzia, tutoriale i manifest programowania intencyjnego. Polutek.pl - Twoje centrum wiedzy o AI Software Engineering.",
         type: "website",
         url: `${protocol}://${host}`,

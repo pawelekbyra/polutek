@@ -30,6 +30,7 @@ export default function ToolsPage() {
           desc="Model od Anthropic, który najlepiej rozumie strukturę kodu i rzadziej halucynuje."
           tag="Mózg"
           icon={<Cpu className="w-6 h-6" />}
+          href="/claude-code-tutorial"
         />
         <ToolCard
           name="Lovable / Bolt.new"
@@ -48,25 +49,37 @@ export default function ToolsPage() {
       <div className="bg-white p-12 rounded-[3rem] border border-slate-200 shadow-xl">
          <h2 className="text-3xl font-bold mb-6">Jak zbudować swój stack?</h2>
          <div className="prose prose-slate max-w-none">
-            <p>Dla profesjonalnego developera podstawa to <strong>Cursor + Claude 3.5 Sonnet</strong>. To połączenie daje największą kontrolę nad kodem produkcyjnym. Dla founderów szukających szybkości - Lovable lub Replit Agent są bezkonkurencyjne.</p>
+            <p>Dla profesjonalnego developera podstawa to <strong>Cursor + Claude 3.5 Sonnet</strong>. To połączenie daje największą kontrolę nad kodem produkcyjnym. Dla founderów szukających szybkości - <strong><Link href="/bolt-vs-lovable">Lovable lub Bolt.new</Link></strong> są bezkonkurencyjne.</p>
+            <p>Jeśli wolisz pracę w terminalu, koniecznie sprawdź <strong><Link href="/claude-code-tutorial">Claude Code CLI</Link></strong>.</p>
+         </div>
+         <div className="mt-8">
+            <Link href="/ceny-narzedzi-ai-2025" className="inline-flex items-center gap-2 text-blue-600 font-bold hover:underline">
+               Sprawdź aktualny cennik narzędzi 2025 <ArrowRight className="w-4 h-4" />
+            </Link>
          </div>
       </div>
     </section>
   );
 }
 
-function ToolCard({ name, desc, tag, icon }: any) {
-  return (
-    <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all group">
+function ToolCard({ name, desc, tag, icon, href }: any) {
+  const CardContent = (
+    <>
       <div className="flex items-center justify-between mb-6">
          <div className="p-3 bg-blue-50 text-blue-600 rounded-xl">{icon}</div>
          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-50 px-2 py-1 rounded-md">{tag}</span>
       </div>
       <h3 className="text-xl font-bold mb-4">{name}</h3>
       <p className="text-slate-500 text-sm leading-relaxed mb-6">{desc}</p>
-      <button className="flex items-center gap-2 text-sm font-bold text-blue-600 hover:gap-3 transition-all">
+      <div className="flex items-center gap-2 text-sm font-bold text-blue-600 group-hover:gap-3 transition-all">
          Sprawdź <ArrowRight className="w-4 h-4" />
-      </button>
+      </div>
+    </>
+  );
+
+  return (
+    <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all group">
+      {href ? <Link href={href}>{CardContent}</Link> : CardContent}
     </div>
   );
 }

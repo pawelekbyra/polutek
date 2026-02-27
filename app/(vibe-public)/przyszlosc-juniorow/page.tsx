@@ -1,5 +1,6 @@
 import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { UserMinus, TrendingUp, GraduationCap } from 'lucide-react';
+import LolekCommentary from '@/app/components/LolekCommentary';
 
 export const metadata = {
   title: "Przyszłość Juniorów w Erze AI: Czy to koniec zawodu? | Polutek.pl",
@@ -26,6 +27,11 @@ export default function JuniorPage() {
         <p>
           Osoby, które postrzegają programowanie jako przepisanie makiety Figma na HTML i CSS, mają problem. AI robi to w 5 sekund. Rynek juniorów zmienia się z <strong>operacyjnego</strong> na <strong>koncepcyjny</strong>.
         </p>
+
+        <LolekCommentary
+          quote="Juniorzy, przestańcie płakać nad końcem Reacta. Zacznijcie płakać nad tym, że nadal nie rozumiecie jak działają bazy danych. AI wygeneruje wam Selecta, ale nie naprawi wam spierdzielonego schematu."
+          context="Lolek o 'końcu' juniorów"
+        />
 
         <div className="bg-slate-900 text-white p-10 rounded-3xl my-12 shadow-2xl relative overflow-hidden">
            <div className="absolute top-0 right-0 p-8 opacity-20"><UserMinus className="w-24 h-24" /></div>

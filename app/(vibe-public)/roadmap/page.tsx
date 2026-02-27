@@ -1,4 +1,5 @@
 import VibeRoadmap from '@/app/components/VibeRoadmap';
+import VibeChecklist from '@/app/components/VibeChecklist';
 import SchemaMarkup from '@/app/components/SchemaMarkup';
 
 export const metadata = {
@@ -31,6 +32,7 @@ export default function RoadmapPage() {
       </section>
 
       <VibeRoadmap />
+      <VibeChecklist />
 
       <section className="max-w-4xl mx-auto pb-32 px-4 text-center">
          <div className="bg-white p-12 rounded-[3rem] border border-slate-200 shadow-xl">
