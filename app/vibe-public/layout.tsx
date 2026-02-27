@@ -27,10 +27,10 @@ export default function VibeCodingLayout({ children }: { children: React.ReactNo
               <h4 className="text-white font-bold mb-6">Baza Wiedzy</h4>
               <ul className="space-y-4">
                 <li><Link href="/co-to-jest-vibe-coding" className="hover:text-white transition-colors">Czym jest Vibe Coding?</Link></li>
-                <li><Link href="/narzedzia-ai" className="hover:text-white transition-colors">Narzędzia AI</Link></li>
-                <li><Link href="/zaawansowany-cursor" className="hover:text-white transition-colors">Zaawansowany Cursor</Link></li>
                 <li><Link href="/roadmap" className="hover:text-white transition-colors">Roadmapa 2025</Link></li>
                 <li><Link href="/slownik" className="hover:text-white transition-colors">Słownik Pojęć</Link></li>
+                <li><Link href="/najlepsze-modele-ai-2025" className="hover:text-white transition-colors">Ranking Modeli</Link></li>
+                <li><Link href="/narzedzia-ai" className="hover:text-white transition-colors">Narzędzia AI</Link></li>
               </ul>
             </div>
             <div>

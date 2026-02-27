@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   }
 
-  if (host === 'ai.polutek.pl' || host === 'www.ai.polutek.pl') {
+  if (host === 'vibecoding.polutek.pl' || host === 'www.vibecoding.polutek.pl') {
     return {
       title: "Vibe Coding: Przyszłość Programowania z AI | Andrej Karpathy",
       description: "Dowiedz się czym jest Vibe Coding, jak używać narzędzi Cursor i Claude oraz dlaczego Andrej Karpathy ogłosił koniec tradycyjnego programowania.",

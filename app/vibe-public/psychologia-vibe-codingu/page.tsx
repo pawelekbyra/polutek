@@ -1,45 +1,48 @@
-import { Brain, Heart, Zap } from 'lucide-react';
+import SchemaMarkup from '@/app/components/SchemaMarkup';
+import { Brain, Sparkles, Zap } from 'lucide-react';
 
-export default function PsychologyPage() {
+export const metadata = {
+  title: "Psychologia Vibe Codingu: Jak AI zmienia nasze myślenie | VibeCoding.pl",
+  description: "Dlaczego programowanie intencyjne redukuje stres i pozwala na większą kreatywność. Analiza kognitywna.",
+};
+
+export default function PsychPage() {
   return (
     <section className="max-w-4xl mx-auto px-4 py-20">
-      <h1 className="text-4xl md:text-5xl font-bold mb-8">Psychologia Vibe Codingu: Od walki ze składnią do wolności tworzenia</h1>
+      <SchemaMarkup
+        type="Article"
+        headline={metadata.title}
+        description={metadata.description}
+        author="Detektyw Polutek"
+        datePublished="2025-02-21"
+      />
+      <h1 className="text-4xl md:text-5xl font-bold mb-8">Psychologia Vibe Codingu</h1>
       <div className="prose prose-slate prose-lg max-w-none">
-        <p className="lead text-xl text-slate-600 mb-8">
-          Przejście na Vibe Coding to nie tylko zmiana edytora. To głęboka zmiana w sposobie myślenia o tym, co to znaczy &quot;tworzyć&quot;.
+        <p className="lead text-xl text-slate-600 mb-12">
+          Programowanie od zawsze było kojarzone z frustracją, debugowaniem i poczuciem przytłoczenia. Vibe coding odwraca te proporcje.
         </p>
 
-        <div className="flex flex-col md:flex-row gap-8 my-16">
-          <div className="flex-1 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-            <Brain className="w-12 h-12 text-blue-600 mb-4" />
-            <h3 className="text-xl font-bold mb-4">Mniejszy Cognitive Load</h3>
-            <p className="text-slate-600">Twój mózg nie musi już trzymać w pamięci nazw funkcji i średników. Masz więcej &quot;RAM-u&quot; na rozwiązywanie problemów biznesowych.</p>
-          </div>
-          <div className="flex-1 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-            <Heart className="w-12 h-12 text-red-600 mb-4" />
-            <h3 className="text-xl font-bold mb-4">Stan Flow</h3>
-            <p className="text-slate-600">Brak frustracji spowodowanej literówkami sprawia, że częściej wchodzisz w stan głębokiego skupienia na produkcie.</p>
-          </div>
-          <div className="flex-1 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-            <Zap className="w-12 h-12 text-yellow-600 mb-4" />
-            <h3 className="text-xl font-bold mb-4">Natychmiastowa Gratyfikacja</h3>
-            <p className="text-slate-600">Widzisz efekty swojej myśli w sekundach, co nakręca spiralę motywacji do dalszego budowania.</p>
-          </div>
+        <h2 className="text-3xl font-bold mt-12 mb-6">Stan Flow bez barier</h2>
+        <p>
+          W tradycyjnym kodowaniu stan <strong>Flow</strong> jest często przerywany przez błędy składniowe lub konieczność szukania dokumentacji. AI przejmuje te &quot;kognitywne tarcia&quot;, pozwalając programiście pozostać na poziomie problemu biznesowego.
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-8 my-12">
+           <div className="p-8 bg-slate-50 rounded-3xl border border-slate-100 shadow-sm">
+             <Brain className="w-10 h-10 text-blue-600 mb-4" />
+             <h4 className="font-bold mb-2">Redukcja Cognitive Load</h4>
+             <p className="text-sm">Nie musisz pamiętać każdego API. Twój mózg ma więcej miejsca na architekturę i logikę.</p>
+           </div>
+           <div className="p-8 bg-slate-50 rounded-3xl border border-slate-100 shadow-sm">
+             <Sparkles className="w-10 h-10 text-emerald-600 mb-4" />
+             <h4 className="font-bold mb-2">Poczucie Sprawstwa</h4>
+             <p className="text-sm">Dostarczanie działającego kodu w sekundy daje natychmiastową nagrodę dopaminową.</p>
+           </div>
         </div>
 
-        <h2 className="text-3xl font-bold mt-12 mb-6">Koniec z Imposter Syndrome?</h2>
+        <h2 className="text-3xl font-bold mt-16 mb-6">Ryzyko: Utrata umiejętności?</h2>
         <p>
-          Paradoksalnie, Vibe Coding może pomóc w walce z syndromem oszusta. Skoro narzędzie zajmuje się implementacją, Ty możesz skupić się na swojej unikalnej wartości: pomysłowości, empatii wobec użytkownika i wizji. Nie musisz już czuć się &quot;gorszy&quot;, bo nie znasz algorytmu sortowania bąbelkowego na pamięć.
-        </p>
-
-        <h2 className="text-3xl font-bold mt-16 mb-6">Nowe wyzwania: Odpowiedzialność</h2>
-        <p>
-          Większa moc to większa odpowiedzialność. Psychologia Vibe Codingu wymaga od nas bycia bardziej krytycznym. Łatwo jest wpaść w pułapkę &quot;skoro AI tak napisało, to jest dobrze&quot;. Dojrzały Vibe Coder to taki, który zachowuje dystans i zawsze weryfikuje propozycje maszyny.
-        </p>
-
-        <h2 className="text-3xl font-bold mt-16 mb-6">Podsumowanie</h2>
-        <p>
-          Zmieniając sposób programowania, zmieniamy samych siebie. Stajemy się projektantami rzeczywistości, a nie tylko wykonawcami poleceń. To fascynujący czas na bycie twórcą.
+          Psycholodzy ostrzegają przed nadmiernym poleganiem na AI (automation bias). Kluczem jest bycie &quot;aktywnym pilotem&quot; – zrozumienie tego, co AI wygenerowało, nawet jeśli sami byśmy tego nie napisali tak szybko.
         </p>
       </div>
     </section>

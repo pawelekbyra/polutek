@@ -295,7 +295,16 @@ function TopicCluster({ title, links }: { title: string, links: { href: string, 
   );
 }
 
-function ArticleCard({ href, title, desc, color, label, badge }: any) {
+interface ArticleCardProps {
+  href: string;
+  title: string;
+  desc: string;
+  color: string;
+  label: string;
+  badge?: string;
+}
+
+function ArticleCard({ href, title, desc, color, label, badge }: ArticleCardProps) {
   return (
     <article className="group">
       <Link href={href}>

@@ -1,73 +1,72 @@
-import { ArrowRight } from 'lucide-react';
+import SchemaMarkup from '@/app/components/SchemaMarkup';
+import { ArrowRight, Terminal, Zap, Globe, Cpu } from 'lucide-react';
+
+export const metadata = {
+  title: "Narzędzia Ery Vibe Coding 2025 | VibeCoding.pl",
+  description: "Zestawienie najlepszych narzędzi do programowania z AI. Cursor, Claude, Lovable, Bolt i wiele innych.",
+};
 
 export default function ToolsPage() {
   return (
     <section className="max-w-6xl mx-auto px-4 py-20">
+      <SchemaMarkup
+        type="Article"
+        headline={metadata.title}
+        description={metadata.description}
+        author="Detektyw Polutek"
+        datePublished="2025-02-21"
+      />
       <h1 className="text-4xl md:text-5xl font-bold mb-12 text-center">Narzędzia Ery Vibe Coding 2025</h1>
-      <p className="text-xl text-slate-600 text-center max-w-3xl mx-auto mb-16">
-        Wybór odpowiedniego stacku narzędziowego jest kluczowy dla efektywnego Vibe Codingu. Oto zestawienie liderów rynku.
-      </p>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
         <ToolCard
           name="Cursor"
-          desc="Obecnie najlepsze IDE do Vibe Codingu. Fork VS Code, który posiada natywne funkcje AI, takie jak Composer i zaawansowane autouzupełnianie całych bloków kodu."
-          tag="Najlepszy Wybór"
+          desc="Obecnie najlepsze IDE do Vibe Codingu. Fork VS Code z natywnym AI (Composer)."
+          tag="Złoty Standard"
+          icon={<Terminal className="w-6 h-6" />}
         />
         <ToolCard
           name="Claude 3.5 Sonnet"
-          desc="Model od Anthropic, który stał się standardem branżowym dzięki niesamowitej zdolności rozumowania, braku halucynacji i pisaniu czystego, modularnego kodu."
-          tag="Mózg Operacji"
+          desc="Model od Anthropic, który najlepiej rozumie strukturę kodu i rzadziej halucynuje."
+          tag="Mózg"
+          icon={<Cpu className="w-6 h-6" />}
         />
         <ToolCard
-          name="Bolt.new / Lovable"
-          desc="Platformy &apos;full-stack in a box&apos;. Pozwalają na generowanie, edycję i deploy całych aplikacji webowych z jednego promptu bezpośrednio w przeglądarce."
-          tag="Web Apps"
-        />
-        <ToolCard
-          name="Replit Agent"
-          desc="Agent, który nie tylko pisze kod, ale sam konfiguruje środowisko, instaluje paczki, ustawia bazę danych i deployuje aplikację pod klucz."
-          tag="Automatyzacja"
-        />
-        <ToolCard
-          name="GitHub Copilot Workspace"
-          desc="Ewolucja Copilota w stronę agentyczną. Pozwala na planowanie zmian w całym repozytorium na podstawie Issue."
-          tag="Enterprise"
+          name="Lovable / Bolt.new"
+          desc="Platformy 'full-stack in a box'. Pozwalają na deploy aplikacji z jednego promptu."
+          tag="Szybkość"
+          icon={<Zap className="w-6 h-6" />}
         />
         <ToolCard
           name="v0.dev"
-          desc="Narzędzie od Vercel, które redefiniuje tworzenie frontendów. Generuje profesjonalne UI przy użyciu React, Tailwind i shadcn/ui w kilka sekund."
+          desc="Narzędzie od Vercel do generowania komponentów UI w React i Tailwind CSS."
           tag="Frontend"
+          icon={<Globe className="w-6 h-6" />}
         />
       </div>
 
-      <div className="mt-24 p-10 bg-white rounded-3xl border border-slate-200">
-        <h2 className="text-3xl font-bold mb-6">Jak wybrać narzędzie?</h2>
-        <div className="prose prose-slate max-w-none">
-          <p>
-            Jeśli jesteś profesjonalnym programistą, Twoim głównym narzędziem powinien być <strong>Cursor</strong>. Jego integracja z lokalnym kontekstem plików (RAG) nie ma sobie równych.
-          </p>
-          <p>
-            Dla osób budujących szybkie prototypy (MVP) lub nieposiadających głębokiej wiedzy technicznej, najlepszym startem będą <strong>Bolt.new</strong> lub <strong>Lovable.dev</strong>. Te narzędzia eliminują barierę konfiguracji środowiska lokalnego.
-          </p>
-        </div>
+      <div className="bg-white p-12 rounded-[3rem] border border-slate-200 shadow-xl">
+         <h2 className="text-3xl font-bold mb-6">Jak zbudować swój stack?</h2>
+         <div className="prose prose-slate max-w-none">
+            <p>Dla profesjonalnego developera podstawa to <strong>Cursor + Claude 3.5 Sonnet</strong>. To połączenie daje największą kontrolę nad kodem produkcyjnym. Dla founderów szukających szybkości - Lovable lub Replit Agent są bezkonkurencyjne.</p>
+         </div>
       </div>
     </section>
   );
 }
 
-function ToolCard({ name, desc, tag }: { name: string, desc: string, tag: string }) {
+function ToolCard({ name, desc, tag, icon }: any) {
   return (
-    <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all group">
-      <div className="inline-block px-2 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase rounded mb-4">
-        {tag}
+    <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all group">
+      <div className="flex items-center justify-between mb-6">
+         <div className="p-3 bg-blue-50 text-blue-600 rounded-xl">{icon}</div>
+         <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-50 px-2 py-1 rounded-md">{tag}</span>
       </div>
-      <h3 className="text-xl font-bold mb-4 flex items-center justify-between">
-        {name} <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
-      </h3>
-      <p className="text-slate-600 text-sm leading-relaxed">
-        {desc}
-      </p>
+      <h3 className="text-xl font-bold mb-4">{name}</h3>
+      <p className="text-slate-500 text-sm leading-relaxed mb-6">{desc}</p>
+      <button className="flex items-center gap-2 text-sm font-bold text-blue-600 hover:gap-3 transition-all">
+         Sprawdź <ArrowRight className="w-4 h-4" />
+      </button>
     </div>
   );
 }
