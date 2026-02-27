@@ -33,7 +33,7 @@ export default function ToolsPage() {
         />
         <ToolCard
           name="Lovable / Bolt.new"
-          desc="Platformy 'full-stack in a box'. Pozwalają na deploy aplikacji z jednego promptu."
+          desc="Platformy &apos;full-stack in a box&apos;. Pozwalają na deploy aplikacji z jednego promptu."
           tag="Szybkość"
           icon={<Zap className="w-6 h-6" />}
         />

@@ -60,12 +60,12 @@ export default function VibeComparisonToggle() {
               </div>
               <div className="bg-slate-900 rounded-2xl p-6 font-mono text-sm text-blue-300 shadow-inner">
                 <p className="opacity-50 mb-2">{`// 2 godziny później...`}</p>
-                <p><span className="text-purple-400">function</span> <span className="text-yellow-400">handleSubmit</span>(e) {'{'}</p>
+                <p><span className="text-purple-400">function</span> <span className="text-yellow-400">handleSubmit</span>(e) &#123;</p>
                 <p className="ml-4">e.<span className="text-yellow-400">preventDefault</span>();</p>
                 <p className="ml-4"><span className="text-purple-400">const</span> formData = <span className="text-purple-400">new</span> <span className="text-emerald-400">FormData</span>(e.target);</p>
                 <p className="ml-4 opacity-30">...</p>
-                <p className="ml-4"><span className="text-blue-500">console</span>.<span className="text-yellow-400">log</span>(<span className="text-green-400">&quot;Dlaczego to nie działa?&quot;</span>);</p>
-                <p>{'}'}</p>
+                <p className="ml-4"><span className="text-blue-500">console</span>.<span className="text-yellow-400">log</span>(<span className="text-green-400">{`"Dlaczego to nie działa?"`}</span>);</p>
+                <p>&#125;</p>
               </div>
             </motion.div>
           ) : (
@@ -85,7 +85,7 @@ export default function VibeComparisonToggle() {
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-emerald-500 font-bold">✓</span>
-                    <span className="text-slate-600">AI zajmuje się nudnym boilerplate'em</span>
+                    <span className="text-slate-600">AI zajmuje się nudną implementacją (boilerplate)</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-emerald-500 font-bold">✓</span>
@@ -103,7 +103,7 @@ export default function VibeComparisonToggle() {
                    <Wand2 className="w-5 h-5" /> Twój Vibe:
                 </p>
                 <p className="text-xl font-medium leading-relaxed italic opacity-90">
-                  &ldquo;Dodaj walidację formularza, połącz go z API Stripe i wyślij maila z podziękowaniem do klienta.&rdquo;
+                  {`"Dodaj walidację formularza, połącz go z API Stripe i wyślij maila z podziękowaniem do klienta."`}
                 </p>
                 <div className="mt-8 flex items-center gap-3 text-sm font-bold bg-white/10 p-3 rounded-lg">
                    <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
