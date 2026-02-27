@@ -21,7 +21,7 @@ export default function FAQPage() {
         />
         <FAQItem
           q="Vibe coding a prompt engineering - jaka jest różnica?"
-          a="Prompt engineering to technika pisania konkretnych zapytań do modeli. Vibe coding to cały styl pracy (workflow), gdzie prowadzisz dialog z kodem v edytorze, iterujesz na żywo i 'utrzymujesz klimat' projektu, oddając żmudną implementację agentom AI."
+          a="Prompt engineering to technika pisania konkretnych zapytań do modeli. Vibe coding to cały styl pracy (workflow), gdzie prowadzisz dialog z kodem v edytorze, iterujesz na żywo i &apos;utrzymujesz klimat&apos; projektu, oddając żmudną implementację agentom AI."
         />
         <FAQItem
           q="Czy Andrej Karpathy to twórca vibe coding?"
