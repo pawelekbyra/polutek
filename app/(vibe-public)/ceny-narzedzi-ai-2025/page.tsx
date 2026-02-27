@@ -136,7 +136,7 @@ export default function PricingComparisonPage() {
             <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
                <h4 className="font-bold mb-4 flex items-center gap-2"><ShieldCheck className="w-5 h-5 text-emerald-400" /> Ukryty koszt: Tokeny</h4>
                <p className="text-sm text-indigo-100/80 leading-relaxed mb-0">
-                  Pamiętaj, że w większości narzędzi po przekroczeniu limitu "Fast Queries" nadal możesz korzystać z AI, ale czas odpowiedzi będzie znacznie dłuższy (tzw. "Slow Requests").
+                  Pamiętaj, że w większości narzędzi po przekroczeniu limitu &quot;Fast Queries&quot; nadal możesz korzystać z AI, ale czas odpowiedzi będzie znacznie dłuższy (tzw. &quot;Slow Requests&quot;).
                </p>
             </div>
           </div>

@@ -96,7 +96,7 @@ export default function ComparisonsListPage() {
                 Bolt.new <span className="text-slate-300 mx-2 text-2xl font-light">vs</span> Lovable
               </h2>
               <p className="text-slate-500 mb-8 leading-relaxed">
-                Porównanie dwóch najgorętszych platform "App-in-a-box" 2025 roku.
+                Porównanie dwóch najgorętszych platform &quot;App-in-a-box&quot; 2025 roku.
               </p>
               <div className="flex items-center gap-2 text-purple-600 font-bold">
                 Sprawdź możliwości <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />

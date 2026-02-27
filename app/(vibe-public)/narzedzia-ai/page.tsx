@@ -1,5 +1,6 @@
 import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { ArrowRight, Terminal, Zap, Globe, Cpu } from 'lucide-react';
+import Link from 'next/link';
 
 export const metadata = {
   title: "Narzędzia Ery Vibe Coding 2025 | Polutek.pl",
