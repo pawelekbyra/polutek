@@ -33,7 +33,7 @@ export default function JuniorPage() {
            <ul className="space-y-4 relative z-10">
              <li className="flex gap-3">
                <TrendingUp className="w-6 h-6 text-emerald-400 shrink-0" />
-               <span><strong>Dostarczaj produkty, nie feature'y:</strong> Użyj AI, aby samemu zbudować 3 działające aplikacje w portfolio.</span>
+               <span><strong>Dostarczaj produkty, nie feature&apos;y:</strong> Użyj AI, aby samemu zbudować 3 działające aplikacje w portfolio.</span>
              </li>
              <li className="flex gap-3">
                <GraduationCap className="w-6 h-6 text-emerald-400 shrink-0" />
