@@ -2,7 +2,7 @@ import { Terminal, Lightbulb, Zap, ShieldCheck } from 'lucide-react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Zaawansowany Cursor: Pro-tips i .cursorrules | VibeCoding.pl",
+  title: "Zaawansowany Cursor: Pro-tips i .cursorrules | Polutek.pl",
   description: "Opanuj edytor Cursor na poziomie eksperckim. Poznaj triki z @-symbols, pliki .cursorrules i zaawansowane techniki pracy z Composerem.",
   keywords: "zaawansowany cursor tutorial, cursor pro tips, .cursorrules przykład, cursor composer vs chat, programowanie intencyjne tutorial",
 };

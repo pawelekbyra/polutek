@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { LayoutDashboard, Target, Zap, CheckCircle } from 'lucide-react';
 
 export const metadata = {
-  title: "Case Study: Dashboard MVP w 2 godziny | VibeCoding.pl",
+  title: "Case Study: Dashboard MVP w 2 godziny | Polutek.pl",
   description: "Zobacz jak krok po kroku zbudowaliśmy profesjonalny dashboard analityczny z autentykacją i bazą danych w rekordowym czasie.",
 };
 

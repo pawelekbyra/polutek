@@ -15,8 +15,13 @@ export default function Home() {
 
   useEffect(() => {
     const hostname = window.location.hostname;
-    if (hostname === 'eliksir-wiedzmina.pl' || hostname === 'www.eliksir-wiedzmina.pl') {
+    const isEliksir = hostname === 'eliksir-wiedzmina.pl' || hostname === 'www.eliksir-wiedzmina.pl';
+    const isVibeSubdomain = hostname.startsWith('vibecoding.');
+
+    if (isEliksir) {
       setUnlockedArticle('elixir');
+    } else if (isVibeSubdomain) {
+      // Vibe subdomain doesn't use this route, it's handled by middleware and VibeGate
     }
     setIsLoading(false);
   }, []);

@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { MessageSquareCode, Wand2, Lightbulb } from 'lucide-react';
 
 export const metadata = {
-  title: "Vibe Coding vs Prompt Engineering: Jaka jest różnica? | VibeCoding.pl",
+  title: "Vibe Coding vs Prompt Engineering: Jaka jest różnica? | Polutek.pl",
   description: "Zrozum różnicę między prostym pisaniem promptów a zarządzaniem intencją projektu w IDE. Porównanie workflow.",
 };
 

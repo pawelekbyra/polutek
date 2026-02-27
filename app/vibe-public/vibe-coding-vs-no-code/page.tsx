@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { MousePointer2, Keyboard, Scale } from 'lucide-react';
 
 export const metadata = {
-  title: "Vibe Coding vs No-Code: Dlaczego to nie to samo? | VibeCoding.pl",
+  title: "Vibe Coding vs No-Code: Dlaczego to nie to samo? | Polutek.pl",
   description: "Porównanie programowania intencyjnego z platformami typu Bubble czy Webflow. Wybierz odpowiedni stack.",
 };
 

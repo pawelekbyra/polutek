@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { Chrome, Bot, Zap, Globe } from 'lucide-react';
 
 export const metadata = {
-  title: "Case Study: Rozszerzenie Chrome z AI w 45 minut | VibeCoding.pl",
+  title: "Case Study: Rozszerzenie Chrome z AI w 45 minut | Polutek.pl",
   description: "Dowiedz się jak zbudowaliśmy wtyczkę do przeglądarki podsumowującą artykuły przy użyciu API Claude. Praktyczny przykład Vibe Codingu.",
 };
 

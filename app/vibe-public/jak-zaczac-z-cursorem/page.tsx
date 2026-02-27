@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { Download, Keyboard, Terminal, Play } from 'lucide-react';
 
 export const metadata = {
-  title: "Jak zacząć z Cursorem? Kompletny Poradnik 2025 | VibeCoding.pl",
+  title: "Jak zacząć z Cursorem? Kompletny Poradnik 2025 | Polutek.pl",
   description: "Pierwsze kroki w najlepszym edytorze AI. Konfiguracja, skróty klawiszowe i pierwsze projekty w świecie Vibe Codingu.",
 };
 

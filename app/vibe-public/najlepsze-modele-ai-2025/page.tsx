@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { Cpu, Brain, Zap } from 'lucide-react';
 
 export const metadata = {
-  title: "Ranking Modeli AI do Programowania 2025 | VibeCoding.pl",
+  title: "Ranking Modeli AI do Programowania 2025 | Polutek.pl",
   description: "Claude 3.5 Sonnet vs GPT-4o vs DeepSeek V3. Sprawdź, który model najlepiej pisze kod i rozumie intencje w Vibe Codingu.",
 };
 

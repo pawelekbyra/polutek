@@ -2,7 +2,7 @@ import { GraduationCap, Book, Award } from 'lucide-react';
 import SchemaMarkup from '@/app/components/SchemaMarkup';
 
 export const metadata = {
-  title: "Vibe Coding dla Studentów: Czy warto jeszcze uczyć się C++? | VibeCoding.pl",
+  title: "Vibe Coding dla Studentów: Czy warto jeszcze uczyć się C++? | Polutek.pl",
   description: "Jak studiować informatykę w erze AI. Dlaczego fundamenty są ważniejsze niż kiedykolwiek, mimo że AI pisze kod.",
 };
 

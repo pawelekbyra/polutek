@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { ShieldAlert, ShieldCheck, Lock, AlertTriangle } from 'lucide-react';
 
 export const metadata = {
-  title: "Bezpieczeństwo Kodu AI: Jak nie zhakować samego siebie | VibeCoding.pl",
+  title: "Bezpieczeństwo Kodu AI: Jak nie zhakować samego siebie | Polutek.pl",
   description: "Zagrożenia związane z generowaniem kodu przez AI. Jak unikać luk w bezpieczeństwie i wycieków danych.",
 };
 

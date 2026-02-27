@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { UserMinus, TrendingUp, GraduationCap } from 'lucide-react';
 
 export const metadata = {
-  title: "Przyszłość Juniorów w Erze AI: Czy to koniec zawodu? | VibeCoding.pl",
+  title: "Przyszłość Juniorów w Erze AI: Czy to koniec zawodu? | Polutek.pl",
   description: "Analiza rynku pracy dla początkujących programistów. Jak junior może przetrwać i wygrywać dzięki Vibe Codingowi.",
 };
 

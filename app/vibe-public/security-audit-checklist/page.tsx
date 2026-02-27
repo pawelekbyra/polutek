@@ -2,7 +2,7 @@ import { ShieldAlert, CheckCircle, Lock } from 'lucide-react';
 import SchemaMarkup from '@/app/components/SchemaMarkup';
 
 export const metadata = {
-  title: "Security Audit Checklist dla Kodu AI | VibeCoding.pl",
+  title: "Security Audit Checklist dla Kodu AI | Polutek.pl",
   description: "Techniczny przewodnik po audytowaniu kodu wygenerowanego przez sztuczną inteligencję. Poznaj 10 krytycznych punktów kontrolnych.",
 };
 

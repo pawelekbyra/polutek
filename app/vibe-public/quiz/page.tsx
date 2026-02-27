@@ -2,7 +2,7 @@ import VibeQuiz from '@/app/components/VibeQuiz';
 import SchemaMarkup from '@/app/components/SchemaMarkup';
 
 export const metadata = {
-  title: "Quiz: Czy jesteś gotowy na Vibe Coding? | VibeCoding.pl",
+  title: "Quiz: Czy jesteś gotowy na Vibe Coding? | Polutek.pl",
   description: "Sprawdź swój Vibe Score. Dowiedz się, czy potrafisz efektywnie współpracować z AI jako programista i jak zwiększyć swoją produktywność 10x.",
 };
 

@@ -2,7 +2,7 @@ import { Rocket, Target, Zap } from 'lucide-react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Vibe Coding dla Founderów: Buduj MVP bez Programisty | VibeCoding.pl",
+  title: "Vibe Coding dla Founderów: Buduj MVP bez Programisty | Polutek.pl",
   description: "Dowiedz się jak jako non-technical founder możesz wykorzystać Vibe Coding do zbudowania i walidacji swojego startupu bez CTO i ogromnych kosztów.",
   keywords: "vibe coding dla founderów, budowanie mvp bez programisty, startup bez cto, cursor dla biznesu, no-code vs vibe coding",
 };

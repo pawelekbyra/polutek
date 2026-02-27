@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { Layout, Zap, Cpu } from 'lucide-react';
 
 export const metadata = {
-  title: "Vibe Coding w React & Next.js: Buduj UI 10x Szybciej | VibeCoding.pl",
+  title: "Vibe Coding w React & Next.js: Buduj UI 10x Szybciej | Polutek.pl",
   description: "Praktyczny przewodnik po tworzeniu nowoczesnych interfejsów w React z pomocą asystentów AI.",
 };
 

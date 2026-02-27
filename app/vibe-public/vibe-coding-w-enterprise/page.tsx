@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { Building2, ShieldCheck, ClipboardCheck } from 'lucide-react';
 
 export const metadata = {
-  title: "Vibe Coding w Enterprise: Skalowanie w Korporacjach | VibeCoding.pl",
+  title: "Vibe Coding w Enterprise: Skalowanie w Korporacjach | Polutek.pl",
   description: "Jak wdrażać programowanie intencyjne w dużych organizacjach. Bezpieczeństwo, standardy i governance AI.",
 };
 

@@ -26,11 +26,14 @@ export default function VibeNav() {
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="bg-blue-600 p-1.5 rounded-lg">
+        <Link href="/" className="flex items-center gap-3">
+          <div className="bg-blue-600 p-2 rounded-xl shadow-lg shadow-blue-200">
             <Sparkles className="w-5 h-5 text-white" />
           </div>
-          <span className="font-bold text-xl tracking-tight">Vibe<span className="text-blue-600">Coding</span>.pl</span>
+          <div className="flex flex-col leading-none">
+            <span className="font-black text-2xl tracking-tighter text-slate-900">Polutek<span className="text-blue-600">.pl</span></span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mt-0.5">Vibe Coding Hub</span>
+          </div>
         </Link>
         <div className="hidden md:flex gap-2">
           {tabs.map(tab => (

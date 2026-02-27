@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { Brain, Sparkles, Zap } from 'lucide-react';
 
 export const metadata = {
-  title: "Psychologia Vibe Codingu: Jak AI zmienia nasze myślenie | VibeCoding.pl",
+  title: "Psychologia Vibe Codingu: Jak AI zmienia nasze myślenie | Polutek.pl",
   description: "Dlaczego programowanie intencyjne redukuje stres i pozwala na większą kreatywność. Analiza kognitywna.",
 };
 

@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { DollarSign, Briefcase, Rocket, Globe } from 'lucide-react';
 
 export const metadata = {
-  title: "Jak zarabiać na Vibe Codingu w 2025 roku? | VibeCoding.pl",
+  title: "Jak zarabiać na Vibe Codingu w 2025 roku? | Polutek.pl",
   description: "Przewodnik po monetyzacji umiejętności programowania intencyjnego. Freelance, SaaS i automatyzacja procesów.",
 };
 

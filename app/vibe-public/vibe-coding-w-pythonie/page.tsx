@@ -2,7 +2,7 @@ import { Code, Database, BarChart } from 'lucide-react';
 import SchemaMarkup from '@/app/components/SchemaMarkup';
 
 export const metadata = {
-  title: "Vibe Coding w Pythonie: Data Science i Backend 10x Szybciej | VibeCoding.pl",
+  title: "Vibe Coding w Pythonie: Data Science i Backend 10x Szybciej | Polutek.pl",
   description: "Jak wykorzystać potencjał Pythona i AI w analizie danych oraz budowaniu API. Najlepsze biblioteki dla Vibe Coderów.",
 };
 

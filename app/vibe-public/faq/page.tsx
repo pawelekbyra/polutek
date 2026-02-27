@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { HelpCircle, Search, Terminal } from 'lucide-react';
 
 export const metadata = {
-  title: "Vibe Coding FAQ: Najczęstsze Pytania o AI w IT | VibeCoding.pl",
+  title: "Vibe Coding FAQ: Najczęstsze Pytania o AI w IT | Polutek.pl",
   description: "Wszystko co musisz wiedzieć o programowaniu intencyjnym. Czy AI zastąpi programistów? Jak zacząć?",
 };
 

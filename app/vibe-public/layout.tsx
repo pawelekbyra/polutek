@@ -1,23 +1,28 @@
 import VibeNav from '@/app/components/VibeNav';
+import VibeGate from '@/app/components/VibeGate';
 import Link from 'next/link';
 
 export default function VibeCodingLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col">
-      <VibeNav />
+    <VibeGate>
+      <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col">
+        <VibeNav />
 
-      <div className="flex-grow">
-        {children}
-      </div>
+        <div className="flex-grow">
+          {children}
+        </div>
 
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-400 py-20 px-4 border-t border-slate-800 mt-20">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div className="col-span-2">
-              <div className="flex items-center gap-2 mb-6">
-                <Sparkles className="w-6 h-6 text-blue-500" />
-                <span className="font-bold text-2xl text-white tracking-tight">VibeCoding.pl</span>
+              <div className="flex items-center gap-3 mb-6">
+                <Sparkles className="w-8 h-8 text-blue-500" />
+                <div className="flex flex-col leading-none">
+                  <span className="font-black text-3xl text-white tracking-tighter">Polutek<span className="text-blue-500">.pl</span></span>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500 mt-1">Vibe Coding Hub</span>
+                </div>
               </div>
               <p className="max-w-md">
                 Największy polski portal poświęcony przyszłości programowania, AI Software Engineering i narzędziom takim jak Cursor, Claude oraz nowym paradygmatom pracy.
@@ -52,7 +57,7 @@ export default function VibeCodingLayout({ children }: { children: React.ReactNo
             </div>
           </div>
           <div className="pt-8 border-t border-slate-800 text-sm flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>© 2025 VibeCoding.pl. Wszystkie prawa zastrzeżone.</p>
+            <p>© 2025 Polutek.pl. Wszystkie prawa zastrzeżone.</p>
             <div className="flex gap-8">
               <a href="#" className="hover:text-white transition-colors">Polityka prywatności</a>
               <a href="#" className="hover:text-white transition-colors">Kontakt</a>
@@ -60,7 +65,8 @@ export default function VibeCodingLayout({ children }: { children: React.ReactNo
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </VibeGate>
   );
 }
 

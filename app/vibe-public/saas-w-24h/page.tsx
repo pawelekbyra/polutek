@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { Target, Zap, Rocket } from 'lucide-react';
 
 export const metadata = {
-  title: "SaaS w 24 godziny: Case Study Vibe Codingu | VibeCoding.pl",
+  title: "SaaS w 24 godziny: Case Study Vibe Codingu | Polutek.pl",
   description: "Jak zbudować i wdrożyć działający produkt w jeden dzień używając Cursora i Lovable. Analiza procesu.",
 };
 
