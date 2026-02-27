@@ -13,18 +13,18 @@ export async function generateMetadata(): Promise<Metadata> {
 
   if (host === 'eliksir-wiedzmina.pl' || host === 'www.eliksir-wiedzmina.pl') {
     return {
-      title: "Mroczne kulisy polskiego biznesu: czeskie osady i niebezpieczne ceremonie",
-      description: "Śledztwo ujawnia sekrety. Sprawdź, co naprawdę dzieje się podczas niebezpiecznych ceremonii w czeskich osadach i jakie tajemnice skrywają organizatorzy.",
+      title: "Michał Kiciński i Ayahuasca: Duchowa podróż twórcy potęgi CD Projekt",
+      description: "Poznaj historię Michała Kicińskiego, współtwórcy sukcesu gry Wiedźmin, i jego doświadczenia z peruwiańską medycyną Ayahuasca oraz medytacją Vipassana.",
       robots: "index, follow",
       openGraph: {
-        title: "Mroczne kulisy polskiego biznesu: czeskie osady i niebezpieczne ceremonie",
-        description: "Śledztwo ujawnia sekrety. Sprawdź, co naprawdę dzieje się podczas niebezpiecznych ceremonii w czeskich osadach i jakie tajemnice skrywają organizatorzy.",
+        title: "Michał Kiciński i Ayahuasca: Duchowa podróż twórcy potęgi CD Projekt",
+        description: "Poznaj historię Michała Kicińskiego, współtwórcy sukcesu gry Wiedźmin, i jego doświadczenia z peruwiańską medycyną Ayahuasca oraz medytacją Vipassana.",
         type: "article",
       },
       twitter: {
         card: "summary_large_image",
-        title: "Mroczne kulisy polskiego biznesu: czeskie osady i niebezpieczne ceremonie",
-        description: "Śledztwo ujawnia sekrety. Sprawdź, co naprawdę dzieje się podczas niebezpiecznych ceremonii w czeskich osadach i jakie tajemnice skrywają organizatorzy.",
+        title: "Michał Kiciński i Ayahuasca: Duchowa podróż twórcy potęgi CD Projekt",
+        description: "Poznaj historię Michała Kicińskiego, współtwórcy sukcesu gry Wiedźmin, i jego doświadczenia z peruwiańską medycyną Ayahuasca oraz medytacją Vipassana.",
       },
     };
   }

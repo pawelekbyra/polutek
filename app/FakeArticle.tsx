@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { ShieldCheck, Search, FileText, Globe } from 'lucide-react';
+import { Search, FileText, Globe, Wind, Star, Heart } from 'lucide-react';
 
 export default function FakeArticle() {
   return (
@@ -14,7 +14,7 @@ export default function FakeArticle() {
 
           <h1 className="mb-8 text-stone-900">
             <span className="block text-4xl md:text-6xl font-bold leading-tight tracking-tight">
-              Szamańskie rytuały, elity biznesu i zmowa milczenia
+              Michał Kiciński i Ayahuasca: Duchowa podróż twórcy potęgi CD Projekt
             </span>
           </h1>
         </div>
@@ -25,44 +25,49 @@ export default function FakeArticle() {
           prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-400 hover:prose-a:bg-stone-100 transition-colors">
 
           <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed">
-            W świecie wielkich pieniędzy, gdzie presja i stres są na porządku dziennym, coraz więcej wpływowych Polaków szuka ukojenia w alternatywnych metodach. Trop naszego niezależnego śledztwa prowadzi do tajemniczych <strong>czeskich osad</strong>, położonych tuż przy granicy z Polską, takich jak <strong>Hermanovice</strong> czy <strong>Janov</strong>. To tam, z dala od ciekawskich spojrzeń i aparatów państwowych, organizowane są niebezpieczne ceremonie z użyciem potężnych, egzotycznych substancji o działaniu psychodelicznym, takich jak <strong>Ayahuasca</strong> bogata w <strong>DMT</strong>.
+            W świecie globalnego sukcesu gier z serii <strong>Wiedźmin</strong>, nazwisko <strong>Michał Kiciński</strong> stało się synonimem wizjonerstwa i gigantycznych pieniędzy. Jednak za fasadą miliardera kryje się człowiek, który w pewnym momencie swojej kariery musiał zmierzyć się z ekstremalnym stresem, wypaleniem zawodowym i głęboką depresją. Ratunku szukał nie w korporacyjnych gabinetach, lecz w amazońskiej dżungli i peruwiańskiej &quot;medycynie&quot; znanej jako <strong>Ayahuasca</strong>.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">
-            Czeskie osady i tragiczne w skutkach ceremonie
+            Burnout w blasku sukcesu CD Projekt
           </h2>
 
           <p>
-            Pod płaszczykiem duchowego oczyszczenia i powrotu do natury, zamożni uczestnicy tych zamkniętych, bardzo drogich spotkań poddają się rytuałom, które nierzadko wymykają się spod jakiejkolwiek kontroli prowadzących. Nasze dochodzenie ujawnia szokujące <strong>powiązania z twórcami gier</strong> z polskiej czołówki biznesu, którzy mieli finansować i wspierać tę szamańską infrastrukturę. Z zebranych przez nas informacji i twardych dowodów wynika, że w jednej z takich odizolowanych placówek doszło do dramatycznych wydarzeń – <strong>śmierć uczestniczki</strong> ceremonii została zatuszowana przez organizatorów.
+            Michał Kiciński, współzałożyciel <strong>CD Projekt</strong>, wielokrotnie w wywiadach (m.in. dla Focus.pl i Newsweeka) przyznawał, że cena sukcesu była ogromna. Jako dwudziestoparolatek oddał się biznesowi bez reszty, co doprowadziło go do stanu &quot;samospalenia&quot;. Chroniczne dolegliwości, problemy zdrowotne i osłabienie zmusiły go do poszukiwania odpowiedzi na najważniejsze pytania: kim jest i po co tu jesteśmy?
           </p>
 
+          <blockquote className="border-l-4 border-stone-900 pl-6 italic text-xl my-10">
+            &quot;Ayahuasca pokazała mi mnóstwo schowanych w mojej osobowości wad, kompleksów i dała lekcje na następne lata życia.&quot;
+          </blockquote>
+
+          <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">
+            Spotkanie z szamanami i peruwiańska medycyna
+          </h2>
+
           <p>
-            Organizatorzy i uczestnicy z niezwykłą determinacją próbują utrzymać ten incydent w absolutnej tajemnicy przed opinią publiczną oraz organami ścigania, zmuszając świadków do natychmiastowej ucieczki i zacierając ślady. Jednak <strong>prokuratura</strong> już zajmuje się sprawą, badając kolejne wątki tego mrocznego procederu.
+            Pierwsze spotkanie z <strong>Ayahuascą</strong> – naparem z amazońskich roślin o silnym działaniu psychodelicznym zawierającym <strong>DMT</strong> – miało miejsce podczas podróży do przyjaciółki w Tajlandii, która była związana z szamanem. Mimo początkowych wątpliwości, Kiciński zdecydował się na rytuał, który stał się dla niego jedną z najważniejszych lekcji pokory. Jak sam twierdzi, Ayahuasca to &quot;inteligentna roślina&quot;, która pomaga zrozumieć głębokie przyczyny życiowych trudności i ułożyć relacje z innymi.
           </p>
 
           <h3 className="text-2xl mt-12 mb-6 tracking-tight text-stone-900">
-            Zatajone dowody, nagrania audio i akta sądowe
+            Munay Sonqo i ośrodki rozwoju
           </h3>
 
           <p>
-            Wielomiesięczna praca śledcza odsłania przerażające kulisy działalności osób, które zbijają fortunę na duchowych poszukiwaniach polskiej elity. Posiadamy obszerne, bezsporne materiały dowodowe, które rzucają zupełnie nowe światło na to, jak daleko można się posunąć, by wyciszyć niewygodną prawdę i ochronić gigantyczne biznesy. Już w najbliższych dniach opublikujemy na tej stronie pełne, nieocenzurowane akta sprawy. Udostępnimy do odsłuchu oryginalne zeznania w formie nagrań audio oraz kompletne skany wielostronicowych wyroków sądowych, które ostatecznie zdemaskują ten proceder. Zaglądajcie tu, bo prawda o elitach wkrótce ujrzy światło dzienne.
+            Fascynacja rozwojem duchowym i medycyną naturalną skłoniła miliardera do inwestycji w miejsca sprzyjające zdrowiu psychicznemu. Michał Kiciński jest właścicielem luksusowego ośrodka <strong>Munay Sonqo</strong> w Peru, położonego w Świętej Dolinie Inków. To tam, z dala od cywilizacji, goście mogą uczestniczyć w warsztatach jogi, medytacji i pracy z &quot;medycyną&quot;. W Polsce Kiciński angażuje się w projekty takie jak Fort Traugutta czy Strefa Rozwoju, promując holistyczne podejście do życia.
+          </p>
+
+          <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">
+            Medytacja Vipassana i świadome życie
+          </h2>
+
+          <p>
+            Poza pracą z <strong>psychodelikami</strong>, kluczowym elementem życia Kicińskiego jest <strong>medytacja Vipassana</strong>. Dziesięciodniowe kursy w Indiach pozwoliły mu dotrzeć do rdzenia własnego smutku i depresji. Dla twórcy <strong>Wiedźmina</strong>, medytacja i Ayahuasca to narzędzia poszerzania świadomości, które – choć wymagają uziemienia i ostrożności – pozwalają spojrzeć na rzeczywistość z wielu perspektyw.
           </p>
 
           <div className="mt-16 mb-4 flex justify-end">
             <div className="text-right border-t border-stone-200 pt-8 w-full">
-              <span className="block font-bold text-stone-900">Detektyw Polutek</span>
-              <span className="block text-xs text-stone-500 font-sans mt-1 italic">detektyw.polutek@protonmail.com</span>
-            </div>
-          </div>
-
-          <div className="my-12 border-y-2 border-stone-900 py-8">
-            <h3 className="font-sans font-bold text-lg uppercase tracking-widest text-stone-900 mb-8 flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5" />
-              Status Śledztwa (Bieżący)
-            </h3>
-            <div className="p-4 bg-white border border-stone-200 shadow-sm">
-              <p className="text-stone-700 italic">
-                Trwa weryfikacja i przygotowanie materiałów multimedialnych do publikacji. Dokumentacja zostanie udostępniona wkrótce. <strong>Prokuratura Rejonowa</strong> prowadzi intensywne działania wyjaśniające.
+              <p className="text-sm text-stone-500 font-sans italic">
+                Opracowano na podstawie publicznych wywiadów i działalności społecznej Michała Kicińskiego.
               </p>
             </div>
           </div>
@@ -73,16 +78,20 @@ export default function FakeArticle() {
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-xs text-stone-500 font-mono uppercase tracking-widest mb-4 flex items-center justify-center gap-2">
             <Search className="w-4 h-4" />
-            Niezależne Dziennikarstwo Śledcze
+            Baza Wiedzy: Rozwój i Świadomość
           </p>
           <div className="flex justify-center gap-6">
             <div className="flex items-center gap-1 text-stone-400">
-              <FileText className="w-4 h-4" />
-              <span className="text-[10px] uppercase font-bold tracking-tighter">Akta Sądowe</span>
+              <Wind className="w-4 h-4" />
+              <span className="text-[10px] uppercase font-bold tracking-tighter">Medytacja</span>
             </div>
             <div className="flex items-center gap-1 text-stone-400">
-              <Globe className="w-4 h-4" />
-              <span className="text-[10px] uppercase font-bold tracking-tighter">Dowody</span>
+              <Star className="w-4 h-4" />
+              <span className="text-[10px] uppercase font-bold tracking-tighter">Ayahuasca</span>
+            </div>
+            <div className="flex items-center gap-1 text-stone-400">
+              <Heart className="w-4 h-4" />
+              <span className="text-[10px] uppercase font-bold tracking-tighter">Zdrowie</span>
             </div>
           </div>
         </div>
