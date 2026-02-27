@@ -1,4 +1,11 @@
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Andrej Karpathy: Wizjoner Vibe Codingu | VibeCoding.pl",
+  description: "Dlaczego jeden z twórców OpenAI twierdzi, że nie będziemy już pisać kodu? Poznaj wizję przyszłości programowania według Andreja Karpathy'ego.",
+  keywords: "andrej karpathy, openai, tesla ai, vibe coding karpathy, przyszłość programowania",
+};
 
 export default function KarpathyPage() {
   return (

@@ -19,7 +19,8 @@ export default auth((req) => {
   }
 
   if (isAiDomain) {
-    if (!nextUrl.pathname.startsWith("/vibe-public")) {
+    const isSeoFile = nextUrl.pathname === "/robots.txt" || nextUrl.pathname === "/sitemap.xml";
+    if (!nextUrl.pathname.startsWith("/vibe-public") && !isSeoFile) {
       return NextResponse.rewrite(new URL(`/vibe-public${nextUrl.pathname}`, req.url));
     }
   }

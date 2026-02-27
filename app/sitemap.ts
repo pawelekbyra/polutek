@@ -1,13 +1,13 @@
-
-export async function generateSitemaps() {
-  return [{ id: 0 }];
-}
+import { headers } from 'next/headers';
 
 export default async function sitemap() {
-  const baseUrl = 'https://vibecoding.polutek.pl';
+  const headersList = await headers();
+  const host = headersList.get('host') || 'vibecoding.polutek.pl';
+  const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
+  const baseUrl = `${protocol}://${host}`;
 
-  // Deduped and verified routes
-  const routes = [
+  // Vibe Coding Routes
+  const vibeRoutes = [
     '',
     '/co-to-jest-vibe-coding',
     '/narzedzia-ai',
@@ -41,6 +41,11 @@ export default async function sitemap() {
     '/roadmap',
     '/slownik',
   ];
+
+  // Eliksir Routes (only root)
+  const eliksirRoutes = [''];
+
+  const routes = host.includes('eliksir') ? eliksirRoutes : vibeRoutes;
 
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
