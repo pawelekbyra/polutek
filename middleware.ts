@@ -19,11 +19,8 @@ export default auth((req) => {
   }
 
   if (isAiDomain) {
-    if (nextUrl.pathname === "/") {
-      return NextResponse.rewrite(new URL("/vibe-public", req.url));
-    }
-    if (nextUrl.pathname === "/vibe-public") {
-      return NextResponse.next();
+    if (!nextUrl.pathname.startsWith("/vibe-public")) {
+      return NextResponse.rewrite(new URL(`/vibe-public${nextUrl.pathname}`, req.url));
     }
   }
 
