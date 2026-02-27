@@ -13,36 +13,40 @@ export async function generateMetadata(): Promise<Metadata> {
 
   if (host === 'eliksir-wiedzmina.pl' || host === 'www.eliksir-wiedzmina.pl') {
     return {
-      title: "Michał Kiciński i Ayahuasca: Duchowa podróż twórcy potęgi CD Projekt",
-      description: "Poznaj historię Michała Kicińskiego, współtwórcy sukcesu gry Wiedźmin, i jego doświadczenia z peruwiańską medycyną Ayahuasca oraz medytacją Vipassana.",
+      title: "Eliksir Wiedźmina: Mroczna tajemnica twórców CD Projekt",
+      description: "Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Poznaj mroczną historię twórców gry Wiedźmin.",
       robots: "index, follow",
       openGraph: {
-        title: "Michał Kiciński i Ayahuasca: Duchowa podróż twórcy potęgi CD Projekt",
-        description: "Poznaj historię Michała Kicińskiego, współtwórcy sukcesu gry Wiedźmin, i jego doświadczenia z peruwiańską medycyną Ayahuasca oraz medytacją Vipassana.",
+        title: "Eliksir Wiedźmina: Mroczna tajemnica twórców CD Projekt",
+        description: "Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Poznaj mroczną historię twórców gry Wiedźmin.",
         type: "article",
       },
       twitter: {
         card: "summary_large_image",
-        title: "Michał Kiciński i Ayahuasca: Duchowa podróż twórcy potęgi CD Projekt",
-        description: "Poznaj historię Michała Kicińskiego, współtwórcy sukcesu gry Wiedźmin, i jego doświadczenia z peruwiańską medycyną Ayahuasca oraz medytacją Vipassana.",
+        title: "Eliksir Wiedźmina: Mroczna tajemnica twórców CD Projekt",
+        description: "Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Poznaj mroczną historię twórców gry Wiedźmin.",
+      },
+    };
+  }
+
+  if (host === 'ai.polutek.pl' || host === 'www.ai.polutek.pl') {
+    return {
+      title: "Vibe Coding: Przyszłość Programowania z AI | Andrej Karpathy",
+      description: "Dowiedz się czym jest Vibe Coding, jak używać narzędzi Cursor i Claude oraz dlaczego Andrej Karpathy ogłosił koniec tradycyjnego programowania.",
+      robots: "index, follow",
+      keywords: "vibe coding, ai coding, cursor editor, claude 3.5 sonnet, andrej karpathy, programowanie ai, przyszłość it",
+      openGraph: {
+        title: "Vibe Coding: Przyszłość Programowania z AI",
+        description: "Największy polski portal o Vibe Codingu. Narzędzia, tutoriale i manifest programowania intencyjnego.",
+        type: "website",
       },
     };
   }
 
   return {
-    title: "Eliksir Wiedźmina",
-    description: "W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.",
+    title: "Detektyw Polutek - Agencja Śledcza",
+    description: "Niezależne śledztwa dziennikarskie i analizy.",
     robots: "index, follow",
-    openGraph: {
-      title: "Eliksir Wiedźmina",
-      description: "W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.",
-      type: "article",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Eliksir Wiedźmina",
-      description: "W cieniu głośnego procesu „szamanów”, śledztwo ujawnia sieć powiązań prowadzącą do twórców gry „Wiedźmin”.",
-    },
   };
 }
 

@@ -13,7 +13,7 @@ const PasswordProtect: FC<PasswordProtectProps> = ({ onUnlock }) => {
   const [message, setMessage] = useState("");
 
   const oldPassword = "pukpukktotamhipopotam";
-  const elixirPasswords = ["ichtroje", "szaman"];
+  const elixirPasswords = ["szaman"];
   const stypulkowskaPassword = "stypulkowska";
   const chmurkaPassword = "chmurka";
 

@@ -47,7 +47,7 @@ export default function Home() {
   };
 
   if (unlockedArticle === 'elixir') {
-    return renderArticle(<ElixirArticle />);
+    return renderArticle(<ElixirArticle customHeaderDomain="www.eliksir-wiedzmina.pl" />);
   }
 
   if (unlockedArticle === 'stypulkowska') {
