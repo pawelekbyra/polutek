@@ -9,7 +9,7 @@ export default function FakeArticle() {
       <header className="pt-20 pb-8 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-block mb-6 px-3 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase">
-            www.elixir-wiedzmina.pl
+            www.eliksir-wiedzmina.pl
           </div>
 
           <h1 className="mb-8 text-stone-900">
@@ -25,7 +25,7 @@ export default function FakeArticle() {
           prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-400 hover:prose-a:bg-stone-100 transition-colors">
 
           <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed">
-            W świecie wielkich pieniędzy, gdzie presja i stres są na porządku dziennym, coraz więcej wpływowych Polaków szuka ukojenia w alternatywnych metodach. Trop naszego niezależnego śledztwa prowadzi do tajemniczych czeskich osad, położonych tuż przy granicy z Polską. To tam, z dala od ciekawskich spojrzeń i aparatów państwowych, organizowane są niebezpieczne ceremonie z użyciem potężnych, egzotycznych substancji o działaniu psychodelicznym.
+            W świecie wielkich pieniędzy, gdzie presja i stres są na porządku dziennym, coraz więcej wpływowych Polaków szuka ukojenia w alternatywnych metodach. Trop naszego niezależnego śledztwa prowadzi do tajemniczych <strong>czeskich osad</strong>, położonych tuż przy granicy z Polską, takich jak <strong>Hermanovice</strong> czy <strong>Janov</strong>. To tam, z dala od ciekawskich spojrzeń i aparatów państwowych, organizowane są niebezpieczne ceremonie z użyciem potężnych, egzotycznych substancji o działaniu psychodelicznym, takich jak <strong>Ayahuasca</strong> bogata w <strong>DMT</strong>.
           </p>
 
           <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">
@@ -33,7 +33,11 @@ export default function FakeArticle() {
           </h2>
 
           <p>
-            Pod płaszczykiem duchowego oczyszczenia i powrotu do natury, zamożni uczestnicy tych zamkniętych, bardzo drogich spotkań poddają się rytuałom, które nierzadko wymykają się spod jakiejkolwiek kontroli prowadzących. Z zebranych przez nas informacji i twardych dowodów wynika, że w jednej z takich odizolowanych placówek doszło do dramatycznych wydarzeń. Organizatorzy i uczestnicy z niezwykłą determinacją próbują utrzymać ten incydent w absolutnej tajemnicy przed opinią publiczną oraz organami ścigania, zmuszając świadków do natychmiastowej ucieczki i zacierając ślady.
+            Pod płaszczykiem duchowego oczyszczenia i powrotu do natury, zamożni uczestnicy tych zamkniętych, bardzo drogich spotkań poddają się rytuałom, które nierzadko wymykają się spod jakiejkolwiek kontroli prowadzących. Nasze dochodzenie ujawnia szokujące <strong>powiązania z twórcami gier</strong> z polskiej czołówki biznesu, którzy mieli finansować i wspierać tę szamańską infrastrukturę. Z zebranych przez nas informacji i twardych dowodów wynika, że w jednej z takich odizolowanych placówek doszło do dramatycznych wydarzeń – <strong>śmierć uczestniczki</strong> ceremonii została zatuszowana przez organizatorów.
+          </p>
+
+          <p>
+            Organizatorzy i uczestnicy z niezwykłą determinacją próbują utrzymać ten incydent w absolutnej tajemnicy przed opinią publiczną oraz organami ścigania, zmuszając świadków do natychmiastowej ucieczki i zacierając ślady. Jednak <strong>prokuratura</strong> już zajmuje się sprawą, badając kolejne wątki tego mrocznego procederu.
           </p>
 
           <h3 className="text-2xl mt-12 mb-6 tracking-tight text-stone-900">
@@ -58,7 +62,7 @@ export default function FakeArticle() {
             </h3>
             <div className="p-4 bg-white border border-stone-200 shadow-sm">
               <p className="text-stone-700 italic">
-                Trwa weryfikacja i przygotowanie materiałów multimedialnych do publikacji. Dokumentacja zostanie udostępniona wkrótce.
+                Trwa weryfikacja i przygotowanie materiałów multimedialnych do publikacji. Dokumentacja zostanie udostępniona wkrótce. <strong>Prokuratura Rejonowa</strong> prowadzi intensywne działania wyjaśniające.
               </p>
             </div>
           </div>

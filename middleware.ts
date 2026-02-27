@@ -10,7 +10,7 @@ export default auth((req) => {
   const { nextUrl } = req;
   const hostname = req.headers.get("host");
 
-  if (hostname === "elixir-wiedzmina.pl") {
+  if (hostname === "eliksir-wiedzmina.pl") {
     if (nextUrl.pathname === "/") {
       return NextResponse.rewrite(new URL("/fake-public", req.url));
     }
