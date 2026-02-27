@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const host = headersList.get('host');
 
-  if (host === 'detektyw.polutek.pl') {
+  if (host === 'elixir-wiedzmina.pl') {
     return {
       title: "Mroczne kulisy polskiego biznesu: czeskie osady i niebezpieczne ceremonie",
       description: "Śledztwo ujawnia sekrety. Sprawdź, co naprawdę dzieje się podczas niebezpiecznych ceremonii w czeskich osadach i jakie tajemnice skrywają organizatorzy.",
