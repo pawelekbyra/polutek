@@ -10,7 +10,10 @@ export default auth((req) => {
   const { nextUrl } = req;
   const hostname = req.headers.get("host");
 
-  if (hostname === "eliksir-wiedzmina.pl") {
+  const isEliksirDomain = hostname === "eliksir-wiedzmina.pl" || hostname === "www.eliksir-wiedzmina.pl";
+  const isAiDomain = hostname === "ai.polutek.pl" || hostname === "www.ai.polutek.pl";
+
+  if (isEliksirDomain) {
     if (nextUrl.pathname === "/") {
       return NextResponse.rewrite(new URL("/fake-public", req.url));
     }
@@ -19,7 +22,7 @@ export default auth((req) => {
     }
   }
 
-  if (hostname === "ai.polutek.pl") {
+  if (isAiDomain) {
     if (nextUrl.pathname === "/") {
       return NextResponse.rewrite(new URL("/elixir-public", req.url));
     }
