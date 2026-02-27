@@ -65,7 +65,7 @@ export default function ComparisonsListPage() {
 
           {/* Static Comparison Cards for SEO and Variety */}
           <Link
-            href="/cursor-vs-vscode-copilot"
+            href="/porownania/cursor-vs-vscode-copilot"
             className="group bg-white rounded-[3rem] p-10 border border-slate-200 shadow-sm hover:shadow-2xl transition-all hover:-translate-y-1 overflow-hidden relative"
           >
             <div className="relative z-10">
@@ -85,7 +85,7 @@ export default function ComparisonsListPage() {
           </Link>
 
           <Link
-            href="/bolt-vs-lovable"
+            href="/porownania/bolt-vs-lovable"
             className="group bg-white rounded-[3rem] p-10 border border-slate-200 shadow-sm hover:shadow-2xl transition-all hover:-translate-y-1 overflow-hidden relative"
           >
             <div className="relative z-10">
@@ -96,7 +96,7 @@ export default function ComparisonsListPage() {
                 Bolt.new <span className="text-slate-300 mx-2 text-2xl font-light">vs</span> Lovable
               </h2>
               <p className="text-slate-500 mb-8 leading-relaxed">
-                Porównanie dwóch najgorętszych platform "App-in-a-box" 2025 roku.
+                Porównanie dwóch najgorętszych platform &quot;App-in-a-box&quot; 2025 roku.
               </p>
               <div className="flex items-center gap-2 text-purple-600 font-bold">
                 Sprawdź możliwości <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />

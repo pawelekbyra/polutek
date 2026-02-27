@@ -1,5 +1,6 @@
 import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { ArrowRight, Terminal, Zap, Globe, Cpu } from 'lucide-react';
+import Link from 'next/link';
 
 export const metadata = {
   title: "Narzędzia Ery Vibe Coding 2025 | Polutek.pl",
@@ -37,6 +38,7 @@ export default function ToolsPage() {
           desc="Platformy &apos;full-stack in a box&apos;. Pozwalają na deploy aplikacji z jednego promptu."
           tag="Szybkość"
           icon={<Zap className="w-6 h-6" />}
+          href="/porownania/bolt-vs-lovable"
         />
         <ToolCard
           name="v0.dev"
@@ -49,7 +51,7 @@ export default function ToolsPage() {
       <div className="bg-white p-12 rounded-[3rem] border border-slate-200 shadow-xl">
          <h2 className="text-3xl font-bold mb-6">Jak zbudować swój stack?</h2>
          <div className="prose prose-slate max-w-none">
-            <p>Dla profesjonalnego developera podstawa to <strong>Cursor + Claude 3.5 Sonnet</strong>. To połączenie daje największą kontrolę nad kodem produkcyjnym. Dla founderów szukających szybkości - <strong><Link href="/bolt-vs-lovable">Lovable lub Bolt.new</Link></strong> są bezkonkurencyjne.</p>
+            <p>Dla profesjonalnego developera podstawa to <strong>Cursor + Claude 3.5 Sonnet</strong>. To połączenie daje największą kontrolę nad kodem produkcyjnym. Dla founderów szukających szybkości - <strong><Link href="/porownania/bolt-vs-lovable">Lovable lub Bolt.new</Link></strong> są bezkonkurencyjne.</p>
             <p>Jeśli wolisz pracę w terminalu, koniecznie sprawdź <strong><Link href="/claude-code-tutorial">Claude Code CLI</Link></strong>.</p>
          </div>
          <div className="mt-8">
