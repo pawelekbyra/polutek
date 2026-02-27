@@ -14,7 +14,7 @@ export default function ComparisonPage() {
         <ul className="list-disc pl-6 space-y-2">
           <li>Strukturze zapytania (Zero-shot, Few-shot prompting).</li>
           <li>Używaniu odpowiednich słów kluczowych i kontekstu.</li>
-          <li>Optymalizacji wyjścia modelu (np. "odpowiedz tylko w formacie JSON").</li>
+          <li>Optymalizacji wyjścia modelu (np. &quot;odpowiedz tylko w formacie JSON&quot;).</li>
         </ul>
         <p className="mt-4">
           W kontekście programowania, prompt engineer kopiuje kawałek kodu do Chatu GPT, prosi o poprawkę, a potem kopiuje wynik z powrotem do edytora. Jest to proces manualny i często powolny.
@@ -22,20 +22,20 @@ export default function ComparisonPage() {
 
         <h2 className="text-3xl font-bold mt-16 mb-6">Vibe Coding: Programowanie Agentyczne</h2>
         <p>
-          Vibe coding to ewolucja. Tutaj nie interesuje nas pojedynczy prompt, ale <strong>cały workflow</strong>. Vibe coder nie "rozmawia" z AI w osobnym oknie przeglądarki – on współpracuje z agentem bezpośrednio w kodzie.
+          Vibe coding to ewolucja. Tutaj nie interesuje nas pojedynczy prompt, ale <strong>cały workflow</strong>. Vibe coder nie &quot;rozmawia&quot; z AI w osobnym oknie przeglądarki – on współpracuje z agentem bezpośrednio w kodzie.
         </p>
         <div className="bg-slate-100 p-6 rounded-xl border border-slate-200 my-8">
           <h3 className="font-bold mb-2">Główne różnice:</h3>
           <ul className="space-y-3">
             <li><strong>Kontekst:</strong> Vibe coding używa narzędzi (np. Cursor), które automatycznie przesyłają do AI strukturę Twojego projektu, typy danych i zależności. Nie musisz nic kopiować.</li>
-            <li><strong>Iteracja:</strong> Poprawki dzieją się "na żywo". Jeśli "vibe" projektu się zmienia, agent AI dostosowuje wszystkie pliki naraz.</li>
+            <li><strong>Iteracja:</strong> Poprawki dzieją się &quot;na żywo&quot;. Jeśli &quot;vibe&quot; projektu się zmienia, agent AI dostosowuje wszystkie pliki naraz.</li>
             <li><strong>Cel:</strong> W prompt engineeringu celem jest dobra odpowiedź. W Vibe Codingu celem jest działający, przetestowany system.</li>
           </ul>
         </div>
 
         <h2 className="text-3xl font-bold mt-16 mb-6">Podsumowanie</h2>
         <p>
-          Można powiedzieć, że prompt engineering to młotek, a Vibe Coding to cała zautomatyzowana linia produkcyjna. W 2025 roku bycie dobrym w promptowaniu to za mało – trzeba umieć "wibować" z agentami AI, aby tworzyć oprogramowanie z prędkością światła.
+          Można powiedzieć, że prompt engineering to młotek, a Vibe Coding to cała zautomatyzowana linia produkcyjna. W 2025 roku bycie dobrym w promptowaniu to za mało – trzeba umieć &quot;wibować&quot; z agentami AI, aby tworzyć oprogramowanie z prędkością światła.
         </p>
       </div>
     </section>

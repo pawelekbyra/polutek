@@ -21,7 +21,7 @@ export default function ToolsPage() {
         />
         <ToolCard
           name="Bolt.new / Lovable"
-          desc="Platformy 'full-stack in a box'. Pozwalają na generowanie, edycję i deploy całych aplikacji webowych z jednego promptu bezpośrednio w przeglądarce."
+          desc="Platformy &apos;full-stack in a box&apos;. Pozwalają na generowanie, edycję i deploy całych aplikacji webowych z jednego promptu bezpośrednio w przeglądarce."
           tag="Web Apps"
         />
         <ToolCard

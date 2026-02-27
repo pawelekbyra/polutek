@@ -12,9 +12,9 @@ export default function CursorTutorial() {
           Cursor to fork VS Code, co oznacza, że możesz przenieść wszystkie swoje rozszerzenia, motywy i skróty klawiszowe jednym kliknięciem. Pobierz go z oficjalnej strony i zainstaluj jak każdy inny edytor.
         </p>
 
-        <h2 className="text-3xl font-bold mt-16 mb-6">Krok 2: Poznaj "Composer" (Cmd+I / Ctrl+I)</h2>
+        <h2 className="text-3xl font-bold mt-16 mb-6">Krok 2: Poznaj &quot;Composer&quot; (Cmd+I / Ctrl+I)</h2>
         <p>
-          To serce Cursora. Composer pozwala na edycję wielu plików jednocześnie. Możesz napisać: "Dodaj system autoryzacji do mojej aplikacji", a on stworzy foldery, pliki route'ów i zaktualizuje layout.
+          To serce Cursora. Composer pozwala na edycję wielu plików jednocześnie. Możesz napisać: &quot;Dodaj system autoryzacji do mojej aplikacji&quot;, a on stworzy foldery, pliki route&apos;ów i zaktualizuje layout.
         </p>
 
         <h2 className="text-3xl font-bold mt-16 mb-6">Krok 3: Wybór Modelu (Claude 3.5 Sonnet)</h2>
@@ -25,13 +25,13 @@ export default function CursorTutorial() {
         <div className="bg-blue-50 border-l-4 border-blue-600 p-8 my-10 rounded-r-xl">
           <h3 className="font-bold text-blue-900 mb-2">Pro Tip: Indeksowanie Projektu</h3>
           <p className="text-blue-800">
-            Upewnij się, że w ustawieniach Cursora masz włączone "Codebase Indexing". Dzięki temu AI będzie "widzieć" cały Twój projekt i nie będzie zadawać pytań o rzeczy, które już napisałeś.
+            Upewnij się, że w ustawieniach Cursora masz włączone &quot;Codebase Indexing&quot;. Dzięki temu AI będzie &quot;widzieć&quot; cały Twój projekt i nie będzie zadawać pytań o rzeczy, które już napisałeś.
           </p>
         </div>
 
-        <h2 className="text-3xl font-bold mt-16 mb-6">Krok 4: Pierwszy "Vibe"</h2>
+        <h2 className="text-3xl font-bold mt-16 mb-6">Krok 4: Pierwszy &quot;Vibe&quot;</h2>
         <p>
-          Zacznij od prostego zadania. Otwórz pusty folder i powiedz Composerowi: "Zbuduj mi stronę portfolio w Next.js z użyciem Tailwind CSS i ciemnym motywem. Dodaj sekcję o mnie i galerię projektów". Obserwuj jak kod tworzy się sam.
+          Zacznij od prostego zadania. Otwórz pusty folder i powiedz Composerowi: &quot;Zbuduj mi stronę portfolio w Next.js z użyciem Tailwind CSS i ciemnym motywem. Dodaj sekcję o mnie i galerię projektów&quot;. Obserwuj jak kod tworzy się sam.
         </p>
 
         <h2 className="text-3xl font-bold mt-16 mb-6">Podsumowanie</h2>
