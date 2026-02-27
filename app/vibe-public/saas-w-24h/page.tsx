@@ -36,12 +36,12 @@ export default function SaaSPage() {
 
         <h3 className="text-2xl font-bold mt-8 mb-4">4-12h: Backend i Logika</h3>
         <p>
-          Otworzyłem projekt w <strong>Cursorze</strong>. Za pomocą funkcji "Composer" wydałem polecenie: "Stwórz integrację ze Stripe dla płatności i bazę danych Supabase dla profili użytkowników". AI napisało 90% kodu, ja tylko połączyłem klucze API.
+          Otworzyłem projekt w <strong>Cursorze</strong>. Za pomocą funkcji &quot;Composer&quot; wydałem polecenie: &quot;Stwórz integrację ze Stripe dla płatności i bazę danych Supabase dla profili użytkowników&quot;. AI napisało 90% kodu, ja tylko połączyłem klucze API.
         </p>
 
         <h3 className="text-2xl font-bold mt-8 mb-4">12-20h: Debugowanie i Testy</h3>
         <p>
-          To był moment na "vibe". Powiedziałem AI: "Sprawdź wszystkie edge-case'y, dodaj obsługę błędów i upewnij się, że responsywność na iPhone jest idealna". Cursor przeskanował cały projekt i wprowadził poprawki.
+          To był moment na &quot;vibe&quot;. Powiedziałem AI: &quot;Sprawdź wszystkie edge-case&apos;y, dodaj obsługę błędów i upewnij się, że responsywność na iPhone jest idealna&quot;. Cursor przeskanował cały projekt i wprowadził poprawki.
         </p>
 
         <h3 className="text-2xl font-bold mt-8 mb-4">20-24h: Deployment</h3>

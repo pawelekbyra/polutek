@@ -6,11 +6,11 @@ export default function SecurityPage() {
       <h1 className="text-4xl md:text-5xl font-bold mb-8">Bezpieczeństwo Kodu AI: Na co uważać w Vibe Codingu?</h1>
       <div className="prose prose-slate prose-lg max-w-none">
         <p className="lead text-xl text-slate-600 mb-8">
-          Szybkość generowania kodu przez AI ma swoją ciemną stronę: potencjalne luki w zabezpieczeniach. Jak budować bezpiecznie w nowym paradygmacie?
+          Szybkość generowania kodu przez AI ma swoją ciemną stronę: potencjalne luki w zabezpieczeniach. Jak budować bezpiecznie w nowym paradygmadzie?
         </p>
 
         <p>
-          Modele takie jak Claude czy GPT-4o są trenowane na miliardach linii kodu, w tym również na kodzie zawierającym błędy bezpieczeństwa. Jeśli poprosisz o "prosty system logowania", AI może zaproponować rozwiązanie podatne na SQL Injection lub bez odpowiedniego hashowania haseł.
+          Modele takie jak Claude czy GPT-4o są trenowane na miliardach linii kodu, w tym również na kodzie zawierającym błędy bezpieczeństwa. Jeśli poprosisz o &quot;prosty system logowania&quot;, AI może zaproponować rozwiązanie podatne na SQL Injection lub bez odpowiedniego hashowania haseł.
         </p>
 
         <h2 className="text-3xl font-bold mt-12 mb-6 flex items-center gap-3 text-red-600">

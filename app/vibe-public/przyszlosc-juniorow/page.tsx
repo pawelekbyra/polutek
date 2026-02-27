@@ -19,7 +19,7 @@ export default function JuniorFuturePage() {
         <div className="bg-amber-50 border-l-4 border-amber-500 p-8 my-10 rounded-r-xl">
           <h3 className="font-bold text-amber-900 mb-2 text-xl">Najważniejsza zmiana:</h3>
           <p className="text-amber-800">
-            Wartość programisty nie leży już w "umiejętności pisania", ale w "umiejętności czytania i weryfikacji". Junior musi stać się skutecznym recenzentem kodu generowanego przez AI.
+            Wartość programisty nie leży już w &quot;umiejętności pisania&quot;, ale w &quot;umiejętności czytania i weryfikacji&quot;. Junior musi stać się skutecznym recenzentem kodu generowanego przez AI.
           </p>
         </div>
 
@@ -32,7 +32,7 @@ export default function JuniorFuturePage() {
 
         <h2 className="text-3xl font-bold mt-16 mb-6">Podsumowanie</h2>
         <p>
-          Vibe coding to dla juniorów ogromna szansa. Pozwala ominąć lata żmudnej nauki detali składniowych i przejść prosto do budowania realnych produktów. Ci, którzy opanują narzędzia AI, staną się "seniorami" znacznie szybciej niż poprzednie pokolenia.
+          Vibe coding to dla juniorów ogromna szansa. Pozwala ominąć lata żmudnej nauki detali składniowych i przejść prosto do budowania realnych produktów. Ci, którzy opanują narzędzia AI, staną się &quot;seniorami&quot; znacznie szybciej niż poprzednie pokolenia.
         </p>
       </div>
     </section>

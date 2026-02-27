@@ -26,10 +26,10 @@ export default function VibeHome() {
               Zacznij tutaj <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
-               href="/vibe-public/narzedzia-ai"
+               href="/vibe-public/praca"
                className="w-full sm:w-auto px-8 py-4 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-xl font-bold transition-all shadow-sm flex items-center justify-center"
             >
-              Zobacz narzędzia
+              Praca w AI
             </Link>
           </div>
         </div>
@@ -65,20 +65,14 @@ export default function VibeHome() {
       {/* SEO Articles Preview */}
       <section className="py-24 max-w-6xl mx-auto px-4">
         <h2 className="text-3xl font-bold mb-12 text-center">Centrum Wiedzy Vibe Coding</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
            <ArticleCard
-              href="/vibe-public/co-to-jest-vibe-coding"
-              title="Czym jest Vibe Coding? Manifest nowej ery"
-              desc="Odkryj dlaczego Andrej Karpathy uważa, że programowanie jakie znamy dobiega końca..."
-              color="from-blue-500 to-indigo-600"
-              label="Edukacja"
-           />
-           <ArticleCard
-              href="/vibe-public/najlepsze-prompty-vibe-coding"
-              title="Biblioteka Promptów"
-              desc="Gotowe szablony do Cursora, które przyspieszą Twoją pracę o 300%."
-              color="from-slate-700 to-slate-900"
-              label="Narzędzia"
+              href="/vibe-public/praca"
+              title="Zarabiaj na AI (Outlier)"
+              desc="Zarabiaj w USD trenując modele językowe. Elastyczna praca zdalna dla każdego."
+              color="from-blue-600 to-indigo-700"
+              label="PRACA"
+              badge="Hot"
            />
            <ArticleCard
               href="/vibe-public/zarabianie-na-vibe-codingu"
@@ -88,11 +82,25 @@ export default function VibeHome() {
               label="Biznes"
            />
            <ArticleCard
-              href="/vibe-public/vibe-coding-w-enterprise"
-              title="Vibe Coding w Enterprise"
-              desc="Jak skalować programowanie intencyjne w dużych organizacjach i korporacjach."
-              color="from-blue-700 to-indigo-900"
-              label="Enterprise"
+              href="/vibe-public/saas-w-24h"
+              title="SaaS w 24 godziny"
+              desc="Case study budowy i wdrożenia produktu w rekordowym czasie przez jedną osobę."
+              color="from-indigo-500 to-cyan-500"
+              label="Success Story"
+           />
+           <ArticleCard
+              href="/vibe-public/najlepsze-prompty-vibe-coding"
+              title="Biblioteka Promptów"
+              desc="Gotowe szablony do Cursora, które przyspieszą Twoją pracę o 300%."
+              color="from-slate-700 to-slate-900"
+              label="Narzędzia"
+           />
+           <ArticleCard
+              href="/vibe-public/co-to-jest-vibe-coding"
+              title="Czym jest Vibe Coding? Manifest nowej ery"
+              desc="Odkryj dlaczego Andrej Karpathy uważa, że programowanie jakie znamy dobiega końca..."
+              color="from-blue-500 to-indigo-600"
+              label="Edukacja"
            />
            <ArticleCard
               href="/vibe-public/andrej-karpathy"
@@ -102,13 +110,6 @@ export default function VibeHome() {
               label="Ludzie"
            />
            <ArticleCard
-              href="/vibe-public/narzedzia-ai"
-              title="Top 5 narzędzi 2025"
-              desc="Cursor, Claude 3.5 Sonnet, Bolt.new... sprawdzamy liderów rynku AI Coding."
-              color="from-slate-800 to-slate-900"
-              label="Stack"
-           />
-           <ArticleCard
               href="/vibe-public/jak-zaczac-z-cursorem"
               title="Jak zacząć z Cursorem?"
               desc="Kompletny poradnik konfiguracji i pierwszych kroków w najlepszym edytorze AI."
@@ -116,11 +117,18 @@ export default function VibeHome() {
               label="Tutorial"
            />
            <ArticleCard
-              href="/vibe-public/vibe-coding-vs-prompt-engineering"
-              title="Vibe vs Prompting"
-              desc="Jaka jest różnica między zwykłym pisaniem promptów a programowaniem intencyjnym?"
-              color="from-emerald-500 to-teal-600"
-              label="Teoria"
+              href="/vibe-public/narzedzia-ai"
+              title="Top 5 narzędzi 2025"
+              desc="Cursor, Claude 3.5 Sonnet, Bolt.new... sprawdzamy liderów rynku AI Coding."
+              color="from-slate-800 to-slate-900"
+              label="Stack"
+           />
+           <ArticleCard
+              href="/vibe-public/vibe-coding-w-enterprise"
+              title="Vibe Coding w Enterprise"
+              desc="Jak skalować programowanie intencyjne w dużych organizacjach i korporacjach."
+              color="from-blue-700 to-indigo-900"
+              label="Enterprise"
            />
            <ArticleCard
               href="/vibe-public/vibe-coding-w-react"
@@ -137,13 +145,6 @@ export default function VibeHome() {
               label="AI"
            />
            <ArticleCard
-              href="/vibe-public/vibe-coding-vs-no-code"
-              title="Vibe vs No-Code"
-              desc="Dlaczego programowanie intencyjne to lepsza przyszłość niż Bubble czy Webflow."
-              color="from-slate-400 to-slate-600"
-              label="Analiza"
-           />
-           <ArticleCard
               href="/vibe-public/przyszlosc-juniorow"
               title="Przyszłość Juniorów"
               desc="Czy Vibe Coding to koniec kariery dla początkujących programistów?"
@@ -158,18 +159,25 @@ export default function VibeHome() {
               label="Security"
            />
            <ArticleCard
-              href="/vibe-public/saas-w-24h"
-              title="SaaS w 24 godziny"
-              desc="Case study budowy i wdrożenia produktu w rekordowym czasie przez jedną osobę."
-              color="from-indigo-500 to-cyan-500"
-              label="Success Story"
-           />
-           <ArticleCard
               href="/vibe-public/psychologia-vibe-codingu"
               title="Psychologia Tworzenia"
               desc="Jak programowanie intencyjne zmienia nasz proces myślowy i redukuje stres."
               color="from-teal-400 to-emerald-500"
               label="Psychologia"
+           />
+           <ArticleCard
+              href="/vibe-public/vibe-coding-vs-no-code"
+              title="Vibe vs No-Code"
+              desc="Dlaczego programowanie intencyjne to lepsza przyszłość niż Bubble czy Webflow."
+              color="from-slate-400 to-slate-600"
+              label="Analiza"
+           />
+           <ArticleCard
+              href="/vibe-public/vibe-coding-vs-prompt-engineering"
+              title="Vibe vs Prompting"
+              desc="Jaka jest różnica między zwykłym pisaniem promptów a programowaniem intencyjnym?"
+              color="from-emerald-500 to-teal-600"
+              label="Teoria"
            />
         </div>
       </section>
@@ -177,7 +185,7 @@ export default function VibeHome() {
   );
 }
 
-function ArticleCard({ href, title, desc, color, label }: any) {
+function ArticleCard({ href, title, desc, color, label, badge }: any) {
   return (
     <article className="group">
       <Link href={href}>
@@ -185,6 +193,11 @@ function ArticleCard({ href, title, desc, color, label }: any) {
           <div className={`w-full h-full bg-gradient-to-br ${color} flex items-center justify-center text-white text-3xl font-bold text-center p-4 transition-transform duration-500 group-hover:scale-110`}>
             {label}
           </div>
+          {badge && (
+            <div className="absolute top-2 right-2 bg-yellow-400 text-slate-900 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-tighter animate-pulse">
+               {badge}
+            </div>
+          )}
         </div>
         <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors leading-tight">{title}</h3>
         <p className="text-slate-600 text-sm leading-relaxed">
