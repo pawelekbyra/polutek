@@ -1,12 +1,13 @@
 import SchemaMarkup from '@/app/components/SchemaMarkup';
-import { Zap, Rocket, Globe, Code } from 'lucide-react';
+import { Zap, Rocket, Globe, Code, ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 
 export const metadata = {
   title: "Bolt.new vs Lovable.dev: Który generator fullstack jest lepszy? | Polutek.pl",
   description: "Zestawienie dwóch najgorętszych platform do budowania aplikacji webowych za pomocą jednego promptu. Sprawdzamy Bolt i Lovable.",
 };
 
-export default function vsPage() {
+export default function BoltVsLovablePage() {
   return (
     <article className="max-w-4xl mx-auto px-4 py-20">
       <SchemaMarkup
@@ -16,6 +17,11 @@ export default function vsPage() {
         author="Detektyw Polutek"
         datePublished="2025-02-27"
       />
+
+      <Link href="/porownania" className="text-blue-600 font-bold mb-8 inline-flex items-center gap-2 hover:gap-3 transition-all">
+        <ArrowLeft className="w-4 h-4" /> Powrót do porównań
+      </Link>
+
       <h1 className="text-4xl md:text-5xl font-black mb-8 leading-tight text-indigo-700">Bolt.new vs Lovable.dev: Fullstack w Twojej przeglądarce</h1>
 
       <div className="prose prose-slate prose-lg max-w-none">

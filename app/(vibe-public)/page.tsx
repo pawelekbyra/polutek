@@ -7,10 +7,19 @@ import VibeComparisonToggle from '@/app/components/VibeComparisonToggle';
 import VibeScoreTester from '@/app/components/VibeScoreTester';
 import SystemPromptGenerator from '@/app/components/SystemPromptGenerator';
 import VibeNewsroom from '@/app/components/VibeNewsroom';
+import LolekCommentary from '@/app/components/LolekCommentary';
+import SchemaMarkup from '@/app/components/SchemaMarkup';
 
 export default function VibeHome() {
   return (
     <main>
+      <SchemaMarkup
+        type="Article"
+        headline="Polutek.pl - Kurs Vibe Codingu i Narzędzia AI dla Programistów"
+        description="Największy polski portal o Vibe Codingu. Kursy, tutoriale i porównania narzędzi AI. Dowiedz się jak wejść w programowanie intencyjne w 2025 roku."
+        author="Detektyw Polutek"
+        datePublished="2025-03-04"
+      />
       <VibeHero />
       <VibeComparisonToggle />
 
@@ -52,6 +61,12 @@ export default function VibeHome() {
       </section>
 
       <VibeScoreTester />
+      <div className="max-w-6xl mx-auto px-4">
+        <LolekCommentary
+          quote="Ludzie myślą, że Vibe Coding to 'nicnierobienie'. Spróbujcie zdebugować agencki workflow bez zrozumienia architektury. Powodzenia, będziecie go potrzebować."
+          context="Lolek o realiach pracy"
+        />
+      </div>
       <SystemPromptGenerator />
       <VibeNewsroom />
 

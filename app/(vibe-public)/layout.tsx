@@ -32,14 +32,15 @@ export default function VibeCodingLayout({ children }: { children: React.ReactNo
                 <li><Link href="/co-to-jest-vibe-coding" className="hover:text-white transition-colors">Czym jest Vibe Coding?</Link></li>
                 <li><Link href="/roadmap" className="hover:text-white transition-colors">Roadmapa 2025</Link></li>
                 <li><Link href="/slownik" className="hover:text-white transition-colors">Słownik Pojęć</Link></li>
-                <li><Link href="/najlepsze-modele-ai-2025" className="hover:text-white transition-colors">Ranking Modeli</Link></li>
-                <li><Link href="/narzedzia-ai" className="hover:text-white transition-colors">Narzędzia AI</Link></li>
+                <li><Link href="/porownania" className="hover:text-white transition-colors">Porównania AI</Link></li>
+                <li><Link href="/cursorrules-library" className="hover:text-white transition-colors text-blue-400 font-bold">Biblioteka .cursorrules</Link></li>
+                <li><Link href="/ceny-narzedzi-ai-2025" className="hover:text-white transition-colors">Cennik Narzędzi 2025</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-bold mb-6">Biznes i Prawo</h4>
               <ul className="space-y-4">
-                <li><Link href="/vibe-coding-dla-founderow" className="hover:text-white transition-colors">Dla Founderów</Link></li>
+                <li><Link href="/vibe-coding-dla-solo-founderow" className="hover:text-white transition-colors font-bold text-indigo-400">Solo-Founder SaaS</Link></li>
                 <li><Link href="/legalnosc-kodu-ai" className="hover:text-white transition-colors">Aspekty Prawne</Link></li>
                 <li><Link href="/zarabianie-na-vibe-codingu" className="hover:text-white transition-colors">Zarabianie na AI</Link></li>
                 <li><Link href="/praca" className="hover:text-white transition-colors underline decoration-blue-500 underline-offset-4">Praca w AI (Outlier)</Link></li>

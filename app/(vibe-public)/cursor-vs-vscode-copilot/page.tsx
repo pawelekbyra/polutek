@@ -1,12 +1,13 @@
 import SchemaMarkup from '@/app/components/SchemaMarkup';
-import { Swords, Code2, Sparkles, MessageSquare } from 'lucide-react';
+import { Swords, CheckCircle2, ArrowLeft, Zap, Star } from 'lucide-react';
+import Link from 'next/link';
 
 export const metadata = {
   title: "Cursor vs VS Code + Copilot: Który stack wygrywa w 2025? | Polutek.pl",
   description: "Szczegółowe porównanie natywnego edytora AI Cursor z klasycznym VS Code doposażonym w GitHub Copilot. Sprawdź benchmarki i workflow.",
 };
 
-export default function vsPage() {
+export default function CursorVsCopilotPage() {
   return (
     <article className="max-w-4xl mx-auto px-4 py-20">
       <SchemaMarkup
@@ -16,6 +17,11 @@ export default function vsPage() {
         author="Detektyw Polutek"
         datePublished="2025-02-27"
       />
+
+      <Link href="/porownania" className="text-blue-600 font-bold mb-8 inline-flex items-center gap-2 hover:gap-3 transition-all">
+        <ArrowLeft className="w-4 h-4" /> Powrót do porównań
+      </Link>
+
       <h1 className="text-4xl md:text-5xl font-black mb-8 leading-tight">Cursor vs VS Code + Copilot: Bitwa o Twoją Wydajność</h1>
 
       <div className="prose prose-slate prose-lg max-w-none">

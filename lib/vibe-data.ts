@@ -134,5 +134,38 @@ export const comparisons: Comparison[] = [
       { name: "Logika kodu", scoreA: 10, scoreB: 8, desc: "Claude rzadziej popełnia błędy w typach TS." },
       { name: "Prędkość", scoreA: 8, scoreB: 10, desc: "GPT-4o generuje tekst szybciej." }
     ]
+  },
+  {
+    slug: "claude-35-sonnet-vs-gpt-o1",
+    title: "Claude 3.5 Sonnet vs GPT-o1",
+    itemA: "Claude 3.5 Sonnet",
+    itemB: "GPT-o1",
+    verdict: "Claude do budowania, o1 do rozwiązywania zagadek logicznych.",
+    features: [
+      { name: "Szybkość", scoreA: 10, scoreB: 3, desc: "Claude odpowiada natychmiast, o1 myśli długo." },
+      { name: "Rozumowanie", scoreA: 8, scoreB: 10, desc: "o1 posiada głębszy mechanizm Chain-of-Thought." }
+    ]
+  },
+  {
+    slug: "cursor-vs-vscode-copilot",
+    title: "Cursor vs VS Code + Copilot",
+    itemA: "Cursor",
+    itemB: "VS Code + Copilot",
+    verdict: "Cursor to dom dla AI, Copilot to tylko dobudówka.",
+    features: [
+      { name: "Integracja", scoreA: 10, scoreB: 7, desc: "Cursor posiada natywne AI w każdym elemencie UI." },
+      { name: "Ekosystem", scoreA: 10, scoreB: 10, desc: "Oba edytory wspierają te same rozszerzenia." }
+    ]
+  },
+  {
+    slug: "bolt-vs-lovable",
+    title: "Bolt.new vs Lovable.dev",
+    itemA: "Bolt.new",
+    itemB: "Lovable.dev",
+    verdict: "Lovable dla designu, Bolt dla inżynierii.",
+    features: [
+      { name: "Backend", scoreA: 10, scoreB: 7, desc: "Bolt daje lepszą kontrolę nad plikami serwerowymi." },
+      { name: "UX/UI", scoreA: 7, scoreB: 10, desc: "Lovable tworzy piękniejsze aplikacje 'z pudełka'." }
+    ]
   }
 ];
