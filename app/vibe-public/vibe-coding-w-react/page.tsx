@@ -1,37 +1,40 @@
-import { Code2, Zap, Layers } from 'lucide-react';
+import SchemaMarkup from '@/app/components/SchemaMarkup';
+import { Layout, Zap, Cpu } from 'lucide-react';
+
+export const metadata = {
+  title: "Vibe Coding w React & Next.js: Buduj UI 10x Szybciej | VibeCoding.pl",
+  description: "Praktyczny przewodnik po tworzeniu nowoczesnych interfejsów w React z pomocą asystentów AI.",
+};
 
 export default function ReactPage() {
   return (
     <section className="max-w-4xl mx-auto px-4 py-20">
-      <h1 className="text-4xl md:text-5xl font-bold mb-8">Vibe Coding w React: Jak budować nowoczesne UI z prędkością światła</h1>
+      <SchemaMarkup
+        type="Article"
+        headline={metadata.title}
+        description={metadata.description}
+        author="Detektyw Polutek"
+        datePublished="2025-02-21"
+      />
+      <h1 className="text-4xl md:text-5xl font-bold mb-8">Vibe Coding w React & Next.js</h1>
       <div className="prose prose-slate prose-lg max-w-none">
         <p className="lead text-xl text-slate-600 mb-8">
-          React to obecnie najlepszy ekosystem do Vibe Codingu. Dzięki modularności i ogromnej bazie komponentów, AI potrafi &quot;zrozumieć vibe&quot; frontendu niemal natychmiast.
+          React i Next.js to naturalne środowisko dla Vibe Codingu. Dzięki komponentowej strukturze, AI jest w stanie precyzyjnie generować i modyfikować fragmenty UI.
         </p>
-
-        <h2 className="text-3xl font-bold mt-12 mb-6">Dlaczego React + AI to Power Couple?</h2>
+        <h2 className="text-3xl font-bold mt-12 mb-6">Workflow: Od promptu do komponentu</h2>
         <p>
-          AI świetnie radzi sobie z komponentami funkcyjnymi. Możesz poprosić o &quot;komponent karty produktu z Tailwind CSS i szkieletem ładowania&quot;, a otrzymasz gotowy, czysty kod JSX, który wystarczy wkleić do projektu.
+          Używając narzędzi takich jak <strong>v0.dev</strong> lub <strong>Cursor Composer</strong>, możesz stworzyć skomplikowany formularz lub dashboard w kilka sekund. Kluczem jest podawanie kontekstu bibliotek takich jak Tailwind CSS i shadcn/ui.
         </p>
-
-        <h2 className="text-3xl font-bold mt-16 mb-6 flex items-center gap-3">
-          <Layers className="text-blue-500" /> Najlepszy Stack:
-        </h2>
-        <ul className="space-y-4">
-          <li><strong>Next.js (App Router):</strong> Standard dla nowoczesnych apek webowych. AI doskonale rozumie strukturę plików i Server Components.</li>
-          <li><strong>Tailwind CSS:</strong> Najszybszy sposób na stylowanie. Prompty typu &quot;zrób to w stylu minimalistycznym apple-like&quot; działają cuda.</li>
-          <li><strong>Shadcn/UI:</strong> Kolekcja komponentów, które AI uwielbia. Są łatwe do modyfikacji i dają profesjonalny efekt od razu.</li>
-        </ul>
-
-        <h2 className="text-3xl font-bold mt-16 mb-6">Jak wibować w React?</h2>
-        <p>
-          Zamiast pisać hooki `useState` czy `useEffect` ręcznie, powiedz edytorowi: &quot;Dodaj obsługę wyszukiwania w czasie rzeczywistym do tej listy, użyj debouncing i pokaż spinner podczas ładowania danych&quot;. To jest Vibe Coding w praktyce.
-        </p>
-
-        <h2 className="text-3xl font-bold mt-16 mb-6">Podsumowanie</h2>
-        <p>
-          Vibe coding w React to nie tylko szybkość, to wyższa jakość. AI pilnuje dobrych praktyk, sugeruje optymalizacje wydajności i dba o to, by Twój kod był spójny.
-        </p>
+        <div className="grid md:grid-cols-2 gap-8 my-10">
+           <div className="p-6 bg-slate-50 rounded-xl border border-slate-200">
+             <h4 className="font-bold mb-2 flex items-center gap-2 text-blue-600"><Zap className="w-5 h-5" /> Szybkość</h4>
+             <p className="text-sm text-slate-600">Generowanie boilerplate'u, hooków i typów w ułamku sekundy.</p>
+           </div>
+           <div className="p-6 bg-slate-50 rounded-xl border border-slate-200">
+             <h4 className="font-bold mb-2 flex items-center gap-2 text-blue-600"><Layout className="w-5 h-5" /> Spójność</h4>
+             <p className="text-sm text-slate-600">AI pilnuje, aby nowe komponenty pasowały do istniejącego Design Systemu.</p>
+           </div>
+        </div>
       </div>
     </section>
   );

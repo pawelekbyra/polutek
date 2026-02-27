@@ -1,47 +1,50 @@
-import { Banknote, TrendingUp, Lightbulb } from 'lucide-react';
+import SchemaMarkup from '@/app/components/SchemaMarkup';
+import { DollarSign, Briefcase, Rocket, Globe } from 'lucide-react';
 
-export default function MonetizationPage() {
+export const metadata = {
+  title: "Jak zarabiać na Vibe Codingu w 2025 roku? | VibeCoding.pl",
+  description: "Przewodnik po monetyzacji umiejętności programowania intencyjnego. Freelance, SaaS i automatyzacja procesów.",
+};
+
+export default function EarnPage() {
   return (
     <section className="max-w-4xl mx-auto px-4 py-20">
-      <h1 className="text-4xl md:text-5xl font-bold mb-8">Jak zarabiać na Vibe Codingu? 5 pomysłów na biznes w 2025</h1>
+      <SchemaMarkup
+        type="Article"
+        headline={metadata.title}
+        description={metadata.description}
+        author="Detektyw Polutek"
+        datePublished="2025-02-21"
+      />
+      <h1 className="text-4xl md:text-5xl font-bold mb-8">Jak zarabiać na Vibe Codingu?</h1>
       <div className="prose prose-slate prose-lg max-w-none">
-        <p className="lead text-xl text-slate-600 mb-8">
-          Sama umiejętność używania AI to za mało. Prawdziwe pieniądze leżą tam, gdzie łączysz technologię z realną potrzebą rynkową.
+        <p className="lead text-xl text-slate-600 mb-12">
+          Umiejętność szybkiego dostarczania oprogramowania to najbardziej pożądany towar na rynku 2025 roku. Oto 3 konkretne ścieżki monetyzacji.
         </p>
 
-        <div className="space-y-12">
-          <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
-              <Banknote className="text-emerald-600" /> 1. Agencja Micro-SaaS
-            </h2>
-            <p>
-              Zamiast budować jeden wielki system, buduj 10 małych narzędzi rozwiązujących konkretne problemy (np. wtyczka do Shopify, generator faktur dla specyficznej branży). Dzięki Vibe Codingowi możesz wypuszczać nowy produkt co tydzień.
-            </p>
-          </div>
-
-          <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
-              <TrendingUp className="text-blue-600" /> 2. Konsulting AI Workflow
-            </h2>
-            <p>
-              Większość firm nie wie, jak używać AI w programowaniu. Możesz sprzedawać audyty i wdrożenia narzędzi takich jak Cursor czy GitHub Copilot w zespołach developerskich, drastycznie podnosząc ich wydajność.
-            </p>
-          </div>
-
-          <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
-              <Lightbulb className="text-amber-600" /> 3. Budowa MVP dla Founderów
-            </h2>
-            <p>
-              Nietechniczni założyciele potrzebują działającego prototypu, by zebrać finansowanie. Możesz oferować budowę MVP w 48 godzin za ułamek ceny tradycyjnego software house&apos;u.
-            </p>
-          </div>
+        <div className="space-y-8">
+           <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex gap-6 items-start">
+              <div className="bg-green-50 p-4 rounded-2xl text-green-600"><DollarSign className="w-8 h-8" /></div>
+              <div>
+                 <h3 className="text-2xl font-bold">1. AI Freelance</h3>
+                 <p className="text-slate-600">Dostarczaj projekty klientom 5x szybciej niż konkurencja. Rozliczaj się za wartość (Fixed Price), a nie za godziny pracy.</p>
+              </div>
+           </div>
+           <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex gap-6 items-start">
+              <div className="bg-blue-50 p-4 rounded-2xl text-blue-600"><Rocket className="w-8 h-8" /></div>
+              <div>
+                 <h3 className="text-2xl font-bold">2. Solopreneur SaaS</h3>
+                 <p className="text-slate-600">Buduj własne mikro-narzędzia, które rozwiązują specyficzne problemy niszowe. Z AI jesteś w stanie samemu dbać o produkt.</p>
+              </div>
+           </div>
+           <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex gap-6 items-start">
+              <div className="bg-purple-50 p-4 rounded-2xl text-purple-600"><Briefcase className="w-8 h-8" /></div>
+              <div>
+                 <h3 className="text-2xl font-bold">3. Konsultant Vibe Codingu</h3>
+                 <p className="text-slate-600">Pomagaj firmom wdrażać Cursora i AI Workflows. Edukacja zespołów deweloperskich to obecnie ogromny rynek.</p>
+              </div>
+           </div>
         </div>
-
-        <h2 className="text-3xl font-bold mt-16 mb-6">Podsumowanie</h2>
-        <p>
-          Vibe coding to Twoja przewaga konkurencyjna. Podczas gdy inni wyceniają projekt na 3 miesiące, Ty możesz go dowieźć w 3 dni. To jest marża, którą zatrzymujesz dla siebie.
-        </p>
       </div>
     </section>
   );

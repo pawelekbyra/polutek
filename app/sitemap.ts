@@ -1,12 +1,12 @@
-import { Metadata } from 'next/navigation';
 
 export async function generateSitemaps() {
   return [{ id: 0 }];
 }
 
 export default async function sitemap() {
-  const baseUrl = 'https://ai.polutek.pl';
+  const baseUrl = 'https://vibecoding.polutek.pl';
 
+  // Deduped and verified routes
   const routes = [
     '',
     '/co-to-jest-vibe-coding',
@@ -38,6 +38,8 @@ export default async function sitemap() {
     '/vibe-coding-w-react',
     '/najlepsze-modele-ai-2025',
     '/jak-zaczac-z-cursorem',
+    '/roadmap',
+    '/slownik',
   ];
 
   return routes.map((route) => ({

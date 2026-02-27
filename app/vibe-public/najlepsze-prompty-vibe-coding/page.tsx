@@ -1,60 +1,74 @@
-import { Terminal, Copy, Sparkles } from 'lucide-react';
+import SchemaMarkup from '@/app/components/SchemaMarkup';
+import { Sparkles, MessageSquare, Code2, Repeat } from 'lucide-react';
+
+export const metadata = {
+  title: "Biblioteka Promptów Vibe Coding: Gotowce do Cursora | VibeCoding.pl",
+  description: "Zbiór sprawdzonych promptów, które przyspieszają pisanie kodu, refaktoryzację i testowanie w edytorze Cursor.",
+};
 
 export default function PromptsPage() {
   return (
     <section className="max-w-4xl mx-auto px-4 py-20">
-      <h1 className="text-4xl md:text-5xl font-bold mb-8">Biblioteka Promptów dla Vibe Codera: Od MVP do Produkcji</h1>
+      <SchemaMarkup
+        type="Article"
+        headline={metadata.title}
+        description={metadata.description}
+        author="Detektyw Polutek"
+        datePublished="2025-02-21"
+      />
+      <h1 className="text-4xl md:text-5xl font-bold mb-8">Biblioteka Promptów</h1>
       <div className="prose prose-slate prose-lg max-w-none">
-        <p className="lead text-xl text-slate-600 mb-8">
-          W Vibe Codingu nie chodzi o pisanie długich esejów, ale o precyzyjne nakierowanie AI na właściwy tor. Oto sprawdzone szablony.
+        <p className="lead text-xl text-slate-600 mb-12">
+          Jakość Twojego kodu zależy od jakości Twoich instrukcji. Oto zestaw gotowych promptów, które zawsze dają dobre rezultaty w Cursorze i Claude 3.5 Sonnet.
         </p>
 
         <div className="space-y-12">
-          <PromptCard
-            title="Inicjalizacja Projektu"
-            prompt="Zbuduj bazę aplikacji Next.js (App Router) z Tailwind CSS. Skonfiguruj podstawowy layout z nawigacją i stopką. Dodaj obsługę ciemnego motywu i zainstaluj bibliotekę lucide-react do ikon."
-          />
-
-          <PromptCard
-            title="Budowa Komponentu UI"
-            prompt="Stwórz nowoczesny, responsywny komponent galerii zdjęć, który pobiera dane z tablicy obiektów. Dodaj efekt hover, modal po kliknięciu w zdjęcie i animacje wejścia za pomocą framer-motion."
-          />
-
-          <PromptCard
-            title="Refaktoryzacja i Czysty Kod"
-            prompt="Przeanalizuj ten komponent. Podziel go na mniejsze pod-komponenty, usuń powtórzenia kodu i upewnij się, że wszystkie typy TypeScript są poprawnie zdefiniowane. Wyciągnij logikę biznesową do osobnego hooka."
-          />
-
-          <PromptCard
-            title="Debugowanie Błędów"
-            prompt="Ten komponent rzuca błąd [NAZWA_BŁĘDU] przy próbie wysłania formularza. Przeanalizuj przepływ danych w obsłudze zdarzeń, sprawdź walidację po stronie klienta i zaproponuj fix wraz z testem jednostkowym."
-          />
+           <PromptCard
+             title="Nowa Funkcjonalność"
+             icon={<Sparkles className="w-6 h-6 text-yellow-500" />}
+             prompt="Zaimplementuj komponent [NAZWA] używając shadcn/ui. Ma on pobierać dane z endpointu /api/[X] i wyświetlać je w formie responsywnej karty. Pamiętaj o obsłudze stanów loading i error."
+           />
+           <PromptCard
+             title="Refaktoryzacja"
+             icon={<Repeat className="w-6 h-6 text-blue-500" />}
+             prompt="Przeanalizuj ten plik i wyciągnij powtarzającą się logikę do osobnych, czystych funkcji (pure functions). Zastosuj zasady DRY i popraw czytelność typów TypeScript."
+           />
+           <PromptCard
+             title="Debugowanie"
+             icon={<MessageSquare className="w-6 h-6 text-red-500" />}
+             prompt="Dlaczego ten komponent rerenderuje się 5 razy przy kliknięciu w przycisk? Sprawdź zależności w useEffect i zaproponuj optymalizację przy użyciu memo lub useMemo."
+           />
+           <PromptCard
+             title="Pisanie Testów"
+             icon={<Code2 className="w-6 h-6 text-emerald-500" />}
+             prompt="Napisz kompletny zestaw testów jednostkowych w Vitest dla tej funkcji. Pokryj przypadki brzegowe, błędne dane wejściowe oraz standardowy happy path."
+           />
         </div>
 
-        <h2 className="text-3xl font-bold mt-16 mb-6">Zasada 80/20</h2>
+        <h2 className="text-3xl font-bold mt-16 mb-6">Jak budować własne prompty?</h2>
         <p>
-          Pamiętaj, że najlepsze prompty to takie, które dają AI 80% kontekstu, a zostawiają 20% miejsca na kreatywność. Zawsze określaj stack technologiczny i pożądany efekt końcowy.
+          Stosuj zasadę <strong>C-O-I</strong>:
         </p>
+        <ul className="space-y-2">
+          <li>- <strong>Kontekst:</strong> @Files, @Codebase (co AI ma widzieć)</li>
+          <li>- <strong>Obiekt:</strong> Co dokładnie ma być stworzone (komponent, test, schema)</li>
+          <li>- <strong>Instrukcja:</strong> Jakie standardy mają być zachowane (Tailwind, TypeScript, Clean Code)</li>
+        </ul>
       </div>
     </section>
   );
 }
 
-function PromptCard({ title, prompt }: { title: string, prompt: string }) {
+function PromptCard({ title, icon, prompt }: any) {
   return (
-    <div className="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
-      <div className="px-6 py-4 bg-slate-800 flex justify-between items-center border-b border-slate-700">
-        <h3 className="text-slate-100 font-bold flex items-center gap-2">
-          <Terminal className="w-4 h-4 text-blue-400" /> {title}
-        </h3>
-        <button className="text-slate-400 hover:text-white transition-colors">
-          <Copy className="w-4 h-4" />
-        </button>
+    <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm group hover:shadow-md transition-shadow">
+      <div className="flex items-center gap-3 mb-4">
+        {icon}
+        <h3 className="text-xl font-bold text-slate-900">{title}</h3>
       </div>
-      <div className="p-6">
-        <code className="text-blue-300 text-sm leading-relaxed block whitespace-pre-wrap">
-          {prompt}
-        </code>
+      <div className="bg-slate-900 rounded-2xl p-6 relative group/code">
+         <p className="text-blue-300 font-mono text-sm leading-relaxed">&quot;{prompt}&quot;</p>
+         <button className="absolute top-4 right-4 text-xs text-white/50 hover:text-white transition-colors bg-white/10 px-3 py-1 rounded-lg">Kopiuj</button>
       </div>
     </div>
   );
