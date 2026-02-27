@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const host = headersList.get('host');
 
-  if (host === 'eliksir-wiedzmina.pl') {
+  if (host === 'eliksir-wiedzmina.pl' || host === 'www.eliksir-wiedzmina.pl') {
     return {
       title: "Mroczne kulisy polskiego biznesu: czeskie osady i niebezpieczne ceremonie",
       description: "Śledztwo ujawnia sekrety. Sprawdź, co naprawdę dzieje się podczas niebezpiecznych ceremonii w czeskich osadach i jakie tajemnice skrywają organizatorzy.",
