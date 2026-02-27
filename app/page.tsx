@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronLeft } from 'lucide-react';
 import PasswordProtect from './components/PasswordProtect';
 import ElixirArticle from './ElixirArticle';
@@ -9,8 +9,17 @@ import ChmurkaArticle from './ChmurkaArticle';
 import NewsFeed from './NewsFeed';
 
 export default function Home() {
-  const [unlockedArticle, setUnlockedArticle] = useState<string | null>('news');
-  const [isNewsMode, setIsNewsMode] = useState(true);
+  const [unlockedArticle, setUnlockedArticle] = useState<string | null>(null);
+  const [isNewsMode, setIsNewsMode] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const hostname = window.location.hostname;
+    if (hostname === 'eliksir-wiedzmina.pl' || hostname === 'www.eliksir-wiedzmina.pl') {
+      setUnlockedArticle('elixir');
+    }
+    setIsLoading(false);
+  }, []);
 
   const handleUnlock = (id: string) => {
     if (id === 'news') {
@@ -58,5 +67,7 @@ export default function Home() {
     return renderArticle(<ChmurkaArticle />);
   }
 
-  return <NewsFeed onUnlock={handleUnlock} />;
+  if (isLoading) return null;
+
+  return <PasswordProtect onUnlock={handleUnlock} />;
 }
