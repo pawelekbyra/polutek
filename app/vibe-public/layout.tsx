@@ -1,16 +1,14 @@
 import VibeNav from '@/app/components/VibeNav';
-import VibeGate from '@/app/components/VibeGate';
 import Link from 'next/link';
 
 export default function VibeCodingLayout({ children }: { children: React.ReactNode }) {
   return (
-    <VibeGate>
-      <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col">
-        <VibeNav />
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col">
+      <VibeNav />
 
-        <div className="flex-grow">
-          {children}
-        </div>
+      <div className="flex-grow">
+        {children}
+      </div>
 
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-400 py-20 px-4 border-t border-slate-800 mt-20">
@@ -65,8 +63,7 @@ export default function VibeCodingLayout({ children }: { children: React.ReactNo
           </div>
         </div>
       </footer>
-      </div>
-    </VibeGate>
+    </div>
   );
 }
 
