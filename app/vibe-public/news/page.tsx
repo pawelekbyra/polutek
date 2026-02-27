@@ -2,7 +2,7 @@ import VibeNewsroom from '@/app/components/VibeNewsroom';
 import SchemaMarkup from '@/app/components/SchemaMarkup';
 
 export const metadata = {
-  title: "Vibe Newsroom: Najnowsze wieści ze świata AI Coding | VibeCoding.pl",
+  title: "Vibe Newsroom: Najnowsze wieści ze świata AI Coding | Polutek.pl",
   description: "Bądź na bieżąco z aktualizacjami w Cursorze, Claude, DeepSeek i nowych frameworkach agentycznych.",
 };
 

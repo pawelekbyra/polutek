@@ -2,7 +2,7 @@ import { Users, LayoutGrid, Zap } from 'lucide-react';
 import SchemaMarkup from '@/app/components/SchemaMarkup';
 
 export const metadata = {
-  title: "Scaling Vibe Teams: Jak zarządzać zespołem 10x developerów | VibeCoding.pl",
+  title: "Scaling Vibe Teams: Jak zarządzać zespołem 10x developerów | Polutek.pl",
   description: "Zasady zarządzania w nowoczesnym software housie. Jak uniknąć chaosu w kodzie, gdy wszyscy używają AI.",
 };
 

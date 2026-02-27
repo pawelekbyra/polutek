@@ -2,7 +2,7 @@ import { Zap, Brain, Code2, CheckCircle2 } from 'lucide-react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "DeepSeek V3 vs Claude 3.5 Sonnet: Porównanie 2025 | VibeCoding.pl",
+  title: "DeepSeek V3 vs Claude 3.5 Sonnet: Porównanie 2025 | Polutek.pl",
   description: "Szukasz najlepszego modelu do kodowania? Porównujemy DeepSeek V3 oraz Claude 3.5 Sonnet pod kątem logiki, szybkości i ceny w Vibe Codingu.",
   keywords: "deepseek v3 vs claude 3.5 sonnet, najlepszy model ai do kodowania, ranking modeli ai 2025, deepseek v3 opinie, programowanie z ai",
 };

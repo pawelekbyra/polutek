@@ -2,7 +2,7 @@ import { ShieldCheck, Scale, AlertTriangle } from 'lucide-react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Czy kod z AI jest Twój? Prawo i Własność Autorska | VibeCoding.pl",
+  title: "Czy kod z AI jest Twój? Prawo i Własność Autorska | Polutek.pl",
   description: "Analiza prawna kodowania z AI. Kto posiada prawa autorskie do kodu z Claude i GPT-4o? Poznaj ryzyka licencyjne i zasady bezpieczeństwa prawnego.",
   keywords: "prawa autorskie kod ai, własność intelektualna ai, czy kod z ai jest legalny, licencja gpl ai, legalność vibe codingu",
 };

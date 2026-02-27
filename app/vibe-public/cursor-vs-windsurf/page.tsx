@@ -2,7 +2,7 @@ import { Swords, Zap, Ship } from 'lucide-react';
 import SchemaMarkup from '@/app/components/SchemaMarkup';
 
 export const metadata = {
-  title: "Cursor vs Windsurf: Bitwa na AI IDE 2025 | VibeCoding.pl",
+  title: "Cursor vs Windsurf: Bitwa na AI IDE 2025 | Polutek.pl",
   description: "Szczegółowe porównanie dwóch najpotężniejszych edytorów kodu AI. Sprawdź, który lepiej radzi sobie z agentami i dużymi projektami.",
 };
 

@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
-  const host = headersList.get('host') || 'vibecoding.polutek.pl';
+  const host = headersList.get('host') || 'polutek.pl';
   const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
 
   if (host === 'eliksir-wiedzmina.pl' || host === 'www.eliksir-wiedzmina.pl') {
@@ -42,10 +42,10 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   }
 
-  if (host === 'vibecoding.polutek.pl' || host === 'www.vibecoding.polutek.pl' || host === 'polutek.pl' || host === 'www.polutek.pl') {
+  if (host === 'polutek.pl' || host === 'www.polutek.pl' || host === 'vibecoding.polutek.pl' || host === 'www.vibecoding.polutek.pl' || host === 'localhost' || host === '127.0.0.1') {
     return {
-      title: "Vibe Coding: Przyszłość Programowania z AI | Andrej Karpathy",
-      description: "Dowiedz się czym jest Vibe Coding, jak używać narzędzi Cursor i Claude oraz dlaczego Andrej Karpathy ogłosił koniec tradycyjnego programowania.",
+      title: "Polutek.pl - Vibe Coding i Przyszłość Programowania z AI",
+      description: "Największy polski portal o Vibe Codingu. Dowiedz się jak używać narzędzi Cursor i Claude oraz dlaczego Andrej Karpathy ogłosił nową erę IT.",
       metadataBase: new URL(`${protocol}://${host}`),
       alternates: {
         canonical: '/',
@@ -58,10 +58,10 @@ export async function generateMetadata(): Promise<Metadata> {
           follow: true,
         },
       },
-      keywords: "vibe coding, ai coding, cursor editor, claude 3.5 sonnet, andrej karpathy, programowanie ai, przyszłość it",
+      keywords: "vibe coding, polutek, ai coding, cursor editor, claude 3.5 sonnet, andrej karpathy, programowanie ai, przyszłość it",
       openGraph: {
-        title: "Vibe Coding: Przyszłość Programowania z AI",
-        description: "Największy polski portal o Vibe Codingu. Narzędzia, tutoriale i manifest programowania intencyjnego.",
+        title: "Polutek.pl - Vibe Coding i Przyszłość Programowania z AI",
+        description: "Narzędzia, tutoriale i manifest programowania intencyjnego. Polutek.pl - Twoje centrum wiedzy o AI Software Engineering.",
         type: "website",
         url: `${protocol}://${host}`,
       },

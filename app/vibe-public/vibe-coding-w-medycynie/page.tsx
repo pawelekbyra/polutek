@@ -2,7 +2,7 @@ import { Stethoscope, ShieldPlus, Activity } from 'lucide-react';
 import SchemaMarkup from '@/app/components/SchemaMarkup';
 
 export const metadata = {
-  title: "Vibe Coding w Medycynie: Jak AI ratuje życie i kod | VibeCoding.pl",
+  title: "Vibe Coding w Medycynie: Jak AI ratuje życie i kod | Polutek.pl",
   description: "Zastosowanie programowania intencyjnego w sektorze healthcare. Tworzenie bezpiecznego oprogramowania medycznego z asystą AI.",
 };
 

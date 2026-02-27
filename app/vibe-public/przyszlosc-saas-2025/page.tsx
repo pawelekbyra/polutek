@@ -2,7 +2,7 @@ import { TrendingUp, Globe, Sparkles } from 'lucide-react';
 import SchemaMarkup from '@/app/components/SchemaMarkup';
 
 export const metadata = {
-  title: "Przyszłość SaaS 2025: Era Micro-SaaS i Solopreneurów | VibeCoding.pl",
+  title: "Przyszłość SaaS 2025: Era Micro-SaaS i Solopreneurów | Polutek.pl",
   description: "Dlaczego tradycyjne software house'y upadają, a jedna osoba z AI może zbudować imperium. Trendy SaaS na rok 2025.",
 };
 

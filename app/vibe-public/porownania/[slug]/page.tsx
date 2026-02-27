@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: any) {
   const comp = comparisons.find(c => c.slug === params.slug);
   if (!comp) return {};
   return {
-    title: `${comp.title}: Które narzędzie AI wybrać w 2025? | VibeCoding.pl`,
+    title: `${comp.title}: Które narzędzie AI wybrać w 2025? | Polutek.pl`,
     description: `Bezpośrednie starcie ${comp.itemA} vs ${comp.itemB}. Sprawdź benchmarki, ceny i wyniki w Vibe Codingu.`,
   };
 }

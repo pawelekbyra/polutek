@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { Brain, Cpu, Zap, Star } from 'lucide-react';
 
 export const metadata = {
-  title: "Claude 3.5 Sonnet vs GPT-o1: Który model lepiej pisze kod? | VibeCoding.pl",
+  title: "Claude 3.5 Sonnet vs GPT-o1: Który model lepiej pisze kod? | Polutek.pl",
   description: "Porównanie dwóch gigantów pod kątem rozumowania programistycznego. Claude vs OpenAI - sprawdzamy wyniki w Vibe Codingu.",
 };
 

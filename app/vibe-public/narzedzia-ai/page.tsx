@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { ArrowRight, Terminal, Zap, Globe, Cpu } from 'lucide-react';
 
 export const metadata = {
-  title: "Narzędzia Ery Vibe Coding 2025 | VibeCoding.pl",
+  title: "Narzędzia Ery Vibe Coding 2025 | Polutek.pl",
   description: "Zestawienie najlepszych narzędzi do programowania z AI. Cursor, Claude, Lovable, Bolt i wiele innych.",
 };
 

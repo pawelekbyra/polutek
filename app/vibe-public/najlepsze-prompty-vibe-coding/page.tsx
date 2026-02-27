@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { Sparkles, MessageSquare, Code2, Repeat } from 'lucide-react';
 
 export const metadata = {
-  title: "Biblioteka Promptów Vibe Coding: Gotowce do Cursora | VibeCoding.pl",
+  title: "Biblioteka Promptów Vibe Coding: Gotowce do Cursora | Polutek.pl",
   description: "Zbiór sprawdzonych promptów, które przyspieszają pisanie kodu, refaktoryzację i testowanie w edytorze Cursor.",
 };
 

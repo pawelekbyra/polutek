@@ -2,7 +2,7 @@ import VibeRoadmap from '@/app/components/VibeRoadmap';
 import SchemaMarkup from '@/app/components/SchemaMarkup';
 
 export const metadata = {
-  title: "Roadmapa Vibe Codingu: Od Juniora do AI Architecta | VibeCoding.pl",
+  title: "Roadmapa Vibe Codingu: Od Juniora do AI Architecta | Polutek.pl",
   description: "Interaktywna ścieżka nauki programowania intencyjnego. Dowiedz się czego się uczyć w erze AI Software Engineering.",
 };
 

@@ -2,7 +2,7 @@ import { Bot, Workflow, Cpu } from 'lucide-react';
 import SchemaMarkup from '@/app/components/SchemaMarkup';
 
 export const metadata = {
-  title: "Agentic Workflows: Tutorial Programowania Autonomicznego | VibeCoding.pl",
+  title: "Agentic Workflows: Tutorial Programowania Autonomicznego | Polutek.pl",
   description: "Jak zbudować system, w którym AI agenci współpracują ze sobą nad Twoim kodem. Tutorial krok po kroku.",
 };
 

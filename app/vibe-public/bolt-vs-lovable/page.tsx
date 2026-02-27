@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { Zap, Rocket, Globe, Code } from 'lucide-react';
 
 export const metadata = {
-  title: "Bolt.new vs Lovable.dev: Który generator fullstack jest lepszy? | VibeCoding.pl",
+  title: "Bolt.new vs Lovable.dev: Który generator fullstack jest lepszy? | Polutek.pl",
   description: "Zestawienie dwóch najgorętszych platform do budowania aplikacji webowych za pomocą jednego promptu. Sprawdzamy Bolt i Lovable.",
 };
 

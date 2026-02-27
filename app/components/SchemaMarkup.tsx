@@ -32,10 +32,10 @@ export default function SchemaMarkup(props: SchemaProps) {
       "datePublished": props.datePublished,
       "publisher": {
         "@type": "Organization",
-        "name": "vibecoding.polutek.pl",
+        "name": "polutek.pl",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://vibecoding.polutek.pl/logo.png"
+          "url": "https://polutek.pl/logo.png"
         }
       }
     };

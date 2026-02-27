@@ -2,7 +2,7 @@ import SchemaMarkup from '@/app/components/SchemaMarkup';
 import { Swords, Code2, Sparkles, MessageSquare } from 'lucide-react';
 
 export const metadata = {
-  title: "Cursor vs VS Code + Copilot: Który stack wygrywa w 2025? | VibeCoding.pl",
+  title: "Cursor vs VS Code + Copilot: Który stack wygrywa w 2025? | Polutek.pl",
   description: "Szczegółowe porównanie natywnego edytora AI Cursor z klasycznym VS Code doposażonym w GitHub Copilot. Sprawdź benchmarki i workflow.",
 };
 

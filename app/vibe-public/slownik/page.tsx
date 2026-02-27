@@ -4,7 +4,7 @@ import { Search, Book, ArrowRight, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Słownik Vibe Codingu: Najważniejsze pojęcia AI 2025 | VibeCoding.pl",
+  title: "Słownik Vibe Codingu: Najważniejsze pojęcia AI 2025 | Polutek.pl",
   description: "Zrozum język nowej ery programowania. Przewodnik po 500+ pojęciach AI i programowania intencyjnego.",
 };
 

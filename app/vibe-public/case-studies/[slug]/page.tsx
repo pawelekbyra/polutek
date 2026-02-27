@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: any) {
   const cs = caseStudies.find(c => c.slug === params.slug);
   if (!cs) return {};
   return {
-    title: `Case Study: ${cs.title} | VibeCoding.pl`,
+    title: `Case Study: ${cs.title} | Polutek.pl`,
     description: cs.summary,
   };
 }
