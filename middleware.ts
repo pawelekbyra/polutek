@@ -19,7 +19,10 @@ export default auth((req) => {
   }
 
   if (isAiDomain) {
-    // No rewrite needed anymore as we use a route group (vibe-public)
+    const isSeoFile = nextUrl.pathname === "/robots.txt" || nextUrl.pathname === "/sitemap.xml";
+    if (!nextUrl.pathname.startsWith("/vibe-public") && !isSeoFile) {
+      return NextResponse.rewrite(new URL(`/vibe-public${nextUrl.pathname}`, req.url));
+    }
   }
 
   const session = req.auth;

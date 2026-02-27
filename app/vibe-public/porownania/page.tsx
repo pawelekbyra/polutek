@@ -65,7 +65,7 @@ export default function ComparisonsListPage() {
 
           {/* Static Comparison Cards for SEO and Variety */}
           <Link
-            href="/cursor-vs-vscode-copilot"
+            href="/porownania/cursor-vs-vscode-copilot"
             className="group bg-white rounded-[3rem] p-10 border border-slate-200 shadow-sm hover:shadow-2xl transition-all hover:-translate-y-1 overflow-hidden relative"
           >
             <div className="relative z-10">
@@ -85,7 +85,7 @@ export default function ComparisonsListPage() {
           </Link>
 
           <Link
-            href="/bolt-vs-lovable"
+            href="/porownania/bolt-vs-lovable"
             className="group bg-white rounded-[3rem] p-10 border border-slate-200 shadow-sm hover:shadow-2xl transition-all hover:-translate-y-1 overflow-hidden relative"
           >
             <div className="relative z-10">
