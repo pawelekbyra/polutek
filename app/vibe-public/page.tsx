@@ -4,6 +4,9 @@ import Link from 'next/link';
 import VibeCalculator from '@/app/components/VibeCalculator';
 import VibeHero from '@/app/components/VibeHero';
 import VibeComparisonToggle from '@/app/components/VibeComparisonToggle';
+import VibeScoreTester from '@/app/components/VibeScoreTester';
+import SystemPromptGenerator from '@/app/components/SystemPromptGenerator';
+import VibeNewsroom from '@/app/components/VibeNewsroom';
 
 export default function VibeHome() {
   return (
@@ -47,6 +50,10 @@ export default function VibeHome() {
         </div>
         <VibeCalculator />
       </section>
+
+      <VibeScoreTester />
+      <SystemPromptGenerator />
+      <VibeNewsroom />
 
       {/* SEO Articles Preview */}
       <section className="py-24 max-w-6xl mx-auto px-4">
@@ -229,10 +236,10 @@ export default function VibeHome() {
             <TopicCluster
               title="Deep Tech & Narzędzia"
               links={[
-                { href: '/cursor-vs-windsurf', label: 'Cursor vs Windsurf' },
-                { href: '/agentic-workflows-tutorial', label: 'Agentic Workflows' },
-                { href: '/vibe-coding-w-pythonie', label: 'Python & Data Science' },
-                { href: '/zaawansowany-cursor', label: 'Advanced Cursor' }
+                { href: '/cursor-vs-vscode-copilot', label: 'Cursor vs Copilot' },
+                { href: '/bolt-vs-lovable', label: 'Bolt vs Lovable' },
+                { href: '/claude-35-sonnet-vs-gpt-o1', label: 'Claude vs GPT-o1' },
+                { href: '/agentic-workflows-tutorial', label: 'Agentic Workflows' }
               ]}
             />
             <TopicCluster
@@ -256,10 +263,10 @@ export default function VibeHome() {
             <TopicCluster
               title="Branżowe Case Studies"
               links={[
+                { href: '/case-study-dashboard-mvp', label: 'Dashboard w 2h' },
+                { href: '/case-study-chrome-extension-ai', label: 'Wtyczka Chrome AI' },
                 { href: '/vibe-coding-w-medycynie', label: 'Healthcare & MedTech' },
-                { href: '/vibe-coding-w-react', label: 'Frontend & React' },
-                { href: '/psychologia-vibe-codingu', label: 'Psychologia Pracy' },
-                { href: '/vibe-coding-vs-no-code', label: 'Vibe vs No-Code' }
+                { href: '/vibe-coding-w-react', label: 'Frontend & React' }
               ]}
             />
             <TopicCluster
@@ -268,7 +275,7 @@ export default function VibeHome() {
                 { href: '/co-to-jest-vibe-coding', label: 'Manifest Vibe Coding' },
                 { href: '/roadmap', label: 'Roadmapa 2025' },
                 { href: '/slownik', label: 'Słownik Pojęć' },
-                { href: '/faq', label: 'FAQ' }
+                { href: '/quiz', label: 'Quiz Readiness' }
               ]}
             />
           </div>

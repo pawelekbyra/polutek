@@ -40,6 +40,13 @@ export default async function sitemap() {
     '/jak-zaczac-z-cursorem',
     '/roadmap',
     '/slownik',
+    '/cursor-vs-vscode-copilot',
+    '/bolt-vs-lovable',
+    '/claude-35-sonnet-vs-gpt-o1',
+    '/case-study-dashboard-mvp',
+    '/case-study-chrome-extension-ai',
+    '/quiz',
+    '/news',
   ];
 
   // Eliksir Routes (only root)

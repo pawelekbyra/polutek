@@ -37,8 +37,8 @@ export default function VibeCodingLayout({ children }: { children: React.ReactNo
               <h4 className="text-white font-bold mb-6">Biznes i Prawo</h4>
               <ul className="space-y-4">
                 <li><Link href="/vibe-coding-dla-founderow" className="hover:text-white transition-colors">Dla Founderów</Link></li>
-                <li><Link href="/zarabianie-na-vibe-codingu" className="hover:text-white transition-colors">Jak na tym zarabiać?</Link></li>
                 <li><Link href="/legalnosc-kodu-ai" className="hover:text-white transition-colors">Aspekty Prawne</Link></li>
+                <li><Link href="/zarabianie-na-vibe-codingu" className="hover:text-white transition-colors">Zarabianie na AI</Link></li>
                 <li><Link href="/praca" className="hover:text-white transition-colors underline decoration-blue-500 underline-offset-4">Praca w AI (Outlier)</Link></li>
               </ul>
             </div>

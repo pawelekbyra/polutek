@@ -9,8 +9,8 @@ import ChmurkaArticle from './ChmurkaArticle';
 import NewsFeed from './NewsFeed';
 
 export default function Home() {
-  const [unlockedArticle, setUnlockedArticle] = useState<string | null>(null);
-  const [isNewsMode, setIsNewsMode] = useState(false);
+  const [unlockedArticle, setUnlockedArticle] = useState<string | null>('news');
+  const [isNewsMode, setIsNewsMode] = useState(true);
 
   const handleUnlock = (id: string) => {
     if (id === 'news') {
@@ -58,5 +58,5 @@ export default function Home() {
     return renderArticle(<ChmurkaArticle />);
   }
 
-  return <PasswordProtect onUnlock={handleUnlock} />;
+  return <NewsFeed onUnlock={handleUnlock} />;
 }
