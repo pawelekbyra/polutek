@@ -2,7 +2,11 @@ import { headers } from 'next/headers';
 
 export default async function sitemap() {
   const headersList = await headers();
-  const host = headersList.get('host') || 'vibecoding.polutek.pl';
+  let host = headersList.get('host') || 'polutek.pl';
+  // Canonical host for sitemap links
+  if (host === 'vibecoding.polutek.pl' || host === 'www.vibecoding.polutek.pl') {
+    host = 'polutek.pl';
+  }
   const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
   const baseUrl = `${protocol}://${host}`;
 

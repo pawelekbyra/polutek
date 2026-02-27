@@ -11,7 +11,7 @@ export default auth((req) => {
   const hostname = req.headers.get("host");
 
   const isEliksirDomain = hostname === "eliksir-wiedzmina.pl" || hostname === "www.eliksir-wiedzmina.pl";
-  const isAiDomain = hostname === "vibecoding.polutek.pl" || hostname === "www.vibecoding.polutek.pl";
+  const isAiDomain = hostname === "vibecoding.polutek.pl" || hostname === "www.vibecoding.polutek.pl" || hostname === "polutek.pl" || hostname === "www.polutek.pl";
 
   if (isEliksirDomain) {
     // No rewrite for eliksir-wiedzmina.pl anymore,
