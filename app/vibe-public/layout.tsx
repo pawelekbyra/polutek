@@ -24,18 +24,28 @@ export default function VibeCodingLayout({ children }: { children: React.ReactNo
               </p>
             </div>
             <div>
-              <h4 className="text-white font-bold mb-6">Nawigacja</h4>
+              <h4 className="text-white font-bold mb-6">Baza Wiedzy</h4>
               <ul className="space-y-4">
                 <li><Link href="/co-to-jest-vibe-coding" className="hover:text-white transition-colors">Czym jest Vibe Coding?</Link></li>
                 <li><Link href="/narzedzia-ai" className="hover:text-white transition-colors">Narzędzia AI</Link></li>
-                <li><Link href="/andrej-karpathy" className="hover:text-white transition-colors">Andrej Karpathy</Link></li>
+                <li><Link href="/zaawansowany-cursor" className="hover:text-white transition-colors">Zaawansowany Cursor</Link></li>
+                <li><Link href="/deepseek-v3-vs-claude-35" className="hover:text-white transition-colors">DeepSeek vs Claude</Link></li>
+                <li><Link href="/faq" className="hover:text-white transition-colors">FAQ</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-bold mb-6">Biznes i Prawo</h4>
+              <ul className="space-y-4">
+                <li><Link href="/vibe-coding-dla-founderow" className="hover:text-white transition-colors">Dla Founderów</Link></li>
+                <li><Link href="/zarabianie-na-vibe-codingu" className="hover:text-white transition-colors">Jak na tym zarabiać?</Link></li>
+                <li><Link href="/legalnosc-kodu-ai" className="hover:text-white transition-colors">Aspekty Prawne</Link></li>
                 <li><Link href="/praca" className="hover:text-white transition-colors underline decoration-blue-500 underline-offset-4">Praca w AI (Outlier)</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-bold mb-6">Społeczność</h4>
               <ul className="space-y-4">
-                <li><a href="#" className="hover:text-white transition-colors">X (dawniej Twitter)</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">X (Twitter)</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Newsletter</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Discord</a></li>
               </ul>

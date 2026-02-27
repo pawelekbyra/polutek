@@ -180,6 +180,34 @@ export default function VibeHome() {
               color="from-emerald-500 to-teal-600"
               label="Teoria"
            />
+           <ArticleCard
+              href="/vibe-coding-dla-founderow"
+              title="Vibe Coding dla Founderów"
+              desc="Jak budować MVP i walidować pomysły bez zespołu technicznego."
+              color="from-indigo-600 to-blue-800"
+              label="Biznes"
+           />
+           <ArticleCard
+              href="/legalnosc-kodu-ai"
+              title="Prawo a Kod z AI"
+              desc="Kto posiada prawa autorskie do kodu wygenerowanego przez sztuczną inteligencję?"
+              color="from-slate-500 to-slate-700"
+              label="Legal"
+           />
+           <ArticleCard
+              href="/deepseek-v3-vs-claude-35"
+              title="DeepSeek V3 vs Claude 3.5"
+              desc="Szczegółowe porównanie dwóch najpotężniejszych modeli do programowania."
+              color="from-purple-600 to-indigo-600"
+              label="Modele"
+           />
+           <ArticleCard
+              href="/zaawansowany-cursor"
+              title="Zaawansowany Cursor"
+              desc="Opanuj .cursorrules, Composer i zaawansowany kontekst na poziomie PRO."
+              color="from-blue-900 to-slate-900"
+              label="Tutorial"
+           />
         </div>
       </section>
     </main>
