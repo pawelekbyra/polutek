@@ -1,9 +1,16 @@
+import Image from 'next/image';
+
 export default function KarpathyPage() {
   return (
     <section className="max-w-4xl mx-auto px-4 py-20">
       <div className="flex flex-col md:flex-row items-center gap-12 mb-16">
-        <div className="w-48 h-48 bg-slate-200 rounded-full overflow-hidden shrink-0 border-4 border-blue-600/20">
-          <img src="https://i.pravatar.cc/300?u=karpathy" alt="Andrej Karpathy" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+        <div className="w-48 h-48 bg-slate-200 rounded-full overflow-hidden shrink-0 border-4 border-blue-600/20 relative">
+          <Image
+            src="https://i.pravatar.cc/300?u=karpathy"
+            alt="Andrej Karpathy"
+            fill
+            className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+          />
         </div>
         <div>
           <h1 className="text-4xl font-bold mb-4">Andrej Karpathy i Wizja Vibe Codingu</h1>
@@ -39,7 +46,7 @@ export default function KarpathyPage() {
         </ul>
 
         <div className="bg-blue-600 text-white p-8 rounded-2xl my-10 shadow-lg">
-          <h3 className="text-white font-bold mb-2 text-2xl">Złota rada od Karpathy'ego</h3>
+          <h3 className="text-white font-bold mb-2 text-2xl">Złota rada od Karpathy&apos;ego</h3>
           <p className="text-blue-50 opacity-90">
             Nie walcz z falą AI. Naucz się na niej surfować. Programista, który potrafi używać agentów AI, to super-człowiek w dzisiejszym świecie biznesu.
           </p>
