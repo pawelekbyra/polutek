@@ -1,5 +1,12 @@
 import { Briefcase, DollarSign, Clock, Globe, ArrowRight, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Praca w AI: Zarabiaj jako AI Trainer (Outlier) | VibeCoding.pl",
+  description: "Dowiedz się jak zarabiać w USD trenując modele AI. Przegląd ofert pracy zdalnej dla programistów i humanistów w Outlier.ai.",
+  keywords: "praca ai, outlier ai opinie, trenowanie modeli ai praca, praca zdalna usd, vibe coding praca",
+};
 
 export default function JobsPage() {
   const referralLink = "https://app.outlier.ai/expert/referrals/link/IN9kYs2LuN5_5lolObE_qnscTog";
