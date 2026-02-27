@@ -14,19 +14,15 @@ export default auth((req) => {
   const isAiDomain = hostname === "ai.polutek.pl" || hostname === "www.ai.polutek.pl";
 
   if (isEliksirDomain) {
-    if (nextUrl.pathname === "/") {
-      return NextResponse.rewrite(new URL("/fake-public", req.url));
-    }
-    if (nextUrl.pathname === "/fake-public") {
-      return NextResponse.next();
-    }
+    // No rewrite for eliksir-wiedzmina.pl anymore,
+    // it should go to the main page.tsx (password protected)
   }
 
   if (isAiDomain) {
     if (nextUrl.pathname === "/") {
-      return NextResponse.rewrite(new URL("/elixir-public", req.url));
+      return NextResponse.rewrite(new URL("/vibe-public", req.url));
     }
-    if (nextUrl.pathname === "/elixir-public") {
+    if (nextUrl.pathname === "/vibe-public") {
       return NextResponse.next();
     }
   }
