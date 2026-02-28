@@ -14,13 +14,17 @@ export default auth((req) => {
   const isAiDomain = hostname === "polutek.pl" || hostname === "www.polutek.pl" || hostname === "vibecoding.polutek.pl" || hostname === "www.vibecoding.polutek.pl" || hostname === "localhost" || hostname === "127.0.0.1";
 
   if (isEliksirDomain) {
-    // serves the root page from app/page.tsx
+    // Eliksir domain serves the root page app/page.tsx
     return NextResponse.next();
   }
 
   if (isAiDomain) {
     const isSeoFile = nextUrl.pathname === "/robots.txt" || nextUrl.pathname === "/sitemap.xml";
     if (!nextUrl.pathname.startsWith("/vibe-public") && !isSeoFile) {
+       // Root for polutek.pl should go to app/(main)/page.tsx
+       // But wait, the middleware rewrites to /vibe-public for all AI domains.
+       // If we want a separate root page for polutek.pl, we might need a different rewrite.
+       // However, the user said polutek.pl should go to vibe-public.
        return NextResponse.rewrite(new URL(`/vibe-public${nextUrl.pathname}`, req.url));
     }
   }
