@@ -14,14 +14,14 @@ export default auth((req) => {
   const isAiDomain = hostname === "polutek.pl" || hostname === "www.polutek.pl" || hostname === "vibecoding.polutek.pl" || hostname === "www.vibecoding.polutek.pl" || hostname === "localhost" || hostname === "127.0.0.1";
 
   if (isEliksirDomain) {
-    // No rewrite for eliksir-wiedzmina.pl anymore,
-    // it should go to the main page.tsx (password protected)
+    // serves the root page from app/page.tsx
+    return NextResponse.next();
   }
 
   if (isAiDomain) {
     const isSeoFile = nextUrl.pathname === "/robots.txt" || nextUrl.pathname === "/sitemap.xml";
     if (!nextUrl.pathname.startsWith("/vibe-public") && !isSeoFile) {
-      return NextResponse.rewrite(new URL(`/vibe-public${nextUrl.pathname}`, req.url));
+       return NextResponse.rewrite(new URL(`/vibe-public${nextUrl.pathname}`, req.url));
     }
   }
 
