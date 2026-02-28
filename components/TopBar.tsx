@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+// ZMIANA: Importujemy defaultowo (bez nawiasów klamrowych)
 import MenuIcon from '@/components/icons/MenuIcon';
 import BellIcon from '@/components/icons/BellIcon';
 import { useUser } from '@/context/UserContext';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import NotificationPopup from './NotificationPopup';
 import { cn } from '@/lib/utils';
 
@@ -17,6 +18,14 @@ export default function TopBar({ toggleSidebar, isSidebarOpen, className }: TopB
   const { user } = useUser();
   const pathname = usePathname();
   const [showNotifications, setShowNotifications] = useState(false);
+  // const [hasUnread, setHasUnread] = useState(false);
+
+  // useEffect(() => {
+  //   if (user?.notifications) {
+  //     const unread = user.notifications.some((n: any) => !n.read);
+  //     setHasUnread(unread);
+  //   }
+  // }, [user?.notifications]);
 
   const getPageTitle = () => {
     if (pathname === '/') return 'Strona Główna';
@@ -53,6 +62,9 @@ export default function TopBar({ toggleSidebar, isSidebarOpen, className }: TopB
             onClick={() => setShowNotifications(!showNotifications)}
           >
             <BellIcon className="w-6 h-6" />
+            {/* {hasUnread && (
+              <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-background" />
+            )} */}
           </Button>
 
           {showNotifications && (

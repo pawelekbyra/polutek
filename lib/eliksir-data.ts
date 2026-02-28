@@ -21,6 +21,23 @@ export const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfu
 export const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
 export const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://munaysonqo.com/retreats/";
 
+// Video Metadata for SEO/Schema
+export const VIDEO_ARREST_METADATA = {
+  name: "Nalot policji na ośrodek ayahuaski w Hermanovicach",
+  description: "Materiał operacyjny z policyjnej akcji rozbicia grupy polskich szamanów prowadzących nielegalne ceremonie ayahuaski.",
+  thumbnailUrl: `${JANOV_IMAGES_URL}/janov01.jpg`, // Using an existing relevant image as a placeholder/thumbnail
+  contentUrl: `${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`,
+  uploadDate: "2020-10-15T09:00:00+01:00",
+};
+
+export const VIDEO_STEFANEK_METADATA = {
+  name: "Krzysztof Stefanek o powstaniu Osady Natury Zew",
+  description: "Relacja Krzysztofa Stefanka dotycząca okoliczności przejęcia nieruchomości w Janowie od Michała Kicińskiego.",
+  thumbnailUrl: `${JANOV_IMAGES_URL}/janov02.jpg`, // Using an existing relevant image
+  contentUrl: `${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`,
+  uploadDate: "2024-11-01T12:00:00+01:00",
+};
+
 export const generateKordysPages = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
     const pageNumber = String(i + 1).padStart(4, '0');
