@@ -151,7 +151,7 @@ export default function Page() {
               Intrygujący fragment dotyczy własności &quot;bazy&quot;. Dokumenty stwierdzają:
             </p>
 
-            <CaseFile title="Wlasność nieruchomości">
+            <CaseFile title="Własność nieruchomości">
               &quot;(...) budynek rodzinny w miejscowości Janov (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy&quot;
               <br/><br/>
               &quot;Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem jednej dziesiątej nieruchomości&quot;.
@@ -324,7 +324,7 @@ export default function Page() {
             </p>
 
             <p>
-              Będąc tak blisko Badowskiego, doskonale znali mroczną tajemnicę śmierci Ilony. Their decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się o &quot;ciągłość dostaw&quot;, dowodzi, że w pełni akceptowali reguły zmowy milczenia.
+              Będąc tak blisko Badowskiego, doskonale znali mroczną tajemnicę śmierci Ilony. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się o &quot;ciągłość dostaw&quot;, dowodzi, że w pełni akceptowali reguły zmowy milczenia.
             </p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Kiciński</h2>
@@ -375,7 +375,7 @@ export default function Page() {
             </CaseFile>
 
             <p>
-              Gdy w toku czynności padło kluczowe pytanie o jego własny udział w ceremoniach ayahuaski in Janowie, odpowiedź była lakoniczna:
+              Gdy w toku czynności padło kluczowe pytanie o jego własny udział w ceremoniach ayahuaski w Janowie, odpowiedź była lakoniczna:
             </p>
 
             <CaseFile title="Odpowiedź na pytanie o udział">
@@ -409,7 +409,7 @@ export default function Page() {
             </p>
 
             <p>
-              Stefanek wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt &quot;znalazł się in jednych rękach&quot;. Kluczowy moment tej opowieści Stefanek datuje z niezwykłą precyzją:
+              Stefanek wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt &quot;znalazł się w jednych rękach&quot;. Kluczowy moment tej opowieści Stefanek datuje z niezwykłą precyzją:
             </p>
 
             <CaseFile title="Wypowiedź K. Stefanka">
@@ -432,7 +432,7 @@ export default function Page() {
               </div>
 
             <p>
-              Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech in pozbywaniu się &quot;gorącego kartofla&quot;:
+              Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech w pozbywaniu się &quot;gorącego kartofla&quot;:
             </p>
 
             <ul className="list-none space-y-12 my-12 font-mono text-sm border-l-2 border-stone-300 pl-4">
@@ -571,7 +571,7 @@ export default function Page() {
             </p>
 
             <p>
-              Według ustaleń Onetu, w czerwcu 2018 roku na farmie in Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, nikt nie wezwał pomocy medycznej. Co więcej, uczestnikom odebrano wcześniej telefony, co uniemożliwiło im samodzielne zaalarmowanie służb ratunkowych.
+              Według ustaleń Onetu, w czerwcu 2018 roku na farmie w Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, nikt nie wezwał pomocy medycznej. Co więcej, uczestnikom odebrano wcześniej telefony, co uniemożliwiło im samodzielne zaalarmowanie służb ratunkowych.
             </p>
 
             <p>
