@@ -2,8 +2,8 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Scale, FileText, Search, Mail, MapPin, Calendar, Globe, X, Stamp, Video, Info, ShieldCheck, History, ExternalLink, Download, PenTool, Home as HouseIcon, AlertCircle } from 'lucide-react';
 import {
-  CaseFile, PullQuote, LocationStamp, TransactionStamp
-} from '@/app/components';
+  CaseFile, PullQuote, LocationStampUI, TransactionStampUI
+} from '@/app/eliksir/ElixirServerComponents';
 import {
   ElixirModalsProvider,
   GalleryTrigger,
@@ -17,7 +17,9 @@ import {
   ARREST_VIDEO_CID,
   KORDYS_PDF_URL,
   BADI_PDF_URL,
-  MUNAY_WAYBACK_URL
+  MUNAY_WAYBACK_URL,
+  VIDEO_ARREST_METADATA,
+  VIDEO_STEFANEK_METADATA
 } from '@/lib/eliksir-data';
 
 export const metadata: Metadata = {
@@ -43,11 +45,39 @@ export default function Page() {
     }]
   };
 
+  const videoArrestSchema = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": VIDEO_ARREST_METADATA.name,
+    "description": VIDEO_ARREST_METADATA.description,
+    "thumbnailUrl": VIDEO_ARREST_METADATA.thumbnailUrl,
+    "uploadDate": VIDEO_ARREST_METADATA.uploadDate,
+    "contentUrl": VIDEO_ARREST_METADATA.contentUrl,
+  };
+
+  const videoStefanekSchema = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": VIDEO_STEFANEK_METADATA.name,
+    "description": VIDEO_STEFANEK_METADATA.description,
+    "thumbnailUrl": VIDEO_STEFANEK_METADATA.thumbnailUrl,
+    "uploadDate": VIDEO_STEFANEK_METADATA.uploadDate,
+    "contentUrl": VIDEO_STEFANEK_METADATA.contentUrl,
+  };
+
   return (
     <ElixirModalsProvider>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoArrestSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoStefanekSchema) }}
       />
       <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
 
@@ -141,13 +171,16 @@ export default function Page() {
               W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <GalleryTrigger type="janov" className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">działkę w Janowie</GalleryTrigger> i za niewielką opłatą pobrać jej pełną historię.
             </p>
 
-            <LocationStamp
-              name="JANOV U KRNOVA"
-              code="656976"
-              plot="st. 281"
-              lv="127"
-              onClick={undefined} // No direct link from stamp, use trigger
-            />
+            <div className="my-8 flex justify-start">
+              <GalleryTrigger type="janov">
+                <LocationStampUI
+                  name="JANOV U KRNOVA"
+                  code="656976"
+                  plot="st. 281"
+                  lv="127"
+                />
+              </GalleryTrigger>
+            </div>
 
             <p>
             Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
@@ -241,7 +274,7 @@ export default function Page() {
               </div>
 
             <p>
-              Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym:
+              Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się in jednym czeskim terminie prawnym:
             </p>
 
             <div className="my-12 flex gap-4 p-5 bg-blue-50/50 border-l-4 border-blue-900/80 rounded-r-lg shadow-sm">
@@ -415,7 +448,7 @@ export default function Page() {
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
-                  <strong>3 października 2023 r.</strong> – Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów w nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
+                  <strong>3 października 2023 r.</strong> – Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów in nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
                 </div>
               </li>
 
@@ -446,11 +479,13 @@ export default function Page() {
               Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong>Krzysztof Stefanek</strong>, który w filmie mówi o &quot;odwróconej logice&quot; i pięknie wolontariatu, i jego konkubina <strong>Magdalena Drzewińska</strong> w rzeczywistości doskonale znali mroczną historię Janowa i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
             </p>
 
-            <TransactionStamp
-              label="Nr Transakcji (Katastr)"
-              value="V-5821/2023-127"
-              subDetails="Obręb: Janov u Krnova [656976]"
-            />
+            <div className="my-8 flex justify-start">
+               <TransactionStampUI
+                label="Nr Transakcji (Katastr)"
+                value="V-5821/2023-127"
+                subDetails="Obręb: Janov u Krnova [656976]"
+              />
+            </div>
 
             <p>
               Ostatecznie strategia okazała się skuteczna. Śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &quot;stowarzyszeniu&quot;. Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, &quot;czystej&quot; osady.
@@ -480,13 +515,16 @@ export default function Page() {
             </p>
 
 
-            <LocationStamp
-              name="NÝDEK"
-              code="708186"
-              plot="st. 506/1"
-              lv="832"
-              onClick={undefined}
-            />
+            <div className="my-8 flex justify-start">
+              <GalleryTrigger type="nydek">
+                <LocationStampUI
+                  name="NÝDEK"
+                  code="708186"
+                  plot="st. 506/1"
+                  lv="832"
+                />
+              </GalleryTrigger>
+            </div>
 
             <p>
               <span className="bg-yellow-200 px-1 font-bold text-stone-900 shadow-sm">Oznacza to, że nie jeden lecz obaj legendarni założyciele CD Projekt, na czeskim pograniczu posiadali nieruchomości, w których odpłatnie oferowano te same nielegalne substancje.</span>
@@ -516,11 +554,13 @@ export default function Page() {
               Nabywcą luksusowej posiadłości nie został inny inwestor, lecz sam Piotr Tracz – ten sam człowiek, który wcześniej pełnił tam rolę szamana.
             </p>
 
-            <TransactionStamp
-              label="Nr Transakcji (Katastr)"
-              value="V-2937/2021-832"
-              subDetails="Obręb: Nýdek [708186]"
-            />
+            <div className="my-8 flex justify-start">
+              <TransactionStampUI
+                label="Nr Transakcji (Katastr)"
+                value="V-2937/2021-832"
+                subDetails="Obręb: Nýdek [708186]"
+              />
+            </div>
 
             <p>
               Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z &quot;darowizną&quot; Kicińskiego w Janowie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
