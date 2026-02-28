@@ -1,20 +1,11 @@
 import { MetadataRoute } from 'next'
-import { headers } from 'next/headers'
 
-export default async function robots(): Promise<MetadataRoute.Robots> {
-  const headersList = await headers();
-  let host = headersList.get('host') || 'polutek.pl';
-  // Canonical host for robots/sitemap
-  if (host === 'polutek.pl' || host === 'www.polutek.pl') {
-    host = 'polutek.pl';
-  }
-  const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
-
+export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: `${protocol}://${host}/sitemap.xml`,
+    sitemap: 'https://www.eliksir-wiedzmina.pl/sitemap.xml',
   }
 }
