@@ -2,7 +2,7 @@ import React from 'react';
 import { Scale, FileText, Search, Mail, Stamp, Home as HouseIcon } from 'lucide-react';
 
 export const CaseFile = ({ title, children, type = 'evidence' }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email' }) => (
-  <div className="my-8 border border-stone-300 bg-white shadow-sm rounded-sm overflow-hidden break-inside-avoid">
+  <div className="my-8 border border-stone-300 bg-white shadow-sm rounded-sm overflow-hidden break-inside-avoid text-left">
     <div className="bg-stone-100 border-b border-stone-200 px-4 py-2 flex items-center gap-2 text-xs font-mono text-stone-500 uppercase tracking-wider">
       {type === 'email' ? <Mail className="w-4 h-4" /> : type === 'transcript' ? <Search className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
       <span>{title}</span>
@@ -14,7 +14,7 @@ export const CaseFile = ({ title, children, type = 'evidence' }: { title: string
 );
 
 export const LegalNote = ({ term, children }: { term: string, children: React.ReactNode }) => (
-  <div className="my-10 flex gap-4 p-5 bg-blue-50/50 border-l-4 border-blue-900/80 rounded-r-lg">
+  <div className="my-10 flex gap-4 p-5 bg-blue-50/50 border-l-4 border-blue-900/80 rounded-r-lg text-left">
     <Scale className="w-6 h-6 text-blue-900/80 shrink-0 mt-1" />
     <div>
       <strong className="block font-serif text-blue-900 text-lg mb-2">{term}</strong>
@@ -24,7 +24,7 @@ export const LegalNote = ({ term, children }: { term: string, children: React.Re
 );
 
 export const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
-  <div className="my-10 pl-6 border-l-[3px] border-stone-800/80">
+  <div className="my-10 pl-6 border-l-[3px] border-stone-800/80 text-left">
     <p className="font-serif text-xl md:text-2xl italic text-stone-900 leading-relaxed mb-3">
       „{quote}”
     </p>
@@ -56,7 +56,7 @@ export const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: 
 );
 
 export const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
-  <div className="relative border border-stone-300 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] group hover:border-stone-400 transition-colors cursor-default">
+  <div className="relative border border-stone-300 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] group hover:border-stone-400 transition-colors cursor-default text-left">
      <div className="absolute top-1 right-1 text-stone-300 group-hover:text-stone-500 transition-colors">
        <Search className="w-3 h-3" />
      </div>
