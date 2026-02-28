@@ -14,14 +14,7 @@ export interface TopBarProps {
 }
 
 export default function TopBar({ toggleSidebar, isSidebarOpen, className }: TopBarProps) {
-  // Safe useUser call to prevent crashes in layouts where UserProvider is missing
-  let userContext = null;
-  try {
-    userContext = useUser();
-  } catch (e) {
-    // Fail silently, context is likely missing in this layout
-  }
-
+  const { user } = useUser();
   const pathname = usePathname();
   const [showNotifications, setShowNotifications] = useState(false);
 

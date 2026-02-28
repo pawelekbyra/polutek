@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { Providers } from "@/components/Providers";
+import { UserProvider } from '@/context/UserContext';
 import "../globals.css";
 import type { Viewport } from 'next';
 
@@ -19,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body className="antialiased font-serif">
-        {children}
+        <UserProvider>
+          {children}
+        </UserProvider>
         <Analytics />
       </body>
     </html>
