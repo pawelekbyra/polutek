@@ -48,7 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl">
-      <body className={`${inter.className} antialiased font-serif bg-[#FDFBF7]`}>
+      <body className={`antialiased font-serif bg-[#FDFBF7]`}>
         {children}
       </body>
     </html>
