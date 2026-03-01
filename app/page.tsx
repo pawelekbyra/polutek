@@ -444,7 +444,7 @@ export default function Page() {
   <div className="max-w-4xl mx-auto text-center flex-grow flex flex-col justify-center items-center">
     <div className="flex justify-center mb-4 w-full">
        <img
-         src="/staragazetapng.png"
+         src="/zdjeciehej.png"
          alt="Wiedźmini z eliksirem"
          className="w-auto h-[32vh] md:h-[42vh] object-contain opacity-90 grayscale contrast-125 mix-blend-multiply"
        />
