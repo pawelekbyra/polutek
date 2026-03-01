@@ -154,28 +154,32 @@ const BrandHeader = () => {
   }, []);
 
   return (
- <div className="max-w-4xl mx-auto mb-6 border-t-2 border-stone-900 pt-2">
-      <div className="text-center pb-4">
-       <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-stone-900 uppercase font-serif leading-none whitespace-nowrap">
-  NASZA GAZETKA
-</h1>
+ <div className="max-w-4xl mx-auto mb-6 pt-2">
+      <div className="flex items-center gap-4 pb-4">
+        <div className="flex-grow h-px bg-stone-900"></div>
+        <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-stone-900 uppercase font-serif leading-none whitespace-nowrap">
+          NASZA GAZETKA
+        </h1>
+        <div className="flex-grow h-px bg-stone-900"></div>
       </div>
 
-      <div className="border-y-2 border-stone-900 py-2 flex items-center justify-between px-4 text-[10px] md:text-sm font-bold uppercase tracking-[0.15em] text-stone-800">
+      <div className="border-y-2 border-stone-900 py-2 flex items-center justify-between px-4 text-[10px] md:text-sm font-bold uppercase tracking-tight text-stone-800">
         <div className="flex items-center gap-3">
           <Newspaper className="w-5 h-5" />
           <span className="hidden sm:inline">Niezależne Media</span>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="sm:hidden text-stone-400">•</span>
-          <span className="text-center">{currentDate || "PONIEDZIAŁEK, 3 MARCA 2026"}</span>
-          <span className="hidden sm:inline text-stone-400">•</span>
+          <span className="text-center">{currentDate || "PONIEDZIAŁEK, 3 MARCA 2026"} •</span>
         </div>
 
         <div className="flex items-center gap-3">
-          <span className="hidden sm:inline text-right">Serwis Śledczy</span>
+          <span className="hidden sm:inline text-right whitespace-nowrap">Serwis Śledczy</span>
           <FileText className="w-5 h-5" />
+        </div>
+
+        <div className="hidden md:block">
+          <span className="whitespace-nowrap ml-4 border-l-2 border-stone-900 pl-4">| ROK XXV, NR 10</span>
         </div>
       </div>
     </div>
@@ -441,26 +445,26 @@ export default function Page() {
       <header className="min-h-screen flex flex-col pt-2 pb-4 px-4">
   <BrandHeader />
 
-  <div className="max-w-4xl mx-auto text-center flex-grow flex flex-col justify-center items-center">
-    <div className="flex justify-center mb-4 w-full">
+  <div className="max-w-4xl mx-auto text-center flex-grow flex flex-col justify-start items-center border-x border-stone-900/40 px-8 md:px-16 pt-8">
+    <div className="flex justify-center mb-6 w-full">
        <img
-         src="/staragazetapng.png"
+         src="/zdjeciehej.png"
          alt="Wiedźmini z eliksirem"
-         className="w-auto h-[32vh] md:h-[42vh] object-contain opacity-90 grayscale contrast-125 mix-blend-multiply"
+         className="w-auto h-[22vh] md:h-[32vh] object-contain grayscale contrast-125 mix-blend-multiply"
        />
     </div>
 
     <h2 className="mb-4 text-stone-900">
-      <span className="block text-4xl md:text-7xl font-bold leading-none tracking-tight uppercase">
+      <span className="block text-6xl md:text-8xl font-black leading-none tracking-tighter uppercase font-serif">
         Eliksir Wiedźmina
       </span>
-     <span className="block text-lg md:text-3xl text-stone-500 italic font-medium mt-2 max-w-3xl mx-auto uppercase tracking-widest">
-  Mroczna tajemnica <br /> twórców CD Projekt
-</span>
+     <span className="block text-lg md:text-2xl text-stone-900 italic font-bold mt-2 max-w-3xl mx-auto uppercase border-y border-stone-900 py-1">
+        MROCZNA TAJEMNICA TWÓRCÓW CD PROJEKT
+     </span>
     </h2>
 
-    <div className="max-w-2xl mx-auto border-y border-stone-200 py-4 px-4">
-      <p className="text-lg md:text-xl text-stone-700 leading-relaxed italic">
+    <div className="max-w-2xl mx-auto pt-2 pb-8">
+      <p className="text-xl md:text-2xl text-stone-800 leading-tight italic font-serif">
         Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
       </p>
     </div>
