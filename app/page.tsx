@@ -438,35 +438,40 @@ export default function Page() {
       />
 
       <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
-        <header className="pt-4 pb-8 px-4">
-          <BrandHeader />
+      <header className="min-h-screen flex flex-col pt-4 pb-8 px-4">
+  <BrandHeader />
 
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-4">
- <img 
-  src="/staragazetapng.png" 
-  alt="Stara Gazeta" 
-  className="w-full h-auto my-8 block mix-blend-multiply" 
-/>
-            </div>
+  <div className="max-w-4xl mx-auto text-center flex-grow flex flex-col justify-center items-center">
+    <div className="flex justify-center mb-6 w-full">
+       <img
+         src="/staragazetapng.png"
+         alt="Wiedźmini z eliksirem"
+         {/* h-[40vh] sprawia, że obrazek zawsze zajmie 40% wysokości ekranu, niezależnie od urządzenia */}
+         className="w-auto h-[35vh] md:h-[45vh] object-contain opacity-90 grayscale contrast-125 mix-blend-multiply"
+       />
+    </div>
 
-            <h2 className="mb-8 text-stone-900">
-              <span className="block text-5xl md:text-7xl font-bold leading-none tracking-tight">
-                Eliksir Wiedźmina
-              </span>
-              <span className="block text-2xl md:text-4xl text-stone-500 italic font-medium mt-4 max-w-3xl mx-auto">
-                Mroczna tajemnica twórców CD Projekt
-              </span>
-            </h2>
+    <h2 className="mb-6 text-stone-900">
+      <span className="block text-4xl md:text-7xl font-bold leading-none tracking-tight uppercase">
+        Eliksir Wiedźmina
+      </span>
+      <span className="block text-lg md:text-3xl text-stone-500 italic font-medium mt-4 max-w-3xl mx-auto uppercase tracking-widest">
+        Mroczna tajemnica twórców CD Projekt
+      </span>
+    </h2>
 
-            <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
-              <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
-                Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry &quot;Wiedźmin&quot; finansowali szamańskie podziemie.
-              </p>
-            </div>
-          </div>
-        </header>
-
+    <div className="max-w-2xl mx-auto border-y border-stone-200 py-6 px-4">
+      <p className="text-lg md:text-xl text-stone-700 leading-relaxed italic">
+        Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
+      </p>
+    </div>
+    
+    {/* Subtelna strzałka/linia sugerująca skrolowanie na dole ekranu */}
+    <div className="mt-auto pt-8 animate-pulse hidden md:block">
+       <div className="w-px h-12 bg-stone-300 mx-auto"></div>
+    </div>
+  </div>
+</header>
         <article className="max-w-2xl mx-auto px-4 pt-8 pb-0 flex-grow">
           <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic
             prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-400 hover:prose-a:bg-stone-100 transition-colors">
