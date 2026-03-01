@@ -439,7 +439,7 @@ export default function Page() {
 
       <main className="min-h-screen bg-[#e4dcc4] text-[#1c1917] selection:bg-yellow-900/20 font-serif flex flex-col items-center">
         
-   <div className="w-full max-w-5xl bg-[#e4dcc4] min-h-screen border-x border-stone-400 shadow-2xl flex flex-col relative overflow-hidden">
+        <div className="w-full max-w-5xl bg-[#e4dcc4] min-h-screen border-x border-stone-400 shadow-2xl flex flex-col relative overflow-hidden">
           
           {/* Tekstura starego papieru */}
           <div className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
@@ -448,19 +448,19 @@ export default function Page() {
           <header className="w-full pt-0 pb-6 px-6 flex flex-col items-center z-10 relative">
             <BrandHeader />
 
-         {/* Zmniejszony padding bottom żeby podnieść content + dodane tło pasujące do gazety */}
-<div className="w-full text-center flex flex-col justify-center items-center pb-0 bg-[#e4dcc4]">
-  <img
-    src="/zdjeciehej.png"
-    alt="Wiedźmini z eliksirem"
-    className="h-32 md:h-[180px] object-contain opacity-85 grayscale contrast-125 sepia-[.3] mix-blend-multiply mb-1 bg-[#e4dcc4]"
-  />
-</div>
+            {/* Zmniejszony padding bottom żeby podnieść content */}
+            <div className="w-full text-center flex flex-col justify-center items-center pb-0">
+              <img
+                src="/zdjeciehej.png"
+                alt="Wiedźmini z eliksirem"
+                className="h-32 md:h-[180px] object-contain opacity-85 grayscale contrast-125 sepia-[.3] mix-blend-multiply mb-1"
+              />
+
               <h2 className="text-stone-900 w-full mb-1">
                 <span className="block text-4xl md:text-[5.5rem] font-bold leading-none tracking-tight uppercase">
                   Eliksir Wiedźmina
                 </span>
-               <span className="block text-sm md:text-2xl text-stone-800 italic font-bold uppercase tracking-widest mt-1 whitespace-nowrap">
+                <span className="block text-sm md:text-2xl text-stone-800 italic font-medium uppercase tracking-widest mt-1 whitespace-nowrap">
                   Mroczna tajemnica twórców CD Projekt
                 </span>
               </h2>
