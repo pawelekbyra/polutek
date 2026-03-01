@@ -437,7 +437,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(videoStefanekSchema) }}
       />
 
-      <main className="min-h-screen bg-[#e4dcc4] text-[#1c1917] selection:bg-yellow-900/20 font-serif flex flex-col items-center">
+      <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
         
         <div className="w-full max-w-5xl bg-[#e4dcc4] min-h-screen border-x border-stone-400 shadow-2xl flex flex-col relative overflow-hidden">
           
