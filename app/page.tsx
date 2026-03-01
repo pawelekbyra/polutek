@@ -82,13 +82,13 @@ export default function Page() {
 
       <main className="min-h-screen text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
         <BrandHeader />
-        <header className="pt-12 pb-12 px-6">
+        <header className="pt-4 pb-12 px-6">
           <div className="max-w-5xl mx-auto text-center">
-            <div className="mb-12 flex justify-center">
+            <div className="mb-8 flex justify-center">
               <img
                 src="/naokladke.png"
                 alt="Eliksir Wiedźmina - Michał Kiciński i Bartosz Badowski"
-                className="w-full max-w-2xl h-auto opacity-[0.85] contrast-125 saturate-0 mix-blend-multiply"
+                className="w-full max-w-4xl h-auto opacity-[0.85] contrast-125 saturate-0 mix-blend-multiply"
               />
             </div>
 

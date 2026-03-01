@@ -17,7 +17,7 @@ export default function BrandHeader() {
   }, []);
 
   return (
-    <header className="pt-12 pb-4 px-6 bg-transparent w-full">
+    <header className="pt-12 pb-0 px-6 bg-transparent w-full">
       <div className="max-w-6xl mx-auto text-center">
         <h1 className="text-6xl md:text-8xl font-display font-black tracking-tighter uppercase mb-4 text-stone-900">
           NASZA GAZETKA
@@ -46,9 +46,6 @@ export default function BrandHeader() {
           </div>
         </div>
 
-        <nav className="flex justify-center gap-8 font-serif text-[10px] font-bold uppercase tracking-[0.3em] text-stone-500 mt-6">
-          <span className="text-stone-900 border-b-2 border-stone-800 pb-1">ŚLEDZTWA ŚLEDCZE</span>
-        </nav>
       </div>
     </header>
   );
