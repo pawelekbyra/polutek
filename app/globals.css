@@ -6,6 +6,7 @@
   :root {
     --font-serif: var(--font-eb-garamond), serif;
     --font-heading: var(--font-playfair), serif;
+    --font-blackletter: var(--font-blackletter), serif;
     --font-sans: var(--font-inter), sans-serif;
     --paper-bg: #fdfbf7;
 
@@ -71,7 +72,7 @@
     font-family: var(--font-serif);
     @apply text-stone-900;
     overscroll-behavior-y: contain; /* Prevent bounce scroll */
-    background-color: #e5e5e5; /* Neutral grey background to make paper stand out */
+    background-color: var(--paper-bg); /* Use consistent paper color as root */
   }
 
   body {
@@ -101,13 +102,11 @@
 
 @layer components {
   .newspaper-page {
-    @apply max-w-5xl mx-auto shadow-[0_0_50px_rgba(0,0,0,0.2)] min-h-screen relative overflow-hidden;
+    @apply max-w-5xl mx-auto min-h-screen relative overflow-hidden;
     background-color: var(--paper-bg);
     padding: 2rem 1rem;
     box-shadow:
-      0 0 2px rgba(0,0,0,0.1),
-      0 10px 30px rgba(0,0,0,0.15),
-      inset 0 0 100px rgba(0,0,0,0.05);
+      inset 0 0 100px rgba(0,0,0,0.03);
   }
 
   @media (min-width: 768px) {
