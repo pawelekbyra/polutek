@@ -438,38 +438,41 @@ export default function Page() {
       />
 
       <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
-      <header className="min-h-screen flex flex-col pt-2 pb-4 px-4">
-  <BrandHeader />
+        <header className="min-h-screen flex flex-col pt-2 pb-4 px-4">
+          <BrandHeader />
 
-  <div className="max-w-4xl mx-auto text-center flex-grow flex flex-col justify-center items-center">
-    <div className="flex justify-center mb-4 w-full">
-       <img
-         src="/staragazetapng.png"
-         alt="Wiedźmini z eliksirem"
-         className="w-auto h-[32vh] md:h-[42vh] object-contain opacity-90 grayscale contrast-125 mix-blend-multiply"
-       />
-    </div>
+          <div className="max-w-5xl mx-auto border-x border-stone-200 flex-grow flex flex-col items-center px-8 md:px-24 py-12">
+            <h2 className="mb-12 text-stone-900 text-center">
+              <span className="block text-5xl md:text-9xl font-black leading-[0.85] tracking-tighter uppercase">
+                Eliksir<br />Wiedźmina
+              </span>
+            </h2>
 
-    <h2 className="mb-4 text-stone-900">
-      <span className="block text-4xl md:text-7xl font-bold leading-none tracking-tight uppercase">
-        Eliksir Wiedźmina
-      </span>
-     <span className="block text-lg md:text-3xl text-stone-500 italic font-medium mt-2 max-w-3xl mx-auto uppercase tracking-widest">
-  Mroczna tajemnica <br /> twórców CD Projekt
-</span>
-    </h2>
+            <div className="flex justify-center mb-8 w-full">
+              <img
+                src="/zdjeciehej.png"
+                alt="Wiedźmini z eliksirem"
+                className="w-auto h-[35vh] md:h-[48vh] object-contain"
+              />
+            </div>
 
-    <div className="max-w-2xl mx-auto border-y border-stone-200 py-4 px-4">
-      <p className="text-lg md:text-xl text-stone-700 leading-relaxed italic">
-        Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
-      </p>
-    </div>
-    
-    <div className="mt-auto pt-4 animate-pulse hidden md:block">
-       <div className="w-px h-12 bg-stone-300 mx-auto"></div>
-    </div>
-  </div>
-</header>
+            <div className="text-center mb-12">
+              <p className="text-xl md:text-4xl text-stone-900 italic font-bold tracking-[0.25em] uppercase">
+                Mroczna tajemnica<br />twórców CD Projekt
+              </p>
+            </div>
+
+            <div className="max-w-3xl mx-auto border-t-4 border-stone-900 pt-8 px-4 text-center">
+              <p className="text-xl md:text-2xl text-stone-900 leading-relaxed italic font-medium">
+                Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
+              </p>
+            </div>
+
+            <div className="mt-auto pt-8 animate-pulse hidden md:block">
+              <div className="w-px h-16 bg-stone-900 mx-auto"></div>
+            </div>
+          </div>
+        </header>
         <article className="max-w-2xl mx-auto px-4 pt-8 pb-0 flex-grow">
           <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic
             prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-400 hover:prose-a:bg-stone-100 transition-colors">
