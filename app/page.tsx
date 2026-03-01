@@ -450,11 +450,11 @@ export default function Page() {
 
             {/* Zmniejszony padding bottom żeby podnieść content */}
            <div className="w-full text-center flex flex-col justify-center items-center pb-0">
-              <img
-                src="/zdjeciehej.png"
-                alt="Wiedźmini z eliksirem"
-                className="h-32 md:h-[180px] object-contain grayscale contrast-150 brightness-110 sepia-[.3] mix-blend-multiply mb-1"
-              />
+            <img
+  src="/zdjeciehej.png"
+  alt="Wiedźmini z eliksirem"
+  className="h-32 md:h-[180px] object-contain grayscale contrast-150 brightness-110 sepia-[.3] mix-blend-multiply mb-1"
+/>
 
               <h2 className="text-stone-900 w-full mb-1">
                 <span className="block text-4xl md:text-[5.5rem] font-bold leading-none tracking-tight uppercase">
