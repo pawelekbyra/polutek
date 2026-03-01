@@ -18,6 +18,11 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        serif: ["var(--font-serif)", "serif"],
+        display: ["var(--font-display)", "serif"],
+        masthead: ["var(--font-masthead)", "serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

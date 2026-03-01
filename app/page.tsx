@@ -154,28 +154,21 @@ const BrandHeader = () => {
   }, []);
 
   return (
- <div className="max-w-4xl mx-auto mb-6 border-t-2 border-stone-900 pt-2">
-      <div className="text-center pb-4">
-       <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-stone-900 uppercase font-serif leading-none whitespace-nowrap">
-  NASZA GAZETKA
-</h1>
+    <div className="max-w-6xl mx-auto mb-12 pt-4 px-4">
+      <div className="border-t border-stone-900 border-b-[4px] border-double border-stone-900 mb-0">
+        <h1 className="text-center text-7xl md:text-[11rem] text-stone-900 uppercase font-masthead leading-[0.8] py-8 md:py-12 tracking-tighter">
+          Nasza Gazetka
+        </h1>
       </div>
 
-      <div className="border-y-2 border-stone-900 py-2 flex items-center justify-between px-4 text-[10px] md:text-sm font-bold uppercase tracking-[0.15em] text-stone-800">
-        <div className="flex items-center gap-3">
-          <Newspaper className="w-5 h-5" />
-          <span className="hidden sm:inline">Niezależne Media</span>
+      <div className="border-b border-stone-900 py-2 flex items-center justify-between px-2 md:px-4 text-[9px] md:text-xs font-bold uppercase tracking-[0.1em] text-stone-800">
+        <div className="flex-1">Niezależne Media</div>
+        <div className="flex-1 text-center">
+          {currentDate || "NIEDZIELA, 1 MARCA 2026"}
         </div>
-
-        <div className="flex items-center gap-2">
-          <span className="sm:hidden text-stone-400">•</span>
-          <span className="text-center">{currentDate || "PONIEDZIAŁEK, 3 MARCA 2026"}</span>
-          <span className="hidden sm:inline text-stone-400">•</span>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <span className="hidden sm:inline text-right">Serwis Śledczy</span>
-          <FileText className="w-5 h-5" />
+        <div className="flex-1 text-right flex items-center justify-end gap-2 md:gap-4">
+          <span>Serwis Śledczy</span>
+          <span className="text-stone-400 font-normal">| ROK XXV, NR 10</span>
         </div>
       </div>
     </div>
@@ -438,38 +431,50 @@ export default function Page() {
       />
 
       <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
-      <header className="min-h-screen flex flex-col pt-2 pb-4 px-4">
-  <BrandHeader />
+        <header className="pt-2 pb-24 px-4">
+          <BrandHeader />
 
-  <div className="max-w-4xl mx-auto text-center flex-grow flex flex-col justify-center items-center">
-    <div className="flex justify-center mb-4 w-full">
-       <img
-         src="/staragazetapng.png"
-         alt="Wiedźmini z eliksirem"
-         className="w-auto h-[32vh] md:h-[42vh] object-contain opacity-90 grayscale contrast-125 mix-blend-multiply"
-       />
-    </div>
+          <div className="max-w-6xl mx-auto border-x border-stone-300 relative">
+            <div className="flex flex-col items-center pt-12 pb-20 px-4 md:px-12">
+              {/* Hero Image on Top - Centered */}
+              <div className="w-full max-w-5xl mb-20 md:mb-24">
+                <div className="relative group">
+                  <img
+                    src="/wiedzmini.png"
+                    alt="Wiedźmini z eliksirem"
+                    className="w-full h-auto max-h-[75vh] object-contain opacity-95 grayscale contrast-[1.15] mix-blend-multiply drop-shadow-sm mx-auto"
+                  />
+                  {/* Subtle caption */}
+                  <div className="absolute -bottom-8 right-0 text-[10px] uppercase tracking-widest text-stone-500 font-mono italic">
+                    FIG. 1: DOKUMENTACJA ŚLEDCZA / ARCHIWUM WYDAWNICTWA
+                  </div>
+                </div>
+              </div>
 
-    <h2 className="mb-4 text-stone-900">
-      <span className="block text-4xl md:text-7xl font-bold leading-none tracking-tight uppercase">
-        Eliksir Wiedźmina
-      </span>
-     <span className="block text-lg md:text-3xl text-stone-500 italic font-medium mt-2 max-w-3xl mx-auto uppercase tracking-widest">
-  Mroczna tajemnica <br /> twórców CD Projekt
-</span>
-    </h2>
+              {/* Massive Headline below image */}
+              <div className="text-center w-full max-w-6xl mb-16 md:mb-24">
+                <div className="flex flex-col items-center gap-8 md:gap-14">
+                  <h2 className="text-stone-900 text-6xl md:text-[13rem] font-bold leading-[0.8] tracking-tighter uppercase font-display">
+                    ELIKSIR WIEDŹMINA
+                  </h2>
+                  <div className="h-px w-24 bg-stone-300 hidden md:block" />
+                  <h3 className="text-xl md:text-6xl text-stone-900/80 italic font-serif tracking-[0.1em] uppercase font-medium max-w-4xl leading-tight">
+                    Mroczna tajemnica twórców CD Projekt
+                  </h3>
+                </div>
+              </div>
 
-    <div className="max-w-2xl mx-auto border-y border-stone-200 py-4 px-4">
-      <p className="text-lg md:text-xl text-stone-700 leading-relaxed italic">
-        Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
-      </p>
-    </div>
-    
-    <div className="mt-auto pt-4 animate-pulse hidden md:block">
-       <div className="w-px h-12 bg-stone-300 mx-auto"></div>
-    </div>
-  </div>
-</header>
+              {/* Centered Lead paragraph */}
+              <div className="max-w-4xl text-center">
+                <div className="inline-block border-y-4 border-double border-stone-900 py-12 px-6 md:px-12">
+                  <p className="text-2xl md:text-[2.5rem] text-stone-900 leading-[1.3] italic font-serif font-medium">
+                    Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
         <article className="max-w-2xl mx-auto px-4 pt-8 pb-0 flex-grow">
           <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic
             prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-400 hover:prose-a:bg-stone-100 transition-colors">
