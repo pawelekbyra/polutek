@@ -1,35 +1,56 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { Newspaper, FileText } from 'lucide-react';
 
 export default function BrandHeader() {
   const [currentDate, setCurrentDate] = useState<string>('');
 
   useEffect(() => {
-    setCurrentDate(new Date().toLocaleDateString('pl-PL', {
+    const date = new Date().toLocaleDateString('pl-PL', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
       day: 'numeric',
-    }));
+    });
+    setCurrentDate(date.toUpperCase());
   }, []);
 
   return (
-    <header className="pt-12 pb-0 px-6 bg-white w-full">
+    <header className="pt-12 pb-4 px-6 bg-transparent w-full">
       <div className="max-w-6xl mx-auto text-center">
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight uppercase mb-2 text-stone-900">
+        <h1 className="text-6xl md:text-8xl font-display font-black tracking-tighter uppercase mb-4 text-stone-900">
           NASZA GAZETKA
         </h1>
-        <div className="flex flex-col md:flex-row justify-between items-center border-y border-stone-300 py-3 mt-6">
-          <div className="text-xs font-bold uppercase tracking-widest text-stone-500 mb-2 md:mb-0 min-h-[1rem]">
-            Niezależny Serwis Śledczy • {currentDate}
+
+        <div className="relative py-2 mt-4">
+          {/* Decorative Triple Lines */}
+          <div className="absolute top-0 left-0 w-full flex flex-col gap-[2px]">
+            <div className="h-[1px] bg-stone-300 w-full"></div>
+            <div className="h-[2px] bg-stone-800 w-full"></div>
+            <div className="h-[1px] bg-stone-300 w-full"></div>
           </div>
-          <nav className="flex gap-6 font-sans text-xs font-bold uppercase tracking-wider text-stone-600">
-            <span className="hover:text-stone-900 cursor-pointer transition-colors">Europa</span>
-            <span className="hover:text-stone-900 cursor-pointer transition-colors">Świat</span>
-            <span className="text-stone-900 underline decoration-double decoration-stone-300 underline-offset-4">Śledztwa</span>
-          </nav>
+
+          <div className="flex justify-between items-center py-2 px-2">
+            <Newspaper className="w-5 h-5 text-stone-700" />
+            <div className="text-[10px] md:text-xs font-serif font-bold uppercase tracking-[0.2em] text-stone-800">
+              NIEZALEŻNY SERWIS ŚLEDCZY • {currentDate}
+            </div>
+            <FileText className="w-5 h-5 text-stone-700" />
+          </div>
+
+          <div className="absolute bottom-0 left-0 w-full flex flex-col gap-[2px]">
+            <div className="h-[1px] bg-stone-300 w-full"></div>
+            <div className="h-[2px] bg-stone-800 w-full"></div>
+            <div className="h-[1px] bg-stone-300 w-full"></div>
+          </div>
         </div>
+
+        <nav className="flex justify-center gap-8 font-serif text-[10px] font-bold uppercase tracking-[0.3em] text-stone-500 mt-6">
+          <span className="hover:text-stone-900 cursor-pointer transition-colors border-b border-transparent hover:border-stone-400">EUROPA</span>
+          <span className="hover:text-stone-900 cursor-pointer transition-colors border-b border-transparent hover:border-stone-400">ŚWIAT</span>
+          <span className="text-stone-900 border-b-2 border-stone-800 pb-1">ŚLEDZTWA</span>
+        </nav>
       </div>
     </header>
   );
