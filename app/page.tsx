@@ -439,7 +439,7 @@ export default function Page() {
 
       <main className="min-h-screen bg-[#e4dcc4] text-[#1c1917] selection:bg-yellow-900/20 font-serif flex flex-col items-center">
         
-       <div className="w-full max-w-5xl bg-white min-h-screen border-x border-stone-400 shadow-2xl flex flex-col relative overflow-hidden">
+   <div className="w-full max-w-5xl bg-[#e4dcc4] min-h-screen border-x border-stone-400 shadow-2xl flex flex-col relative overflow-hidden">
           
           {/* Tekstura starego papieru */}
           <div className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
