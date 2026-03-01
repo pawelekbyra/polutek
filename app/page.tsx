@@ -80,32 +80,36 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(videoStefanekSchema) }}
       />
 
-      <main className="min-h-screen bg-white text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
+      <main className="newspaper-page min-h-screen selection:bg-yellow-200/50 flex flex-col">
         <BrandHeader />
-        <header className="pt-8 pb-8 px-4">
+
+        <header className="pt-12 pb-12 px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="mb-8 text-stone-900">
-              <span className="block text-5xl md:text-7xl font-bold leading-none tracking-tight">
+            <h1 className="mb-10 text-stone-900" style={{ fontFamily: 'var(--font-heading)' }}>
+              <span className="block text-6xl md:text-8xl font-black leading-none tracking-tight uppercase">
                 Eliksir Wiedźmina
               </span>
-              <span className="block text-2xl md:text-4xl text-stone-500 italic font-medium mt-6 max-w-3xl mx-auto">
+              <span className="block text-2xl md:text-3xl text-stone-600 italic font-medium mt-6 max-w-3xl mx-auto font-serif">
                 Mroczna tajemnica twórców CD Projekt
               </span>
             </h1>
 
-            <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
-              <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
+            <div className="max-w-3xl mx-auto border-y-2 border-stone-900 py-10 px-6 relative">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#fdfbf7] px-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-stone-400"><path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,20c-4.41,0-8-3.59-8-8s3.59-8,8-8s8,3.59,8,8 S16.41,20,12,20z M12,17l-5-5h10L12,17z"/></svg>
+              </div>
+              <p className="text-2xl md:text-3xl text-stone-800 leading-tight italic font-serif">
                 Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry &quot;Wiedźmin&quot; finansowali szamańskie podziemie.
               </p>
             </div>
           </div>
         </header>
 
-        <article className="max-w-2xl mx-auto px-4 pt-8 pb-0 flex-grow">
-          <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic
-            prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-400 hover:prose-a:bg-stone-100 transition-colors">
+        <article className="max-w-4xl mx-auto px-4 pt-8 pb-0 flex-grow text-justify">
+          <div className="newspaper-columns prose prose-stone prose-lg max-w-none prose-headings:font-serif prose-headings:font-black prose-blockquote:not-italic
+            prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-2 prose-a:decoration-stone-900 hover:prose-a:bg-yellow-100 transition-colors">
 
-            <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed">
+            <p className="dropped-cap leading-relaxed">
               W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
             </p>
 
@@ -121,7 +125,8 @@ export default function Page() {
               W przygranicznym Janowie funkcjonował drugi, bliźniaczy ayahuaskowy ośrodek, którego współwłaścicielem okazał się miliarder – <strong>Michał Kiciński</strong>.
             </p>
 
-            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Świadek B.</h2>
+            <div className="ornament-hr"></div>
+            <h2 className="text-4xl mt-12 mb-8 tracking-tighter text-stone-900 uppercase font-black">Świadek B.</h2>
 
             <p>
               W obszernym i publicznie dostępnym uzasadnieniu <GalleryTrigger type="wyrok_kordys" className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</GalleryTrigger> Jarosława Kordysa pojawia się postać świadka Bartosza B.
@@ -190,7 +195,8 @@ export default function Page() {
               Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie &quot;Michal D. K.&quot;. <span className="bg-yellow-200 px-1 font-bold text-stone-900 shadow-sm box-decoration-clone">Wspólnikiem szamana był twórca &quot;Wiedźmina&quot; – jeden z najbogatszych Polaków.</span>
             </p>
 
-            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Na podsłuchu</h2>
+            <div className="ornament-hr"></div>
+            <h2 className="text-4xl mt-12 mb-8 tracking-tighter text-stone-900 uppercase font-black">Na podsłuchu</h2>
 
             <p>
               Przełom w sprawie organizatorów ayahuaskowych ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysem.
@@ -248,7 +254,8 @@ export default function Page() {
               Podczas policyjnej interwencji zidentyfikowano tam 15 obywateli Polski, którzy mieli brać udział w ceremonii. Wśród nich, stali bywalcy i bliscy znajomi Badowskiego – <strong>Krzysztof Stefanek</strong> i <strong>Lena Drzewińska</strong>, których obecność w momencie wkroczenia służb ma znaczenie w kontekście późniejszej ich roli w tej historii.
             </p>
 
-            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cena wolności</h2>
+            <div className="ornament-hr"></div>
+            <h2 className="text-4xl mt-12 mb-8 tracking-tighter text-stone-900 uppercase font-black">Cena wolności</h2>
 
             <p>
               Kiedy 26 sierpnia 2020 roku czeska policja weszła do posiadłości w Janowie, należącej do Bartosza Badowskiego i miliardera Michała Kicińskiego, Jarosław Kordys w Hermanovicach wciąż czuł się bezpiecznie. Nie wiedział jeszcze, że zegar zaczął odliczać czas do jego własnej katastrofy. Zaledwie 7 tygodni po cichym nalocie na Badowskiego policja zapukała do Kordysów.
@@ -258,7 +265,7 @@ export default function Page() {
               15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
             </p>
 
-            <div className="my-12 w-full rounded-sm overflow-hidden shadow-md">
+            <div className="my-12 w-full rounded-sm overflow-hidden shadow-xl news-image border-4 border-stone-900">
                <ArticleVideoPlayer
                   src={`${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`}
                   poster=""
@@ -315,7 +322,8 @@ export default function Page() {
               Podczas, gdy Jarosław Kordys został skazany na 8,5 roku pozbawienia wolności Bartosz Badowski, którego sprawa dotyczyła tego samego procederu, tych samych substancji, regionu i czasu trwania działalności, dzięki ugodzie i współpracy z wymiarem sprawiedliwości, zakończył sprawę wyrokiem w zawieszeniu.
             </p>
 
-            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cisza po burzy</h2>
+            <div className="ornament-hr"></div>
+            <h2 className="text-4xl mt-12 mb-8 tracking-tighter text-stone-900 uppercase font-black">Cisza po burzy</h2>
 
             <p>
               Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janowie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku &quot;Badiego&quot; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
@@ -325,7 +333,8 @@ export default function Page() {
               Będąc tak blisko Badowskiego, doskonale znali mroczną tajemnicę śmierci Ilony. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się o &quot;ciągłość dostaw&quot;, dowodzi, że w pełni akceptowali reguły zmowy milczenia.
             </p>
 
-            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Kiciński</h2>
+            <div className="ornament-hr"></div>
+            <h2 className="text-4xl mt-12 mb-8 tracking-tighter text-stone-900 uppercase font-black">Kiciński</h2>
 
             <p>
               W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika. Michał Kiciński to nie jest postać, która o ayahuasce jedynie &quot;słyszała&quot; – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla &quot;Focusa&quot;, &quot;Newsweeka&quot;) z niezwykłą precyzją opisuje on mechanizamy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu &quot;medycyna&quot;, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera &quot;nową rzeczywistość&quot;.
@@ -337,7 +346,8 @@ export default function Page() {
               source="Newsweek, 30 maja 2016 r."
             />
 
-            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">&quot;Błąd z Badim&quot;</h2>
+            <div className="ornament-hr"></div>
+            <h2 className="text-4xl mt-12 mb-8 tracking-tighter text-stone-900 uppercase font-black">&quot;Błąd z Badim&quot;</h2>
 
             <p>
                Michał Kiciński wiedział o Ilonie. Jego konfrontacja z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć &quot;pobytu w Janowie&quot;.
@@ -348,7 +358,7 @@ export default function Page() {
                 <img
                   src={`${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`}
                   alt="Wezwanie na policję"
-                  className="w-48 rounded shadow-md border border-stone-200 cursor-pointer hover:opacity-90 transition-opacity"
+                  className="w-48 rounded-sm shadow-xl border-4 border-stone-900 cursor-pointer hover:opacity-90 transition-opacity news-image"
                 />
               </GalleryTrigger>
               <p className="text-xs text-stone-500 mt-2 font-mono uppercase tracking-wider w-48 text-center">
@@ -400,7 +410,8 @@ export default function Page() {
               &quot;Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.&quot;
             </CaseFile>
 
-            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Anonimowy filantrop</h2>
+            <div className="ornament-hr"></div>
+            <h2 className="text-4xl mt-12 mb-8 tracking-tighter text-stone-900 uppercase font-black">Anonimowy filantrop</h2>
 
             <p>
               W listopadzie 2025 roku na kanale YouTube &quot;<strong>Osada Natury Zew</strong>&quot; pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, <strong>Krzysztof Stefanek</strong>, snuje opowieść o powstaniu &quot;Osady&quot;. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
@@ -418,7 +429,7 @@ export default function Page() {
               Stefanek przedstawia to jako efekt &quot;researchu&quot; darczyńcy, który rzekomo urzekła wizja działalności non-profit.
             </p>
 
-            <div className="my-12 w-full rounded-sm overflow-hidden shadow-md">
+            <div className="my-12 w-full rounded-sm overflow-hidden shadow-xl news-image border-4 border-stone-900">
                    <ArticleVideoPlayer
                 src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`}
                 poster=""
@@ -491,7 +502,8 @@ export default function Page() {
               Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit <strong>Stowarzyszenie Natury Zew</strong> żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki. A przecież &quot;zadośćuczynienie wszechświatowi&quot; miało trafić na hospicjum, a nie na &quot;organizację krzak&quot;.
             </p>
 
-            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Nýdek</h2>
+            <div className="ornament-hr"></div>
+            <h2 className="text-4xl mt-12 mb-8 tracking-tighter text-stone-900 uppercase font-black">Nýdek</h2>
 
             <p>
               Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janowa, w miejscowości <strong>Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.
@@ -562,7 +574,8 @@ export default function Page() {
               Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z &quot;darowizną&quot; Kicińskiego w Janowie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
             </p>
 
-            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Wiktor B.</h2>
+            <div className="ornament-hr"></div>
+            <h2 className="text-4xl mt-12 mb-8 tracking-tighter text-stone-900 uppercase font-black">Wiktor B.</h2>
 
             <p>
               3 marca 2026 Onet ujawnia opinii publicznej wstrząsające kulisy działalności ośrodka w czeskim Janowie, gdzie podczas szamańskich ceremonii z użyciem ayahuaski miało dojść do tragicznych zdarzeń. Dziennikarskie śledztwo koncentruje się na śmierci 54-letniej uczestniczki, Ilony L.-H.
