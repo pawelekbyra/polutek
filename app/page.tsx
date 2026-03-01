@@ -443,10 +443,10 @@ export default function Page() {
 
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-4">
-          <img 
+ <img 
   src="/staragazetapng.png" 
   alt="Stara Gazeta" 
-  className="w-full h-auto my-8 shadow-lg" 
+  className="w-full h-auto my-8 block mix-blend-multiply" 
 />
             </div>
 
