@@ -154,8 +154,8 @@ const BrandHeader = () => {
   }, []);
 
   return (
- <div className="max-w-4xl mx-auto mb-12 border-t-2 border-stone-900 pt-8">
-      <div className="text-center pb-8">
+ <div className="max-w-4xl mx-auto mb-6 border-t-2 border-stone-900 pt-2">
+      <div className="text-center pb-4">
        <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-stone-900 uppercase font-serif leading-none whitespace-nowrap">
   NASZA GAZETKA
 </h1>
@@ -438,34 +438,34 @@ export default function Page() {
       />
 
       <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
-      <header className="min-h-screen flex flex-col pt-4 pb-8 px-4">
+      <header className="min-h-screen flex flex-col pt-2 pb-4 px-4">
   <BrandHeader />
 
   <div className="max-w-4xl mx-auto text-center flex-grow flex flex-col justify-center items-center">
-    <div className="flex justify-center mb-6 w-full">
+    <div className="flex justify-center mb-4 w-full">
        <img
          src="/staragazetapng.png"
          alt="Wiedźmini z eliksirem"
-         className="w-auto h-[35vh] md:h-[45vh] object-contain opacity-90 grayscale contrast-125 mix-blend-multiply"
+         className="w-auto h-[32vh] md:h-[42vh] object-contain opacity-90 grayscale contrast-125 mix-blend-multiply"
        />
     </div>
 
-    <h2 className="mb-6 text-stone-900">
+    <h2 className="mb-4 text-stone-900">
       <span className="block text-4xl md:text-7xl font-bold leading-none tracking-tight uppercase">
         Eliksir Wiedźmina
       </span>
-      <span className="block text-lg md:text-3xl text-stone-500 italic font-medium mt-4 max-w-3xl mx-auto uppercase tracking-widest">
+      <span className="block text-lg md:text-3xl text-stone-500 italic font-medium mt-2 max-w-3xl mx-auto uppercase tracking-widest">
         Mroczna tajemnica twórców CD Projekt
       </span>
     </h2>
 
-    <div className="max-w-2xl mx-auto border-y border-stone-200 py-6 px-4">
+    <div className="max-w-2xl mx-auto border-y border-stone-200 py-4 px-4">
       <p className="text-lg md:text-xl text-stone-700 leading-relaxed italic">
         Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
       </p>
     </div>
     
-    <div className="mt-auto pt-8 animate-pulse hidden md:block">
+    <div className="mt-auto pt-4 animate-pulse hidden md:block">
        <div className="w-px h-12 bg-stone-300 mx-auto"></div>
     </div>
   </div>
