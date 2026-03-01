@@ -460,7 +460,7 @@ export default function Page() {
                 <span className="block text-4xl md:text-[5.5rem] font-bold leading-none tracking-tight uppercase">
                   Eliksir Wiedźmina
                 </span>
-                <span className="block text-sm md:text-2xl text-stone-800 italic font-medium uppercase tracking-widest mt-1 whitespace-nowrap">
+               <span className="block text-sm md:text-2xl text-stone-800 italic font-bold uppercase tracking-widest mt-1 whitespace-nowrap">
                   Mroczna tajemnica twórców CD Projekt
                 </span>
               </h2>
