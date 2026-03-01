@@ -154,7 +154,7 @@ const BrandHeader = () => {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto mb-12 border-t-4 border-stone-900 pt-8">
+ <div className="max-w-4xl mx-auto mb-12 border-t-2 border-stone-900 pt-8">
       <div className="text-center pb-8">
        <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-stone-900 uppercase font-serif leading-none whitespace-nowrap">
   NASZA GAZETKA
