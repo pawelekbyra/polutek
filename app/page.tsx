@@ -156,9 +156,9 @@ const BrandHeader = () => {
   return (
     <div className="max-w-4xl mx-auto mb-12 border-t-4 border-stone-900 pt-8">
       <div className="text-center pb-8">
-        <h1 className="text-6xl md:text-9xl font-black tracking-tighter text-stone-900 uppercase font-serif leading-none">
-          NASZA GAZETA
-        </h1>
+       <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-stone-900 uppercase font-serif leading-none whitespace-nowrap">
+  NASZA GAZETKA
+</h1>
       </div>
 
       <div className="border-y-2 border-stone-900 py-2 flex items-center justify-between px-4 text-[10px] md:text-sm font-bold uppercase tracking-[0.15em] text-stone-800">
