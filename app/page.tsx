@@ -153,16 +153,24 @@ const BrandHeader = () => {
   }, []);
 
   return (
-    <div className="w-full pb-2 mb-2">
-      <div className="flex items-center justify-center w-full gap-4 pb-2">
-        <div className="flex-grow h-[4px] bg-stone-900 hidden sm:block"></div>
-        <h1 className="text-5xl md:text-[6.5rem] font-black tracking-tighter text-stone-900 uppercase font-serif leading-none whitespace-nowrap">
-          NASZA GAZETKA
-        </h1>
-        <div className="flex-grow h-[4px] bg-stone-900 hidden sm:block"></div>
+    <div className="w-full flex flex-col items-center">
+      {/* Top section with thin side borders */}
+      <div className="w-full border-x border-stone-900 pt-8 pb-4 px-4 sm:px-8">
+        <div className="flex items-center justify-center w-full gap-4">
+          <div className="flex-grow h-[8px] bg-stone-900 hidden sm:block"></div>
+          <h1 className="text-5xl md:text-[6.5rem] font-black tracking-tighter text-stone-900 uppercase font-serif leading-none whitespace-nowrap">
+            NASZA GAZETKA
+          </h1>
+          <div className="flex-grow h-[8px] bg-stone-900 hidden sm:block"></div>
+        </div>
       </div>
 
-      <div className="border-y-[1px] border-stone-900 py-1 flex items-center justify-between px-2 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-stone-800">
+      {/* Horizontal lines spanning full width */}
+      <div className="w-full border-b-[3px] border-stone-900"></div>
+      <div className="w-full border-b border-stone-900 mt-[2px]"></div>
+
+      {/* Metadata bar */}
+      <div className="w-full flex items-center justify-between px-4 sm:px-8 py-2 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-stone-800 border-b-[3px] border-stone-900">
         <div className="flex items-center gap-2">
           <Newspaper className="w-4 h-4 md:w-5 md:h-5" />
           <span className="hidden sm:inline">Niezależne Media</span>
@@ -183,7 +191,7 @@ const BrandHeader = () => {
 };
 
 const CaseFile = ({ title, children, type = 'evidence' }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email' }) => (
-  <div className="my-8 border border-stone-400 bg-white/60 shadow-sm rounded-sm overflow-hidden break-inside-avoid text-left">
+  <div className="my-8 border border-stone-400 bg-white/60 shadow-sm rounded-sm overflow-hidden break-inside-avoid text-left z-10 relative">
     <div className="bg-stone-200 border-b border-stone-300 px-4 py-2 flex items-center gap-2 text-xs font-mono text-stone-600 uppercase tracking-wider">
       {type === 'email' ? <Mail className="w-4 h-4" /> : type === 'transcript' ? <Search className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
       <span>{title}</span>
@@ -195,7 +203,7 @@ const CaseFile = ({ title, children, type = 'evidence' }: { title: string, child
 );
 
 const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
-  <div className="my-10 pl-6 border-l-[3px] border-stone-800/80 text-left">
+  <div className="my-10 pl-6 border-l-[3px] border-stone-800/80 text-left z-10 relative">
     <p className="font-serif text-xl md:text-2xl italic text-stone-900 leading-relaxed mb-3">
       „{quote}”
     </p>
@@ -206,7 +214,7 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
 );
 
 const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string, plot: string, lv: string }) => (
-  <div className="relative border border-stone-400 bg-white/80 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] transition-colors text-left group">
+  <div className="relative border border-stone-400 bg-white/80 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] transition-colors text-left group z-10">
      <div className="absolute top-1 right-1 text-stone-400 group-hover:text-stone-600 transition-colors">
        <Search className="w-3 h-3" />
      </div>
@@ -227,7 +235,7 @@ const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string,
 );
 
 const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
-  <div className="relative border border-stone-400 bg-white/80 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] group hover:border-stone-500 transition-colors cursor-default text-left">
+  <div className="relative border border-stone-400 bg-white/80 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] group hover:border-stone-500 transition-colors cursor-default text-left z-10">
      <div className="absolute top-1 right-1 text-stone-400 group-hover:text-stone-600 transition-colors">
        <Search className="w-3 h-3" />
      </div>
@@ -258,7 +266,7 @@ const ArticleVideoPlayer: React.FC<{ src: string; poster: string }> = ({ src, po
     }
   }, [src]);
   return (
-    <div className="my-12 w-full bg-black rounded-sm shadow-xl overflow-hidden">
+    <div className="my-12 w-full bg-black rounded-sm shadow-xl overflow-hidden z-10 relative">
       <video ref={videoRef} controls poster={poster} className="w-full h-auto block opacity-95" />
     </div>
   );
@@ -437,23 +445,26 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(videoStefanekSchema) }}
       />
 
-     <main className="min-h-screen bg-[#d3c3a2] text-[#1c1917] selection:bg-yellow-900/20 font-serif flex flex-col items-center">
-  <div className="w-full max-w-5xl bg-[#d3c3a2] min-h-screen border-x border-stone-400 shadow-2xl flex flex-col relative overflow-hidden">
+      <main className="min-h-screen bg-[#d3c3a2] text-[#1c1917] selection:bg-yellow-900/20 font-serif flex flex-col items-center">
+        {/* Usunięty boczny cień (shadow-none) i ramki na wysokości całego kontenera zgodnie z wytycznymi */}
+        <div className="w-full max-w-5xl bg-[#d3c3a2] min-h-screen flex flex-col relative overflow-hidden shadow-none">
           
-          {/* Tekstura starego papieru */}
-          <div className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+          {/* Lepsza tekstura papieru – tryb multiply pięknie wgryza się w tło */}
+          <div className="absolute inset-0 pointer-events-none opacity-30 mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] z-0"></div>
 
-          {/* pt-4 zmienione na pt-0 żeby wywalić pustą przestrzeń */}
-          <header className="w-full pt-0 pb-6 px-6 flex flex-col items-center z-10 relative">
+          <header className="w-full flex flex-col items-center z-10 relative">
+            
+            {/* Wyodrębniony nowy Header z odpowiednim układem linii */}
             <BrandHeader />
 
-            {/* Zmniejszony padding bottom żeby podnieść content */}
-           <div className="w-full text-center flex flex-col justify-center items-center pb-0">
-<img
-  src="/zdjeciehej.png"
-  alt="Wiedźmini z eliksirem"
-  className="h-32 md:h-[180px] object-contain grayscale contrast-150 brightness-110 sepia-[.3] mix-blend-multiply mb-1"
-/>
+            <div className="w-full text-center flex flex-col justify-center items-center pb-0 mt-6 px-6">
+              
+              {/* Zaktualizowane klasy obrazka – bez zbędnych filtrów, sam grayscale + multiply sprawi, że każde białe tło (wewn/zewn) w pełni zleje się z papierem */}
+              <img
+                src="/zdjeciehej.png"
+                alt="Wiedźmini z eliksirem"
+                className="h-32 md:h-[180px] object-contain grayscale mix-blend-multiply mb-4"
+              />
 
               <h2 className="text-stone-900 w-full mb-1">
                 <span className="block text-4xl md:text-[5.5rem] font-bold leading-none tracking-tight uppercase">
@@ -464,8 +475,7 @@ export default function Page() {
                 </span>
               </h2>
 
-              {/* mt-2 zmienione na mt-0 */}
-              <div className="max-w-3xl mx-auto px-4 mt-0">
+              <div className="max-w-3xl mx-auto px-4 mt-2">
                 <p className="text-base md:text-xl text-stone-800 leading-snug italic font-serif">
                   Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
                 </p>
@@ -473,12 +483,12 @@ export default function Page() {
             </div>
           </header>
 
-          <article className="max-w-3xl mx-auto px-6 pt-2 pb-0 flex-grow w-full z-10 relative">
+          <article className="max-w-3xl mx-auto px-6 pt-8 pb-0 flex-grow w-full z-10 relative">
             <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic
               prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-500 hover:prose-a:bg-stone-200 transition-colors">
 
               <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed mt-0">
-                W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
+                W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. "ceremonii", podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
               </p>
 
               <p>
@@ -504,9 +514,9 @@ export default function Page() {
               </p>
 
               <CaseFile title="Zeznania świadka B.">
-                &quot;Świadek B. odnośnie osoby oskarżonego [Jarosława Kordysa] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii&quot;.
+                "Świadek B. odnośnie osoby oskarżonego [Jarosława Kordysa] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii".
                 <br/><br/>
-                &quot;Świadek B. potwierdził, że i on sam w przeszłości prowadził warsztaty&quot;, a obecnie sam &quot;jest przedmiotem dochodzenia policji w Krnowie właśnie z powodu ceremonii&quot;.
+                "Świadek B. potwierdził, że i on sam w przeszłości prowadził warsztaty", a obecnie sam "jest przedmiotem dochodzenia policji w Krnowie właśnie z powodu ceremonii".
               </CaseFile>
 
               <p>
@@ -514,17 +524,17 @@ export default function Page() {
               </p>
 
               <CaseFile title="Zarzuty wobec Bartosza B.">
-                &quot;(...) wymieniony był sprawdzany w związku z występkiem niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi (...) albowiem miał w roku 2014 zlecić przesłanie na swój adres przesyłki pocztowej przechwyconej na lotnisku w Lipsku RFN zawierającej 4,5 kg DMT, a 6.6.2018 miało dojść do zatrzymania przesyłki pocztowej we Frankfurcie nad Menem RFN zawierającej 2000 g meskaliny i 38,6 g substancji DMT.&quot;
+                "(...) wymieniony był sprawdzany w związku z występkiem niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi (...) albowiem miał w roku 2014 zlecić przesłanie na swój adres przesyłki pocztowej przechwyconej na lotnisku w Lipsku RFN zawierającej 4,5 kg DMT, a 6.6.2018 miało dojść do zatrzymania przesyłki pocztowej we Frankfurcie nad Menem RFN zawierającej 2000 g meskaliny i 38,6 g substancji DMT."
               </CaseFile>
 
               <p>
-                Intrygujący fragment dotyczy własności &quot;bazy&quot;. Dokumenty stwierdzają:
+                Intrygujący fragment dotyczy własności "bazy". Dokumenty stwierdzają:
               </p>
 
               <CaseFile title="Własność nieruchomości">
-                &quot;(...) budynek rodzinny w miejscowości Janów (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy&quot;
+                "(...) budynek rodzinny w miejscowości Janów (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy"
                 <br/><br/>
-                &quot;Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem jednej dziesiątej nieruchomości&quot;.
+                "Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem jednej dziesiątej nieruchomości".
               </CaseFile>
 
               <p>
@@ -532,7 +542,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Ustalenia Sądu">
-                &quot;...w odniesieniu do nieruchomości będących współwłasnością <strong>Bartosza B.</strong> i <strong>Michała D. K.</strong>&quot;.
+                "...w odniesieniu do nieruchomości będących współwłasnością <strong>Bartosza B.</strong> i <strong>Michała D. K.</strong>".
               </CaseFile>
 
               <p>
@@ -559,7 +569,7 @@ export default function Page() {
               </p>
 
               <p>
-                Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie &quot;Michal D. K.&quot;. <span className="bg-stone-900 px-1 font-bold text-[#e4dcc4] shadow-sm box-decoration-clone">Wspólnikiem szamana był twórca &quot;Wiedźmina&quot; – jeden z najbogatszych Polaków.</span>
+                Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie "Michal D. K.". <span className="bg-stone-900 px-1 font-bold text-[#e4dcc4] shadow-sm box-decoration-clone">Wspólnikiem szamana był twórca "Wiedźmina" – jeden z najbogatszych Polaków.</span>
               </p>
 
               <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-400 pb-2">Na podsłuchu</h2>
@@ -573,7 +583,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" type="transcript">
-                &quot;oskarżony [Jarosława Kordysa] omawia z&nbsp;B., że dotarła do niego informacja, że w obiekcie w Janowie <span className="underline decoration-red-700 decoration-4 underline-offset-4">zmarła jakaś kobieta</span>&quot;.
+                "oskarżony [Jarosława Kordysa] omawia z B., że dotarła do niego informacja, że w obiekcie w Janowie <span className="underline decoration-red-700 decoration-4 underline-offset-4">zmarła jakaś kobieta</span>".
               </CaseFile>
 
               <p>
@@ -581,7 +591,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Pytanie Kordysa" type="transcript">
-                &quot;W jakim zagrożeniu jest nasza praca?&quot;
+                "W jakim zagrożeniu jest nasza praca?"
               </CaseFile>
 
               <p>
@@ -589,11 +599,11 @@ export default function Page() {
               </p>
 
               <div className="my-12 pl-6 border-l-4 border-stone-900 font-serif italic text-xl text-stone-800">
-                &quot;Z ich rozmowy wynika, że nie zajmowali się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji.&quot;
+                "Z ich rozmowy wynika, że nie zajmowali się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji."
               </div>
 
               <p>
-                Dla sądu był to koronny dowód na to, że oskarżeni prowadzili nielegalny biznes, a nie działalność duchową – śmierć człowieka była dla nich jedynie &quot;psuciem interesów&quot;.
+                Dla sądu był to koronny dowód na to, że oskarżeni prowadzili nielegalny biznes, a nie działalność duchową – śmierć człowieka była dla nich jedynie "psuciem interesów".
               </p>
 
               <p>
@@ -601,7 +611,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Kontynuacja rozmowy" type="transcript">
-                &quot;Następnie w rozmowie omawiają zamówienia «herbaty» z dżungli i to, czy im tego «nie zepsują», ekscytując się nagraniem od dostawcy, który «siedzi w dżungli i gotuje».&quot;
+                "Następnie w rozmowie omawiają zamówienia «herbaty» z dżungli i to, czy im tego «nie zepsują», ekscytując się nagraniem od dostawcy, który «siedzi w dżungli i gotuje»."
               </CaseFile>
 
               <p>
@@ -613,7 +623,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Protokół rewizji">
-                &quot;w nieruchomości zabezpieczono rzeczy... oprócz marihuany zabezpieczono również substancje zawierające DMT o objętości ok. 2 kg&quot;.
+                "w nieruchomości zabezpieczono rzeczy... oprócz marihuany zabezpieczono również substancje zawierające DMT o objętości ok. 2 kg".
               </CaseFile>
 
               <p>
@@ -656,7 +666,7 @@ export default function Page() {
               </div>
 
               <p>
-                Bartosz &quot;Badi&quot; Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił &quot;kupić&quot; sobie wolność.
+                Bartosz "Badi" Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił "kupić" sobie wolność.
               </p>
 
               <p>
@@ -664,11 +674,11 @@ export default function Page() {
               </p>
 
               <p>
-                Cena wolności Badowskiego okazała się być wysoka dla jego kolegi z branży. Zeznania &quot;Badiego&quot; były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak w sprawie Kordysów.
+                Cena wolności Badowskiego okazała się być wysoka dla jego kolegi z branży. Zeznania "Badiego" były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak w sprawie Kordysów.
               </p>
 
               <p>
-                 Na mocy <GalleryTrigger type="wyrok_badi" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">wyroku</GalleryTrigger> z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia &quot;zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi&quot;.
+                 Na mocy <GalleryTrigger type="wyrok_badi" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">wyroku</GalleryTrigger> z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia "zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi".
               </p>
 
               <p>
@@ -676,11 +686,11 @@ export default function Page() {
               </p>
 
               <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
-                &quot;co najmniej od bliżej nieustalanej daty w 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne&quot;
+                "co najmniej od bliżej nieustalanej daty w 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne"
                 <br/><br/>
-                &quot;udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. ayahuascę zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)&quot;
+                "udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. ayahuascę zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)"
                 <br/><br/>
-                &quot;przechowywał łącznie 1902,79 grama materiału roślinnego (...), który zawierał łącznie 37,24 grama substancji czynnej dimetylotryptaminy (DMT) oraz 92,29 grama tzw. narkotyku marihuany&quot;.
+                "przechowywał łącznie 1902,79 grama materiału roślinnego (...), który zawierał łącznie 37,24 grama substancji czynnej dimetylotryptaminy (DMT) oraz 92,29 grama tzw. narkotyku marihuany".
               </CaseFile>
 
               <p>
@@ -690,17 +700,17 @@ export default function Page() {
               <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-400 pb-2">Cisza po burzy</h2>
 
               <p>
-                Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janowie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku &quot;Badiego&quot; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
+                Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janowie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku "Badiego" w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
               </p>
 
               <p>
-                Będąc tak blisko Badowskiego, doskonale znali mroczną tajemnicę śmierci Ilony. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się o &quot;ciągłość dostaw&quot;, dowodzi, że w pełni akceptowali reguły zmowy milczenia.
+                Będąc tak blisko Badowskiego, doskonale znali mroczną tajemnicę śmierci Ilony. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się o "ciągłość dostaw", dowodzi, że w pełni akceptowali reguły zmowy milczenia.
               </p>
 
               <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-400 pb-2">Kiciński</h2>
 
               <p>
-                W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika. Michał Kiciński to nie jest postać, która o ayahuasce jedynie &quot;słyszała&quot; – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla &quot;Focusa&quot;, &quot;Newsweeka&quot;) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu &quot;medycyna&quot;, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera &quot;nową rzeczywistość&quot;.
+                W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika. Michał Kiciński to nie jest postać, która o ayahuasce jedynie "słyszała" – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla "Focusa", "Newsweeka") z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu "medycyna", o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera "nową rzeczywistość".
               </p>
 
               <PullQuote
@@ -709,10 +719,10 @@ export default function Page() {
                 source="Newsweek, 30 maja 2016 r."
               />
 
-              <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-400 pb-2">&quot;Błąd z Badim&quot;</h2>
+              <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-400 pb-2">"Błąd z Badim"</h2>
 
               <p>
-                 Michał Kiciński wiedział o Ilonie. Jego konfrontacja z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć &quot;pobytu w Janowie&quot;.
+                 Michał Kiciński wiedział o Ilonie. Jego konfrontacja z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć "pobytu w Janowie".
               </p>
 
               <div className="my-12 flex flex-col items-center">
@@ -733,7 +743,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email">
-                &quot;(...) Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu. (...)&quot;
+                "(...) Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu. (...)"
               </CaseFile>
 
               <p>
@@ -741,7 +751,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Zeznanie do protokołu">
-                &quot;Nie mam żadnej wiedzy co się działo na mojej farmie, w której jestem 90% udziałowcem (...) wynajmowałem tę nieruchomość.&quot;
+                "Nie mam żadnej wiedzy co się działo na mojej farmie, w której jestem 90% udziałowcem (...) wynajmowałem tę nieruchomość."
               </CaseFile>
 
               <p>
@@ -749,7 +759,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Odpowiedź na pytanie o udział">
-                &quot;nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie <span className="underline decoration-stone-900 decoration-4 underline-offset-4 font-bold">odmawiam odpowiedzi</span>&quot;
+                "nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie <span className="underline decoration-stone-900 decoration-4 underline-offset-4 font-bold">odmawiam odpowiedzi</span>"
               </CaseFile>
 
               <p>
@@ -769,25 +779,25 @@ export default function Page() {
               </p>
 
               <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
-                &quot;Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.&quot;
+                "Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy."
               </CaseFile>
 
               <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-400 pb-2">Anonimowy filantrop</h2>
 
               <p>
-                W listopadzie 2025 roku na kanale YouTube &quot;<strong>Osada Natury Zew</strong>&quot; pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, <strong>Krzysztof Stefanek</strong>, snuje opowieść o powstaniu &quot;Osady&quot;. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
+                W listopadzie 2025 roku na kanale YouTube "<strong>Osada Natury Zew</strong>" pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, <strong>Krzysztof Stefanek</strong>, snuje opowieść o powstaniu "Osady". W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
               </p>
 
               <p>
-                Stefanek wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt &quot;znalazł się w jednych rękach&quot;. Kluczowy moment tej opowieści Stefanek datuje z niezwykłą precyzją:
+                Stefanek wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt "znalazł się w jednych rękach". Kluczowy moment tej opowieści Stefanek datuje z niezwykłą precyzją:
               </p>
 
               <CaseFile title="Wypowiedź K. Stefanka">
-                &quot;Ostatecznie <span className="bg-stone-900 px-1 font-bold text-[#e4dcc4] box-decoration-clone">23 października 2023 roku</span> ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie&quot;
+                "Ostatecznie <span className="bg-stone-900 px-1 font-bold text-[#e4dcc4] box-decoration-clone">23 października 2023 roku</span> ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie"
               </CaseFile>
 
               <p>
-                Stefanek przedstawia to jako efekt &quot;researchu&quot; darczyńcy, który rzekomo urzekła wizja działalności non-profit.
+                Stefanek przedstawia to jako efekt "researchu" darczyńcy, który rzekomo urzekła wizja działalności non-profit.
               </p>
 
               <div className="my-12 w-full rounded-sm overflow-hidden shadow-md">
@@ -798,11 +808,11 @@ export default function Page() {
               </div>
                <div className="mt-1 text-sm text-stone-600 font-sans border-l-2 border-stone-400 pl-3 mb-12">
                   <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Wideo:</span>
-                  Krzysztof Stefanek opowiada o &quot;cudownym&quot; otrzymaniu darowizny (Materiał z 2025 r.)
+                  Krzysztof Stefanek opowiada o "cudownym" otrzymaniu darowizny (Materiał z 2025 r.)
                 </div>
 
               <p>
-                Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech w pozbywaniu się &quot;gorącego kartofla&quot;:
+                Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech w pozbywaniu się "gorącego kartofla":
               </p>
 
               <ul className="list-none space-y-12 my-12 font-mono text-sm border-l-2 border-stone-400 pl-4">
@@ -838,13 +848,13 @@ export default function Page() {
                 <li className="flex items-start gap-3">
                   <Calendar className="w-5 h-5 text-stone-500 shrink-0" />
                   <div>
-                    <strong>21 grudnia 2023 r.</strong> – Finał operacji. Kiciński formalnie przekazuje Janów w formie darowizny. Nieruchomość trafia do stowarzyszenia &quot;non-profit&quot; – fasadowej organizacji &quot;krzak&quot;, zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
+                    <strong>21 grudnia 2023 r.</strong> – Finał operacji. Kiciński formalnie przekazuje Janów w formie darowizny. Nieruchomość trafia do stowarzyszenia "non-profit" – fasadowej organizacji "krzak", zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
                   </div>
                 </li>
               </ul>
 
               <p>
-                Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong>Krzysztof Stefanek</strong>, który w filmie mówi o &quot;odwróconej logice&quot; i pięknie wolontariatu, i jego konkubina <strong>Magdalena Drzewińska</strong> w rzeczywistości doskonale znali mroczną historię Janowa i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
+                Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong>Krzysztof Stefanek</strong>, który w filmie mówi o "odwróconej logice" i pięknie wolontariatu, i jego konkubina <strong>Magdalena Drzewińska</strong> w rzeczywistości doskonale znali mroczną historię Janowa i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
               </p>
 
               <div className="my-8 flex justify-start">
@@ -856,11 +866,11 @@ export default function Page() {
               </div>
 
               <p>
-                Ostatecznie strategia okazała się skuteczna. Śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &quot;stowarzyszeniu&quot;. Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, &quot;czystej&quot; osady.
+                Ostatecznie strategia okazała się skuteczna. Śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w "stowarzyszeniu". Kiciński pozostał anonimowym "filantropem", a Stefanek – opiekunem nowej, "czystej" osady.
               </p>
 
               <p>
-                Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit <strong>Stowarzyszenie Natury Zew</strong> żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki. A przecież &quot;zadośćuczynienie wszechświatowi&quot; miało trafić na hospicjum, a nie na &quot;organizację krzak&quot;.
+                Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit <strong>Stowarzyszenie Natury Zew</strong> żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki. A przecież "zadośćuczynienie wszechświatowi" miało trafić na hospicjum, a nie na "organizację krzak".
               </p>
 
               <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-400 pb-2">Nýdek</h2>
@@ -869,9 +879,8 @@ export default function Page() {
                 Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janowa, w miejscowości <strong>Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.
               </p>
 
-
               <p>
-                Relacje świadków wskazują, że w <GalleryTrigger type="nydek" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">posiadłości w Nýdku</GalleryTrigger> odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong>Piotra &quot;Bonawenturę&quot; Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu &quot;Wayback Machine&quot; zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
+                Relacje świadków wskazują, że w <GalleryTrigger type="nydek" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">posiadłości w Nýdku</GalleryTrigger> odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong>Piotra "Bonawenturę" Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu "Wayback Machine" zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
               </p>
 
               <p>
@@ -881,7 +890,6 @@ export default function Page() {
               <p>
                 Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej szamańskiej świątyni – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za gamingowym gigantem, <span className="bg-stone-900 px-1 font-bold text-[#e4dcc4] box-decoration-clone">Marcin Iwiński</span>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder.
               </p>
-
 
               <div className="my-8 flex justify-start">
                 <GalleryTrigger type="nydek">
@@ -931,7 +939,7 @@ export default function Page() {
               </div>
 
               <p>
-                Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z &quot;darowizną&quot; Kicińskiego w Janowie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
+                Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z "darowizną" Kicińskiego w Janowie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
               </p>
 
               <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-400 pb-2">Wiktor B.</h2>
