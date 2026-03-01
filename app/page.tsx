@@ -448,14 +448,14 @@ export default function Page() {
           <header className="w-full pt-0 pb-6 px-6 flex flex-col items-center z-10 relative">
             <BrandHeader />
 
-            {/* Zmniejszony padding bottom żeby podnieść content */}
-            <div className="w-full text-center flex flex-col justify-center items-center pb-0">
-              <img
-                src="/zdjeciehej.png"
-                alt="Wiedźmini z eliksirem"
-                className="h-32 md:h-[180px] object-contain opacity-85 grayscale contrast-125 sepia-[.3] mix-blend-multiply mb-1"
-              />
-
+         {/* Zmniejszony padding bottom żeby podnieść content + dodane tło pasujące do gazety */}
+<div className="w-full text-center flex flex-col justify-center items-center pb-0 bg-[#e4dcc4]">
+  <img
+    src="/zdjeciehej.png"
+    alt="Wiedźmini z eliksirem"
+    className="h-32 md:h-[180px] object-contain opacity-85 grayscale contrast-125 sepia-[.3] mix-blend-multiply mb-1 bg-[#e4dcc4]"
+  />
+</div>
               <h2 className="text-stone-900 w-full mb-1">
                 <span className="block text-4xl md:text-[5.5rem] font-bold leading-none tracking-tight uppercase">
                   Eliksir Wiedźmina
