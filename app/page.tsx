@@ -154,29 +154,21 @@ const BrandHeader = () => {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto mb-12 pt-4">
-      <div className="border-b-[4px] border-double border-stone-900 pb-2 mb-2">
-        <h1 className="text-center text-7xl md:text-[10rem] text-stone-900 uppercase font-masthead leading-[0.8] py-8">
+    <div className="max-w-6xl mx-auto mb-12 pt-4 px-4">
+      <div className="border-t border-stone-900 border-b-[4px] border-double border-stone-900 mb-0">
+        <h1 className="text-center text-7xl md:text-[11rem] text-stone-900 uppercase font-masthead leading-[0.8] py-8 md:py-12 tracking-tighter">
           Nasza Gazetka
         </h1>
       </div>
 
-      <div className="border-y border-stone-900 py-3 flex items-center justify-between px-2 md:px-6 text-[10px] md:text-sm font-bold uppercase tracking-[0.2em] text-stone-800">
-        <div className="flex items-center gap-3">
-          <Newspaper className="w-4 h-4 md:w-5 md:h-5" />
-          <span>Niezależne Media</span>
+      <div className="border-b border-stone-900 py-2 flex items-center justify-between px-2 md:px-4 text-[9px] md:text-xs font-bold uppercase tracking-[0.1em] text-stone-800">
+        <div className="flex-1">Niezależne Media</div>
+        <div className="flex-1 text-center">
+          {currentDate || "NIEDZIELA, 1 MARCA 2026"}
         </div>
-
-        <div className="flex items-center gap-3">
-          <div className="text-center">
-            {currentDate || "NIEDZIELA, 1 MARCA 2026"}
-          </div>
-          <span className="text-stone-300 hidden md:inline">•</span>
-        </div>
-
-        <div className="flex items-center gap-3">
+        <div className="flex-1 text-right flex items-center justify-end gap-2 md:gap-4">
           <span>Serwis Śledczy</span>
-          <FileText className="w-4 h-4 md:w-5 md:h-5" />
+          <span className="text-stone-400 font-normal">| ROK XXV, NR 10</span>
         </div>
       </div>
     </div>
@@ -439,50 +431,45 @@ export default function Page() {
       />
 
       <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
-        <header className="pt-2 pb-16 px-4">
+        <header className="pt-2 pb-24 px-4">
           <BrandHeader />
 
-          <div className="max-w-6xl mx-auto">
-            {/* Headlines above image */}
-            <div className="text-center mb-12">
-              <h2 className="mb-6 text-stone-900">
-                <span className="block text-6xl md:text-[9rem] font-bold leading-[0.85] tracking-tighter uppercase font-display">
-                  ELIKSIR WIEDŹMINA
-                </span>
-                <span className="block text-xl md:text-4xl text-stone-500 italic font-serif mt-6 tracking-[0.4em] uppercase font-medium">
-                  Mroczna tajemnica twórców CD Projekt
-                </span>
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start border-t border-stone-300 pt-12">
-              {/* Left Column: Lead paragraph with heavy styling */}
-              <div className="md:col-span-5 order-2 md:order-1">
-                <div className="border-l-[6px] border-stone-900 pl-8 py-2">
-                  <p className="text-2xl md:text-3xl text-stone-900 leading-[1.3] italic font-serif text-left">
-                    Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
-                  </p>
-                </div>
-
-                <div className="mt-8 flex items-center gap-4 text-stone-400">
-                  <div className="h-px bg-stone-300 flex-grow"></div>
-                  <Scale className="w-5 h-5" />
-                  <div className="h-px bg-stone-300 flex-grow"></div>
-                </div>
-              </div>
-
-              {/* Right Column: Large Hero Image */}
-              <div className="md:col-span-7 order-1 md:order-2 flex justify-center">
+          <div className="max-w-6xl mx-auto border-x border-stone-300 relative">
+            <div className="flex flex-col items-center pt-12 pb-20 px-4 md:px-12">
+              {/* Hero Image on Top - Centered */}
+              <div className="w-full max-w-5xl mb-20 md:mb-24">
                 <div className="relative group">
                   <img
                     src="/wiedzmini.png"
                     alt="Wiedźmini z eliksirem"
-                    className="w-full h-auto max-h-[50vh] object-contain opacity-95 grayscale contrast-[1.2] mix-blend-multiply drop-shadow-md"
+                    className="w-full h-auto max-h-[75vh] object-contain opacity-95 grayscale contrast-[1.15] mix-blend-multiply drop-shadow-sm mx-auto"
                   />
                   {/* Subtle caption */}
-                  <div className="absolute -bottom-6 right-0 text-[10px] uppercase tracking-widest text-stone-400 font-mono italic">
-                    FIG. 1: DOKUMENTACJA ŚLEDCZA / ARCHIWUM
+                  <div className="absolute -bottom-8 right-0 text-[10px] uppercase tracking-widest text-stone-500 font-mono italic">
+                    FIG. 1: DOKUMENTACJA ŚLEDCZA / ARCHIWUM WYDAWNICTWA
                   </div>
+                </div>
+              </div>
+
+              {/* Massive Headline below image */}
+              <div className="text-center w-full max-w-6xl mb-16 md:mb-24">
+                <div className="flex flex-col items-center gap-8 md:gap-14">
+                  <h2 className="text-stone-900 text-6xl md:text-[13rem] font-bold leading-[0.8] tracking-tighter uppercase font-display">
+                    ELIKSIR WIEDŹMINA
+                  </h2>
+                  <div className="h-px w-24 bg-stone-300 hidden md:block" />
+                  <h3 className="text-xl md:text-6xl text-stone-900/80 italic font-serif tracking-[0.1em] uppercase font-medium max-w-4xl leading-tight">
+                    Mroczna tajemnica twórców CD Projekt
+                  </h3>
+                </div>
+              </div>
+
+              {/* Centered Lead paragraph */}
+              <div className="max-w-4xl text-center">
+                <div className="inline-block border-y-4 border-double border-stone-900 py-12 px-6 md:px-12">
+                  <p className="text-2xl md:text-[2.5rem] text-stone-900 leading-[1.3] italic font-serif font-medium">
+                    Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
+                  </p>
                 </div>
               </div>
             </div>
