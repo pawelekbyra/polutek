@@ -392,13 +392,13 @@ export default function Page() {
       />
 
       <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
-        <header className="pt-12 pb-8 px-4">
+        <header className="pt-4 pb-8 px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-8">
+            <div className="flex justify-center mb-4">
                <img
                  src="/staragazetapng.png"
                  alt="Wiedźmini z eliksirem"
-                 className="w-full max-w-[280px] md:max-w-[340px] opacity-90 grayscale contrast-125"
+                 className="w-full max-w-[340px] md:max-w-[420px] opacity-90 grayscale contrast-125"
                />
             </div>
 
@@ -406,7 +406,7 @@ export default function Page() {
               <span className="block text-5xl md:text-7xl font-bold leading-none tracking-tight">
                 Eliksir Wiedźmina
               </span>
-              <span className="block text-2xl md:text-4xl text-stone-500 italic font-medium mt-6 max-w-3xl mx-auto">
+              <span className="block text-2xl md:text-4xl text-stone-500 italic font-medium mt-4 max-w-3xl mx-auto">
                 Mroczna tajemnica twórców CD Projekt
               </span>
             </h1>
