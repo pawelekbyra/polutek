@@ -3,7 +3,8 @@
 import React, { useEffect, useRef, useState, useCallback, createContext, useContext } from 'react';
 import {
   Scale, FileText, Search, Mail, Stamp, X,
-  Home as HouseIcon, ExternalLink, ChevronLeft, ChevronRight, Download, Globe, Calendar, History, ShieldCheck
+  Home as HouseIcon, ExternalLink, ChevronLeft, ChevronRight, Download, Globe, Calendar, History, ShieldCheck,
+  Newspaper
 } from 'lucide-react';
 import Hls from 'hls.js';
 
@@ -135,6 +136,51 @@ const GALLERY_JANOV: GalleryData = {
 };
 
 // --- COMPONENTS ---
+
+const BrandHeader = () => {
+  const [currentDate, setCurrentDate] = useState("");
+
+  useEffect(() => {
+    const now = new Date();
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    };
+    // Format: NIEDZIELA, 1 MARCA 2026
+    const formattedDate = now.toLocaleDateString('pl-PL', options).toUpperCase();
+    setCurrentDate(formattedDate);
+  }, []);
+
+  return (
+    <div className="max-w-4xl mx-auto mb-12 border-t-4 border-stone-900 pt-8">
+      <div className="text-center pb-8">
+        <h1 className="text-6xl md:text-9xl font-black tracking-tighter text-stone-900 uppercase font-serif leading-none">
+          NASZA GAZETA
+        </h1>
+      </div>
+
+      <div className="border-y-2 border-stone-900 py-2 flex items-center justify-between px-4 text-[10px] md:text-sm font-bold uppercase tracking-[0.15em] text-stone-800">
+        <div className="flex items-center gap-3">
+          <Newspaper className="w-5 h-5" />
+          <span className="hidden sm:inline">Niezależne Media</span>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <span className="sm:hidden text-stone-400">•</span>
+          <span className="text-center">{currentDate || "PONIEDZIAŁEK, 3 MARCA 2026"}</span>
+          <span className="hidden sm:inline text-stone-400">•</span>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <span className="hidden sm:inline text-right">Serwis Śledczy</span>
+          <FileText className="w-5 h-5" />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const CaseFile = ({ title, children, type = 'evidence' }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email' }) => (
   <div className="my-8 border border-stone-300 bg-white shadow-sm rounded-sm overflow-hidden break-inside-avoid text-left">
@@ -393,6 +439,8 @@ export default function Page() {
 
       <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
         <header className="pt-4 pb-8 px-4">
+          <BrandHeader />
+
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-4">
                <img
@@ -402,14 +450,14 @@ export default function Page() {
                />
             </div>
 
-            <h1 className="mb-8 text-stone-900">
+            <h2 className="mb-8 text-stone-900">
               <span className="block text-5xl md:text-7xl font-bold leading-none tracking-tight">
                 Eliksir Wiedźmina
               </span>
               <span className="block text-2xl md:text-4xl text-stone-500 italic font-medium mt-4 max-w-3xl mx-auto">
                 Mroczna tajemnica twórców CD Projekt
               </span>
-            </h1>
+            </h2>
 
             <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
               <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
