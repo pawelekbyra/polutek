@@ -876,15 +876,20 @@ export default function Page() {
 
 
 
-     <main className="min-h-screen bg-[#d3c3a2] text-[#1c1917] selection:bg-yellow-900/20 font-serif flex flex-col items-center">
+     <main className="min-h-screen bg-[#e7dfcc] text-[#1c1917] selection:bg-yellow-900/20 font-serif flex flex-col items-center">
 
-  <div className="w-full max-w-5xl bg-[#d3c3a2] min-h-screen border-x border-stone-400 shadow-2xl flex flex-col relative overflow-hidden">
+  <div className="w-full max-w-5xl bg-[#e7dfcc] min-h-screen border-x border-stone-400 shadow-2xl flex flex-col relative overflow-hidden">
 
           
 
-          {/* Tekstura starego papieru */}
+          {/* Tekstura starego papieru (gramatura papieru) */}
 
-          <div className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.15] mix-blend-multiply"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+            }}
+          ></div>
 
 
 
@@ -906,7 +911,7 @@ export default function Page() {
 
   alt="Wiedźmini z eliksirem"
 
-  className="h-32 md:h-[180px] object-contain grayscale contrast-150 brightness-110 sepia-[.3] mix-blend-multiply mb-1"
+  className="h-32 md:h-[180px] object-contain grayscale contrast-200 mix-blend-multiply mb-1"
 
 />
 
