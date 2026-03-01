@@ -448,8 +448,8 @@ export default function Page() {
           <header className="w-full pt-0 pb-6 px-6 flex flex-col items-center z-10 relative">
             <BrandHeader />
 
-            {/* Zmniejszony padding bottom żeby podnieść content */}
-            <div className="w-full text-center flex flex-col justify-center items-center pb-0">
+          {/* Zmniejszony padding bottom żeby podnieść content */}
+<div className="w-full text-center flex flex-col justify-center items-center pb-0 bg-[#e4dcc4]">
               <img
                 src="/zdjeciehej.png"
                 alt="Wiedźmini z eliksirem"
