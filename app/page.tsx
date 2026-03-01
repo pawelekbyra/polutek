@@ -445,31 +445,31 @@ export default function Page() {
       <header className="min-h-screen flex flex-col pt-2 pb-4 px-4">
   <BrandHeader />
 
-  <div className="max-w-4xl mx-auto text-center flex-grow flex flex-col justify-start items-center border-x border-stone-900/40 px-8 md:px-16 pt-8">
-    <div className="flex justify-center mb-6 w-full">
+  <div className="max-w-4xl mx-auto text-center flex-grow flex flex-col justify-start items-center border-x border-stone-900/40 px-8 md:px-16 pt-4">
+    <div className="flex justify-center mb-4 w-full">
        <img
          src="/zdjeciehej.png"
          alt="Wiedźmini z eliksirem"
-         className="w-auto h-[22vh] md:h-[32vh] object-contain grayscale contrast-125 mix-blend-multiply"
+         className="w-auto h-[20vh] md:h-[28vh] object-contain grayscale contrast-125 mix-blend-multiply"
        />
     </div>
 
-    <h2 className="mb-4 text-stone-900">
-      <span className="block text-6xl md:text-8xl font-black leading-none tracking-tighter uppercase font-serif">
+    <h2 className="mb-2 text-stone-900 w-full px-2 md:px-4">
+      <span className="block text-[7.5vw] sm:text-5xl md:text-7xl lg:text-8xl font-black leading-none tracking-tighter uppercase font-serif whitespace-nowrap">
         Eliksir Wiedźmina
       </span>
-     <span className="block text-lg md:text-2xl text-stone-900 italic font-bold mt-2 max-w-3xl mx-auto uppercase border-y border-stone-900 py-1">
+     <span className="block text-[10px] md:text-2xl text-stone-900 italic font-bold mt-2 max-w-3xl mx-auto uppercase border-y border-stone-900 py-1">
         MROCZNA TAJEMNICA TWÓRCÓW CD PROJEKT
      </span>
     </h2>
 
-    <div className="max-w-2xl mx-auto pt-2 pb-8">
-      <p className="text-xl md:text-2xl text-stone-800 leading-tight italic font-serif">
+    <div className="max-w-2xl mx-auto pt-1 pb-4 px-4">
+      <p className="text-base md:text-2xl text-stone-800 leading-tight italic font-serif">
         Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
       </p>
     </div>
     
-    <div className="mt-auto pt-4 animate-pulse hidden md:block">
+    <div className="mt-auto pb-4 animate-pulse hidden md:block">
        <div className="w-px h-12 bg-stone-300 mx-auto"></div>
     </div>
   </div>
