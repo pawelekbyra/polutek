@@ -443,11 +443,11 @@ export default function Page() {
 
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-4">
-               <img
-                 src="/staragazetapng.png"
-                 alt="Wiedźmini z eliksirem"
-                 className="w-full max-w-[340px] md:max-w-[420px] opacity-90 grayscale contrast-125"
-               />
+          <img 
+  src="/staragazetapng.png" 
+  alt="Stara Gazeta" 
+  className="w-full h-auto my-8 shadow-lg" 
+/>
             </div>
 
             <h2 className="mb-8 text-stone-900">
