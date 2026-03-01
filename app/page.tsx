@@ -352,7 +352,7 @@ const BrandHeader = () => {
 
           <FileText className="w-4 h-4 md:w-5 md:h-5" />
 
-          <span className="hidden md:inline border-l border-stone-900 pl-2 ml-1">ROK XXV, NR 10</span>
+          <span className="hidden md:inline border-l border-stone-900 pl-2 ml-1">Nr 01</span>
 
         </div>
 
