@@ -15,7 +15,7 @@ export default function BrandHeader() {
   }, []);
 
   return (
-    <header className="border-b-4 border-double border-stone-300 py-8 px-6 bg-white w-full">
+    <header className="pt-12 pb-0 px-6 bg-white w-full">
       <div className="max-w-6xl mx-auto text-center">
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight uppercase mb-2 text-stone-900">
           NASZA GAZETKA

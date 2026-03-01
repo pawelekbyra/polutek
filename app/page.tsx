@@ -80,14 +80,10 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(videoStefanekSchema) }}
       />
 
-      <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
+      <main className="min-h-screen bg-white text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
         <BrandHeader />
-        <header className="pt-20 pb-8 px-4">
+        <header className="pt-8 pb-8 px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block mb-6 px-3 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase">
-              www.eliksir-wiedzmina.pl
-            </div>
-
             <h1 className="mb-8 text-stone-900">
               <span className="block text-5xl md:text-7xl font-bold leading-none tracking-tight">
                 Eliksir Wiedźmina
