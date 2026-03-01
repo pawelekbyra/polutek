@@ -343,7 +343,7 @@ export default function Page() {
   const newsArticleSchema = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    "headline": "Eliksir Wiedźmina – Śledztwo: Michał Kiciński i tajemnica Janówa",
+    "headline": "Eliksir Wiedźmina – Śledztwo: Michał Kiciński i tajemnica Janowa",
     "description": "Pełna dokumentacja śledztwa: Michał Kiciński, Jarosław Kordys i prokurator Jolanta Świdnicka. Ayahuasca, Janów i tragiczna śmierć uczestniczki.",
     "image": [
       `${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`
@@ -392,10 +392,14 @@ export default function Page() {
       />
 
       <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
-        <header className="pt-20 pb-8 px-4">
+        <header className="pt-12 pb-8 px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block mb-6 px-3 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase">
-              www.eliksir-wiedzmina.pl
+            <div className="flex justify-center mb-8">
+               <img
+                 src="/staragazetapng.png"
+                 alt="Wiedźmini z eliksirem"
+                 className="w-full max-w-[280px] md:max-w-[340px] opacity-90 grayscale contrast-125"
+               />
             </div>
 
             <h1 className="mb-8 text-stone-900">
@@ -463,7 +467,7 @@ export default function Page() {
               Intrygujący fragment dotyczy własności &quot;bazy&quot;. Dokumenty stwierdzają:
             </p>
 
-            <CaseFile title="Wlasność nieruchomości">
+            <CaseFile title="Własność nieruchomości">
               &quot;(...) budynek rodzinny w miejscowości Janów (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy&quot;
               <br/><br/>
               &quot;Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem jednej dziesiątej nieruchomości&quot;.
