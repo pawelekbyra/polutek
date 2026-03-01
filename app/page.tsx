@@ -437,7 +437,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(videoStefanekSchema) }}
       />
 
-      <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
+      <main className="min-h-screen bg-[#e4dcc4] text-[#1c1917] selection:bg-yellow-900/20 font-serif flex flex-col items-center">
         
         <div className="w-full max-w-5xl bg-[#e4dcc4] min-h-screen border-x border-stone-400 shadow-2xl flex flex-col relative overflow-hidden">
           
@@ -448,13 +448,14 @@ export default function Page() {
           <header className="w-full pt-0 pb-6 px-6 flex flex-col items-center z-10 relative">
             <BrandHeader />
 
-          {/* Zmniejszony padding bottom żeby podnieść content */}
-<div className="w-full text-center flex flex-col justify-center items-center pb-0 bg-[#e4dcc4]">
+            {/* Zmniejszony padding bottom żeby podnieść content */}
+            <div className="w-full text-center flex flex-col justify-center items-center pb-0">
               <img
-                src="/zdjeciehej.png"
-                alt="Wiedźmini z eliksirem"
-                className="h-32 md:h-[180px] object-contain opacity-85 grayscale contrast-125 sepia-[.3] mix-blend-multiply mb-1"
-              />
+               <img
+  src="/zdjeciehej.png"
+  alt="Wiedźmini z eliksirem"
+  className="h-32 md:h-[180px] object-contain grayscale contrast-150 brightness-110 sepia-[.3] mix-blend-multiply mb-1"
+/>
 
               <h2 className="text-stone-900 w-full mb-1">
                 <span className="block text-4xl md:text-[5.5rem] font-bold leading-none tracking-tight uppercase">
