@@ -4,6 +4,12 @@
 
 @layer base {
   :root {
+    --font-serif: var(--font-eb-garamond), serif;
+    --font-heading: var(--font-playfair), serif;
+    --font-blackletter: var(--font-blackletter), serif;
+    --font-sans: var(--font-inter), sans-serif;
+    --paper-bg: #fdfbf7;
+
     /* Ujednolicone zmienne z prototypu tingtong.txt */
     --app-height: 100vh;
     --main-ui-bg-color: #696969;
@@ -63,29 +69,30 @@
   html, body {
     height: 100%;
     width: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    @apply text-foreground;
+    font-family: var(--font-serif);
+    @apply text-stone-900;
     overscroll-behavior-y: contain; /* Prevent bounce scroll */
+    background-color: var(--paper-bg); /* Use consistent paper color as root */
   }
 
-  /*
-    Logic for Body Background:
-    - Default (Mobile): Black (#000000)
-    - Desktop (md:): Zinc-950 to blend with emulator frame
-  */
   body {
-    background-color: #000000;
+    position: relative;
+    min-height: 100vh;
   }
 
-  @media (min-width: 768px) {
-    body {
-      background-color: #09090b; /* zinc-950 */
-      /* No flex needed here as DesktopDeviceFrame handles centering */
-    }
-    #app-layout {
-      /* No margin needed as it's inside the frame */
-      margin: 0;
-    }
+  /* Paper texture overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+    background-image: url("/paper-fibers.png");
   }
 
   *::-webkit-scrollbar {
@@ -94,6 +101,67 @@
 }
 
 @layer components {
+  .newspaper-page {
+    @apply max-w-5xl mx-auto min-h-screen relative overflow-hidden;
+    background-color: var(--paper-bg);
+    padding: 2rem 1rem;
+    box-shadow:
+      inset 0 0 100px rgba(0,0,0,0.03);
+  }
+
+  @media (min-width: 768px) {
+    .newspaper-page {
+      padding: 4rem 3rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      border-radius: 2px;
+    }
+  }
+
+  .newspaper-columns {
+    column-count: 1;
+    column-gap: 3rem;
+    column-rule: 1px solid #e7e5e4;
+  }
+
+  @media (min-width: 1024px) {
+    .newspaper-columns {
+      column-count: 2;
+    }
+  }
+
+  .ornament-hr {
+    @apply w-full border-t border-stone-300 my-4 relative h-px flex items-center justify-center;
+  }
+
+  .ornament-hr::after {
+    content: "❦";
+    @apply absolute px-2 text-stone-400 text-xs;
+    background-color: var(--paper-bg);
+  }
+
+  .dropped-cap::first-letter {
+    @apply text-7xl font-bold mr-3 float-left leading-[0.8] text-stone-900;
+    font-family: var(--font-heading);
+    initial-letter: 3;
+    -webkit-initial-letter: 3;
+  }
+
+  @media (max-width: 768px) {
+    .masthead-title {
+      @apply text-5xl !important;
+    }
+
+    .article-title {
+      @apply text-4xl !important;
+      word-break: break-word;
+    }
+  }
+
+  .news-image {
+    @apply grayscale-[0.3] contrast-[1.1] brightness-[1.05] sepia-[0.1];
+  }
+
   .secret-overlay {
     @apply absolute left-0 w-full bg-black/40 flex flex-col items-center justify-center text-center p-5;
     top: var(--topbar-height);

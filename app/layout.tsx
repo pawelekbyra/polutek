@@ -1,9 +1,12 @@
-import { Inter } from "next/font/google";
+import { Inter, EB_Garamond, Playfair_Display, UnifrakturMaguntia } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import type { Viewport } from 'next';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
+const ebGaramond = EB_Garamond({ subsets: ["latin"], variable: '--font-eb-garamond' });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: '--font-playfair' });
+const blackletter = UnifrakturMaguntia({ weight: '400', subsets: ["latin"], variable: '--font-blackletter' });
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -17,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl">
+    <html lang="pl" className={`${inter.variable} ${ebGaramond.variable} ${playfair.variable} ${blackletter.variable}`}>
       <body className="antialiased font-serif bg-[#FDFBF7]">
         {children}
         <Analytics />
