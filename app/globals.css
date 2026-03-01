@@ -4,147 +4,82 @@
 
 @layer base {
   :root {
-    /* Ujednolicone zmienne z prototypu tingtong.txt */
-    --app-height: 100vh;
-    --main-ui-bg-color: #696969;
-    --transition-speed: 0.4s;
-    --transition-timing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --topbar-base-height: 40px;
-    --bottombar-base-height: 110px; /* Zwiększono wysokość bazową, aby pomieścić ikonki */
-    --sidebar-width: 90px;
-    --safe-area-top: env(safe-area-inset-top);
-    --safe-area-bottom: env(safe-area-inset-bottom);
-    --topbar-height: calc(var(--topbar-base-height) + var(--safe-area-top));
-    --bottombar-height: calc(var(--bottombar-base-height) + var(--safe-area-bottom));
+    --background: 40 33% 98%; /* #fdfbf7 roughly */
+    --foreground: 20 10% 10%;
 
-    /* Shadcn/ui variables - adapted for the prototype's theme */
-    --background: 0 0% 0%; /* Black background */
-    --foreground: 0 0% 100%; /* White text */
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
 
-    --primary: 336 100% 50%; /* Accent color */
-    --primary-foreground: 210 40% 98%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 336 100% 50%; /* Accent color */
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 336 100% 50%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
 
     --radius: 0.5rem;
   }
-}
 
-@layer base {
-  * {
-    @apply border-border;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
   html, body {
     height: 100%;
     width: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    @apply text-foreground;
-    overscroll-behavior-y: contain; /* Prevent bounce scroll */
-  }
-
-  /*
-    Logic for Body Background:
-    - Default (Mobile): Black (#000000)
-    - Desktop (md:): Zinc-950 to blend with emulator frame
-  */
-  body {
-    background-color: #000000;
-  }
-
-  @media (min-width: 768px) {
-    body {
-      background-color: #09090b; /* zinc-950 */
-      /* No flex needed here as DesktopDeviceFrame handles centering */
-    }
-    #app-layout {
-      /* No margin needed as it's inside the frame */
-      margin: 0;
-    }
-  }
-
-  *::-webkit-scrollbar {
-    display: none;
+    background-color: #fdfbf7;
+    color: #1a1a1a;
   }
 }
 
 @layer components {
-  .secret-overlay {
-    @apply absolute left-0 w-full bg-black/40 flex flex-col items-center justify-center text-center p-5;
-    top: var(--topbar-height);
-  height: calc(100% - var(--topbar-height) - var(--bottombar-height));
-    backdrop-filter: blur(12px) saturate(120%);
-    -webkit-backdrop-filter: blur(12px) saturate(120%);
-    z-index: 20;
+  .paper-texture {
+    position: relative;
+    background-color: #fdfbf7;
   }
-  .secret-overlay .secret-icon {
-    @apply mb-6 text-white/90;
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+
+  .paper-texture::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-blend-mode: multiply;
+    opacity: 0.05;
+    z-index: 50;
   }
-  .secret-overlay .secret-title {
-    @apply text-2xl font-bold text-white mb-1;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+
+  /* Custom Drop Cap */
+  .drop-cap::first-letter {
+    @apply text-7xl font-bold mr-3 float-left leading-[0.8] mt-2;
+    font-family: var(--font-serif);
   }
-  .secret-overlay .secret-subtitle {
-    @apply text-base text-white/80;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+
+  .newspaper-columns {
+    column-count: 1;
+    column-gap: 2rem;
+    @screen md {
+      column-count: 2;
+    }
   }
-  .videoPlayer.secret-active {
-    filter: blur(12px) saturate(120%);
-  }
-  .no-transition {
-    transition: none !important;
-  }
-  .scroll-snap-y-mandatory {
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-    overscroll-behavior-y: contain;
-  }
-  .scroll-snap-align-start {
-    scroll-snap-align: start;
+
+  .newspaper-divider-double {
+    border-bottom: 4px double black;
   }
 }
 
 @layer utilities {
-  #bmc-wbtn {
-    display: none !important;
-  }
-
-  .comments-modal.is-focused {
-    height: 50dvh !important;
+  .text-justify-newspaper {
+    text-justify: inter-word;
+    @apply text-justify;
+    hyphens: auto;
   }
 }
-
-/* Optional: Additional safeguard for landscape on mobile phones */
-@media (orientation: landscape) and (max-height: 500px) {
-  body {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-}
-.noscroll { overflow: hidden; }

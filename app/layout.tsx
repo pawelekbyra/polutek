@@ -1,9 +1,11 @@
-import { Inter } from "next/font/google";
+import { Playfair_Display, Lora, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import type { Viewport } from 'next';
 
-const inter = Inter({ subsets: ["latin"] });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif-header" });
+const lora = Lora({ subsets: ["latin"], variable: "--font-serif-body" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -17,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl">
-      <body className="antialiased font-serif bg-[#FDFBF7]">
+    <html lang="pl" className={`${playfair.variable} ${lora.variable} ${inter.variable}`}>
+      <body className="antialiased paper-texture font-serif-body bg-[#fdfbf7] selection:bg-stone-200">
         {children}
         <Analytics />
       </body>
