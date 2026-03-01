@@ -1,6 +1,6 @@
 {
-  "name": "eliksir-wiedzmina",
-  "version": "1.0.0",
+  "name": "polutek",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -49,11 +49,10 @@
     "react-redux": "^9.2.0",
     "react-window": "^2.2.3",
     "recharts": "^3.1.2",
+    "resend": "^6.9.2",
     "swiper": "^12.0.3",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "uuid": "^9.0.1",
-    "web-push": "^3.6.7",
     "zod": "^4.3.6",
     "zustand": "^4.5.4"
   },
@@ -62,8 +61,6 @@
     "@types/node": "24.3.0",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@types/uuid": "^9.0.0",
-    "@types/web-push": "^3.6.4",
     "@typescript-eslint/eslint-plugin": "^8.41.0",
     "@typescript-eslint/parser": "^8.41.0",
     "eslint": "^8",

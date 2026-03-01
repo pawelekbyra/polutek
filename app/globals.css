@@ -4,7 +4,6 @@
 
 @layer base {
   :root {
-    --paper-bg: #fdfbf7;
     /* Ujednolicone zmienne z prototypu tingtong.txt */
     --app-height: 100vh;
     --main-ui-bg-color: #696969;
@@ -64,52 +63,28 @@
   html, body {
     height: 100%;
     width: 100%;
-    @apply text-foreground font-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    @apply text-foreground;
     overscroll-behavior-y: contain; /* Prevent bounce scroll */
-    background-color: var(--paper-bg);
   }
 
+  /*
+    Logic for Body Background:
+    - Default (Mobile): Black (#000000)
+    - Desktop (md:): Zinc-950 to blend with emulator frame
+  */
   body {
-    position: relative;
-    background-color: var(--paper-bg);
-  }
-
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('https://www.transparenttextures.com/patterns/subtle-paper.png');
-    opacity: 0.4;
-    pointer-events: none;
-    z-index: 50;
-  }
-
-  body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-shadow: inset 0 0 100px rgba(0,0,0,0.05);
-    pointer-events: none;
-    z-index: 51;
+    background-color: #000000;
   }
 
   @media (min-width: 768px) {
     body {
-      background-color: #e5e5e5;
+      background-color: #09090b; /* zinc-950 */
+      /* No flex needed here as DesktopDeviceFrame handles centering */
     }
-    main {
-      background-color: var(--paper-bg);
-      box-shadow: 0 0 50px rgba(0,0,0,0.1);
-      margin: 2rem auto;
-      max-width: 1100px;
-      position: relative;
-      min-height: calc(100vh - 4rem);
+    #app-layout {
+      /* No margin needed as it's inside the frame */
+      margin: 0;
     }
   }
 

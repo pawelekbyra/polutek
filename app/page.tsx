@@ -1,39 +1,350 @@
-import React from 'react';
-import type { Metadata } from 'next';
-import { Scale, Search, ShieldCheck, Globe, FileText, Download, Calendar, History, ExternalLink } from 'lucide-react';
-import BrandHeader from '@/components/BrandHeader';
-import {
-  CaseFile, PullQuote, LocationStampUI, TransactionStampUI
-} from '@/app/eliksir/ElixirServerComponents';
-import {
-  ElixirModalsProvider,
-  GalleryTrigger,
-  ArticleVideoPlayer
-} from '@/app/eliksir/ElixirClientComponents';
-import {
-  KORDYS_IMAGES_URL,
-  KORDYS_PDF_URL,
-  BADI_PDF_URL,
-  MUNAY_WAYBACK_URL,
-  VIDEO_ARREST_METADATA,
-  VIDEO_STEFANEK_METADATA,
-  PINATA_GATEWAY,
-  ARREST_VIDEO_CID,
-  VIDEO_CID
-} from '@/lib/eliksir-data';
+"use client";
 
-export const metadata: Metadata = {
-  title: "Michał Kiciński, Ayahuasca i Tajemnicza Śmierć w Janovie",
-  description: "Pełna dokumentacja śledztwa dziennikarskiego w sprawie ceremonii ayahuaski. Dowody, nagrania i treści wyroków.",
-  keywords: "Michał Kiciński, Jarosław Kordys, prokurator Jolanta Świdnicka, Janov, Ayahuasca, Eliksir Wiedźmina, śledztwo dziennikarskie",
+import React, { useEffect, useRef, useState, useCallback, createContext, useContext } from 'react';
+import {
+  Scale, FileText, Search, Mail, Stamp, X,
+  Home as HouseIcon, ExternalLink, ChevronLeft, ChevronRight, Download, Globe, Calendar, History, ShieldCheck
+} from 'lucide-react';
+import Hls from 'hls.js';
+
+// --- DATA ---
+export type GalleryData = {
+  title: string;
+  images: string[];
+  signature?: string;
+  pdfUrl?: string;
+  type?: 'verdict' | 'gallery';
 };
+
+const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
+
+const KORDYS_IMAGES_CID = "bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm";
+const KORDYS_IMAGES_URL = `${PINATA_GATEWAY}/${KORDYS_IMAGES_CID}`;
+
+const BADI_IMAGES_CID = "bafybeifdgw2zosj6lz2qg3d33aye4bd4vcz3rtrix2jbw3wwjhvxxjrk6q";
+const BADI_IMAGES_URL = `${PINATA_GATEWAY}/${BADI_IMAGES_CID}`;
+
+const NYDEK_IMAGES_CID = "bafybeidabdztfvfa7ycie5q47xfby7jiqtuwt6oddccuujpvjxqzd4ofpa";
+const NYDEK_IMAGES_URL = `${PINATA_GATEWAY}/${NYDEK_IMAGES_CID}`;
+
+const JANOV_IMAGES_CID = "bafybeia6rid25dw5t46mwmgwu4coa3t6qp34vcno4mcnqxuixplpyfmvly";
+const JANOV_IMAGES_URL = `${PINATA_GATEWAY}/${JANOV_IMAGES_CID}`;
+
+const VIDEO_CID = "bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u";
+const ARREST_VIDEO_CID = "bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy";
+
+const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
+const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
+const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://munaysonqo.com/retreats/";
+
+const VIDEO_ARREST_METADATA = {
+  name: "Nalot policji na ośrodek ayahuaski w Hermanovicach",
+  description: "Pełna dokumentacja policyjnej interwencji i aresztowania grupy organizującej nielegalne ceremonie ayahuaski. Materiał dowodowy w sprawie Jarosława Kordysa.",
+  thumbnailUrl: `${JANOV_IMAGES_URL}/janov01.jpg`,
+  contentUrl: `${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`,
+  uploadDate: "2020-10-15T09:00:00+01:00",
+};
+
+const VIDEO_STEFANEK_METADATA = {
+  name: "Wyznania Krzysztofa Stefanka o przejęciu Janówa",
+  description: "Relacja z pierwszej ręki dotycząca darowizny nieruchomości w Janowie od Michała Kicińskiego dla Stowarzyszenia Natury Zew.",
+  thumbnailUrl: `${JANOV_IMAGES_URL}/janov02.jpg`,
+  contentUrl: `${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`,
+  uploadDate: "2024-11-01T12:00:00+01:00",
+};
+
+const generateKordysPages = (count: number) => {
+  return Array.from({ length: count }, (_, i) => {
+    const pageNumber = String(i + 1).padStart(4, '0');
+    const fileName = `30T 5 2021-1_page-${pageNumber}.jpg`;
+    return `${KORDYS_IMAGES_URL}/${fileName}`;
+  });
+};
+
+const generateBadiPages = (count: number) => {
+  return Array.from({ length: count }, (_, i) => {
+    const pageNumber = String(i + 1).padStart(4, '0');
+    const fileName = `wyrok_page-${pageNumber}.jpg`;
+    return `${BADI_IMAGES_URL}/${fileName}`;
+  });
+};
+
+const GALLERY_NYDEK: GalleryData = {
+  title: "Posiadłość w Nýdku (Archiwum)",
+  images: [
+    `${NYDEK_IMAGES_URL}/nydek01.jpg`,
+    `${NYDEK_IMAGES_URL}/nydek02.jpg`,
+    `${NYDEK_IMAGES_URL}/nydek03.jpg`,
+    `${NYDEK_IMAGES_URL}/nydek04.jpg`,
+    `${NYDEK_IMAGES_URL}/nydek05.jpg`,
+    `${NYDEK_IMAGES_URL}/nydek06.jpeg`
+  ],
+  signature: "LV 832"
+};
+
+const GALLERY_WYROK_KORDYS: GalleryData = {
+  title: "Pełne uzasadnienie wyroku: Jarosław K.",
+  images: generateKordysPages(95),
+  signature: "30 T 5/2021",
+  pdfUrl: KORDYS_PDF_URL,
+  type: 'verdict'
+};
+
+const GALLERY_WYROK_BADI: GalleryData = {
+  title: "Wyrok skazujący: Bartosz B.",
+  images: generateBadiPages(3),
+  signature: "66 T 146/2021",
+  pdfUrl: BADI_PDF_URL,
+  type: 'verdict'
+};
+
+const GALLERY_WEZWANIE_KICINSKI: GalleryData = {
+  title: "Wezwanie dla Michała Kicińskiego",
+  images: [`${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`],
+  signature: "WD-I-3186/23"
+};
+
+const GALLERY_JANOV: GalleryData = {
+  title: "Dokumentacja Nieruchomości: Janów",
+  images: [
+    `${JANOV_IMAGES_URL}/janov01.jpg`,
+    `${JANOV_IMAGES_URL}/janov02.jpg`,
+    `${JANOV_IMAGES_URL}/janov04.jpg`,
+    `${JANOV_IMAGES_URL}/janov06.jpg`,
+    `${JANOV_IMAGES_URL}/janov07.jpg`,
+    `${JANOV_IMAGES_URL}/janov08.jpg`,
+    `${JANOV_IMAGES_URL}/janov09.jpg`,
+    `${JANOV_IMAGES_URL}/janov10.jpg`,
+    `${JANOV_IMAGES_URL}/janov11.jpg`,
+    `${JANOV_IMAGES_URL}/janov12.jpg`,
+    `${JANOV_IMAGES_URL}/janov13.jpg`,
+    `${JANOV_IMAGES_URL}/janov14.jpg`,
+    `${JANOV_IMAGES_URL}/janov15.jpg`,
+    `${JANOV_IMAGES_URL}/janov16.jpg`,
+    `${JANOV_IMAGES_URL}/janov17.jpg`,
+    `${JANOV_IMAGES_URL}/janov18.jpg`,
+    `${JANOV_IMAGES_URL}/janov19.jpg`,
+    `${JANOV_IMAGES_URL}/janov20.jpg`,
+    `${JANOV_IMAGES_URL}/janov21.jpg`,
+    `${JANOV_IMAGES_URL}/janov23.jpg`,
+    `${JANOV_IMAGES_URL}/janov24.jpg`,
+    `${JANOV_IMAGES_URL}/janov25.jpg`,
+    `${JANOV_IMAGES_URL}/janov26.jpg`,
+  ],
+  signature: "LV 127"
+};
+
+// --- COMPONENTS ---
+
+const CaseFile = ({ title, children, type = 'evidence' }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email' }) => (
+  <div className="my-8 border border-stone-300 bg-white shadow-sm rounded-sm overflow-hidden break-inside-avoid text-left">
+    <div className="bg-stone-100 border-b border-stone-200 px-4 py-2 flex items-center gap-2 text-xs font-mono text-stone-500 uppercase tracking-wider">
+      {type === 'email' ? <Mail className="w-4 h-4" /> : type === 'transcript' ? <Search className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
+      <span>{title}</span>
+    </div>
+    <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-stone-800 bg-[url('https://www.transparenttextures.com/patterns/subtle-paper.png')] italic">
+      {children}
+    </div>
+  </div>
+);
+
+const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
+  <div className="my-10 pl-6 border-l-[3px] border-stone-800/80 text-left">
+    <p className="font-serif text-xl md:text-2xl italic text-stone-900 leading-relaxed mb-3">
+      „{quote}”
+    </p>
+    <div className="font-sans text-[10px] uppercase tracking-widest text-stone-500">
+      — <span className="font-bold text-stone-800">{author}</span>, {source}
+    </div>
+  </div>
+);
+
+const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string, plot: string, lv: string }) => (
+  <div className="relative border border-stone-300 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] transition-colors text-left group">
+     <div className="absolute top-1 right-1 text-stone-300 group-hover:text-stone-500 transition-colors">
+       <Search className="w-3 h-3" />
+     </div>
+
+     <div className="bg-stone-100 h-full p-3 flex items-center justify-center border-r border-stone-200 border-dashed transition-colors">
+        <HouseIcon className="w-5 h-5 text-stone-400" />
+     </div>
+     <div className="py-2">
+        <div className="text-[9px] uppercase tracking-[0.2em] text-stone-400 font-bold mb-1 flex items-center gap-2">
+          {name}
+        </div>
+        <div className="font-mono text-base font-bold text-stone-800">LV {lv}</div>
+        <div className="text-[10px] text-stone-500 font-mono mt-1">
+          Działka: {plot} <span className="text-stone-300 mx-1">|</span> Obręb: {code}
+        </div>
+     </div>
+  </div>
+);
+
+const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
+  <div className="relative border border-stone-300 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] group hover:border-stone-400 transition-colors cursor-default text-left">
+     <div className="absolute top-1 right-1 text-stone-300 group-hover:text-stone-500 transition-colors">
+       <Search className="w-3 h-3" />
+     </div>
+
+     <div className="bg-stone-100 h-full p-3 flex items-center justify-center border-r border-stone-200 border-dashed">
+        <Stamp className="w-5 h-5 text-stone-400" />
+     </div>
+     <div className="py-2">
+        <div className="text-[9px] uppercase tracking-[0.2em] text-stone-400 font-bold mb-1">{label}</div>
+        <div className="font-mono text-base font-bold text-stone-800">{value}</div>
+        {subDetails && <div className="text-[10px] text-stone-500 font-mono mt-1">{subDetails}</div>}
+     </div>
+  </div>
+);
+
+const ArticleVideoPlayer: React.FC<{ src: string; poster: string }> = ({ src, poster }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(src);
+        hls.attachMedia(video);
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = src;
+      }
+    }
+  }, [src]);
+  return (
+    <div className="my-12 w-full bg-black rounded-sm shadow-lg overflow-hidden">
+      <video ref={videoRef} controls poster={poster} className="w-full h-auto block" />
+    </div>
+  );
+};
+
+const GalleryModal: React.FC<{ isOpen: boolean; onClose: () => void; data: GalleryData | null }> = ({ isOpen, onClose, data }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentIndex(0);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [isOpen, data]);
+  const handleNext = useCallback(() => {
+    if (!data) return;
+    setCurrentIndex((prev) => (prev + 1) % data.images.length);
+  }, [data]);
+  const handlePrev = useCallback(() => {
+    if (!data) return;
+    setCurrentIndex((prev) => (prev - 1 + data.images.length) % data.images.length);
+  }, [data]);
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isOpen) return;
+      if (e.key === 'Escape') onClose();
+      if (data?.type !== 'verdict') {
+        if (e.key === 'ArrowRight') handleNext();
+        if (e.key === 'ArrowLeft') handlePrev();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose, handleNext, handlePrev, data]);
+  if (!isOpen || !data) return null;
+  const isVerdict = data.type === 'verdict';
+  return (
+    <div className={`fixed inset-0 z-[100] flex flex-col ${isVerdict ? 'bg-stone-900/95' : 'bg-black'} backdrop-blur-sm animate-[fadeIn_0.2s_ease-out]`}>
+      <div className="flex items-center justify-between px-4 py-3 bg-black/40 border-b border-white/10 z-50 shrink-0">
+        <div className="text-white text-left">
+          <h3 className="font-bold text-sm md:text-base leading-tight">{data.title}</h3>
+          <p className="font-mono text-[10px] text-stone-400 mt-1 uppercase tracking-wider">
+             {isVerdict ? `Dokument: ${data.images.length} stron` : `Zdjęcie ${currentIndex + 1} / ${data.images.length}`}
+             {data.signature && <span className="mx-2 text-stone-600">|</span>}
+             {data.signature}
+          </p>
+        </div>
+        <div className="flex items-center gap-3">
+          {data.pdfUrl && (
+             <a href={data.pdfUrl} target="_blank" rel="noopener noreferrer" className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-stone-800 text-stone-200 text-xs font-bold uppercase tracking-wider hover:bg-stone-700 transition-colors rounded-sm border border-white/10">
+               <Download className="w-3 h-3" /> PDF
+             </a>
+          )}
+          <button onClick={onClose} className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+      <div className="flex-1 overflow-hidden relative w-full h-full">
+        {isVerdict ? (
+          <div className="w-full h-full overflow-y-auto p-4 md:p-8 flex justify-center bg-[#1a1a1a]">
+            <div className="flex flex-col gap-4 max-w-4xl w-full">
+               {data.images.map((img, idx) => (
+                 <div key={idx} className="relative group">
+                   <img src={img} alt={`Strona ${idx + 1}`} className="w-full h-auto shadow-2xl border border-stone-700" loading="lazy" />
+                   <div className="absolute top-2 right-2 bg-black/50 text-white text-[10px] px-2 py-1 rounded font-mono">#{idx + 1}</div>
+                 </div>
+               ))}
+               <div className="text-center py-8 text-stone-500 font-mono text-xs">--- KONIEC DOKUMENTU ---</div>
+            </div>
+          </div>
+        ) : (
+          <div className="w-full h-full flex items-center justify-center p-2 md:p-10 relative">
+            <button onClick={(e) => { e.stopPropagation(); handlePrev(); }} className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-3 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-all z-20">
+              <ChevronLeft className="w-8 h-8 md:w-10 md:h-10" />
+            </button>
+            <div className="relative w-full h-full flex items-center justify-center">
+              <img src={data.images[currentIndex]} alt={`Zdjęcie ${currentIndex + 1}`} className="max-w-full max-h-full object-contain drop-shadow-2xl" />
+            </div>
+            <button onClick={(e) => { e.stopPropagation(); handleNext(); }} className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-3 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-all z-20">
+              <ChevronRight className="w-8 h-8 md:w-10 md:h-10" />
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+type ModalContextType = {
+  openGallery: (type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi' | 'wezwanie_kicinski' | 'janov') => void;
+};
+
+const ModalContext = createContext<ModalContextType | undefined>(undefined);
+
+const useElixirModals = () => {
+  const context = useContext(ModalContext);
+  if (!context) throw new Error('useElixirModals must be used within ElixirModalsProvider');
+  return context;
+};
+
+const ElixirModalsProvider = ({ children }: { children: React.ReactNode }) => {
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [galleryData, setGalleryData] = useState<GalleryData | null>(null);
+  const openGallery = (type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi' | 'wezwanie_kicinski' | 'janov') => {
+    const maps = { nydek: GALLERY_NYDEK, wyrok_kordys: GALLERY_WYROK_KORDYS, wyrok_badi: GALLERY_WYROK_BADI, wezwanie_kicinski: GALLERY_WEZWANIE_KICINSKI, janov: GALLERY_JANOV };
+    setGalleryData(maps[type]);
+    setIsGalleryOpen(true);
+  };
+  return (
+    <ModalContext.Provider value={{ openGallery }}>
+      {children}
+      <GalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} data={galleryData} />
+    </ModalContext.Provider>
+  );
+};
+
+const GalleryTrigger = ({ type, children, className }: { type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi' | 'wezwanie_kicinski' | 'janov', children: React.ReactNode, className?: string }) => {
+  const { openGallery } = useElixirModals();
+  return <button onClick={() => openGallery(type)} className={className}>{children}</button>;
+};
+
+// --- PAGE ---
 
 export default function Page() {
   const newsArticleSchema = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    "headline": "Eliksir Wiedźmina – Śledztwo: Michał Kiciński i tajemnica Janova",
-    "description": "Pełna dokumentacja śledztwa: Michał Kiciński, Jarosław Kordys i prokurator Jolanta Świdnicka. Ayahuasca, Janov i tragiczna śmierć uczestniczki.",
+    "headline": "Eliksir Wiedźmina – Śledztwo: Michał Kiciński i tajemnica Janówa",
+    "description": "Pełna dokumentacja śledztwa: Michał Kiciński, Jarosław Kordys i prokurator Jolanta Świdnicka. Ayahuasca, Janów i tragiczna śmierć uczestniczki.",
     "image": [
       `${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`
     ],
@@ -80,27 +391,23 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(videoStefanekSchema) }}
       />
 
-      <main className="min-h-screen text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
-        <BrandHeader />
-        <header className="pt-12 pb-12 px-6">
-          <div className="max-w-5xl mx-auto text-center">
-            <h1 className="mb-8 text-stone-900 font-display font-black uppercase tracking-tighter">
-              <span className="block text-6xl md:text-9xl leading-none">
+      <main className="min-h-screen bg-[#FDFBF7] text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
+        <header className="pt-20 pb-8 px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-block mb-6 px-3 py-1 border border-stone-900 text-[10px] font-sans font-bold tracking-[0.2em] uppercase">
+              www.eliksir-wiedzmina.pl
+            </div>
+
+            <h1 className="mb-8 text-stone-900">
+              <span className="block text-5xl md:text-7xl font-bold leading-none tracking-tight">
                 Eliksir Wiedźmina
+              </span>
+              <span className="block text-2xl md:text-4xl text-stone-500 italic font-medium mt-6 max-w-3xl mx-auto">
+                Mroczna tajemnica twórców CD Projekt
               </span>
             </h1>
 
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="h-[1px] bg-stone-300 flex-1"></div>
-              <div className="w-3 h-3 rounded-full border-2 border-stone-400 bg-stone-100 shadow-inner"></div>
-              <div className="h-[1px] bg-stone-300 flex-1"></div>
-            </div>
-
-            <h2 className="text-3xl md:text-5xl text-stone-800 italic font-display font-medium max-w-4xl mx-auto leading-tight">
-              Mroczna tajemnica twórców CD Projekt
-            </h2>
-
-            <div className="max-w-3xl mx-auto mt-12 py-8 px-6 border-t border-stone-200">
+            <div className="max-w-2xl mx-auto border-y border-stone-200 py-8 px-4">
               <p className="text-xl md:text-2xl text-stone-700 leading-relaxed italic">
                 Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry &quot;Wiedźmin&quot; finansowali szamańskie podziemie.
               </p>
@@ -108,9 +415,9 @@ export default function Page() {
           </div>
         </header>
 
-        <article className="max-w-5xl mx-auto px-6 pt-8 pb-0 flex-grow">
-          <div className="md:columns-2 md:gap-12 prose prose-stone prose-lg max-w-none prose-headings:font-display prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight prose-blockquote:not-italic
-            prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-400 hover:prose-a:bg-stone-100 transition-colors text-justify">
+        <article className="max-w-2xl mx-auto px-4 pt-8 pb-0 flex-grow">
+          <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic
+            prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-400 hover:prose-a:bg-stone-100 transition-colors">
 
             <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed">
               W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
@@ -128,7 +435,7 @@ export default function Page() {
               W przygranicznym Janowie funkcjonował drugi, bliźniaczy ayahuaskowy ośrodek, którego współwłaścicielem okazał się miliarder – <strong>Michał Kiciński</strong>.
             </p>
 
-            <h2 className="text-4xl mt-16 mb-8 tracking-tight text-stone-900 border-b-2 border-stone-900 pb-2 break-inside-avoid">Świadek B.</h2>
+            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Świadek B.</h2>
 
             <p>
               W obszernym i publicznie dostępnym uzasadnieniu <GalleryTrigger type="wyrok_kordys" className="font-bold text-stone-900 underline decoration-double decoration-stone-400 hover:bg-stone-100 transition-colors">wyroku</GalleryTrigger> Jarosława Kordysa pojawia się postać świadka Bartosza B.
@@ -156,8 +463,8 @@ export default function Page() {
               Intrygujący fragment dotyczy własności &quot;bazy&quot;. Dokumenty stwierdzają:
             </p>
 
-            <CaseFile title="Własność nieruchomości">
-              &quot;(...) budynek rodzinny w miejscowości Janov (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy&quot;
+            <CaseFile title="Wlasność nieruchomości">
+              &quot;(...) budynek rodzinny w miejscowości Janów (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy&quot;
               <br/><br/>
               &quot;Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem jednej dziesiątej nieruchomości&quot;.
             </CaseFile>
@@ -197,7 +504,7 @@ export default function Page() {
               Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie &quot;Michal D. K.&quot;. <span className="bg-yellow-200 px-1 font-bold text-stone-900 shadow-sm box-decoration-clone">Wspólnikiem szamana był twórca &quot;Wiedźmina&quot; – jeden z najbogatszych Polaków.</span>
             </p>
 
-            <h2 className="text-4xl mt-16 mb-8 tracking-tight text-stone-900 border-b-2 border-stone-900 pb-2 break-inside-avoid">Na podsłuchu</h2>
+            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Na podsłuchu</h2>
 
             <p>
               Przełom w sprawie organizatorów ayahuaskowych ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysem.
@@ -255,7 +562,7 @@ export default function Page() {
               Podczas policyjnej interwencji zidentyfikowano tam 15 obywateli Polski, którzy mieli brać udział w ceremonii. Wśród nich, stali bywalcy i bliscy znajomi Badowskiego – <strong>Krzysztof Stefanek</strong> i <strong>Lena Drzewińska</strong>, których obecność w momencie wkroczenia służb ma znaczenie w kontekście późniejszej ich roli w tej historii.
             </p>
 
-            <h2 className="text-4xl mt-16 mb-8 tracking-tight text-stone-900 border-b-2 border-stone-900 pb-2 break-inside-avoid">Cena wolności</h2>
+            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cena wolności</h2>
 
             <p>
               Kiedy 26 sierpnia 2020 roku czeska policja weszła do posiadłości w Janowie, należącej do Bartosza Badowskiego i miliardera Michała Kicińskiego, Jarosław Kordys w Hermanovicach wciąż czuł się bezpiecznie. Nie wiedział jeszcze, że zegar zaczął odliczać czas do jego własnej katastrofy. Zaledwie 7 tygodni po cichym nalocie na Badowskiego policja zapukała do Kordysów.
@@ -322,7 +629,7 @@ export default function Page() {
               Podczas, gdy Jarosław Kordys został skazany na 8,5 roku pozbawienia wolności Bartosz Badowski, którego sprawa dotyczyła tego samego procederu, tych samych substancji, regionu i czasu trwania działalności, dzięki ugodzie i współpracy z wymiarem sprawiedliwości, zakończył sprawę wyrokiem w zawieszeniu.
             </p>
 
-            <h2 className="text-4xl mt-16 mb-8 tracking-tight text-stone-900 border-b-2 border-stone-900 pb-2 break-inside-avoid">Cisza po burzy</h2>
+            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Cisza po burzy</h2>
 
             <p>
               Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janowie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku &quot;Badiego&quot; w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
@@ -332,10 +639,10 @@ export default function Page() {
               Będąc tak blisko Badowskiego, doskonale znali mroczną tajemnicę śmierci Ilony. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się o &quot;ciągłość dostaw&quot;, dowodzi, że w pełni akceptowali reguły zmowy milczenia.
             </p>
 
-            <h2 className="text-4xl mt-16 mb-8 tracking-tight text-stone-900 border-b-2 border-stone-900 pb-2 break-inside-avoid">Kiciński</h2>
+            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Kiciński</h2>
 
             <p>
-              W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika. Michał Kiciński to nie jest postać, która o ayahuasce jedynie &quot;słyszała&quot; – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla &quot;Focusa&quot;, &quot;Newsweeka&quot;) z niezwykłą precyzją opisuje on mechanizamy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu &quot;medycyna&quot;, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera &quot;nową rzeczywistość&quot;.
+              W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika. Michał Kiciński to nie jest postać, która o ayahuasce jedynie &quot;słyszała&quot; – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla &quot;Focusa&quot;, &quot;Newsweeka&quot;) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu &quot;medycyna&quot;, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera &quot;nową rzeczywistość&quot;.
             </p>
 
             <PullQuote
@@ -344,7 +651,7 @@ export default function Page() {
               source="Newsweek, 30 maja 2016 r."
             />
 
-            <h2 className="text-4xl mt-16 mb-8 tracking-tight text-stone-900 border-b-2 border-stone-900 pb-2 break-inside-avoid">&quot;Błąd z Badim&quot;</h2>
+            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">&quot;Błąd z Badim&quot;</h2>
 
             <p>
                Michał Kiciński wiedział o Ilonie. Jego konfrontacja z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć &quot;pobytu w Janowie&quot;.
@@ -407,7 +714,7 @@ export default function Page() {
               &quot;Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.&quot;
             </CaseFile>
 
-            <h2 className="text-4xl mt-16 mb-8 tracking-tight text-stone-900 border-b-2 border-stone-900 pb-2 break-inside-avoid">Anonimowy filantrop</h2>
+            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Anonimowy filantrop</h2>
 
             <p>
               W listopadzie 2025 roku na kanale YouTube &quot;<strong>Osada Natury Zew</strong>&quot; pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, <strong>Krzysztof Stefanek</strong>, snuje opowieść o powstaniu &quot;Osady&quot;. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
@@ -451,7 +758,7 @@ export default function Page() {
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
-                  <strong>3 października 2023 r.</strong> – Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów in nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
+                  <strong>3 października 2023 r.</strong> – Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów w nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
                 </div>
               </li>
 
@@ -473,7 +780,7 @@ export default function Page() {
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-stone-400 shrink-0" />
                 <div>
-                  <strong>21 grudnia 2023 r.</strong> – Finał operacji. Kiciński formalnie przekazuje Janov w formie darowizny. Nieruchomość trafia do stowarzyszenia &quot;non-profit&quot; – fasadowej organizacji &quot;krzak&quot;, zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
+                  <strong>21 grudnia 2023 r.</strong> – Finał operacji. Kiciński formalnie przekazuje Janów w formie darowizny. Nieruchomość trafia do stowarzyszenia &quot;non-profit&quot; – fasadowej organizacji &quot;krzak&quot;, zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
                 </div>
               </li>
             </ul>
@@ -486,7 +793,7 @@ export default function Page() {
                <TransactionStampUI
                 label="Nr Transakcji (Katastr)"
                 value="V-5821/2023-127"
-                subDetails="Obręb: Janov u Krnova [656976]"
+                subDetails="Obręb: Janów u Krnova [656976]"
               />
             </div>
 
@@ -498,7 +805,7 @@ export default function Page() {
               Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit <strong>Stowarzyszenie Natury Zew</strong> żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki. A przecież &quot;zadośćuczynienie wszechświatowi&quot; miało trafić na hospicjum, a nie na &quot;organizację krzak&quot;.
             </p>
 
-            <h2 className="text-4xl mt-16 mb-8 tracking-tight text-stone-900 border-b-2 border-stone-900 pb-2 break-inside-avoid">Nýdek</h2>
+            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Nýdek</h2>
 
             <p>
               Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janowa, w miejscowości <strong>Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.
@@ -569,7 +876,7 @@ export default function Page() {
               Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z &quot;darowizną&quot; Kicińskiego w Janowie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
             </p>
 
-            <h2 className="text-4xl mt-16 mb-8 tracking-tight text-stone-900 border-b-2 border-stone-900 pb-2 break-inside-avoid">Wiktor B.</h2>
+            <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-200 pb-2">Wiktor B.</h2>
 
             <p>
               3 marca 2026 Onet ujawnia opinii publicznej wstrząsające kulisy działalności ośrodka w czeskim Janowie, gdzie podczas szamańskich ceremonii z użyciem ayahuaski miało dojść do tragicznych zdarzeń. Dziennikarskie śledztwo koncentruje się na śmierci 54-letniej uczestniczki, Ilony L.-H.
@@ -650,11 +957,11 @@ export default function Page() {
 
           </div>
 
-          <footer className="mt-24 pt-12 border-t-4 border-double border-stone-900 font-sans">
+          <footer className="mt-4 pt-8 border-none font-sans">
 
              <div className="mb-8">
-               <h3 className="text-2xl font-display font-black text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                 <Search className="w-6 h-6" /> Dokumenty Źródłowe
+               <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
+                 <Search className="w-5 h-5" /> Dokumenty Źródłowe
                </h3>
                <div className="border-b border-stone-300 w-full mb-6"></div>
                <p className="text-base text-stone-800 italic text-left">
@@ -662,7 +969,7 @@ export default function Page() {
                </p>
              </div>
 
-             <div className="grid md:grid-cols-2 gap-4 text-sm text-stone-600">
+             <div className="grid gap-4 text-sm text-stone-600">
 
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
@@ -723,7 +1030,7 @@ export default function Page() {
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
-                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: <strong>Janov</strong></h4>
+                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: <strong>Janów</strong></h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">
                         LV 127 | Obręb 656976 <span className="block sm:inline sm:ml-2 text-stone-400">| Koszt: 100 CZK (~17 PLN)</span>
                       </p>
@@ -779,7 +1086,7 @@ export default function Page() {
                <div className="p-3 bg-white border border-stone-200 hover:border-blue-300 transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
-                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Darowizna (<strong>Janov</strong>)</h4>
+                      <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Darowizna (<strong>Janów</strong>)</h4>
                       <p className="font-mono text-[10px] text-stone-500 mt-1">
                         Sygnatura: V-5821/2023 <span className="block sm:inline sm:ml-2 text-stone-400">| Koszt: 300 CZK (~52 PLN)</span>
                       </p>
