@@ -84,6 +84,14 @@ export default function Page() {
         <BrandHeader />
         <header className="pt-12 pb-12 px-6">
           <div className="max-w-5xl mx-auto text-center">
+            <div className="mb-12 flex justify-center">
+              <img
+                src="/naokladke.png"
+                alt="Eliksir Wiedźmina - Michał Kiciński i Bartosz Badowski"
+                className="w-full max-w-2xl h-auto opacity-[0.85] contrast-125 saturate-0 mix-blend-multiply"
+              />
+            </div>
+
             <h1 className="mb-8 text-stone-900 font-display font-black uppercase tracking-tighter">
               <span className="block text-6xl md:text-9xl leading-none">
                 Eliksir Wiedźmina

@@ -47,9 +47,7 @@ export default function BrandHeader() {
         </div>
 
         <nav className="flex justify-center gap-8 font-serif text-[10px] font-bold uppercase tracking-[0.3em] text-stone-500 mt-6">
-          <span className="hover:text-stone-900 cursor-pointer transition-colors border-b border-transparent hover:border-stone-400">EUROPA</span>
-          <span className="hover:text-stone-900 cursor-pointer transition-colors border-b border-transparent hover:border-stone-400">ŚWIAT</span>
-          <span className="text-stone-900 border-b-2 border-stone-800 pb-1">ŚLEDZTWA</span>
+          <span className="text-stone-900 border-b-2 border-stone-800 pb-1">ŚLEDZTWA ŚLEDCZE</span>
         </nav>
       </div>
     </header>
