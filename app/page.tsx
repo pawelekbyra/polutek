@@ -446,7 +446,6 @@ export default function Page() {
        <img
          src="/staragazetapng.png"
          alt="Wiedźmini z eliksirem"
-         {/* h-[40vh] sprawia, że obrazek zawsze zajmie 40% wysokości ekranu, niezależnie od urządzenia */}
          className="w-auto h-[35vh] md:h-[45vh] object-contain opacity-90 grayscale contrast-125 mix-blend-multiply"
        />
     </div>
@@ -466,7 +465,6 @@ export default function Page() {
       </p>
     </div>
     
-    {/* Subtelna strzałka/linia sugerująca skrolowanie na dole ekranu */}
     <div className="mt-auto pt-8 animate-pulse hidden md:block">
        <div className="w-px h-12 bg-stone-300 mx-auto"></div>
     </div>
