@@ -206,40 +206,31 @@ const EvidenceGrid = () => {
 
 const BrandHeader = () => {
   return (
-    <>
-      {/* Import kroju Bodoni Moda - idealnie "gazetowy" i ostry jak w Twoim pliku super.jpg */}
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,900;1,6..96,900&display=swap');
-        .font-brand { font-family: 'Bodoni Moda', serif; }
-      `}</style>
+    <div className="w-full pb-2 mb-2 flex flex-col items-center">
+      <div className="flex items-center justify-center w-full pb-2">
+        {/* Paski boczne wywalone, przywrócona pierwotna czcionka font-serif */}
+        <h1 className="text-5xl md:text-[6.2rem] font-black tracking-tighter text-stone-900 uppercase font-serif leading-none whitespace-nowrap">
+          NASZA GAZETKA
+        </h1>
+      </div>
 
-      <div className="w-full pb-2 mb-2 flex flex-col items-center">
-        <div className="flex items-center justify-center w-full py-6">
-          {/* Paski boczne całkowicie usunięte. Rozmiar dopasowany, by tekst się nie rozjeżdżał */}
-          <h1 className="font-brand text-5xl sm:text-7xl md:text-[6.8rem] font-black tracking-tight text-stone-900 uppercase leading-none text-center">
-            NASZA GAZETKA
-          </h1>
+      <div className="w-[98%] mx-auto border-y-[2px] border-stone-900 py-1 flex items-center justify-between px-2 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-stone-800">
+        <div className="flex items-center gap-2">
+          <span>📰</span>
+          <span className="hidden sm:inline">Niezależne Media</span>
         </div>
 
-        {/* Linia pod tytułem, jak na obrazku */}
-        <div className="w-[98%] mx-auto border-y-[2px] border-stone-900 py-1 flex items-center justify-between px-2 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-stone-800">
-          <div className="flex items-center gap-2">
-            <span>📰</span>
-            <span className="hidden sm:inline">Niezależne Media</span>
-          </div>
+        <div className="text-center">
+          NIEDZIELA, 1 MARCA 2026
+        </div>
 
-          <div className="text-center font-brand italic font-medium">
-            NIEDZIELA, 1 MARCA 2026
-          </div>
-
-          <div className="flex items-center gap-2">
-            <span className="hidden sm:inline">Serwis Śledczy</span>
-            <span>📄</span>
-            <span className="hidden md:inline border-l border-stone-900 pl-2 ml-1">Nr 01</span>
-          </div>
+        <div className="flex items-center gap-2">
+          <span className="hidden sm:inline">Serwis Śledczy</span>
+          <span>📄</span>
+          <span className="hidden md:inline border-l border-stone-900 pl-2 ml-1">Nr 01</span>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 const CaseFile = ({ title, children, icon = '📄' }: { title: string, children: React.ReactNode, icon?: string }) => (
