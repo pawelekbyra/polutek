@@ -232,6 +232,28 @@ const BrandHeader = () => {
     </div>
   );
 };
+const CaseFile = ({ title, children, icon = '📄' }: { title: string, children: React.ReactNode, icon?: string }) => (
+  <div className="my-8 border border-stone-400 bg-white/60 shadow-sm rounded-sm overflow-hidden break-inside-avoid text-left">
+    <div className="bg-stone-200 border-b border-stone-300 px-4 py-2 flex items-center gap-2 text-xs font-mono text-stone-600 uppercase tracking-wider">
+      <span>{icon}</span>
+      <span>{title}</span>
+    </div>
+    <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-stone-900 italic">
+      {children}
+    </div>
+  </div>
+);
+
+const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
+  <div className="my-10 pl-6 border-l-[3px] border-stone-800/80 text-left">
+    <p className="font-serif text-xl md:text-2xl italic text-stone-900 leading-relaxed mb-3">
+      „{quote}”
+    </p>
+    <div className="font-sans text-[10px] uppercase tracking-widest text-stone-500">
+      — <span className="font-bold text-stone-800">{author}</span>, {source}
+    </div>
+  </div>
+);
 
 const LocationStampUI = ({ name, plot, lv }: { name: string, plot: string, lv: string }) => (
   <div className="relative border border-stone-400 bg-white/80 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] text-left group">
