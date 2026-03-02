@@ -1,40 +1,8 @@
-"use client";
-
-
-
-import React, { useEffect, useRef, useState, useCallback, createContext, useContext } from 'react';
-
-import {
-
-  Scale, FileText, Search, Mail, Stamp, X,
-
-  Home as HouseIcon, ExternalLink, ChevronLeft, ChevronRight, Download, Globe, Calendar, History, ShieldCheck,
-
-  Newspaper
-
-} from 'lucide-react';
-
-import Hls from 'hls.js';
+import React from 'react';
 
 
 
 // --- DATA ---
-
-export type GalleryData = {
-
-  title: string;
-
-  images: string[];
-
-  signature?: string;
-
-  pdfUrl?: string;
-
-  type?: 'verdict' | 'gallery';
-
-};
-
-
 
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 
@@ -128,11 +96,7 @@ const generateBadiPages = (count: number) => {
 
 
 
-const GALLERY_NYDEK: GalleryData = {
-
-  title: "Posiadłość w Nýdku (Archiwum)",
-
-  images: [
+const GALLERY_NYDEK = [
 
     `${NYDEK_IMAGES_URL}/nydek01.jpg`,
 
@@ -146,63 +110,15 @@ const GALLERY_NYDEK: GalleryData = {
 
     `${NYDEK_IMAGES_URL}/nydek06.jpeg`
 
-  ],
-
-  signature: "LV 832"
-
-};
+];
 
 
 
-const GALLERY_WYROK_KORDYS: GalleryData = {
+const GALLERY_WYROK_KORDYS = generateKordysPages(25);
 
-  title: "Pełne uzasadnienie wyroku: Jarosław K.",
+const GALLERY_WYROK_BADI = generateBadiPages(3);
 
-  images: generateKordysPages(25),
-
-  signature: "30 T 5/2021",
-
-  pdfUrl: KORDYS_PDF_URL,
-
-  type: 'verdict'
-
-};
-
-
-
-const GALLERY_WYROK_BADI: GalleryData = {
-
-  title: "Wyrok skazujący: Bartosz B.",
-
-  images: generateBadiPages(3),
-
-  signature: "66 T 146/2021",
-
-  pdfUrl: BADI_PDF_URL,
-
-  type: 'verdict'
-
-};
-
-
-
-const GALLERY_WEZWANIE_KICINSKI: GalleryData = {
-
-  title: "Wezwanie dla Michała Kicińskiego",
-
-  images: [`/wezwanie_kicinski.png`],
-
-  signature: "WD-I-3186/23"
-
-};
-
-
-
-const GALLERY_JANOV: GalleryData = {
-
-  title: "Dokumentacja Nieruchomości: Janów",
-
-  images: [
+const GALLERY_JANOV = [
 
     `${JANOV_IMAGES_URL}/janov1.jpg`,
 
@@ -252,11 +168,7 @@ const GALLERY_JANOV: GalleryData = {
 
     `${JANOV_IMAGES_URL}/janov26.jpg`,
 
-  ],
-
-  signature: "LV 127"
-
-};
+];
 
 
 
@@ -264,11 +176,11 @@ const EvidenceGrid = () => {
 
   return (
 
-    <div className="my-16">
+    <div className="my-16" id="galeria">
 
       <h3 className="text-2xl font-bold text-stone-900 uppercase tracking-widest mb-8 border-b-2 border-stone-900 pb-2 flex items-center gap-3">
 
-        <Scale className="w-6 h-6" /> Galeria Dowodów
+        ⚖️ Galeria Dowodów
 
       </h3>
 
@@ -278,7 +190,7 @@ const EvidenceGrid = () => {
 
         {/* Wezwanie Kiciński */}
 
-        <GalleryTrigger type="wezwanie_kicinski" className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
+        <div className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md flex flex-col text-left">
 
           <div className="aspect-[3/4] overflow-hidden bg-stone-200">
 
@@ -288,7 +200,7 @@ const EvidenceGrid = () => {
 
               alt="Wezwanie Kiciński"
 
-              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover grayscale transition-all duration-500"
 
             />
 
@@ -300,17 +212,17 @@ const EvidenceGrid = () => {
 
             <p className="text-[10px] text-stone-500 font-mono">Sygn. WD-I-3186/23</p>
 
+            <a href="/wezwanie_kicinski.png" target="_blank" className="text-[10px] font-bold text-stone-900 underline mt-2 inline-block">POKAŻ DOWÓD</a>
+
           </div>
 
-          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />
-
-        </GalleryTrigger>
+        </div>
 
 
 
         {/* Wyrok Kordys */}
 
-        <GalleryTrigger type="wyrok_kordys" className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
+        <div className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md flex flex-col text-left">
 
           <div className="aspect-[3/4] overflow-hidden bg-stone-200">
 
@@ -320,7 +232,7 @@ const EvidenceGrid = () => {
 
               alt="Wyrok Kordys"
 
-              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover grayscale transition-all duration-500"
 
             />
 
@@ -332,17 +244,31 @@ const EvidenceGrid = () => {
 
             <p className="text-[10px] text-stone-500 font-mono">Sygn. 30 T 5/2021</p>
 
+            <details className="mt-2">
+
+              <summary className="text-[10px] font-bold text-stone-900 cursor-pointer">POKAŻ STRONY (25)</summary>
+
+              <div className="flex flex-col gap-2 mt-2">
+
+                {GALLERY_WYROK_KORDYS.map((img, i) => (
+
+                  <a key={i} href={img} target="_blank" className="text-[9px] text-stone-600 underline">Strona {i+1}</a>
+
+                ))}
+
+              </div>
+
+            </details>
+
           </div>
 
-          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />
-
-        </GalleryTrigger>
+        </div>
 
 
 
         {/* Wyrok Badi */}
 
-        <GalleryTrigger type="wyrok_badi" className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
+        <div className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md flex flex-col text-left">
 
           <div className="aspect-[3/4] overflow-hidden bg-stone-200">
 
@@ -352,7 +278,7 @@ const EvidenceGrid = () => {
 
               alt="Wyrok Badi"
 
-              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover grayscale transition-all duration-500"
 
             />
 
@@ -364,17 +290,31 @@ const EvidenceGrid = () => {
 
             <p className="text-[10px] text-stone-500 font-mono">Sygn. 66 T 146/2021</p>
 
+            <details className="mt-2">
+
+              <summary className="text-[10px] font-bold text-stone-900 cursor-pointer">POKAŻ STRONY (3)</summary>
+
+              <div className="flex flex-col gap-2 mt-2">
+
+                {GALLERY_WYROK_BADI.map((img, i) => (
+
+                  <a key={i} href={img} target="_blank" className="text-[9px] text-stone-600 underline">Strona {i+1}</a>
+
+                ))}
+
+              </div>
+
+            </details>
+
           </div>
 
-          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />
-
-        </GalleryTrigger>
+        </div>
 
 
 
         {/* Dokumentacja Janów */}
 
-        <GalleryTrigger type="janov" className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
+        <div className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md flex flex-col text-left">
 
           <div className="aspect-[3/4] overflow-hidden bg-stone-200">
 
@@ -384,7 +324,7 @@ const EvidenceGrid = () => {
 
               alt="Dokumentacja Janów"
 
-              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover grayscale transition-all duration-500"
 
             />
 
@@ -396,21 +336,35 @@ const EvidenceGrid = () => {
 
             <p className="text-[10px] text-stone-500 font-mono">KW LV 127</p>
 
+            <details className="mt-2">
+
+              <summary className="text-[10px] font-bold text-stone-900 cursor-pointer">POKAŻ GALERIĘ</summary>
+
+              <div className="flex flex-col gap-2 mt-2">
+
+                {GALLERY_JANOV.map((img, i) => (
+
+                  <a key={i} href={img} target="_blank" className="text-[9px] text-stone-600 underline">Zdjęcie {i+1}</a>
+
+                ))}
+
+              </div>
+
+            </details>
+
           </div>
 
-          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />
-
-        </GalleryTrigger>
+        </div>
 
 
 
         {/* Posiadłość Nýdek */}
 
-        <GalleryTrigger type="nydek" className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
+        <div className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md flex flex-col text-left">
 
           <div className="aspect-[3/4] overflow-hidden bg-stone-200 flex items-center justify-center">
 
-            <HouseIcon className="w-12 h-12 text-stone-400 group-hover:text-stone-600 transition-colors" />
+            <span className="text-4xl">🏠</span>
 
           </div>
 
@@ -420,11 +374,25 @@ const EvidenceGrid = () => {
 
             <p className="text-[10px] text-stone-500 font-mono">KW LV 832 (M. Iwiński)</p>
 
+            <details className="mt-2">
+
+              <summary className="text-[10px] font-bold text-stone-900 cursor-pointer">POKAŻ GALERIĘ</summary>
+
+              <div className="flex flex-col gap-2 mt-2">
+
+                {GALLERY_NYDEK.map((img, i) => (
+
+                  <a key={i} href={img} target="_blank" className="text-[9px] text-stone-600 underline">Zdjęcie {i+1}</a>
+
+                ))}
+
+              </div>
+
+            </details>
+
           </div>
 
-          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />
-
-        </GalleryTrigger>
+        </div>
 
       </div>
 
@@ -441,34 +409,6 @@ const EvidenceGrid = () => {
 
 
 const BrandHeader = () => {
-
-  const [currentDate, setCurrentDate] = useState("");
-
-
-
-  useEffect(() => {
-
-    const now = new Date();
-
-    const options: Intl.DateTimeFormatOptions = {
-
-      weekday: 'long',
-
-      day: 'numeric',
-
-      month: 'long',
-
-      year: 'numeric'
-
-    };
-
-    const formattedDate = now.toLocaleDateString('pl-PL', options).toUpperCase();
-
-    setCurrentDate(formattedDate);
-
-  }, []);
-
-
 
   return (
 
@@ -494,7 +434,7 @@ const BrandHeader = () => {
 
         <div className="flex items-center gap-2">
 
-          <Newspaper className="w-4 h-4 md:w-5 md:h-5" />
+          <span>📰</span>
 
           <span className="hidden sm:inline">Niezależne Media</span>
 
@@ -504,7 +444,7 @@ const BrandHeader = () => {
 
         <div className="text-center">
 
-          {currentDate || "NIEDZIELA, 1 MARCA 2026"}
+          NIEDZIELA, 1 MARCA 2026
 
         </div>
 
@@ -514,7 +454,7 @@ const BrandHeader = () => {
 
           <span className="hidden sm:inline">Serwis Śledczy</span>
 
-          <FileText className="w-4 h-4 md:w-5 md:h-5" />
+          <span>📄</span>
 
           <span className="hidden md:inline border-l border-stone-900 pl-2 ml-1">Nr 01</span>
 
@@ -530,13 +470,13 @@ const BrandHeader = () => {
 
 
 
-const CaseFile = ({ title, children, type = 'evidence' }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email' }) => (
+const CaseFile = ({ title, children, icon = '📄' }: { title: string, children: React.ReactNode, icon?: string }) => (
 
   <div className="my-8 border border-stone-400 bg-white/60 shadow-sm rounded-sm overflow-hidden break-inside-avoid text-left">
 
     <div className="bg-stone-200 border-b border-stone-300 px-4 py-2 flex items-center gap-2 text-xs font-mono text-stone-600 uppercase tracking-wider">
 
-      {type === 'email' ? <Mail className="w-4 h-4" /> : type === 'transcript' ? <Search className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
+      <span>{icon}</span>
 
       <span>{title}</span>
 
@@ -576,13 +516,13 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
 
 
 
-const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string, plot: string, lv: string }) => (
+const LocationStampUI = ({ name, plot, lv }: { name: string, plot: string, lv: string }) => (
 
-  <div className="relative border border-stone-400 bg-white/80 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] transition-colors text-left group">
+  <div className="relative border border-stone-400 bg-white/80 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] text-left group">
 
-     <div className="absolute top-1 right-1 text-stone-400 group-hover:text-stone-600 transition-colors">
+     <div className="absolute top-1 right-1 text-stone-400">
 
-       <Search className="w-3 h-3" />
+       🔍
 
      </div>
 
@@ -590,7 +530,7 @@ const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string,
 
      <div className="bg-stone-200 h-full p-3 flex items-center justify-center border-r border-stone-300 border-dashed transition-colors">
 
-        <HouseIcon className="w-5 h-5 text-stone-500" />
+        <span className="text-xl">🏠</span>
 
      </div>
 
@@ -606,7 +546,7 @@ const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string,
 
         <div className="text-[10px] text-stone-600 font-mono mt-1">
 
-          Działka: {plot} <span className="text-stone-400 mx-1">|</span> Obręb: {code}
+          Działka: {plot}
 
         </div>
 
@@ -620,11 +560,11 @@ const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string,
 
 const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
 
-  <div className="relative border border-stone-400 bg-white/80 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] group hover:border-stone-500 transition-colors cursor-default text-left">
+  <div className="relative border border-stone-400 bg-white/80 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] group text-left">
 
-     <div className="absolute top-1 right-1 text-stone-400 group-hover:text-stone-600 transition-colors">
+     <div className="absolute top-1 right-1 text-stone-400">
 
-       <Search className="w-3 h-3" />
+       🔍
 
      </div>
 
@@ -632,7 +572,7 @@ const TransactionStampUI = ({ label, value, subDetails }: { label: string, value
 
      <div className="bg-stone-200 h-full p-3 flex items-center justify-center border-r border-stone-300 border-dashed">
 
-        <Stamp className="w-5 h-5 text-stone-500" />
+        <span className="text-xl">📜</span>
 
      </div>
 
@@ -654,279 +594,21 @@ const TransactionStampUI = ({ label, value, subDetails }: { label: string, value
 
 const ArticleVideoPlayer: React.FC<{ src: string; poster: string }> = ({ src, poster }) => {
 
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-
-    const video = videoRef.current;
-
-    if (video) {
-
-      if (Hls.isSupported()) {
-
-        const hls = new Hls();
-
-        hls.loadSource(src);
-
-        hls.attachMedia(video);
-
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-
-        video.src = src;
-
-      }
-
-    }
-
-  }, [src]);
-
   return (
 
     <div className="my-12 w-full bg-black rounded-sm shadow-xl overflow-hidden">
 
-      <video ref={videoRef} controls poster={poster} className="w-full h-auto block opacity-95" />
+      <video controls poster={poster} className="w-full h-auto block opacity-95">
+
+        <source src={src} type="application/x-mpegURL" />
+
+        Twoja przeglądarka nie obsługuje odtwarzacza wideo. <a href={src} className="text-white underline">Pobierz plik</a>.
+
+      </video>
 
     </div>
 
   );
-
-};
-
-
-
-const GalleryModal: React.FC<{ isOpen: boolean; onClose: () => void; data: GalleryData | null }> = ({ isOpen, onClose, data }) => {
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-
-    if (isOpen) {
-
-      setCurrentIndex(0);
-
-      document.body.style.overflow = 'hidden';
-
-    } else {
-
-      document.body.style.overflow = 'unset';
-
-    }
-
-    return () => { document.body.style.overflow = 'unset'; };
-
-  }, [isOpen, data]);
-
-  const handleNext = useCallback(() => {
-
-    if (!data) return;
-
-    setCurrentIndex((prev) => (prev + 1) % data.images.length);
-
-  }, [data]);
-
-  const handlePrev = useCallback(() => {
-
-    if (!data) return;
-
-    setCurrentIndex((prev) => (prev - 1 + data.images.length) % data.images.length);
-
-  }, [data]);
-
-  useEffect(() => {
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-
-      if (!isOpen) return;
-
-      if (e.key === 'Escape') onClose();
-
-      if (data?.type !== 'verdict') {
-
-        if (e.key === 'ArrowRight') handleNext();
-
-        if (e.key === 'ArrowLeft') handlePrev();
-
-      }
-
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => window.removeEventListener('keydown', handleKeyDown);
-
-  }, [isOpen, onClose, handleNext, handlePrev, data]);
-
-  if (!isOpen || !data) return null;
-
-  const isVerdict = data.type === 'verdict';
-
-  return (
-
-    <div className={`fixed inset-0 z-[100] flex flex-col ${isVerdict ? 'bg-stone-900/95' : 'bg-black'} backdrop-blur-sm animate-[fadeIn_0.2s_ease-out]`}>
-
-      <div className="flex items-center justify-between px-4 py-3 bg-black/40 border-b border-white/10 z-50 shrink-0">
-
-        <div className="text-white text-left">
-
-          <h3 className="font-bold text-sm md:text-base leading-tight">{data.title}</h3>
-
-          <p className="font-mono text-[10px] text-stone-400 mt-1 uppercase tracking-wider">
-
-             {isVerdict ? `Dokument: ${data.images.length} stron` : `Zdjęcie ${currentIndex + 1} / ${data.images.length}`}
-
-             {data.signature && <span className="mx-2 text-stone-600">|</span>}
-
-             {data.signature}
-
-          </p>
-
-        </div>
-
-        <div className="flex items-center gap-3">
-
-          {data.pdfUrl && (
-
-             <a href={data.pdfUrl} target="_blank" rel="noopener noreferrer" className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-stone-800 text-stone-200 text-xs font-bold uppercase tracking-wider hover:bg-stone-700 transition-colors rounded-sm border border-white/10">
-
-               <Download className="w-3 h-3" /> PDF
-
-             </a>
-
-          )}
-
-          <button onClick={onClose} className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors">
-
-            <X className="w-5 h-5" />
-
-          </button>
-
-        </div>
-
-      </div>
-
-      <div className="flex-1 overflow-hidden relative w-full h-full">
-
-        {isVerdict ? (
-
-          <div className="w-full h-full overflow-y-auto p-4 md:p-8 flex justify-center bg-[#1a1a1a]">
-
-            <div className="flex flex-col gap-4 max-w-4xl w-full">
-
-               {data.images.map((img, idx) => (
-
-                 <div key={idx} className="relative group">
-
-                   <img src={img} alt={`Strona ${idx + 1}`} className="w-full h-auto shadow-2xl border border-stone-700" loading="lazy" />
-
-                   <div className="absolute top-2 right-2 bg-black/50 text-white text-[10px] px-2 py-1 rounded font-mono">#{idx + 1}</div>
-
-                 </div>
-
-               ))}
-
-               <div className="text-center py-8 text-stone-500 font-mono text-xs">--- KONIEC DOKUMENTU ---</div>
-
-            </div>
-
-          </div>
-
-        ) : (
-
-          <div className="w-full h-full flex items-center justify-center p-2 md:p-10 relative">
-
-            <button onClick={(e) => { e.stopPropagation(); handlePrev(); }} className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-3 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-all z-20">
-
-              <ChevronLeft className="w-8 h-8 md:w-10 md:h-10" />
-
-            </button>
-
-            <div className="relative w-full h-full flex items-center justify-center">
-
-              <img src={data.images[currentIndex]} alt={`Zdjęcie ${currentIndex + 1}`} className="max-w-full max-h-full object-contain drop-shadow-2xl" />
-
-            </div>
-
-            <button onClick={(e) => { e.stopPropagation(); handleNext(); }} className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-3 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-all z-20">
-
-              <ChevronRight className="w-8 h-8 md:w-10 md:h-10" />
-
-            </button>
-
-          </div>
-
-        )}
-
-      </div>
-
-    </div>
-
-  );
-
-};
-
-
-
-type ModalContextType = {
-
-  openGallery: (type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi' | 'wezwanie_kicinski' | 'janov') => void;
-
-};
-
-
-
-const ModalContext = createContext<ModalContextType | undefined>(undefined);
-
-
-
-const useElixirModals = () => {
-
-  const context = useContext(ModalContext);
-
-  if (!context) throw new Error('useElixirModals must be used within ElixirModalsProvider');
-
-  return context;
-
-};
-
-
-
-const ElixirModalsProvider = ({ children }: { children: React.ReactNode }) => {
-
-  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-
-  const [galleryData, setGalleryData] = useState<GalleryData | null>(null);
-
-  const openGallery = (type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi' | 'wezwanie_kicinski' | 'janov') => {
-
-    const maps = { nydek: GALLERY_NYDEK, wyrok_kordys: GALLERY_WYROK_KORDYS, wyrok_badi: GALLERY_WYROK_BADI, wezwanie_kicinski: GALLERY_WEZWANIE_KICINSKI, janov: GALLERY_JANOV };
-
-    setGalleryData(maps[type]);
-
-    setIsGalleryOpen(true);
-
-  };
-
-  return (
-
-    <ModalContext.Provider value={{ openGallery }}>
-
-      {children}
-
-      <GalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} data={galleryData} />
-
-    </ModalContext.Provider>
-
-  );
-
-};
-
-
-
-const GalleryTrigger = ({ type, children, className }: { type: 'nydek' | 'wyrok_kordys' | 'wyrok_badi' | 'wezwanie_kicinski' | 'janov', children: React.ReactNode, className?: string }) => {
-
-  const { openGallery } = useElixirModals();
-
-  return <button onClick={() => openGallery(type)} className={className}>{children}</button>;
 
 };
 
@@ -1012,7 +694,7 @@ export default function Page() {
 
   return (
 
-    <ElixirModalsProvider>
+    <>
 
       <script
 
@@ -1049,23 +731,24 @@ export default function Page() {
           {/* Tekstura starego papieru (gramatura papieru) */}
 
           <div
+
             className="absolute inset-0 pointer-events-none opacity-[0.15] mix-blend-multiply"
+
             style={{
+
               backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+
             }}
+
           ></div>
 
 
-
-          {/* pt-4 zmienione na pt-0 żeby wywalić pustą przestrzeń */}
 
           <header className="w-full pt-0 pb-6 px-6 flex flex-col items-center z-10 relative">
 
             <BrandHeader />
 
 
-
-            {/* Zmniejszony padding bottom żeby podnieść content */}
 
            <div className="w-full text-center flex flex-col justify-center items-center pb-0">
 
@@ -1098,8 +781,6 @@ export default function Page() {
               </h2>
 
 
-
-              {/* mt-2 zmienione na mt-0 */}
 
               <div className="max-w-3xl mx-auto px-4 mt-0">
 
@@ -1163,7 +844,7 @@ export default function Page() {
 
               <p>
 
-                W obszernym i publicznie dostępnym uzasadnieniu <GalleryTrigger type="wyrok_kordys" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">wyroku</GalleryTrigger> Jarosława Kordysa pojawia się postać świadka Bartosza B.
+                W obszernym i publicznie dostępnym uzasadnieniu <a href="#galeria" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">wyroku</a> Jarosława Kordysa pojawia się postać świadka Bartosza B.
 
               </p>
 
@@ -1177,7 +858,7 @@ export default function Page() {
 
 
 
-              <CaseFile title="Zeznania świadka B.">
+              <CaseFile title="Zeznania świadka B." icon="✉️">
 
                 &quot;Świadek B. odnośnie osoby oskarżonego [Jarosława Kordysa] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii&quot;.
 
@@ -1243,7 +924,7 @@ export default function Page() {
 
               <p>
 
-                W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <GalleryTrigger type="janov" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">działkę w Janowie</GalleryTrigger> i za niewielką opłatą pobrać jej pełną historię.
+                W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <a href="#galeria" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">działkę w Janowie</a> i za niewielką opłatą pobrać jej pełną historię.
 
               </p>
 
@@ -1251,21 +932,15 @@ export default function Page() {
 
               <div className="my-8 flex justify-start">
 
-                <GalleryTrigger type="janov">
-
                   <LocationStampUI
 
                     name="JANOV U KRNOVA"
-
-                    code="656976"
 
                     plot="st. 281"
 
                     lv="127"
 
                   />
-
-                </GalleryTrigger>
 
               </div>
 
@@ -1315,9 +990,9 @@ export default function Page() {
 
 
 
-              <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" type="transcript">
+              <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" icon="🔍">
 
-                &quot;oskarżony [Jarosława Kordysa] omawia z&nbsp;B., że dotarła do niego informacja, że w obiekcie w Janowie <span className="underline decoration-red-700 decoration-4 underline-offset-4">zmarła jakaś kobieta</span>&quot;.
+                &quot;oskarżony [Jarosława Kordysa] omawia z&nbsp;B., że dotarła do niego informacja, że w obiekcie w Janowie <span className="underline decoration-red-700 decoration-4 underline-offset-4 font-bold underline-offset-4">zmarła jakaś kobieta</span>&quot;.
 
               </CaseFile>
 
@@ -1331,7 +1006,7 @@ export default function Page() {
 
 
 
-              <CaseFile title="Pytanie Kordysa" type="transcript">
+              <CaseFile title="Pytanie Kordysa" icon="🔍">
 
                 &quot;W jakim zagrożeniu jest nasza praca?&quot;
 
@@ -1371,7 +1046,7 @@ export default function Page() {
 
 
 
-              <CaseFile title="Kontynuacja rozmowy" type="transcript">
+              <CaseFile title="Kontynuacja rozmowy" icon="🔍">
 
                 &quot;Następnie w rozmowie omawiają zamówienia «herbaty» z dżungli i to, czy im tego «nie zepsują», ekscytując się nagraniem od dostawcy, który «siedzi w dżungli i gotuje».&quot;
 
@@ -1435,7 +1110,7 @@ export default function Page() {
 
                  <ArticleVideoPlayer
 
-                    src={`${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`}
+                    src={VIDEO_ARREST_METADATA.contentUrl}
 
                     poster=""
 
@@ -1463,7 +1138,7 @@ export default function Page() {
 
               <div className="my-12 flex gap-4 p-5 bg-stone-300/30 border-l-4 border-stone-600 rounded-r-lg shadow-sm">
 
-                <Scale className="w-8 h-8 text-stone-700 shrink-0 mt-1" />
+                <span className="text-3xl mt-1">⚖️</span>
 
                 <div>
 
@@ -1507,7 +1182,7 @@ export default function Page() {
 
               <p>
 
-                 Na mocy <GalleryTrigger type="wyrok_badi" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">wyroku</GalleryTrigger> z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia &quot;zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi&quot;.
+                 Na mocy <a href="#galeria" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">wyroku</a> z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia &quot;zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi&quot;.
 
               </p>
 
@@ -1603,7 +1278,7 @@ export default function Page() {
 
               <div className="my-12 flex flex-col items-center">
 
-                <GalleryTrigger type="wezwanie_kicinski">
+                <a href="/wezwanie_kicinski.png" target="_blank">
 
                   <img
 
@@ -1615,7 +1290,7 @@ export default function Page() {
 
                   />
 
-                </GalleryTrigger>
+                </a>
 
                 <p className="text-xs text-stone-600 mt-2 font-mono uppercase tracking-wider w-48 text-center">
 
@@ -1635,7 +1310,7 @@ export default function Page() {
 
 
 
-              <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email">
+              <CaseFile title="Wiadomość prywatna od M. Kicińskiego" icon="✉️">
 
                 &quot;(...) Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu. (...)&quot;
 
@@ -1707,7 +1382,7 @@ export default function Page() {
 
 
 
-              <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
+              <CaseFile title="Fragment korespondencji B. Badowskiego" icon="✉️">
 
                 &quot;Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.&quot;
 
@@ -1755,7 +1430,7 @@ export default function Page() {
 
                      <ArticleVideoPlayer
 
-                  src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`}
+                  src={VIDEO_STEFANEK_METADATA.contentUrl}
 
                   poster=""
 
@@ -1785,7 +1460,7 @@ export default function Page() {
 
                 <li className="flex items-start gap-3">
 
-                  <Calendar className="w-5 h-5 text-stone-500 shrink-0" />
+                  <span>📅</span>
 
                   <div>
 
@@ -1799,7 +1474,7 @@ export default function Page() {
 
                 <li className="flex items-start gap-3">
 
-                  <Calendar className="w-5 h-5 text-stone-500 shrink-0" />
+                  <span>📅</span>
 
                   <div>
 
@@ -1813,7 +1488,7 @@ export default function Page() {
 
                 <li className="flex items-start gap-3">
 
-                  <Calendar className="w-5 h-5 text-stone-500 shrink-0" />
+                  <span>📅</span>
 
                   <div>
 
@@ -1827,7 +1502,7 @@ export default function Page() {
 
                 <li className="flex items-start gap-3">
 
-                  <Calendar className="w-5 h-5 text-red-800 shrink-0 mt-3" />
+                  <span className="text-red-800 mt-3">📅</span>
 
                   <div className="bg-stone-300/30 border border-stone-400 p-4 rounded-sm shadow-sm w-full relative overflow-hidden">
 
@@ -1843,7 +1518,7 @@ export default function Page() {
 
                 <li className="flex items-start gap-3">
 
-                  <Calendar className="w-5 h-5 text-stone-500 shrink-0" />
+                  <span>📅</span>
 
                   <div>
 
@@ -1913,7 +1588,7 @@ export default function Page() {
 
               <p>
 
-                Relacje świadków wskazują, że w <GalleryTrigger type="nydek" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">posiadłości w Nýdku</GalleryTrigger> odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong>Piotra &quot;Bonawenturę&quot; Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu &quot;Wayback Machine&quot; zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
+                Relacje świadków wskazują, że w <a href="#galeria" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">posiadłości w Nýdku</a> odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong>Piotra &quot;Bonawenturę&quot; Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu &quot;Wayback Machine&quot; zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
 
               </p>
 
@@ -1939,21 +1614,15 @@ export default function Page() {
 
               <div className="my-8 flex justify-start">
 
-                <GalleryTrigger type="nydek">
-
                   <LocationStampUI
 
                     name="NÝDEK"
-
-                    code="708186"
 
                     plot="st. 506/1"
 
                     lv="832"
 
                   />
-
-                </GalleryTrigger>
 
               </div>
 
@@ -1979,7 +1648,7 @@ export default function Page() {
 
                  <li className="flex items-start gap-3">
 
-                  <Calendar className="w-5 h-5 text-stone-500 shrink-0" />
+                  <span>📅</span>
 
                   <div>
 
@@ -1993,7 +1662,7 @@ export default function Page() {
 
                 <li className="flex items-start gap-3">
 
-                  <Calendar className="w-5 h-5 text-stone-500 shrink-0" />
+                  <span>📅</span>
 
                   <div>
 
@@ -2109,7 +1778,7 @@ export default function Page() {
 
                  <h3 className="font-sans font-bold text-lg uppercase tracking-widest text-stone-900 mb-8 flex items-center gap-2">
 
-                    <ShieldCheck className="w-5 h-5" />
+                    <span>🛡️</span>
 
                     Status Prawny (2025/2026)
 
@@ -2213,7 +1882,7 @@ export default function Page() {
 
                  <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
 
-                   <Search className="w-5 h-5" /> Dokumenty Źródłowe
+                   <span>🔍</span> Dokumenty Źródłowe
 
                  </h3>
 
@@ -2257,7 +1926,7 @@ export default function Page() {
 
                       >
 
-                        <FileText className="w-3 h-3" /> Pobierz PDF
+                        <span>📄</span> Pobierz PDF
 
                       </a>
 
@@ -2277,7 +1946,7 @@ export default function Page() {
 
                       >
 
-                        <Globe className="w-3 h-3" />
+                        <span>🌐</span>
 
                         Weryfikuj na msp.gov.cz
 
@@ -2313,7 +1982,7 @@ export default function Page() {
 
                       >
 
-                        <FileText className="w-3 h-3" /> Pobierz PDF
+                        <span>📄</span> Pobierz PDF
 
                       </a>
 
@@ -2333,7 +2002,7 @@ export default function Page() {
 
                       >
 
-                        <Globe className="w-3 h-3" />
+                        <span>🌐</span>
 
                         Weryfikuj oryginał (29 Si 25/2022)
 
@@ -2369,7 +2038,7 @@ export default function Page() {
 
                       >
 
-                        <Download className="w-3 h-3" /> Pobierz PDF
+                        <span>⬇️</span> Pobierz PDF
 
                       </a>
 
@@ -2389,7 +2058,7 @@ export default function Page() {
 
                       >
 
-                        <Globe className="w-3 h-3" />
+                        <span>🌐</span>
 
                         Weryfikuj na nahlizenidokn.cuzk.cz
 
@@ -2425,7 +2094,7 @@ export default function Page() {
 
                       >
 
-                        <Download className="w-3 h-3" /> Pobierz PDF
+                        <span>⬇️</span> Pobierz PDF
 
                       </a>
 
@@ -2445,7 +2114,7 @@ export default function Page() {
 
                       >
 
-                        <Globe className="w-3 h-3" />
+                        <span>🌐</span>
 
                         Weryfikuj na nahlizenidokn.cuzk.cz
 
@@ -2481,7 +2150,7 @@ export default function Page() {
 
                       >
 
-                        <Download className="w-3 h-3" /> Pobierz PDF
+                        <span>⬇️</span> Pobierz PDF
 
                       </a>
 
@@ -2501,7 +2170,7 @@ export default function Page() {
 
                       >
 
-                        <Globe className="w-3 h-3" />
+                        <span>🌐</span>
 
                         Weryfikuj na nahlizenidokn.cuzk.cz
 
@@ -2537,7 +2206,7 @@ export default function Page() {
 
                       >
 
-                        <Download className="w-3 h-3" /> Pobierz PDF
+                        <span>⬇️</span> Pobierz PDF
 
                       </a>
 
@@ -2557,7 +2226,7 @@ export default function Page() {
 
                       >
 
-                        <Globe className="w-3 h-3" />
+                        <span>🌐</span>
 
                         Weryfikuj na nahlizenidokn.cuzk.cz
 
@@ -2593,7 +2262,7 @@ export default function Page() {
 
                       >
 
-                        <History className="w-3 h-3" /> Wayback Machine
+                        <span>🕒</span> Wayback Machine
 
                       </a>
 
@@ -2627,7 +2296,7 @@ export default function Page() {
 
                       >
 
-                        <History className="w-3 h-3" /> Wayback Machine
+                        <span>🕒</span> Wayback Machine
 
                       </a>
 
@@ -2655,7 +2324,7 @@ export default function Page() {
 
                       <div className="shrink-0 w-40 justify-center bg-stone-300 text-stone-500 px-3 py-1 text-xs font-bold rounded border border-stone-400 flex items-center gap-2 cursor-default">
 
-                        <ExternalLink className="w-3 h-3" /> Link nieaktywny
+                        <span>🔗</span> Link nieaktywny
 
                       </div>
 
@@ -2685,7 +2354,7 @@ export default function Page() {
 
                     <h3 className="text-sm font-bold text-stone-900 uppercase tracking-widest mb-4 flex items-center justify-center gap-2">
 
-                      <ShieldCheck className="w-4 h-4 text-stone-800" /> Mirror – Kopia Zapasowa Dokumentacji
+                      <span>🛡️</span> Mirror – Kopia Zapasowa Dokumentacji
 
                     </h3>
 
@@ -2711,7 +2380,7 @@ export default function Page() {
 
                   <p className="text-xs text-stone-700 font-mono uppercase tracking-widest mb-2 flex items-center justify-center gap-2">
 
-                    <Globe className="w-4 h-4" />
+                    <span>🌐</span>
 
                     Oficjalna Witryna
 
@@ -2743,7 +2412,7 @@ export default function Page() {
 
       </main>
 
-    </ElixirModalsProvider>
+    </>
 
   );
 
