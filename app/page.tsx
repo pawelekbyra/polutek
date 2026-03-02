@@ -137,80 +137,54 @@ const EvidenceGrid = () => {
       </h3>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Wezwanie Kiciński */}
         <GalleryTrigger type="wezwanie_kicinski" className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
-          <div className="aspect-[3/4] overflow-hidden bg-stone-200">
-            <img
-              src="/wezwanie_kicinski.png"
-              alt="Wezwanie Kiciński"
-              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
-            />
+          <div className="aspect-[3/4] overflow-hidden bg-[#d3ccb8]">
+            <img src="/wezwanie_kicinski.png" alt="Wezwanie Kiciński" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" />
           </div>
           <div className="p-4 bg-white/90">
             <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Wezwanie dla M. Kicińskiego</h4>
             <p className="text-[10px] text-stone-500 font-mono">Sygn. WD-I-3186/23</p>
           </div>
-          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />
         </GalleryTrigger>
 
-        {/* Wyrok Kordys */}
         <GalleryTrigger type="wyrok_kordys" className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
-          <div className="aspect-[3/4] overflow-hidden bg-stone-200">
-            <img
-              src="/gallery/wyrok_kordysa/30T_5_2021-1_page-0001.jpg"
-              alt="Wyrok Kordys"
-              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
-            />
+          <div className="aspect-[3/4] overflow-hidden bg-[#d3ccb8]">
+            <img src="/gallery/wyrok_kordysa/30T_5_2021-1_page-0001.jpg" alt="Wyrok Kordys" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" />
           </div>
           <div className="p-4 bg-white/90">
             <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Uzasadnienie Wyroku: J. Kordys</h4>
             <p className="text-[10px] text-stone-500 font-mono">Sygn. 30 T 5/2021</p>
           </div>
-          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />
         </GalleryTrigger>
 
-        {/* Wyrok Badi */}
         <GalleryTrigger type="wyrok_badi" className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
-          <div className="aspect-[3/4] overflow-hidden bg-stone-200">
-            <img
-              src="/gallery/wyrok_badi/wyrok_page-0001.jpg"
-              alt="Wyrok Badi"
-              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
-            />
+          <div className="aspect-[3/4] overflow-hidden bg-[#d3ccb8]">
+            <img src="/gallery/wyrok_badi/wyrok_page-0001.jpg" alt="Wyrok Badi" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" />
           </div>
           <div className="p-4 bg-white/90">
             <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Wyrok Skazujący: Bartosz B.</h4>
             <p className="text-[10px] text-stone-500 font-mono">Sygn. 66 T 146/2021</p>
           </div>
-          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />
         </GalleryTrigger>
 
-        {/* Dokumentacja Janów */}
         <GalleryTrigger type="janov" className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
-          <div className="aspect-[3/4] overflow-hidden bg-stone-200">
-            <img
-              src="/gallery/janov/janov1.jpg"
-              alt="Dokumentacja Janów"
-              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
-            />
+          <div className="aspect-[3/4] overflow-hidden bg-[#d3ccb8]">
+            <img src="/gallery/janov/janov1.jpg" alt="Dokumentacja Janów" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" />
           </div>
           <div className="p-4 bg-white/90">
             <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Dokumentacja: Janów</h4>
             <p className="text-[10px] text-stone-500 font-mono">KW LV 127</p>
           </div>
-          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />
         </GalleryTrigger>
 
-        {/* Posiadłość Nýdek */}
         <GalleryTrigger type="nydek" className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
-          <div className="aspect-[3/4] overflow-hidden bg-stone-200 flex items-center justify-center">
+          <div className="aspect-[3/4] overflow-hidden bg-[#d3ccb8] flex items-center justify-center">
             <HouseIcon className="w-12 h-12 text-stone-400 group-hover:text-stone-600 transition-colors" />
           </div>
           <div className="p-4 bg-white/90 flex-grow">
             <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Posiadłość w Nýdku</h4>
             <p className="text-[10px] text-stone-500 font-mono">KW LV 832 (M. Iwiński)</p>
           </div>
-          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />
         </GalleryTrigger>
       </div>
     </div>
@@ -219,59 +193,13 @@ const EvidenceGrid = () => {
 
 // --- COMPONENTS ---
 
-const BrandHeader = () => {
-  const [currentDate, setCurrentDate] = useState("");
-
-  useEffect(() => {
-    const now = new Date();
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: 'long',
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
-    };
-    const formattedDate = now.toLocaleDateString('pl-PL', options).toUpperCase();
-    setCurrentDate(formattedDate);
-  }, []);
-
-  return (
-    <div className="w-full pb-2 mb-2">
-      <div className="flex items-center justify-center w-full gap-4 pb-2">
-        <div className="flex-grow h-[4px] bg-stone-900 hidden sm:block"></div>
-        <h1 className="text-5xl md:text-[6.5rem] font-black tracking-tighter text-stone-900 uppercase font-serif leading-none whitespace-nowrap">
-          NASZA GAZETKA
-        </h1>
-        <div className="flex-grow h-[4px] bg-stone-900 hidden sm:block"></div>
-      </div>
-
-      {/* Paskix 2: Poziome linie z marginesami, nie stykają się z krawędziami kontenera */}
-      <div className="mx-6 md:mx-16 border-y-[2px] border-stone-900 py-1 flex items-center justify-between px-2 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-stone-800">
-        <div className="flex items-center gap-2">
-          <Newspaper className="w-4 h-4 md:w-5 md:h-5" />
-          <span className="hidden sm:inline">Niezależne Media</span>
-        </div>
-
-        <div className="text-center">
-          {currentDate || "NIEDZIELA, 1 MARCA 2026"}
-        </div>
-
-        <div className="flex items-center gap-2">
-          <span className="hidden sm:inline">Serwis Śledczy</span>
-          <FileText className="w-4 h-4 md:w-5 md:h-5" />
-          <span className="hidden md:inline border-l border-stone-900 pl-2 ml-1">Nr 01</span>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const CaseFile = ({ title, children, type = 'evidence' }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email' }) => (
-  <div className="my-8 border border-stone-400 bg-white/60 shadow-sm rounded-sm overflow-hidden break-inside-avoid text-left">
-    <div className="bg-stone-200 border-b border-stone-300 px-4 py-2 flex items-center gap-2 text-xs font-mono text-stone-600 uppercase tracking-wider">
+  <div className="my-8 border border-stone-400 bg-white/40 shadow-sm rounded-sm overflow-hidden break-inside-avoid text-left">
+    <div className="bg-[#d3ccb8] border-b border-stone-400 px-4 py-2 flex items-center gap-2 text-xs font-mono text-stone-800 uppercase tracking-wider">
       {type === 'email' ? <Mail className="w-4 h-4" /> : type === 'transcript' ? <Search className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
-      <span>{title}</span>
+      <span className="font-bold">{title}</span>
     </div>
-    <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-stone-900 bg-[url('https://www.transparenttextures.com/patterns/subtle-paper.png')] italic">
+    <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-stone-900 italic">
       {children}
     </div>
   </div>
@@ -282,46 +210,44 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
     <p className="font-serif text-xl md:text-2xl italic text-stone-900 leading-relaxed mb-3">
       „{quote}”
     </p>
-    <div className="font-sans text-[10px] uppercase tracking-widest text-stone-500">
-      — <span className="font-bold text-stone-800">{author}</span>, {source}
+    <div className="font-sans text-[10px] uppercase tracking-widest text-stone-600">
+      — <span className="font-bold text-stone-900">{author}</span>, {source}
     </div>
   </div>
 );
 
 const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string, plot: string, lv: string }) => (
-  <div className="relative border border-stone-400 bg-white/80 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] transition-colors text-left group">
-     <div className="absolute top-1 right-1 text-stone-400 group-hover:text-stone-600 transition-colors">
+  <div className="relative border border-stone-400 bg-white/60 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(120,113,108,0.5)] transition-colors text-left group">
+     <div className="absolute top-1 right-1 text-stone-500 group-hover:text-stone-800 transition-colors">
        <Search className="w-3 h-3" />
      </div>
-
-     <div className="bg-stone-200 h-full p-3 flex items-center justify-center border-r border-stone-300 border-dashed transition-colors">
-        <HouseIcon className="w-5 h-5 text-stone-500" />
+     <div className="bg-[#d3ccb8] h-full p-3 flex items-center justify-center border-r border-stone-400 border-dashed transition-colors">
+        <HouseIcon className="w-5 h-5 text-stone-700" />
      </div>
      <div className="py-2">
-        <div className="text-[9px] uppercase tracking-[0.2em] text-stone-500 font-bold mb-1 flex items-center gap-2">
+        <div className="text-[9px] uppercase tracking-[0.2em] text-stone-600 font-bold mb-1 flex items-center gap-2">
           {name}
         </div>
         <div className="font-mono text-base font-bold text-stone-900">LV {lv}</div>
-        <div className="text-[10px] text-stone-600 font-mono mt-1">
-          Działka: {plot} <span className="text-stone-400 mx-1">|</span> Obręb: {code}
+        <div className="text-[10px] text-stone-700 font-mono mt-1">
+          Działka: {plot} <span className="text-stone-500 mx-1">|</span> Obręb: {code}
         </div>
      </div>
   </div>
 );
 
 const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
-  <div className="relative border border-stone-400 bg-white/80 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(231,229,228,1)] group hover:border-stone-500 transition-colors cursor-default text-left">
-     <div className="absolute top-1 right-1 text-stone-400 group-hover:text-stone-600 transition-colors">
+  <div className="relative border border-stone-400 bg-white/60 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(120,113,108,0.5)] group hover:border-stone-500 transition-colors cursor-default text-left">
+     <div className="absolute top-1 right-1 text-stone-500 group-hover:text-stone-800 transition-colors">
        <Search className="w-3 h-3" />
      </div>
-
-     <div className="bg-stone-200 h-full p-3 flex items-center justify-center border-r border-stone-300 border-dashed">
-        <Stamp className="w-5 h-5 text-stone-500" />
+     <div className="bg-[#d3ccb8] h-full p-3 flex items-center justify-center border-r border-stone-400 border-dashed">
+        <Stamp className="w-5 h-5 text-stone-700" />
      </div>
      <div className="py-2">
-        <div className="text-[9px] uppercase tracking-[0.2em] text-stone-500 font-bold mb-1">{label}</div>
+        <div className="text-[9px] uppercase tracking-[0.2em] text-stone-600 font-bold mb-1">{label}</div>
         <div className="font-mono text-base font-bold text-stone-900">{value}</div>
-        {subDetails && <div className="text-[10px] text-stone-600 font-mono mt-1">{subDetails}</div>}
+        {subDetails && <div className="text-[10px] text-stone-700 font-mono mt-1">{subDetails}</div>}
      </div>
   </div>
 );
@@ -341,7 +267,7 @@ const ArticleVideoPlayer: React.FC<{ src: string; poster: string }> = ({ src, po
     }
   }, [src]);
   return (
-    <div className="my-12 w-full bg-black rounded-sm shadow-xl overflow-hidden">
+    <div className="my-10 w-full bg-stone-900 rounded-sm shadow-xl overflow-hidden border border-stone-500">
       <video ref={videoRef} controls poster={poster} className="w-full h-auto block opacity-95" />
     </div>
   );
@@ -378,8 +304,10 @@ const GalleryModal: React.FC<{ isOpen: boolean; onClose: () => void; data: Galle
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose, handleNext, handlePrev, data]);
+  
   if (!isOpen || !data) return null;
   const isVerdict = data.type === 'verdict';
+
   return (
     <div className={`fixed inset-0 z-[100] flex flex-col ${isVerdict ? 'bg-stone-900/95' : 'bg-black'} backdrop-blur-sm animate-[fadeIn_0.2s_ease-out]`}>
       <div className="flex items-center justify-between px-4 py-3 bg-black/40 border-b border-white/10 z-50 shrink-0">
@@ -469,20 +397,22 @@ const GalleryTrigger = ({ type, children, className }: { type: 'nydek' | 'wyrok_
 // --- PAGE ---
 
 export default function Page() {
+  const [currentDate, setCurrentDate] = useState("");
+
+  useEffect(() => {
+    const now = new Date();
+    const options: Intl.DateTimeFormatOptions = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+    setCurrentDate(now.toLocaleDateString('pl-PL', options).toUpperCase());
+  }, []);
+
   const newsArticleSchema = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     "headline": "Eliksir Wiedźmina – Śledztwo: Michał Kiciński i tajemnica Janowa",
     "description": "Pełna dokumentacja śledztwa: Michał Kiciński, Jarosław Kordys i prokurator Jolanta Świdnicka. Ayahuasca, Janów i tragiczna śmierć uczestniczki.",
-    "image": [
-      `${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`
-    ],
+    "image": [`${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`],
     "datePublished": "2024-03-03",
-    "author": [{
-      "@type": "Person",
-      "name": "Detektyw Polutek",
-      "url": "mailto:detektyw.polutek@protonmail.com"
-    }]
+    "author": [{ "@type": "Person", "name": "Detektyw Polutek", "url": "mailto:detektyw.polutek@protonmail.com" }]
   };
 
   const videoArrestSchema = {
@@ -507,62 +437,55 @@ export default function Page() {
 
   return (
     <ElixirModalsProvider>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoArrestSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoStefanekSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoArrestSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoStefanekSchema) }} />
 
-      <main className="min-h-screen bg-[#e7dfcc] text-[#1c1917] selection:bg-yellow-900/20 font-serif flex flex-col items-center relative z-0">
-        
-        {/* Tekstura starego papieru przypięta globalnie żeby tło było bezszwowe i nie wariowało przy scrollu */}
-        <div
-          className="fixed inset-0 pointer-events-none opacity-[0.25] mix-blend-multiply z-[-1]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
-          }}
-        ></div>
-
-        <div className="w-full max-w-5xl flex flex-col relative overflow-hidden pt-4 pb-12">
+      {/* Idealny kolor tła nawiązujący do Twojej referencji */}
+      <main className="min-h-screen bg-[#e4dbbe] text-[#1c1917] font-serif overflow-x-hidden pt-4 md:pt-8 pb-12 selection:bg-stone-800 selection:text-[#e4dbbe]">
+        <div className="max-w-5xl mx-auto flex flex-col items-center w-full relative z-10 px-2 md:px-0">
           
-          <header className="w-full pt-0 pb-6 flex flex-col items-center z-10 relative">
-            <BrandHeader />
+          {/* --- HEADER (Paski poziome 96%) --- */}
+          <div className="w-[96%] border-t-[2px] border-stone-900 mb-2 md:mb-4"></div>
+          
+          <h1 className="text-6xl md:text-[8rem] font-black tracking-tighter uppercase leading-[0.85] text-stone-900 w-full text-center">
+            NASZA GAZETKA
+          </h1>
+          
+          <div className="w-[96%] border-t-[2px] border-stone-900 mt-2 md:mt-4 mb-1"></div>
+          
+          <div className="w-[96%] flex justify-between items-center px-2 text-[8px] md:text-sm font-bold uppercase tracking-[0.1em] text-stone-900 py-1">
+            <div className="flex items-center gap-1 md:gap-2"><Newspaper className="w-3 h-3 md:w-5 md:h-5" /> <span className="hidden sm:inline">Niezależne Media</span></div>
+            <div>{currentDate || "NIEDZIELA, 1 MARCA 2026"}</div>
+            <div className="flex items-center gap-1 md:gap-2"><span className="hidden sm:inline">Serwis Śledczy</span> <FileText className="w-3 h-3 md:w-5 md:h-5" /></div>
+            <div className="hidden md:block border-l-2 border-stone-900 pl-2">ROK XXV, NR 10</div>
+          </div>
+          
+          <div className="w-[96%] border-t-[2px] border-stone-900 mt-1"></div>
 
-            <div className="w-full text-center flex flex-col justify-center items-center pb-0 px-6 mt-4">
-              <img
-                src="/zdjeciehej.png"
-                alt="Wiedźmini z eliksirem"
-                className="h-32 md:h-[180px] object-contain grayscale contrast-200 mix-blend-multiply mb-1"
-              />
+          {/* --- GŁÓWNA RAMA PIONOWA (Paski boczne lekko węższe 94%, nie stykają się) --- */}
+          <div className="w-[94%] border-x-[2px] border-stone-900 mt-[4px] mb-[4px] px-4 md:px-16 py-4 md:py-8 flex flex-col items-center">
+            
+            {/* --- HERO SECTION --- */}
+            <img src="/zdjeciehej.png" alt="Wiedźmini z eliksirem" className="h-32 md:h-52 object-contain grayscale mix-blend-multiply mt-2" />
+            
+            <h2 className="text-center mt-4 w-full">
+              <span className="block text-4xl md:text-[5.5rem] font-black uppercase tracking-tighter leading-none text-stone-900">
+                Eliksir Wiedźmina
+              </span>
+              <span className="block text-sm md:text-3xl italic font-medium uppercase tracking-widest mt-2 text-stone-900">
+                Mroczna tajemnica twórców CD Projekt
+              </span>
+            </h2>
+            
+            <p className="text-center mt-4 text-sm md:text-xl font-serif italic leading-snug max-w-3xl text-stone-900 px-4">
+              Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry "Wiedźmin" finansowali szamańskie podziemie.
+            </p>
 
-              <h2 className="text-stone-900 w-full mb-1">
-                <span className="block text-4xl md:text-[5.5rem] font-bold leading-none tracking-tight uppercase">
-                  Eliksir Wiedźmina
-                </span>
-                <span className="block text-sm md:text-2xl text-stone-800 italic font-medium uppercase tracking-widest mt-1 whitespace-nowrap">
-                  Mroczna tajemnica twórców CD Projekt
-                </span>
-              </h2>
-
-              <div className="max-w-3xl mx-auto mt-2">
-                <p className="text-base md:text-xl text-stone-800 leading-snug italic font-serif">
-                  Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
-                </p>
-              </div>
-            </div>
-          </header>
-
-          {/* Paskix 2: Pionowe krawędzie z oddzieleniem od góry i od dołu */}
-          <article className="border-x-2 border-stone-900 mx-2 md:mx-8 my-8 px-4 md:px-10 py-6 max-w-4xl mx-auto flex-grow w-full z-10 relative">
-            <div className="prose prose-stone prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic
-              prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-500 hover:prose-a:bg-stone-200 transition-colors">
+            {/* --- ARTYKUŁ --- */}
+            <article className="prose prose-stone prose-lg max-w-none w-full mt-12 md:mt-20 text-left
+              prose-headings:font-sans prose-headings:font-bold prose-blockquote:not-italic
+              prose-a:text-stone-900 prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-stone-500 hover:prose-a:bg-stone-300 transition-colors">
 
               <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-stone-900 leading-relaxed mt-0">
                 W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
@@ -583,7 +506,7 @@ export default function Page() {
               <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-400 pb-2">Świadek B.</h2>
 
               <p>
-                W obszernym i publicznie dostępnym uzasadnieniu <GalleryTrigger type="wyrok_kordys" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">wyroku</GalleryTrigger> Jarosława Kordysa pojawia się postać świadka Bartosza B.
+                W obszernym i publicznie dostępnym uzasadnieniu <GalleryTrigger type="wyrok_kordys" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-300 transition-colors cursor-pointer">wyroku</GalleryTrigger> Jarosława Kordysa pojawia się postać świadka Bartosza B.
               </p>
 
               <p>
@@ -623,7 +546,7 @@ export default function Page() {
               </CaseFile>
 
               <p>
-                W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <GalleryTrigger type="janov" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">działkę w Janowie</GalleryTrigger> i za niewielką opłatą pobrać jej pełną historię.
+                W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać <GalleryTrigger type="janov" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-300 transition-colors cursor-pointer">działkę w Janowie</GalleryTrigger> i za niewielką opłatą pobrać jej pełną historię.
               </p>
 
               <div className="my-8 flex justify-start">
@@ -642,11 +565,11 @@ export default function Page() {
                  <br/>
                  Bartosz Badowski (10%)
                  <br/>
-                 <span className="bg-stone-900 px-1 font-bold text-[#e4dcc4] box-decoration-clone">Michał Dawid Kiciński (90%)</span>
+                 <span className="bg-stone-900 px-1 font-bold text-[#e4dbbe] box-decoration-clone">Michał Dawid Kiciński (90%)</span>
               </p>
 
               <p>
-                Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie &quot;Michal D. K.&quot;. <span className="bg-stone-900 px-1 font-bold text-[#e4dcc4] shadow-sm box-decoration-clone">Wspólnikiem szamana był twórca &quot;Wiedźmina&quot; – jeden z najbogatszych Polaków.</span>
+                Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie &quot;Michal D. K.&quot;. <span className="bg-stone-900 px-1 font-bold text-[#e4dbbe] shadow-sm box-decoration-clone">Wspólnikiem szamana był twórca &quot;Wiedźmina&quot; – jeden z najbogatszych Polaków.</span>
               </p>
 
               <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-400 pb-2">Na podsłuchu</h2>
@@ -660,7 +583,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" type="transcript">
-                &quot;oskarżony [Jarosława Kordysa] omawia z B., że dotarła do niego informacja, że w obiekcie w Janowie <span className="underline decoration-red-700 decoration-4 underline-offset-4">zmarła jakaś kobieta</span>&quot;.
+                &quot;oskarżony [Jarosława Kordysa] omawia z B., że dotarła do niego informacja, że w obiekcie w Janowie <span className="underline decoration-red-800 decoration-4 underline-offset-4">zmarła jakaś kobieta</span>&quot;.
               </CaseFile>
 
               <p>
@@ -675,7 +598,7 @@ export default function Page() {
                 Odpowiedź na to pytanie znajduje się w aktach sprawy i nie pozostawia złudzeń co do intencji rozmówców. W uzasadnieniu wyroku Kordysa czytamy:
               </p>
 
-              <div className="my-12 pl-6 border-l-4 border-stone-900 font-serif italic text-xl text-stone-800">
+              <div className="my-12 pl-6 border-l-[4px] border-stone-900 font-serif italic text-xl text-stone-800">
                 &quot;Z ich rozmowy wynika, że nie zajmowali się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji.&quot;
               </div>
 
@@ -717,13 +640,13 @@ export default function Page() {
                 15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
               </p>
 
-              <div className="my-12 w-full rounded-sm overflow-hidden shadow-md">
+              <div className="my-10 w-full rounded-sm overflow-hidden shadow-md">
                  <ArticleVideoPlayer
                     src={`${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`}
                     poster=""
                  />
               </div>
-               <div className="mt-1 text-sm text-stone-600 font-sans border-l-2 border-stone-400 pl-3 mb-12">
+               <div className="mt-1 text-sm text-stone-700 font-sans border-l-[3px] border-stone-500 pl-3 mb-12">
                    <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Operacyjny:</span>
                    Nagranie z policyjnego nalotu na ośrodek w Hermanovicach (15.10.2020)
                 </div>
@@ -732,11 +655,11 @@ export default function Page() {
                 Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym:
               </p>
 
-              <div className="my-12 flex gap-4 p-5 bg-stone-300/30 border-l-4 border-stone-600 rounded-r-lg shadow-sm">
-                <Scale className="w-8 h-8 text-stone-700 shrink-0 mt-1" />
+              <div className="my-12 flex gap-4 p-5 bg-[#d3ccb8]/50 border-l-[4px] border-stone-800 rounded-r-lg shadow-sm">
+                <Scale className="w-8 h-8 text-stone-800 shrink-0 mt-1" />
                 <div>
                   <strong className="block font-serif text-stone-900 text-lg font-bold mb-1">Dohoda o vině a trestu</strong>
-                  <div className="text-stone-800 text-lg leading-relaxed">
+                  <div className="text-stone-800 text-base md:text-lg leading-relaxed">
                     Ugoda o winie i karze. Czeska procedura karna pozwalająca oskarżonemu na dobrowolne poddanie się karze w zamian za łagodniejszy wyrok, bez przeprowadzania pełnego procesu dowodowego i wzywania świadków.
                   </div>
                 </div>
@@ -755,7 +678,7 @@ export default function Page() {
               </p>
 
               <p>
-                 Na mocy <GalleryTrigger type="wyrok_badi" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">wyroku</GalleryTrigger> z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia &quot;zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi&quot;.
+                 Na mocy <GalleryTrigger type="wyrok_badi" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-300 transition-colors cursor-pointer">wyroku</GalleryTrigger> z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia &quot;zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi&quot;.
               </p>
 
               <p>
@@ -807,10 +730,10 @@ export default function Page() {
                   <img
                     src={`${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`}
                     alt="Wezwanie na policję"
-                    className="w-48 rounded shadow-md border border-stone-400 cursor-pointer hover:opacity-90 transition-opacity mix-blend-multiply grayscale sepia"
+                    className="w-48 rounded shadow-md border border-stone-500 cursor-pointer hover:opacity-90 transition-opacity mix-blend-multiply grayscale sepia"
                   />
                 </GalleryTrigger>
-                <p className="text-xs text-stone-600 mt-2 font-mono uppercase tracking-wider w-48 text-center">
+                <p className="text-xs text-stone-700 mt-2 font-mono uppercase tracking-wider w-48 text-center">
                   Skan wezwania (Kliknij)
                 </p>
               </div>
@@ -870,20 +793,20 @@ export default function Page() {
               </p>
 
               <CaseFile title="Wypowiedź K. Stefanka">
-                &quot;Ostatecznie <span className="bg-stone-900 px-1 font-bold text-[#e4dcc4] box-decoration-clone">23 października 2023 roku</span> ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie&quot;
+                &quot;Ostatecznie <span className="bg-stone-900 px-1 font-bold text-[#e4dbbe] box-decoration-clone">23 października 2023 roku</span> ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie&quot;
               </CaseFile>
 
               <p>
                 Stefanek przedstawia to jako efekt &quot;researchu&quot; darczyńcy, który rzekomo urzekła wizja działalności non-profit.
               </p>
 
-              <div className="my-12 w-full rounded-sm overflow-hidden shadow-md">
-                     <ArticleVideoPlayer
+              <div className="my-10 w-full rounded-sm overflow-hidden shadow-md">
+                <ArticleVideoPlayer
                   src={`${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`}
                   poster=""
                 />
               </div>
-               <div className="mt-1 text-sm text-stone-600 font-sans border-l-2 border-stone-400 pl-3 mb-12">
+               <div className="mt-1 text-sm text-stone-700 font-sans border-l-[3px] border-stone-500 pl-3 mb-12">
                   <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Wideo:</span>
                   Krzysztof Stefanek opowiada o &quot;cudownym&quot; otrzymaniu darowizny (Materiał z 2025 r.)
                 </div>
@@ -894,21 +817,21 @@ export default function Page() {
 
               <ul className="list-none space-y-12 my-12 font-mono text-sm border-l-2 border-stone-400 pl-4">
                 <li className="flex items-start gap-3">
-                  <Calendar className="w-5 h-5 text-stone-500 shrink-0" />
+                  <Calendar className="w-5 h-5 text-stone-600 shrink-0" />
                   <div>
                     <strong>21 września 2023 r.</strong> – Michał Kiciński odbiera wezwanie na przesłuchanie w sprawie Janowa.
                   </div>
                 </li>
 
                 <li className="flex items-start gap-3">
-                  <Calendar className="w-5 h-5 text-stone-500 shrink-0" />
+                  <Calendar className="w-5 h-5 text-stone-600 shrink-0" />
                   <div>
                     <strong>3 października 2023 r.</strong> – Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów w nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
                   </div>
                 </li>
 
                 <li className="flex items-start gap-3">
-                  <Calendar className="w-5 h-5 text-stone-500 shrink-0" />
+                  <Calendar className="w-5 h-5 text-stone-600 shrink-0" />
                   <div>
                     <strong>11 października 2023 r.</strong> – Miliarder staje przed policją. Do protokołu odmawia zeznań na temat swojej przeszłości w tym miejscu.
                   </div>
@@ -916,14 +839,14 @@ export default function Page() {
 
                 <li className="flex items-start gap-3">
                   <Calendar className="w-5 h-5 text-red-800 shrink-0 mt-3" />
-                  <div className="bg-stone-300/30 border border-stone-400 p-4 rounded-sm shadow-sm w-full relative overflow-hidden">
+                  <div className="bg-[#d3ccb8]/50 border border-stone-400 p-4 rounded-sm shadow-sm w-full relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-1 h-full bg-red-800"></div>
                     <span className="font-bold text-stone-900">23 października 2023 r.</span> – Zaledwie 12 dni po kłopotliwym przesłuchaniu, gdy formalności własnościowe z Badim są już dopięte, następuje telefon do Stefanka z propozycją oddania majątku wartego miliony za darmo.
                   </div>
                 </li>
 
                 <li className="flex items-start gap-3">
-                  <Calendar className="w-5 h-5 text-stone-500 shrink-0" />
+                  <Calendar className="w-5 h-5 text-stone-600 shrink-0" />
                   <div>
                     <strong>21 grudnia 2023 r.</strong> – Finał operacji. Kiciński formalnie przekazuje Janów w formie darowizny. Nieruchomość trafia do stowarzyszenia &quot;non-profit&quot; – fasadowej organizacji &quot;krzak&quot;, zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
                   </div>
@@ -957,7 +880,7 @@ export default function Page() {
               </p>
 
               <p>
-                Relacje świadków wskazują, że w <GalleryTrigger type="nydek" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-200 transition-colors">posiadłości w Nýdku</GalleryTrigger> odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong>Piotra &quot;Bonawenturę&quot; Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu &quot;Wayback Machine&quot; zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
+                Relacje świadków wskazują, że w <GalleryTrigger type="nydek" className="font-bold text-stone-900 underline decoration-double decoration-stone-500 hover:bg-stone-300 transition-colors cursor-pointer">posiadłości w Nýdku</GalleryTrigger> odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong>Piotra &quot;Bonawenturę&quot; Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu &quot;Wayback Machine&quot; zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
               </p>
 
               <p>
@@ -965,7 +888,7 @@ export default function Page() {
               </p>
 
               <p>
-                Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej szamańskiej świątyni – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za gamingowym gigantem, <span className="bg-stone-900 px-1 font-bold text-[#e4dcc4] box-decoration-clone">Marcin Iwiński</span>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder.
+                Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej szamańskiej świątyni – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za gamingowym gigantem, <span className="bg-stone-900 px-1 font-bold text-[#e4dbbe] box-decoration-clone">Marcin Iwiński</span>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder.
               </p>
 
               <div className="my-8 flex justify-start">
@@ -980,7 +903,7 @@ export default function Page() {
               </div>
 
               <p>
-                <span className="bg-stone-900 px-1 font-bold text-[#e4dcc4] shadow-sm">Oznacza to, że nie jeden lecz obaj legendarni założyciele CD Projekt, na czeskim pograniczu posiadali nieruchomości, w których odpłatnie oferowano te same nielegalne substancje.</span>
+                <span className="bg-stone-900 px-1 font-bold text-[#e4dbbe] shadow-sm">Oznacza to, że nie jeden lecz obaj legendarni założyciele CD Projekt, na czeskim pograniczu posiadali nieruchomości, w których odpłatnie oferowano te same nielegalne substancje.</span>
               </p>
 
               <p>
@@ -989,14 +912,14 @@ export default function Page() {
 
               <ul className="list-none space-y-12 my-12 font-mono text-sm border-l-2 border-stone-400 pl-4">
                  <li className="flex items-start gap-3">
-                  <Calendar className="w-5 h-5 text-stone-500 shrink-0" />
+                  <Calendar className="w-5 h-5 text-stone-600 shrink-0" />
                   <div>
                     <strong>15 października 2020 r.</strong> – Policyjny szturm na ośrodek Kordysów. W środowisku wybucha panika.
                   </div>
                  </li>
 
                 <li className="flex items-start gap-3">
-                  <Calendar className="w-5 h-5 text-stone-500 shrink-0" />
+                  <Calendar className="w-5 h-5 text-stone-600 shrink-0" />
                   <div>
                     <strong>15 czerwca 2021 r.</strong> – Marcin Iwiński sprzedaje nieruchomości w Nýdku.
                   </div>
@@ -1048,7 +971,7 @@ export default function Page() {
               <div className="mt-8 mb-4 flex justify-end">
                  <div className="text-right">
                     <span className="block font-bold text-stone-900 uppercase">Detektyw Polutek</span>
-                    <span className="block text-xs text-stone-600 font-sans mt-1 italic">detektyw.polutek@protonmail.com</span>
+                    <span className="block text-xs text-stone-700 font-sans mt-1 italic">detektyw.polutek@protonmail.com</span>
                  </div>
               </div>
 
@@ -1058,34 +981,34 @@ export default function Page() {
                     Status Prawny (2025/2026)
                  </h3>
 
-                 <div className="grid gap-px bg-stone-300 border border-stone-300">
-                    <div className="bg-white/80 p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                 <div className="grid gap-px bg-stone-400 border border-stone-400">
+                    <div className="bg-white/60 p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                        <div>
                           <span className="block font-serif text-stone-900 font-bold">Śledztwo w sprawie organizacji ceremonii</span>
-                          <span className="block text-xs text-stone-600 mt-1">Prokuratura Rejonowa w Częstochowie</span>
+                          <span className="block text-xs text-stone-700 mt-1">Prokuratura Rejonowa w Częstochowie</span>
                        </div>
-                       <span className="font-mono text-xs font-bold bg-stone-200 px-3 py-1.5 border border-stone-400 text-stone-800 rounded-sm shadow-sm whitespace-nowrap">
+                       <span className="font-mono text-xs font-bold bg-[#d3ccb8] px-3 py-1.5 border border-stone-500 text-stone-800 rounded-sm shadow-sm whitespace-nowrap">
                           3013-1.Ds.15.2024
                        </span>
                     </div>
 
-                    <div className="bg-white/80 p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div className="bg-white/60 p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                        <div>
                           <span className="block font-serif text-stone-900 font-bold">Śledztwo w sprawie śmierci Ilony Lewandowskiej</span>
-                          <span className="block text-xs text-stone-600 mt-1">Prokuratura Rejonowa w Częstochowie</span>
+                          <span className="block text-xs text-stone-700 mt-1">Prokuratura Rejonowa w Częstochowie</span>
                        </div>
-                       <span className="font-mono text-xs font-bold bg-stone-300 px-3 py-1.5 border border-stone-500 text-stone-900 rounded-sm shadow-sm whitespace-nowrap">
+                       <span className="font-mono text-xs font-bold bg-stone-300 px-3 py-1.5 border border-stone-600 text-stone-900 rounded-sm shadow-sm whitespace-nowrap">
                           3013-1.Ds.4.2026
                        </span>
                     </div>
 
-                    <div className="bg-white/80 p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div className="bg-white/60 p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                        <div>
                           <span className="block font-serif text-stone-900 font-bold">Śledztwo w sprawie śmierci Wiktora B.</span>
-                          <span className="block text-xs text-stone-600 mt-1">Prokuratura Rejonowa w Pułtusku</span>
+                          <span className="block text-xs text-stone-700 mt-1">Prokuratura Rejonowa w Pułtusku</span>
                        </div>
                        <div className="flex flex-col items-end gap-1">
-                          <span className="font-mono text-xs font-bold bg-stone-200 px-3 py-1.5 border border-stone-400 text-stone-800 rounded-sm shadow-sm whitespace-nowrap">
+                          <span className="font-mono text-xs font-bold bg-[#d3ccb8] px-3 py-1.5 border border-stone-500 text-stone-800 rounded-sm shadow-sm whitespace-nowrap">
                             4027-0. Ds. 1254.2024
                           </span>
                           <span className="text-[10px] font-sans font-bold text-red-800 uppercase tracking-tighter">Śledztwo zawieszone</span>
@@ -1093,284 +1016,222 @@ export default function Page() {
                     </div>
                  </div>
 
-                 <div className="mt-8 text-sm text-stone-700 font-sans text-center md:text-left italic">
+                 <div className="mt-8 text-sm text-stone-800 font-sans text-center md:text-left italic">
                   Postępowania toczą się w wymienionych jednostkach Prokuratury. Nadzór nad sprawami w Częstochowie objął Zastępca Prokuratora Okręgowego, a kluczowe czynności nadzoruje prokurator Jolanta Świdnicka.
                  </div>
               </div>
 
               <EvidenceGrid />
 
-            </div>
-          </article>
-
-          {/* Paskix 2: Pozioma linia stopki nie dotyka brzegów i jest oderwana od bocznych borderów */}
-          <footer className="w-full relative z-10 px-6 mt-4">
-            <div className="mx-4 md:mx-12 border-t-[2px] border-stone-900 pt-8 font-sans">
-               <div className="mb-8">
-                 <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
-                   <Search className="w-5 h-5" /> Dokumenty Źródłowe
-                 </h3>
-                 <div className="border-b-[3px] border-stone-900 w-full mb-6"></div>
-                 <p className="text-base text-stone-800 italic text-left font-serif">
-                   Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.
-                 </p>
-               </div>
-
-               <div className="grid gap-4 text-sm text-stone-700">
-
-                 <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                      <div>
-                        <h4 className="font-bold text-stone-900 text-sm leading-tight">Wyrok <strong>Jarosława Kordysa</strong></h4>
-                        <p className="font-mono text-[10px] text-stone-600 mt-1">Sygn. 30 T 5/2020</p>
-                      </div>
-                      <a
-                        href={KORDYS_PDF_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="shrink-0 w-40 justify-center bg-stone-200 text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-400 hover:bg-stone-300 transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500"
-                      >
-                        <FileText className="w-3 h-3" /> Pobierz PDF
-                      </a>
-                    </div>
-                    <div className="border-t border-stone-300 pt-2">
-                      <a
-                        href="https://msp.gov.cz/web/krajsky-soud-v-ostrave/zakladni-informace/-/clanek/informace-rok-2022"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[10px] text-stone-500 hover:text-stone-900 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-400"
-                      >
-                        <Globe className="w-3 h-3" />
-                        Weryfikuj na msp.gov.cz
-                      </a>
-                    </div>
+              {/* Sekcja dokumentów źródłowych (teraz złączona z artykułem) */}
+              <div className="mt-16 font-sans">
+                 <div className="mb-8">
+                   <h3 className="text-xl font-bold text-stone-900 uppercase tracking-widest flex items-center gap-2 mb-4">
+                     <Search className="w-5 h-5" /> Dokumenty Źródłowe
+                   </h3>
+                   <div className="border-b-[3px] border-stone-900 w-full mb-6"></div>
+                   <p className="text-base text-stone-800 italic text-left font-serif">
+                     Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Pełną listę sygnatur oraz odnośniki do baz państwowych (Katastr, InfoSoud), umożliwiające samodzielną niezależną weryfikację danych.
+                   </p>
                  </div>
 
-                 <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                      <div>
-                        <h4 className="font-bold text-stone-900 text-sm leading-tight">Wyrok <strong>Bartosza Badowskiego</strong></h4>
-                        <p className="font-mono text-[10px] text-stone-600 mt-1">Sygn. 66 T 146/2021</p>
+                 <div className="grid gap-4 text-sm text-stone-800">
+
+                   <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
+                      <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                        <div>
+                          <h4 className="font-bold text-stone-900 text-sm leading-tight">Wyrok <strong>Jarosława Kordysa</strong></h4>
+                          <p className="font-mono text-[10px] text-stone-600 mt-1">Sygn. 30 T 5/2020</p>
+                        </div>
+                        <a href={KORDYS_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-40 justify-center bg-[#d3ccb8] text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-500 hover:bg-[#c4bca5] transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500">
+                          <FileText className="w-3 h-3" /> Pobierz PDF
+                        </a>
                       </div>
-                      <a
-                        href={BADI_PDF_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="shrink-0 w-40 justify-center bg-stone-200 text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-400 hover:bg-stone-300 transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500"
-                      >
-                        <FileText className="w-3 h-3" /> Pobierz PDF
-                      </a>
-                    </div>
-                    <div className="border-t border-stone-300 pt-2">
-                      <a
-                        href="https://msp.gov.cz/documents/22409/2997339/29Si+25-2022+p%C5%99%C3%ADloha+%C4%8D.+1.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[10px] text-stone-500 hover:text-stone-900 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-400"
-                      >
-                        <Globe className="w-3 h-3" />
-                        Weryfikuj oryginał (29 Si 25/2022)
-                      </a>
-                    </div>
+                      <div className="border-t border-stone-400 pt-2">
+                        <a href="https://msp.gov.cz/web/krajsky-soud-v-ostrave/zakladni-informace/-/clanek/informace-rok-2022" target="_blank" rel="noopener noreferrer" className="text-[10px] text-stone-600 hover:text-stone-900 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-500">
+                          <Globe className="w-3 h-3" /> Weryfikuj na msp.gov.cz
+                        </a>
+                      </div>
+                   </div>
+
+                   <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
+                      <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                        <div>
+                          <h4 className="font-bold text-stone-900 text-sm leading-tight">Wyrok <strong>Bartosza Badowskiego</strong></h4>
+                          <p className="font-mono text-[10px] text-stone-600 mt-1">Sygn. 66 T 146/2021</p>
+                        </div>
+                        <a href={BADI_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-40 justify-center bg-[#d3ccb8] text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-500 hover:bg-[#c4bca5] transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500">
+                          <FileText className="w-3 h-3" /> Pobierz PDF
+                        </a>
+                      </div>
+                      <div className="border-t border-stone-400 pt-2">
+                        <a href="https://msp.gov.cz/documents/22409/2997339/29Si+25-2022+p%C5%99%C3%ADloha+%C4%8D.+1.pdf" target="_blank" rel="noopener noreferrer" className="text-[10px] text-stone-600 hover:text-stone-900 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-500">
+                          <Globe className="w-3 h-3" /> Weryfikuj oryginał (29 Si 25/2022)
+                        </a>
+                      </div>
+                   </div>
+
+                   <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
+                      <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                        <div>
+                          <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: <strong>Janów</strong></h4>
+                          <p className="font-mono text-[10px] text-stone-600 mt-1">
+                            LV 127 | Obręb 656976 <span className="block sm:inline sm:ml-2 text-stone-500">| Koszt: 100 CZK (~17 PLN)</span>
+                          </p>
+                        </div>
+                        <a href="#" className="shrink-0 w-40 justify-center bg-[#d3ccb8] text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-500 hover:bg-[#c4bca5] transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500">
+                          <Download className="w-3 h-3" /> Pobierz PDF
+                        </a>
+                      </div>
+                      <div className="border-t border-stone-400 pt-2">
+                        <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer" className="text-[10px] text-stone-600 hover:text-stone-900 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-500">
+                          <Globe className="w-3 h-3" /> Weryfikuj na nahlizenidokn.cuzk.cz
+                        </a>
+                      </div>
+                   </div>
+
+                   <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
+                      <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                        <div>
+                          <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: <strong>Nýdek</strong></h4>
+                          <p className="font-mono text-[10px] text-stone-600 mt-1">
+                            LV 832 | Obręb 708186 <span className="block sm:inline sm:ml-2 text-stone-500">| Koszt: 100 CZK (~17 PLN)</span>
+                          </p>
+                        </div>
+                        <a href="#" className="shrink-0 w-40 justify-center bg-[#d3ccb8] text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-500 hover:bg-[#c4bca5] transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500">
+                          <Download className="w-3 h-3" /> Pobierz PDF
+                        </a>
+                      </div>
+                      <div className="border-t border-stone-400 pt-2">
+                        <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer" className="text-[10px] text-stone-600 hover:text-stone-900 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-500">
+                          <Globe className="w-3 h-3" /> Weryfikuj na nahlizenidokn.cuzk.cz
+                        </a>
+                      </div>
+                   </div>
+
+                   <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
+                      <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                        <div>
+                          <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Darowizna (<strong>Janów</strong>)</h4>
+                          <p className="font-mono text-[10px] text-stone-600 mt-1">
+                            Sygnatura: V-5821/2023 <span className="block sm:inline sm:ml-2 text-stone-500">| Koszt: 300 CZK (~52 PLN)</span>
+                          </p>
+                        </div>
+                        <a href="#" className="shrink-0 w-40 justify-center bg-[#d3ccb8] text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-500 hover:bg-[#c4bca5] transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500">
+                          <Download className="w-3 h-3" /> Pobierz PDF
+                        </a>
+                      </div>
+                      <div className="border-t border-stone-400 pt-2">
+                        <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer" className="text-[10px] text-stone-600 hover:text-stone-900 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-500">
+                          <Globe className="w-3 h-3" /> Weryfikuj na nahlizenidokn.cuzk.cz
+                        </a>
+                      </div>
+                   </div>
+
+                   <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
+                      <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                        <div>
+                          <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Sprzedaż (<strong>Nýdek</strong>)</h4>
+                          <p className="font-mono text-[10px] text-stone-600 mt-1">
+                            Sygnatura: V-2937/2021 <span className="block sm:inline sm:ml-2 text-stone-500">| Koszt: 300 CZK (~52 PLN)</span>
+                          </p>
+                        </div>
+                        <a href="#" className="shrink-0 w-40 justify-center bg-[#d3ccb8] text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-500 hover:bg-[#c4bca5] transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500">
+                          <Download className="w-3 h-3" /> Pobierz PDF
+                        </a>
+                      </div>
+                      <div className="border-t border-stone-400 pt-2">
+                        <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer" className="text-[10px] text-stone-600 hover:text-stone-900 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-500">
+                          <Globe className="w-3 h-3" /> Weryfikuj na nahlizenidokn.cuzk.cz
+                        </a>
+                      </div>
+                   </div>
+
+                   <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
+                      <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                        <div>
+                          <h4 className="font-bold text-stone-900 text-sm leading-tight">Archiwalna Strona: <strong>Nýdek</strong></h4>
+                          <p className="font-mono text-[10px] text-stone-600 mt-1">Archiwum: tribunydek.com</p>
+                        </div>
+                        <a href="https://web.archive.org/web/*/tribunydek.com" target="_blank" rel="noopener noreferrer" className="shrink-0 w-40 justify-center bg-[#d3ccb8] text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-500 hover:bg-[#c4bca5] transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500">
+                          <History className="w-3 h-3" /> Wayback Machine
+                        </a>
+                      </div>
+                   </div>
+
+                   <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
+                      <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                        <div>
+                          <h4 className="font-bold text-stone-900 text-sm leading-tight">Archiwalna Strona: <strong>Munay Sonqo</strong></h4>
+                          <p className="font-mono text-[10px] text-stone-600 mt-1">Archiwum: munaysonqo.com (Peru)</p>
+                        </div>
+                        <a href={MUNAY_WAYBACK_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-40 justify-center bg-[#d3ccb8] text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-500 hover:bg-[#c4bca5] transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500">
+                          <History className="w-3 h-3" /> Wayback Machine
+                        </a>
+                      </div>
+                   </div>
+
+                   <div className="p-3 bg-white/60 border border-stone-400 border-l-stone-600 border-l-4 hover:border-stone-500 transition-colors shadow-sm">
+                      <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
+                        <div>
+                          <h4 className="font-bold text-stone-900 text-sm leading-tight">
+                            Artykuł: <strong>Szamańskie ceremonie, tajemnicza śmierć i miliarderzy od „Wiedźmina”</strong>, <span className="text-stone-700 font-medium">Onet.pl</span>
+                          </h4>
+                          <p className="font-mono text-[10px] text-stone-600 mt-1 uppercase tracking-wider">Opublikowano: 3 marca 2026</p>
+                        </div>
+                        <div className="shrink-0 w-40 justify-center bg-stone-300 text-stone-500 px-3 py-1 text-xs font-bold rounded border border-stone-400 flex items-center gap-2 cursor-default">
+                          <ExternalLink className="w-3 h-3" /> Link nieaktywny
+                        </div>
+                      </div>
+                      <div className="border-t border-stone-300 pt-2 text-[10px] text-stone-600 font-mono italic">
+                        Źródło: onet.pl/wiadomosci/kraj/szamanskie-ceremonie-tajemnicza-smierc-i-miliarderzy-od-wiedzmina
+                      </div>
+                   </div>
+
                  </div>
 
-                 <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                      <div>
-                        <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: <strong>Janów</strong></h4>
-                        <p className="font-mono text-[10px] text-stone-600 mt-1">
-                          LV 127 | Obręb 656976 <span className="block sm:inline sm:ml-2 text-stone-500">| Koszt: 100 CZK (~17 PLN)</span>
-                        </p>
-                      </div>
-                      <a
-                        href="#"
-                        className="shrink-0 w-40 justify-center bg-stone-200 text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-400 hover:bg-stone-300 transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500"
-                      >
-                        <Download className="w-3 h-3" /> Pobierz PDF
-                      </a>
-                    </div>
-                    <div className="border-t border-stone-300 pt-2">
-                      <a
-                        href="https://nahlizenidokn.cuzk.cz"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[10px] text-stone-500 hover:text-stone-900 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-400"
-                      >
-                        <Globe className="w-3 h-3" />
-                        Weryfikuj na nahlizenidokn.cuzk.cz
-                      </a>
-                    </div>
-                 </div>
+                 <div className="mt-12 text-center pb-8">
+                    <div className="w-24 h-[2px] bg-stone-900 mx-auto mb-6"></div>
 
-                 <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                      <div>
-                        <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: <strong>Nýdek</strong></h4>
-                        <p className="font-mono text-[10px] text-stone-600 mt-1">
-                          LV 832 | Obręb 708186 <span className="block sm:inline sm:ml-2 text-stone-500">| Koszt: 100 CZK (~17 PLN)</span>
-                        </p>
-                      </div>
-                      <a
-                        href="#"
-                        className="shrink-0 w-40 justify-center bg-stone-200 text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-400 hover:bg-stone-300 transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500"
-                      >
-                        <Download className="w-3 h-3" /> Pobierz PDF
-                      </a>
-                    </div>
-                    <div className="border-t border-stone-300 pt-2">
-                      <a
-                        href="https://nahlizenidokn.cuzk.cz"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[10px] text-stone-500 hover:text-stone-900 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-400"
-                      >
-                        <Globe className="w-3 h-3" />
-                        Weryfikuj na nahlizenidokn.cuzk.cz
-                      </a>
-                    </div>
-                 </div>
-
-                 <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                      <div>
-                        <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Darowizna (<strong>Janów</strong>)</h4>
-                        <p className="font-mono text-[10px] text-stone-600 mt-1">
-                          Sygnatura: V-5821/2023 <span className="block sm:inline sm:ml-2 text-stone-500">| Koszt: 300 CZK (~52 PLN)</span>
-                        </p>
-                      </div>
-                      <a
-                        href="#"
-                        className="shrink-0 w-40 justify-center bg-stone-200 text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-400 hover:bg-stone-300 transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500"
-                      >
-                        <Download className="w-3 h-3" /> Pobierz PDF
-                      </a>
-                    </div>
-                    <div className="border-t border-stone-300 pt-2">
-                      <a
-                        href="https://nahlizenidokn.cuzk.cz"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[10px] text-stone-500 hover:text-stone-900 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-400"
-                      >
-                        <Globe className="w-3 h-3" />
-                        Weryfikuj na nahlizenidokn.cuzk.cz
-                      </a>
-                    </div>
-                 </div>
-
-                 <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                      <div>
-                        <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Sprzedaż (<strong>Nýdek</strong>)</h4>
-                        <p className="font-mono text-[10px] text-stone-600 mt-1">
-                          Sygnatura: V-2937/2021 <span className="block sm:inline sm:ml-2 text-stone-500">| Koszt: 300 CZK (~52 PLN)</span>
-                        </p>
-                      </div>
-                      <a
-                        href="#"
-                        className="shrink-0 w-40 justify-center bg-stone-200 text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-400 hover:bg-stone-300 transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500"
-                      >
-                        <Download className="w-3 h-3" /> Pobierz PDF
-                      </a>
-                    </div>
-                    <div className="border-t border-stone-300 pt-2">
-                      <a
-                        href="https://nahlizenidokn.cuzk.cz"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[10px] text-stone-500 hover:text-stone-900 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-stone-400"
-                      >
-                        <Globe className="w-3 h-3" />
-                        Weryfikuj na nahlizenidokn.cuzk.cz
-                      </a>
-                    </div>
-                 </div>
-
-                 <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                      <div>
-                        <h4 className="font-bold text-stone-900 text-sm leading-tight">Archiwalna Strona: <strong>Nýdek</strong></h4>
-                        <p className="font-mono text-[10px] text-stone-600 mt-1">Archiwum: tribunydek.com</p>
-                      </div>
-                      <a
-                        href="https://web.archive.org/web/*/tribunydek.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="shrink-0 w-40 justify-center bg-stone-200 text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-400 hover:bg-stone-300 transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500"
-                      >
-                        <History className="w-3 h-3" /> Wayback Machine
-                      </a>
-                    </div>
-                 </div>
-
-                 <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                      <div>
-                        <h4 className="font-bold text-stone-900 text-sm leading-tight">Archiwalna Strona: <strong>Munay Sonqo</strong></h4>
-                        <p className="font-mono text-[10px] text-stone-600 mt-1">Archiwum: munaysonqo.com (Peru)</p>
-                      </div>
-                      <a
-                        href={MUNAY_WAYBACK_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="shrink-0 w-40 justify-center bg-stone-200 text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-400 hover:bg-stone-300 transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500"
-                      >
-                        <History className="w-3 h-3" /> Wayback Machine
-                      </a>
-                    </div>
-                 </div>
-
-                 <div className="p-3 bg-white/60 border border-stone-400 border-l-stone-600 border-l-4 hover:border-stone-500 transition-colors shadow-sm">
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                      <div>
-                        <h4 className="font-bold text-stone-900 text-sm leading-tight">
-                          Artykuł: <strong>Szamańskie ceremonie, tajemnicza śmierć i miliarderzy od „Wiedźmina”</strong>, <span className="text-stone-700 font-medium">Onet.pl</span>
-                        </h4>
-                        <p className="font-mono text-[10px] text-stone-600 mt-1 uppercase tracking-wider">Opublikowano: 3 marca 2026</p>
-                      </div>
-                      <div className="shrink-0 w-40 justify-center bg-stone-300 text-stone-500 px-3 py-1 text-xs font-bold rounded border border-stone-400 flex items-center gap-2 cursor-default">
-                        <ExternalLink className="w-3 h-3" /> Link nieaktywny
+                    <div className="mb-10 bg-[#d3ccb8]/40 p-6 border border-stone-400 rounded-sm text-center">
+                      <h3 className="text-sm font-bold text-stone-900 uppercase tracking-widest mb-4 flex items-center justify-center gap-2">
+                        <ShieldCheck className="w-4 h-4 text-stone-800" /> Mirror – Kopia Zapasowa Dokumentacji
+                      </h3>
+                      <p className="text-xs text-stone-800 mb-4 leading-relaxed font-sans max-w-lg mx-auto">
+                        W celu zapewnienia niezniszczalności dowodów, pełna dokumentacja śledztwa (akty oskarżenia, wyroki, zeznania) została zarchiwizowana w sieciach zdecentralizowanych. Materiał jest odporny na próby cenzury i usuwania.
+                      </p>
+                      <div className="grid gap-3 font-mono text-[10px] uppercase tracking-wider">
+                        <a href="ipfs://bafybeicnxl_pelna_dokumentacja_wiedzmin_gate" className="text-stone-900 font-bold hover:bg-stone-300 underline decoration-stone-500 decoration-double">IPFS: Baza Dowodowa (Full Archive)</a>
+                        <a href="https://arweave.net/eliksir-wiedzmina-dokumentacja" className="text-stone-900 font-bold hover:bg-stone-300 underline decoration-stone-500 decoration-double">Arweave: Trwała Archiwizacja</a>
+                        <a href="https://github.com/detektyw-polutek/eliksir-mirror" className="text-stone-900 font-bold hover:bg-stone-300 underline decoration-stone-500 decoration-double">GitHub: Source Mirror</a>
                       </div>
                     </div>
-                    <div className="border-t border-stone-300 pt-2 text-[10px] text-stone-500 font-mono italic">
-                      Źródło: onet.pl/wiadomosci/kraj/szamanskie-ceremonie-tajemnicza-smierc-i-miliarderzy-od-wiedzmina
-                    </div>
-                 </div>
 
-               </div>
-
-               <div className="mt-8 text-center pb-12">
-                  <div className="w-24 h-[2px] bg-stone-900 mx-auto mb-6"></div>
-
-                  <div className="mb-10 bg-stone-300/50 p-6 border border-stone-400 rounded-sm text-center">
-                    <h3 className="text-sm font-bold text-stone-900 uppercase tracking-widest mb-4 flex items-center justify-center gap-2">
-                      <ShieldCheck className="w-4 h-4 text-stone-800" /> Mirror – Kopia Zapasowa Dokumentacji
-                    </h3>
-                    <p className="text-xs text-stone-800 mb-4 leading-relaxed font-sans max-w-lg mx-auto">
-                      W celu zapewnienia niezniszczalności dowodów, pełna dokumentacja śledztwa (akty oskarżenia, wyroki, zeznania) została zarchiwizowana w sieciach zdecentralizowanych. Materiał jest odporny na próby cenzury i usuwania.
+                    <p className="text-xs text-stone-700 font-mono uppercase tracking-widest mb-2 flex items-center justify-center gap-2">
+                      <Globe className="w-4 h-4" />
+                      Oficjalna Witryna
                     </p>
-                    <div className="grid gap-3 font-mono text-[10px] uppercase tracking-wider">
-                      <a href="ipfs://bafybeicnxl_pelna_dokumentacja_wiedzmin_gate" className="text-stone-900 font-bold hover:bg-stone-200 underline decoration-stone-500 decoration-double">IPFS: Baza Dowodowa (Full Archive)</a>
-                      <a href="https://arweave.net/eliksir-wiedzmina-dokumentacja" className="text-stone-900 font-bold hover:bg-stone-200 underline decoration-stone-500 decoration-double">Arweave: Trwała Archiwizacja</a>
-                      <a href="https://github.com/detektyw-polutek/eliksir-mirror" className="text-stone-900 font-bold hover:bg-stone-200 underline decoration-stone-500 decoration-double">GitHub: Source Mirror</a>
-                    </div>
-                  </div>
+                    <a
+                      href="https://www.eliksir-wiedzmina.pl"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono text-sm font-bold text-stone-900 hover:bg-stone-300 transition-colors underline decoration-double decoration-stone-500"
+                    >
+                      www.eliksir-wiedzmina.pl
+                    </a>
+                 </div>
+              </div>
+            </article>
+          </div>
 
-                  <p className="text-xs text-stone-700 font-mono uppercase tracking-widest mb-2 flex items-center justify-center gap-2">
-                    <Globe className="w-4 h-4" />
-                    Oficjalna Witryna
-                  </p>
-                  <a
-                    href="https://www.eliksir-wiedzmina.pl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-mono text-sm font-bold text-stone-900 hover:bg-stone-200 transition-colors underline decoration-double decoration-stone-500"
-                  >
-                    www.eliksir-wiedzmina.pl
-                  </a>
-               </div>
-            </div>
-          </footer>
+          {/* --- DOLNY PASEK STOPKI (96%) --- */}
+          <div className="w-[96%] border-t-[2px] border-stone-900 mb-1"></div>
+          <div className="w-[96%] px-2 text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-stone-900 py-1 text-center md:text-left flex justify-between">
+             <span>CENA: 4,99 ZŁ | ISSN: 2083-4321</span>
+             <span className="hidden md:inline">REDAKCJA: WARSZAWA, UL. NIEZALEŻNA 1 | ZAMÓW PRENUMERATĘ NA 2026 ROK.</span>
+          </div>
+          <div className="w-[96%] border-t-[2px] border-stone-900 mt-1"></div>
+
         </div>
       </main>
     </ElixirModalsProvider>
