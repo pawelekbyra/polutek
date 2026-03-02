@@ -206,15 +206,14 @@ const EvidenceGrid = () => {
 
 const BrandHeader = () => {
   return (
-    <div className="w-full pb-2 mb-4 flex flex-col items-center">
-      {/* Kontener tytułu dopasowany szerokością do dolnej belki */}
-      <div className="w-[98%] mx-auto flex justify-center py-2">
-        <h1 className="text-5xl sm:text-7xl md:text-[7.6rem] font-black tracking-tighter text-stone-900 uppercase font-serif leading-none whitespace-nowrap w-full text-center">
+    <div className="w-full pb-2 mb-2 flex flex-col items-center">
+      <div className="w-[98%] mx-auto flex justify-center py-4">
+        {/* Usunięte paski, przywrócona czcionka, dodane duże odstępy (tracking) */}
+        <h1 className="text-4xl md:text-6xl font-black text-stone-900 uppercase font-serif leading-none whitespace-nowrap text-center tracking-[0.2em] md:tracking-[0.58em] mr-[-0.58em]">
           NASZA GAZETKA
         </h1>
       </div>
 
-      {/* Belka informacyjna - tytuł powyżej ma teraz tę samą szerokość co te linie */}
       <div className="w-[98%] mx-auto border-y-[2px] border-stone-900 py-1 flex items-center justify-between px-2 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-stone-800">
         <div className="flex items-center gap-2">
           <span>📰</span>
@@ -234,18 +233,6 @@ const BrandHeader = () => {
     </div>
   );
 };
-const CaseFile = ({ title, children, icon = '📄' }: { title: string, children: React.ReactNode, icon?: string }) => (
-  <div className="my-8 border border-stone-400 bg-white/60 shadow-sm rounded-sm overflow-hidden break-inside-avoid text-left">
-    <div className="bg-stone-200 border-b border-stone-300 px-4 py-2 flex items-center gap-2 text-xs font-mono text-stone-600 uppercase tracking-wider">
-      <span>{icon}</span>
-      <span>{title}</span>
-    </div>
-    <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-stone-900 italic">
-      {children}
-    </div>
-  </div>
-);
-
 const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
   <div className="my-10 pl-6 border-l-[3px] border-stone-800/80 text-left">
     <p className="font-serif text-xl md:text-2xl italic text-stone-900 leading-relaxed mb-3">
