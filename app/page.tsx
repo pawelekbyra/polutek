@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // Dodano poprawny import React
 import type { Metadata } from 'next';
 import { Scale, Search, ShieldCheck, Globe, FileText, Download, Calendar, History, ExternalLink } from 'lucide-react';
 import BrandHeader from '@/components/BrandHeader';
@@ -80,7 +80,8 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(videoStefanekSchema) }}
       />
 
-      <main className="min-h-screen bg-white text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
+      {/* Zmieniono bg-white na bg-stone-50 dla lepszego efektu "gazetowego" */}
+      <main className="min-h-screen bg-stone-50 text-[#1a1a1a] selection:bg-yellow-200/50 font-serif flex flex-col">
         <BrandHeader />
         <header className="pt-8 pb-8 px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -180,10 +181,10 @@ export default function Page() {
 
             <p>
             Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
-               <br/>
-               Bartosz Badowski (10%)
-               <br/>
-               <span className="bg-yellow-200/80 px-1 font-bold text-stone-900 box-decoration-clone">Michał Dawid Kiciński (90%)</span>
+                <br/>
+                Bartosz Badowski (10%)
+                <br/>
+                <span className="bg-yellow-200/80 px-1 font-bold text-stone-900 box-decoration-clone">Michał Dawid Kiciński (90%)</span>
             </p>
 
             <p>
@@ -229,7 +230,7 @@ export default function Page() {
             </p>
 
             <CaseFile title="Kontynuacja rozmowy" type="transcript">
-              &quot;Następnie w rozmowie omawiają zamówienia «herbaty» z dżungli i to, czy im tego «nie zepsują», ekscytując się nagraniem od dostawcy, który «siedzi w dżungli i gotuje».&quot;
+              &quot;Następnie w rozmowie omawiają zamówienia «herbaty» z dżungli i to, czy im tego «nie zepsują», ekscytując się nagraniem od dostawcy, który «siedzi w dżungni i gotuje».&quot;
             </CaseFile>
 
             <p>
@@ -265,8 +266,8 @@ export default function Page() {
                />
             </div>
              <div className="mt-1 text-sm text-stone-500 font-sans border-l-2 border-stone-300 pl-3 mb-12">
-                 <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Operacyjny:</span>
-                 Nagranie z policyjnego nalotu na ośrodek w Hermanovicach (15.10.2020)
+                  <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Operacyjny:</span>
+                  Nagranie z policyjnego nalotu na ośrodek w Hermanovicach (15.10.2020)
               </div>
 
             <p>
@@ -459,7 +460,7 @@ export default function Page() {
                 <Calendar className="w-5 h-5 text-orange-600 shrink-0 mt-3" />
                 <div className="bg-orange-50 border border-orange-200 p-4 rounded-sm shadow-sm w-full relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
-                  <span className="font-bold text-stone-900">23 października 2023 r.</span> – Zaledwie 12 dni po kłopotliwym przesłuchaniu, gdy formalności własnościowe z Badim są już dopięte, następuje telefon do Stefanka z propozycją oddania majątku wartego miliony za darmo.
+                  <span className="font-bold text-stone-900">23 października 2023 r.</span> – Zaledwie 12 dni po kłopotliwym przesłuchaniu, gdy formalności własnościowe z Badim are już dopięte, następuje telefon do Stefanka z propozycją oddania majątku wartego miliony za darmo.
                 </div>
               </li>
 
@@ -603,36 +604,36 @@ export default function Page() {
 
                <div className="grid gap-px bg-stone-200 border border-stone-200">
                   <div className="bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                     <div>
+                      <div>
                         <span className="block font-serif text-stone-900 font-medium">Śledztwo w sprawie organizacji ceremonii</span>
                         <span className="block text-xs text-stone-500 mt-1">Prokuratura Rejonowa w Częstochowie</span>
-                     </div>
-                     <span className="font-mono text-xs font-bold bg-stone-100 px-3 py-1.5 border border-stone-300 text-stone-600 rounded-sm shadow-sm whitespace-nowrap">
+                      </div>
+                      <span className="font-mono text-xs font-bold bg-stone-100 px-3 py-1.5 border border-stone-300 text-stone-600 rounded-sm shadow-sm whitespace-nowrap">
                         3013-1.Ds.15.2024
-                     </span>
+                      </span>
                   </div>
 
                   <div className="bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                     <div>
+                      <div>
                         <span className="block font-serif text-stone-900 font-medium">Śledztwo w sprawie śmierci Ilony Lewandowskiej</span>
                         <span className="block text-xs text-stone-500 mt-1">Prokuratura Rejonowa w Częstochowie</span>
-                     </div>
-                     <span className="font-mono text-xs font-bold bg-red-50 px-3 py-1.5 border border-red-100 text-red-800 rounded-sm shadow-sm whitespace-nowrap">
+                      </div>
+                      <span className="font-mono text-xs font-bold bg-red-50 px-3 py-1.5 border border-red-100 text-red-800 rounded-sm shadow-sm whitespace-nowrap">
                         3013-1.Ds.4.2026
-                     </span>
+                      </span>
                   </div>
 
                   <div className="bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                     <div>
+                      <div>
                         <span className="block font-serif text-stone-900 font-medium">Śledztwo w sprawie śmierci Wiktora B.</span>
                         <span className="block text-xs text-stone-500 mt-1">Prokuratura Rejonowa w Pułtusku</span>
-                     </div>
-                     <div className="flex flex-col items-end gap-1">
+                      </div>
+                      <div className="flex flex-col items-end gap-1">
                         <span className="font-mono text-xs font-bold bg-stone-100 px-3 py-1.5 border border-stone-300 text-stone-600 rounded-sm shadow-sm whitespace-nowrap">
                           4027-0. Ds. 1254.2024
                         </span>
                         <span className="text-[10px] font-sans font-bold text-orange-600 uppercase tracking-tighter">Śledztwo zawieszone</span>
-                     </div>
+                      </div>
                   </div>
                </div>
 
