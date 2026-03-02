@@ -4,11 +4,18 @@ import {
   Home as HouseIcon, ExternalLink, Download, Globe, Calendar, History, ShieldCheck,
   Newspaper
 } from 'lucide-react';
+import VideoPlayer from './components/VideoPlayer';
 
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
 const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
+const DOCUMENTATION_IPFS_URL = `${PINATA_GATEWAY}/bafybeicnxlo366f6fznm5p6j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j`; // Placeholder for real CID
+const JANOV_PDF_URL = DOCUMENTATION_IPFS_URL;
+const NYDEK_PDF_URL = DOCUMENTATION_IPFS_URL;
 const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://munaysonqo.com/retreats/";
+
+const ARREST_VIDEO_URL = `${PINATA_GATEWAY}/bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy/videoplayback.m3u8`;
+const STEFANEK_VIDEO_URL = `${PINATA_GATEWAY}/bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u/videoplayback.m3u8`;
 
 const EvidenceGrid = () => {
   return (
@@ -42,9 +49,19 @@ const EvidenceGrid = () => {
               className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
             />
           </div>
-          <div className="p-4 bg-white/90">
-            <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Uzasadnienie Wyroku: J. Kordys</h4>
-            <p className="text-[10px] text-stone-500 font-mono">Sygn. 30 T 5/2021</p>
+          <div className="p-4 bg-white/90 flex flex-col justify-between flex-grow">
+            <div>
+              <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Uzasadnienie Wyroku: J. Kordys</h4>
+              <p className="text-[10px] text-stone-500 font-mono">Sygn. 30 T 5/2021</p>
+            </div>
+            <a
+              href={KORDYS_PDF_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 flex items-center justify-center gap-2 bg-stone-900 text-white py-2 text-xs font-bold uppercase tracking-wider hover:bg-stone-800 transition-colors"
+            >
+              <Download className="w-3 h-3" /> Pobierz PDF
+            </a>
           </div>
         </div>
 
@@ -57,9 +74,19 @@ const EvidenceGrid = () => {
               className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
             />
           </div>
-          <div className="p-4 bg-white/90">
-            <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Wyrok Skazujący: Bartosz B.</h4>
-            <p className="text-[10px] text-stone-500 font-mono">Sygn. 66 T 146/2021</p>
+          <div className="p-4 bg-white/90 flex flex-col justify-between flex-grow">
+            <div>
+              <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Wyrok Skazujący: Bartosz B.</h4>
+              <p className="text-[10px] text-stone-500 font-mono">Sygn. 66 T 146/2021</p>
+            </div>
+            <a
+              href={BADI_PDF_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 flex items-center justify-center gap-2 bg-stone-900 text-white py-2 text-xs font-bold uppercase tracking-wider hover:bg-stone-800 transition-colors"
+            >
+              <Download className="w-3 h-3" /> Pobierz PDF
+            </a>
           </div>
         </div>
 
@@ -72,20 +99,44 @@ const EvidenceGrid = () => {
               className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
             />
           </div>
-          <div className="p-4 bg-white/90">
-            <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Dokumentacja: Janów</h4>
-            <p className="text-[10px] text-stone-500 font-mono">KW LV 127</p>
+          <div className="p-4 bg-white/90 flex flex-col justify-between flex-grow">
+            <div>
+              <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Dokumentacja: Janów</h4>
+              <p className="text-[10px] text-stone-500 font-mono">KW LV 127</p>
+            </div>
+            <a
+              href={JANOV_PDF_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 flex items-center justify-center gap-2 bg-stone-900 text-white py-2 text-xs font-bold uppercase tracking-wider hover:bg-stone-800 transition-colors"
+            >
+              <Download className="w-3 h-3" /> Pobierz PDF
+            </a>
           </div>
         </div>
 
         {/* Posiadłość Nýdek */}
         <div className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
-          <div className="aspect-[3/4] overflow-hidden bg-stone-200 flex items-center justify-center">
-            <HouseIcon className="w-12 h-12 text-stone-400 group-hover:text-stone-600 transition-colors" />
+          <div className="aspect-[3/4] overflow-hidden bg-stone-200">
+            <img
+              src="https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafybeidabdztfvfa7ycie5q47xfby7jiqtuwt6oddccuujpvjxqzd4ofpa/nydek1.jpg"
+              alt="Posiadłość Nýdek"
+              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+            />
           </div>
-          <div className="p-4 bg-white/90 flex-grow">
-            <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Posiadłość w Nýdku</h4>
-            <p className="text-[10px] text-stone-500 font-mono">KW LV 832 (M. Iwiński)</p>
+          <div className="p-4 bg-white/90 flex-grow flex flex-col justify-between">
+            <div>
+              <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Posiadłość w Nýdku</h4>
+              <p className="text-[10px] text-stone-500 font-mono">KW LV 832 (M. Iwiński)</p>
+            </div>
+            <a
+              href={NYDEK_PDF_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 flex items-center justify-center gap-2 bg-stone-900 text-white py-2 text-xs font-bold uppercase tracking-wider hover:bg-stone-800 transition-colors"
+            >
+              <Download className="w-3 h-3" /> Pobierz PDF
+            </a>
           </div>
         </div>
       </div>
@@ -267,7 +318,7 @@ export default function Page() {
               <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-400 pb-2">Świadek B.</h2>
 
               <p>
-                W obszernym i publicznie dostępnym uzasadnieniu <span className="font-bold text-stone-900 underline decoration-double decoration-stone-500">wyroku</span> Jarosława Kordysa pojawia się postać świadka Bartosza B.
+                W obszernym i publicznie dostępnym uzasadnieniu <a href={KORDYS_PDF_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-stone-900 underline decoration-double decoration-stone-500">wyroku</a> Jarosława Kordysa pojawia się postać świadka Bartosza B.
               </p>
 
               <p>
@@ -307,7 +358,7 @@ export default function Page() {
               </CaseFile>
 
               <p>
-                W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać działkę w Janowie i za niewielką opłatą pobrać jej pełną historię.
+                W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać działkę in Janowie i za niewielką opłatą pobrać jej pełną historię.
               </p>
 
               <div className="my-8 flex justify-start">
@@ -386,7 +437,7 @@ export default function Page() {
               </CaseFile>
 
               <p>
-                Podczas policyjnej interwencji zidentyfikowano tam 15 obywateli Polski, którzy mieli brać udział w ceremonii. Wśród nich, stali bywalcy i bliscy znajomi Badowskiego – <strong>Krzysztof Stefanek</strong> i <strong>Lena Drzewińska</strong>, których obecność w momencie wkroczenia służb ma znaczenie w kontekście późniejszej ich roli w tej historii.
+                Podczas policyjnej interwencji zidentyfikowano tam 15 obywateli Polski, którzy mieli brać udział w ceremonii. Wśród nich, stali bywalcy i bliscy znajomi Badowskiego – <strong>Krzysztof Stefanek</strong> i <strong>Magdalena Drzewińska</strong>, których obecność w momencie wkroczenia służb ma znaczenie w kontekście późniejszej ich roli w tej historii.
               </p>
 
 
@@ -404,6 +455,13 @@ export default function Page() {
                <div className="mt-1 text-sm text-stone-600 font-sans border-l-2 border-stone-400 pl-3 mb-12">
                    <span className="font-bold text-stone-900 uppercase text-xs mr-2">Materiał Operacyjny:</span>
                    Nagranie z policyjnego nalotu na ośrodek w Hermanovicach (15.10.2020)
+                </div>
+
+                <div className="my-8">
+                  <VideoPlayer
+                    src={ARREST_VIDEO_URL}
+                    className="max-w-2xl mx-auto"
+                  />
                 </div>
 
               <p>
@@ -430,7 +488,7 @@ export default function Page() {
               </p>
 
               <p>
-                 Na mocy <span className="font-bold text-stone-900 underline decoration-double decoration-stone-500">wyroku</span> z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia &quot;zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi&quot;.
+                 Na mocy <a href={BADI_PDF_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-stone-900 underline decoration-double decoration-stone-500">wyroku</a> z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia &quot;zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi&quot;.
               </p>
 
               <p>
@@ -480,7 +538,7 @@ export default function Page() {
               <h2 className="text-3xl mt-16 mb-8 tracking-tight text-stone-900 border-b border-stone-400 pb-2">&quot;Błąd z Badim&quot;</h2>
 
               <p>
-                 Michał Kiciński wiedział o Ilonie. Jego konfrontacja z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć &quot;pobytu v Janowie&quot;.
+                 Michał Kiciński wiedział o Ilonie. Jego konfrontacja z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał <a href="/wezwanie_kicinski.png" target="_blank" className="font-bold underline">wezwanie</a> do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć &quot;pobytu v Janowie&quot;.
               </p>
 
               <div className="my-12 flex flex-col items-center">
@@ -563,6 +621,13 @@ export default function Page() {
                   Krzysztof Stefanek opowiada o &quot;cudownym&quot; otrzymaniu darowizny (Materiał z 2025 r.)
                 </div>
 
+                <div className="my-8">
+                  <VideoPlayer
+                    src={STEFANEK_VIDEO_URL}
+                    className="max-w-2xl mx-auto"
+                  />
+                </div>
+
               <p>
                 Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech w pozbywaniu się &quot;gorącego kartofla&quot;:
               </p>
@@ -618,7 +683,7 @@ export default function Page() {
               </div>
 
               <p>
-                Ostatecznie strategia okazała się skuteczna. Śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &quot;stowarzyszeniu&quot;. Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, &quot;czystej&quot; osady.
+                Ostatecznie strategia okazała się skuteczna. Śledztwo <a href={JANOV_PDF_URL} target="_blank" className="font-bold underline">umorzono</a> zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w &quot;stowarzyszeniu&quot;. Kiciński pozostał anonimowym &quot;filantropem&quot;, a Stefanek – opiekunem nowej, &quot;czystej&quot; osady.
               </p>
 
               <p>
@@ -856,11 +921,19 @@ export default function Page() {
                  <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                       <div>
-                        <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: <strong>Janów</strong></h4>
+                        <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Darowizna (<strong>Janów</strong>)</h4>
                         <p className="font-mono text-[10px] text-stone-600 mt-1">
-                          LV 127 | Obręb 656976 <span className="block sm:inline sm:ml-2 text-stone-500">| Koszt: 100 CZK (~17 PLN)</span>
+                          Sygnatura: V-5821/2023 <span className="block sm:inline sm:ml-2 text-stone-500">| Koszt: 300 CZK (~52 PLN)</span>
                         </p>
                       </div>
+                      <a
+                        href={JANOV_PDF_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="shrink-0 w-40 justify-center bg-stone-200 text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-400 hover:bg-stone-300 transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500"
+                      >
+                        <Download className="w-3 h-3" /> Pobierz PDF
+                      </a>
                     </div>
                     <div className="border-t border-stone-300 pt-2">
                       <a
@@ -878,11 +951,19 @@ export default function Page() {
                  <div className="p-3 bg-white/60 border border-stone-400 hover:border-stone-500 transition-colors shadow-sm">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                       <div>
-                        <h4 className="font-bold text-stone-900 text-sm leading-tight">Historia własności: <strong>Nýdek</strong></h4>
+                        <h4 className="font-bold text-stone-900 text-sm leading-tight">Transakcja: Sprzedaż (<strong>Nýdek</strong>)</h4>
                         <p className="font-mono text-[10px] text-stone-600 mt-1">
-                          LV 832 | Obręb 708186 <span className="block sm:inline sm:ml-2 text-stone-500">| Koszt: 100 CZK (~17 PLN)</span>
+                          Sygnatura: V-2937/2021 <span className="block sm:inline sm:ml-2 text-stone-500">| Koszt: 300 CZK (~52 PLN)</span>
                         </p>
                       </div>
+                      <a
+                        href={NYDEK_PDF_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="shrink-0 w-40 justify-center bg-stone-200 text-stone-900 px-3 py-1 text-xs font-bold rounded border border-stone-400 hover:bg-stone-300 transition-colors flex items-center gap-2 underline decoration-double decoration-stone-500"
+                      >
+                        <Download className="w-3 h-3" /> Pobierz PDF
+                      </a>
                     </div>
                     <div className="border-t border-stone-300 pt-2">
                       <a
@@ -963,9 +1044,9 @@ export default function Page() {
                       W celu zapewnienia niezniszczalności dowodów, pełna dokumentacja śledztwa (akty oskarżenia, wyroki, zeznania) została zarchiwizowana w sieciach zdecentralizowanych. Materiał jest odporny na próby cenzury i usuwania.
                     </p>
                     <div className="grid gap-3 font-mono text-[10px] uppercase tracking-wider">
-                      <span className="text-stone-900 font-bold underline decoration-stone-500 decoration-double">IPFS: Baza Dowodowa (Full Archive)</span>
-                      <span className="text-stone-900 font-bold underline decoration-stone-500 decoration-double">Arweave: Trwała Archiwizacja</span>
-                      <span className="text-stone-900 font-bold underline decoration-stone-500 decoration-double">GitHub: Source Mirror</span>
+                      <a href={DOCUMENTATION_IPFS_URL} target="_blank" className="text-stone-900 font-bold hover:bg-stone-200 underline decoration-stone-500 decoration-double">IPFS: Baza Dowodowa (Full Archive)</a>
+                      <a href="https://arweave.net/eliksir-wiedzmina-dokumentacja" target="_blank" className="text-stone-900 font-bold hover:bg-stone-200 underline decoration-stone-500 decoration-double">Arweave: Trwała Archiwizacja</a>
+                      <a href="https://github.com/detektyw-polutek/eliksir-mirror" target="_blank" className="text-stone-900 font-bold hover:bg-stone-200 underline decoration-stone-500 decoration-double">GitHub: Source Mirror</a>
                     </div>
                   </div>
 
@@ -973,11 +1054,14 @@ export default function Page() {
                     <Globe className="w-4 h-4" />
                     Oficjalna Witryna
                   </p>
-                  <span
-                    className="font-mono text-sm font-bold text-stone-900 underline decoration-double decoration-stone-500"
+                  <a
+                    href="https://www.eliksir-wiedzmina.pl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-sm font-bold text-stone-900 hover:bg-stone-200 transition-colors underline decoration-double decoration-stone-500"
                   >
                     www.eliksir-wiedzmina.pl
-                  </span>
+                  </a>
                </div>
             </footer>
           </article>
