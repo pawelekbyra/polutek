@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 
 // --- DATA ---
@@ -68,14 +70,9 @@ const EvidenceGrid = () => {
       </h3>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {/* Wezwanie Kiciński */}
         <div className="group relative bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 rounded-lg overflow-hidden flex flex-col">
           <div className="aspect-[3/4] overflow-hidden bg-slate-50">
-            <img
-              src="/wezwanie_kicinski.png"
-              alt="Wezwanie Kiciński"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
+            <img src="/wezwanie_kicinski.png" alt="Wezwanie" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
           <div className="p-5">
             <h4 className="font-bold text-slate-900 text-sm mb-1 uppercase tracking-tight">Wezwanie dla M. Kicińskiego</h4>
@@ -84,14 +81,9 @@ const EvidenceGrid = () => {
           </div>
         </div>
 
-        {/* Wyrok Kordys */}
         <div className="group relative bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 rounded-lg overflow-hidden flex flex-col">
           <div className="aspect-[3/4] overflow-hidden bg-slate-50">
-            <img
-              src="/gallery/wyrok_kordysa/30T_5_2021-1_page-0001.jpg"
-              alt="Wyrok Kordys"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
+            <img src="/gallery/wyrok_kordysa/30T_5_2021-1_page-0001.jpg" alt="Wyrok Kordys" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
           <div className="p-5">
             <h4 className="font-bold text-slate-900 text-sm mb-1 uppercase tracking-tight">Uzasadnienie Wyroku: J. Kordys</h4>
@@ -107,14 +99,9 @@ const EvidenceGrid = () => {
           </div>
         </div>
 
-        {/* Dokumentacja Janów */}
         <div className="group relative bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 rounded-lg overflow-hidden flex flex-col">
           <div className="aspect-[3/4] overflow-hidden bg-slate-50">
-            <img
-              src="/gallery/janov/janov1.jpg"
-              alt="Dokumentacja Janów"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
+            <img src="/gallery/janov/janov1.jpg" alt="Dokumentacja Janów" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
           <div className="p-5">
             <h4 className="font-bold text-slate-900 text-sm mb-1 uppercase tracking-tight">Dokumentacja: Janów</h4>
@@ -134,55 +121,37 @@ const EvidenceGrid = () => {
   );
 };
 
-// --- COMPONENTS ---
+// --- UI COMPONENTS ---
 
-const BrandHeader = () => {
-  return (
+const BrandHeader = () => (
     <div className="w-full pb-8 mb-8 flex flex-col items-center">
       <div className="flex items-center justify-center w-full py-6">
         <h1 className="text-5xl md:text-[7rem] font-black tracking-tighter text-slate-900 uppercase leading-none text-center">
           NASZA <span className="text-indigo-700">GAZETKA</span>
         </h1>
       </div>
-
       <div className="w-full border-y-[1px] border-slate-300 py-3 flex items-center justify-between px-4 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-slate-600">
-        <div className="flex items-center gap-3">
-          <span className="text-indigo-600">●</span>
-          <span>Niezależne Media Śledcze</span>
-        </div>
-        <div className="text-center font-serif italic text-slate-500 lowercase first-letter:uppercase">
-          Poniedziałek, 2 marca 2026
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="hidden md:inline border-r border-slate-300 pr-3 mr-1">Wydanie Specjalne</span>
-          <span className="text-indigo-600">Nr 01</span>
-        </div>
+        <div className="flex items-center gap-3"><span className="text-indigo-600">●</span><span>Niezależne Media Śledcze</span></div>
+        <div className="text-center font-serif italic text-slate-500 lowercase first-letter:uppercase">Poniedziałek, 2 marca 2026</div>
+        <div className="flex items-center gap-3"><span className="hidden md:inline border-r border-slate-300 pr-3 mr-1">Wydanie Specjalne</span><span className="text-indigo-600">Nr 01</span></div>
       </div>
     </div>
-  );
-};
+);
 
 const CaseFile = ({ title, children, icon = '📄' }: { title: string, children: React.ReactNode, icon?: string }) => (
   <div className="my-10 bg-white/80 backdrop-blur-sm border-l-4 border-indigo-600 shadow-lg rounded-r-xl overflow-hidden text-left transition-transform hover:-translate-y-1">
     <div className="bg-slate-900 px-6 py-2 flex items-center justify-between text-[10px] font-bold text-indigo-200 uppercase tracking-[0.15em]">
-      <div className="flex items-center gap-2">
-        <span>{icon}</span>
-        <span>{title}</span>
-      </div>
+      <div className="flex items-center gap-2"><span>{icon}</span><span>{title}</span></div>
       <span className="opacity-50">DOK_REF:2026</span>
     </div>
-    <div className="p-8 font-sans text-base leading-relaxed text-slate-800">
-      {children}
-    </div>
+    <div className="p-8 font-sans text-base leading-relaxed text-slate-800">{children}</div>
   </div>
 );
 
 const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
   <div className="my-14 relative px-10 text-center">
     <span className="absolute top-0 left-0 text-6xl text-indigo-100 font-serif leading-none italic select-none">„</span>
-    <p className="font-serif text-2xl md:text-3xl italic text-slate-900 leading-snug mb-6 relative z-10">
-      {quote}
-    </p>
+    <p className="font-serif text-2xl md:text-3xl italic text-slate-900 leading-snug mb-6 relative z-10">{quote}</p>
     <div className="font-sans text-[10px] uppercase tracking-[0.3em] text-indigo-600 font-black">
       — {author} <span className="text-slate-400 mx-2">/</span> <span className="text-slate-500 font-normal italic">{source}</span>
     </div>
@@ -191,9 +160,7 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
 
 const LocationStampUI = ({ name, plot, lv }: { name: string, plot: string, lv: string }) => (
   <div className="inline-flex border border-slate-200 bg-white p-4 rounded-2xl items-center gap-5 shadow-sm hover:shadow-md transition-shadow group">
-      <div className="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-        📍
-      </div>
+      <div className="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">📍</div>
       <div className="text-left pr-4">
         <div className="text-[10px] uppercase tracking-widest text-indigo-600 font-black mb-0.5">{name}</div>
         <div className="font-mono text-lg font-bold text-slate-900 tracking-tighter">LV {lv}</div>
@@ -202,38 +169,20 @@ const LocationStampUI = ({ name, plot, lv }: { name: string, plot: string, lv: s
   </div>
 );
 
-const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
-  <div className="inline-flex border border-slate-200 bg-white p-4 rounded-2xl items-center gap-5 shadow-sm hover:shadow-md transition-shadow group">
-      <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-2xl group-hover:rotate-12 transition-transform">
-        📜
-      </div>
-      <div className="text-left pr-4">
-        <div className="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-0.5">{label}</div>
-        <div className="font-mono text-lg font-bold text-slate-900 tracking-tighter">{value}</div>
-        {subDetails && <div className="text-[10px] text-indigo-500 font-mono mt-0.5">{subDetails}</div>}
-      </div>
-  </div>
-);
-
-const ArticleVideoPlayer: React.FC<{ src: string; poster: string }> = ({ src, poster }) => {
-  return (
+const ArticleVideoPlayer: React.FC<{ src: string; poster: string }> = ({ src, poster }) => (
     <div className="my-12 w-full bg-slate-950 rounded-2xl shadow-2xl overflow-hidden ring-1 ring-white/10">
       <video controls poster={poster} className="w-full aspect-video block opacity-90 hover:opacity-100 transition-opacity">
         <source src={src} type="application/x-mpegURL" />
       </video>
     </div>
-  );
-};
+);
 
-// --- PAGE ---
+// --- MAIN PAGE ---
 
 export default function Page() {
   return (
     <main className="min-h-screen bg-[#e4dbbe] text-slate-900 selection:bg-indigo-600 selection:text-white font-serif flex flex-col items-center py-10 px-4">
-      {/* Container - cleaner borders, more white space */}
       <div className="w-full max-w-5xl bg-[#fcfaf2] min-h-screen shadow-[0_0_50px_rgba(0,0,0,0.1)] border border-slate-200 flex flex-col relative overflow-hidden rounded-sm">
-        
-        {/* Subtle decorative line on top */}
         <div className="h-1.5 w-full bg-indigo-700"></div>
 
         <div className="w-full px-8 md:px-16 flex flex-col items-center">
@@ -241,13 +190,8 @@ export default function Page() {
         </div>
 
         <article className="max-w-4xl mx-auto px-8 md:px-20 pb-20 w-full z-10 relative">
-          
           <div className="text-center mb-16">
-            <img
-              src="/zdjeciehej.png"
-              alt="Wiedźmini z eliksirem"
-              className="h-24 md:h-32 mx-auto object-contain opacity-80 mix-blend-multiply mb-6"
-            />
+            <img src="/zdjeciehej.png" alt="Logo" className="h-24 md:h-32 mx-auto object-contain opacity-80 mix-blend-multiply mb-6" />
             <h2 className="mb-4">
               <span className="block text-5xl md:text-8xl font-black text-slate-900 leading-none tracking-tighter uppercase mb-4">
                 ELIKSIR <span className="text-indigo-800">WIEDŹMINA</span>
@@ -256,148 +200,47 @@ export default function Page() {
                 Mroczna tajemnica twórców CD Projekt
               </span>
             </h2>
-            <p className="text-xl md:text-2xl text-slate-600 font-serif leading-relaxed italic max-w-2xl mx-auto">
-              Ayahuasca, policyjne naloty i tragedia, o której nikt nie miał się dowiedzieć.
-            </p>
           </div>
 
-          <div className="prose prose-slate prose-lg max-w-none 
-            prose-p:text-slate-800 prose-p:leading-relaxed prose-p:mb-8
-            prose-headings:font-sans prose-headings:font-black prose-headings:tracking-tighter prose-headings:uppercase
-            prose-strong:text-indigo-900 prose-strong:font-black
-            prose-a:text-indigo-700 prose-a:no-underline prose-a:font-black prose-a:border-b-2 prose-a:border-indigo-100 hover:prose-a:bg-indigo-50 transition-colors">
+          <div className="prose prose-slate prose-lg max-w-none prose-strong:text-indigo-900 prose-strong:font-black prose-a:text-indigo-700 prose-a:no-underline prose-a:border-b-2 prose-a:border-indigo-100 hover:prose-a:bg-indigo-50 transition-colors">
 
             <p className="first-letter:text-8xl first-letter:font-black first-letter:mr-4 first-letter:float-left first-letter:text-indigo-700 first-letter:leading-none">
-              W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu.
-            </p>
-
-            <p>
-              Ayahuaska to tradycyjny wywar z amazońskich roślin o silnym działaniu halucynogennym. Ze względu na wysoką zawartość DMT jej posiadanie i podawanie jest surowo zabronione. Finałem medialnego spektaklu Kordysów było ułaskawienie przez czeskiego prezydenta, ale dokumenty sądowe ujawniają drugie, znacznie głębsze dno tej historii.
+              W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu.
             </p>
 
             <h2 className="text-3xl text-slate-900 border-l-8 border-indigo-700 pl-6 my-12">Świadek B.</h2>
-
-            <p>
-              W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa pojawia się postać świadka <strong>Bartosza B.</strong>, który rzuca światło na operację prowadzoną w miejscowości Janów. Współwłaścicielem bazy okazał się znany miliarder.
-            </p>
-
-            <div className="my-10">
-              <LocationStampUI
-                name="JANOV U KRNOVA"
-                plot="st. 281"
-                lv="127"
-              />
-            </div>
-
-            <p>
-              Pobrano dokumenty z Katastru Nieruchomości, które nie pozostawiają złudzeń. Wspólnikiem szamana był <span className="text-indigo-900 font-black">Michał Dawid Kiciński</span> – jeden z najbogatszych Polaków, posiadający 90% udziałów w posiadłości.
-            </p>
+            <p>Współwłaścicielem bazy okazał się znany miliarder. Analiza Katastru Nieruchomości nie pozostawia złudzeń.</p>
+            
+            <div className="my-10"><LocationStampUI name="JANOV U KRNOVA" plot="st. 281" lv="127" /></div>
 
             <CaseFile title="Akta Sądowe: Janów" icon="⚖️">
-              &quot;W odniesieniu do nieruchomości będących współwłasnością <strong>Bartosza B.</strong> i <strong>Michała D. K.</strong>...&quot; Dokumenty urzędowe potwierdzają wieloletnią współpracę obu panów w ramach Janowskiego ośrodka.
+              „W odniesieniu do nieruchomości będących współwłasnością <strong>Bartosza B.</strong> i <strong>Michała D. K.</strong>...” – Wspólnikiem szamana był Michał Kiciński.
             </CaseFile>
 
-            <h2 className="text-3xl text-slate-900 border-l-8 border-indigo-700 pl-6 my-12">Cena Wolności</h2>
+            <PullQuote quote="Po ayahuasce jest szansa na to, żeby sobie nie ściemniać." author="Michał Kiciński" source="Newsweek, 2016" />
 
-            <p>
-              Podczas nalotu w Janowie policja zabezpieczyła 2 kg substancji z DMT. Bartosz B. wybrał strategię ugody (<strong>Dohoda o vině a trestu</strong>), co pozwoliło mu na wyrok w zawieszeniu, podczas gdy jego współpracownicy trafili za kraty na wiele lat.
-            </p>
+            <div className="my-12"><ArticleVideoPlayer src={VIDEO_ARREST_METADATA.contentUrl} poster="" /></div>
 
-            <div className="my-12">
-               <ArticleVideoPlayer
-                  src={VIDEO_ARREST_METADATA.contentUrl}
-                  poster=""
-               />
-               <p className="text-[11px] uppercase tracking-widest text-slate-500 font-bold text-center mt-4">
-                 Nagranie operacyjne: Nalot na Hermanovice (15.10.2020)
-               </p>
-            </div>
-
-            <PullQuote
-              quote="Po ayahuasce jest szansa na to, żeby sobie nie ściemniać."
-              author="Michał Kiciński"
-              source="Newsweek, 2016"
-            />
-
-            <h2 className="text-3xl text-slate-900 border-l-8 border-indigo-700 pl-6 my-12">Mechanizm Darowizny</h2>
-
-            <p>
-              Gdy nad Janowem zawisły czarne chmury, miliarder pozbył się nieruchomości w rekordowym tempie. 21 września 2023 odebrał wezwanie na policję, a już miesiąc później „oddał” obiekt w darowiźnie stowarzyszeniu zarządzanemu przez swoich lojalnych współpracowników.
-            </p>
-
-            <div className="my-10 flex flex-wrap gap-4">
-              <TransactionStampUI
-                label="Kod Transakcji"
-                value="V-5821/2023-127"
-                subDetails="Darowizna: 21.12.2023"
-              />
-            </div>
-
-            <h2 className="text-3xl text-slate-900 border-l-8 border-indigo-700 pl-6 my-12">Wątek Nýdek</h2>
-
-            <p>
-              Analiza ksiąg wieczystych ujawniła, że Janów nie był jedyny. W pobliskim <strong>Nýdku</strong> istniała kolejna posiadłość wykorzystywana do ceremonii. Jej właścicielem w tamtym czasie był drugi założyciel CD Projekt, <span className="text-indigo-900 font-black">Marcin Iwiński</span>.
-            </p>
-
-            <div className="my-10">
-              <LocationStampUI
-                name="NÝDEK"
-                plot="st. 506/1"
-                lv="832"
-              />
-            </div>
+            <EvidenceGrid />
 
             <footer className="mt-20 pt-10 border-t border-slate-200">
-              <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
-                <div className="text-left">
+                <div className="text-left mb-10">
                   <h4 className="text-slate-400 uppercase tracking-[0.3em] text-[10px] font-black mb-2">Redaktor Prowadzący</h4>
                   <div className="text-2xl font-black text-slate-900 tracking-tighter uppercase">Detektyw Polutek</div>
-                  <div className="text-indigo-600 font-mono text-xs">detektyw.polutek@protonmail.com</div>
                 </div>
-                <div className="flex flex-col items-end">
-                  <div className="text-[10px] text-slate-400 uppercase tracking-widest mb-1">Status Archiwum</div>
-                  <div className="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-bold rounded-full uppercase tracking-widest border border-green-200">Zweryfikowano</div>
+                <div className="p-4 bg-white border border-slate-200 rounded-xl flex flex-col justify-center items-center text-center">
+                    <a href="https://www.eliksir-wiedzmina.pl" className="text-lg font-black text-slate-900 hover:text-indigo-700 transition-colors tracking-tight">WWW.ELIKSIR-WIEDZMINA.PL</a>
                 </div>
-              </div>
-
-              <EvidenceGrid />
-
-              {/* Final Footer Links - Grid Layout */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-16 text-[11px]">
-                 <div className="p-4 bg-slate-900 text-slate-300 rounded-xl">
-                    <div className="text-indigo-400 font-bold uppercase mb-2 tracking-widest">Mirror Cyfrowy</div>
-                    <p className="mb-4 opacity-70">Dokumentacja jest odporna na cenzurę i zarchiwizowana w sieciach IPFS oraz Arweave.</p>
-                    <div className="space-y-1 font-mono">
-                      <a href="#" className="block hover:text-white transition-colors">IPFS_CID: bafy...wiedzmin</a>
-                      <a href="#" className="block hover:text-white transition-colors">ARWEAVE: eliksir-2026</a>
-                    </div>
-                 </div>
-                 <div className="p-4 bg-white border border-slate-200 rounded-xl flex flex-col justify-center items-center text-center">
-                    <div className="text-slate-400 uppercase font-bold mb-1 tracking-widest text-[9px]">Oficjalna Witryna Śledztwa</div>
-                    <a href="https://www.eliksir-wiedzmina.pl" className="text-lg font-black text-slate-900 hover:text-indigo-700 transition-colors">
-                      WWW.ELIKSIR-WIEDZMINA.PL
-                    </a>
-                 </div>
-              </div>
             </footer>
           </div>
         </article>
       </div>
 
       <style jsx global>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: #f1f1f1;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: #cbd5e1;
-          border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #6366f1;
-        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #6366f1; }
       `}</style>
     </main>
   );
