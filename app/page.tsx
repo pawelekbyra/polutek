@@ -31,7 +31,7 @@ const VIDEO_STEFANEK_METADATA = {
   uploadDate: "2024-11-01T12:00:00+01:00",
 };
 
-const generateKordysPages = (count) => {
+const generateKordysPages = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
     const pageNumber = String(i + 1).padStart(4, '0');
     const fileName = `30T_5_2021-1_page-${pageNumber}.jpg`;
@@ -39,7 +39,7 @@ const generateKordysPages = (count) => {
   });
 };
 
-const generateBadiPages = (count) => {
+const generateBadiPages = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
     const pageNumber = String(i + 1).padStart(4, '0');
     const fileName = `wyrok_page-${pageNumber}.jpg`;
@@ -98,7 +98,6 @@ const EvidenceGrid = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        {/* Wezwanie Kiciński */}
         <div className="group flex flex-col text-left">
           <div className="aspect-[3/4] overflow-hidden bg-zinc-900 rounded-xl mb-4 relative">
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent z-10 opacity-60"></div>
@@ -117,7 +116,6 @@ const EvidenceGrid = () => {
           </div>
         </div>
 
-        {/* Wyrok Kordys */}
         <div className="group flex flex-col text-left">
           <div className="aspect-[3/4] overflow-hidden bg-zinc-900 rounded-xl mb-4 relative">
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent z-10 opacity-60"></div>
@@ -143,7 +141,6 @@ const EvidenceGrid = () => {
           </div>
         </div>
 
-        {/* Wyrok Badi */}
         <div className="group flex flex-col text-left">
           <div className="aspect-[3/4] overflow-hidden bg-zinc-900 rounded-xl mb-4 relative">
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent z-10 opacity-60"></div>
@@ -169,7 +166,6 @@ const EvidenceGrid = () => {
           </div>
         </div>
 
-        {/* Dokumentacja Janów */}
         <div className="group flex flex-col text-left">
           <div className="aspect-[3/4] overflow-hidden bg-zinc-900 rounded-xl mb-4 relative">
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent z-10 opacity-60"></div>
@@ -195,7 +191,6 @@ const EvidenceGrid = () => {
           </div>
         </div>
 
-        {/* Posiadłość Nýdek */}
         <div className="group flex flex-col text-left">
           <div className="aspect-[3/4] overflow-hidden bg-zinc-900 rounded-xl mb-4 flex items-center justify-center border border-zinc-800/50">
             <svg className="w-12 h-12 text-zinc-700 group-hover:text-zinc-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -238,7 +233,7 @@ const BrandHeader = () => {
   );
 };
 
-const CaseFile = ({ title, children, icon }) => (
+const CaseFile = ({ title, children, icon }: { title: string, children: React.ReactNode, icon?: string }) => (
   <div className="my-10 relative bg-zinc-900/40 rounded-xl p-8 border border-zinc-800/50 backdrop-blur-sm text-left group hover:bg-zinc-900/60 transition-colors">
     <div className="absolute top-0 left-0 w-1 h-full bg-red-900/50 rounded-l-xl group-hover:bg-red-600 transition-colors"></div>
     <div className="flex items-center gap-3 mb-6">
@@ -251,7 +246,7 @@ const CaseFile = ({ title, children, icon }) => (
   </div>
 );
 
-const PullQuote = ({ quote, author, source }) => (
+const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
   <div className="my-16 flex flex-col items-center text-center">
     <svg className="w-8 h-8 text-zinc-800 mb-6" fill="currentColor" viewBox="0 0 24 24">
       <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
@@ -265,7 +260,7 @@ const PullQuote = ({ quote, author, source }) => (
   </div>
 );
 
-const LocationStampUI = ({ name, plot, lv }) => (
+const LocationStampUI = ({ name, plot, lv }: { name: string, plot: string, lv: string }) => (
   <div className="inline-flex items-center gap-6 py-3 px-5 rounded-full bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-700 transition-colors text-left backdrop-blur-sm">
      <div className="w-2 h-2 rounded-full bg-red-500/80 shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
      <div>
@@ -280,7 +275,7 @@ const LocationStampUI = ({ name, plot, lv }) => (
   </div>
 );
 
-const TransactionStampUI = ({ label, value, subDetails }) => (
+const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
   <div className="inline-flex items-center gap-6 py-3 px-5 rounded-full bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-700 transition-colors text-left backdrop-blur-sm">
      <div className="w-2 h-2 rounded-full bg-zinc-500 shadow-[0_0_10px_rgba(161,161,170,0.5)]"></div>
      <div>
@@ -295,7 +290,7 @@ const TransactionStampUI = ({ label, value, subDetails }) => (
   </div>
 );
 
-const ArticleVideoPlayer = ({ src, poster }) => {
+const ArticleVideoPlayer: React.FC<{ src: string; poster: string }> = ({ src, poster }) => {
   return (
     <div className="my-16 w-full bg-zinc-950 rounded-xl overflow-hidden border border-zinc-800/80 shadow-2xl relative group">
       <div className="absolute inset-0 border border-white/5 rounded-xl pointer-events-none z-20"></div>
@@ -465,7 +460,7 @@ export default function Page() {
               </div>
 
               <p className="mt-16">
-                Co wydarzyło się wcześniej? Odpowiedź kryje się w czeskiej procedurze <strong>Dohoda o vině a trestu</strong> (ugoda o winie i karze). Badowski, w obliczu zabezpieczonych dowodów, wybrał strategię ugody. Kupił sobie wolność.
+                Co wydarzyło się wcześniej? Odpowiedź kryje się w czeskiej procedurze <span className="text-zinc-100 font-medium">Dohoda o vině a trestu</span> (ugoda o winie i karze). Badowski, w obliczu zabezpieczonych dowodów, wybrał strategię ugody. Kupił sobie wolność.
               </p>
 
               <p>
@@ -510,7 +505,7 @@ export default function Page() {
               </CaseFile>
 
               <p>
-                Na pytanie o własny udział odparł krótko: &quot;nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie odmawiam odpowiedzi&quot.
+                Na pytanie o własny udział odparł krótko: &quot;nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie odmawiam odpowiedzi&quot;.
               </p>
 
               <h2 className="text-3xl mt-24 mb-10 text-zinc-100">Anonimowy filantrop</h2>
