@@ -206,12 +206,10 @@ const EvidenceGrid = () => {
 const BrandHeader = () => {
   return (
     <div className="w-full pb-2 mb-2 flex flex-col items-center">
-      <div className="flex items-center justify-center w-[98%] mx-auto gap-4 pb-2">
-        <div className="flex-grow h-[4px] bg-stone-900 hidden sm:block"></div>
+      <div className="flex items-center justify-center w-[98%] mx-auto pb-2">
         <h1 className="text-5xl md:text-[6.5rem] font-black tracking-tighter text-stone-900 uppercase font-serif leading-none whitespace-nowrap">
           NASZA GAZETKA
         </h1>
-        <div className="flex-grow h-[4px] bg-stone-900 hidden sm:block"></div>
       </div>
 
       <div className="w-[98%] mx-auto border-y-[2px] border-stone-900 py-1 flex items-center justify-between px-2 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-stone-800">
@@ -220,7 +218,7 @@ const BrandHeader = () => {
           <span className="hidden sm:inline">Niezależne Media</span>
         </div>
 
-        <div className="text-center">
+        <div className="text-center font-serif">
           NIEDZIELA, 1 MARCA 2026
         </div>
 
@@ -233,7 +231,6 @@ const BrandHeader = () => {
     </div>
   );
 };
-
 const CaseFile = ({ title, children, icon = '📄' }: { title: string, children: React.ReactNode, icon?: string }) => (
   <div className="my-8 border border-stone-400 bg-white/60 shadow-sm rounded-sm overflow-hidden break-inside-avoid text-left">
     <div className="bg-stone-200 border-b border-stone-300 px-4 py-2 flex items-center gap-2 text-xs font-mono text-stone-600 uppercase tracking-wider">
