@@ -1,3 +1,1 @@
-# Nasza Gazetka
-
-To jest Nasza Gazetka – serwis śledczy i dokumentacja dowodowa.
+Nasza Gazetka – Artykuł o Kicińskim
