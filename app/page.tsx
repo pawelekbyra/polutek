@@ -206,31 +206,39 @@ const EvidenceGrid = () => {
 
 const BrandHeader = () => {
   return (
-    <div className="w-full pb-2 mb-2 flex flex-col items-center">
-      <div className="flex items-center justify-center w-[98%] mx-auto pb-2">
-        {/* Paski boczne zostały usunięte */}
-        <h1 className="text-6xl md:text-[8rem] font-black tracking-normal text-stone-900 uppercase font-serif leading-none whitespace-nowrap drop-shadow-sm">
-          NASZA GAZETKA
-        </h1>
+    <>
+      {/* Importujemy fajną, gazetową czcionkę */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&display=swap');
+        .font-newspaper { font-family: 'Playfair Display', serif; }
+      `}</style>
+
+      <div className="w-full pb-2 mb-2 flex flex-col items-center">
+        <div className="flex items-center justify-center w-full py-2">
+          {/* Usunięte paski, zmieniony rozmiar (7.2rem zamiast 8rem) i dodana czcionka */}
+          <h1 className="font-newspaper text-5xl sm:text-7xl md:text-[7.2rem] font-black tracking-tighter text-stone-900 uppercase leading-none text-center drop-shadow-sm">
+            NASZA GAZETKA
+          </h1>
+        </div>
+
+        <div className="w-[98%] mx-auto border-y-[2px] border-stone-900 py-1 flex items-center justify-between px-2 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-stone-800">
+          <div className="flex items-center gap-2">
+            <span>📰</span>
+            <span className="hidden sm:inline">Niezależne Media</span>
+          </div>
+
+          <div className="text-center font-newspaper italic">
+            NIEDZIELA, 1 MARCA 2026
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="hidden sm:inline">Serwis Śledczy</span>
+            <span>📄</span>
+            <span className="hidden md:inline border-l border-stone-900 pl-2 ml-1">Nr 01</span>
+          </div>
+        </div>
       </div>
-
-      <div className="w-[98%] mx-auto border-y-[2px] border-stone-900 py-1 flex items-center justify-between px-2 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-stone-800">
-        <div className="flex items-center gap-2">
-          <span>📰</span>
-          <span className="hidden sm:inline">Niezależne Media</span>
-        </div>
-
-        <div className="text-center font-serif">
-          NIEDZIELA, 1 MARCA 2026
-        </div>
-
-        <div className="flex items-center gap-2">
-          <span className="hidden sm:inline">Serwis Śledczy</span>
-          <span>📄</span>
-          <span className="hidden md:inline border-l border-stone-900 pl-2 ml-1">Nr 01</span>
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
 
