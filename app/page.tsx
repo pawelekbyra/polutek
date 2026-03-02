@@ -40,27 +40,13 @@ const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs"
 
 
 
-const KORDYS_IMAGES_CID = "bafybeigjvxqqprplfpt4io3ciq6ut4x652p4mwetb3kscufj3uwj6z36tm";
+const KORDYS_IMAGES_URL = "/gallery/wyrok_kordysa";
 
-const KORDYS_IMAGES_URL = `${PINATA_GATEWAY}/${KORDYS_IMAGES_CID}`;
+const BADI_IMAGES_URL = "/gallery/wyrok_badi";
 
+const NYDEK_IMAGES_URL = "/gallery/nydek";
 
-
-const BADI_IMAGES_CID = "bafybeifdgw2zosj6lz2qg3d33aye4bd4vcz3rtrix2jbw3wwjhvxxjrk6q";
-
-const BADI_IMAGES_URL = `${PINATA_GATEWAY}/${BADI_IMAGES_CID}`;
-
-
-
-const NYDEK_IMAGES_CID = "bafybeidabdztfvfa7ycie5q47xfby7jiqtuwt6oddccuujpvjxqzd4ofpa";
-
-const NYDEK_IMAGES_URL = `${PINATA_GATEWAY}/${NYDEK_IMAGES_CID}`;
-
-
-
-const JANOV_IMAGES_CID = "bafybeia6rid25dw5t46mwmgwu4coa3t6qp34vcno4mcnqxuixplpyfmvly";
-
-const JANOV_IMAGES_URL = `${PINATA_GATEWAY}/${JANOV_IMAGES_CID}`;
+const JANOV_IMAGES_URL = "/gallery/janov";
 
 
 
@@ -84,7 +70,7 @@ const VIDEO_ARREST_METADATA = {
 
   description: "Pełna dokumentacja policyjnej interwencji i aresztowania grupy organizującej nielegalne ceremonie ayahuaski. Materiał dowodowy w sprawie Jarosława Kordysa.",
 
-  thumbnailUrl: `${JANOV_IMAGES_URL}/janov01.jpg`,
+  thumbnailUrl: `${JANOV_IMAGES_URL}/janov1.jpg`,
 
   contentUrl: `${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`,
 
@@ -100,7 +86,7 @@ const VIDEO_STEFANEK_METADATA = {
 
   description: "Relacja z pierwszej ręki dotycząca darowizny nieruchomości w Janowie od Michała Kicińskiego dla Stowarzyszenia Natury Zew.",
 
-  thumbnailUrl: `${JANOV_IMAGES_URL}/janov02.jpg`,
+  thumbnailUrl: `${JANOV_IMAGES_URL}/janov2.jpg`,
 
   contentUrl: `${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`,
 
@@ -116,7 +102,7 @@ const generateKordysPages = (count: number) => {
 
     const pageNumber = String(i + 1).padStart(4, '0');
 
-    const fileName = `30T 5 2021-1_page-${pageNumber}.jpg`;
+    const fileName = `30T_5_2021-1_page-${pageNumber}.jpg`;
 
     return `${KORDYS_IMAGES_URL}/${fileName}`;
 
@@ -172,7 +158,7 @@ const GALLERY_WYROK_KORDYS: GalleryData = {
 
   title: "Pełne uzasadnienie wyroku: Jarosław K.",
 
-  images: generateKordysPages(95),
+  images: generateKordysPages(25),
 
   signature: "30 T 5/2021",
 
@@ -204,7 +190,7 @@ const GALLERY_WEZWANIE_KICINSKI: GalleryData = {
 
   title: "Wezwanie dla Michała Kicińskiego",
 
-  images: [`${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`],
+  images: [`/wezwanie_kicinski.png`],
 
   signature: "WD-I-3186/23"
 
@@ -218,19 +204,21 @@ const GALLERY_JANOV: GalleryData = {
 
   images: [
 
-    `${JANOV_IMAGES_URL}/janov01.jpg`,
+    `${JANOV_IMAGES_URL}/janov1.jpg`,
 
-    `${JANOV_IMAGES_URL}/janov02.jpg`,
+    `${JANOV_IMAGES_URL}/janov2.jpg`,
 
-    `${JANOV_IMAGES_URL}/janov04.jpg`,
+    `${JANOV_IMAGES_URL}/janov3.jpg`,
 
-    `${JANOV_IMAGES_URL}/janov06.jpg`,
+    `${JANOV_IMAGES_URL}/janov4.jpg`,
 
-    `${JANOV_IMAGES_URL}/janov07.jpg`,
+    `${JANOV_IMAGES_URL}/janov5.jpg`,
 
-    `${JANOV_IMAGES_URL}/janov08.jpg`,
+    `${JANOV_IMAGES_URL}/janov6.jpg`,
 
-    `${JANOV_IMAGES_URL}/janov09.jpg`,
+    `${JANOV_IMAGES_URL}/janov8.jpg`,
+
+    `${JANOV_IMAGES_URL}/janov9.jpg`,
 
     `${JANOV_IMAGES_URL}/janov10.jpg`,
 
@@ -267,6 +255,182 @@ const GALLERY_JANOV: GalleryData = {
   ],
 
   signature: "LV 127"
+
+};
+
+
+
+const EvidenceGrid = () => {
+
+  return (
+
+    <div className="my-16">
+
+      <h3 className="text-2xl font-bold text-stone-900 uppercase tracking-widest mb-8 border-b-2 border-stone-900 pb-2 flex items-center gap-3">
+
+        <Scale className="w-6 h-6" /> Galeria Dowodów
+
+      </h3>
+
+
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        {/* Wezwanie Kiciński */}
+
+        <GalleryTrigger type="wezwanie_kicinski" className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
+
+          <div className="aspect-[3/4] overflow-hidden bg-stone-200">
+
+            <img
+
+              src="/wezwanie_kicinski.png"
+
+              alt="Wezwanie Kiciński"
+
+              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+
+            />
+
+          </div>
+
+          <div className="p-4 bg-white/90">
+
+            <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Wezwanie dla M. Kicińskiego</h4>
+
+            <p className="text-[10px] text-stone-500 font-mono">Sygn. WD-I-3186/23</p>
+
+          </div>
+
+          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />
+
+        </GalleryTrigger>
+
+
+
+        {/* Wyrok Kordys */}
+
+        <GalleryTrigger type="wyrok_kordys" className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
+
+          <div className="aspect-[3/4] overflow-hidden bg-stone-200">
+
+            <img
+
+              src="/gallery/wyrok_kordysa/30T_5_2021-1_page-0001.jpg"
+
+              alt="Wyrok Kordys"
+
+              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+
+            />
+
+          </div>
+
+          <div className="p-4 bg-white/90">
+
+            <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Uzasadnienie Wyroku: J. Kordys</h4>
+
+            <p className="text-[10px] text-stone-500 font-mono">Sygn. 30 T 5/2021</p>
+
+          </div>
+
+          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />
+
+        </GalleryTrigger>
+
+
+
+        {/* Wyrok Badi */}
+
+        <GalleryTrigger type="wyrok_badi" className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
+
+          <div className="aspect-[3/4] overflow-hidden bg-stone-200">
+
+            <img
+
+              src="/gallery/wyrok_badi/wyrok_page-0001.jpg"
+
+              alt="Wyrok Badi"
+
+              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+
+            />
+
+          </div>
+
+          <div className="p-4 bg-white/90">
+
+            <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Wyrok Skazujący: Bartosz B.</h4>
+
+            <p className="text-[10px] text-stone-500 font-mono">Sygn. 66 T 146/2021</p>
+
+          </div>
+
+          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />
+
+        </GalleryTrigger>
+
+
+
+        {/* Dokumentacja Janów */}
+
+        <GalleryTrigger type="janov" className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
+
+          <div className="aspect-[3/4] overflow-hidden bg-stone-200">
+
+            <img
+
+              src="/gallery/janov/janov1.jpg"
+
+              alt="Dokumentacja Janów"
+
+              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+
+            />
+
+          </div>
+
+          <div className="p-4 bg-white/90">
+
+            <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Dokumentacja: Janów</h4>
+
+            <p className="text-[10px] text-stone-500 font-mono">KW LV 127</p>
+
+          </div>
+
+          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />
+
+        </GalleryTrigger>
+
+
+
+        {/* Posiadłość Nýdek */}
+
+        <GalleryTrigger type="nydek" className="group relative overflow-hidden bg-stone-100 border border-stone-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col text-left">
+
+          <div className="aspect-[3/4] overflow-hidden bg-stone-200 flex items-center justify-center">
+
+            <HouseIcon className="w-12 h-12 text-stone-400 group-hover:text-stone-600 transition-colors" />
+
+          </div>
+
+          <div className="p-4 bg-white/90 flex-grow">
+
+            <h4 className="font-bold text-stone-900 text-sm mb-1 uppercase tracking-tight">Posiadłość w Nýdku</h4>
+
+            <p className="text-[10px] text-stone-500 font-mono">KW LV 832 (M. Iwiński)</p>
+
+          </div>
+
+          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />
+
+        </GalleryTrigger>
+
+      </div>
+
+    </div>
+
+  );
 
 };
 
@@ -2030,6 +2194,10 @@ export default function Page() {
                  </div>
 
               </div>
+
+
+
+              <EvidenceGrid />
 
 
 
