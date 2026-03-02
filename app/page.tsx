@@ -206,21 +206,22 @@ const EvidenceGrid = () => {
 
 const BrandHeader = () => {
   return (
-    <div className="w-full pb-2 mb-2 flex flex-col items-center">
-      <div className="flex items-center justify-center w-full pb-2">
-        {/* Paski boczne wywalone, przywrócona pierwotna czcionka font-serif */}
-        <h1 className="text-5xl md:text-[6.2rem] font-black tracking-tighter text-stone-900 uppercase font-serif leading-none whitespace-nowrap">
+    <div className="w-full pb-2 mb-4 flex flex-col items-center">
+      {/* Kontener tytułu dopasowany szerokością do dolnej belki */}
+      <div className="w-[98%] mx-auto flex justify-center py-2">
+        <h1 className="text-5xl sm:text-7xl md:text-[7.6rem] font-black tracking-tighter text-stone-900 uppercase font-serif leading-none whitespace-nowrap w-full text-center">
           NASZA GAZETKA
         </h1>
       </div>
 
+      {/* Belka informacyjna - tytuł powyżej ma teraz tę samą szerokość co te linie */}
       <div className="w-[98%] mx-auto border-y-[2px] border-stone-900 py-1 flex items-center justify-between px-2 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-stone-800">
         <div className="flex items-center gap-2">
           <span>📰</span>
           <span className="hidden sm:inline">Niezależne Media</span>
         </div>
 
-        <div className="text-center">
+        <div className="text-center font-serif">
           NIEDZIELA, 1 MARCA 2026
         </div>
 
