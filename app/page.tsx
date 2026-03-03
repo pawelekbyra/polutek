@@ -1,26 +1,136 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { Scale, Search, ShieldCheck, Globe, FileText, Download, Calendar, History, ExternalLink } from 'lucide-react';
-import BrandHeader from '@/components/BrandHeader';
-import {
-  CaseFile, PullQuote, LocationStampUI, TransactionStampUI
-} from '@/app/eliksir/ElixirServerComponents';
-import {
-  ElixirModalsProvider,
-  GalleryTrigger,
-  ArticleVideoPlayer
-} from '@/app/eliksir/ElixirClientComponents';
-import {
-  KORDYS_IMAGES_URL,
-  KORDYS_PDF_URL,
-  BADI_PDF_URL,
-  MUNAY_WAYBACK_URL,
-  VIDEO_ARREST_METADATA,
-  VIDEO_STEFANEK_METADATA,
-  PINATA_GATEWAY,
-  ARREST_VIDEO_CID,
-  VIDEO_CID
-} from '@/lib/eliksir-data';
+
+const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
+const KORDYS_IMAGES_URL = "/gallery/wyrok_kordysa";
+const BADI_IMAGES_URL = "/gallery/wyrok_badi";
+const NYDEK_IMAGES_URL = "/gallery/nydek";
+const JANOV_IMAGES_URL = "/gallery/janov";
+const VIDEO_CID = "bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u";
+const ARREST_VIDEO_CID = "bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy";
+
+const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
+const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
+const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://munaysonqo.com/retreats/";
+
+const VIDEO_ARREST_METADATA = {
+  name: "Nalot policji na ośrodek ayahuaski w Hermanovicach",
+  description: "Pełna dokumentacja policyjnej interwencji i aresztowania grupy organizującej nielegalne ceremonie ayahuaski. Materiał dowodowy w sprawie Jarosława Kordysa.",
+  thumbnailUrl: `${JANOV_IMAGES_URL}/janov1.jpg`,
+  contentUrl: `${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`,
+  uploadDate: "2020-10-15T09:00:00+01:00",
+};
+
+const VIDEO_STEFANEK_METADATA = {
+  name: "Wyznania Krzysztofa Stefanka o przejęciu Janówa",
+  description: "Relacja z pierwszej ręki dotycząca darowizny nieruchomości w Janowie od Michała Kicińskiego dla Stowarzyszenia Natury Zew.",
+  thumbnailUrl: `${JANOV_IMAGES_URL}/janov2.jpg`,
+  contentUrl: `${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`,
+  uploadDate: "2024-11-01T12:00:00+01:00",
+};
+
+const BrandHeader = () => {
+  return (
+    <div className="w-full pb-2 mb-2 flex flex-col items-center">
+      <div className="flex items-center justify-center w-[98%] mx-auto pb-2">
+        <h1 className="text-5xl md:text-[6.5rem] font-black tracking-tighter text-[#3d2b1f] uppercase font-serif leading-none whitespace-nowrap">
+          NASZA GAZETKA
+        </h1>
+      </div>
+      <div className="w-[98%] mx-auto border-y-[2px] border-[#3d2b1f] py-1 flex items-center justify-between px-2 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-[#5a4a3a]">
+        <div className="flex items-center gap-2">
+          <span>📰</span>
+          <span className="hidden sm:inline">Niezależne Media</span>
+        </div>
+        <div className="text-center font-serif">
+          NIEDZIELA, 1 MARCA 2026
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="hidden sm:inline">Serwis Śledczy</span>
+          <span>📄</span>
+          <span className="hidden md:inline border-l border-[#3d2b1f] pl-2 ml-1">Nr 01</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const CaseFile = ({ title, children, type = '📄' }: { title: string, children: React.ReactNode, type?: string }) => (
+  <div className="my-8 border border-[#c4b99a] bg-[#faf6ec]/60 shadow-sm rounded-sm overflow-hidden break-inside-avoid text-left">
+    <div className="bg-[#e8e0cc] border-b border-[#c4b99a] px-4 py-2 flex items-center gap-2 text-xs font-mono text-[#6b5b45] uppercase tracking-wider">
+      <span>{type === 'transcript' ? '🎙️' : type === 'email' ? '✉️' : '📄'}</span>
+      <span>{title}</span>
+    </div>
+    <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-[#3d2b1f] italic">
+      {children}
+    </div>
+  </div>
+);
+
+const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
+  <div className="my-10 pl-6 border-l-[3px] border-[#722f37]/80 text-left">
+    <p className="font-serif text-xl md:text-2xl italic text-[#3d2b1f] leading-relaxed mb-3">
+      „{quote}"
+    </p>
+    <div className="font-sans text-[10px] uppercase tracking-widest text-[#8a7a62]">
+      — <span className="font-bold text-[#5a4a3a]">{author}</span>, {source}
+    </div>
+  </div>
+);
+
+const LocationStampUI = ({ name, plot, lv, code }: { name: string, plot: string, lv: string, code?: string }) => (
+  <div className="relative border border-[#c4b99a] bg-[#faf6ec]/80 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(196,185,154,0.5)] text-left group">
+     <div className="absolute top-1 right-1 text-[#b8a880]">
+       🔍
+     </div>
+     <div className="bg-[#e8e0cc] h-full p-3 flex items-center justify-center border-r border-[#c4b99a] border-dashed transition-colors">
+        <span className="text-xl">🏠</span>
+     </div>
+     <div className="py-2">
+        <div className="text-[9px] uppercase tracking-[0.2em] text-[#8a7a62] font-bold mb-1 flex items-center gap-2">
+          {name} {code && `[${code}]`}
+        </div>
+        <div className="font-mono text-base font-bold text-[#3d2b1f]">LV {lv}</div>
+        <div className="text-[10px] text-[#6b5b45] font-mono mt-1">
+          Działka: {plot}
+        </div>
+     </div>
+  </div>
+);
+
+const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
+  <div className="relative border border-[#c4b99a] bg-[#faf6ec]/80 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(196,185,154,0.5)] group text-left">
+     <div className="absolute top-1 right-1 text-[#b8a880]">
+       🔍
+     </div>
+     <div className="bg-[#e8e0cc] h-full p-3 flex items-center justify-center border-r border-[#c4b99a] border-dashed">
+        <span className="text-xl">📜</span>
+     </div>
+     <div className="py-2">
+        <div className="text-[9px] uppercase tracking-[0.2em] text-[#8a7a62] font-bold mb-1">{label}</div>
+        <div className="font-mono text-base font-bold text-[#3d2b1f]">{value}</div>
+        {subDetails && <div className="text-[10px] text-[#6b5b45] font-mono mt-1">{subDetails}</div>}
+     </div>
+  </div>
+);
+
+const ArticleVideoPlayer: React.FC<{ src: string; poster: string }> = ({ src, poster }) => {
+  return (
+    <div className="my-12 w-full bg-black rounded-sm shadow-xl overflow-hidden">
+      <video controls poster={poster} className="w-full h-auto block opacity-95">
+        <source src={src} type="application/x-mpegURL" />
+        Twoja przeglądarka nie obsługuje odtwarzacza wideo. <a href={src} className="text-white underline">Pobierz plik</a>.
+      </video>
+    </div>
+  );
+};
+
+const ElixirModalsProvider = ({ children }: { children: React.ReactNode }) => <>{children}</>;
+
+const GalleryTrigger = ({ children, className }: { children: React.ReactNode, className?: string, type?: string }) => (
+  <span className={className || "cursor-pointer"}>{children}</span>
+);
 
 export const metadata: Metadata = {
   title: "Michał Kiciński, Ayahuasca i Tajemnicza Śmierć w Janovie",
@@ -106,7 +216,7 @@ export default function Page() {
             prose-a:text-[#3d2b1f] prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-[#b8a880] hover:prose-a:bg-[#e8e0cc] transition-colors">
 
             <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-[#3d2b1f] leading-relaxed">
-              W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
+              W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich Hermanovicach. Policyjny nalot, aresztowanie Jarosława i Karoliny Kordysów, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
             </p>
 
             <p>
@@ -118,7 +228,7 @@ export default function Page() {
             </p>
 
             <p>
-              W przygranicznym Janowie funkcjonował drugi, bliźniaczy ayahuaskowy ośrodek, którego współwłaścicielem okazał się miliarder – <strong>Michał Kiciński</strong>.
+              W przygranicznym Janowie funkcjonował drugi, bliźniaczy ayahuaskowy ośrodek, którego współwłaścicielem okazał się miliarder – Michał Kiciński.
             </p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-[#3d2b1f] border-b border-[#d4c4a8] pb-2">Świadek B.</h2>
@@ -160,7 +270,7 @@ export default function Page() {
             </p>
 
             <CaseFile title="Ustalenia Sądu">
-              &quot;...w odniesieniu do nieruchomości będących współwłasnością <strong>Bartosza B.</strong> i <strong>Michała D. K.</strong>&quot;.
+              &quot;...w odniesieniu do nieruchomości będących współwłasnością Bartosza B. i Michała D. K.&quot;.
             </CaseFile>
 
             <p>
@@ -201,7 +311,7 @@ export default function Page() {
             </p>
 
             <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" type="transcript">
-              &quot;oskarżony [Jarosława Kordysa] omawia z&nbsp;B., że dotarła do niego informacja, że w obiekcie w Janowie <span className="underline decoration-[#722f37] decoration-4 underline-offset-4 underline-offset-4">zmarła jakaś kobieta</span>&quot;.
+              &quot;oskarżony [Jarosława Kordysa] omawia z B., że dotarła do niego informacja, że w obiekcie w Janowie <span className="underline decoration-[#722f37] decoration-4 underline-offset-4 underline-offset-4">zmarła jakaś kobieta</span>&quot;.
             </CaseFile>
 
             <p>
@@ -245,7 +355,7 @@ export default function Page() {
             </CaseFile>
 
             <p>
-              Podczas policyjnej interwencji zidentyfikowano tam 15 obywateli Polski, którzy mieli brać udział w ceremonii. Wśród nich, stali bywalcy i bliscy znajomi Badowskiego – <strong>Krzysztof Stefanek</strong> i <strong>Lena Drzewińska</strong>, których obecność w momencie wkroczenia służb ma znaczenie w kontekście późniejszej ich roli w tej historii.
+              Podczas policyjnej interwencji zidentyfikowano tam 15 obywateli Polski, którzy mieli brać udział w ceremonii. Wśród nich, stali bywalcy i bliscy znajomi Badowskiego – Krzysztof Stefanek i Lena Drzewińska, których obecność w momencie wkroczenia służb ma znaczenie w kontekście późniejszej ich roli w tej historii.
             </p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-[#3d2b1f] border-b border-[#d4c4a8] pb-2">Cena wolności</h2>
@@ -381,20 +491,20 @@ export default function Page() {
             </CaseFile>
 
             <p>
-    W kontekście złożonych zeznań warto zauważyć, że miliarder jest właścicielem luksusowego ośrodka Munay Sonqo w Peru, o którym wielokrotnie wspominał w wywiadach.
-  </p>
+              W kontekście złożonych zeznań warto zauważyć, że miliarder jest właścicielem luksusowego ośrodka Munay Sonqo w Peru, o którym wielokrotnie wspominał w wywiadach.
+            </p>
 
-  <p>
-    W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego oferuje tam w pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które w Czechach są zakazane, co wciąż jest eksponowane na stronie internetowej.
-  </p>
+            <p>
+              W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego oferuje tam w pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które w Czechach są zakazane, co wciąż jest eksponowane na stronie internetowej.
+            </p>
 
-  <p>
-    Fakt, że Kiciński w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w Ameryce Południowej, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalności w Janowie.
-  </p>
+            <p>
+              Fakt, że Kiciński w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w Ameryce Południowej, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalności w Janowie.
+            </p>
 
-  <p>
-    Co na to Bartosz Badowski?
-  </p>
+            <p>
+              Co na to Bartosz Badowski?
+            </p>
 
             <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
               &quot;Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.&quot;
@@ -403,7 +513,7 @@ export default function Page() {
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-[#3d2b1f] border-b border-[#d4c4a8] pb-2">Anonimowy filantrop</h2>
 
             <p>
-              W listopadzie 2025 roku na kanale YouTube &quot;<strong>Osada Natury Zew</strong>&quot; pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, <strong>Krzysztof Stefanek</strong>, snuje opowieść o powstaniu &quot;Osady&quot;. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
+              W listopadzie 2025 roku na kanale YouTube &quot;Osada Natury Zew&quot; pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, Krzysztof Stefanek, snuje opowieść o powstaniu &quot;Osady&quot;. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
             </p>
 
             <p>
@@ -437,21 +547,21 @@ export default function Page() {
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-[#5a4a3a] shrink-0" />
                 <div>
-                  <strong>21 września 2023 r.</strong> – Michał Kiciński odbiera wezwanie na przesłuchanie w sprawie Janowa.
+                  <span className="font-bold">21 września 2023 r.</span> – Michał Kiciński odbiera wezwanie na przesłuchanie w sprawie Janowa.
                 </div>
               </li>
 
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-[#5a4a3a] shrink-0" />
                 <div>
-                  <strong>3 października 2023 r.</strong> – Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów in nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
+                  <span className="font-bold">3 października 2023 r.</span> – Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów in nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
                 </div>
               </li>
 
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-[#5a4a3a] shrink-0" />
                 <div>
-                  <strong>11 października 2023 r.</strong> – Miliarder staje przed policją. Do protokołu odmawia zeznań na temat swojej przeszłości w tym miejscu.
+                  <span className="font-bold">11 października 2023 r.</span> – Miliarder staje przed policją. Do protokołu odmawia zeznań na temat swojej przeszłości w tym miejscu.
                 </div>
               </li>
 
@@ -466,13 +576,13 @@ export default function Page() {
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-[#5a4a3a] shrink-0" />
                 <div>
-                  <strong>21 grudnia 2023 r.</strong> – Finał operacji. Kiciński formalnie przekazuje Janov w formie darowizny. Nieruchomość trafia do stowarzyszenia &quot;non-profit&quot; – fasadowej organizacji &quot;krzak&quot;, zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
+                  <span className="font-bold">21 grudnia 2023 r.</span> – Finał operacji. Kiciński formalnie przekazuje Janov w formie darowizny. Nieruchomość trafia do stowarzyszenia &quot;non-profit&quot; – fasadowej organizacji &quot;krzak&quot;, zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
                 </div>
               </li>
             </ul>
 
             <p>
-              Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong>Krzysztof Stefanek</strong>, który w filmie mówi o &quot;odwróconej logice&quot; i pięknie wolontariatu, i jego konkubina <strong>Magdalena Drzewińska</strong> w rzeczywistości doskonale znali mroczną historię Janowa i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
+              Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. Krzysztof Stefanek, który w filmie mówi o &quot;odwróconej logice&quot; i pięknie wolontariatu, i jego konkubina Magdalena Drzewińska w rzeczywistości doskonale znali mroczną historię Janowa i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
             </p>
 
             <div className="my-8 flex justify-start">
@@ -488,18 +598,17 @@ export default function Page() {
             </p>
 
             <p>
-              Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit <strong>Stowarzyszenie Natury Zew</strong> żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki. A przecież &quot;zadośćuczynienie wszechświatowi&quot; miało trafić na hospicjum, a nie na &quot;organizację krzak&quot;.
+              Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit Stowarzyszenie Natury Zew żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki. A przecież &quot;zadośćuczynienie wszechświatowi&quot; miało trafić na hospicjum, a nie na &quot;organizację krzak&quot;.
             </p>
 
             <h2 className="text-3xl mt-16 mb-8 tracking-tight text-[#3d2b1f] border-b border-[#d4c4a8] pb-2">Nýdek</h2>
 
             <p>
-              Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janowa, w miejscowości <strong>Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.
+              Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janowa, w miejscowości Nýdek, funkcjonował kolejny, bliźniaczy ośrodek.
             </p>
 
-
             <p>
-              Relacje świadków wskazują, że w <GalleryTrigger type="nydek" className="font-bold text-[#3d2b1f] underline decoration-double decoration-[#b8a880] hover:bg-[#e8e0cc] transition-colors">posiadłości w Nýdku</GalleryTrigger> odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong>Piotra &quot;Bonawenturę&quot; Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu &quot;Wayback Machine&quot; zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
+              Relacje świadków wskazują, że w <GalleryTrigger type="nydek" className="font-bold text-[#3d2b1f] underline decoration-double decoration-[#b8a880] hover:bg-[#e8e0cc] transition-colors">posiadłości w Nýdku</GalleryTrigger> odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez Piotra &quot;Bonawenturę&quot; Tracza. Chociaż witryna ośrodka już nie istnieje, archiwum internetu &quot;Wayback Machine&quot; zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
             </p>
 
             <p>
@@ -509,7 +618,6 @@ export default function Page() {
             <p>
               Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej szamańskiej świątyni – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za gamingowym gigantem, <span className="bg-[#d4c4a8]/80 px-1 font-bold text-[#3d2b1f] box-decoration-clone">Marcin Iwiński</span>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder.
             </p>
-
 
             <div className="my-8 flex justify-start">
               <GalleryTrigger type="nydek">
@@ -534,14 +642,14 @@ export default function Page() {
                <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-[#5a4a3a] shrink-0" />
                 <div>
-                  <strong>15 października 2020 r.</strong> – Policyjny szturm na ośrodek Kordysów. W środowisku wybucha panika.
+                  <span className="font-bold">15 października 2020 r.</span> – Policyjny szturm na ośrodek Kordysów. W środowisku wybucha panika.
                 </div>
                </li>
 
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-[#5a4a3a] shrink-0" />
                 <div>
-                  <strong>15 czerwca 2021 r.</strong> – Marcin Iwiński sprzedaje nieruchomości w Nýdku.
+                  <span className="font-bold">15 czerwca 2021 r.</span> – Marcin Iwiński sprzedaje nieruchomości w Nýdku.
                 </div>
               </li>
             </ul>
@@ -660,7 +768,7 @@ export default function Page() {
                <div className="p-3 bg-white border border-[#d4c4a8] hover:border-[#b8a880] transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
-                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Wyrok <strong>Jarosława Kordysa</strong></h4>
+                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Wyrok Jarosława Kordysa</h4>
                       <p className="font-mono text-[10px] text-[#5a4a3a] mt-1">Sygn. 30 T 5/2020</p>
                     </div>
                     <a
@@ -688,7 +796,7 @@ export default function Page() {
                <div className="p-3 bg-white border border-[#d4c4a8] hover:border-[#b8a880] transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
-                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Wyrok <strong>Bartosza Badowskiego</strong></h4>
+                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Wyrok Bartosza Badowskiego</h4>
                       <p className="font-mono text-[10px] text-[#5a4a3a] mt-1">Sygn. 66 T 146/2021</p>
                     </div>
                     <a
@@ -716,7 +824,7 @@ export default function Page() {
                <div className="p-3 bg-white border border-[#d4c4a8] hover:border-[#b8a880] transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
-                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Historia własności: <strong>Janov</strong></h4>
+                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Historia własności: Janov</h4>
                       <p className="font-mono text-[10px] text-[#5a4a3a] mt-1">
                         LV 127 | Obręb 656976 <span className="block sm:inline sm:ml-2 text-[#8b7d6b]">| Koszt: 100 CZK (~17 PLN)</span>
                       </p>
@@ -744,7 +852,7 @@ export default function Page() {
                <div className="p-3 bg-white border border-[#d4c4a8] hover:border-[#b8a880] transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
-                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Historia własności: <strong>Nýdek</strong></h4>
+                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Historia własności: Nýdek</h4>
                       <p className="font-mono text-[10px] text-[#5a4a3a] mt-1">
                         LV 832 | Obręb 708186 <span className="block sm:inline sm:ml-2 text-[#8b7d6b]">| Koszt: 100 CZK (~17 PLN)</span>
                       </p>
@@ -772,7 +880,7 @@ export default function Page() {
                <div className="p-3 bg-white border border-[#d4c4a8] hover:border-[#b8a880] transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
-                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Transakcja: Darowizna (<strong>Janov</strong>)</h4>
+                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Transakcja: Darowizna (Janov)</h4>
                       <p className="font-mono text-[10px] text-[#5a4a3a] mt-1">
                         Sygnatura: V-5821/2023 <span className="block sm:inline sm:ml-2 text-[#8b7d6b]">| Koszt: 300 CZK (~52 PLN)</span>
                       </p>
@@ -800,7 +908,7 @@ export default function Page() {
                <div className="p-3 bg-white border border-[#d4c4a8] hover:border-[#b8a880] transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
-                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Transakcja: Sprzedaż (<strong>Nýdek</strong>)</h4>
+                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Transakcja: Sprzedaż (Nýdek)</h4>
                       <p className="font-mono text-[10px] text-[#5a4a3a] mt-1">
                         Sygnatura: V-2937/2021 <span className="block sm:inline sm:ml-2 text-[#8b7d6b]">| Koszt: 300 CZK (~52 PLN)</span>
                       </p>
@@ -828,7 +936,7 @@ export default function Page() {
                <div className="p-3 bg-white border border-[#d4c4a8] hover:border-[#b8a880] transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
-                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Archiwalna Strona: <strong>Nýdek</strong></h4>
+                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Archiwalna Strona: Nýdek</h4>
                       <p className="font-mono text-[10px] text-[#5a4a3a] mt-1">Archiwum: tribunydek.com</p>
                     </div>
                     <a
@@ -845,7 +953,7 @@ export default function Page() {
                <div className="p-3 bg-white border border-[#d4c4a8] hover:border-[#b8a880] transition-colors shadow-sm">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
-                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Archiwalna Strona: <strong>Munay Sonqo</strong></h4>
+                      <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">Archiwalna Strona: Munay Sonqo</h4>
                       <p className="font-mono text-[10px] text-[#5a4a3a] mt-1">Archiwum: munaysonqo.com (Peru)</p>
                     </div>
                     <a
@@ -863,7 +971,7 @@ export default function Page() {
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
                       <h4 className="font-bold text-[#3d2b1f] text-sm leading-tight">
-                        Artykuł: <strong>Szamańskie ceremonie, tajemnicza śmierć i miliarderzy od „Wiedźmina”</strong>, <span className="text-[#5a4a3a] font-medium">Onet.pl</span>
+                        Artykuł: Szamańskie ceremonie, tajemnicza śmierć i miliarderzy od „Wiedźmina”, <span className="text-[#5a4a3a] font-medium">Onet.pl</span>
                       </h4>
                       <p className="font-mono text-[10px] text-[#8b7d6b] mt-1 uppercase tracking-wider">Opublikowano: 3 marca 2026</p>
                     </div>
