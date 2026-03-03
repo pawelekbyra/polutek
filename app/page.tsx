@@ -382,8 +382,7 @@ export default function Page() {
 
       <main className="min-h-screen bg-[#fcfbf9] text-[#3d2b1f] selection:bg-[#d4c4a8]/50 font-serif flex flex-col items-center">
 
-        <div className="w-full max-w-5xl border-x border-black bg-[#fcfbf9] min-h-screen flex flex-col shadow-[0_0_50px_rgba(0,0,0,0.02)]">
-
+<div className="w-full max-w-5xl border-x-2 border-black bg-[#fcfbf9] min-h-screen flex flex-col shadow-[0_0_50px_rgba(0,0,0,0.02)]">
           
 
           <BrandHeader />
