@@ -64,8 +64,8 @@ const GALLERY_NYDEK = [
 ];
 
 const CaseFile = ({ title, children, icon = '📄' }: { title: string, children: React.ReactNode, icon?: string }) => (
-  <div className="my-8 border border-sepia-light bg-parchment-warm/20 shadow-sm rounded-sm overflow-hidden break-inside-avoid text-left">
-    <div className="bg-parchment-warm/40 border-b border-sepia-light px-4 py-2 flex items-center gap-2 text-xs font-mono text-ink-light uppercase tracking-wider">
+  <div className="my-8 border border-[#8b7312]/40 bg-[#e8d154]/10 shadow-sm rounded-sm overflow-hidden break-inside-avoid text-left">
+    <div className="bg-[#e8d154]/30 border-b border-[#8b7312]/40 px-4 py-2 flex items-center gap-2 text-xs font-mono text-ink-light uppercase tracking-wider">
       <span>{icon}</span>
       <span>{title}</span>
     </div>
@@ -87,9 +87,9 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
 );
 
 const LocationStampUI = ({ name, plot, lv }: { name: string, plot: string, lv: string }) => (
-  <div className="relative border border-sepia-light bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-sm text-left">
-      <div className="absolute top-1 right-1 text-sepia-light">🔍</div>
-      <div className="bg-parchment-warm/30 h-full p-3 flex items-center justify-center border-r border-sepia-light border-dashed">
+  <div className="relative border border-[#8b7312]/40 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-sm text-left">
+      <div className="absolute top-1 right-1 text-[#8b7312]/70">🔍</div>
+      <div className="bg-[#e8d154]/20 h-full p-3 flex items-center justify-center border-r border-[#8b7312]/40 border-dashed">
          <span className="text-xl">🏠</span>
       </div>
       <div className="py-2">
@@ -101,9 +101,9 @@ const LocationStampUI = ({ name, plot, lv }: { name: string, plot: string, lv: s
 );
 
 const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
-  <div className="relative border border-sepia-light bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-sm text-left">
-      <div className="absolute top-1 right-1 text-sepia-light">🔍</div>
-      <div className="bg-parchment-warm/30 h-full p-3 flex items-center justify-center border-r border-sepia-light border-dashed">
+  <div className="relative border border-[#8b7312]/40 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-sm text-left">
+      <div className="absolute top-1 right-1 text-[#8b7312]/70">🔍</div>
+      <div className="bg-[#e8d154]/20 h-full p-3 flex items-center justify-center border-r border-[#8b7312]/40 border-dashed">
          <span className="text-xl">📜</span>
       </div>
       <div className="py-2">
@@ -144,7 +144,7 @@ const EvidenceGrid = () => {
             <h4 className="font-bold text-ink text-sm leading-tight font-display mb-1">Wezwanie Kiciński</h4>
             <p className="text-xs text-ink-medium mb-4">Wezwanie dla M. Kicińskiego Sygn. WD-I-3186/23</p>
             <div className="mt-auto">
-              <a href={`${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`} target="_blank" className="w-full inline-flex justify-center bg-parchment text-ink px-3 py-2 text-xs font-bold rounded border border-sepia-light hover:bg-parchment-warm transition-colors underline decoration-double decoration-sepia">
+              <a href={`${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`} target="_blank" className="w-full inline-flex justify-center bg-[#e8d154]/20 text-ink px-3 py-2 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors underline decoration-double decoration-[#8b7312]">
                 POKAŻ DOWÓD
               </a>
             </div>
@@ -157,7 +157,7 @@ const EvidenceGrid = () => {
             <h4 className="font-bold text-ink text-sm leading-tight font-display mb-1">Wyrok Kordys</h4>
             <p className="text-xs text-ink-medium mb-4">Uzasadnienie Wyroku: J. Kordys Sygn. 30 T 5/2021</p>
             <div className="mt-auto">
-              <button className="w-full inline-flex justify-center bg-parchment text-ink px-3 py-2 text-xs font-bold rounded border border-sepia-light hover:bg-parchment-warm transition-colors underline decoration-double decoration-sepia">
+              <button className="w-full inline-flex justify-center bg-[#e8d154]/20 text-ink px-3 py-2 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors underline decoration-double decoration-[#8b7312]">
                 POKAŻ STRONY (25)
               </button>
             </div>
@@ -170,7 +170,7 @@ const EvidenceGrid = () => {
             <h4 className="font-bold text-ink text-sm leading-tight font-display mb-1">Wyrok Badi</h4>
             <p className="text-xs text-ink-medium mb-4">Wyrok Skazujący: Bartosz B. Sygn. 66 T 146/2021</p>
             <div className="mt-auto">
-              <button className="w-full inline-flex justify-center bg-parchment text-ink px-3 py-2 text-xs font-bold rounded border border-sepia-light hover:bg-parchment-warm transition-colors underline decoration-double decoration-sepia">
+              <button className="w-full inline-flex justify-center bg-[#e8d154]/20 text-ink px-3 py-2 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors underline decoration-double decoration-[#8b7312]">
                 POKAŻ STRONY (3)
               </button>
             </div>
@@ -183,7 +183,7 @@ const EvidenceGrid = () => {
             <h4 className="font-bold text-ink text-sm leading-tight font-display mb-1">Dokumentacja Janów</h4>
             <p className="text-xs text-ink-medium mb-4">Dokumentacja: Janów KW LV 127</p>
             <div className="mt-auto">
-              <button className="w-full inline-flex justify-center bg-parchment text-ink px-3 py-2 text-xs font-bold rounded border border-sepia-light hover:bg-parchment-warm transition-colors underline decoration-double decoration-sepia">
+              <button className="w-full inline-flex justify-center bg-[#e8d154]/20 text-ink px-3 py-2 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors underline decoration-double decoration-[#8b7312]">
                 POKAŻ GALERIĘ
               </button>
             </div>
@@ -196,7 +196,7 @@ const EvidenceGrid = () => {
             <h4 className="font-bold text-ink text-sm leading-tight font-display mb-1">🏠 Posiadłość w Nýdku</h4>
             <p className="text-xs text-ink-medium mb-4">KW LV 832 (M. Iwiński)</p>
             <div className="mt-auto">
-              <button className="w-full inline-flex justify-center bg-parchment text-ink px-3 py-2 text-xs font-bold rounded border border-sepia-light hover:bg-parchment-warm transition-colors underline decoration-double decoration-sepia">
+              <button className="w-full inline-flex justify-center bg-[#e8d154]/20 text-ink px-3 py-2 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors underline decoration-double decoration-[#8b7312]">
                 POKAŻ GALERIĘ
               </button>
             </div>
@@ -250,7 +250,7 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoArrestSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoStefanekSchema) }} />
 
-      <main className="min-h-screen bg-white text-ink selection:bg-parchment-warm/50 font-body flex flex-col items-center">
+      <main className="min-h-screen bg-white text-ink selection:bg-[#e8d154]/40 font-body flex flex-col items-center">
         {/* Kontener zwężony do szerokości artykułu i tytułu (max-w-4xl) */}
         <div className="w-full max-w-4xl bg-white flex flex-col items-center pb-20 min-h-screen border-x-2 border-ink overflow-hidden">
 
@@ -461,7 +461,7 @@ export default function Page() {
                   poster=""
                 />
               </div>
-              <div className="mt-1 text-sm text-ink-light font-body border-l-2 border-sepia pl-3 mb-12">
+              <div className="mt-1 text-sm text-ink-light font-body border-l-2 border-[#8b7312] pl-3 mb-12">
                 <span className="font-bold text-ink uppercase text-xs mr-2">Materiał Operacyjny:</span>
                 Nagranie z policyjnego nalotu na ośrodek v Hermanovicach (15.10.2020)
               </div>
@@ -470,7 +470,7 @@ export default function Page() {
                 Co wydarzyło się v ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się v jednym czeskim terminie prawnym:
               </p>
 
-              <div className="my-12 flex gap-4 p-5 bg-parchment-warm/40 border-l-4 border-[#8b7312] rounded-r-lg shadow-sm">
+              <div className="my-12 flex gap-4 p-5 bg-[#e8d154]/30 border-l-4 border-[#8b7312] rounded-r-lg shadow-sm">
                 <span className="text-3xl mt-1">⚖️</span>
                 <div>
                   <strong className="block font-display text-ink text-lg font-bold mb-1">Dohoda o vině a trestu</strong>
@@ -545,7 +545,7 @@ export default function Page() {
                   <img
                     src={`${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`}
                     alt="Wezwanie na policję"
-                    className="w-48 rounded shadow-md border border-sepia-light cursor-pointer hover:opacity-90 transition-opacity mix-blend-multiply grayscale sepia"
+                    className="w-48 rounded shadow-md border border-[#8b7312]/40 cursor-pointer hover:opacity-90 transition-opacity mix-blend-multiply grayscale sepia"
                   />
                 </a>
                 <p className="text-xs text-ink-light mt-2 font-mono uppercase tracking-wider w-48 text-center">
@@ -621,7 +621,7 @@ export default function Page() {
                   poster=""
                 />
               </div>
-              <div className="mt-1 text-sm text-ink-light font-body border-l-2 border-sepia pl-3 mb-12">
+              <div className="mt-1 text-sm text-ink-light font-body border-l-2 border-[#8b7312] pl-3 mb-12">
                 <span className="font-bold text-ink uppercase text-xs mr-2">Materiał Wideo:</span>
                 Krzysztof Stefanek opowiada o &quot;cudownym&quot; otrzymaniu darowizny (Materiał z 2025 r.)
               </div>
@@ -798,7 +798,7 @@ export default function Page() {
                       <span className="block font-display text-ink font-bold">Śledztwo v sprawie organizacji ceremonii</span>
                       <span className="block text-xs text-ink-light mt-1 font-body">Prokuratura Rejonowa v Częstochowie</span>
                     </div>
-                    <span className="font-mono text-xs font-bold bg-parchment px-3 py-1.5 border border-sepia-light text-ink rounded-sm shadow-sm whitespace-nowrap">
+                    <span className="font-mono text-xs font-bold bg-[#e8d154]/20 px-3 py-1.5 border border-[#8b7312]/40 text-ink rounded-sm shadow-sm whitespace-nowrap">
                       3013-1.Ds.15.2024
                     </span>
                   </div>
@@ -808,7 +808,7 @@ export default function Page() {
                       <span className="block font-display text-ink font-bold">Śledztwo v sprawie śmierci Ilony Lewandowskiej</span>
                       <span className="block text-xs text-ink-light mt-1 font-body">Prokuratura Rejonowa v Częstochowie</span>
                     </div>
-                    <span className="font-mono text-xs font-bold bg-parchment px-3 py-1.5 border border-sepia-light text-ink rounded-sm shadow-sm whitespace-nowrap">
+                    <span className="font-mono text-xs font-bold bg-[#e8d154]/20 px-3 py-1.5 border border-[#8b7312]/40 text-ink rounded-sm shadow-sm whitespace-nowrap">
                       3013-1.Ds.4.2026
                     </span>
                   </div>
@@ -819,7 +819,7 @@ export default function Page() {
                       <span className="block text-xs text-ink-light mt-1 font-body">Prokuratura Rejonowa v Pułtusku</span>
                     </div>
                     <div className="flex flex-col items-end gap-1">
-                      <span className="font-mono text-xs font-bold bg-parchment px-3 py-1.5 border border-sepia-light text-ink rounded-sm shadow-sm whitespace-nowrap">
+                      <span className="font-mono text-xs font-bold bg-[#e8d154]/20 px-3 py-1.5 border border-[#8b7312]/40 text-ink rounded-sm shadow-sm whitespace-nowrap">
                         4027-0. Ds. 1254.2024
                       </span>
                       <span className="text-[10px] font-body font-bold text-[#8b7312] uppercase tracking-tighter">Śledztwo zawieszone</span>
@@ -855,13 +855,13 @@ export default function Page() {
                       <p className="font-mono text-[10px] text-ink-light mt-1">Sygn. 30 T 5/2020</p>
                     </div>
                     <a href={KORDYS_PDF_URL} target="_blank" rel="noopener noreferrer"
-                      className="shrink-0 w-40 justify-center bg-parchment text-ink px-3 py-1 text-xs font-bold rounded border border-sepia-light hover:bg-parchment-warm transition-colors flex items-center gap-2 underline decoration-double decoration-sepia">
+                      className="shrink-0 w-40 justify-center bg-[#e8d154]/20 text-ink px-3 py-1 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors flex items-center gap-2 underline decoration-double decoration-[#8b7312]">
                       <span>📄</span> Pobierz PDF
                     </a>
                   </div>
-                  <div className="border-t border-sepia-light pt-2">
+                  <div className="border-t border-[#8b7312]/40 pt-2">
                     <a href="https://msp.gov.cz/web/krajsky-soud-v-ostrave/zakladni-informace/-/clanek/informace-rok-2022" target="_blank" rel="noopener noreferrer"
-                      className="text-[10px] text-ink-light hover:text-[#8b7312] flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-sepia-light">
+                      className="text-[10px] text-ink-light hover:text-[#8b7312] flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-[#8b7312]/50">
                       <span>🌐</span> Weryfikuj na msp.gov.cz
                     </a>
                   </div>
@@ -874,13 +874,13 @@ export default function Page() {
                       <p className="font-mono text-[10px] text-ink-light mt-1">Sygn. 66 T 146/2021</p>
                     </div>
                     <a href={BADI_PDF_URL} target="_blank" rel="noopener noreferrer"
-                      className="shrink-0 w-40 justify-center bg-parchment text-ink px-3 py-1 text-xs font-bold rounded border border-sepia-light hover:bg-parchment-warm transition-colors flex items-center gap-2 underline decoration-double decoration-sepia">
+                      className="shrink-0 w-40 justify-center bg-[#e8d154]/20 text-ink px-3 py-1 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors flex items-center gap-2 underline decoration-double decoration-[#8b7312]">
                       <span>📄</span> Pobierz PDF
                     </a>
                   </div>
-                  <div className="border-t border-sepia-light pt-2">
+                  <div className="border-t border-[#8b7312]/40 pt-2">
                     <a href="https://msp.gov.cz/documents/22409/2997339/29Si+25-2022+p%C5%99%C3%ADloha+%C4%8D.+1.pdf" target="_blank" rel="noopener noreferrer"
-                      className="text-[10px] text-ink-light hover:text-[#8b7312] flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-sepia-light">
+                      className="text-[10px] text-ink-light hover:text-[#8b7312] flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-[#8b7312]/50">
                       <span>🌐</span> Weryfikuj oryginał (29 Si 25/2022)
                     </a>
                   </div>
@@ -894,13 +894,13 @@ export default function Page() {
                         LV 127 | Obręb 656976 <span className="block sm:inline sm:ml-2 text-ink-light">| Koszt: 100 CZK (~17 PLN)</span>
                       </p>
                     </div>
-                    <a href="https://nahlizenidokn.cuzk.cz" target="_blank" className="shrink-0 w-40 justify-center bg-parchment text-ink px-3 py-2 text-xs font-bold rounded border border-sepia-light hover:bg-parchment-warm transition-colors flex items-center gap-2 underline decoration-double decoration-sepia">
+                    <a href="https://nahlizenidokn.cuzk.cz" target="_blank" className="shrink-0 w-40 justify-center bg-[#e8d154]/20 text-ink px-3 py-2 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors flex items-center gap-2 underline decoration-double decoration-[#8b7312]">
                       <span>⬇️</span> Pobierz PDF
                     </a>
                   </div>
-                  <div className="border-t border-sepia-light pt-2">
+                  <div className="border-t border-[#8b7312]/40 pt-2">
                     <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer"
-                      className="text-[10px] text-ink-light hover:text-[#8b7312] flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-sepia-light">
+                      className="text-[10px] text-ink-light hover:text-[#8b7312] flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-[#8b7312]/50">
                       <span>🌐</span> Weryfikuj na nahlizenidokn.cuzk.cz
                     </a>
                   </div>
@@ -914,13 +914,13 @@ export default function Page() {
                         LV 832 | Obręb 708186 <span className="block sm:inline sm:ml-2 text-ink-light">| Koszt: 100 CZK (~17 PLN)</span>
                       </p>
                     </div>
-                    <a href="https://nahlizenidokn.cuzk.cz" target="_blank" className="shrink-0 w-40 justify-center bg-parchment text-ink px-3 py-2 text-xs font-bold rounded border border-sepia-light hover:bg-parchment-warm transition-colors flex items-center gap-2 underline decoration-double decoration-sepia">
+                    <a href="https://nahlizenidokn.cuzk.cz" target="_blank" className="shrink-0 w-40 justify-center bg-[#e8d154]/20 text-ink px-3 py-2 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors flex items-center gap-2 underline decoration-double decoration-[#8b7312]">
                       <span>⬇️</span> Pobierz PDF
                     </a>
                   </div>
-                  <div className="border-t border-sepia-light pt-2">
+                  <div className="border-t border-[#8b7312]/40 pt-2">
                     <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer"
-                      className="text-[10px] text-ink-light hover:text-[#8b7312] flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-sepia-light">
+                      className="text-[10px] text-ink-light hover:text-[#8b7312] flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-[#8b7312]/50">
                       <span>🌐</span> Weryfikuj na nahlizenidokn.cuzk.cz
                     </a>
                   </div>
@@ -933,7 +933,7 @@ export default function Page() {
                       <p className="font-mono text-[10px] text-ink-light mt-1">Archiwum: tribunydek.com</p>
                     </div>
                     <a href="https://web.archive.org/web/*/tribunydek.com" target="_blank" rel="noopener noreferrer"
-                      className="shrink-0 w-40 justify-center bg-parchment text-ink px-3 py-1 text-xs font-bold rounded border border-sepia-light hover:bg-parchment-warm transition-colors flex items-center gap-2 underline decoration-double decoration-sepia">
+                      className="shrink-0 w-40 justify-center bg-[#e8d154]/20 text-ink px-3 py-1 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors flex items-center gap-2 underline decoration-double decoration-[#8b7312]">
                       <span>🕒</span> Wayback Machine
                     </a>
                   </div>
@@ -946,7 +946,7 @@ export default function Page() {
                       <p className="font-mono text-[10px] text-ink-light mt-1">Archiwum: munaysonqo.com (Peru)</p>
                     </div>
                     <a href={MUNAY_WAYBACK_URL} target="_blank" rel="noopener noreferrer"
-                      className="shrink-0 w-40 justify-center bg-parchment text-ink px-3 py-1 text-xs font-bold rounded border border-sepia-light hover:bg-parchment-warm transition-colors flex items-center gap-2 underline decoration-double decoration-sepia">
+                      className="shrink-0 w-40 justify-center bg-[#e8d154]/20 text-ink px-3 py-1 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors flex items-center gap-2 underline decoration-double decoration-[#8b7312]">
                       <span>🕒</span> Wayback Machine
                     </a>
                   </div>
@@ -956,7 +956,7 @@ export default function Page() {
               <div className="mt-8 text-center pb-12">
                 <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-[#8b7312] to-transparent mx-auto mb-6"></div>
 
-                <div className="mb-10 bg-parchment-warm/50 p-6 border border-sepia-light rounded-sm text-center">
+                <div className="mb-10 bg-[#e8d154]/30 p-6 border border-[#8b7312]/40 rounded-sm text-center">
                   <h3 className="text-sm font-bold text-ink uppercase tracking-widest mb-4 flex items-center justify-center gap-2 font-display">
                     <span>🛡️</span> Mirror – Kopia Zapasowa Dokumentacji
                   </h3>
@@ -964,9 +964,9 @@ export default function Page() {
                     W celu zapewnienia niezniszczalności dowodów, pełna dokumentacja śledztwa (akty oskarżenia, wyroki, zeznania) została zarchiwizowana v sieciach zdecentralizowanych. Materiał jest odporny na próby cenzury i usuwania.
                   </p>
                   <div className="grid gap-3 font-mono text-[10px] uppercase tracking-wider">
-                    <a href="ipfs://bafybeicnxl_pelna_dokumentacja_wiedzmin_gate" className="text-ink font-bold hover:bg-parchment-warm underline decoration-sepia decoration-double">IPFS: Baza Dowodowa (Full Archive)</a>
-                    <a href="https://arweave.net/eliksir-wiedzmina-dokumentacja" className="text-ink font-bold hover:bg-parchment-warm underline decoration-sepia decoration-double">Arweave: Trwała Archiwizacja</a>
-                    <a href="https://github.com/detektyw-polutek/eliksir-mirror" className="text-ink font-bold hover:bg-parchment-warm underline decoration-sepia decoration-double">GitHub: Source Mirror</a>
+                    <a href="ipfs://bafybeicnxl_pelna_dokumentacja_wiedzmin_gate" className="text-ink font-bold hover:bg-[#e8d154]/40 underline decoration-[#8b7312] decoration-double">IPFS: Baza Dowodowa (Full Archive)</a>
+                    <a href="https://arweave.net/eliksir-wiedzmina-dokumentacja" className="text-ink font-bold hover:bg-[#e8d154]/40 underline decoration-[#8b7312] decoration-double">Arweave: Trwała Archiwizacja</a>
+                    <a href="https://github.com/detektyw-polutek/eliksir-mirror" className="text-ink font-bold hover:bg-[#e8d154]/40 underline decoration-[#8b7312] decoration-double">GitHub: Source Mirror</a>
                   </div>
                 </div>
 
@@ -978,7 +978,7 @@ export default function Page() {
                   href="https://www.eliksir-wiedzmina.pl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-sm font-bold text-[#66540b] hover:bg-parchment-warm transition-colors underline decoration-double decoration-sepia"
+                  className="font-mono text-sm font-bold text-[#66540b] hover:bg-[#e8d154]/40 transition-colors underline decoration-double decoration-[#8b7312]"
                 >
                   www.eliksir-wiedzmina.pl
                 </a>
