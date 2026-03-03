@@ -275,13 +275,13 @@ export default function Page() {
       <main className="min-h-screen bg-white text-ink selection:bg-parchment-warm/50 font-body flex flex-col items-center">
         <div className="w-full max-w-5xl bg-white flex flex-col items-center pb-20 min-h-screen border-x-2 border-ink overflow-hidden">
 
-          {/* BrandHeader */}
-          <div className="w-full flex flex-col items-center pt-0 pb-1">
-            <div className="flex items-center justify-center w-full pb-0">
-              <h1 className="text-5xl md:text-[6.5rem] font-black tracking-tighter text-ink uppercase font-masthead leading-none whitespace-nowrap">
-                NASZA GAZETKA
-              </h1>
-            </div>
+     {/* BrandHeader */}
+<div className="w-full flex flex-col items-center pt-0 pb-1">
+  <div className="flex items-center justify-center w-full pb-0">
+    <h1 className="text-5xl md:text-[6.5rem] font-black tracking-tighter text-ink uppercase font-unifraktur leading-none whitespace-nowrap">
+      NASZA GAZETKA
+    </h1>
+  </div>
             <div className="w-full border-y-2 border-ink py-0.5 flex items-center justify-between px-4 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-ink-medium">
               <div className="flex items-center gap-2">
                 <span>📰</span>
