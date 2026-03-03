@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata, Viewport } from 'next';
-import { Playfair_Display, EB_Garamond } from 'next/font/google';
+import { Playfair_Display, EB_Garamond, UnifrakturMaguntia } from 'next/font/google';
 
 const playfair = Playfair_Display({
   subsets: ['latin', 'latin-ext'],
@@ -10,6 +10,12 @@ const playfair = Playfair_Display({
 const ebGaramond = EB_Garamond({
   subsets: ['latin', 'latin-ext'],
   variable: '--font-eb-garamond',
+});
+
+const unifraktur = UnifrakturMaguntia({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-unifraktur',
 });
 
 export const viewport: Viewport = {
@@ -38,7 +44,7 @@ export const metadata: Metadata = {
     siteName: 'Eliksir Wiedźmina',
     images: [
       {
-        url: '/wezwanie_kicinski.png',
+        url: '/gallery/wyrok_kordysa/wezwanie/wezwanie_kicinski.png',
         width: 1200,
         height: 630,
         alt: "Wezwanie dla Michała Kicińskiego",
@@ -55,8 +61,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl" className={`${playfair.variable} ${ebGaramond.variable}`}>
-      <body className="antialiased bg-white text-ink">
+    <html lang="pl" className={`${playfair.variable} ${ebGaramond.variable} ${unifraktur.variable}`}>
+      <body className="antialiased bg-[#09090b] text-ink">
         {children}
       </body>
     </html>
