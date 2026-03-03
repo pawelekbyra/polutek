@@ -244,9 +244,7 @@ export default function Page() {
         <article className="max-w-2xl mx-auto px-4 pt-10 pb-0 flex-grow">
           <div className="prose prose-stone prose-lg max-w-none">
 
-            <p className="text-[#1c1c1c] leading-relaxed text-lg" style={{
-              firstLetter: undefined
-            }}>
+            <p className="text-[#1c1c1c] leading-relaxed text-lg">
               <span className="float-left text-8xl font-black leading-[0.75] mr-3 mt-2 text-[#0f0f0f] font-serif" style={{ fontFamily: '"Georgia", serif' }}>W</span>
               2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich Hermanovicach. Policyjny nalot, aresztowanie Jarosława i Karoliny Kordysów, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
             </p>
