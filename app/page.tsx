@@ -78,7 +78,7 @@ const BrandHeader = () => {
 
       </div>
 
-      <div className="w-[98%] mx-auto border-y-[3px] border-[#3d2b1f] py-1.5 flex items-center justify-between px-4 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-[#5a4a3a]">
+      <div className="w-[98%] mx-auto border-y-[2px] border-[#3d2b1f] py-1.5 flex items-center justify-between px-4 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-[#5a4a3a]">
 
         <div className="flex items-center gap-2">
 
