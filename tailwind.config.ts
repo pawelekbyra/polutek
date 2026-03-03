@@ -52,6 +52,25 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        ink: {
+          DEFAULT: "#09090b",
+          medium: "#3f3f46",
+          light: "#71717a",
+        },
+        wine: "#722f37",
+        amber: "#b45309",
+        sepia: {
+          DEFAULT: "#704214",
+          light: "#b8a880",
+        },
+        parchment: {
+          DEFAULT: "#fdfbf7",
+          warm: "#f4ecd8",
+        },
+      },
+      fontFamily: {
+        display: ["var(--font-playfair)", "serif"],
+        body: ["var(--font-eb-garamond)", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
