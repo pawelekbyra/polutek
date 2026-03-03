@@ -297,27 +297,27 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Hero Section */}
-          <div className="w-full text-center flex flex-col justify-center items-center pb-2 pt-0 px-6">
+ {/* Hero Section */}
+<div className="w-full text-center flex flex-col justify-center items-center pb-2 pt-0 px-6">
 
-            <h2 className="text-ink w-full mb-1">
-              <span className="block text-4xl md:text-[5.5rem] font-display font-black leading-none tracking-tight uppercase">
-                Eliksir
-              </span>
-              <span className="block text-4xl md:text-[5.5rem] font-display font-black leading-none tracking-tight uppercase">
-                Wiedźmina
-              </span>
-            </h2>
+  <img
+    src="/zdjeciehej.png"
+    alt="Wiedźmini z eliksirem"
+    className="h-32 md:h-[180px] object-contain grayscale contrast-200 mix-blend-multiply mb-4"
+  />
 
-            <img
-              src="/zdjeciehej.png"
-              alt="Wiedźmini z eliksirem"
-              className="h-32 md:h-[180px] object-contain grayscale contrast-200 mix-blend-multiply mb-1"
-            />
+  <h2 className="text-ink w-full mb-1">
+    <span className="block text-4xl md:text-[5.5rem] font-display font-black leading-none tracking-tight uppercase">
+      Eliksir
+    </span>
+    <span className="block text-4xl md:text-[5.5rem] font-display font-black leading-none tracking-tight uppercase">
+      Wiedźmina
+    </span>
+  </h2>
 
-            <p className="block text-sm md:text-2xl text-ink-medium italic font-medium uppercase tracking-widest mt-1 whitespace-nowrap font-body">
-              Mroczna tajemnica twórców CD Projekt
-            </p>
+  <p className="block text-sm md:text-2xl text-ink-medium italic font-medium uppercase tracking-widest mt-1 whitespace-nowrap font-body">
+    Mroczna tajemnica twórców CD Projekt
+  </p>
 
             <div className="max-w-3xl mx-auto mt-2">
               <div className="gradient-divider w-32 mx-auto mb-4"></div>
