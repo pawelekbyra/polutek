@@ -71,6 +71,7 @@ const config = {
       fontFamily: {
         display: ["var(--font-playfair)", "serif"],
         body: ["var(--font-eb-garamond)", "serif"],
+        masthead: ["var(--font-unifraktur)", "cursive"],
       },
       borderRadius: {
         lg: "var(--radius)",

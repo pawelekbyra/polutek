@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: 'Eliksir Wiedźmina',
     images: [
       {
-        url: '/gallery/wyrok_kordysa/wezwanie/wezwanie_kicinski.png',
+        url: 'https://www.eliksir-wiedzmina.pl/gallery/wyrok_kordysa/wezwanie/wezwanie_kicinski.png',
         width: 1200,
         height: 630,
         alt: "Wezwanie dla Michała Kicińskiego",
@@ -62,7 +62,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl" className={`${playfair.variable} ${ebGaramond.variable} ${unifraktur.variable}`}>
-      <body className="antialiased bg-[#09090b] text-ink">
+      <body className="antialiased bg-white text-ink">
         {children}
       </body>
     </html>
