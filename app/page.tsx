@@ -248,13 +248,15 @@ export default function Page() {
         <div className="w-full max-w-4xl bg-white flex flex-col items-center pb-20 min-h-screen border-x-2 border-ink overflow-hidden">
 
           {/* BrandHeader */}
-          <div className="w-full flex flex-col items-center pt-0 pb-1">
-            <div className="flex items-center justify-center w-full pb-0">
-              <h1 className="text-5xl md:text-[5.5rem] font-black tracking-tighter text-ink uppercase font-unifraktur leading-none whitespace-nowrap px-4">
+          <div className="w-full flex flex-col items-center pt-2 pb-1">
+            <div className="flex items-center justify-center w-[calc(100%-2rem)] mx-auto gap-4 pt-4 pb-2">
+              <div className="flex-grow h-[3px] bg-ink"></div>
+              <h1 className="text-5xl md:text-[5.5rem] font-black tracking-tighter text-ink uppercase font-unifraktur leading-none whitespace-nowrap px-2">
                 NASZA GAZETKA
               </h1>
+              <div className="flex-grow h-[3px] bg-ink"></div>
             </div>
-            <div className="w-full border-y-2 border-ink py-0.5 flex items-center justify-between px-4 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-ink-medium">
+            <div className="w-[calc(100%-2rem)] mx-auto border-y-2 border-ink py-1 flex items-center justify-between px-4 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-ink-medium">
               <div className="flex items-center gap-2">
                 <span>📰</span>
                 <span className="hidden sm:inline">Niezależne Media</span>
@@ -269,16 +271,15 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Hero Section - Pełny Hero Layout na każdym ekranie */}
-          <div className="w-full h-screen min-h-screen text-center flex flex-col justify-center items-center pb-8 pt-0 px-6 box-border">
+          {/* Hero Section */}
+          <div className="w-full text-center flex flex-col items-center pt-8 pb-8 px-6 box-border">
             <img
               src="/zdjeciehej.png"
               alt="Wiedźmini z eliksirem"
               className="h-32 md:h-[180px] object-contain grayscale contrast-200 mix-blend-multiply mb-3" 
             />
 
-            {/* Zwiększony minimalnie odstęp estetyczny między obrazkiem a tytułem */}
-            <h2 className="text-ink w-full mb-1 -mt-1 md:-mt-3">
+            <h2 className="text-ink w-full mb-1">
               <span className="block text-4xl md:text-[5.5rem] font-display font-black leading-none tracking-tight uppercase">
                 Eliksir
               </span>
@@ -291,7 +292,7 @@ export default function Page() {
               Mroczna tajemnica twórców CD Projekt
             </p>
 
-            <div className="max-w-3xl mx-auto mt-2">
+            <div className="max-w-3xl mx-auto mt-4">
               <div className="gradient-divider w-32 mx-auto mb-4"></div>
               <p className="text-base md:text-xl text-ink-medium leading-snug italic font-body">
                 Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin" finansowali szamańskie podziemie.
@@ -299,7 +300,7 @@ export default function Page() {
             </div>
           </div>
 
-          <article className="max-w-3xl mx-auto px-6 pt-8 pb-0 flex-grow w-full z-10 relative">
+          <article className="max-w-3xl mx-auto px-6 pt-4 pb-0 flex-grow w-full z-10 relative">
             <div className="article-prose">
               <p className="drop-cap leading-relaxed mt-0">
                 W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów v czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. &quot;ceremonii&quot;, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
