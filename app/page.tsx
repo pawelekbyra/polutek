@@ -38,7 +38,6 @@ const BrandHeader = () => {
           NASZA GAZETKA
         </h1>
       </div>
-      {/* Szerokie paski pod nazwą o pełnej rozpiętości kontenera */}
       <div className="w-[98%] mx-auto border-y-[3px] border-[#3d2b1f] py-1.5 flex items-center justify-between px-4 text-[10px] md:text-sm font-bold uppercase tracking-[0.1em] text-[#5a4a3a]">
         <div className="flex items-center gap-2">
           <span>📰</span>
@@ -48,7 +47,6 @@ const BrandHeader = () => {
           NIEDZIELA, 1 MARCA 2026
         </div>
         <div className="flex items-center gap-2">
-          <span className="hidden sm:inline">Dokumentacja Prawdy</span>
           <span>📄</span>
           <span className="hidden md:inline border-l-2 border-[#3d2b1f] pl-2 ml-1">Wydanie Specjalne</span>
         </div>
@@ -192,21 +190,9 @@ export default function Page() {
       />
 
       <main className="min-h-screen bg-[#fcfbf9] text-[#3d2b1f] selection:bg-[#d4c4a8]/50 font-serif flex flex-col items-center">
-        {/* Kontener z paskami po bokach */}
-        <div className="w-full max-w-5xl border-x-[1px] border-[#3d2b1f]/20 bg-[#fcfbf9] min-h-screen flex flex-col shadow-[0_0_50px_rgba(0,0,0,0.02)]">
+        <div className="w-full max-w-5xl border-x border-black bg-[#fcfbf9] min-h-screen flex flex-col shadow-[0_0_50px_rgba(0,0,0,0.02)]">
           
           <BrandHeader />
-
-          {/* Główny obrazek nad tytułem artykułu */}
-          <div className="w-full px-4 pt-4">
-             <div className="max-w-4xl mx-auto overflow-hidden rounded-sm shadow-lg border border-[#d4c4a8]">
-                <img 
-                  src={`${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`}
-                  alt="Dokumentacja Śledcza - Wezwanie Michał Kiciński" 
-                  className="w-full h-[300px] md:h-[500px] object-cover object-top grayscale-[0.3] hover:grayscale-0 transition-all duration-700"
-                />
-             </div>
-          </div>
 
           <header className="pt-8 pb-8 px-4">
             <div className="max-w-4xl mx-auto text-center">
@@ -414,7 +400,7 @@ export default function Page() {
               </p>
 
               <p>
-                Ugoda pozwoliła na zamknięcie jego teczki bez wywoływania świadków, co w praktyce oznaczało, że mechanizmy działania janowskiego ośrodka nigdy nie wybrzmiały echem w publicznej debacie, chroniąc Badowskiego przed krzyżowym ogniem pytań i zeznaniami, które mogłyby pogrążyć także jego cichego wspólnika.
+                Ugoda pozwoliła na zamknięcie jego teczki bez wywoływania świadków, co w praktyce oznaczało, że mechanizamy działania janowskiego ośrodka nigdy nie wybrzmiały echem w publicznej debacie, chroniąc Badowskiego przed krzyżowym ogniem pytań i zeznaniami, które mogłyby pogrążyć także jego cichego wspólnika.
               </p>
 
               <p>
@@ -430,7 +416,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
-                &quot;co najmniej od bliżej nieustalanej daty w 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne&quot;
+                &quot;co najmniej od bliżej nieustalanej daty in 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne&quot;
                 <br/><br/>
                 &quot;udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. ayahuascę zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)&quot;
                 <br/><br/>
