@@ -278,7 +278,7 @@ export default function Page() {
           {/* BrandHeader */}
           <div className="w-full flex flex-col items-center pt-0 pb-1">
             <div className="flex items-center justify-center w-full pb-0">
-              <h1 className="text-5xl md:text-[6.5rem] font-black tracking-tighter text-ink uppercase font-masthead leading-none whitespace-nowrap">
+              <h1 className="text-5xl md:text-[6.5rem] font-sans font-black tracking-tighter text-ink uppercase leading-none whitespace-nowrap">
                 NASZA GAZETKA
               </h1>
             </div>
@@ -300,6 +300,12 @@ export default function Page() {
           {/* Hero Section */}
           <div className="w-full text-center flex flex-col justify-center items-center pb-2 pt-0 px-6">
 
+            <img
+              src="/zdjeciehej.png"
+              alt="Wiedźmini z eliksirem"
+              className="h-32 md:h-[180px] object-contain grayscale contrast-200 mix-blend-multiply mb-1"
+            />
+
             <h2 className="text-ink w-full mb-1">
               <span className="block text-4xl md:text-[5.5rem] font-display font-black leading-none tracking-tight uppercase">
                 Eliksir
@@ -308,12 +314,6 @@ export default function Page() {
                 Wiedźmina
               </span>
             </h2>
-
-            <img
-              src="/zdjeciehej.png"
-              alt="Wiedźmini z eliksirem"
-              className="h-32 md:h-[180px] object-contain grayscale contrast-200 mix-blend-multiply mb-1"
-            />
 
             <p className="block text-sm md:text-2xl text-ink-medium italic font-medium uppercase tracking-widest mt-1 whitespace-nowrap font-body">
               Mroczna tajemnica twórców CD Projekt
