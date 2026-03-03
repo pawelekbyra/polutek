@@ -1,5 +1,12 @@
 import React from 'react';
 
+// ==========================================
+// --- PALETA SIKU (KOLORYSTYKA ŚLEDCZA) ---
+// Jasne siku (tła, zakreślenia): #e8d154
+// Zaschnięte siku (ramki, detale): #8b7312
+// Stare siku (kontrastowy tekst): #66540b
+// ==========================================
+
 // --- DATA ---
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 
@@ -69,7 +76,7 @@ const CaseFile = ({ title, children, icon = '📄' }: { title: string, children:
 );
 
 const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
-  <div className="my-10 pl-6 border-l-[3px] border-amber-700/80 text-left">
+  <div className="my-10 pl-6 border-l-[3px] border-[#8b7312]/80 text-left">
     <p className="font-display text-xl md:text-2xl italic text-ink leading-relaxed mb-3">
       „{quote}"
     </p>
@@ -373,11 +380,11 @@ export default function Page() {
                 <br />
                 Bartosz Badowski (10%)
                 <br />
-                <span className="bg-amber-200/50 text-amber-900 px-1 rounded-sm">Michał Dawid Kiciński (90%)</span>
+                <span className="bg-[#e8d154]/50 text-[#66540b] px-1 rounded-sm">Michał Dawid Kiciński (90%)</span>
               </p>
 
               <p>
-                Drugie imię – Dawid – idealnie wypełnia lukę v zanonimizowanym skrócie &quot;Michal D. K.&quot;. <span className="bg-amber-200/50 text-amber-900 px-1 rounded-sm">Wspólnikiem szamana był twórca &quot;Wiedźmina&quot; – jeden z najbogatszych Polaków.</span>
+                Drugie imię – Dawid – idealnie wypełnia lukę v zanonimizowanym skrócie &quot;Michal D. K.&quot;. <span className="bg-[#e8d154]/50 text-[#66540b] px-1 rounded-sm">Wspólnikiem szamana był twórca &quot;Wiedźmina&quot; – jeden z najbogatszych Polaków.</span>
               </p>
 
               <h2 className="section-heading text-3xl tracking-tight text-ink">Na podsłuchu</h2>
@@ -391,7 +398,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" icon="🔍">
-                &quot;oskarżony [Jarosława Kordysa] omawia z B., że dotarła do niego informacja, że v obiekcie w Janowie <span className="underline decoration-amber-700 decoration-4 underline-offset-4 font-bold">zmarła jakaś kobieta</span>&quot;.
+                &quot;oskarżony [Jarosława Kordysa] omawia z B., że dotarła do niego informacja, że v obiekcie w Janowie <span className="underline decoration-[#8b7312] decoration-4 underline-offset-4 font-bold">zmarła jakaś kobieta</span>&quot;.
               </CaseFile>
 
               <p>
@@ -406,7 +413,7 @@ export default function Page() {
                 Odpowiedź na to pytanie znajduje się v aktach sprawy i nie pozostawia złudzeń co do intencji rozmówców. W uzasadnieniu wyroku Kordysa czytamy:
               </p>
 
-              <div className="my-12 pl-6 border-l-4 border-amber-700 font-display italic text-xl text-ink-medium">
+              <div className="my-12 pl-6 border-l-4 border-[#8b7312] font-display italic text-xl text-ink-medium">
                 &quot;Z ich rozmowy wynika, że nie zajmowali się v zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji.&quot;
               </div>
 
@@ -463,7 +470,7 @@ export default function Page() {
                 Co wydarzyło się v ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się v jednym czeskim terminie prawnym:
               </p>
 
-              <div className="my-12 flex gap-4 p-5 bg-parchment-warm/40 border-l-4 border-amber rounded-r-lg shadow-sm">
+              <div className="my-12 flex gap-4 p-5 bg-parchment-warm/40 border-l-4 border-[#8b7312] rounded-r-lg shadow-sm">
                 <span className="text-3xl mt-1">⚖️</span>
                 <div>
                   <strong className="block font-display text-ink text-lg font-bold mb-1">Dohoda o vině a trestu</strong>
@@ -567,7 +574,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Odpowiedź na pytanie o udział">
-                &quot;nie brałem udziału v takich ceremoniach v latach 2016-2023, a o wcześniejszym okresie <span className="underline decoration-amber-700 decoration-4 underline-offset-4 font-bold">odmawiam odpowiedzi</span>&quot;
+                &quot;nie brałem udziału v takich ceremoniach v latach 2016-2023, a o wcześniejszym okresie <span className="underline decoration-[#8b7312] decoration-4 underline-offset-4 font-bold">odmawiam odpowiedzi</span>&quot;
               </CaseFile>
 
               <p>
@@ -601,7 +608,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Wypowiedź K. Stefanka">
-                &quot;Ostatecznie <span className="bg-amber-200/50 text-amber-900 px-1 rounded-sm">23 października 2023 roku</span> ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać v darowiźnie&quot;
+                &quot;Ostatecznie <span className="bg-[#e8d154]/50 text-[#66540b] px-1 rounded-sm">23 października 2023 roku</span> ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać v darowiźnie&quot;
               </CaseFile>
 
               <p>
@@ -646,7 +653,7 @@ export default function Page() {
                 </li>
 
                 <li className="flex items-start gap-3">
-                  <span className="text-amber-700 mt-3">📅</span>
+                  <span className="text-[#8b7312] mt-3">📅</span>
                   <div className="timeline-item-critical p-4 rounded-sm shadow-sm w-full">
                     <span className="font-bold text-ink">23 października 2023 r.</span> – Zaledwie 12 dni po kłopotliwym przesłuchaniu, gdy formalności własnościowe z Badim są już dopięte, następuje telefon do Stefanka z propozycją oddania majątku wartego miliony za darmo.
                   </div>
@@ -695,7 +702,7 @@ export default function Page() {
               </p>
 
               <p>
-                Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej szamańskiej świątyni – dokładnie v czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za gamingowym gigantem, <span className="bg-amber-200/50 text-amber-900 px-1 rounded-sm">Marcin Iwiński</span>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, v której odbywał się nielegalny proceder.
+                Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej szamańskiej świątyni – dokładnie v czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za gamingowym gigantem, <span className="bg-[#e8d154]/50 text-[#66540b] px-1 rounded-sm">Marcin Iwiński</span>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, v której odbywał się nielegalny proceder.
               </p>
 
               <div className="my-8 flex justify-start">
@@ -707,7 +714,7 @@ export default function Page() {
               </div>
 
               <p>
-                <span className="bg-amber-200/50 text-amber-900 px-1 rounded-sm">Oznacza to, że nie jeden lecz obaj legendarni założyciele CD Projekt, na czeskim pograniczu posiadali nieruchomości, v których odpłatnie oferowano te same nielegalne substancje.</span>
+                <span className="bg-[#e8d154]/50 text-[#66540b] px-1 rounded-sm">Oznacza to, że nie jeden lecz obaj legendarni założyciele CD Projekt, na czeskim pograniczu posiadali nieruchomości, v których odpłatnie oferowano te same nielegalne substancje.</span>
               </p>
 
               <p>
@@ -815,7 +822,7 @@ export default function Page() {
                       <span className="font-mono text-xs font-bold bg-parchment px-3 py-1.5 border border-sepia-light text-ink rounded-sm shadow-sm whitespace-nowrap">
                         4027-0. Ds. 1254.2024
                       </span>
-                      <span className="text-[10px] font-body font-bold text-amber-700 uppercase tracking-tighter">Śledztwo zawieszone</span>
+                      <span className="text-[10px] font-body font-bold text-[#8b7312] uppercase tracking-tighter">Śledztwo zawieszone</span>
                     </div>
                   </div>
                 </div>
@@ -854,7 +861,7 @@ export default function Page() {
                   </div>
                   <div className="border-t border-sepia-light pt-2">
                     <a href="https://msp.gov.cz/web/krajsky-soud-v-ostrave/zakladni-informace/-/clanek/informace-rok-2022" target="_blank" rel="noopener noreferrer"
-                      className="text-[10px] text-ink-light hover:text-amber-700 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-sepia-light">
+                      className="text-[10px] text-ink-light hover:text-[#8b7312] flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-sepia-light">
                       <span>🌐</span> Weryfikuj na msp.gov.cz
                     </a>
                   </div>
@@ -873,7 +880,7 @@ export default function Page() {
                   </div>
                   <div className="border-t border-sepia-light pt-2">
                     <a href="https://msp.gov.cz/documents/22409/2997339/29Si+25-2022+p%C5%99%C3%ADloha+%C4%8D.+1.pdf" target="_blank" rel="noopener noreferrer"
-                      className="text-[10px] text-ink-light hover:text-amber-700 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-sepia-light">
+                      className="text-[10px] text-ink-light hover:text-[#8b7312] flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-sepia-light">
                       <span>🌐</span> Weryfikuj oryginał (29 Si 25/2022)
                     </a>
                   </div>
@@ -893,7 +900,7 @@ export default function Page() {
                   </div>
                   <div className="border-t border-sepia-light pt-2">
                     <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer"
-                      className="text-[10px] text-ink-light hover:text-amber-700 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-sepia-light">
+                      className="text-[10px] text-ink-light hover:text-[#8b7312] flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-sepia-light">
                       <span>🌐</span> Weryfikuj na nahlizenidokn.cuzk.cz
                     </a>
                   </div>
@@ -913,7 +920,7 @@ export default function Page() {
                   </div>
                   <div className="border-t border-sepia-light pt-2">
                     <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer"
-                      className="text-[10px] text-ink-light hover:text-amber-700 flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-sepia-light">
+                      className="text-[10px] text-ink-light hover:text-[#8b7312] flex items-center gap-1 uppercase tracking-wider underline decoration-double decoration-sepia-light">
                       <span>🌐</span> Weryfikuj na nahlizenidokn.cuzk.cz
                     </a>
                   </div>
@@ -947,7 +954,7 @@ export default function Page() {
               </div>
 
               <div className="mt-8 text-center pb-12">
-                <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-amber-700 to-transparent mx-auto mb-6"></div>
+                <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-[#8b7312] to-transparent mx-auto mb-6"></div>
 
                 <div className="mb-10 bg-parchment-warm/50 p-6 border border-sepia-light rounded-sm text-center">
                   <h3 className="text-sm font-bold text-ink uppercase tracking-widest mb-4 flex items-center justify-center gap-2 font-display">
@@ -971,7 +978,7 @@ export default function Page() {
                   href="https://www.eliksir-wiedzmina.pl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-sm font-bold text-amber-800 hover:bg-parchment-warm transition-colors underline decoration-double decoration-sepia"
+                  className="font-mono text-sm font-bold text-[#66540b] hover:bg-parchment-warm transition-colors underline decoration-double decoration-sepia"
                 >
                   www.eliksir-wiedzmina.pl
                 </a>
