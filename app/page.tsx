@@ -98,7 +98,7 @@ const BrandHeader = () => {
 
           <span>📄</span>
 
-          <span className="hidden md:inline border-l-2 border-[#3d2b1f] pl-2 ml-1">NR 01 | Wydanie specjalne</span>
+          <span className="hidden md:inline border-l-2 border-[#3d2b1f] pl-2 ml-1">Wydanie specjalne</span>
 
         </div>
 
