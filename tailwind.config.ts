@@ -19,7 +19,7 @@ const config = {
     },
     extend: {
       backgroundImage: {
-        newspaper: "url('/tlogazeta.jpg')",
+        newspaper: "url('/newspaper_seamless.jpg')",
       },
       colors: {
         border: "hsl(var(--border))",
