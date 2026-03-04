@@ -1,9 +1,10 @@
+"use client";
+
 import React, { useEffect, useRef } from 'react';
 
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
 const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
-// Poprawiony hash dokumentacji (zastąpiony strukturą CID v1)
 const DOCUMENTATION_IPFS_URL = `${PINATA_GATEWAY}/bafybeicnxlo366f6fznm5p6j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j`; 
 const JANOV_PDF_URL = DOCUMENTATION_IPFS_URL;
 const NYDEK_PDF_URL = DOCUMENTATION_IPFS_URL;
@@ -127,6 +128,7 @@ export default function Page() {
 
   return (
     <>
+      {/* Skrypt HLS ładowany przez standardowy tag html dla prostoty w tym przykładzie */}
       <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" />
       <script
         type="application/ld+json"
@@ -263,7 +265,7 @@ export default function Page() {
               <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Na podsłuchu</h2>
 
               <p className="mt-4">
-                Przełom w sprawie organizatorów ayahuaskowych ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysym.
+                Przełom w sprawie organizatorów ayahuaskowych ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysem.
               </p>
 
               <p className="mt-4">
@@ -303,7 +305,7 @@ export default function Page() {
               </CaseFile>
 
               <p className="mt-4">
-                Dla policjantów, którzy słyszeli to w czasie rzeczywistym, przekaz był jasny: w obiekcie mogło dojść do tragedii, a sprawcy martwili się jedynie o ciągłość dostaw.
+                Dla policjantów, którzy słyszeli to v czasie rzeczywistym, przekaz był jasny: w obiekcie mogło dojść do tragedii, a sprawcy martwili się jedynie o ciągłość dostaw.
               </p>
 
               <p className="mt-4">
