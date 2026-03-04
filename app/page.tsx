@@ -32,7 +32,7 @@ const CaseFile = ({ title, children, type = 'evidence' }: { title: string, child
 };
 
 const LegalNote = ({ term, children }: { term: string, children: React.ReactNode }) => (
-  <div className="my-10 flex gap-4 p-5 bg-white border-l-[6px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-left relative z-10">
+  <div className="my-10 flex gap-4 p-5 bg-[#e8d154]/20 border-l-[6px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-left relative z-10">
     <div className="text-2xl mt-1">⚖️</div>
     <div>
       <strong className="block font-display font-black uppercase text-black text-lg mb-2">{term}</strong>
@@ -60,7 +60,7 @@ const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string,
       </div>
       <div className="py-2">
          <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1 flex items-center gap-2">{name}</div>
-         <div className="font-mono text-base font-bold text-black uppercase">LV {lv}</div>
+         <div className="font-mono text-base font-bold text-black uppercase">{lv}</div>
          <div className="text-[10px] text-black/60 font-mono mt-1 uppercase">
             Działka: {plot} <span className="mx-1">|</span> Obręb: {code}
          </div>
@@ -475,7 +475,7 @@ export default function Page() {
                   <span className="text-xl">📅</span>
                   <div>
                     <strong className="font-black text-base">21 września 2023 r.</strong><br/>
-                    Michał Kiciński odbiera wezwanie na przesłuchanie w sprawie Janowa.
+                    Michał Kiciński odbiera wezwanie na przesłuchanie in sprawie Janowa.
                   </div>
                 </li>
 
@@ -771,9 +771,9 @@ export default function Page() {
 
                </div>
 
-               <div className="mt-16 text-center pb-8">
-                  <a href="https://www.eliksir-wiedzmina.pl" target="_blank" rel="noopener noreferrer" className="inline-block font-display text-2xl font-black text-black hover:bg-[#e8d154] transition-colors underline decoration-4 underline-offset-8 mt-4 px-2">
-                    WWW.ELIKSIR-WIEDZMINA.PL
+               <div className="mt-4 text-center pb-8">
+                  <a href="https://www.nasza-gazetka.pl" target="_blank" rel="noopener noreferrer" className="inline-block font-display text-2xl font-black text-black hover:bg-[#e8d154] transition-colors underline decoration-4 underline-offset-8 mt-4 px-2">
+                    WWW.NASZA-GAZETKA.PL
                   </a>
                </div>
             </footer>
