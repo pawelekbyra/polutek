@@ -11,7 +11,7 @@ const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://mu
 const ARREST_VIDEO_URL = `${PINATA_GATEWAY}/bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy/videoplayback.m3u8`;
 const STEFANEK_VIDEO_URL = `${PINATA_GATEWAY}/bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u/videoplayback.m3u8`;
 
-export const CaseFile = ({ title, children, type = 'evidence' }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email' }) => {
+const CaseFile = ({ title, children, type = 'evidence' }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email' }) => {
   const getIcon = () => {
     if (type === 'email') return '✉️';
     if (type === 'transcript') return '🔍';
@@ -31,7 +31,7 @@ export const CaseFile = ({ title, children, type = 'evidence' }: { title: string
   );
 };
 
-export const LegalNote = ({ term, children }: { term: string, children: React.ReactNode }) => (
+const LegalNote = ({ term, children }: { term: string, children: React.ReactNode }) => (
   <div className="my-10 flex gap-4 p-5 bg-white border-l-[6px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-left">
     <div className="text-2xl mt-1">⚖️</div>
     <div>
@@ -41,7 +41,7 @@ export const LegalNote = ({ term, children }: { term: string, children: React.Re
   </div>
 );
 
-export const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
+const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
   <div className="my-10 pl-6 border-l-[6px] border-black text-left">
     <p className="font-display text-xl md:text-2xl italic text-black leading-relaxed mb-3">
       „{quote}”
@@ -52,7 +52,7 @@ export const PullQuote = ({ quote, author, source }: { quote: string, author: st
   </div>
 );
 
-export const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string, plot: string, lv: string }) => (
+const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string, plot: string, lv: string }) => (
   <div className="relative border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-left hover:bg-[#e8d154]/20 transition-colors">
       <div className="absolute top-1 right-1 text-black">🔍</div>
       <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed">
@@ -68,7 +68,7 @@ export const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: 
   </div>
 );
 
-export const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
+const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
   <div className="relative border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group">
      <div className="absolute top-1 right-1 text-black">🔍</div>
      <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed">
