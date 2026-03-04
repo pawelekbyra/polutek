@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
 const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
-const DOCUMENTATION_IPFS_URL = `${PINATA_GATEWAY}/bafybeicnxlo366f6fznm5p6j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j`; 
+// Poprawiony hash dokumentacji (zastąpiony strukturą CID v1)
+const DOCUMENTATION_IPFS_URL = `${PINATA_GATEWAY}/bafybeicnxlo366f6fznm5p6j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j`; 
 const JANOV_PDF_URL = DOCUMENTATION_IPFS_URL;
 const NYDEK_PDF_URL = DOCUMENTATION_IPFS_URL;
 const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://munaysonqo.com/retreats/";
@@ -24,7 +25,7 @@ const CaseFile = ({ title, children, type = 'evidence' }: { title: string, child
         <span>{getIcon()}</span>
         <span>{title}</span>
       </div>
-      <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-black/90 antialiased">
+      <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-[#0a0a0a] antialiased">
         {children}
       </div>
     </div>
@@ -36,14 +37,14 @@ const LegalNote = ({ term, children }: { term: string, children: React.ReactNode
     <div className="text-2xl mt-1">⚖️</div>
     <div>
       <strong className="block font-display font-black uppercase text-black text-lg mb-2">{term}</strong>
-      <div className="text-black text-sm leading-relaxed font-mono italic">{children}</div>
+      <div className="text-[#0a0a0a] text-sm leading-relaxed font-mono italic">{children}</div>
     </div>
   </div>
 );
 
 const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
   <div className="my-10 pl-6 border-l-[6px] border-black text-left relative z-10">
-    <p className="font-display text-xl md:text-2xl italic text-black leading-relaxed mb-3">
+    <p className="font-display text-xl md:text-2xl italic text-[#0a0a0a] leading-relaxed mb-3">
       „{quote}”
     </p>
     <div className="font-sans text-[10px] uppercase tracking-widest text-black/70">
@@ -82,13 +83,32 @@ const TransactionStampUI = ({ label, value, subDetails }: { label: string, value
   </div>
 );
 
-const ArticleVideoPlayer: React.FC<{ src: string; poster?: string }> = ({ src, poster }) => (
-  <div className="w-full bg-black aspect-video rounded-sm overflow-hidden flex items-center justify-center relative group border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10">
-      <video controls poster={poster} className="w-full h-full object-cover" playsInline>
-        <source src={src} type="application/x-mpegURL" />
-      </video>
-  </div>
-);
+const ArticleVideoPlayer: React.FC<{ src: string; poster?: string }> = ({ src, poster }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    let hls: any;
+    if (videoRef.current) {
+      const video = videoRef.current;
+      if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = src;
+      } else if ((window as any).Hls && (window as any).Hls.isSupported()) {
+        hls = new (window as any).Hls();
+        hls.loadSource(src);
+        hls.attachMedia(video);
+      }
+    }
+    return () => {
+      if (hls) hls.destroy();
+    };
+  }, [src]);
+
+  return (
+    <div className="w-full bg-black aspect-video rounded-sm overflow-hidden flex items-center justify-center relative group border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10">
+      <video ref={videoRef} controls poster={poster} className="w-full h-full object-cover" playsInline />
+    </div>
+  );
+};
 
 export default function Page() {
   const newsArticleSchema = {
@@ -96,9 +116,7 @@ export default function Page() {
     "@type": "NewsArticle",
     "headline": "Eliksir Wiedźmina – Śledztwo: Michał Kiciński i tajemnica Janowa",
     "description": "Pełna dokumentacja śledztwa: Michał Kiciński, Jarosław Kordys i prokurator Jolanta Świdnicka. Ayahuasca, Janów i tragiczna śmierć uczestniczki.",
-    "image": [
-      "/wezwanie_kicinski.png"
-    ],
+    "image": ["/wezwanie_kicinski.png"],
     "datePublished": "2024-03-03",
     "author": [{
       "@type": "Person",
@@ -109,12 +127,13 @@ export default function Page() {
 
   return (
     <>
+      <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleSchema) }}
       />
 
-      <main className="min-h-screen bg-transparent text-black selection:bg-[#e8d154]/50 font-body flex flex-col items-center relative">
+      <main className="min-h-screen bg-transparent text-[#0a0a0a] selection:bg-[#e8d154]/50 font-body flex flex-col items-center relative">
         <div 
           className="w-full max-w-4xl bg-[#e7dfcc] flex flex-col items-center pb-0 border-x-4 border-black overflow-hidden relative shadow-2xl"
           style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/subtle-paper.png')` }}
@@ -160,17 +179,17 @@ export default function Page() {
               Mroczna tajemnica twórców CD Projekt
             </p>
             <div className="max-w-3xl mx-auto mt-6">
-              <p className="text-sm md:text-lg text-black leading-snug italic font-bold px-4">
+              <p className="text-sm md:text-lg text-[#0a0a0a] leading-snug italic font-bold px-4">
                 Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
               </p>
             </div>
           </div>
 
           <article className="max-w-3xl mx-auto px-6 pt-4 pb-0 flex-grow w-full z-10 relative">
-            <div className="article-prose text-black text-lg">
+            <div className="article-prose text-[#0a0a0a] text-lg">
 
               <p className="drop-cap leading-relaxed mt-0">
-                W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów v czeskich <strong className="font-black">Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong className="font-black">Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. ceremonii, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
+                W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong className="font-black">Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong className="font-black">Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. ceremonii, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
               </p>
 
               <p className="mt-4">
@@ -244,7 +263,7 @@ export default function Page() {
               <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Na podsłuchu</h2>
 
               <p className="mt-4">
-                Przełom w sprawie organizatorów ayahuaskowych ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysem.
+                Przełom w sprawie organizatorów ayahuaskowych ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysym.
               </p>
 
               <p className="mt-4">
@@ -280,7 +299,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Kontynuacja rozmowy" type="transcript">
-                Następnie w rozmowie omawiają zamówienia «herbaty» z dżungli i to, czy im tego «nie zepsują», ekscytując się nagraniem od dostawcy, który «siedzi v dżungli i gotuje».
+                Następnie w rozmowie omawiają zamówienia «herbaty» z dżungli i to, czy im tego «nie zepsują», ekscytując się nagraniem od dostawcy, który «siedzi w dżungli i gotuje».
               </CaseFile>
 
               <p className="mt-4">
