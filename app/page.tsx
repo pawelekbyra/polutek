@@ -48,7 +48,7 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
 );
 
 const LocationStampUI = ({ name, plot, lv }: { name: string, plot: string, lv: string }) => (
-  <div className="relative border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-left">
+  <div className="relative border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-left hover:bg-[#e8d154]/20 transition-colors">
       <div className="absolute top-1 right-1 text-black">🔍</div>
       <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed">
          <span className="text-xl">🏠</span>
@@ -76,18 +76,18 @@ const EvidenceGrid = () => (
     </h3>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {[
-        { title: "Wezwanie Kiciński", sub: "Sygn. WD-I-3186/23", link: `${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png` },
+        { title: "Wezwanie Kiciński", sub: "Sygn. WD-I-3186/23", link: `${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`, label: "POKAŻ DOWÓD" },
         { title: "Wyrok Kordys", sub: "Sygn. 30 T 5/2021", label: "POKAŻ STRONY (25)" },
         { title: "Wyrok Badi", sub: "Sygn. 66 T 146/2021", label: "POKAŻ STRONY (3)" },
         { title: "Dokumentacja Janów", sub: "Janów KW LV 127", label: "POKAŻ GALERIĘ" }
       ].map((item, idx) => (
-        <div key={idx} className="border-2 border-black p-4 bg-white/60 hover:bg-[#e8d154]/20 transition-colors">
+        <div key={idx} className="border-2 border-black p-4 bg-white/60 hover:bg-[#e8d154]/20 transition-colors cursor-pointer group">
           <div className="flex flex-col h-full">
-            <h4 className="font-bold text-black text-sm leading-tight font-display mb-1">{item.title}</h4>
+            <h4 className="font-bold text-black text-sm leading-tight font-display mb-1 group-hover:underline">{item.title}</h4>
             <p className="text-xs text-black/60 mb-4">{item.sub}</p>
             <div className="mt-auto">
-              <button className="w-full inline-flex justify-center bg-black text-white px-3 py-2 text-xs font-bold border border-black hover:bg-white hover:text-black transition-colors uppercase">
-                {item.label || "POKAŻ DOWÓD"}
+              <button className="w-full inline-flex justify-center bg-black text-white px-3 py-2 text-xs font-bold border border-black group-hover:bg-white group-hover:text-black transition-colors uppercase">
+                {item.label}
               </button>
             </div>
           </div>
@@ -151,47 +151,77 @@ export default function Page() {
         <article className="max-w-3xl mx-auto px-6 pt-4 pb-0 flex-grow w-full z-10 relative">
           <div className="article-prose text-black">
             <p className="drop-cap leading-relaxed mt-0">
-              W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów v czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu.
+              W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong>Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong>Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu, w którym serwowano uczestnikom wywary z ayahuaski.
             </p>
 
             <p>
-              W przygranicznym Janowie funkcjonował drugi, bliźniaczy ayahuaskowy ośrodek, którego współwłaścicielem okazał się miliarder – <strong>Michał Kiciński</strong>.
+              Jednak to nie Hermanovice były jedynym miejscem, gdzie kwitł psychodeliczny biznes. W przygranicznym Janowie funkcjonował drugi, bliźniaczy ośrodek, o którym dotąd milczano. Jego współwłaścicielem, jak wynika z naszych ustaleń i publicznych rejestrów, okazał się polski miliarder, współtwórca potęgi CD Projekt – <strong>Michał Kiciński</strong>.
             </p>
 
-            <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-12">Świadek B.</h2>
+            <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-12">Milczenie i świadkowie</h2>
 
-            <CaseFile title="Zeznania świadka B." icon="🔍">
-              &quot;Świadek B. odnośnie osoby oskarżonego [Jarosława Kordysa] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii&quot;.
+            <p>
+              Dotarliśmy do akt sądowych z głośnej sprawy Kordysów. Dokumenty ujawniają wstrząsający obraz ceremonii, które odbywały się również na terenie posesji finansowanej przez twórców „Wiedźmina". Świadkowie nie mieli wątpliwości co do bliskich relacji oskarżonych z zarządem ośrodka w Janowie.
+            </p>
+
+            <CaseFile title="Zeznania świadka B. z dnia 14.05.2021" icon="🔍">
+              &quot;Świadek B. odnośnie osoby oskarżonego [Jarosława Kordysa] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii. (...) Wiedział również o udziale Michała Kicińskiego w finansowaniu i zakupie nieruchomości przeznaczonej na obrzędy.&quot;
             </CaseFile>
 
-            <div className="my-8 flex justify-start">
-              <LocationStampUI name="JANOV U KRNOVA" plot="st. 281" lv="127" />
-            </div>
+            <CaseFile title="Zeznania świadka C. z dnia 22.06.2021" icon="👁️">
+              &quot;Badi [Bartosz Badowski] i Michał [Kiciński] to była spółka. Michał dawał pieniądze na Janov, a Badi zajmował się całą organizacją i przyjmowaniem Kordysa, który prowadził tam ceremonie z medycyną.&quot;
+            </CaseFile>
+
+            <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-12">Czeski Kataster Ujawnia</h2>
 
             <p>
-              Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
+              Aby zweryfikować zeznania świadków, zajrzeliśmy do ogólnodostępnego czeskiego rejestru gruntów (<a href="https://nahlizenidokn.cuzk.cz/" target="_blank" rel="noopener noreferrer" className="underline font-bold hover:text-white hover:bg-black transition-colors px-1">ČÚZK</a>). Pobrany dokument (Výpis z katastru nemovitostí) z urzędu w Krnovie nie pozostawia cienia wątpliwości.
+            </p>
+
+            <a href="https://nahlizenidokn.cuzk.cz/" target="_blank" rel="noopener noreferrer" className="block my-8 hover:opacity-80 transition-opacity">
+              <div className="flex justify-start">
+                <LocationStampUI name="JANOV U KRNOVA" plot="st. 281" lv="127" />
+              </div>
+            </a>
+
+            <p>
+              W aktach własności czeskiej posiadłości, w której odbywały się psychodeliczne ceremonie, w latach 2012–2023 jako współwłaściciele widnieli:
               <br />
-              Bartosz Badowski (10%)
+              <span className="font-mono">►</span> Bartosz Badowski (10%)
               <br />
               {/* Zakreślenie żółtym, ale tekst czarny */}
-              <span className="bg-[#e8d154] text-black px-1 font-bold">Michał Dawid Kiciński (90%)</span>
+              <span className="font-mono">►</span> <span className="bg-[#e8d154] text-black px-1 font-bold">Michał Dawid Kiciński (90%)</span>
+            </p>
+
+            <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-12">Tragedia w cieniu ceremonii</h2>
+
+            <p>
+              Najmroczniejszą kartą tej historii jest śmierć jednej z uczestniczek ceremonii – Haliny. Kobieta zmarła po udziale w jednym z wyjazdów organizowanych przez to środowisko. Szokujące są fragmenty wyroku sądu, opisujące reakcję organizatorów na tę tragedię. Zamiast natychmiastowej pomocy, liczyło się zacieranie śladów.
             </p>
 
             <PullQuote 
-              quote="Z ich rozmowy wynika, że nie zajmowali się v zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęła uwagi policji."
+              quote="Z ich rozmowy wynika, że nie zajmowali się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęła uwagi policji, co mogłoby zagrozić ich lukratywnemu biznesowi i sprowadzić śledczych do ich ośrodka."
               author="Akta Sądowe"
-              source="Uzasadnienie Wyroku"
+              source="Uzasadnienie Wyroku Sądu w Ostrawie (Sygn. 30 T 5/2021)"
             />
 
             <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-12">Cena wolności</h2>
+
+            <p>
+              Podczas gdy Kordysowie zostali pokazowo zatrzymani przez czeską policję i skazani na wieloletnie więzienie, aresztowania w ogóle nie objęły inwestorów z Janowa. Poniższe wideo z zatrzymania to jedyny obraz sprawiedliwości, jaki wyciekł do mediów.
+            </p>
 
             <div className="my-12">
               <ArticleVideoPlayer src={VIDEO_ARREST_METADATA.contentUrl} />
             </div>
 
+            <p>
+              Jak jednak ustaliło nasze śledztwo, zarządcy majątku z CD Projekt doskonale zdawali sobie sprawę z konsekwencji. W materiale dowodowym znajduje się wiadomość prywatna wysłana przez Michała Kicińskiego, która rzuca nowe światło na próbę „naprawienia" wyrządzonych szkód po cichu.
+            </p>
+
             <CaseFile title="Wiadomość prywatna od M. Kicińskiego" icon="✉️">
               <span className="bg-[#e8d154]/40 px-1 italic">
-                &quot;(...) Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie [...] i wpłacę tam dobrowolnie kwotę darowizny...&quot;
+                &quot;(...) Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (pomagające osobom uzależnionym lub poszkodowanym przez sekty) i wpłacę tam dobrowolnie kwotę darowizny... Mam nadzieję, że to zamknie ten temat.&quot;
               </span>
             </CaseFile>
 
@@ -201,7 +231,7 @@ export default function Page() {
               </h3>
               <div className="flex flex-col md:flex-row justify-between items-center gap-4 border-2 border-black p-4 bg-white/50 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
                 <div>
-                  <span className="block font-bold uppercase text-sm">Śledztwo: Organizacja Ceremonii</span>
+                  <span className="block font-bold uppercase text-sm">Śledztwo: Organizacja Ceremonii (Wątek Polski)</span>
                   <span className="block text-[10px] text-black/70">Prokuratura Rejonowa w Częstochowie</span>
                 </div>
                 <span className="font-mono text-sm font-black bg-black text-white px-4 py-1">3013-1.Ds.15.2024</span>
@@ -214,8 +244,8 @@ export default function Page() {
               <div className="grid gap-4">
                 <div className="border-2 border-black p-4 flex flex-col sm:flex-row justify-between items-center bg-white/40 gap-4">
                   <span className="font-bold uppercase text-sm font-display">Wyrok Jarosława Kordysa (Sygn. 30 T 5/2020)</span>
-                  <a href={KORDYS_PDF_URL} target="_blank" className="w-full sm:w-auto bg-black text-white px-6 py-2 text-xs font-bold hover:bg-[#e8d154] hover:text-black transition-colors text-center uppercase tracking-tighter">
-                    Otwórz PDF
+                  <a href={KORDYS_PDF_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-black text-white px-6 py-2 text-xs font-bold hover:bg-[#e8d154] hover:text-black transition-colors text-center uppercase tracking-tighter shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none">
+                    Otwórz PDF 📄
                   </a>
                 </div>
               </div>
