@@ -12,7 +12,7 @@
   html, body {
     @apply text-ink antialiased;
     overflow-x: hidden;
-    background-image: url('/background.png');
+    background-image: url('/gazeta_bg.png');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;

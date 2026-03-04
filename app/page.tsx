@@ -226,7 +226,7 @@ export default function Page() {
           {/* Hero Section - Poprawiony layout na pierwszy ekran */}
           <div className="w-full text-center flex flex-col items-center pt-2 pb-4 px-6 box-border">
             <img
-              src="/zdjeciehej.png"
+              src="/polecam-removebg-preview.png"
               alt="Wiedźmini z eliksirem"
               className="h-24 md:h-[150px] object-contain grayscale contrast-200 mix-blend-multiply mb-2" 
             />
