@@ -10,9 +10,9 @@
   }
 
   html, body {
-    @apply text-ink antialiased;
+    @apply text-ink antialiased bg-stone-100;
     overflow-x: hidden;
-    background-image: url('/gazeta_bg.png');
+    background-image: url('/gazeta_tlo.png');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -66,7 +66,7 @@
   }
 
   .bg-paper-texture {
-    background-image: url('/zdjeciehej.png');
+    background-image: url('/seamless_paper.png');
     background-repeat: repeat;
     background-size: 600px;
     background-color: white;
