@@ -19,12 +19,12 @@ const CaseFile = ({ title, children, type = 'evidence' }: { title: string, child
   };
   
   return (
-    <div className="my-8 border-2 border-black bg-white/60 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-sm overflow-hidden break-inside-avoid text-left relative z-10">
+    <div className="my-8 border-2 border-black bg-white/40 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-sm overflow-hidden break-inside-avoid text-left relative z-10">
       <div className="bg-black px-4 py-2 flex items-center gap-2 text-xs font-mono text-white uppercase tracking-wider">
         <span>{getIcon()}</span>
         <span>{title}</span>
       </div>
-      <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-black">
+      <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-black italic">
         {children}
       </div>
     </div>
@@ -35,18 +35,18 @@ const LegalNote = ({ term, children }: { term: string, children: React.ReactNode
   <div className="my-10 flex gap-4 p-5 bg-white border-l-[6px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-left relative z-10">
     <div className="text-2xl mt-1">⚖️</div>
     <div>
-      <strong className="block font-mono font-black uppercase text-black text-lg mb-2">{term}</strong>
-      <div className="text-black text-sm leading-relaxed font-mono">{children}</div>
+      <strong className="block font-display font-black uppercase text-black text-lg mb-2">{term}</strong>
+      <div className="text-black text-sm leading-relaxed font-mono italic">{children}</div>
     </div>
   </div>
 );
 
 const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
   <div className="my-10 pl-6 border-l-[6px] border-black text-left relative z-10">
-    <p className="font-mono text-lg md:text-xl text-black leading-relaxed mb-3 italic">
+    <p className="font-display text-xl md:text-2xl italic text-black leading-relaxed mb-3">
       „{quote}”
     </p>
-    <div className="font-mono text-[10px] uppercase tracking-widest text-black/70">
+    <div className="font-sans text-[10px] uppercase tracking-widest text-black/70">
       — <span className="font-bold text-black">{author}</span>, {source}
     </div>
   </div>
@@ -59,7 +59,7 @@ const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string,
          <span className="text-xl">🏠</span>
       </div>
       <div className="py-2">
-         <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1 flex items-center gap-2 font-mono">{name}</div>
+         <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1 flex items-center gap-2">{name}</div>
          <div className="font-mono text-base font-bold text-black uppercase">LV {lv}</div>
          <div className="text-[10px] text-black/60 font-mono mt-1 uppercase">
             Działka: {plot} <span className="mx-1">|</span> Obręb: {code}
@@ -75,7 +75,7 @@ const TransactionStampUI = ({ label, value, subDetails }: { label: string, value
         <span className="text-xl">📜</span>
      </div>
      <div className="py-2">
-        <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1 font-mono">{label}</div>
+        <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1">{label}</div>
         <div className="font-mono text-base font-bold text-black uppercase">{value}</div>
         {subDetails && <div className="text-[10px] text-black/60 font-mono mt-1 uppercase">{subDetails}</div>}
      </div>
@@ -114,7 +114,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleSchema) }}
       />
 
-      <main className="min-h-screen bg-transparent text-black selection:bg-[#e8d154]/50 flex flex-col items-center relative">
+      <main className="min-h-screen bg-transparent text-black selection:bg-[#e8d154]/50 font-body flex flex-col items-center relative">
         <div 
           className="w-full max-w-4xl bg-[#e7dfcc] flex flex-col items-center pb-0 border-x-4 border-black overflow-hidden relative shadow-2xl"
           style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/subtle-paper.png')` }}
@@ -135,9 +135,9 @@ export default function Page() {
               </h1>
               <div className="flex-grow h-[3px] bg-black"></div>
             </div>
-            <div className="w-[calc(100%-2rem)] mx-auto border-y-4 border-black py-2 flex items-center justify-between px-4 text-[10px] md:text-xs font-black uppercase tracking-[0.15em] font-mono">
+            <div className="w-[calc(100%-2rem)] mx-auto border-y-4 border-black py-2 flex items-center justify-between px-4 text-[10px] md:text-xs font-black uppercase tracking-[0.15em]">
               <span>📰 Niezależne Media</span>
-              <div className="text-center">NIEDZIELA, 1 MARCA 2026</div>
+              <div className="text-center font-display">NIEDZIELA, 1 MARCA 2026</div>
               <span>Serwis Śledczy Nr 01 📄</span>
             </div>
           </div>
@@ -149,27 +149,27 @@ export default function Page() {
               className="h-24 md:h-[160px] object-contain grayscale contrast-[1.6] mix-blend-multiply mb-4" 
             />
             <h2 className="text-black w-full mb-1">
-              <span className="block text-5xl md:text-[6rem] font-serif font-black leading-[0.85] tracking-tighter uppercase">
+              <span className="block text-5xl md:text-[6rem] font-display font-black leading-[0.85] tracking-tighter uppercase">
                 Eliksir
               </span>
-              <span className="block text-5xl md:text-[6rem] font-serif font-black leading-[0.85] tracking-tighter uppercase">
+              <span className="block text-5xl md:text-[6rem] font-display font-black leading-[0.85] tracking-tighter uppercase">
                 Wiedźmina
               </span>
             </h2>
-            <p className="block text-xs md:text-xl text-black font-serif font-black italic uppercase tracking-[0.25em] mt-4 border-y-2 border-black py-1">
+            <p className="block text-xs md:text-xl text-black font-black italic uppercase tracking-[0.25em] mt-4 border-y-2 border-black py-1">
               Mroczna tajemnica twórców CD Projekt
             </p>
             <div className="max-w-3xl mx-auto mt-6">
-              <p className="text-sm md:text-lg text-black leading-snug italic font-serif font-bold px-4">
+              <p className="text-sm md:text-lg text-black leading-snug italic font-bold px-4">
                 Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
               </p>
             </div>
           </div>
 
-          <article className="max-w-3xl mx-auto px-6 pt-4 pb-0 flex-grow w-full z-10 relative font-serif">
-            <div className="article-prose text-black text-lg leading-relaxed">
+          <article className="max-w-3xl mx-auto px-6 pt-4 pb-0 flex-grow w-full z-10 relative">
+            <div className="article-prose text-black text-lg">
 
-              <p className="drop-cap mt-0">
+              <p className="drop-cap leading-relaxed mt-0">
                 W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong className="font-black">Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong className="font-black">Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. ceremonii, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
               </p>
 
@@ -185,7 +185,7 @@ export default function Page() {
                 W przygranicznym Janowie funkcjonował drugi, bliźniaczy ayahuaskowy ośrodek, którego współwłaścicielem okazał się miliarder – <strong className="font-black">Michał Kiciński</strong>.
               </p>
 
-              <h2 className="section-heading text-4xl font-serif font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Świadek B.</h2>
+              <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Świadek B.</h2>
 
               <p className="mt-4">
                 W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa pojawia się postać świadka Bartosza B. Zgodnie z aktami:
@@ -218,7 +218,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Ustalenia Sądu">
-                ...w odniesieniu do nieruchomości będących współwłasnością <strong className="font-black font-serif text-lg">Bartosza B.</strong> i <strong className="font-black font-serif text-lg">Michała D. K.</strong>
+                ...w odniesieniu do nieruchomości będących współwłasnością <strong className="font-black">Bartosza B.</strong> i <strong className="font-black">Michała D. K.</strong>
               </CaseFile>
 
               <p className="mt-4">
@@ -237,11 +237,11 @@ export default function Page() {
                 <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">Michał Dawid Kiciński (90%)</span>
               </p>
 
-              <p className="mt-4 text-lg">
+              <p className="mt-4">
                 Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie Michal D. K. <span className="bg-[#e8d154]/80 px-1 font-black text-black shadow-sm box-decoration-clone">Wspólnikiem szamana był twórca Wiedźmina – jeden z najbogatszych Polaków.</span>
               </p>
 
-              <h2 className="section-heading text-4xl font-serif font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Na podsłuchu</h2>
+              <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Na podsłuchu</h2>
 
               <p className="mt-4">
                 Przełom w sprawie organizatorów ayahuaskowych ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysem.
@@ -267,7 +267,7 @@ export default function Page() {
                 Odpowiedź na to pytanie znajduje się w aktach sprawy i nie pozostawia złudzeń co do intencji rozmówców. W uzasadnieniu wyroku Kordysa czytamy:
               </p>
 
-              <div className="my-12 pl-6 border-l-[6px] border-black font-mono italic text-xl text-black leading-relaxed relative z-10">
+              <div className="my-12 pl-6 border-l-[6px] border-black font-display italic text-2xl text-black leading-relaxed relative z-10">
                 „Z ich rozmowy wynika, że nie zajmowali się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji.”
               </div>
 
@@ -299,7 +299,7 @@ export default function Page() {
                 Podczas policyjnej interwencji zidentyfikowano tam 15 obywateli Polski, którzy mieli brać udział w ceremonii. Wśród nich, stali bywalcy i bliscy znajomi Badowskiego – <strong className="font-black">Krzysztof Stefanek</strong> i <strong className="font-black">Magdalena Drzewińska</strong>, których obecność w momencie wkroczenia służb ma znaczenie w kontekście późniejszej ich roli w tej historii.
               </p>
 
-              <h2 className="section-heading text-4xl font-serif font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Cena wolności</h2>
+              <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Cena wolności</h2>
 
               <p className="mt-4">
                 Kiedy 26 sierpnia 2020 roku czeska policja weszła do posiadłości w Janowie, należącej do Bartosza Badowskiego i miliardera Michała Kicińskiego, Jarosław Kordys w Hermanovicach wciąż czuł się bezpiecznie. Nie wiedział jeszcze, że zegar zaczął odliczać czas do jego własnej katastrofy. Zaledwie 7 tygodni po cichym nalocie na Badowskiego policja zapukała do Kordysów.
@@ -312,7 +312,7 @@ export default function Page() {
               <div className="my-8">
                 <ArticleVideoPlayer src={ARREST_VIDEO_URL} />
                 <div className="mt-4 text-sm text-black font-mono border-l-[4px] border-black pl-4 bg-[#e8d154]/20 py-2 relative z-10">
-                  <span className="font-black uppercase text-xs mr-2">Materiał Operacyjny (Protokół):</span>
+                  <span className="font-black uppercase text-xs mr-2">Materiał Operacyjny:</span>
                   Nagranie z policyjnego nalotu na ośrodek w Hermanovicach (15.10.2020)
                 </div>
               </div>
@@ -353,7 +353,7 @@ export default function Page() {
                 Podczas, gdy Jarosław Kordys został skazany na 8,5 roku pozbawienia wolności Bartosz Badowski, którego sprawa dotyczyła tego samego procederu, tych samych substancji, regionu i czasu trwania działalności, dzięki ugodzie i współpracy z wymiarem sprawiedliwości, zakończył sprawę wyrokiem w zawieszeniu.
               </p>
 
-              <h2 className="section-heading text-4xl font-serif font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Cisza po burzy</h2>
+              <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Cisza po burzy</h2>
 
               <p className="mt-4">
                 Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janowie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku Badiego w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
@@ -363,7 +363,7 @@ export default function Page() {
                 Będąc tak blisko Badowskiego, doskonale znali mroczną tajemnicę śmierci Ilony. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się o ciągłość dostaw, dowodzi, że w pełni akceptowali reguły zmowy milczenia.
               </p>
 
-              <h2 className="section-heading text-4xl font-serif font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Kiciński</h2>
+              <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Kiciński</h2>
 
               <p className="mt-4">
                 W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika. Michał Kiciński to nie jest postać, która o ayahuasce jedynie słyszała – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla Focusa, Newsweeka) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu medycyna, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera nową rzeczywistość.
@@ -375,7 +375,7 @@ export default function Page() {
                 source="Newsweek, 30 maja 2016 r."
               />
 
-              <h2 className="section-heading text-4xl font-serif font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Błąd z Badim</h2>
+              <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Błąd z Badim</h2>
 
               <p className="mt-4">
                 Michał Kiciński wiedział o Ilonie. Jego konfrontacja z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć pobytu w Janowie.
@@ -390,7 +390,7 @@ export default function Page() {
                     />
                   </div>
                 <p className="text-xs text-black mt-4 font-mono uppercase tracking-wider font-bold">
-                  Skan wezwania (Dokumentacja WD-I-3186/23)
+                  Skan wezwania
                 </p>
               </div>
 
@@ -413,7 +413,7 @@ export default function Page() {
               </CaseFile>
 
               <p className="mt-4">
-                Gdy in toku czynności padło kluczowe pytanie o jego własny udział w ceremoniach ayahuaski w Janowie, odpowiedź była lakoniczna:
+                Gdy w toku czynności padło kluczowe pytanie o jego własny udział w ceremoniach ayahuaski w Janowie, odpowiedź była lakoniczna:
               </p>
 
               <CaseFile title="Odpowiedź na pytanie o udział">
@@ -432,15 +432,15 @@ export default function Page() {
                 Fakt, że Kiciński w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w Ameryce Południowej, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalności w Janowie.
               </p>
 
-              <p className="mt-4 font-mono font-bold uppercase tracking-widest text-sm text-center my-8 relative z-10">
-                Co na to Bartosz Badowski? (Fragmenty Korespondencji)
+              <p className="mt-4 font-bold uppercase tracking-widest text-sm text-center my-8 relative z-10">
+                Co na to Bartosz Badowski?
               </p>
 
               <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
                 Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwicje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.
               </CaseFile>
 
-              <h2 className="section-heading text-4xl font-serif font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Anonimowy filantrop</h2>
+              <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Anonimowy filantrop</h2>
 
               <p className="mt-4">
                 W listopadzie 2025 roku na kanale YouTube <strong className="font-black">Osada Natury Zew</strong> pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, <strong className="font-black">Krzysztof Stefanek</strong>, snuje opowieść o powstaniu Osady. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
@@ -451,13 +451,17 @@ export default function Page() {
               </p>
 
               <CaseFile title="Wypowiedź K. Stefanka">
-                Ostatecznie <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">23 października 2023 roku</span> ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie
+                Ostatecznie <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">23 października 2023 roku</span> ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chciał to miejsce przekazać w darowiźnie
               </CaseFile>
+
+              <p className="mt-4">
+                Stefanek przedstawia to jako efekt researchu darczyńcy, który rzekomo urzekła wizja działalności non-profit.
+              </p>
 
               <div className="my-8">
                 <ArticleVideoPlayer src={STEFANEK_VIDEO_URL} />
                 <div className="mt-4 text-sm text-black font-mono border-l-[4px] border-black pl-4 bg-[#e8d154]/20 py-2 relative z-10">
-                  <span className="font-black uppercase text-xs mr-2">Materiał Wideo (Relacja):</span>
+                  <span className="font-black uppercase text-xs mr-2">Materiał Wideo:</span>
                   Krzysztof Stefanek opowiada o cudownym otrzymaniu darowizny (Materiał z 2025 r.)
                 </div>
               </div>
@@ -528,7 +532,7 @@ export default function Page() {
                 Na tragedii świadomie wzbogacili się ludzie, dla których tuszowanie prawdy stało się fundamentem ich nowej, intratnej rzeczywistości. Pod szyldem organizacji non-profit <strong className="font-black">Stowarzyszenie Natury Zew</strong> żyją teraz z organizacji turnusów wypoczynkowych z cennikiem darowizn zamiast paragonów, okłamując swoich gości i publicznie każdego, kto natrafi na ich sielankowe filmiki. A przecież zadośćuczynienie wszechświatowi miało trafić na hospicjum, a nie na organizację krzak.
               </p>
 
-              <h2 className="section-heading text-4xl font-serif font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Nýdek</h2>
+              <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Nýdek</h2>
 
               <p className="mt-4">
                 Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janowa, w miejscowości <strong className="font-black">Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.
@@ -538,7 +542,7 @@ export default function Page() {
                 Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong className="font-black">Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu Wayback Machine zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
               </p>
 
-              <p className="mt-4 font-mono font-bold text-center my-8 uppercase">
+              <p className="mt-4 font-bold text-center my-8 uppercase">
                 Skoro wiemy już, czym ten dom był, kluczowym pytaniem staje się: do kogo należał?
               </p>
 
@@ -592,7 +596,7 @@ export default function Page() {
                 Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z darowizną Kicińskiego w Janowie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
               </p>
 
-              <h2 className="section-heading text-4xl font-serif font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Wiktor B.</h2>
+              <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Wiktor B.</h2>
 
               <p className="mt-4">
                 3 marca 2026 Onet ujawnia opinii publicznej wstrząsające kulisy działalności ośrodka w czeskim Janowie, gdzie podczas szamańskich ceremonii z użyciem ayahuaski miało dojść do tragicznych zdarzeń. Dziennikarskie śledztwo koncentruje się na śmierci 54-letniej uczestniczki, Ilony L.-H.
@@ -620,44 +624,44 @@ export default function Page() {
 
               <div className="mt-12 mb-4 flex justify-end relative z-10">
                  <div className="text-right border-r-4 border-black pr-4">
-                    <span className="block font-serif font-black text-black uppercase text-xl tracking-widest">Detektyw Polutek</span>
+                    <span className="block font-black text-black uppercase text-xl font-display tracking-widest">Detektyw Polutek</span>
                     <span className="block text-xs text-black/60 font-mono mt-1 italic">detektyw.polutek@protonmail.com</span>
                  </div>
               </div>
 
               <div className="my-16 border-y-4 border-black py-8 bg-[#e8d154]/10 relative z-10">
-                 <h3 className="font-serif font-black text-2xl uppercase tracking-widest text-black mb-8 flex items-center gap-2 px-4">
+                 <h3 className="font-display font-black text-2xl uppercase tracking-widest text-black mb-8 flex items-center gap-2 px-4">
                     <span>🛡️</span> Status Prawny (2025/2026)
                  </h3>
 
-                 <div className="grid gap-4 px-4 font-mono">
+                 <div className="grid gap-4 px-4">
                     <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                        <div>
-                          <span className="block font-bold uppercase">Śledztwo w sprawie organizacji ceremonii</span>
-                          <span className="block text-xs text-black/60 mt-1">Prokuratura Rejonowa w Częstochowie</span>
+                          <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie organizacji ceremonii</span>
+                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Rejonowa w Częstochowie</span>
                        </div>
-                       <span className="font-sm font-black bg-black text-white px-4 py-2 border border-black uppercase tracking-widest">
+                       <span className="font-mono text-sm font-black bg-black text-white px-4 py-2 border border-black uppercase tracking-widest">
                           3013-1.Ds.15.2024
                        </span>
                     </div>
 
                     <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                        <div>
-                          <span className="block font-bold uppercase">Śledztwo w sprawie śmierci Ilony L.</span>
-                          <span className="block text-xs text-black/60 mt-1">Prokuratura Rejonowa w Częstochowie</span>
+                          <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie śmierci Ilony L.</span>
+                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Rejonowa w Częstochowie</span>
                        </div>
-                       <span className="font-sm font-black bg-[#e8d154] text-black border-2 border-black px-4 py-2 uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                       <span className="font-mono text-sm font-black bg-[#e8d154] text-black border-2 border-black px-4 py-2 uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                           3013-1.Ds.4.2026
                        </span>
                     </div>
 
                     <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                        <div>
-                          <span className="block font-bold uppercase">Śledztwo w sprawie śmierci Wiktora B.</span>
-                          <span className="block text-xs text-black/60 mt-1">Prokuratura Rejonowa w Pułtusku</span>
+                          <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie śmierci Wiktora B.</span>
+                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Rejonowa w Pułtusku</span>
                        </div>
                        <div className="flex flex-col items-end gap-2">
-                          <span className="font-sm font-black bg-black/5 text-black px-4 py-2 border-2 border-black uppercase tracking-widest">
+                          <span className="font-mono text-sm font-black bg-black/5 text-black px-4 py-2 border-2 border-black uppercase tracking-widest">
                              4027-0. Ds. 1254.2024
                           </span>
                           <span className="text-[10px] font-black text-red-800 uppercase tracking-widest bg-red-100 px-2 py-1 border border-red-800">Zawieszone</span>
@@ -675,24 +679,24 @@ export default function Page() {
             <footer className="mt-12 pt-12 font-mono relative z-10 mb-0">
 
                <div className="mb-10 text-center">
-                 <h3 className="text-3xl font-serif font-black text-black uppercase tracking-tighter mb-4">
+                 <h3 className="text-3xl font-black text-black uppercase tracking-tighter font-display mb-4">
                    Dokumenty Źródłowe
                  </h3>
-                 <p className="text-sm text-black/80 italic max-w-xl mx-auto font-mono">
+                 <p className="text-sm text-black/80 italic max-w-xl mx-auto">
                    Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Poniżej pełna lista sygnatur oraz odnośniki umożliwiające samodzielną weryfikację.
                  </p>
                </div>
 
-               <div className="grid gap-6 text-sm text-black font-mono">
+               <div className="grid gap-6 text-sm text-black">
 
                  <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3">
                       <div>
-                        <h4 className="font-bold text-black text-base uppercase tracking-widest">Wyrok Jarosława Kordysa</h4>
-                        <p className="text-xs text-black/60 mt-1 font-black">Sygn. 30 T 5/2020</p>
+                        <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Wyrok Jarosława Kordysa</h4>
+                        <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygn. 30 T 5/2020</p>
                       </div>
                       <a href={KORDYS_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                        📄 Pobierz PDF (Sąd Ostrava)
+                        📄 Pobierz PDF
                       </a>
                     </div>
                     <div className="border-t-2 border-black/20 pt-3">
@@ -705,11 +709,11 @@ export default function Page() {
                  <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3">
                       <div>
-                        <h4 className="font-bold text-black text-base uppercase tracking-widest">Wyrok Bartosza Badowskiego</h4>
-                        <p className="text-xs text-black/60 mt-1 font-black">Sygn. 66 T 146/2021</p>
+                        <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Wyrok Bartosza Badowskiego</h4>
+                        <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygn. 66 T 146/2021</p>
                       </div>
                       <a href={BADI_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                        📄 Pobierz PDF (Protokół)
+                        📄 Pobierz PDF
                       </a>
                     </div>
                     <div className="border-t-2 border-black/20 pt-3">
@@ -722,11 +726,11 @@ export default function Page() {
                  <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3">
                       <div>
-                        <h4 className="font-bold text-black text-base uppercase tracking-widest">Transakcja: Darowizna (Janów)</h4>
-                        <p className="text-xs text-black/60 mt-1 font-black">Katastr: V-5821/2023 | LV 127</p>
+                        <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Darowizna (Janów)</h4>
+                        <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygnatura: V-5821/2023 | Koszt: 300 CZK</p>
                       </div>
                       <a href={JANOV_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                        📥 Pobierz Wyciąg KW
+                        📥 Pobierz PDF
                       </a>
                     </div>
                     <div className="border-t-2 border-black/20 pt-3">
@@ -739,11 +743,11 @@ export default function Page() {
                  <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3">
                       <div>
-                        <h4 className="font-bold text-black text-base uppercase tracking-widest">Transakcja: Sprzedaż (Nýdek)</h4>
-                        <p className="text-xs text-black/60 mt-1 font-black">Katastr: V-2937/2021 | LV 832</p>
+                        <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Sprzedaż (Nýdek)</h4>
+                        <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygnatura: V-2937/2021 | Koszt: 300 CZK</p>
                       </div>
                       <a href={NYDEK_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                        📥 Pobierz Wyciąg KW
+                        📥 Pobierz PDF
                       </a>
                     </div>
                     <div className="border-t-2 border-black/20 pt-3">
@@ -756,11 +760,11 @@ export default function Page() {
                  <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3">
                       <div>
-                        <h4 className="font-bold text-black text-base uppercase tracking-widest">Archiwum: Nýdek & Munay</h4>
-                        <p className="text-xs text-black/60 mt-1 font-black">Zasoby Wayback Machine</p>
+                        <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Archiwum: Nýdek & Munay</h4>
+                        <p className="font-mono text-xs text-black/60 mt-1 font-black">Wayback Machine</p>
                       </div>
                       <a href={MUNAY_WAYBACK_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-[#e8d154] text-black px-4 py-2 text-xs font-black border-2 border-black hover:bg-white transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                        🕰️ Otwórz Archiwum WWW
+                        🕰️ Otwórz Archiwum
                       </a>
                     </div>
                  </div>
@@ -768,7 +772,7 @@ export default function Page() {
                </div>
 
                <div className="mt-16 text-center pb-8">
-                  <a href="https://www.eliksir-wiedzmina.pl" target="_blank" rel="noopener noreferrer" className="inline-block font-serif text-2xl font-black text-black hover:bg-[#e8d154] transition-colors underline decoration-4 underline-offset-8 mt-4 px-2">
+                  <a href="https://www.eliksir-wiedzmina.pl" target="_blank" rel="noopener noreferrer" className="inline-block font-display text-2xl font-black text-black hover:bg-[#e8d154] transition-colors underline decoration-4 underline-offset-8 mt-4 px-2">
                     WWW.ELIKSIR-WIEDZMINA.PL
                   </a>
                </div>
