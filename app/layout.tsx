@@ -62,7 +62,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl" className={`${playfair.variable} ${ebGaramond.variable} ${unifraktur.variable}`}>
-      <body className="antialiased bg-white text-ink">
+      <body className="antialiased text-ink">
         {children}
       </body>
     </html>

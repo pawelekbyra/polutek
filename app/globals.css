@@ -12,6 +12,10 @@
   html, body {
     @apply text-ink antialiased;
     overflow-x: hidden;
+    background-image: url('/background.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
   }
 }
 

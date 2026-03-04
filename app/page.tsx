@@ -196,7 +196,7 @@ export default function Page() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleSchema) }} />
 
-      <main className="min-h-screen bg-white text-ink selection:bg-[#e8d154]/40 font-body flex flex-col items-center">
+      <main className="min-h-screen text-ink selection:bg-[#e8d154]/40 font-body flex flex-col items-center">
         <div className="w-full max-w-4xl bg-white flex flex-col items-center pb-20 min-h-screen border-x-2 border-ink overflow-hidden">
 
           {/* BrandHeader - Zacieśniony padding */}
