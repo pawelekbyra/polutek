@@ -449,8 +449,8 @@ export default function Page() {
                 Fakt, że Kiciński w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w Ameryce Południowej, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalności w Janowie.
               </p>
 
-              <p className="mt-4 font-bold uppercase tracking-widest text-sm text-center my-8 relative z-10 font-sans">
-                Co na to Bartosz Badowski?
+              <p>
+                Oto jak współpracę z Michałem Kicińskim opisuje sam Bartosz Badowski:”
               </p>
 
               <CaseFile title="Fragment korespondencji B. Badowskiego" type="email" highlight>
