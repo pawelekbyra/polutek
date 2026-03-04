@@ -260,10 +260,14 @@ export default function Page() {
                 <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">Michał Dawid Kiciński (90%)</span>
               </p>
 
-              <p className="mt-4">
-                Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie Michal D. K. <span className="bg-[#e8d154]/80 px-1 font-black text-black shadow-sm box-decoration-clone">Wspólnikiem szamana był twórca Wiedźmina – jeden z najbogatszych Polaków.</span>
-              </p>
-
+            <p className="mt-4">
+  Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie Michal D. K.
+</p>
+<p className="mt-2">
+  <span className="bg-red-600 px-1 font-black text-white shadow-sm box-decoration-clone">
+    Wspólnikiem szamana był twórca Wiedźmina – jeden z najbogatszych Polaków.
+  </span>
+</p>
               <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Na podsłuchu</h2>
 
               <p className="mt-4">
