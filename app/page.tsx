@@ -90,82 +90,6 @@ const ArticleVideoPlayer: React.FC<{ src: string; poster?: string }> = ({ src, p
   </div>
 );
 
-const EvidenceGrid = () => (
-  <div className="my-16 relative z-10">
-    <h3 className="font-display font-bold text-lg uppercase tracking-widest text-black mb-8 flex items-center gap-2 border-b-4 border-black pb-2">
-      <span>⚖️</span> Galeria Dowodów
-    </h3>
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-      <div className="border-2 border-black p-4 bg-white/60 hover:bg-[#e8d154]/20 transition-colors group flex flex-col h-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-        <div className="aspect-[3/4] overflow-hidden border-2 border-black mb-4">
-          <img src="/wezwanie_kicinski.png" alt="Wezwanie Kiciński" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
-        </div>
-        <h4 className="font-bold text-black text-sm leading-tight font-display mb-1">Wezwanie dla M. Kicińskiego</h4>
-        <p className="text-xs text-black/60 mb-4 font-mono">Sygn. WD-I-3186/23</p>
-        <div className="mt-auto">
-          <button className="w-full inline-flex justify-center bg-black text-white px-3 py-2 text-xs font-bold border border-black group-hover:bg-white group-hover:text-black transition-colors uppercase">
-            POKAŻ DOWÓD
-          </button>
-        </div>
-      </div>
-
-      <div className="border-2 border-black p-4 bg-white/60 hover:bg-[#e8d154]/20 transition-colors group flex flex-col h-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-        <div className="aspect-[3/4] overflow-hidden border-2 border-black mb-4 bg-black/5">
-          <img src="/gallery/wyrok_kordysa/30T_5_2021-1_page-0001.jpg" alt="Wyrok Kordys" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
-        </div>
-        <h4 className="font-bold text-black text-sm leading-tight font-display mb-1">Uzasadnienie Wyroku: J. Kordys</h4>
-        <p className="text-xs text-black/60 mb-4 font-mono">Sygn. 30 T 5/2021</p>
-        <div className="mt-auto">
-          <a href={KORDYS_PDF_URL} target="_blank" rel="noopener noreferrer" className="w-full inline-flex justify-center items-center gap-2 bg-black text-white px-3 py-2 text-xs font-bold border border-black group-hover:bg-white group-hover:text-black transition-colors uppercase">
-            📥 Pobierz PDF
-          </a>
-        </div>
-      </div>
-
-      <div className="border-2 border-black p-4 bg-white/60 hover:bg-[#e8d154]/20 transition-colors group flex flex-col h-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-        <div className="aspect-[3/4] overflow-hidden border-2 border-black mb-4 bg-black/5">
-          <img src="/gallery/wyrok_badi/wyrok_page-0001.jpg" alt="Wyrok Badi" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
-        </div>
-        <h4 className="font-bold text-black text-sm leading-tight font-display mb-1">Wyrok Skazujący: Bartosz B.</h4>
-        <p className="text-xs text-black/60 mb-4 font-mono">Sygn. 66 T 146/2021</p>
-        <div className="mt-auto">
-          <a href={BADI_PDF_URL} target="_blank" rel="noopener noreferrer" className="w-full inline-flex justify-center items-center gap-2 bg-black text-white px-3 py-2 text-xs font-bold border border-black group-hover:bg-white group-hover:text-black transition-colors uppercase">
-            📥 Pobierz PDF
-          </a>
-        </div>
-      </div>
-
-      <div className="border-2 border-black p-4 bg-white/60 hover:bg-[#e8d154]/20 transition-colors group flex flex-col h-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-        <div className="aspect-[3/4] overflow-hidden border-2 border-black mb-4 bg-black/5">
-          <img src="/gallery/janov/janov1.jpg" alt="Dokumentacja Janów" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
-        </div>
-        <h4 className="font-bold text-black text-sm leading-tight font-display mb-1">Dokumentacja: Janów</h4>
-        <p className="text-xs text-black/60 mb-4 font-mono">KW LV 127</p>
-        <div className="mt-auto">
-          <a href={JANOV_PDF_URL} target="_blank" rel="noopener noreferrer" className="w-full inline-flex justify-center items-center gap-2 bg-black text-white px-3 py-2 text-xs font-bold border border-black group-hover:bg-white group-hover:text-black transition-colors uppercase">
-            📥 Pobierz PDF
-          </a>
-        </div>
-      </div>
-
-      <div className="border-2 border-black p-4 bg-white/60 hover:bg-[#e8d154]/20 transition-colors group flex flex-col h-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-        <div className="aspect-[3/4] overflow-hidden border-2 border-black mb-4 bg-black/5">
-          <img src="https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/bafybeidabdztfvfa7ycie5q47xfby7jiqtuwt6oddccuujpvjxqzd4ofpa/nydek1.jpg" alt="Posiadłość Nýdek" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
-        </div>
-        <h4 className="font-bold text-black text-sm leading-tight font-display mb-1">Posiadłość w Nýdku</h4>
-        <p className="text-xs text-black/60 mb-4 font-mono">KW LV 832 (M. Iwiński)</p>
-        <div className="mt-auto">
-          <a href={NYDEK_PDF_URL} target="_blank" rel="noopener noreferrer" className="w-full inline-flex justify-center items-center gap-2 bg-black text-white px-3 py-2 text-xs font-bold border border-black group-hover:bg-white group-hover:text-black transition-colors uppercase">
-            📥 Pobierz PDF
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-);
-
 export default function Page() {
   const newsArticleSchema = {
     "@context": "https://schema.org",
@@ -514,7 +438,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
-                Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwicje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.
+                Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.
               </CaseFile>
 
               <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Anonimowy filantrop</h2>
@@ -681,7 +605,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Według ustaleń Onetu, w czerwcu 2018 roku na farmie w Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, nikt nie wezwał pomocy medycznej. Co więcej, uczestnikom odebrano wcześniej telefony, co uniemożliwiło im samodzielne zaalarmowanie służb ratunkowych.
+                Według ustaleń Onetu, w czerwcu 2018 roku na farmie w Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo her krytycznego stanu, nikt nie wezwał pomocy medycznej. Co więcej, uczestnikom odebrano wcześniej telefony, co uniemożliwiło im samodzielne zaalarmowanie służb ratunkowych.
               </p>
 
               <p className="mt-4">
@@ -751,8 +675,6 @@ export default function Page() {
                   Postępowania toczą się w wymienionych jednostkach Prokuratury. Nadzór nad sprawami w Częstochowie objął Zastępca Prokuratora Okręgowego, a kluczowe czynności nadzoruje prokurator Jolanta Świdnicka.
                  </div>
               </div>
-
-              <EvidenceGrid />
 
             </div>
 
@@ -852,20 +774,6 @@ export default function Page() {
                </div>
 
                <div className="mt-16 text-center pb-12">
-                  <div className="mb-10 bg-black text-white p-8 border-4 border-black shadow-[8px_8px_0px_0px_#e8d154]">
-                    <h3 className="text-xl font-black uppercase tracking-widest mb-4 flex items-center justify-center gap-3 font-display">
-                      <span>🛡️</span> Mirror – Kopia Zapasowa
-                    </h3>
-                    <p className="text-sm mb-6 leading-relaxed font-body max-w-lg mx-auto opacity-90">
-                      W celu zapewnienia niezniszczalności dowodów, pełna dokumentacja śledztwa została zarchiwizowana w sieciach zdecentralizowanych. Materiał jest odporny na próby cenzury i usuwania.
-                    </p>
-                    <div className="flex flex-col gap-4 font-mono text-xs uppercase tracking-widest items-center">
-                      <a href={DOCUMENTATION_IPFS_URL} target="_blank" className="hover:text-[#e8d154] underline decoration-2 underline-offset-4 w-full sm:w-auto text-center border border-white/20 py-2 px-4">IPFS: Baza Dowodowa</a>
-                      <a href="https://arweave.net/eliksir-wiedzmina-dokumentacja" target="_blank" className="hover:text-[#e8d154] underline decoration-2 underline-offset-4 w-full sm:w-auto text-center border border-white/20 py-2 px-4">Arweave: Trwała Archiwizacja</a>
-                      <a href="https://github.com/detektyw-polutek/eliksir-mirror" target="_blank" className="hover:text-[#e8d154] underline decoration-2 underline-offset-4 w-full sm:w-auto text-center border border-white/20 py-2 px-4">GitHub: Source Mirror</a>
-                    </div>
-                  </div>
-
                   <a href="https://www.eliksir-wiedzmina.pl" target="_blank" rel="noopener noreferrer" className="inline-block font-display text-2xl font-black text-black hover:bg-[#e8d154] transition-colors underline decoration-4 underline-offset-8 mt-4 px-2">
                     WWW.ELIKSIR-WIEDZMINA.PL
                   </a>
