@@ -309,13 +309,13 @@ export default function Page() {
                 15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
               </p>
 
-              <div className="mt-8 text-sm text-black font-mono border-l-[4px] border-black pl-4 mb-4 bg-[#e8d154]/20 py-2 relative z-10">
-                <span className="font-black uppercase text-xs mr-2">Materiał Operacyjny:</span>
-                Nagranie z policyjnego nalotu na ośrodek w Hermanovicach (15.10.2020)
-              </div>
-
               <div className="my-8">
                 <ArticleVideoPlayer src={ARREST_VIDEO_URL} />
+                {/* Podpis przeniesiony pod film */}
+                <div className="mt-2 text-sm text-black font-mono border-l-[4px] border-black pl-4 bg-[#e8d154]/20 py-2 relative z-10">
+                  <span className="font-black uppercase text-xs mr-2">Materiał Operacyjny:</span>
+                  Nagranie z policyjnego nalotu na ośrodek w Hermanovicach (15.10.2020)
+                </div>
               </div>
 
               <p className="mt-4">
@@ -459,13 +459,13 @@ export default function Page() {
                 Stefanek przedstawia to jako efekt researchu darczyńcy, który rzekomo urzekła wizja działalności non-profit.
               </p>
 
-              <div className="mt-8 text-sm text-black font-mono border-l-[4px] border-black pl-4 mb-4 bg-[#e8d154]/20 py-2 relative z-10">
-                <span className="font-black uppercase text-xs mr-2">Materiał Wideo:</span>
-                Krzysztof Stefanek opowiada o cudownym otrzymaniu darowizny (Materiał z 2025 r.)
-              </div>
-
               <div className="my-8">
                 <ArticleVideoPlayer src={STEFANEK_VIDEO_URL} />
+                {/* Podpis przeniesiony pod film */}
+                <div className="mt-2 text-sm text-black font-mono border-l-[4px] border-black pl-4 bg-[#e8d154]/20 py-2 relative z-10">
+                  <span className="font-black uppercase text-xs mr-2">Materiał Wideo:</span>
+                  Krzysztof Stefanek opowiada o cudownym otrzymaniu darowizny (Materiał z 2025 r.)
+                </div>
               </div>
 
               <p className="mt-4 mb-8">
@@ -605,7 +605,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Według ustaleń Onetu, w czerwcu 2018 roku na farmie w Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo her krytycznego stanu, nikt nie wezwał pomocy medycznej. Co więcej, uczestnikom odebrano wcześniej telefony, co uniemożliwiło im samodzielne zaalarmowanie służb ratunkowych.
+                Według ustaleń Onetu, w czerwcu 2018 roku na farmie w Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, nikt nie wezwał pomocy medycznej. Co więcej, uczestnikom odebrano wcześniej telefony, co uniemożliwiło im samodzielne zaalarmowanie służb ratunkowych.
               </p>
 
               <p className="mt-4">
