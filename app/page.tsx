@@ -3,7 +3,7 @@ import React from 'react';
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
 const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
-const DOCUMENTATION_IPFS_URL = `${PINATA_GATEWAY}/bafybeicnxlo366f6fznm5p6j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j`; 
+const DOCUMENTATION_IPFS_URL = `${PINATA_GATEWAY}/bafybeicnxlo366f6fznm5p6j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j`; 
 const JANOV_PDF_URL = DOCUMENTATION_IPFS_URL;
 const NYDEK_PDF_URL = DOCUMENTATION_IPFS_URL;
 const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://munaysonqo.com/retreats/";
@@ -146,7 +146,7 @@ export default function Page() {
             <img
               src="/zdjeciehej.png"
               alt="Wiedźmini z eliksirem"
-              className="h-24 md:h-[160px] object-contain grayscale contrast-[1.6] mix-blend-multiply mb-4" 
+              className="h-24 md:h-[160px] object-contain grayscale contrast-[1.6] mix-blend-multiply mb-4 bg-transparent" 
             />
             <h2 className="text-black w-full mb-1">
               <span className="block text-5xl md:text-[6rem] font-display font-black leading-[0.85] tracking-tighter uppercase">
@@ -623,60 +623,60 @@ export default function Page() {
               </p>
 
               <div className="mt-12 mb-4 flex justify-end relative z-10">
-                 <div className="text-right border-r-4 border-black pr-4">
+                  <div className="text-right border-r-4 border-black pr-4">
                     <span className="block font-black text-black uppercase text-xl font-display tracking-widest">Detektyw Polutek</span>
                     <span className="block text-xs text-black/60 font-mono mt-1 italic">detektyw.polutek@protonmail.com</span>
-                 </div>
+                  </div>
               </div>
 
-              <div className="my-16 border-y-4 border-black py-8 bg-[#e8d154]/10 relative z-10">
-                 <h3 className="font-display font-black text-2xl uppercase tracking-widest text-black mb-8 flex items-center gap-2 px-4">
+              <div className="mt-16 mb-0 border-y-4 border-black py-8 bg-[#e8d154]/10 relative z-10">
+                  <h3 className="font-display font-black text-2xl uppercase tracking-widest text-black mb-8 flex items-center gap-2 px-4">
                     <span>🛡️</span> Status Prawny (2025/2026)
-                 </h3>
+                  </h3>
 
-                 <div className="grid gap-4 px-4">
+                  <div className="grid gap-4 px-4">
                     <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                        <div>
-                          <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie organizacji ceremonii</span>
-                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Rejonowa w Częstochowie</span>
+                         <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie organizacji ceremonii</span>
+                         <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Rejonowa w Częstochowie</span>
                        </div>
                        <span className="font-mono text-sm font-black bg-black text-white px-4 py-2 border border-black uppercase tracking-widest">
-                          3013-1.Ds.15.2024
+                         3013-1.Ds.15.2024
                        </span>
                     </div>
 
                     <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                        <div>
-                          <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie śmierci Ilony L.</span>
-                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Rejonowa w Częstochowie</span>
+                         <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie śmierci Ilony L.</span>
+                         <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Rejonowa w Częstochowie</span>
                        </div>
                        <span className="font-mono text-sm font-black bg-[#e8d154] text-black border-2 border-black px-4 py-2 uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                          3013-1.Ds.4.2026
+                         3013-1.Ds.4.2026
                        </span>
                     </div>
 
                     <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                        <div>
-                          <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie śmierci Wiktora B.</span>
-                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Rejonowa w Pułtusku</span>
+                         <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie śmierci Wiktora B.</span>
+                         <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Rejonowa w Pułtusku</span>
                        </div>
                        <div className="flex flex-col items-end gap-2">
-                          <span className="font-mono text-sm font-black bg-black/5 text-black px-4 py-2 border-2 border-black uppercase tracking-widest">
-                             4027-0. Ds. 1254.2024
-                          </span>
-                          <span className="text-[10px] font-black text-red-800 uppercase tracking-widest bg-red-100 px-2 py-1 border border-red-800">Zawieszone</span>
+                         <span className="font-mono text-sm font-black bg-black/5 text-black px-4 py-2 border-2 border-black uppercase tracking-widest">
+                            4027-0. Ds. 1254.2024
+                         </span>
+                         <span className="text-[10px] font-black text-red-800 uppercase tracking-widest bg-red-100 px-2 py-1 border border-red-800">Zawieszone</span>
                        </div>
                     </div>
-                 </div>
+                  </div>
 
-                 <div className="mt-8 px-4 text-xs text-black/70 font-mono text-center italic">
-                  Postępowania toczą się w wymienionych jednostkach Prokuratury. Nadzór nad sprawami w Częstochowie objął Zastępca Prokuratora Okręgowego, a kluczowe czynności nadzoruje prokurator Jolanta Świdnicka.
-                 </div>
+                  <div className="mt-8 px-4 text-xs text-black/70 font-mono text-center italic">
+                   Postępowania toczą się w wymienionych jednostkach Prokuratury. Nadzór nad sprawami w Częstochowie objął Zastępca Prokuratora Okręgowego, a kluczowe czynności nadzoruje prokurator Jolanta Świdnicka.
+                  </div>
               </div>
 
             </div>
 
-            <footer className="mt-12 pt-12 font-mono relative z-10 mb-0">
+            <footer className="mt-8 pt-0 font-mono relative z-10 mb-0">
 
                <div className="mb-10 text-center">
                  <h3 className="text-3xl font-black text-black uppercase tracking-tighter font-display mb-4">
