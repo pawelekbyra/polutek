@@ -21,12 +21,12 @@ const CaseFile = ({ title, children, type = 'evidence', highlight = false }: { t
   };
   
   return (
-    <div className="my-8 border-2 border-black bg-white/40 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-sm overflow-hidden break-inside-avoid text-left relative z-10">
+    <div className={`my-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-sm overflow-hidden break-inside-avoid text-left relative z-10 ${highlight ? 'bg-[#e8d154]' : 'bg-white/40'}`}>
       <div className="bg-black px-4 py-2 flex items-center gap-2 text-xs font-mono text-white uppercase tracking-wider">
         <span>{getIcon()}</span>
         <span>{title}</span>
       </div>
-      <div className={`p-6 font-mono text-sm md:text-base leading-relaxed text-[#000000] antialiased ${highlight ? 'bg-[#e8d154]/40' : ''}`}>
+      <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-[#000000] antialiased">
         {children}
       </div>
     </div>
@@ -285,10 +285,6 @@ export default function Page() {
               <CaseFile title="Pytanie Kordysa" type="transcript">
                 W jakim zagrożeniu jest nasza praca?
               </CaseFile>
-
-              <p className="mt-4">
-                Odpowiedź na to pytanie znajduje się w aktach sprawy i nie pozostawia złudzeń co do intencji rozmówców. W uzasadnieniu wyroku Kordysa czytamy:
-              </p>
 
               <div className="my-12 pl-6 border-l-[6px] border-black font-serif italic text-2xl text-[#000000] leading-relaxed relative z-10">
                 „Z ich rozmowy wynika, że nie zajmowali się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji.”
