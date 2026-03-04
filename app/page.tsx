@@ -116,7 +116,7 @@ export default function Page() {
 
       <main className="min-h-screen bg-transparent text-black selection:bg-[#e8d154]/50 font-body flex flex-col items-center relative">
         <div 
-          className="w-full max-w-4xl bg-[#e7dfcc] flex flex-col items-center pb-20 border-x-4 border-black overflow-hidden relative shadow-2xl"
+          className="w-full max-w-4xl bg-[#e7dfcc] flex flex-col items-center pb-0 border-x-4 border-black overflow-hidden relative shadow-2xl"
           style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/subtle-paper.png')` }}
         >
           
@@ -311,8 +311,7 @@ export default function Page() {
 
               <div className="my-8">
                 <ArticleVideoPlayer src={ARREST_VIDEO_URL} />
-                {/* Podpis przeniesiony pod film */}
-                <div className="mt-2 text-sm text-black font-mono border-l-[4px] border-black pl-4 bg-[#e8d154]/20 py-2 relative z-10">
+                <div className="mt-4 text-sm text-black font-mono border-l-[4px] border-black pl-4 bg-[#e8d154]/20 py-2 relative z-10">
                   <span className="font-black uppercase text-xs mr-2">Materiał Operacyjny:</span>
                   Nagranie z policyjnego nalotu na ośrodek w Hermanovicach (15.10.2020)
                 </div>
@@ -438,7 +437,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
-                Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.
+                Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z nim zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwicje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.
               </CaseFile>
 
               <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16">Anonimowy filantrop</h2>
@@ -452,7 +451,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Wypowiedź K. Stefanka">
-                Ostatecznie <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">23 października 2023 roku</span> ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie
+                Ostatecznie <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">23 października 2023 roku</span> ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chciał to miejsce przekazać w darowiźnie
               </CaseFile>
 
               <p className="mt-4">
@@ -461,8 +460,7 @@ export default function Page() {
 
               <div className="my-8">
                 <ArticleVideoPlayer src={STEFANEK_VIDEO_URL} />
-                {/* Podpis przeniesiony pod film */}
-                <div className="mt-2 text-sm text-black font-mono border-l-[4px] border-black pl-4 bg-[#e8d154]/20 py-2 relative z-10">
+                <div className="mt-4 text-sm text-black font-mono border-l-[4px] border-black pl-4 bg-[#e8d154]/20 py-2 relative z-10">
                   <span className="font-black uppercase text-xs mr-2">Materiał Wideo:</span>
                   Krzysztof Stefanek opowiada o cudownym otrzymaniu darowizny (Materiał z 2025 r.)
                 </div>
@@ -678,7 +676,7 @@ export default function Page() {
 
             </div>
 
-            <footer className="mt-12 pt-12 border-t-8 border-black font-mono relative z-10 mb-16">
+            <footer className="mt-12 pt-12 font-mono relative z-10 mb-0">
 
                <div className="mb-10 text-center">
                  <h3 className="text-3xl font-black text-black uppercase tracking-tighter font-display mb-4">
@@ -773,7 +771,7 @@ export default function Page() {
 
                </div>
 
-               <div className="mt-16 text-center pb-12">
+               <div className="mt-16 text-center pb-8">
                   <a href="https://www.eliksir-wiedzmina.pl" target="_blank" rel="noopener noreferrer" className="inline-block font-display text-2xl font-black text-black hover:bg-[#e8d154] transition-colors underline decoration-4 underline-offset-8 mt-4 px-2">
                     WWW.ELIKSIR-WIEDZMINA.PL
                   </a>
