@@ -19,7 +19,7 @@ const CaseFile = ({ title, children, type = 'evidence' }: { title: string, child
   };
   
   return (
-    <div className="my-8 border-2 border-black bg-white/40 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-sm overflow-hidden break-inside-avoid text-left">
+    <div className="my-8 border-2 border-black bg-white/40 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-sm overflow-hidden break-inside-avoid text-left relative z-10">
       <div className="bg-black px-4 py-2 flex items-center gap-2 text-xs font-mono text-white uppercase tracking-wider">
         <span>{getIcon()}</span>
         <span>{title}</span>
@@ -32,7 +32,7 @@ const CaseFile = ({ title, children, type = 'evidence' }: { title: string, child
 };
 
 const LegalNote = ({ term, children }: { term: string, children: React.ReactNode }) => (
-  <div className="my-10 flex gap-4 p-5 bg-white border-l-[6px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-left">
+  <div className="my-10 flex gap-4 p-5 bg-white border-l-[6px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-left relative z-10">
     <div className="text-2xl mt-1">⚖️</div>
     <div>
       <strong className="block font-display font-black uppercase text-black text-lg mb-2">{term}</strong>
@@ -42,7 +42,7 @@ const LegalNote = ({ term, children }: { term: string, children: React.ReactNode
 );
 
 const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
-  <div className="my-10 pl-6 border-l-[6px] border-black text-left">
+  <div className="my-10 pl-6 border-l-[6px] border-black text-left relative z-10">
     <p className="font-display text-xl md:text-2xl italic text-black leading-relaxed mb-3">
       „{quote}”
     </p>
@@ -53,7 +53,7 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
 );
 
 const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string, plot: string, lv: string }) => (
-  <div className="relative border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-left hover:bg-[#e8d154]/20 transition-colors">
+  <div className="relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-left hover:bg-[#e8d154]/20 transition-colors">
       <div className="absolute top-1 right-1 text-black">🔍</div>
       <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed">
          <span className="text-xl">🏠</span>
@@ -69,7 +69,7 @@ const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string,
 );
 
 const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
-  <div className="relative border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group">
+  <div className="relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group">
      <div className="absolute top-1 right-1 text-black">🔍</div>
      <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed">
         <span className="text-xl">📜</span>
@@ -83,7 +83,7 @@ const TransactionStampUI = ({ label, value, subDetails }: { label: string, value
 );
 
 const ArticleVideoPlayer: React.FC<{ src: string; poster?: string }> = ({ src, poster }) => (
-  <div className="w-full bg-black aspect-video rounded-sm overflow-hidden flex items-center justify-center relative group border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+  <div className="w-full bg-black aspect-video rounded-sm overflow-hidden flex items-center justify-center relative group border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10">
       <video controls poster={poster} className="w-full h-full object-cover" playsInline>
         <source src={src} type="application/x-mpegURL" />
       </video>
@@ -91,7 +91,7 @@ const ArticleVideoPlayer: React.FC<{ src: string; poster?: string }> = ({ src, p
 );
 
 const EvidenceGrid = () => (
-  <div className="my-16">
+  <div className="my-16 relative z-10">
     <h3 className="font-display font-bold text-lg uppercase tracking-widest text-black mb-8 flex items-center gap-2 border-b-4 border-black pb-2">
       <span>⚖️</span> Galeria Dowodów
     </h3>
@@ -190,10 +190,20 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleSchema) }}
       />
 
-      <main className="min-h-screen text-black selection:bg-[#e8d154]/50 font-body flex flex-col items-center">
-        <div className="w-full max-w-4xl bg-paper-texture flex flex-col items-center pb-20 border-x-4 border-black overflow-hidden relative shadow-2xl">
+      <main className="min-h-screen bg-[#e7dfcc] text-black selection:bg-[#e8d154]/50 font-body flex flex-col items-center relative">
+        <div 
+          className="w-full max-w-4xl bg-[#e7dfcc] flex flex-col items-center pb-20 border-x-4 border-black overflow-hidden relative shadow-2xl"
+          style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/subtle-paper.png')` }}
+        >
           
-          <div className="w-full flex flex-col items-center pt-2 pb-1 bg-white/10">
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.15] mix-blend-multiply z-0"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+            }}
+          ></div>
+
+          <div className="w-full flex flex-col items-center pt-2 pb-1 bg-white/10 relative z-10">
             <div className="flex items-center justify-center w-[calc(100%-2rem)] mx-auto gap-4 pt-4 pb-1">
               <div className="flex-grow h-[3px] bg-black"></div>
               <h1 className="text-4xl md:text-[5rem] font-black tracking-tighter text-black uppercase font-unifraktur leading-none whitespace-nowrap px-2">
@@ -208,7 +218,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="w-full text-center flex flex-col items-center pt-6 pb-4 px-6 box-border">
+          <div className="w-full text-center flex flex-col items-center pt-6 pb-4 px-6 box-border relative z-10">
             <img
               src="/zdjeciehej.png"
               alt="Wiedźmini z eliksirem"
@@ -333,7 +343,7 @@ export default function Page() {
                 Odpowiedź na to pytanie znajduje się w aktach sprawy i nie pozostawia złudzeń co do intencji rozmówców. W uzasadnieniu wyroku Kordysa czytamy:
               </p>
 
-              <div className="my-12 pl-6 border-l-[6px] border-black font-display italic text-2xl text-black leading-relaxed">
+              <div className="my-12 pl-6 border-l-[6px] border-black font-display italic text-2xl text-black leading-relaxed relative z-10">
                 „Z ich rozmowy wynika, że nie zajmowali się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji.”
               </div>
 
@@ -375,7 +385,7 @@ export default function Page() {
                 15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
               </p>
 
-              <div className="mt-8 text-sm text-black font-mono border-l-[4px] border-black pl-4 mb-4 bg-[#e8d154]/20 py-2">
+              <div className="mt-8 text-sm text-black font-mono border-l-[4px] border-black pl-4 mb-4 bg-[#e8d154]/20 py-2 relative z-10">
                 <span className="font-black uppercase text-xs mr-2">Materiał Operacyjny:</span>
                 Nagranie z policyjnego nalotu na ośrodek w Hermanovicach (15.10.2020)
               </div>
@@ -448,7 +458,7 @@ export default function Page() {
                 Michał Kiciński wiedział o Ilonie. Jego konfrontacja z organami ścigania nabrała formalnego kształtu dopiero jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć pobytu w Janowie.
               </p>
 
-              <div className="my-12 flex flex-col items-center">
+              <div className="my-12 flex flex-col items-center relative z-10">
                   <div className="border-4 border-black p-2 bg-white/50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                     <img
                       src="/wezwanie_kicinski.png"
@@ -499,7 +509,7 @@ export default function Page() {
                 Fakt, że Kiciński w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w Ameryce Południowej, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalności w Janowie.
               </p>
 
-              <p className="mt-4 font-bold uppercase tracking-widest text-sm text-center my-8">
+              <p className="mt-4 font-bold uppercase tracking-widest text-sm text-center my-8 relative z-10">
                 Co na to Bartosz Badowski?
               </p>
 
@@ -525,7 +535,7 @@ export default function Page() {
                 Stefanek przedstawia to jako efekt researchu darczyńcy, który rzekomo urzekła wizja działalności non-profit.
               </p>
 
-              <div className="mt-8 text-sm text-black font-mono border-l-[4px] border-black pl-4 mb-4 bg-[#e8d154]/20 py-2">
+              <div className="mt-8 text-sm text-black font-mono border-l-[4px] border-black pl-4 mb-4 bg-[#e8d154]/20 py-2 relative z-10">
                 <span className="font-black uppercase text-xs mr-2">Materiał Wideo:</span>
                 Krzysztof Stefanek opowiada o cudownym otrzymaniu darowizny (Materiał z 2025 r.)
               </div>
@@ -538,7 +548,7 @@ export default function Page() {
                 Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech w pozbywaniu się gorącego kartofla:
               </p>
 
-              <ul className="list-none space-y-10 my-12 font-mono text-sm border-l-4 border-black pl-6">
+              <ul className="list-none space-y-10 my-12 font-mono text-sm border-l-4 border-black pl-6 relative z-10">
                 <li className="flex items-start gap-4">
                   <span className="text-xl">📅</span>
                   <div>
@@ -630,7 +640,7 @@ export default function Page() {
                 Jeszcze bardziej zastanawiające jest to, co stało się z tą nieruchomością w momencie zagrożenia. Gdy 15.10.2020 roku aresztowano Kordysa, nad środowiskiem zawisło widmo policyjnych nalotów. Dokumenty urzędowe odsłaniają niepokojącą zbieżność dat:
               </p>
 
-              <ul className="list-none space-y-10 my-12 font-mono text-sm border-l-4 border-black pl-6">
+              <ul className="list-none space-y-10 my-12 font-mono text-sm border-l-4 border-black pl-6 relative z-10">
                  <li className="flex items-start gap-4">
                   <span className="text-xl">📅</span>
                   <div>
@@ -690,14 +700,14 @@ export default function Page() {
                 Ciało mężczyzny odnaleziono w magazynie firmy, w której pracował przy montażu szaf serwerowych. Na jego ciele nie stwierdzono widocznych obrażeń wskazujących na użycie siły fizycznej. Mimo że od śmierci Wiktora B. minęło już ponad półtora roku, śledczy wciąż czekają na wyniki badań toksykologicznych, które mają kluczowe znaczenie dla wyjaśnienia, czy w organizmie mężczyzny znajdowały się substancje mogące przyczynić się do jego nagłego odejścia. Z tego względu obecnie śledztwo w sprawie jego tajemniczego zgonu pozostaje zawieszone.
               </p>
 
-              <div className="mt-12 mb-4 flex justify-end">
+              <div className="mt-12 mb-4 flex justify-end relative z-10">
                  <div className="text-right border-r-4 border-black pr-4">
                     <span className="block font-black text-black uppercase text-xl font-display tracking-widest">Detektyw Polutek</span>
                     <span className="block text-xs text-black/60 font-mono mt-1 italic">detektyw.polutek@protonmail.com</span>
                  </div>
               </div>
 
-              <div className="my-16 border-y-4 border-black py-8 bg-[#e8d154]/10">
+              <div className="my-16 border-y-4 border-black py-8 bg-[#e8d154]/10 relative z-10">
                  <h3 className="font-display font-black text-2xl uppercase tracking-widest text-black mb-8 flex items-center gap-2 px-4">
                     <span>🛡️</span> Status Prawny (2025/2026)
                  </h3>
