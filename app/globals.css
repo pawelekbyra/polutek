@@ -64,4 +64,11 @@
   .status-row {
     @apply bg-parchment p-4;
   }
+
+  .bg-paper-texture {
+    background-image: url('/zdjeciehej.png');
+    background-repeat: repeat;
+    background-size: 600px;
+    background-color: white;
+  }
 }
