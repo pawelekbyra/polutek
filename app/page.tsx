@@ -24,7 +24,7 @@ const CaseFile = ({ title, children, type = 'evidence' }: { title: string, child
         <span>{getIcon()}</span>
         <span>{title}</span>
       </div>
-      <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-black italic">
+      <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-black/90 antialiased">
         {children}
       </div>
     </div>
@@ -60,7 +60,7 @@ const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string,
       </div>
       <div className="py-2">
          <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1 flex items-center gap-2">{name}</div>
-         <div className="font-mono text-base font-bold text-black uppercase">{lv}</div>
+         <div className="font-mono text-base font-bold text-black uppercase">LV {lv}</div>
          <div className="text-[10px] text-black/60 font-mono mt-1 uppercase">
             Działka: {plot} <span className="mx-1">|</span> Obręb: {code}
          </div>
@@ -170,7 +170,7 @@ export default function Page() {
             <div className="article-prose text-black text-lg">
 
               <p className="drop-cap leading-relaxed mt-0">
-                W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów w czeskich <strong className="font-black">Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong className="font-black">Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. ceremonii, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
+                W 2020 roku media obiegły doniesienia o rozbiciu grupy polskich szamanów v czeskich <strong className="font-black">Hermanovicach</strong>. Policyjny nalot, aresztowanie <strong className="font-black">Jarosława i Karoliny Kordysów</strong>, a następnie surowe wyroki – 8,5 oraz 5,5 roku więzienia za prowadzenie nielegalnego biznesu polegającego na organizacji tzw. ceremonii, podczas których klientom podawano egzotyczny psychodelik – ayahuaskę.
               </p>
 
               <p className="mt-4">
@@ -280,7 +280,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Kontynuacja rozmowy" type="transcript">
-                Następnie w rozmowie omawiają zamówienia «herbaty» z dżungli i to, czy im tego «nie zepsują», ekscytując się nagraniem od dostawcy, który «siedzi w dżungli i gotuje».
+                Następnie w rozmowie omawiają zamówienia «herbaty» z dżungli i to, czy im tego «nie zepsują», ekscytując się nagraniem od dostawcy, który «siedzi v dżungli i gotuje».
               </CaseFile>
 
               <p className="mt-4">
@@ -475,7 +475,7 @@ export default function Page() {
                   <span className="text-xl">📅</span>
                   <div>
                     <strong className="font-black text-base">21 września 2023 r.</strong><br/>
-                    Michał Kiciński odbiera wezwanie na przesłuchanie in sprawie Janowa.
+                    Michał Kiciński odbiera wezwanie na przesłuchanie w sprawie Janowa.
                   </div>
                 </li>
 
