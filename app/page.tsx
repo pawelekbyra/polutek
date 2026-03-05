@@ -255,9 +255,7 @@ export default function Page() {
               <p className="mt-4">
                 Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
                 <br/><br/>
-                Bartosz Badowski (10%)
-                <br/>
-                <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">Michał Dawid Kiciński (90%)</span>
+                Bartosz Badowski (10%) i <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">Michał Dawid Kiciński (90%)</span><br/>
               </p>
 
             <p className="mt-4">
