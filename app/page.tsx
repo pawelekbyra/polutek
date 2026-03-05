@@ -635,7 +635,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Sytuacja uległa diametralnej zmianie 6 maja 2024 roku, gdy Prokuratura Okręgowa w Częstochowie wszczęła oficjalne śledztwo w sprawie działalności ośrodka oraz okoliczności śmierci Ilony L.-H. Zaledwie 2 miesiące  później, w tajemniczych okolicznościach umiera Wiktor B.
+                Sytuacja uległa  zmianie dopiero 6 maja 2024 roku, gdy Prokuratura Okręgowa w Częstochowie wszczęła oficjalne śledztwo w sprawie działalności ośrodka oraz okoliczności śmierci Ilony L.-H. Zaledwie 2 miesiące  później, w tajemniczych okolicznościach umiera Wiktor B.
               </p>
 
               <p className="mt-4">
