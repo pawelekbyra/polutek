@@ -400,8 +400,7 @@ export default function Page() {
 
               <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Błąd z Badim</h2>
 
-              <p className="mt-4">
-Jego konfrontacja z organami ścigania nabrała formalnego kształtu  jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć pobytu w Janowie.
+              <p className="mt-4"> Jego konfrontacja z organami ścigania nabrała formalnego kształtu  jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć Janova.
               </p>
 
               <div className="my-12 flex flex-col items-center relative z-10">
