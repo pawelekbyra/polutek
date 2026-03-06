@@ -58,7 +58,7 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
 
 const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string, plot: string, lv: string }) => (
   <div className="relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-left hover:bg-[#e8d154]/20 transition-colors">
-      <div className="absolute bottom-1 right-1 text-black">🔍</div>
+      <div className="absolute top-1 right-1 text-black">🔍</div>
       <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed">
          <span className="text-xl">🏠</span>
       </div>
@@ -74,7 +74,7 @@ const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string,
 
 const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
   <div className="relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group">
-     <div className="absolute top-1 right-1 text-black">🔍</div>
+     <div className="absolute bottom-1 right-1 text-black">🔍</div>
      <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed">
         <span className="text-xl">📜</span>
      </div>
@@ -575,7 +575,7 @@ export default function Page() {
               </div>
 
               <p className="mt-4">
-                <span className="bg-[#e8d154]/80 px-1 font-black text-black shadow-sm">Oznacza to, że nie jeden lecz obaj legendarni założyciele CD Projekt, na czeskim pograniczu posiadali nieruchomości, w których odpłatnie oferowano te same nielegalne substancje.</span>
+                <span className="bg-red-600 px-1 font-black text-white shadow-sm box-decoration-clone">Oznacza to, że nie jeden lecz obaj legendarni założyciele CD Projekt, na czeskim pograniczu posiadali nieruchomości, w których odpłatnie oferowano te same nielegalne substancje.</span>
               </p>
 
               <p className="mt-4">
@@ -639,7 +639,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Ciało mężczyzny odnaleziono w magazynie firmy, w której pracował przy montażu szaf serwerowych. Na jego ciele nie stwierdzono widocznych obrażeń wskazujących na użycie siły fizycznej. Mimo że od śmierci Wiktora B. minęło już ponad półtora roku, śledczy wciąż czekają na wyniki badań toksykologicznych, które mają kluczowe znaczenie dla wyjaśnienia, czy w organizmie mężczyzny znajdowały się substancje mogące przyczynić się do jego nagłego odejścia. Z tego względu obecnie śledztwo w sprawie jego tajemniczego zgonu pozostaje zawieszone.
+                Ciało mężczyzny odnaleziono w magazynie firmy, w której pracował przy montażu szaf serwerowych. Na jego ciele nie stwierdzono widocznych obrażeń wskazujących na użycie siły fizycznej. Mimo że od śmierci Wiktora B. minęło już ponad półtora roku, śledczy wciąż czekają na wyniki badań toksykologicznych, które mają kluczowe znaczenie dla wyjaśnienia, czy w organizmie mężczyzny znajdowały się substancje mogące przyczynić się do jego nagłego odejścia. Z tego względu obecnie śledztwo w sprawie jego tajemniczego zgonu pozostaje zawieszone.<span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć szczegóły (atrapa)">🔍</span>
               </p>
 
               <div className="mt-12 mb-4 flex justify-end relative z-10">
@@ -686,7 +686,6 @@ export default function Page() {
                           </span>
                           <div className="flex items-center gap-2">
                              <span className="text-[10px] font-black text-red-800 uppercase tracking-widest bg-red-100 px-2 py-1 border border-red-800 font-sans">Zawieszone</span>
-                             <span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1 text-base" title="Kliknij, aby zobaczyć szczegóły (atrapa)">🔍</span>
                           </div>
                         </div>
                     </div>
