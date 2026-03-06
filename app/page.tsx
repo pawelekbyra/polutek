@@ -213,7 +213,7 @@ export default function Page() {
               <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Świadek B.</h2>
 
               <p className="mt-4">
-                W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa pojawia się postać świadka Bartosza B. Zgodnie z aktami:
+                W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa <span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć wyrok (atrapa)">🔍</span> pojawia się postać świadka Bartosza B. Zgodnie z aktami:
               </p>
 
               <CaseFile title="Zeznania świadka B." type="transcript">
