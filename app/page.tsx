@@ -58,7 +58,7 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
 
 const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string, plot: string, lv: string }) => (
   <div className="relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-left hover:bg-[#e8d154]/20 transition-colors">
-      <div className="absolute top-1 right-1 text-black">🔍</div>
+      <div className="absolute bottom-1 right-1 text-black">🔍</div>
       <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed">
          <span className="text-xl">🏠</span>
       </div>
@@ -420,7 +420,7 @@ export default function Page() {
                 Reakcja miliardera na zainteresowanie organów ścigania była błyskawiczna. Zwrócił się bezpośrednio do autora zawiadomienia – wysyłając mu wiadomość mailową z propozycją swoistej pokuty. Zamiast wyjaśnień prokuratorskich zaoferował przelew na cel charytatywny, nazywając lata nielegalnego procederu młodzieńczą naiwnością.
               </p>
 
-              <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email" highlight>
+              <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email">
                 (...) Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu.
               </CaseFile>
 
@@ -453,10 +453,10 @@ export default function Page() {
               </p>
 
               <p>
-                Oto jak współpracę z Kicińskim opisuje sam Bartosz Badowski:
+                Oto jak współpracę  opisuje sam Bartosz Badowski:
               </p>
 
-              <CaseFile title="Fragment korespondencji B. Badowskiego" type="email" highlight>
+              <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
                 Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwicje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.
               </CaseFile>
 
@@ -684,7 +684,10 @@ export default function Page() {
                           <span className="font-mono text-sm font-black bg-black/5 text-black px-4 py-2 border-2 border-black uppercase tracking-widest">
                              4027-0. Ds. 1254.2024
                           </span>
-                          <span className="text-[10px] font-black text-red-800 uppercase tracking-widest bg-red-100 px-2 py-1 border border-red-800 font-sans">Zawieszone</span>
+                          <div className="flex items-center gap-2">
+                             <span className="text-[10px] font-black text-red-800 uppercase tracking-widest bg-red-100 px-2 py-1 border border-red-800 font-sans">Zawieszone</span>
+                             <span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1 text-base" title="Kliknij, aby zobaczyć szczegóły (atrapa)">🔍</span>
+                          </div>
                         </div>
                     </div>
                   </div>
