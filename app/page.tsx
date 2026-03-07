@@ -244,7 +244,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Ustalenia Sądu">
-                ...w odniesieniu do nieruchomości będących współwłasnością <strong className="font-black">Bartosza B.</strong> i <strong className="font-black">Michała D. K.</strong><span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć zdjęcie (atrapa)">📸</span>
+                ...w odniesieniu do nieruchomości będących współwłasnością <strong className="font-black">Bartosza B.</strong> i <strong className="font-black">Michała D. K.</strong>
               </CaseFile>
 
               <p className="mt-4">
@@ -256,7 +256,7 @@ export default function Page() {
               </div>
 
               <p className="mt-4">
-                Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami ajałaskowej nieruchomości byli:
+                Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami ajałaskowej nieruchomości<span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć zdjęcie (atrapa)">📸</span> byli:
                 <br/><br/>
                 Bartosz Badowski (10%) i <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">Michał Dawid Kiciński (90%)</span><br/>
               </p>
