@@ -11,6 +11,7 @@ const DOCUMENTATION_IPFS_URL = `${PINATA_GATEWAY}/bafybeicnxlo366f6fznm5p6j7j7j7
 const JANOV_PDF_URL = DOCUMENTATION_IPFS_URL;
 const NYDEK_PDF_URL = DOCUMENTATION_IPFS_URL;
 const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://munaysonqo.com/retreats/";
+const NYDEK_WAYBACK_URL = "https://web.archive.org/web/20161122155227/http://tribunydek.com/";
 
 const ARREST_VIDEO_URL = `${PINATA_GATEWAY}/bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy/videoplayback.m3u8`;
 const STEFANEK_VIDEO_URL = `${PINATA_GATEWAY}/bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u/videoplayback.m3u8`;
@@ -295,7 +296,7 @@ export default function Page() {
               </div>
 
               <p className="mt-4">
-                Dla sądu był to koronny dowód na to, że oskarżeni prowadzili nielegalny biznes, a nie działalność duchową – śmierć człowieka była dla nich jedynie psuciem interesów.
+                Для sądu był to koronny dowód na to, że oskarżeni prowadzili nielegalny biznes, a nie działalność duchową – śmierć człowieka była dla nich jedynie psuciem interesów.
               </p>
 
               <p className="mt-4">
@@ -307,7 +308,7 @@ export default function Page() {
               </CaseFile>
 
               <p className="mt-4">
-                Dla policjantów, którzy słyszeli to w czasie rzeczywistym, przekaz był jasny: w obiekcie mogło dojść do tragedii, a sprawcy martwili się jedynie o ciągłość dostaw.
+                Для policjantów, którzy słyszeli to w czasie rzeczywistym, przekaz był jasny: w obiekcie mogło dojść do tragedii, a sprawcy martwili się jedynie o ciągłość dostaw.
               </p>
 
               <p className="mt-4">
@@ -425,7 +426,7 @@ export default function Page() {
               </CaseFile>
 
               <p className="mt-4">
-                Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
+                До przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
               </p>
 
               <CaseFile title="Zeznanie do protokołu">
@@ -567,7 +568,15 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong className="font-black">Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu Wayback Machine zachowało zrzuty strony tribunydek.com.<span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć archiwalny dowód (atrapa)">🔍</span> Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
+                Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong className="font-black">Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu Wayback Machine zachowało zrzuty strony tribunydek.com.<a 
+  href={NYDEK_WAYBACK_URL} 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" 
+  title="Kliknij, aby otworzyć archiwalną stronę Nýdek w Wayback Machine"
+>
+  🌐
+</a> Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
               </p>
 
               <p className="not-prose mt-4 font-bold text-center my-8 uppercase font-sans text-black">
@@ -644,7 +653,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Według ustaleń Onetu, w czerwcu 2018 roku na farmie w Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, organizator nie wezwał pomocy medycznej. Uczestnikom odebrano wcześniej telefony, co uniemożliwiło im samodzielne zaalarmowanie służb ratunkowych.
+                Według ustaleń Onetu, w czerwcu 2018 roku na farmie w Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, organizator nie wezwał pomocy medycznej. Uczestnikom odebrano wcześniej telefony, co uniemożliło im samodzielne zaalarmowanie służb ratunkowych.
               </p>
 
               <p className="mt-4">
