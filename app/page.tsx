@@ -445,7 +445,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego oferuje tam w pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które w Czechach są zakazane, co wciąż jest eksponowane na stronie internetowej.
+                W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego do tej pory oferuje tam w pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które w Czechach są zakazane, co wciąż jest eksponowane na stronie internetowej. <a href="https://munaysonqo.com/all-retreats/#calendar-7a66adc3-3ebd-432c-b572-0faf936c281f-event-e90d5161-a00e-4742-b4b7-039de153a23d" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 cursor-pointer hover:bg-[#e8d154] transition-colors px-2 py-0.5 ml-1 border-2 border-black bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] no-underline text-xs font-bold text-black uppercase tracking-wider" title="Kliknij, aby otworzyć stronę ośrodka Munay Sonqo">🌐 Kliknij tutaj</a>
               </p>
 
               <p className="mt-4">
@@ -591,7 +591,7 @@ export default function Page() {
     Marcin Iwiński zakupuje nieruchomość w Nydku za kwotę 5 000 000,00 CZK.
   </span>
   <span className="block leading-tight">
-    Nieruchomość ta służy do organizacji nielegalnych ceremonii z użyciem psychodelików podawanych uczestnikom przez Piotra Tracza.
+    Nieruchomość ta służy do organizacji nielegal ceremonii z użyciem psychodelików podawanych uczestnikom przez Piotra Tracza.
   </span>
 </div>
                  </li>
@@ -636,7 +636,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Według ustaleń Onetu, w czerwcu 2018 roku na farmie w Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, nikt nie wezwał pomocy medycznej. Co więcej, uczestnikom odebrano wcześniej telefony, co uniemożliwiło im samodzielne zaalarmowanie służb ratunkowych.
+                Według ustaleń Onetu, w czerwcu 2018 roku na farmie w Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, organizator nie wezwał pomocy medycznej. Uczestnikom odebrano wcześniej telefony, co uniemożliwiło im samodzielne zaalarmowanie służb ratunkowych.
               </p>
 
               <p className="mt-4">
@@ -715,10 +715,10 @@ export default function Page() {
 
                <div className="mb-10 text-center">
                  <h3 className="text-3xl font-black text-black uppercase tracking-tighter font-display mb-4">
-                    Dokumenty Źródłowe
+                   Dokumenty Źródłowe
                  </h3>
                  <p className="text-sm text-black/80 italic max-w-xl mx-auto font-serif">
-                    Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Poniżej pełna lista sygnatur oraz odnośniki umożliwiające samodzielną weryfikację.
+                   Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Poniżej pełna lista sygnatur oraz odnośniki umożliwiające samodzielną weryfikację.
                  </p>
                </div>
 
