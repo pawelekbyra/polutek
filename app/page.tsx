@@ -259,10 +259,9 @@ export default function Page() {
                 Bartosz Badowski (10%) i <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">Michał Dawid Kiciński (90%)</span><br/>
               </p>
 
-            <p className="mt-4">
+  <p className="mt-4">
   Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie Michal D. K.
-</p>
-<p className="mt-2">
+  <br />
   <span className="bg-red-600 px-1 font-black text-white shadow-sm box-decoration-clone">
     Wspólnikiem szamana był twórca Wiedźmina – jeden z najbogatszych Polaków.
   </span>
