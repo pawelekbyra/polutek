@@ -658,7 +658,7 @@ export default function Page() {
                     <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                         <div>
                           <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie organizacji ceremonii</span>
-                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Rejonowa w Częstochowie</span>
+                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Okręgowa w Częstochowie</span>
                         </div>
                         <span className="font-mono text-sm font-black bg-black text-white px-4 py-2 border border-black uppercase tracking-widest">
                           3013-1.Ds.15.2024
@@ -668,7 +668,7 @@ export default function Page() {
                     <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                         <div>
                           <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie śmierci Ilony L.</span>
-                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Rejonowa w Częstochowie</span>
+                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Okręgowa w Częstochowie</span>
                         </div>
                         <span className="font-mono text-sm font-black bg-[#e8d154] text-black border-2 border-black px-4 py-2 uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                           3013-1.Ds.4.2026
