@@ -647,11 +647,11 @@ export default function Page() {
               <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Nýdek</h2>
 
               <p className="mt-4">
-                Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janowa, w miejscowości <strong className="font-black">Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.<span onClick={() => openGallery(JANOV_GALLERY)} className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Zobacz zdjęcia">📸</span>
+                Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janowa, w miejscowości <strong className="font-black">Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.
               </p>
 
               <p className="mt-4">
-                Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong className="font-black">Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu Wayback Machine zachowało zrzuty strony tribunydek.com.<span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć archiwalny dowód (atrapa)">🔍</span> Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
+                Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong className="font-black">Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu Wayback Machine zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
               </p>
 
               <p className="mt-4 font-bold text-center my-8 uppercase font-sans text-black">
@@ -663,7 +663,7 @@ export default function Page() {
               </p>
 
               <div className="my-8 flex justify-start">
-                  <LocationStampUI name="NÝDEK" code="708186" plot="st. 506/1" lv="832" onClick={() => openGallery(JANOV_GALLERY)} />
+                  <LocationStampUI name="NÝDEK" code="708186" plot="st. 506/1" lv="832" />
               </div>
 
               <p className="mt-4">
@@ -701,7 +701,6 @@ export default function Page() {
                   label="Nr Transakcji (Katastr)"
                   value="V-2937/2021-832"
                   subDetails="Obręb: Nýdek [708186]"
-                  onClick={() => openGallery(BADOWSKI_GALLERY)}
                 />
               </div>
 
