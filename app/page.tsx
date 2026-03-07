@@ -587,7 +587,7 @@ export default function Page() {
                   <span className="text-xl">📅</span>
                   <div>
                     <strong className="font-black text-base">25 stycznia 2016 r.</strong><br/>
-                    Marcin Iwiński zakupuje nieruchomość w Nydku za kwotę 5 000 000,00 CZK (ok. 827 500 PLN). Nieruchomość ta służy do organizacji nielegalnych ceremonii z użyciem psychodelików podawanych uczestnikom przez Piotra Tracza.
+                    Marcin Iwiński zakupuje nieruchomość w Nydku za kwotę 5 000 000,00 CZK. Nieruchomość ta służy do organizacji nielegalnych ceremonii z użyciem psychodelików podawanych uczestnikom przez Piotra Tracza.
                   </div>
                  </li>
 
