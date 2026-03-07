@@ -200,7 +200,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-               Ayahuasca (czyt. ajałaska) to tradycyjny wywar z amazońskich roślin o silnym działaniu halucynogennym. Ze względu na wysoką zawartość DMT – substancji psychodelicznej wywołującej intensywne wizje i zmiany stanu świadomości – jej posiadanie i podawanie jest w Polsce i Czechach zabronione. Finałem medialnego spektaklu Kordysów było ułaskawienie ich przez czeskiego prezydenta po dwóch latach odsiadki.<span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć archiwalny dowód (atrapa)">🔍</span>
+               Ayahuasca (czyt. ajałaska) to tradycyjny wywar z amazońskich roślin o silnym działaniu halucynogennym. Ze względu na wysoką zawartość DMT – substancji psychodelicznej wywołującej intensywne wizje i zmiany stanu świadomości – jej posiadanie i podawanie jest w Polsce i Czechach zabronione. Finałem medialnego spektaklu Kordysów było ułaskawienie ich przez czeskiego prezydenta po dwóch latach odsiadki.<span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć archiwalny dowód (atrapa)">📰</span>
               </p>
 
               <p className="mt-4">
