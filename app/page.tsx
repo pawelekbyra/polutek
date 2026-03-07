@@ -15,6 +15,18 @@ const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://mu
 const ARREST_VIDEO_URL = `${PINATA_GATEWAY}/bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy/videoplayback.m3u8`;
 const STEFANEK_VIDEO_URL = `${PINATA_GATEWAY}/bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u/videoplayback.m3u8`;
 
+const JANOV_GALLERY = Array.from({ length: 26 }, (_, i) => `/gallery/janov/janov${i + 1}.jpg`);
+
+const BADOWSKI_GALLERY = [
+  "/gallery/wyrok_badi/wyrok_page-0001.jpg",
+  "/gallery/wyrok_badi/wyrok_page-0002.jpg",
+  "/gallery/wyrok_badi/wyrok_page-0003.jpg"
+];
+
+const KORDYS_GALLERY = Array.from({ length: 25 }, (_, i) =>
+  `/gallery/wyrok_kordysa/30T_5_2021-1_page-${(i + 1).toString().padStart(4, '0')}.jpg`
+);
+
 const CaseFile = ({ title, children, type = 'evidence', highlight = false }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email', highlight?: boolean }) => {
   const getIcon = () => {
     if (type === 'email') return '✉️';
@@ -56,8 +68,8 @@ const PullQuote = ({ quote, author, source }: { quote: string, author: string, s
   </div>
 );
 
-const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string, plot: string, lv: string }) => (
-  <div className="relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-left hover:bg-[#e8d154]/20 transition-colors">
+const LocationStampUI = ({ name, code, plot, lv, onClick }: { name: string, code: string, plot: string, lv: string, onClick?: () => void }) => (
+  <div onClick={onClick} className={`relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-left hover:bg-[#e8d154]/20 transition-colors ${onClick ? 'cursor-pointer' : ''}`}>
       <div className="absolute top-1 right-1 text-black">🔍</div>
       <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed">
          <span className="text-xl">🏠</span>
@@ -72,8 +84,8 @@ const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string,
   </div>
 );
 
-const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
-  <div className="relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group">
+const TransactionStampUI = ({ label, value, subDetails, onClick }: { label: string, value: string, subDetails?: string, onClick?: () => void }) => (
+  <div onClick={onClick} className={`relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group ${onClick ? 'cursor-pointer' : ''}`}>
      <div className="absolute bottom-1 right-1 text-black">🔍</div>
      <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed">
         <span className="text-xl">📜</span>
@@ -85,6 +97,73 @@ const TransactionStampUI = ({ label, value, subDetails }: { label: string, value
      </div>
   </div>
 );
+
+const Lightbox = ({ images, isOpen, onClose }: { images: string[], isOpen: boolean, onClose: () => void }) => {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+
+  useEffect(() => {
+    if (isOpen) setCurrentIndex(0);
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  const next = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm animate-in fade-in duration-300" onClick={onClose}>
+      <button className="absolute top-6 right-6 text-white text-4xl hover:scale-110 transition-transform z-[110]" onClick={onClose}>×</button>
+
+      {images.length > 1 && (
+        <>
+          <button className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-5xl hover:scale-110 transition-transform p-4 z-[110]" onClick={prev}>‹</button>
+          <button className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-5xl hover:scale-110 transition-transform p-4 z-[110]" onClick={next}>›</button>
+        </>
+      )}
+
+      <div className="relative max-w-5xl max-h-[85vh] flex flex-col items-center">
+        <img
+          src={images[currentIndex]}
+          alt={`Gallery image ${currentIndex + 1}`}
+          className="max-w-full max-h-[80vh] object-contain border-4 border-white shadow-2xl animate-in zoom-in-95 duration-300"
+          onClick={(e) => e.stopPropagation()}
+        />
+        <div className="mt-4 text-white font-mono text-sm bg-black/50 px-4 py-1 rounded-full border border-white/20">
+          {currentIndex + 1} / {images.length}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const AudioModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm animate-in fade-in duration-300" onClick={onClose}>
+      <div className="bg-[#e7dfcc] border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative max-w-md w-full animate-in zoom-in-95 duration-300" onClick={(e) => e.stopPropagation()}>
+        <button className="absolute top-2 right-4 text-2xl font-black text-black hover:scale-110 transition-transform" onClick={onClose}>×</button>
+        <h3 className="font-display font-black text-xl uppercase mb-6 border-b-2 border-black pb-2 flex items-center gap-2">
+          <span>🎙️</span> Nagranie: Krzysztof Stefanek
+        </h3>
+        <audio controls className="w-full h-12 shadow-inner">
+          <source src="/evidence/stefan-nagranie.mp3" type="audio/mpeg" />
+          Twoja przeglądarka nie obsługuje odtwarzacza audio.
+        </audio>
+        <p className="mt-6 text-xs font-mono italic text-black/60 text-center uppercase tracking-widest">
+          Evidence Archive: STEFAN-NAGRANIE.MP3
+        </p>
+      </div>
+    </div>
+  );
+};
 
 const ArticleVideoPlayer: React.FC<{ src: string; poster?: string }> = ({ src, poster }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -114,12 +193,21 @@ const ArticleVideoPlayer: React.FC<{ src: string; poster?: string }> = ({ src, p
 };
 
 export default function Page() {
+  const [lightbox, setLightbox] = React.useState<{ isOpen: boolean; images: string[] }>({
+    isOpen: false,
+    images: []
+  });
+  const [isAudioOpen, setIsAudioOpen] = React.useState(false);
+
+  const openGallery = (images: string[]) => setLightbox({ isOpen: true, images });
+  const closeGallery = () => setLightbox({ ...lightbox, isOpen: false });
+
   const newsArticleSchema = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     "headline": "Eliksir Wiedźmina – Śledztwo: Michał Kiciński i tajemnica Janowa",
     "description": "Pełna dokumentacja śledztwa: Michał Kiciński, Jarosław Kordys i prokurator Jolanta Świdnicka. Ayahuasca, Janów i tragiczna śmierć uczestniczki.",
-    "image": ["/wezwanie_kicinski.png"],
+    "image": ["/gallery/wyrok_kordysa/wezwanie/wezwanie_kicinski.png"],
     "datePublished": "2024-03-03",
     "author": [{
       "@type": "Person",
@@ -137,6 +225,9 @@ export default function Page() {
       />
 
       <main className="min-h-screen bg-transparent text-[#000000] selection:bg-[#e8d154]/50 font-body flex flex-col items-center relative">
+        <Lightbox images={lightbox.images} isOpen={lightbox.isOpen} onClose={closeGallery} />
+        <AudioModal isOpen={isAudioOpen} onClose={() => setIsAudioOpen(false)} />
+
         <div 
           className="w-full max-w-4xl bg-[#e7dfcc] flex flex-col items-center pb-0 border-x-4 border-black overflow-hidden relative shadow-2xl"
           style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/subtle-paper.png')` }}
@@ -213,7 +304,7 @@ export default function Page() {
               <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Świadek B.</h2>
 
               <p className="mt-4">
-                W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa <span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć wyrok (atrapa)">🔍</span> pojawia się postać świadka Bartosza B. Zgodnie z aktami:
+                W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa <span onClick={() => openGallery(KORDYS_GALLERY)} className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Zobacz wyrok">🔍</span> pojawia się postać świadka Bartosza B. Zgodnie z aktami:
               </p>
 
               <CaseFile title="Zeznania świadka B." type="transcript">
@@ -243,7 +334,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Ustalenia Sądu">
-                ...w odniesieniu do nieruchomości będących współwłasnością <strong className="font-black">Bartosza B.</strong> i <strong className="font-black">Michała D. K.</strong><span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć zdjęcie (atrapa)">📸</span>
+                ...w odniesieniu do nieruchomości będących współwłasnością <strong className="font-black">Bartosza B.</strong> i <strong className="font-black">Michała D. K.</strong><span onClick={() => openGallery(JANOV_GALLERY)} className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Zobacz galerię Janov">📸</span>
               </CaseFile>
 
               <p className="mt-4">
@@ -251,7 +342,7 @@ export default function Page() {
               </p>
 
               <div className="my-8 flex justify-start">
-                  <LocationStampUI name="JANOV U KRNOVA" code="656976" plot="st. 281" lv="127" />
+                  <LocationStampUI name="JANOV U KRNOVA" code="656976" plot="st. 281" lv="127" onClick={() => openGallery(JANOV_GALLERY)} />
               </div>
 
               <p className="mt-4">
@@ -361,7 +452,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Na mocy wyroku z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi.
+                Na mocy wyroku z dnia 2 listopada 2021 roku Bartosz Badowski został uznany winnym popełnienia zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi <span onClick={() => openGallery(BADOWSKI_GALLERY)} className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Zobacz wyrok Badiego">🔍</span>.
               </p>
 
               <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
@@ -406,7 +497,7 @@ export default function Page() {
               <div className="my-12 flex flex-col items-center relative z-10">
                   <div className="border-4 border-black p-2 bg-white/50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                     <img
-                      src="/wezwanie_kicinski.png"
+                      src="/gallery/wyrok_kordysa/wezwanie/wezwanie_kicinski.png"
                       alt="Wezwanie na policję"
                       className="w-64 grayscale mix-blend-multiply"
                     />
@@ -463,7 +554,7 @@ export default function Page() {
               <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Anonimowy filantrop</h2>
 
               <p className="mt-4">
-                W listopadzie 2025 roku na kanale YouTube <strong className="font-black">Osada Natury Zew</strong> pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, <strong className="font-black">Krzysztof Stefanek</strong>, snuje opowieść o powstaniu Osady. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
+                W listopadzie 2025 roku na kanale YouTube <strong className="font-black">Osada Natury Zew</strong> pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, <strong className="font-black">Krzysztof Stefanek</strong> <span onClick={() => setIsAudioOpen(true)} className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Odsłuchaj nagranie">🎙️</span>, snuje opowieść o powstaniu Osady. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
               </p>
 
               <p className="mt-4">
@@ -541,6 +632,7 @@ export default function Page() {
                   label="Nr Transakcji (Katastr)"
                   value="V-5821/2023-127"
                   subDetails="Obręb: Janów u Krnova [656976]"
+                  onClick={() => openGallery(JANOV_GALLERY)}
                 />
               </div>
 
@@ -555,11 +647,11 @@ export default function Page() {
               <h2 className="section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Nýdek</h2>
 
               <p className="mt-4">
-                Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janowa, w miejscowości <strong className="font-black">Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.<span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć zdjęcie (atrapa)">📸</span>
+                Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janowa, w miejscowości <strong className="font-black">Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.
               </p>
 
               <p className="mt-4">
-                Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong className="font-black">Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu Wayback Machine zachowało zrzuty strony tribunydek.com.<span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć archiwalny dowód (atrapa)">🔍</span> Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
+                Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong className="font-black">Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu Wayback Machine zachowało zrzuty strony tribunydek.com. Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
               </p>
 
               <p className="mt-4 font-bold text-center my-8 uppercase font-sans text-black">
