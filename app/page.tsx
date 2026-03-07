@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
-                          
+                        
                       
 const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
 const DOCUMENTATION_IPFS_URL = `${PINATA_GATEWAY}/bafybeicnxlo366f6fznm5p6j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j`; 
@@ -189,9 +189,9 @@ export default function Page() {
           </div>
 
           <article className="max-w-3xl mx-auto px-6 pt-4 pb-0 flex-grow w-full z-10 relative">
-          <div 
-  className="prose prose-stone prose-lg max-w-none article-prose font-serif leading-relaxed text-[#1a1a1a]" 
-  style={{ opacity: 1, WebkitFontSmoothing: 'none' }}
+         <div 
+  className="prose prose-stone prose-lg max-w-none article-prose font-serif text-lg leading-relaxed" 
+  style={{ color: '#000000', opacity: 1, WebkitFontSmoothing: 'none' }}
 >
 
               <p className="drop-cap mt-0">
@@ -457,7 +457,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
-                Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwicje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.
+                Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwicje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mwem i był większościowym właścicielem farmy.
               </CaseFile>
 
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Anonimowy filantrop</h2>
@@ -586,6 +586,14 @@ export default function Page() {
                  <li className="flex items-start gap-4">
                   <span className="text-xl">📅</span>
                   <div>
+                    <strong className="font-black text-base">25 stycznia 2016 r.</strong><br/>
+                    Marcin Iwiński zakupuje nieruchomość w Nydku za kwotę 5 000 000,00 CZK (ok. 827 500 PLN). Nieruchomość ta służy do organizacji nielegalnych ceremonii z użyciem psychodelików podawanych uczestnikom przez Piotra Tracza.
+                  </div>
+                 </li>
+
+                 <li className="flex items-start gap-4">
+                  <span className="text-xl">📅</span>
+                  <div>
                     <strong className="font-black text-base">15 października 2020 r.</strong><br/>
                     Policyjny szturm na ośrodek Kordysów. W środowisku wybucha panika.
                   </div>
@@ -595,7 +603,7 @@ export default function Page() {
                   <span className="text-xl">📅</span>
                   <div>
                     <strong className="font-black text-base">15 czerwca 2021 r.</strong><br/>
-                    Marcin Iwiński sprzedaje nieruchomości w Nýdku.
+                    Marcin Iwiński "sprzedaje" nieruchomości w Nýdku.
                   </div>
                 </li>
               </ul>
