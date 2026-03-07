@@ -459,7 +459,7 @@ export default function Page() {
               </p>
 
               <p>
-                Oto jak współpracę  opisuje sam Bartosz Badowski:
+                Oto jak współpracę z Michałem Kicińskim wspomina sam Bartosz Badowski:
               </p>
 
               <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
