@@ -76,7 +76,7 @@ const TransactionStampUI = ({ label, value, subDetails }: { label: string, value
   <div className="not-prose relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group">
      <div className="absolute bottom-1 right-1 text-black">🔍</div>
      <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed">
-        <span className="text-xl">📜</span>
+        <span className="text-xl">📄</span>
      </div>
      <div className="py-2">
         <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1">{label}</div>
@@ -213,7 +213,7 @@ export default function Page() {
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Świadek B.</h2>
 
               <p className="mt-4">
-                W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa <span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć wyrok (atrapa)">📜</span> pojawia się postać świadka Bartosza B. Zgodnie z aktami:
+                W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa <span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć wyrok (atrapa)">📄</span> pojawia się postać świadka Bartosza B. Zgodnie z aktami:
               </p>
 
               <CaseFile title="Zeznania świadka B." type="transcript">
