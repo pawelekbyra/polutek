@@ -585,10 +585,15 @@ export default function Page() {
               <ul className="not-prose list-none space-y-10 my-12 font-mono text-sm border-l-4 border-black pl-6 relative z-10 text-black">
                  <li className="flex items-start gap-4">
                   <span className="text-xl">📅</span>
-                  <div>
-                    <strong className="font-black text-base">25 stycznia 2016 r.</strong><br/>
-                    Marcin Iwiński zakupuje nieruchomość w Nydku za kwotę 5 000 000,00 CZK. Nieruchomość ta służy do organizacji nielegalnych ceremonii z użyciem psychodelików podawanych uczestnikom przez Piotra Tracza.
-                  </div>
+                <div>
+  <strong className="font-black text-base block">25 stycznia 2016 r.</strong>
+  <span className="block leading-tight">
+    Marcin Iwiński zakupuje nieruchomość w Nydku za kwotę 5 000 000,00 CZK.
+  </span>
+  <span className="block leading-tight">
+    Nieruchomość ta służy do organizacji nielegalnych ceremonii z użyciem psychodelików podawanych uczestnikom przez Piotra Tracza.
+  </span>
+</div>
                  </li>
 
                  <li className="flex items-start gap-4">
