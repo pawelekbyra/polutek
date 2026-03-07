@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
-                        
+                          
                       
 const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
 const DOCUMENTATION_IPFS_URL = `${PINATA_GATEWAY}/bafybeicnxlo366f6fznm5p6j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j`; 
@@ -182,7 +182,7 @@ export default function Page() {
               Mroczna tajemnica twórców CD Projekt
             </p>
             <div className="max-w-3xl mx-auto mt-6">
-              <p className="text-sm md:text-lg text-[#1a1a1a] leading-relaxed italic font-serif font-bold px-4">
+              <p className="text-sm md:text-lg text-[#000000] leading-snug italic font-serif font-bold px-4">
                 Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
               </p>
             </div>
@@ -190,8 +190,8 @@ export default function Page() {
 
           <article className="max-w-3xl mx-auto px-6 pt-4 pb-0 flex-grow w-full z-10 relative">
           <div 
-  className="prose prose-stone prose-lg max-w-none article-prose font-serif text-lg leading-relaxed p-6" 
-  style={{ color: '#1a1a1a', backgroundColor: '#FDFBF7', opacity: 1, WebkitFontSmoothing: 'none' }}
+  className="prose prose-stone prose-lg max-w-none article-prose font-serif leading-relaxed text-[#1a1a1a]" 
+  style={{ opacity: 1, WebkitFontSmoothing: 'none' }}
 >
 
               <p className="drop-cap mt-0">
@@ -225,7 +225,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Zarzuty wobec Bartosza B.">
-                (...) wymieniony był sprawdzany v związku z występkiem niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi (...) albowiem miał v roku 2014 zlecić przesłanie na swój adres przesyłki pocztowej przechwyconej na lotnisku v Lipsku RFN zawierającej 4,5 kg DMT, a 6.6.2018 miało dojść do zatrzymania przesyłki pocztowej ve Frankfurcie nad Menem RFN zawierającej 2000 g meskaliny i 38,6 g substancji DMT.
+                (...) wymieniony był sprawdzany w związku z występkiem niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi (...) albowiem miał w roku 2014 zlecić przesłanie na swój adres przesyłki pocztowej przechwyconej na lotnisku v Lipsku RFN zawierającej 4,5 kg DMT, a 6.6.2018 miało dojść do zatrzymania przesyłki pocztowej we Frankfurcie nad Menem RFN zawierającej 2000 g meskaliny i 38,6 g substancji DMT.
               </CaseFile>
 
               <p className="mt-4">
@@ -233,21 +233,21 @@ export default function Page() {
               </p>
 
               <CaseFile title="Własność nieruchomości">
-                (...) budynek rodzinny v miejscowości Janów (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy.
+                (...) budynek rodzinny w miejscowości Janów (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy.
                 <br/><br/>
-                Świadek [Bartosz B.] potwierdził, że v Janowie jest właścicielem jednej dziesiątej nieruchomości.
+                Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem jednej dziesiątej nieruchomości.
               </CaseFile>
 
               <p className="mt-4">
-                Do kogo należała reszta? Sąd wskazuje vprost:
+                Do kogo należała reszta? Sąd wskazuje wprost:
               </p>
 
               <CaseFile title="Ustalenia Sądu">
-                ...v odniesieniu do nieruchomości będących współwłasnością <strong className="font-black">Bartosza B.</strong> i <strong className="font-black">Michała D. K.</strong><span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć zdjęcie (atrapa)">📸</span>
+                ...w odniesieniu do nieruchomości będących współwłasnością <strong className="font-black">Bartosza B.</strong> i <strong className="font-black">Michała D. K.</strong><span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć zdjęcie (atrapa)">📸</span>
               </CaseFile>
 
               <p className="mt-4">
-                W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać działkę v Janowie i za niewielką opłatą pobrać jej pełną historię.
+                W Czechach księgi wieczyste są jawne i dostępne online. Wystarczy wejść na stronę Katastru Nieruchomości, wyszukać działkę w Janowie i za niewielką opłatą pobrać jej pełną historię.
               </p>
 
               <div className="not-prose my-8 flex justify-start">
@@ -255,13 +255,13 @@ export default function Page() {
               </div>
 
               <p className="mt-4">
-                Pobrany dokument nie pozostawia wątpliwości: v latach 2012–2023 współwłaścicielami nieruchomości byli:
+                Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
                 <br/><br/>
                 Bartosz Badowski (10%) i <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">Michał Dawid Kiciński (90%)</span><br/>
               </p>
 
             <p className="mt-4">
-  Drugie imię – Dawid – idealnie wypełnia lukę v zanonimizowanym skrócie Michal D. K.
+  Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie Michal D. K.
 </p>
 <p className="mt-2">
   <span className="bg-red-600 px-1 font-black text-white shadow-sm box-decoration-clone">
@@ -271,19 +271,19 @@ export default function Page() {
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Na podsłuchu</h2>
 
               <p className="mt-4">
-                Przełom v sprawie organizatorów ayahuaskowych ceremonii v 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy v dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysym.
+                Przełom w sprawie organizatorów ayahuaskowych ceremonii w 2020 roku nastąpił dzięki policyjnej technice operacyjnej. Telefon Kordysa był na stałym podsłuchu, a funkcjonariusze słuchali na żywo, gdy w dniu 24.08.2020 r. doszło do nerwowej wymiany zdań pomiędzy Badowskim i Kordysym.
               </p>
 
               <p className="mt-4">
-                Kordys zadzwonił do Badowskiego wyraźnie zaniepokojony wieściami, które do niego dotarły. Bał się, że tragedia, o której huczało v kuluarach, może zniszczyć ich imperium. Sąd v uzasadnieniu wyroku precyzyjnie rekonstruuje ten moment:
+                Kordys zadzwonił do Badowskiego wyraźnie zaniepokojony wieściami, które do niego dotarły. Bał się, że tragedia, o której huczało w kuluarach, może zniszczyć ich imperium. Sąd w uzasadnieniu wyroku precyzyjnie rekonstruuje ten moment:
               </p>
 
               <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" type="transcript">
-                oskarżony [Jarosława Kordysa] omawia z B., że dotarła do niego informacja, że v obiekcie v Janowie <span className="underline decoration-red-700 decoration-4 underline-offset-4 font-bold">zmarła jakaś kobieta</span>.
+                oskarżony [Jarosława Kordysa] omawia z B., że dotarła do niego informacja, że w obiekcie w Janowie <span className="underline decoration-red-700 decoration-4 underline-offset-4 font-bold">zmarła jakaś kobieta</span>.
               </CaseFile>
 
               <p className="mt-4">
-                W rozmowie pojawia się też wątek zagrożenia ze strony osoby trzeciej – mężczyźni omawiają szantażystę, który chce iść na policję. Kordys vprost pyta wspólnika:
+                W rozmowie pojawia się też wątek zagrożenia ze strony osoby trzeciej – mężczyźni omawiają szantażystę, który chce iść na policję. Kordys wprost pyta wspólnika:
               </p>
 
               <CaseFile title="Pytanie Kordysa" type="transcript">
@@ -291,7 +291,7 @@ export default function Page() {
               </CaseFile>
 
               <div className="not-prose my-12 pl-6 border-l-[6px] border-black font-serif italic text-2xl text-[#000000] leading-relaxed relative z-10">
-                „Z ich rozmowy wynika, że nie zajmowali się v zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji.”
+                „Z ich rozmowy wynika, że nie zajmowali się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji.”
               </div>
 
               <p className="mt-4">
@@ -303,61 +303,61 @@ export default function Page() {
               </p>
 
               <CaseFile title="Kontynuacja rozmowy" type="transcript">
-                Następnie v rozmowie omawiają zamówienia «herbaty» z dżungli i to, czy im tego «nie zepsują», ekscytując się nagraniem od dostawcy, który «siedzi v dżungli i gotuje».
+                Następnie w rozmowie omawiają zamówienia «herbaty» z dżungli i to, czy im tego «nie zepsują», ekscytując się nagraniem od dostawcy, który «siedzi v dżungli i gotuje».
               </CaseFile>
 
               <p className="mt-4">
-                Dla policjantów, którzy słyszeli to v czasie rzeczywistym, przekaz był jasny: v obiekcie mogło dojść do tragedii, a sprawcy martwili się jedynie o ciągłość dostaw.
+                Dla policjantów, którzy słyszeli to w czasie rzeczywistym, przekaz był jasny: w obiekcie mogło dojść do tragedii, a sprawcy martwili się jedynie o ciągłość dostaw.
               </p>
 
               <p className="mt-4">
-                Zaledwie dwa dni po tym telefonie, 26.08.2020 czescy policjanci weszli do posiadłości v Janowie. Efekty rewizji opisano v wyroku Kordysa:
+                Zaledwie dwa dni po tym telefonie, 26.08.2020 czescy policjanci weszli do posiadłości w Janowie. Efekty rewizji opisano w wyroku Kordysa:
               </p>
 
               <CaseFile title="Protokół rewizji">
-                v nieruchomości zabezpieczono rzeczy... oprócz marihuany zabezpieczono również substancje zawierające DMT o objętości ok. 2 kg.
+                w nieruchomości zabezpieczono rzeczy... oprócz marihuany zabezpieczono również substancje zawierające DMT o objętości ok. 2 kg.
               </CaseFile>
 
               <p className="mt-4">
-                Podczas policyjnej interwencji zidentyfikowano tam 15 obywateli Polski, którzy mieli brać udział v ceremonii. Wśród nich, stali bywalcy i bliscy znajomi Badowskiego – <strong className="font-black">Krzysztof Stefanek</strong> i <strong className="font-black">Magdalena Drzewińska</strong>, których obecność v momencie wkroczenia służb ma znaczenie v kontekście późniejszej ich roli v tej historii.
+                Podczas policyjnej interwencji zidentyfikowano tam 15 obywateli Polski, którzy mieli brać udział w ceremonii. Wśród nich, stali bywalcy i bliscy znajomi Badowskiego – <strong className="font-black">Krzysztof Stefanek</strong> i <strong className="font-black">Magdalena Drzewińska</strong>, których obecność w momencie wkroczenia służb ma znaczenie w kontekście późniejszej ich roli w tej historii.
               </p>
 
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Cena wolności</h2>
 
               <p className="mt-4">
-                Kiedy 26 sierpnia 2020 roku czeska policja weszła do posiadłości v Janowie, należącej do Bartosza Badowskiego i miliardera Michała Kicińskiego, Jarosław Kordys v Hermanovicach vciąż czuł się bezpiecznie. Nie wiedział jeszcze, że zegar zaczął odliczać czas do jego własnej katastrofy. Zaledwie 7 tygodni po cichym nalocie na Badowskiego policja zapukała do Kordysów.
+                Kiedy 26 sierpnia 2020 roku czeska policja weszła do posiadłości w Janowie, należącej do Bartosza Badowskiego i miliardera Michała Kicińskiego, Jarosław Kordys w Hermanovicach wciąż czuł się bezpiecznie. Nie wiedział jeszcze, że zegar zaczął odliczać czas do jego własnej katastrofy. Zaledwie 7 tygodni po cichym nalocie na Badowskiego policja zapukała do Kordysów.
               </p>
 
               <p className="mt-4">
-                15 października 2020 roku sielankę v ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się v półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
+                15 października 2020 roku sielankę w ich ośrodku przerwał huk granatów ogłuszających. Czeska jednostka antyterrorystyczna nie bawiła się w półśrodki: zamaskowani funkcjonariusze z długą bronią wdarli się do budynku, rzucając na ziemię przyszłych bohaterów głośnego skandalu.
               </p>
 
               <div className="not-prose my-8">
                 <ArticleVideoPlayer src={ARREST_VIDEO_URL} />
                 <div className="mt-4 text-sm text-black font-mono border-l-[4px] border-black pl-4 bg-[#e8d154]/20 py-2 relative z-10">
                   <span className="font-black uppercase text-xs mr-2">Materiał Operacyjny:</span>
-                  Nagranie z policyjnego nalotu na ośrodek v Hermanovicach (15.10.2020)
+                  Nagranie z policyjnego nalotu na ośrodek w Hermanovicach (15.10.2020)
                 </div>
               </div>
 
               <p className="mt-4">
-                Co wydarzyło się v ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się v jednym czeskim terminie prawnym:
+                Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryye się w jednym czeskim terminie prawnym:
               </p>
 
               <LegalNote term="Dohoda o vině a trestu">
-                Ugoda o winie i karze. Czeska procedura karna pozwalająca oskarżonemu na dobrowolne poddanie się karze v zamian za łagodniejszy wyrok, bez przeprowadzania pełnego procesu dowodowego i wzywania świadków.
+                Ugoda o winie i karze. Czeska procedura karna pozwalająca oskarżonemu na dobrowolne poddanie się karze w zamian za łagodniejszy wyrok, bez przeprowadzania pełnego procesu dowodowego i wzywania świadków.
               </LegalNote>
 
               <p className="mt-4">
-                Bartosz Badi Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – v tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił kupić sobie wolność.
+                Bartosz Badi Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił kupić sobie wolność.
               </p>
 
               <p className="mt-4">
-                Ugoda pozwoliła na zamknięcie jego teczki bez wywoływania świadków, co v praktyce oznaczało, że mechanizmy działania janowskiego ośrodka nigdy nie wybrzmiały echem v publicznej debacie, chroniąc Badowskiego przed krzyżowym ogniem pytań i zeznaniami, które mogłyby pogrążyć także jego cichego wspólnika.
+                Ugoda pozwoliła na zamknięcie jego teczki bez wywoływania świadków, co w praktyce oznaczało, że mechanizmy działania janowskiego ośrodka nigdy nie wybrzmiały echem w publicznej debacie, chroniąc Badowskiego przed krzyżowym ogniem pytań i zeznaniami, które mogłyby pogrążyć także jego cichego wspólnika.
               </p>
 
               <p className="mt-4">
-                Cena wolności Badowskiego okazała się być wysoka dla jego kolegi z branży. Zeznania Badiego były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak v sprawie Kordysów.
+                Cena wolności Badowskiego okazała się być wysoka dla jego kolegi z branży. Zeznania Badiego były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak w sprawie Kordysów.
               </p>
 
               <p className="mt-4">
@@ -365,7 +365,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
-                co najmniej od bliżej nieustalanej daty v 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej v 441 przypadkach zrealizował v nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne
+                co najmniej od bliżej nieustalanej daty w 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne
                 <br/><br/>
                 udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. ayahuascę zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)
                 <br/><br/>
@@ -373,23 +373,23 @@ export default function Page() {
               </CaseFile>
 
               <p className="mt-4">
-                Podczas, gdy Jarosław Kordys został skazany na 8,5 roku pozbawienia wolności Bartosz Badowski, którego sprawa dotyczyła tego samego procederu, tych samych substancji, regionu i czasu trwania działalności, dzięki ugodzie i współpracy z wymiarem sprawiedliwości, zakończył sprawę wyrokiem v zawieszeniu.
+                Podczas, gdy Jarosław Kordys został skazany na 8,5 roku pozbawienia wolności Bartosz Badowski, którego sprawa dotyczyła tego samego procederu, tych samych substancji, regionu i czasu trwania działalności, dzięki ugodzie i współpracy z wymiarem sprawiedliwości, zakończył sprawę wyrokiem w zawieszeniu.
               </p>
 
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Cisza po burzy</h2>
 
               <p className="mt-4">
-                Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość v Janowie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku Badiego v tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
+                Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janowie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku Badiego w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
               </p>
 
               <p className="mt-4">
-                Będąc tak blisko Badowskiego, doskonale znali mroczną tajemnicę śmierci Ilony. Ich decyzja o zamieszkaniu z człowiekiem, który v obliczu tragedii martwił się o ciągłość dostaw, dowodzi, że v pełni akceptowali reguły zmowy milczenia.
+                Będąc tak blisko Badowskiego, doskonale znali mroczną tajemnicę śmierci Ilony. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się o ciągłość dostaw, dowodzi, że w pełni akceptowali reguły zmowy milczenia.
               </p>
 
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Kiciński</h2>
 
               <p className="mt-4">
-                W cieniu tych wyroków pozostaje vciąż niewyjaśniona rola cichego wspólnika. Michał Kiciński to nie jest postać, która o ayahuasce jedynie słyszała – on stał się jej nieoficjalnym ambasadorem v polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla Focusa, Newsweeka) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu medycyna, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera nową rzeczywistość.
+                W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika. Michał Kiciński to nie jest postać, która o ayahuasce jedynie słyszała – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla Focusa, Newsweeka) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu medycyna, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera nową rzeczywistość.
               </p>
 
               <PullQuote
@@ -400,7 +400,7 @@ export default function Page() {
 
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Błąd z Badim</h2>
 
-              <p className="mt-4"> Jego konfrontacja z organami ścigania nabrała formalnego kształtu  jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa v charakterze świadka v sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć Janova.
+              <p className="mt-4"> Jego konfrontacja z organami ścigania nabrała formalnego kształtu  jesienią 2023 roku. 21 września 2023 roku miliarder osobiście odebrał wezwanie do stawiennictwa w charakterze świadka w sprawie o sygnaturze WD-I-3186/23. Miało się ono odbyć 18.10.2023. Na wezwaniu czytelnie było napisane, że przesłuchanie będzie dotyczyć Janova.
               </p>
 
               <div className="not-prose my-12 flex flex-col items-center relative z-10">
@@ -421,35 +421,35 @@ export default function Page() {
               </p>
 
               <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email">
-                (...) Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, v ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu.
+                (...) Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu.
               </CaseFile>
 
               <p className="mt-4">
-                Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 v Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej v jego posiadłości.
+                Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
               </p>
 
               <CaseFile title="Zeznanie do protokołu">
-                Nie mam żadnej wiedzy co się działo na mojej farmie, v której jestem 90% udziałowcem (...) wynajmowałem tę nieruchomość.
+                Nie mam żadnej wiedzy co się działo na mojej farmie, w której jestem 90% udziałowcem (...) wynajmowałem tę nieruchomość.
               </CaseFile>
 
               <p className="mt-4">
-                Gdy v toku czynności padło kluczowe pytanie o jego własny udział v ceremoniach ayahuaski v Janowie, odpowiedź była lakoniczna:
+                Gdy w toku czynności padło kluczowe pytanie o jego własny udział w ceremoniach ayahuaski w Janowie, odpowiedź była lakoniczna:
               </p>
 
               <CaseFile title="Odpowiedź na pytanie o udział">
-                nie brałem udziału v takich ceremoniach v latach 2016-2023, a o wcześniejszym okresie <span className="underline decoration-black decoration-4 underline-offset-4 font-black">odmawiam odpowiedzi</span>
+                nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie <span className="underline decoration-black decoration-4 underline-offset-4 font-black">odmawiam odpowiedzi</span>
               </CaseFile>
 
               <p className="mt-4">
-                W kontekście złożonych zeznań warto zauważyć, że miliarder jest właścicielem luksusowego ośrodka Munay Sonqo v Peru, o którym wielokrotnie wspominał v wywiadach.
+                W kontekście złożonych zeznań warto zauważyć, że miliarder jest właścicielem luksusowego ośrodka Munay Sonqo w Peru, o którym wielokrotnie wspominał w wywiadach.
               </p>
 
               <p className="mt-4">
-                W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego oferuje tam v pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które v Czechach są zakazane, co vciąż jest eksponowane na stronie internetowej.
+                W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego oferuje tam w pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które w Czechach są zakazane, co wciąż jest eksponowane na stronie internetowej.
               </p>
 
               <p className="mt-4">
-                Fakt, że Kiciński v momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym v Ameryce Południowej, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalności v Janowie.
+                Fakt, że Kiciński w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w Ameryce Południowej, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalności w Janowie.
               </p>
 
               <p>
@@ -457,21 +457,21 @@ export default function Page() {
               </p>
 
               <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
-                Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji v Czechach - ja poniosłem prawne konsekwicje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.
+                Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwicje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.
               </CaseFile>
 
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Anonimowy filantrop</h2>
 
               <p className="mt-4">
-                W listopadzie 2025 roku na kanale YouTube <strong className="font-black">Osada Natury Zew</strong> pojawia się nagrany rok wcześniej film, v którym obecny gospodarz, <strong className="font-black">Krzysztof Stefanek</strong>, snuje opowieść o powstaniu Osady. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
+                W listopadzie 2025 roku na kanale YouTube <strong className="font-black">Osada Natury Zew</strong> pojawia się nagrany rok wcześniej film, w którym obecny gospodarz, <strong className="font-black">Krzysztof Stefanek</strong>, snuje opowieść o powstaniu Osady. W sielskiej scenerii, z uśmiechem na ustach, buduje narrację o cudownym zbiegu okoliczności i tajemniczym dobroczyńcy.
               </p>
 
               <p className="mt-4">
-                Stefanek wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt znalazł się v jednych rękach. Kluczowy moment tej opowieści Stefanek datuje z niezwykłą precyzją:
+                Stefanek wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt znalazł się w jednych rękach. Kluczowy moment tej opowieści Stefanek datuje z niezwykłą precyzją:
               </p>
 
               <CaseFile title="Wypowiedź K. Stefanka">
-                Ostatecznie <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">23 października 2023 roku</span> ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chciał to miejsce przekazać v darowiźnie
+                Ostatecznie <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">23 października 2023 roku</span> ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chciał to miejsce przekazać w darowiźnie
               </CaseFile>
 
               <p className="mt-4">
@@ -487,7 +487,7 @@ export default function Page() {
               </div>
 
               <p className="mt-4 mb-8">
-                Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech v pozbywaniu się gorącego kartofla:
+                Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech w pozbywaniu się gorącego kartofla:
               </p>
 
               <ul className="not-prose list-none space-y-10 my-12 font-mono text-sm border-l-4 border-black pl-6 relative z-10">
@@ -495,7 +495,7 @@ export default function Page() {
                   <span className="text-xl">📅</span>
                   <div>
                     <strong className="font-black text-base">21 września 2023 r.</strong><br/>
-                    Michał Kiciński odbiera wezwanie na przesłuchanie v sprawie Janowa.
+                    Michał Kiciński odbiera wezwanie na przesłuchanie w sprawie Janowa.
                   </div>
                 </li>
 
@@ -503,7 +503,7 @@ export default function Page() {
                   <span className="text-xl">📅</span>
                   <div>
                     <strong className="font-black text-base">3 października 2023 r.</strong><br/>
-                    Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów v nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
+                    Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów w nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
                   </div>
                 </li>
 
@@ -511,7 +511,7 @@ export default function Page() {
                   <span className="text-xl">📅</span>
                   <div>
                     <strong className="font-black text-base">11 października 2023 r.</strong><br/>
-                    Miliarder staje przed policją. Do protokołu odmawia zeznań na temat swojej przeszłości v tym miejscu.
+                    Miliarder staje przed policją. Do protokołu odmawia zeznań na temat swojej przeszłości w tym miejscu.
                   </div>
                 </li>
 
@@ -527,13 +527,13 @@ export default function Page() {
                   <span className="text-xl">📅</span>
                   <div>
                     <strong className="font-black text-base">21 grudnia 2023 r.</strong><br/>
-                    Finał operacji. Kiciński formalnie przekazuje Janów v formie darowizny. Nieruchomość trafia do stowarzyszenia non-profit – fasadowej organizacji krzak, zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
+                    Finał operacji. Kiciński formalnie przekazuje Janów w formie darowizny. Nieruchomość trafia do stowarzyszenia non-profit – fasadowej organizacji krzak, zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
                   </div>
                 </li>
               </ul>
 
               <p className="mt-4">
-                Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong className="font-black">Krzysztof Stefanek</strong>, który v filmie mówi o odwróconej logice i pięknie wolontariatu, i jego konkubina <strong className="font-black">Magdalena Drzewińska</strong> v rzeczywistości doskonale znali mroczną historię Janowa i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
+                Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong className="font-black">Krzysztof Stefanek</strong>, który w filmie mówi o odwróconej logice i pięknie wolontariatu, i jego konkubina <strong className="font-black">Magdalena Drzewińska</strong> w rzeczywistości doskonale znali mroczną historię Janowa i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
               </p>
 
               <div className="not-prose my-8 flex justify-start">
@@ -545,7 +545,7 @@ export default function Page() {
               </div>
 
               <p className="mt-4">
-                Ostatecznie strategia okazała się skuteczna. Śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany v stowarzyszeniu. Kiciński pozostał anonimowym filantropem, a Stefanek – opiekunem nowej, czystej osady.
+                Ostatecznie strategia okazała się skuteczna. Śledztwo umorzono zanim się zaczęło, a majątek, który mógł podlegać przepadkowi jako narzędzie przestępstwa, został bezpiecznie zaparkowany w stowarzyszeniu. Kiciński pozostał anonimowym filantropem, a Stefanek – opiekunem nowej, czystej osady.
               </p>
 
               <p className="mt-4">
@@ -555,11 +555,11 @@ export default function Page() {
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Nýdek</h2>
 
               <p className="mt-4">
-                Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janowa, v miejscowości <strong className="font-black">Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.<span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć zdjęcie (atrapa)">📸</span>
+                Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janowa, w miejscowości <strong className="font-black">Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek.<span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć zdjęcie (atrapa)">📸</span>
               </p>
 
               <p className="mt-4">
-                Relacje świadków wskazują, że v posiadłości v Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong className="font-black">Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu Wayback Machine zachowało zrzuty strony tribunydek.com.<span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć archiwalny dowód (atrapa)">🔍</span> Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
+                Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong className="font-black">Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu Wayback Machine zachowało zrzuty strony tribunydek.com.<span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć archiwalny dowód (atrapa)">🔍</span> Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
               </p>
 
               <p className="not-prose mt-4 font-bold text-center my-8 uppercase font-sans text-black">
@@ -567,7 +567,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej szamańskiej świątyni – dokładnie v czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za gamingowym gigantem, <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">Marcin Iwiński</span>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, v której odbywał się nielegalny proceder.
+                Analiza czeskich ksiąg wieczystych przynosi sensacyjne odkrycie. Właścicielem tej kolejnej szamańskiej świątyni – dokładnie w czasie, gdy strona internetowa zapraszała na ceremonie – był drugi z duetu miliarderów stojących za gamingowym gigantem, <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">Marcin Iwiński</span>. Dokumenty urzędowe bezlitośnie łączą jego nazwisko z infrastrukturą, w której odbywał się nielegalny proceder.
               </p>
 
               <div className="not-prose my-8 flex justify-start">
@@ -575,11 +575,11 @@ export default function Page() {
               </div>
 
               <p className="mt-4">
-                <span className="bg-red-600 px-1 font-black text-white shadow-sm box-decoration-clone">Oznacza to, że nie jeden lecz obaj legendarni założyciele CD Projekt, na czeskim pograniczu posiadali nieruchomości, v których odpłatnie oferowano te same nielegalne substancje.</span>
+                <span className="bg-red-600 px-1 font-black text-white shadow-sm box-decoration-clone">Oznacza to, że nie jeden lecz obaj legendarni założyciele CD Projekt, na czeskim pograniczu posiadali nieruchomości, w których odpłatnie oferowano te same nielegalne substancje.</span>
               </p>
 
               <p className="mt-4">
-                Jeszcze bardziej zastanawiające jest to, co stało się z tą nieruchomością v momencie zagrożenia. Gdy 15.10.2020 roku aresztowano Kordysa, nad środowiskiem zawisło vidmo policyjnych nalotów. Dokumenty urzędowe odsłaniają niepokojącą zbieżność dat:
+                Jeszcze bardziej zastanawiające jest to, co stało się z tą nieruchomością w momencie zagrożenia. Gdy 15.10.2020 roku aresztowano Kordysa, nad środowiskiem zawisło widmo policyjnych nalotów. Dokumenty urzędowe odsłaniają niepokojącą zbieżność dat:
               </p>
 
               <ul className="not-prose list-none space-y-10 my-12 font-mono text-sm border-l-4 border-black pl-6 relative z-10 text-black">
@@ -595,7 +595,7 @@ export default function Page() {
                   <span className="text-xl">📅</span>
                   <div>
                     <strong className="font-black text-base">15 czerwca 2021 r.</strong><br/>
-                    Marcin Iwiński sprzedaje nieruchomości v Nýdku.
+                    Marcin Iwiński sprzedaje nieruchomości w Nýdku.
                   </div>
                 </li>
               </ul>
@@ -613,21 +613,21 @@ export default function Page() {
               </div>
 
               <p className="mt-4">
-                Transakcja ta rodzi wątpliwości: v jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z darowizną Kicińskiego v Janowie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
+                Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z darowizną Kicińskiego w Janowie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
               </p>
 
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Wiktor B.</h2>
 
               <p className="mt-4">
-                9. marca 2026 Onet ujawnia opinii publicznej wstrząsające kulisy działalności ośrodka v czeskim Janowie. Dziennikarskie śledztwo koncentruje się na śmierci 54-letniej uczestniczki, Ilony L.-H.
+                9. marca 2026 Onet ujawnia opinii publicznej wstrząsające kulisy działalności ośrodka w czeskim Janowie. Dziennikarskie śledztwo koncentruje się na śmierci 54-letniej uczestniczki, Ilony L.-H.
               </p>
 
               <p className="mt-4">
-                Według ustaleń Onetu, v czerwcu 2018 roku na farmie v Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, nikt nie wezwał pomocy medycznej. Co więcej, uczestnikom odebrano wcześniej telefony, co uniemożliwiło im samodzielne zaalarmowanie służb ratunkowych.
+                Według ustaleń Onetu, w czerwcu 2018 roku na farmie w Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, nikt nie wezwał pomocy medycznej. Co więcej, uczestnikom odebrano wcześniej telefony, co uniemożliwiło im samodzielne zaalarmowanie służb ratunkowych.
               </p>
 
               <p className="mt-4">
-                     Prowadzący obrzęd Wiktor B., brat Bartosza Badowskiego, był tej nocy pod wpływem marihuany. Z relacji świadków wynika, że po śmierci kobiety podjął on natychmiastowe działania mające na celu zatuszowanie incydentu. Nakazał uczestnikom bezzwłoczne opuszczenie ośrodka. Czeskiej policji przedstawił fałszywą wersję zdarzeń, twierdząc, że Ilona L.-H. była jedynie gościem i została znaleziona martwa v łazience nad ranem. Służby początkowo nie nabrały podejrzeń, przyjmując tę relację za wiarygodną.
+                     Prowadzący obrzęd Wiktor B., brat Bartosza Badowskiego, był tej nocy pod wpływem marihuany. Z relacji świadków wynika, że po śmierci kobiety podjął on natychmiastowe działania mające na celu zatuszowanie incydentu. Nakazał uczestnikom bezzwłoczne opuszczenie ośrodka. Czeskiej policji przedstawił fałszywą wersję zdarzeń, twierdząc, że Ilona L.-H. była jedynie gościem i została znaleziona martwa w łazience nad ranem. Służby początkowo nie nabrały podejrzeń, przyjmując tę relację za wiarygodną.
               </p>
 
               <p className="mt-4">
@@ -635,11 +635,11 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Sytuacja uległa  zmianie dopiero 6 maja 2024 roku, gdy Prokuratura Okręgowa v Częstochowie wszczęła oficjalne śledztwo v sprawie działalności ośrodka oraz okoliczności śmierci Ilony L.-H. Zaledwie 2 miesiące  później, v tajemniczych okolicznościach umiera Wiktor B.
+                Sytuacja uległa  zmianie dopiero 6 maja 2024 roku, gdy Prokuratura Okręgowa w Częstochowie wszczęła oficjalne śledztwo w sprawie działalności ośrodka oraz okoliczności śmierci Ilony L.-H. Zaledwie 2 miesiące  później, w tajemniczych okolicznościach umiera Wiktor B.
               </p>
 
               <p className="mt-4">
-                Ciało mężczyzny odnaleziono v magazynie firmy, v której pracował przy montażu szaf serwerowych. Na jego ciele nie stwierdzono vidocznych obrażeń wskazujących na użycie siły fizycznej. Mimo że od śmierci Wiktora B. minęło już ponad półtora roku, śledczy vciąż czekają na wyniki badań toksykologicznych, które mają kluczowe znaczenie dla wyjaśnienia, czy v organizmie mężczyzny znajdowały się substancje mogące przyczynić się do jego nagłego odejścia. Z tego względu obecnie śledztwo v sprawie jego tajemniczego zgonu pozostaje zawieszone.<span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć szczegóły (atrapa)">🔍</span>
+                Ciało mężczyzny odnaleziono w magazynie firmy, w której pracował przy montażu szaf serwerowych. Na jego ciele nie stwierdzono widocznych obrażeń wskazujących na użycie siły fizycznej. Mimo że od śmierci Wiktora B. minęło już ponad półtora roku, śledczy wciąż czekają na wyniki badań toksykologicznych, które mają kluczowe znaczenie dla wyjaśnienia, czy w organizmie mężczyzny znajdowały się substancje mogące przyczynić się do jego nagłego odejścia. Z tego względu obecnie śledztwo w sprawie jego tajemniczego zgonu pozostaje zawieszone.<span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć szczegóły (atrapa)">🔍</span>
               </p>
 
               <div className="not-prose mt-12 mb-4 flex justify-end relative z-10">
@@ -657,8 +657,8 @@ export default function Page() {
                   <div className="grid gap-4 px-4">
                     <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                         <div>
-                          <span className="block font-display text-black font-bold uppercase">Śledztwo v sprawie organizacji ceremonii</span>
-                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Okręgowa v Częstochowie</span>
+                          <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie organizacji ceremonii</span>
+                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Okręgowa w Częstochowie</span>
                         </div>
                         <span className="font-mono text-sm font-black bg-black text-white px-4 py-2 border border-black uppercase tracking-widest">
                           3013-1.Ds.15.2024
@@ -667,8 +667,8 @@ export default function Page() {
 
                     <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                         <div>
-                          <span className="block font-display text-black font-bold uppercase">Śledztwo v sprawie śmierci Ilony L.</span>
-                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Okręgowa v Częstochowie</span>
+                          <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie śmierci Ilony L.</span>
+                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Okręgowa w Częstochowie</span>
                         </div>
                         <span className="font-mono text-sm font-black bg-[#e8d154] text-black border-2 border-black px-4 py-2 uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                           3013-1.Ds.4.2026
@@ -677,8 +677,8 @@ export default function Page() {
 
                     <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                         <div>
-                          <span className="block font-display text-black font-bold uppercase">Śledztwo v sprawie śmierci Wiktora B.</span>
-                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Rejonowa v Pułtusku</span>
+                          <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie śmierci Wiktora B.</span>
+                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Rejonowa w Pułtusku</span>
                         </div>
                         <div className="flex flex-col items-end gap-2">
                           <span className="font-mono text-sm font-black bg-black/5 text-black px-4 py-2 border-2 border-black uppercase tracking-widest">
@@ -692,7 +692,7 @@ export default function Page() {
                   </div>
 
                   <div className="mt-8 px-4 text-xs text-black/70 font-mono text-center italic">
-                    Postępowania toczą się v wymienionych jednostkach Prokuratury. Nadzór nad sprawami v Częstochowie objął Zastępca Prokuratora Okręgowego, a kluczowe czynności nadzoruje prokurator Jolanta Świdnicka.
+                    Postępowania toczą się w wymienionych jednostkach Prokuratury. Nadzór nad sprawami w Częstochowie objął Zastępca Prokuratora Okręgowego, a kluczowe czynności nadzoruje prokurator Jolanta Świdnicka.
                   </div>
               </div>
 
