@@ -199,7 +199,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Ayahuaska to tradycyjny wywar z amazońskich roślin o silnym działaniu halucynogennym. Ze względu na wysoką zawartość DMT – substancji psychodelicznej wywołującej intensywne wizje i zmiany stanu świadomości, jej posiadanie i podawanie jest w Polsce i Czechach zabronione. Finałem medialnego spektaklu Kordysów było ułaskawienie przez czeskiego prezydenta po dwóch latach odsiadki.
+               Ayahuasca (czyt. ajałaska) to tradycyjny wywar z amazońskich roślin o silnym działaniu halucynogennym. Ze względu na wysoką zawartość DMT – substancji psychodelicznej wywołującej intensywne wizje i zmiany stanu świadomości – jej posiadanie i podawanie jest w Polsce i Czechach zabronione. Finałem medialnego spektaklu Kordysów było ułaskawienie ich przez czeskiego prezydenta po dwóch latach odsiadki.
               </p>
 
               <p className="mt-4">
@@ -255,7 +255,7 @@ export default function Page() {
               </div>
 
               <p className="mt-4">
-                Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami nieruchomości byli:
+                Pobrany dokument nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami ajałaskowej nieruchomości byli:
                 <br/><br/>
                 Bartosz Badowski (10%) i <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">Michał Dawid Kiciński (90%)</span><br/>
               </p>
