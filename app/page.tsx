@@ -359,7 +359,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Na mocy wyroku z dnia 2 listopada 2021 roku <span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć wyrok (atrapa)">📜</span>Bartosz Badowski został uznany winnym popełnienia zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi.
+                Na mocy wyroku z dnia 2 listopada 2021 roku <span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć wyrok (atrapa)">📄</span>Bartosz Badowski został uznany winnym popełnienia zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi.
               </p>
 
               <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
