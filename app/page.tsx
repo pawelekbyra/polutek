@@ -455,7 +455,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Fakt, że Kiciński w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w Ameryce Południowej, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalności w Janowie.
+                Fakt, że Kiciński w momencie przesłuchania zarządzał legalnym biznesem ajałaskowym w Ameryce Południowej, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalności w Janowie.
               </p>
 
               <p>
