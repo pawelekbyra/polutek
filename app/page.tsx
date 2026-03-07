@@ -206,7 +206,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                W przygranicznym Janowie funkcjonował drugi, bliźniaczy ayahuaskowy ośrodek, którego współwłaścicielem okazał się miliarder – <strong className="font-black">Michał Kiciński</strong>.
+                W przygranicznym Janowie funkcjonował drugi, bliźniaczy ajałaskowy ośrodek, którego współwłaścicielem okazał się miliarder – <strong className="font-black">Michał Kiciński</strong>.
               </p>
 
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Świadek B.</h2>
