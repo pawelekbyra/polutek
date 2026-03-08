@@ -13,6 +13,7 @@
     "react": "^18",
     "react-dom": "^18",
     "plyr": "^3.7.8",
+    "tailwindcss-animate": "^1.0.7",
     "lucide-react": "^0.378.0",
     "tailwind-merge": "^2.3.0",
     "clsx": "^2.1.1"
