@@ -16,8 +16,8 @@ const ARREST_VIDEO_URL = `${PINATA_GATEWAY}/bafybeickwaxlebikfa2aax7mwk7xnp56n6v
 const GlobalLinkIcon = () => (
   <span className="not-prose inline-flex relative items-center justify-center w-6 h-6 leading-none align-middle mx-1">
     <span className="text-xl">🌐</span>
-    {/* Lancuszek: wiekszy, bez zadnej ramki, poziomo w rogu */}
-    <span className="absolute -bottom-1 -right-1 text-[16px] leading-none select-none pointer-events-none">
+    {/* Lancuszek: poziomo, duzy, bez ramki, w rogu */}
+    <span className="absolute -bottom-1 -right-1 text-[18px] leading-none select-none pointer-events-none drop-shadow-[1px_1px_0px_rgba(255,255,255,1)]">
       🔗
     </span>
   </span>
@@ -314,7 +314,7 @@ export default function Page() {
               </CaseFile>
 
               <p className="mt-4">
-                Для policjantów, którzy słyszeli to v czasie rzeczywistym, przekaz był jasny: w obiekcie mogło dojść do tragedii, a sprawcy martwili się jedynie o ciągłość dostaw.
+                Для policjantów, którzy słyszeli to v czasie rzeczywistym, przekaz był jasny: v obiekcie mogło dojść do tragedii, a sprawcy martwili się jedynie o ciągłość dostaw.
               </p>
 
               <p className="mt-4">
@@ -364,7 +364,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Cena wolności Badowskiego okazała się być wysoka dla jego kolegi z branży. Zeznania Badiego były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak v sprawie Kordysów.
+                Cena wolności Badowskiego okazała się być wysoka dla jego kolegi z branży. Zenyznania Badiego były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak v sprawie Kordysów.
               </p>
 
               <p className="mt-4">
@@ -452,7 +452,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego do tej pory oferuje tam v pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które v Czechach są zakazane, co wciąż jest eksponowane na stronie internetowej. <a 
+                W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego do tej pory oferuje tam v pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które v Czechach są zakazane, co vciąż jest eksponowane na stronie internetowej. <a 
   href="https://munaysonqo.com/all-retreats/#calendar-7a66adc3-3ebd-432c-b572-0faf936c281f-event-e90d5161-a00e-4742-b4b7-039de153a23d" 
   target="_blank" 
   rel="noopener noreferrer" 
@@ -494,7 +494,8 @@ export default function Page() {
               </p>
 
               <div className="not-prose my-8">
-                <div className="w-full aspect-video rounded-sm overflow-hidden relative border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10 bg-black text-left">
+                {/* Odtwarzacz z wymuszonymi proporcjami 16:9, aby wideo wypelnilo ramke */}
+                <div className="w-full relative border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10 bg-black text-left rounded-sm overflow-hidden" style={{ paddingBottom: '56.25%' }}>
                   <iframe 
                     className="absolute inset-0 w-full h-full"
                     src="https://www.youtube.com/embed/4Xujw-krjxs?si=px-xft8rv2MVcDAo" 
@@ -669,7 +670,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Według ustaleń Onetu, v czerwcu 2018 roku na farmie v Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo her krytycznego stanu, organizator nie wezwał pomocy medycznej. Uczestnikom odebrano wcześniej telefony, co uniemożliło im samodzielne zaalarmowanie służb ratunkowych.
+                Według ustaleń Onetu, v czerwcu 2018 roku na farmie v Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, organizator nie wezwał pomocy medycznej. Uczestnikom odebrano wcześniej telefony, co uniemożliło im samodzielne zaalarmowanie służb ratunkowych.
               </p>
 
               <p className="mt-4">
