@@ -10,7 +10,7 @@ const playfair = Playfair_Display({
 
 const ebGaramond = EB_Garamond({
   subsets: ['latin', 'latin-ext'],
-  variable: '--font-eb-garamond',
+  variable: '--font-garamond',
 });
 
 const unifraktur = UnifrakturMaguntia({
@@ -26,8 +26,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Michał Kiciński, Ayahuasca i Tajemnicza Śmierć w Janovie",
-  description: "Pełna dokumentacja śledztwa dziennikarskiego w sprawie ceremonii ayahuaski. Dowody, nagrania i treści wyroków.",
+  title: "Michał Kiciński, Ayahuasca i Tajemnicza Śmierć v Janovie",
+  description: "Pełna dokumentacja śledztwa dziennikarskiego v sprawie ceremonii ayahuaski. Dowody, nagrania i treści wyroków.",
   metadataBase: new URL('https://www.eliksir-wiedzmina.pl'),
   robots: {
     index: true,
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Michał Kiciński, Ayahuasca i Tajemnicza Śmierć w Janovie",
+    title: "Michał Kiciński, Ayahuasca i Tajemnicza Śmierć v Janovie",
     description: "Pełna dokumentacja śledztwa dziennikarskiego: Michał Kiciński i mroczna tajemnica Janova.",
     url: '/',
     siteName: 'Eliksir Wiedźmina',
@@ -63,7 +63,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl" className={`${playfair.variable} ${ebGaramond.variable} ${unifraktur.variable}`}>
-      <body className="antialiased text-[#1a1a1a]">
+      <body className="antialiased text-black">
         {children}
       </body>
     </html>

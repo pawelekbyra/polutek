@@ -5,16 +5,17 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    --foreground: 0 0% 0%; /* Zmienione na czysty czarny */
     --radius: 0.5rem;
   }
 
   html, body {
-    @apply text-[#1a1a1a] antialiased;
+    @apply text-black antialiased; /* Wymuszona czarna czcionka bazowa */
     background-color: transparent;
     overflow-x: hidden;
   }
 
+  /* Warstwa tła - stała, płynna i bez migania */
   body::before {
     content: "";
     position: fixed;
@@ -28,6 +29,7 @@
     background-position: center;
     background-repeat: no-repeat;
     
+    /* Kluczowe dla płynności i naprawy migania: */
     transform: translateZ(0);
     will-change: transform;
     pointer-events: none;
@@ -36,48 +38,51 @@
 
 @layer components {
   .article-prose {
-    @apply prose prose-lg max-w-none bg-[#FDFBF7];
-    @apply prose-headings:font-serif prose-headings:font-bold prose-headings:text-[#1a1a1a];
-    @apply prose-p:font-serif prose-p:text-[#1a1a1a] prose-p:leading-relaxed;
-    @apply prose-strong:text-[#1a1a1a] prose-strong:font-bold;
-    @apply prose-a:text-[#1a1a1a] prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-[#1a1a1a]/30 hover:prose-a:bg-[#1a1a1a]/5 transition-colors;
-    @apply prose-blockquote:border-l-4 prose-blockquote:border-[#1a1a1a] prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-[#1a1a1a];
+    @apply prose prose-lg max-w-none;
+    /* Wszystkie elementy poniżej zmienione na text-black */
+    @apply prose-headings:font-display prose-headings:font-bold prose-headings:text-black;
+    @apply prose-p:font-body prose-p:text-black prose-p:leading-relaxed;
+    @apply prose-strong:text-black prose-strong:font-bold;
+    @apply prose-a:text-black prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-black/30 hover:prose-a:bg-black/5 transition-colors;
+    @apply prose-blockquote:border-l-4 prose-blockquote:border-black prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-black;
   }
 
   .drop-cap::first-letter {
-    @apply text-7xl font-bold mr-3 float-left text-[#1a1a1a] leading-[0.8];
+    @apply text-7xl font-bold mr-3 float-left text-black leading-[0.8];
   }
 
   .section-heading {
-    @apply font-serif font-bold mt-16 mb-8 border-b-4 border-[#1a1a1a] pb-2 text-[#1a1a1a];
+    /* Użycie czarnego obramowania dla nagłówków sekcji */
+    @apply font-display font-bold mt-16 mb-8 border-b-4 border-black pb-2;
   }
 
   .gradient-divider {
-    @apply h-[1px] bg-gradient-to-r from-transparent via-[#1a1a1a] to-transparent;
+    @apply h-[1px] bg-gradient-to-r from-transparent via-black to-transparent;
   }
 
   .timeline-list {
-    @apply border-l-2 border-[#1a1a1a] pl-4;
+    @apply border-l-2 border-black pl-4;
   }
 
   .timeline-item-critical {
-    @apply bg-white/50 border-2 border-[#1a1a1a] p-4 rounded-sm shadow-sm;
+    @apply bg-white/50 border-2 border-black p-4 rounded-sm shadow-sm;
   }
 
   .source-card {
-    @apply p-3 bg-white border-2 border-[#1a1a1a] hover:bg-[#1a1a1a]/5 transition-colors shadow-sm;
+    @apply p-3 bg-white border-2 border-black hover:bg-black/5 transition-colors shadow-sm;
   }
 
+  /* Specyficzne dla artykułu podświetlenia */
   .highlight-wine {
-    @apply bg-[#1a1a1a]/10 px-1 font-bold text-[#1a1a1a] box-decoration-clone;
+    @apply bg-black/10 px-1 font-bold text-black box-decoration-clone;
   }
 
   .status-grid {
-    @apply grid gap-px bg-[#1a1a1a] border border-[#1a1a1a];
+    @apply grid gap-px bg-black border border-black;
   }
 
   .status-row {
-    @apply bg-[#FDFBF7] p-4;
+    @apply bg-white p-4;
   }
 
   .bg-paper-texture {
