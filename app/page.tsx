@@ -48,15 +48,15 @@ const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://mu
 
 const VIDEO_ARREST_METADATA = {
 
-  name: "Nalot policji na ośrodek ayahuaski w Hermanovicach",
+  name: "Intencja, świadomość, sprawczość - Michał Kiciński Q&A",
 
-  description: "Pełna dokumentacja policyjnej interwencji i aresztowania grupy organizującej nielegalne ceremonie ayahuaski. Materiał dowodowy w sprawie Jarosława Kordysa.",
+  description: "Wystąpienie Michała Kicińskiego na Festiwalu Wibracje o intencji i świadomości.",
 
   thumbnailUrl: `${JANOV_IMAGES_URL}/janov1.jpg`,
 
-  contentUrl: `${PINATA_GATEWAY}/${ARREST_VIDEO_CID}/videoplayback.m3u8`,
+  contentUrl: "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/intencja-swiadomosc-sprawczosci-michal-kicinski-qa-festiwal-wibracje.mp4",
 
-  uploadDate: "2020-10-15T09:00:00+01:00",
+  uploadDate: "2024-11-01T12:00:00+01:00",
 
 };
 
@@ -64,13 +64,13 @@ const VIDEO_ARREST_METADATA = {
 
 const VIDEO_STEFANEK_METADATA = {
 
-  name: "Wyznania Krzysztofa Stefanka o przejęciu Janówa",
+  name: "Historia powstania osady Natury Zew - Krzysztof Stefanek",
 
-  description: "Relacja z pierwszej ręki dotycząca darowizny nieruchomości w Janowie od Michała Kicińskiego dla Stowarzyszenia Natury Zew.",
+  description: "Relacja Krzysztofa Stefanka o historii powstania i rozwoju osady Natury Zew.",
 
   thumbnailUrl: `${JANOV_IMAGES_URL}/janov2.jpg`,
 
-  contentUrl: `${PINATA_GATEWAY}/${VIDEO_CID}/YTDowncom_YouTube_Media_4Xujw-krjxs_001_1080p-1.m3u8`,
+  contentUrl: "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/historia-powstania-osady-natury-zew-w-gruncie-ruchu-stefan.mp4",
 
   uploadDate: "2024-11-01T12:00:00+01:00",
 
@@ -198,7 +198,7 @@ const ArticleVideoPlayer: React.FC<{ src: string; poster: string }> = ({ src, po
 
        >
 
-         <source src={src} type="application/x-mpegURL" />
+         <source src={src} type={src.endsWith('.m3u8') ? 'application/x-mpegURL' : 'video/mp4'} />
 
          Your browser does not support the video tag.
 
