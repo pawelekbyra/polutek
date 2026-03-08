@@ -14,11 +14,10 @@ const NYDEK_WAYBACK_URL = "https://web.archive.org/web/20161122155227/http://tri
 const ARREST_VIDEO_URL = `${PINATA_GATEWAY}/bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy/videoplayback.m3u8`;
 
 const GlobalLinkIcon = () => (
-  <span className="not-prose inline-flex relative items-center justify-center w-6 h-6 leading-none align-middle mx-1">
+  <span className="not-prose inline-flex relative items-center justify-center w-5 h-5 leading-none align-middle mx-1">
     <span className="text-xl">🌐</span>
-    {/* Lancuszek: bialy, czarny kontur, poziomo, bez ramki kwadratowej */}
     <span className="absolute -bottom-1 -right-1 flex items-center justify-center w-3 h-3 bg-white border border-black rounded-full shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
-      <span className="text-[8px] text-black font-bold leading-none">🔗</span>
+      <span className="text-[9px] text-black font-bold leading-none select-none">🔗</span>
     </span>
   </span>
 );
@@ -72,7 +71,7 @@ const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string,
       </div>
       <div className="py-2">
          <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1 flex items-center gap-2">{name}</div>
-         <div className="font-mono text-base font-bold text-black uppercase">{lv}</div>
+         <div className="font-mono text-base font-bold text-black uppercase">LV {lv}</div>
          <div className="text-[10px] text-black/60 font-mono mt-1 uppercase">
             Działka: {plot} <span className="mx-1">|</span> Obręb: {code}
          </div>
@@ -364,7 +363,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Cena wolności Badowskiego okazała się być wysoka dla jego kolegi z branży. Zenyznania Badiego były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak v sprawie Kordysów.
+                Cena wolności Badowskiego okazała się być wysoka dla jego kolegi z branży. Zeznania Badiego były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak v sprawie Kordysów.
               </p>
 
               <p className="mt-4">
@@ -494,9 +493,9 @@ export default function Page() {
               </p>
 
               <div className="not-prose my-8">
-                <div className="w-full bg-black aspect-video rounded-sm overflow-hidden relative border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10">
+                <div className="w-full aspect-video rounded-sm overflow-hidden relative border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10 bg-black text-left">
                   <iframe 
-                    className="w-full h-full"
+                    className="absolute inset-0 w-full h-full"
                     src="https://www.youtube.com/embed/4Xujw-krjxs?si=px-xft8rv2MVcDAo" 
                     title="YouTube video player" 
                     frameBorder="0" 
@@ -700,7 +699,7 @@ export default function Page() {
                     <span>🛡️</span> Status Prawny (2025/2026)
                   </h3>
 
-                  <div className="grid gap-4 px-4">
+                  <div className="grid gap-4 px-4 text-left">
                     <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                         <div>
                           <span className="block font-display text-black font-bold uppercase">Śledztwo v sprawie organizacji ceremonii</span>
@@ -750,14 +749,14 @@ export default function Page() {
                  <h3 className="text-3xl font-black text-black uppercase tracking-tighter font-display mb-4">
                    Dokumenty Źródłowe
                  </h3>
-                 <p className="text-sm text-black/80 italic max-w-xl mx-auto font-serif">
+                 <p className="text-sm text-black/80 italic max-w-xl mx-auto font-serif px-6">
                    Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Poniżej pełna lista sygnatur oraz odnośniki umożliwiające samodzielną weryfikację.
                  </p>
                </div>
 
-               <div className="grid gap-6 text-sm text-black">
+               <div className="grid gap-6 text-sm text-black px-6">
 
-                 <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
+                 <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors text-left">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                       <div>
                         <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Wyrok Jarosława Kordysa</h4>
@@ -774,7 +773,7 @@ export default function Page() {
                     </div>
                  </div>
 
-                 <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
+                 <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors text-left">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                       <div>
                         <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Wyrok Bartosza Badowskiego</h4>
@@ -791,7 +790,7 @@ export default function Page() {
                     </div>
                  </div>
 
-                 <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
+                 <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors text-left">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                       <div>
                         <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Darowizna (Janów)</h4>
@@ -808,7 +807,7 @@ export default function Page() {
                     </div>
                  </div>
 
-                 <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
+                 <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors text-left">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                       <div>
                         <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Sprzedaż (Nýdek)</h4>
@@ -825,7 +824,7 @@ export default function Page() {
                     </div>
                  </div>
 
-                 <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
+                 <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors text-left">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                       <div>
                         <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Archiwum: Nýdek & Munay</h4>
