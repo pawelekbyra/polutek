@@ -1,505 +1,264 @@
 import React from "react";
 
 
+import React from 'react';
 
 // ==========================================
-
 // --- PALETA SIKU (KOLORYSTYKA ŚLEDCZA) ---
-
 // Jasne siku (tła, zakreślenia): #e8d154
-
 // Zaschnięte siku (ramki, detale): #8b7312
-
 // Stare siku (kontrastowy tekst): #66540b
-
 // ==========================================
-
-
 
 // --- DATA ---
-
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 
-
-
 const KORDYS_IMAGES_URL = "/gallery/wyrok_kordysa";
-
 const BADI_IMAGES_URL = "/gallery/wyrok_badi";
-
 const NYDEK_IMAGES_URL = "/gallery/nydek";
-
 const JANOV_IMAGES_URL = "/gallery/janov";
 
-
-
 const VIDEO_CID = "bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u";
-
 const ARREST_VIDEO_CID = "bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy";
 
-
-
 const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
-
 const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
-
 const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://munaysonqo.com/retreats/";
 
-
-
 const VIDEO_ARREST_METADATA = {
-  name: "Michał Kiciński - Intencja i świadomość sprawczości (Q&A Festiwal Wibracje)",
-  description:
-    "Michał Kiciński opowiada o intencji, świadomości i sprawczości podczas sesji Q&A na Festiwalu Wibracje.",
+  name: "Nalot policji na ośrodek ayahuaski w Hermanovicach",
+  description: "Pełna dokumentacja policyjnej interwencji i aresztowania grupy organizującej nielegalne ceremonie ayahuaski. Materiał dowodowy w sprawie Jarosława Kordysa.",
   thumbnailUrl: `${JANOV_IMAGES_URL}/janov1.jpg`,
-  contentUrl:
-    "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/intencja-swiadomosc-sprawczosci-michal-kicinski-qa-festiwal-wibracje.mp4",
+  contentUrl: "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/jaroslaw-karolina-kordys-aresztowanie-zatrzymanie-ayahuasca-hermanovice-2020.mp4",
   uploadDate: "2020-10-15T09:00:00+01:00",
 };
 
 const VIDEO_STEFANEK_METADATA = {
-  name: "Wyznania Krzysztofa Stefanka o przejęciu Janówa",
-  description:
-    "Relacja z pierwszej ręki dotycząca darowizny nieruchomości w Janowie od Michała Kicińskiego dla Stowarzyszenia Natury Zew.",
+  name: "Wyznania Krzysztofa Stefanka o przejęciu Janowa",
+  description: "Relacja z pierwszej ręki dotycząca darowizny nieruchomości w Janowie od Michała Kicińskiego dla Stowarzyszenia Natury Zew.",
   thumbnailUrl: `${JANOV_IMAGES_URL}/janov2.jpg`,
-  contentUrl:
-    "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/historia-powstania-osady-natury-zew-w-gruncie-ruchu-stefan.mp4",
+  contentUrl: "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/historia-powstania-osady-natury-zew-w-gruncie-ruchu-stefan.mp4",
   uploadDate: "2024-11-01T12:00:00+01:00",
 };
 
-
-
 const CaseFile = ({ title, children, icon = '📄' }: { title: string, children: React.ReactNode, icon?: string }) => (
-
   <div className="my-8 border border-[#8b7312]/40 bg-[#e8d154]/10 shadow-sm rounded-sm overflow-hidden break-inside-avoid text-left">
-
     <div className="bg-[#e8d154]/30 border-b border-[#8b7312]/40 px-4 py-2 flex items-center gap-2 text-xs font-mono text-ink-light uppercase tracking-wider">
-
       <span>{icon}</span>
-
       <span>{title}</span>
-
     </div>
-
     <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-ink-medium italic">
-
       {children}
-
     </div>
-
   </div>
-
 );
-
-
 
 const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
-
   <div className="my-10 pl-6 border-l-[3px] border-[#8b7312]/80 text-left">
-
     <p className="font-display text-xl md:text-2xl italic text-ink leading-relaxed mb-3">
-
       „{quote}"
-
     </p>
-
     <div className="font-sans text-[10px] uppercase tracking-widest text-ink-light">
-
       — <span className="font-bold text-ink">{author}</span>, {source}
-
     </div>
-
   </div>
-
 );
-
-
 
 const LocationStampUI = ({ name, plot, lv }: { name: string, plot: string, lv: string }) => (
-
   <div className="relative border border-[#8b7312]/40 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-sm text-left">
-
       <div className="absolute top-1 right-1 text-[#8b7312]/70">🔍</div>
-
       <div className="bg-[#e8d154]/20 h-full p-3 flex items-center justify-center border-r border-[#8b7312]/40 border-dashed">
-
          <span className="text-xl">🏠</span>
-
       </div>
-
       <div className="py-2">
-
          <div className="text-[9px] uppercase tracking-[0.2em] text-ink-light font-bold mb-1">{name}</div>
-
          <div className="font-mono text-base font-bold text-ink">LV {lv}</div>
-
          <div className="text-[10px] text-ink-light font-mono mt-1">Działka: {plot}</div>
-
       </div>
-
   </div>
-
 );
-
-
 
 const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
-
   <div className="relative border border-[#8b7312]/40 bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-sm text-left">
-
       <div className="absolute top-1 right-1 text-[#8b7312]/70">🔍</div>
-
       <div className="bg-[#e8d154]/20 h-full p-3 flex items-center justify-center border-r border-[#8b7312]/40 border-dashed">
-
          <span className="text-xl">📜</span>
-
       </div>
-
       <div className="py-2">
-
          <div className="text-[9px] uppercase tracking-[0.2em] text-ink-light font-bold mb-1">{label}</div>
-
          <div className="font-mono text-base font-bold text-ink">{value}</div>
-
          {subDetails && <div className="text-[10px] text-ink-light font-mono mt-1">{subDetails}</div>}
-
       </div>
-
   </div>
-
 );
 
-
-
 const ArticleVideoPlayer: React.FC<{ src: string; poster: string }> = ({ src, poster }) => {
-
+  const isM3U8 = src.includes('.m3u8');
   return (
-
     <div className="w-full bg-black aspect-video rounded-sm overflow-hidden flex items-center justify-center relative group">
-
        <video
-
          controls
-
          poster={poster}
-
          className="w-full h-full object-cover"
-
          playsInline
-
        >
-
-         <source src={src} type="video/mp4" />
-
+         <source src={src} type={isM3U8 ? "application/x-mpegURL" : "video/mp4"} />
          Your browser does not support the video tag.
-
        </video>
-
     </div>
-
   );
-
 };
-
-
 
 const EvidenceGrid = () => {
-
   return (
-
     <div className="my-12">
-
       <h3 className="font-display font-bold text-lg uppercase tracking-widest text-ink mb-8 flex items-center gap-2">
-
         <span>⚖️</span> Galeria Dowodów
-
       </h3>
 
-
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
         <div className="source-card">
-
           <div className="flex flex-col h-full">
-
             <h4 className="font-bold text-ink text-sm leading-tight font-display mb-1">Wezwanie Kiciński</h4>
-
             <p className="text-xs text-ink-medium mb-4">Wezwanie dla M. Kicińskiego Sygn. WD-I-3186/23</p>
-
             <div className="mt-auto">
-
               <a href={`${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`} target="_blank" className="w-full inline-flex justify-center bg-[#e8d154]/20 text-ink px-3 py-2 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors underline decoration-double decoration-[#8b7312]">
-
                 POKAŻ DOWÓD
-
               </a>
-
             </div>
-
           </div>
-
         </div>
 
-
-
         <div className="source-card">
-
           <div className="flex flex-col h-full">
-
             <h4 className="font-bold text-ink text-sm leading-tight font-display mb-1">Wyrok Kordys</h4>
-
             <p className="text-xs text-ink-medium mb-4">Uzasadnienie Wyroku: J. Kordys Sygn. 30 T 5/2021</p>
-
             <div className="mt-auto">
-
               <button className="w-full inline-flex justify-center bg-[#e8d154]/20 text-ink px-3 py-2 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors underline decoration-double decoration-[#8b7312]">
-
                 POKAŻ STRONY (25)
-
               </button>
-
             </div>
-
           </div>
-
         </div>
 
-
-
         <div className="source-card">
-
           <div className="flex flex-col h-full">
-
             <h4 className="font-bold text-ink text-sm leading-tight font-display mb-1">Wyrok Badi</h4>
-
             <p className="text-xs text-ink-medium mb-4">Wyrok Skazujący: Bartosz B. Sygn. 66 T 146/2021</p>
-
             <div className="mt-auto">
-
               <button className="w-full inline-flex justify-center bg-[#e8d154]/20 text-ink px-3 py-2 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors underline decoration-double decoration-[#8b7312]">
-
                 POKAŻ STRONY (3)
-
               </button>
-
             </div>
-
           </div>
-
         </div>
-
-
 
         <div className="source-card">
-
           <div className="flex flex-col h-full">
-
             <h4 className="font-bold text-ink text-sm leading-tight font-display mb-1">Dokumentacja Janów</h4>
-
             <p className="text-xs text-ink-medium mb-4">Dokumentacja: Janów KW LV 127</p>
-
             <div className="mt-auto">
-
               <button className="w-full inline-flex justify-center bg-[#e8d154]/20 text-ink px-3 py-2 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors underline decoration-double decoration-[#8b7312]">
-
                 POKAŻ GALERIĘ
-
               </button>
-
             </div>
-
           </div>
-
         </div>
-
-
 
         <div className="source-card md:col-span-2">
-
           <div className="flex flex-col h-full">
-
             <h4 className="font-bold text-ink text-sm leading-tight font-display mb-1">🏠 Posiadłość w Nýdku</h4>
-
             <p className="text-xs text-ink-medium mb-4">KW LV 832 (M. Iwiński)</p>
-
             <div className="mt-auto">
-
               <button className="w-full inline-flex justify-center bg-[#e8d154]/20 text-ink px-3 py-2 text-xs font-bold rounded border border-[#8b7312]/40 hover:bg-[#e8d154]/40 transition-colors underline decoration-double decoration-[#8b7312]">
-
                 POKAŻ GALERIĘ
-
               </button>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
-
   );
-
 };
 
-
-
 export default function Page() {
-
   const newsArticleSchema = {
-
     "@context": "https://schema.org",
-
     "@type": "NewsArticle",
-
     "headline": "Eliksir Wiedźmina – Śledztwo: Michał Kiciński i tajemnica Janowa",
-
     "description": "Pełna dokumentacja śledztwa: Michał Kiciński, Jarosław Kordys i prokurator Jolanta Świdnicka. Ayahuasca, Janów i tragiczna śmierć uczestniczki.",
-
     "image": [`${KORDYS_IMAGES_URL}/wezwanie/wezwanie_kicinski.png`],
-
     "datePublished": "2024-03-03",
-
     "author": [{
-
       "@type": "Person",
-
       "name": "Detektyw Polutek",
-
       "url": "mailto:detektyw.polutek@protonmail.com"
-
     }]
-
   };
 
-
-
   return (
-
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleSchema) }} />
 
-      <main className="min-h-screen bg-transparent text-[#1a1a1a] selection:bg-[#e8d154]/50 font-body flex flex-col items-center relative">
-        <div
-          className="w-full max-w-4xl bg-[#e7dfcc] flex flex-col items-center pb-0 border-x-4 border-black overflow-hidden relative shadow-2xl"
-          style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/subtle-paper.png')" }}
-        >
-          <div
-            className="absolute inset-0 pointer-events-none opacity-[0.15] mix-blend-multiply z-0"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
-            }}
-          ></div>
+      <main className="min-h-screen text-ink selection:bg-[#e8d154]/40 font-body flex flex-col items-center">
+        <div className="w-full max-w-4xl bg-paper-texture flex flex-col items-center pb-20 border-x-2 border-ink overflow-hidden">
 
-          <div className="w-full flex flex-col items-center pt-2 pb-1 bg-white/10 relative z-10">
+          {/* BrandHeader - Zacieśniony padding */}
+          <div className="w-full flex flex-col items-center pt-1 pb-1">
             <div className="flex items-center justify-center w-[calc(100%-2rem)] mx-auto gap-4 pt-2 pb-1">
               <div className="flex-grow h-[2px] bg-ink"></div>
               <h1 className="text-4xl md:text-[4.5rem] font-black tracking-tighter text-ink uppercase font-unifraktur leading-none whitespace-nowrap px-2">
                 NASZA GAZETKA
-
               </h1>
               <div className="flex-grow h-[2px] bg-ink"></div>
             </div>
-
             <div className="w-[calc(100%-2rem)] mx-auto border-y-2 border-ink py-1 flex items-center justify-between px-4 text-[10px] md:text-xs font-bold uppercase tracking-[0.1em] text-ink-medium">
-
               <div className="flex items-center gap-2">
-
                 <span>📰</span>
-
                 <span className="hidden sm:inline">Niezależne Media</span>
-
               </div>
-
               <div className="text-center font-display">
-
                 NIEDZIELA, 1 MARCA 2026
-
               </div>
-
               <div className="flex items-center gap-2">
-
                 <span>📄</span>
-
                 <span>Serwis Śledczy Nr 01</span>
-
               </div>
-
             </div>
-
           </div>
-
-
 
           {/* Hero Section - Poprawiony layout na pierwszy ekran */}
-
           <div className="w-full text-center flex flex-col items-center pt-2 pb-4 px-6 box-border">
-
             <img
-
               src="/zdjeciehej.png"
-
               alt="Wiedźmini z eliksirem"
-
-              className="h-24 md:h-[150px] object-contain grayscale contrast-200 mix-blend-multiply mb-2" 
-
+              className="h-24 md:h-[150px] object-contain grayscale contrast-200 mix-blend-multiply mb-2"
             />
 
-
-
             <h2 className="text-ink w-full mb-1">
-
               <span className="block text-4xl md:text-[5.5rem] font-display font-black leading-none tracking-tight uppercase">
-
                 Eliksir
-
               </span>
-
               <span className="block text-4xl md:text-[5.5rem] font-display font-black leading-none tracking-tight uppercase">
-
                 Wiedźmina
-
               </span>
-
             </h2>
 
-
-
             <p className="block text-xs md:text-xl text-ink-medium italic font-medium uppercase tracking-widest mt-1 whitespace-nowrap font-body">
-
               Mroczna tajemnica twórców CD Projekt
-
             </p>
 
-
-
             {/* Ten blok teraz mieści się "nad linią zgięcia" */}
-
             <div className="max-w-3xl mx-auto mt-2">
-
               <div className="gradient-divider w-24 mx-auto mb-2"></div>
-
               <p className="text-sm md:text-lg text-ink-medium leading-snug italic font-body px-4">
-
                 Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin" finansowali szamańskie podziemie.
-
               </p>
-
             </div>
-
           </div>
 
-
-
           {/* Artykuł zaczyna się zaraz pod leadem */}
-
           <article className="max-w-3xl mx-auto px-6 pt-4 pb-0 flex-grow w-full z-10 relative">
-
             <div className="article-prose">
 
               <p className="drop-cap leading-relaxed mt-0">
