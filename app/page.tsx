@@ -182,12 +182,12 @@ export default function Page() {
           ></div>
 
           <div className="w-full flex flex-col items-center pt-2 pb-1 bg-white/10 relative z-10">
-            <div className="flex items-center w-[calc(100%-2rem)] mx-auto gap-4 pt-4 pb-1">
-              <div className="flex-1 h-[2px] bg-ink"></div>
+            <div className="flex items-center justify-center w-[calc(100%-2rem)] mx-auto gap-4 pt-2 pb-1">
+              <div className="flex-grow h-[2px] bg-ink"></div>
               <h1 className="text-4xl md:text-[4.5rem] font-black tracking-tighter text-ink uppercase font-unifraktur leading-none whitespace-nowrap px-2">
                 NASZA GAZETKA
               </h1>
-              <div className="flex-1 h-[2px] bg-ink"></div>
+              <div className="flex-grow h-[2px] bg-ink"></div>
             </div>
             <div className="w-[calc(100%-2rem)] mx-auto border-y-4 border-black py-2 flex items-center justify-between px-4 text-[10px] md:text-xs font-black uppercase tracking-[0.15em]">
               <span>📰 Niezależne Media</span>
