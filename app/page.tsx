@@ -1,8 +1,5 @@
 import React from 'react';
 
-
-import React from 'react';
-
 // ==========================================
 // --- PALETA SIKU (KOLORYSTYKA ŚLEDCZA) ---
 // Jasne siku (tła, zakreślenia): #e8d154
