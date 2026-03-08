@@ -220,7 +220,7 @@ export default function Page() {
             </div>
           </div>
 
-          <article className="max-w-3xl mx-auto px-6 pt-4 pb-0 flex-grow w-full z-10 relative bg-[#FDFBF7]">
+          <article className="max-w-3xl mx-auto px-6 pt-4 pb-0 flex-grow w-full z-10 relative">
             <div
               className="prose prose-stone prose-lg max-w-none article-prose font-serif text-lg leading-relaxed"
               style={{ color: '#1a1a1a', opacity: 1, WebkitFontSmoothing: 'none' }}
@@ -326,7 +326,7 @@ export default function Page() {
               </div>
 
               <p className="mt-4">
-                Для sądu był to koronny dowód na to, że oskarżeni prowadzili nielegalny biznes, a nie działalność duchową – śmierć człowieka była dla nich jedynie psuciem interesów.
+                Dla sądu był to koronny dowód na to, że oskarżeni prowadzili nielegalny biznes, a nie działalność duchową – śmierć człowieka była dla nich jedynie psuciem interesów.
               </p>
 
               <p className="mt-4">
@@ -338,7 +338,7 @@ export default function Page() {
               </CaseFile>
 
               <p className="mt-4">
-                Для policjantów, którzy słyszeli to w czasie rzeczywistym, przekaz był jasny: w obiekcie mogło dojść do tragedii, a sprawcy martwili się jedynie o ciągłość dostaw.
+                Dla policjantów, którzy słyszeli to w czasie rzeczywistym, przekaz był jasny: w obiekcie mogło dojść do tragedii, a sprawcy martwili się jedynie o ciągłość dostaw.
               </p>
 
               <p className="mt-4">
@@ -372,7 +372,7 @@ export default function Page() {
               </div>
 
               <p className="mt-4">
-                Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryye się w jednym czeskim terminie prawnym:
+                Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym:
               </p>
 
               <LegalNote term="Dohoda o vině a trestu">
@@ -380,7 +380,7 @@ export default function Page() {
               </LegalNote>
 
               <p className="mt-4">
-                Bartosz Badi Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanovił kupić sobie wolność.
+                Bartosz Badi Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił kupić sobie wolność.
               </p>
 
               <p className="mt-4">
@@ -420,8 +420,14 @@ export default function Page() {
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Kiciński</h2>
 
               <p className="mt-4">
-                W cieniu tych wyroków pozostaje vciąż niewyjaśniona rola cichego wspólnika. Michał Kiciński to nie jest postać, która o ayahuasce jedynie słyszała – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla Focusa, Newsweeka) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu medycyna, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera nową rzeczywistość.
+                W cieniu tych wyroków pozostaje wciąż niewyjaśniona rola cichego wspólnika. Michał Kiciński to nie jest postać, która o ayahuasce jedynie słyszała – on stał się jej nieoficjalnym ambasadorem w polskich mediach głównego nurtu. W licznych wywiadach (m.in. dla Focusa, Newsweeka) z niezwykłą precyzją opisuje on mechanizmy działania psychodelików. Kiciński publicznie opowiada o lekcjach pokory, jakie dała mu medycyna, o spotkaniach z szamanami i o tym, jak napar z dżungli otwiera nową rzeczywistość.
               </p>
+
+              <PullQuote
+                quote="Po ayahuasce jest szansa na to, żeby sobie nie ściemniać."
+                author="Michał Kiciński"
+                source="Newsweek, 30 maja 2016 r."
+              />
 
               <div className="not-prose my-8">
                 <VideoPlayer videoId="u9_dZ-3bklY" start={1193} end={1287} />
@@ -430,12 +436,6 @@ export default function Page() {
                   Michał Kiciński o swoich doświadczeniach z ayahuascą (Q&A 2022)
                 </div>
               </div>
-
-              <PullQuote
-                quote="Po ayahuasce jest szansa na to, żeby sobie nie ściemniać."
-                author="Michał Kiciński"
-                source="Newsweek, 30 maja 2016 r."
-              />
 
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Błąd z Badim</h2>
 
@@ -465,7 +465,7 @@ export default function Page() {
               </CaseFile>
 
               <p className="mt-4">
-                До przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
+                Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
               </p>
 
               <CaseFile title="Zeznanie do protokołu">
@@ -485,7 +485,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego do tej pory oferuje tam w pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które w Czechach są zakazane, co vciąż jest eksponowane na stronie internetowej.
+                W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego do tej pory oferuje tam w pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które w Czechach są zakazane, co wciąż jest eksponowane na stronie internetowej.
                 <a
                   href="https://munaysonqo.com/all-retreats/#calendar-7a66adc3-3ebd-432c-b572-0faf936c281f-event-e90d5161-a00e-4742-b4b7-039de153a23d"
                   target="_blank"
@@ -506,7 +506,7 @@ export default function Page() {
               </p>
 
               <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
-                Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mwem i był większościowym właścicielem farmy.
+                Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z zyskiem.(...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo, że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.
               </CaseFile>
 
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Anonimowy filantrop</h2>
@@ -638,7 +638,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Jeszcze bardziej zastanawiające jest to, co stało się z tą nieruchomością w momencie zagrożenia. Gdy 15.10.2020 roku aresztowano Kordysa, nad środowiskiem zawisło vidmo policyjnych nalotów. Dokumenty urzędowe odsłaniają niepokojącą zbieżność dat:
+                Jeszcze bardziej zastanawiające jest to, co stało się z tą nieruchomością w momencie zagrożenia. Gdy 15.10.2020 roku aresztowano Kordysa, nad środowiskiem zawisło widmo policyjnych nalotów. Dokumenty urzędowe odsłaniają niepokojącą zbieżność dat:
               </p>
 
               <ul className="not-prose list-none space-y-10 my-12 font-mono text-sm border-l-4 border-black pl-6 relative z-10 text-black">
@@ -650,7 +650,7 @@ export default function Page() {
                       Marcin Iwiński zakupuje nieruchomość w Nydku za kwotę 5 000 000,00 CZK.
                     </span>
                     <span className="block leading-tight">
-                      Nieruchomość ta służy do organizacji nielegal ceremonii z użyciem psychodelików podawanych uczestnikom przez Piotra Tracza.
+                      Nieruchomość ta służy do organizacji nielegalnych ceremonii z użyciem psychodelików podawanych uczestnikom przez Piotra Tracza.
                     </span>
                   </div>
                 </li>
@@ -698,7 +698,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Według ustaleń Onetu, w czerwcu 2018 roku na farmie w Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo her krytycznego stanu, organizator nie wezwał pomocy medycznej. Uczestnikom odebrano wcześniej telefony, co uniemożliło im samodzielne zaalarmowanie służb ratunkowych.
+                Według ustaleń Onetu, w czerwcu 2018 roku na farmie w Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, organizator nie wezwał pomocy medycznej. Uczestnikom odebrano wcześniej telefony, co uniemożliło im samodzielne zaalarmowanie służb ratunkowych.
               </p>
 
               <p className="mt-4">
