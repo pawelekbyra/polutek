@@ -12,12 +12,10 @@ const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://mu
 const NYDEK_WAYBACK_URL = "https://web.archive.org/web/20161122155227/http://tribunydek.com/";
 
 const ARREST_VIDEO_URL = `${PINATA_GATEWAY}/bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy/videoplayback.m3u8`;
-const STEFANEK_VIDEO_URL = `${PINATA_GATEWAY}/bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u/videoplayback.m3u8`;
 
 const GlobalLinkIcon = () => (
   <span className="not-prose inline-flex relative align-middle mx-1 mb-1">
     <span className="text-xl">🌐</span>
-    {/* Lancuszek bez ramki, bez tła, nieprzekrzywiony */}
     <span className="absolute bottom-[-2px] right-[-3px] text-[11px] leading-none">
       🔗
     </span>
@@ -357,7 +355,7 @@ export default function Page() {
               </LegalNote>
 
               <p className="mt-4">
-                Bartosz Badi Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił kupić sobie wolność.
+                Bartosz Badi Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanovił kupić sobie wolność.
               </p>
 
               <p className="mt-4">
@@ -495,7 +493,17 @@ export default function Page() {
               </p>
 
               <div className="not-prose my-8">
-                <ArticleVideoPlayer src={STEFANEK_VIDEO_URL} />
+                <div className="w-full bg-black aspect-video rounded-sm overflow-hidden relative border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10">
+                  <iframe 
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/4Xujw-krjxs?si=px-xft8rv2MVcDAo" 
+                    title="YouTube video player" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerPolicy="strict-origin-when-cross-origin" 
+                    allowFullScreen
+                  ></iframe>
+                </div>
                 <div className="mt-4 text-sm text-black font-mono border-l-[4px] border-black pl-4 bg-[#e8d154]/20 py-2 relative z-10">
                   <span className="font-black uppercase text-xs mr-2">Materiał Wideo:</span>
                   Krzysztof Stefanek opowiada o cudownym otrzymaniu darowizny (Materiał z 2025 r.)
