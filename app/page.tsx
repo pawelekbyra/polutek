@@ -14,6 +14,15 @@ const NYDEK_WAYBACK_URL = "https://web.archive.org/web/20161122155227/http://tri
 const ARREST_VIDEO_URL = `${PINATA_GATEWAY}/bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy/videoplayback.m3u8`;
 const STEFANEK_VIDEO_URL = `${PINATA_GATEWAY}/bafybeifkquvqp6cewygbgoqsm3vm6kni3d4wy6medzc7nbsczziswmmv7u/videoplayback.m3u8`;
 
+const GlobalLinkIcon = () => (
+  <span className="relative inline-flex items-center justify-center w-5 h-5 ml-1 mr-1">
+    <span className="text-base">🌐</span>
+    <span className="absolute -bottom-1 -right-1 text-[10px] bg-white rounded-full border border-black leading-none p-[1px] shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
+      🔗
+    </span>
+  </span>
+);
+
 const CaseFile = ({ title, children, type = 'evidence', highlight = false }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email', highlight?: boolean }) => {
   const getIcon = () => {
     if (type === 'email') return '✉️';
@@ -450,7 +459,7 @@ export default function Page() {
   className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" 
   title="Kliknij, aby otworzyć stronę ośrodka Munay Sonqo"
 >
-  🌐
+  <GlobalLinkIcon />
 </a>
               </p>
 
@@ -572,7 +581,7 @@ export default function Page() {
   className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" 
   title="Kliknij, aby otworzyć archiwalną stronę Nýdek w Wayback Machine"
 >
-  🌐
+  <GlobalLinkIcon />
 </a> Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
               </p>
 
@@ -646,7 +655,7 @@ export default function Page() {
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Wiktor B.</h2>
 
               <p className="mt-4">
-                9. marca 2026 Onet ujawnia opinii publicznej wstrząsające kulisy działalności ośrodka w czeskim Janowie.  Dziennikarskie śledztwo koncentruje się na śmierci 54-letniej uczestniczki, Ilony L.-H. 🌐
+                9. marca 2026 Onet ujawnia opinii publicznej wstrząsające kulisy działalności ośrodka w czeskim Janowie.  Dziennikarskie śledztwo koncentruje się na śmierci 54-letniej uczestniczki, Ilony L.-H. <GlobalLinkIcon />
               </p>
 
               <p className="mt-4">
@@ -750,7 +759,7 @@ export default function Page() {
                     </div>
                     <div className="border-t-2 border-black/20 pt-3">
                       <a href="https://msp.gov.cz/web/krajsky-soud-v-ostrave/zakladni-informace/-/clanek/informace-rok-2022" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
-                        🌐 Weryfikuj na msp.gov.cz
+                        <GlobalLinkIcon /> Weryfikuj na msp.gov.cz
                       </a>
                     </div>
                  </div>
@@ -767,7 +776,7 @@ export default function Page() {
                     </div>
                     <div className="border-t-2 border-black/20 pt-3">
                       <a href="https://msp.gov.cz/documents/22409/2997339/29Si+25-2022+p%C5%99%C3%ADloha+%C4%8D.+1.pdf" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
-                        🌐 Weryfikuj oryginał (29 Si 25/2022)
+                        <GlobalLinkIcon /> Weryfikuj oryginał (29 Si 25/2022)
                       </a>
                     </div>
                  </div>
@@ -784,7 +793,7 @@ export default function Page() {
                     </div>
                     <div className="border-t-2 border-black/20 pt-3">
                       <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
-                        🌐 Weryfikuj na nahlizenidokn.cuzk.cz
+                        <GlobalLinkIcon /> Weryfikuj na nahlizenidokn.cuzk.cz
                       </a>
                     </div>
                  </div>
@@ -801,7 +810,7 @@ export default function Page() {
                     </div>
                     <div className="border-t-2 border-black/20 pt-3">
                       <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
-                        🌐 Weryfikuj na nahlizenidokn.cuzk.cz
+                        <GlobalLinkIcon /> Weryfikuj na nahlizenidokn.cuzk.cz
                       </a>
                     </div>
                  </div>
