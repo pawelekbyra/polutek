@@ -14,10 +14,11 @@ const NYDEK_WAYBACK_URL = "https://web.archive.org/web/20161122155227/http://tri
 const ARREST_VIDEO_URL = `${PINATA_GATEWAY}/bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy/videoplayback.m3u8`;
 
 const GlobalLinkIcon = () => (
-  <span className="not-prose inline-flex relative items-center justify-center w-5 h-5 leading-none align-middle mx-1">
+  <span className="not-prose inline-flex relative items-center justify-center w-6 h-6 leading-none align-middle mx-1">
     <span className="text-xl">🌐</span>
-    <span className="absolute -bottom-1 -right-1 flex items-center justify-center w-3 h-3 bg-white border border-black rounded-full shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
-      <span className="text-[9px] text-black font-bold leading-none select-none">🔗</span>
+    {/* Lancuszek: wiekszy, bez zadnej ramki, poziomo w rogu */}
+    <span className="absolute -bottom-1 -right-1 text-[16px] leading-none select-none pointer-events-none">
+      🔗
     </span>
   </span>
 );
@@ -71,7 +72,7 @@ const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string,
       </div>
       <div className="py-2">
          <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1 flex items-center gap-2">{name}</div>
-         <div className="font-mono text-base font-bold text-black uppercase">LV {lv}</div>
+         <div className="font-mono text-base font-bold text-black uppercase">{lv}</div>
          <div className="text-[10px] text-black/60 font-mono mt-1 uppercase">
             Działka: {plot} <span className="mx-1">|</span> Obręb: {code}
          </div>
@@ -668,7 +669,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Według ustaleń Onetu, v czerwcu 2018 roku na farmie v Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, organizator nie wezwał pomocy medycznej. Uczestnikom odebrano wcześniej telefony, co uniemożliło im samodzielne zaalarmowanie służb ratunkowych.
+                Według ustaleń Onetu, v czerwcu 2018 roku na farmie v Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo her krytycznego stanu, organizator nie wezwał pomocy medycznej. Uczestnikom odebrano wcześniej telefony, co uniemożliło im samodzielne zaalarmowanie służb ratunkowych.
               </p>
 
               <p className="mt-4">
