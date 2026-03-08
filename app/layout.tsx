@@ -1,4 +1,5 @@
 import "./globals.css";
+import "plyr/dist/plyr.css";
 import type { Metadata, Viewport } from 'next';
 import { Playfair_Display, EB_Garamond, UnifrakturMaguntia } from 'next/font/google';
 
@@ -62,7 +63,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl" className={`${playfair.variable} ${ebGaramond.variable} ${unifraktur.variable}`}>
-      <body className="antialiased text-ink">
+      <body className="antialiased text-[#1a1a1a]">
         {children}
       </body>
     </html>
