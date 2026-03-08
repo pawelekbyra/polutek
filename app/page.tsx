@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;                
@@ -11,12 +11,9 @@ const NYDEK_PDF_URL = DOCUMENTATION_IPFS_URL;
 const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://munaysonqo.com/retreats/";
 const NYDEK_WAYBACK_URL = "https://web.archive.org/web/20161122155227/http://tribunydek.com/";
 
-const ARREST_VIDEO_URL = `${PINATA_GATEWAY}/bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy/videoplayback.m3u8`;
-
 const GlobalLinkIcon = () => (
   <span className="not-prose inline-flex relative items-center justify-center w-6 h-6 leading-none align-middle mx-1">
     <span className="text-xl">🌐</span>
-    {/* Lancuszek SVG: przezroczysty w srodku, czarny obrys, mniejszy, poziomo */}
     <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 flex items-center justify-center pointer-events-none">
       <svg 
         viewBox="0 0 24 24" 
@@ -83,7 +80,7 @@ const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string,
       </div>
       <div className="py-2">
          <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1 flex items-center gap-2">{name}</div>
-         <div className="font-mono text-base font-bold text-black uppercase">{lv}</div>
+         <div className="font-mono text-base font-bold text-black uppercase">LV {lv}</div>
          <div className="text-[10px] text-black/60 font-mono mt-1 uppercase">
             Działka: {plot} <span className="mx-1">|</span> Obręb: {code}
          </div>
@@ -105,33 +102,6 @@ const TransactionStampUI = ({ label, value, subDetails }: { label: string, value
   </div>
 );
 
-const ArticleVideoPlayer: React.FC<{ src: string; poster?: string }> = ({ src, poster }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    let hls: any;
-    if (videoRef.current) {
-      const video = videoRef.current;
-      if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = src;
-      } else if ((window as any).Hls && (window as any).Hls.isSupported()) {
-        hls = new (window as any).Hls();
-        hls.loadSource(src);
-        hls.attachMedia(video);
-      }
-    }
-    return () => {
-      if (hls) hls.destroy();
-    };
-  }, [src]);
-
-  return (
-    <div className="not-prose w-full bg-black aspect-video rounded-sm overflow-hidden flex items-center justify-center relative group border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10">
-      <video ref={videoRef} controls poster={poster} className="w-full h-full object-cover" playsInline />
-    </div>
-  );
-};
-
 export default function Page() {
   const newsArticleSchema = {
     "@context": "https://schema.org",
@@ -149,7 +119,6 @@ export default function Page() {
 
   return (
     <>
-      <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleSchema) }}
@@ -351,7 +320,17 @@ export default function Page() {
               </p>
 
               <div className="not-prose my-8">
-                <ArticleVideoPlayer src={ARREST_VIDEO_URL} />
+                {/* Nowy filmik z aresztowania (YouTube) w profesjonalnym kontenerze */}
+                <div className="w-full relative border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10 bg-black text-left rounded-sm overflow-hidden" style={{ paddingBottom: '56.25%' }}>
+                  <iframe 
+                    className="absolute inset-0 w-full h-full"
+                    src="https://www.youtube.com/embed/h52n25BjzH4" 
+                    title="YouTube video player" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                  ></iframe>
+                </div>
                 <div className="mt-4 text-sm text-black font-mono border-l-[4px] border-black pl-4 bg-[#e8d154]/20 py-2 relative z-10">
                   <span className="font-black uppercase text-xs mr-2">Materiał Operacyjny:</span>
                   Nagranie z policyjnego nalotu na ośrodek v Hermanovicach (15.10.2020)
@@ -375,7 +354,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Cena wolności Badowskiego okazała się być wysoka dla jego kolegi z branży. Zenyznania Badiego były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak v sprawie Kordysów.
+                Cena wolności Badowskiego okazała się być wysoka dla jego kolegi z branży. Zeznania Badiego były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak v sprawie Kordysów.
               </p>
 
               <p className="mt-4">
@@ -401,7 +380,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Będąc tak blisko Badowskiego, doskonale znali mroczną tajemnicę śmierci Ilony. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się o ciągłość dostaw, dowodzi, że v pełni akceptowali reguły zmowy milczenia.
+                Badowski będąc tak blisko, doskonale znali mroczną tajemnicę śmierci Ilony. Ich decyzja o zamieszkaniu z człowiekiem, który w obliczu tragedii martwił się o ciągłość dostaw, dowodzi, że v pełni akceptowali reguły zmowy milczenia.
               </p>
 
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Kiciński</h2>
@@ -626,239 +605,4 @@ export default function Page() {
                 Jeszcze bardziej zastanawiające jest to, co stało się z tą nieruchomością w momencie zagrożenia. Gdy 15.10.2020 roku aresztowano Kordysa, nad środowiskiem zawisło vidmo policyjnych nalotów. Dokumenty urzędowe odsłaniają niepokojącą zbieżność dat:
               </p>
 
-              <ul className="not-prose list-none space-y-10 my-12 font-mono text-sm border-l-4 border-black pl-6 relative z-10 text-black">
-                 <li className="flex items-start gap-4">
-                  <span className="text-xl">📅</span>
-                <div>
-  <strong className="font-black text-base block">25 stycznia 2016 r.</strong>
-  <span className="block leading-tight">
-    Marcin Iwiński zakupuje nieruchomość v Nydku za kwotę 5 000 000,00 CZK.
-  </span>
-  <span className="block leading-tight">
-    Nieruchomość ta służy do organizacji nielegal ceremonii z użyciem psychodelików podawanych uczestnikom przez Piotra Tracza.
-  </span>
-</div>
-                 </li>
-
-                 <li className="flex items-start gap-4">
-                  <span className="text-xl">📅</span>
-                  <div>
-                    <strong className="font-black text-base">15 października 2020 r.</strong><br/>
-                    Policyjny szturm na ośrodek Kordysów. W środowisku wybucha panika.
-                  </div>
-                 </li>
-
-                <li className="flex items-start gap-4">
-                  <span className="text-xl">📅</span>
-                  <div>
-                    <strong className="font-black text-base">15 czerwca 2021 r.</strong><br/>
-                    Marcin Iwiński "sprzedaje" nieruchomości v Nýdku.
-                  </div>
-                </li>
-              </ul>
-
-              <p className="mt-4">
-                Nabywcą luksusowej posiadłości nie został inny inwestor, lecz sam Piotr Tracz – ten sam człowiek, który wcześniej pełnił tam rolę szamana.
-              </p>
-
-              <div className="not-prose my-8 flex justify-start">
-                <TransactionStampUI
-                  label="Nr Transakcji (Katastr)"
-                  value="V-2937/2021-832"
-                  subDetails="Obręb: Nýdek [708186]"
-                />
-              </div>
-
-              <p className="mt-4">
-                Transakcja ta rodzi wątpliwości: v jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z darowizną Kicińskiego v Janowie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
-              </p>
-
-              <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Wiktor B.</h2>
-
-              <p className="mt-4">
-                9. marca 2026 Onet ujawnia opinii publicznej wstrząsające kulisy działalności ośrodka v czeskim Janowie.  Dziennikarskie śledztwo koncentruje się na śmierci 54-letniej uczestniczki, Ilony L.-H. <a href="https://wiadomosci.onet.pl/kraj/tajemnica-szamanskiej-farmy-smierc-podczas-rytualu-ayahuaski/f622pxt" target="_blank" rel="noopener noreferrer" className="inline-flex items-center"><GlobalLinkIcon /></a>
-              </p>
-
-              <p className="mt-4">
-                Według ustaleń Onetu, v czerwcu 2018 roku na farmie v Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, organizator nie wezwał pomocy medycznej. Uczestnikom odebrano wcześniej telefony, co uniemożliło im samodzielne zaalarmowanie służb ratunkowych.
-              </p>
-
-              <p className="mt-4">
-                     Prowadzący obrzęd Wiktor B., brat Bartosza Badowskiego, był tej nocy pod wpływem marihuany. Z relacji świadków wynika, że po śmierci kobiety podjął on natychmiastowe działania mające na celu zatuszowanie incydentu. Nakazał uczestnikom bezzwłoczne opuszczenie ośrodka. Czeskiej policji przedstawił fałszywą wersję zdarzeń, twierdząc, że Ilona L.-H. była jedynie gościem i została znaleziona martwa v łazience nad ranem. Służby początkowo nie nabrały podejrzeń, przyjmując tę relację za wiarygodną.
-              </p>
-
-              <p className="mt-4">
-                Przez kolejne lata tę kłamliwą narrację udawało się skutecznie utrzymywać. O śmierci z przyczyn czysto medycznych przez długi czas przekonana była nawet najbliższa rodzina Ilony.
-              </p>
-
-              <p className="mt-4">
-                Sytuacja uległa  zmianie dopiero 6 maja 2024 roku, gdy Prokuratura Okręgowa v Częstochowie wszczęła oficjalne śledztwo v sprawie działalności ośrodka oraz okoliczności śmierci Ilony L.-H. Zaledwie 2 miesiące  później, v tajemniczych okolicznościach umiera Wiktor B..
-              </p>
-
-              <p className="mt-4">
-                Ciało mężczyzny odnaleziono v magazynie firmy, v której pracował przy montażu szaf serwerowych. Na jego ciele nie stwierdzono widocznych obrażeń wskazujących na użycie siły fizycznej. Mimo że od śmierci Wiktora B. minęło już ponad półtora roku, śledczy wciąż czekają na wyniki badań toksykologicznych, które mają kluczowe znaczenie dla wyjaśnienia, czy v organizmie mężczyzny znajdowały się substancje mogące przyczynić się do jego nagłego odejścia. Z tego względu obecnie śledztwo v sprawie jego tajemniczego zgonu pozostaje zawieszone.<span className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć szczegóły (atrapa)">🔍</span>
-              </p>
-
-              <div className="not-prose mt-12 mb-4 flex justify-end relative z-10">
-                  <div className="text-right border-r-4 border-black pr-4">
-                    <span className="block font-black text-black uppercase text-xl font-display tracking-widest">Detektyw Polutek</span>
-                    <span className="block text-xs text-black/60 font-mono mt-1 italic">detektyw.polutek@protonmail.com</span>
-                  </div>
-              </div>
-
-              <div className="not-prose mt-16 mb-0 border-y-4 border-black py-8 bg-[#e8d154]/10 relative z-10">
-                  <h3 className="font-display font-black text-2xl uppercase tracking-widest text-black mb-8 flex items-center gap-2 px-4">
-                    <span>🛡️</span> Status Prawny (2025/2026)
-                  </h3>
-
-                  <div className="grid gap-4 px-4 text-left">
-                    <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                        <div>
-                          <span className="block font-display text-black font-bold uppercase">Śledztwo v sprawie organizacji ceremonii</span>
-                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Okręgowa v Częstochowie</span>
-                        </div>
-                        <span className="font-mono text-sm font-black bg-black text-white px-4 py-2 border border-black uppercase tracking-widest">
-                          3013-1.Ds.15.2024
-                        </span>
-                    </div>
-
-                    <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                        <div>
-                          <span className="block font-display text-black font-bold uppercase">Śledztwo v sprawie śmierci Ilony L.</span>
-                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Okręgowa v Częstochowie</span>
-                        </div>
-                        <span className="font-mono text-sm font-black bg-[#e8d154] text-black border-2 border-black px-4 py-2 uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                          3013-1.Ds.4.2026
-                        </span>
-                    </div>
-
-                    <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                        <div>
-                          <span className="block font-display text-black font-bold uppercase">Śledztwo v sprawie śmierci Wiktora B.</span>
-                          <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Rejonowa v Pułtusku</span>
-                        </div>
-                        <div className="flex flex-col items-end gap-2">
-                          <span className="font-mono text-sm font-black bg-black/5 text-black px-4 py-2 border-2 border-black uppercase tracking-widest">
-                             4027-0. Ds. 1254.2024
-                          </span>
-                          <div className="flex items-center gap-2">
-                             <span className="text-[10px] font-black text-red-800 uppercase tracking-widest bg-red-100 px-2 py-1 border border-red-800 font-sans">Zawieszone</span>
-                          </div>
-                        </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-8 px-4 text-xs text-black/70 font-mono text-center italic">
-                    Postępowania toczą się v wymienionych jednostkach Prokuratury. Nadzór nad sprawami v Częstochowie objął Zastępca Prokuratora Okręgowego, a kluczowe czynności nadzoruje prokurator Jolanta Świdnicka.
-                  </div>
-              </div>
-
-            </div>
-
-            <footer className="mt-8 pt-0 font-mono relative z-10 mb-0">
-
-               <div className="mb-10 text-center">
-                 <h3 className="text-3xl font-black text-black uppercase tracking-tighter font-display mb-4">
-                   Dokumenty Źródłowe
-                 </h3>
-                 <p className="text-sm text-black/80 italic max-w-xl mx-auto font-serif px-6">
-                   Artykuł powstał na podstawie jawnej dokumentacji urzędowej i sądowej. Poniżej pełna lista sygnatur oraz odnośniki umożliwiające samodzielną weryfikację.
-                 </p>
-               </div>
-
-               <div className="grid gap-6 text-sm text-black px-6">
-
-                 <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors text-left">
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
-                      <div>
-                        <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Wyrok Jarosława Kordysa</h4>
-                        <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygn. 30 T 5/2020</p>
-                      </div>
-                      <a href={KORDYS_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                        📄 Pobierz PDF
-                      </a>
-                    </div>
-                    <div className="border-t-2 border-black/20 pt-3">
-                      <a href="https://msp.gov.cz/web/krajsky-soud-v-ostrave/zakladni-informace/-/clanek/informace-rok-2022" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black inline-flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
-                        <GlobalLinkIcon /> Weryfikuj na msp.gov.cz
-                      </a>
-                    </div>
-                 </div>
-
-                 <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors text-left">
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
-                      <div>
-                        <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Wyrok Bartosza Badowskiego</h4>
-                        <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygn. 66 T 146/2021</p>
-                      </div>
-                      <a href={BADI_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                        📄 Pobierz PDF
-                      </a>
-                    </div>
-                    <div className="border-t-2 border-black/20 pt-3">
-                      <a href="https://msp.gov.cz/documents/22409/2997339/29Si+25-2022+p%C5%99%C3%ADloha+%C4%8D.+1.pdf" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black inline-flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
-                        <GlobalLinkIcon /> Weryfikuj oryginał (29 Si 25/2022)
-                      </a>
-                    </div>
-                 </div>
-
-                 <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors text-left">
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
-                      <div>
-                        <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Darowizna (Janów)</h4>
-                        <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygnatura: V-5821/2023 | Koszt: 300 CZK</p>
-                      </div>
-                      <a href={JANOV_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                        📥 Pobierz PDF
-                      </a>
-                    </div>
-                    <div className="border-t-2 border-black/20 pt-3">
-                      <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black inline-flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
-                        <GlobalLinkIcon /> Weryfikuj na nahlizenidokn.cuzk.cz
-                      </a>
-                    </div>
-                 </div>
-
-                 <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors text-left">
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
-                      <div>
-                        <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Sprzedaż (Nýdek)</h4>
-                        <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygnatura: V-2937/2021 | Koszt: 300 CZK</p>
-                      </div>
-                      <a href={NYDEK_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                        📥 Pobierz PDF
-                      </a>
-                    </div>
-                    <div className="border-t-2 border-black/20 pt-3">
-                      <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black inline-flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
-                        <GlobalLinkIcon /> Weryfikuj na nahlizenidokn.cuzk.cz
-                      </a>
-                    </div>
-                 </div>
-
-                 <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors text-left">
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
-                      <div>
-                        <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Archiwum: Nýdek & Munay</h4>
-                        <p className="font-mono text-xs text-black/60 mt-1 font-black">Wayback Machine</p>
-                      </div>
-                      <a href={MUNAY_WAYBACK_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-[#e8d154] text-black px-4 py-2 text-xs font-black border-2 border-black hover:bg-white transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-sans">
-                        🕰️ Otwórz Archiwum
-                      </a>
-                    </div>
-                 </div>
-
-               </div>
-
-               <div className="mt-4 text-center pb-8">
-                  <a href="https://www.nasza-gazetka.pl" target="_blank" rel="noopener noreferrer" className="inline-block font-display text-2xl font-black text-black hover:bg-[#e8d154] transition-colors underline decoration-4 underline-offset-8 mt-4 px-2">
-                    WWW.NASZA-GAZETKA.PL
-                  </a>
-               </div>
-            </footer>
-          </article>
-        </div>
-      </main>
-    </>
-  );
-}
+              <ul className="not-prose list-none space-y-10 my-12 font-mono text-sm border-
