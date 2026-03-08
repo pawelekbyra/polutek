@@ -1305,33 +1305,31 @@ export default function Page() {
   return (
 
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleSchema) }}
+      />
 
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleSchema) }} />
+      <main className="min-h-screen bg-transparent text-[#1a1a1a] selection:bg-[#e8d154]/50 font-body flex flex-col items-center relative">
+        <div
+          className="w-full max-w-4xl bg-[#e7dfcc] flex flex-col items-center pb-0 border-x-4 border-black overflow-hidden relative shadow-2xl"
+          style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/subtle-paper.png')" }}
+        >
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.15] mix-blend-multiply z-0"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+            }}
+          ></div>
 
-
-
-      <main className="min-h-screen text-ink selection:bg-[#e8d154]/40 font-body flex flex-col items-center">
-
-        <div className="w-full max-w-4xl bg-paper-texture flex flex-col items-center pb-20 border-x-2 border-ink overflow-hidden">
-
-
-
-          {/* BrandHeader - Zacieśniony padding */}
-
-          <div className="w-full flex flex-col items-center pt-1 pb-1">
-
+          <div className="w-full flex flex-col items-center pt-2 pb-1 bg-white/10 relative z-10">
             <div className="flex items-center justify-center w-[calc(100%-2rem)] mx-auto gap-4 pt-2 pb-1">
-
               <div className="flex-grow h-[2px] bg-ink"></div>
-
               <h1 className="text-4xl md:text-[4.5rem] font-black tracking-tighter text-ink uppercase font-unifraktur leading-none whitespace-nowrap px-2">
-
                 NASZA GAZETKA
 
               </h1>
-
               <div className="flex-grow h-[2px] bg-ink"></div>
-
             </div>
 
             <div className="w-[calc(100%-2rem)] mx-auto border-y-2 border-ink py-1 flex items-center justify-between px-4 text-[10px] md:text-xs font-bold uppercase tracking-[0.1em] text-ink-medium">
