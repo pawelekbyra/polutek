@@ -14,10 +14,11 @@ const NYDEK_WAYBACK_URL = "https://web.archive.org/web/20161122155227/http://tri
 const ARREST_VIDEO_URL = `${PINATA_GATEWAY}/bafybeickwaxlebikfa2aax7mwk7xnp56n6vqmnw7mafponnztlzinf73iy/videoplayback.m3u8`;
 
 const GlobalLinkIcon = () => (
-  <span className="not-prose inline-flex relative align-middle mx-1 mb-1">
+  <span className="not-prose inline-flex relative items-center justify-center w-6 h-6 leading-none align-middle mx-1">
     <span className="text-xl">🌐</span>
-    <span className="absolute bottom-[-2px] right-[-3px] text-[11px] leading-none">
-      🔗
+    {/* Lancuszek: bialy, czarny kontur, poziomo, bez ramki kwadratowej */}
+    <span className="absolute -bottom-1 -right-1 flex items-center justify-center w-3 h-3 bg-white border border-black rounded-full shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
+      <span className="text-[8px] text-black font-bold leading-none">🔗</span>
     </span>
   </span>
 );
@@ -71,7 +72,7 @@ const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string,
       </div>
       <div className="py-2">
          <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1 flex items-center gap-2">{name}</div>
-         <div className="font-mono text-base font-bold text-black uppercase">LV {lv}</div>
+         <div className="font-mono text-base font-bold text-black uppercase">{lv}</div>
          <div className="text-[10px] text-black/60 font-mono mt-1 uppercase">
             Działka: {plot} <span className="mx-1">|</span> Obręb: {code}
          </div>
@@ -297,7 +298,7 @@ export default function Page() {
               </CaseFile>
 
               <div className="not-prose my-12 pl-6 border-l-[6px] border-black font-serif italic text-2xl text-[#000000] leading-relaxed relative z-10">
-                „Z ich rozmowy wynika, że nie zajmowali się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji.”
+                „Z ich rozmowy wynika, że nie zajmowali się v zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęło uwagi policji.”
               </div>
 
               <p className="mt-4">
@@ -363,7 +364,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Cena wolności Badowskiego okazała się być wysoka dla jego kolegi z branży. Zeznania Badiego były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak v sprawie Kordysów.
+                Cena wolności Badowskiego okazała się być wysoka dla jego kolegi z branży. Zenyznania Badiego były dla prokuratury bezcennym materiałem dowodowym, który pozwolił domknąć łańcuch poszlak v sprawie Kordysów.
               </p>
 
               <p className="mt-4">
@@ -455,7 +456,7 @@ export default function Page() {
   href="https://munaysonqo.com/all-retreats/#calendar-7a66adc3-3ebd-432c-b572-0faf936c281f-event-e90d5161-a00e-4742-b4b7-039de153a23d" 
   target="_blank" 
   rel="noopener noreferrer" 
-  className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1 flex items-center gap-1" 
+  className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1 inline-flex items-center gap-1" 
   title="Kliknij, aby otworzyć stronę ośrodka Munay Sonqo"
 >
   <GlobalLinkIcon />
@@ -587,7 +588,7 @@ export default function Page() {
   href={NYDEK_WAYBACK_URL} 
   target="_blank" 
   rel="noopener noreferrer" 
-  className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" 
+  className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1 inline-flex items-center gap-1" 
   title="Kliknij, aby otworzyć archiwalną stronę Nýdek w Wayback Machine"
 >
   <GlobalLinkIcon />
@@ -664,7 +665,7 @@ export default function Page() {
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Wiktor B.</h2>
 
               <p className="mt-4">
-                9. marca 2026 Onet ujawnia opinii publicznej wstrząsające kulisy działalności ośrodka v czeskim Janowie.  Dziennikarskie śledztwo koncentruje się na śmierci 54-letniej uczestniczki, Ilony L.-H. <GlobalLinkIcon />
+                9. marca 2026 Onet ujawnia opinii publicznej wstrząsające kulisy działalności ośrodka v czeskim Janowie.  Dziennikarskie śledztwo koncentruje się na śmierci 54-letniej uczestniczki, Ilony L.-H. <a href="https://wiadomosci.onet.pl/kraj/tajemnica-szamanskiej-farmy-smierc-podczas-rytualu-ayahuaski/f622pxt" target="_blank" rel="noopener noreferrer" className="inline-flex items-center"><GlobalLinkIcon /></a>
               </p>
 
               <p className="mt-4">
@@ -767,7 +768,7 @@ export default function Page() {
                       </a>
                     </div>
                     <div className="border-t-2 border-black/20 pt-3">
-                      <a href="https://msp.gov.cz/web/krajsky-soud-v-ostrave/zakladni-informace/-/clanek/informace-rok-2022" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
+                      <a href="https://msp.gov.cz/web/krajsky-soud-v-ostrave/zakladni-informace/-/clanek/informace-rok-2022" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black inline-flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
                         <GlobalLinkIcon /> Weryfikuj na msp.gov.cz
                       </a>
                     </div>
@@ -784,7 +785,7 @@ export default function Page() {
                       </a>
                     </div>
                     <div className="border-t-2 border-black/20 pt-3">
-                      <a href="https://msp.gov.cz/documents/22409/2997339/29Si+25-2022+p%C5%99%C3%ADloha+%C4%8D.+1.pdf" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
+                      <a href="https://msp.gov.cz/documents/22409/2997339/29Si+25-2022+p%C5%99%C3%ADloha+%C4%8D.+1.pdf" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black inline-flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
                         <GlobalLinkIcon /> Weryfikuj oryginał (29 Si 25/2022)
                       </a>
                     </div>
@@ -801,7 +802,7 @@ export default function Page() {
                       </a>
                     </div>
                     <div className="border-t-2 border-black/20 pt-3">
-                      <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
+                      <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black inline-flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
                         <GlobalLinkIcon /> Weryfikuj na nahlizenidokn.cuzk.cz
                       </a>
                     </div>
@@ -818,7 +819,7 @@ export default function Page() {
                       </a>
                     </div>
                     <div className="border-t-2 border-black/20 pt-3">
-                      <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
+                      <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black inline-flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
                         <GlobalLinkIcon /> Weryfikuj na nahlizenidokn.cuzk.cz
                       </a>
                     </div>
