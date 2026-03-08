@@ -658,7 +658,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Przez kolejne lata tę kłamliwą narrację udawało się skutecznie utrzymywać. O śmierci z przyczyn naturalnych przez długi czas przekonana była nawet najbliższa rodzina Ilony.
+                Przez kolejne lata tę kłamliwą narrację udawało się skutecznie utrzymywać. O śmierci z przyczyn czysto medycznych przez długi czas przekonana była nawet najbliższa rodzina Ilony.
               </p>
 
               <p className="mt-4">
