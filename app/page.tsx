@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 
 import React from 'react';
@@ -207,9 +207,7 @@ export default function Page() {
           <div className="w-full flex flex-col items-center pt-1 pb-1">
             <div className="flex items-center justify-center w-[calc(100%-2rem)] mx-auto gap-4 pt-2 pb-1">
               <div className="flex-grow h-[2px] bg-ink"></div>
-
-              <h1 className="text-4xl md:text-[4.5rem] font-black tracking-tighter text-ink uppercase font-sans leading-none whitespace-nowrap px-2">
-
+              <h1 className="text-4xl md:text-[4.5rem] font-black tracking-tighter text-ink uppercase font-unifraktur leading-none whitespace-nowrap px-2">
                 NASZA GAZETKA
               </h1>
               <div className="flex-grow h-[2px] bg-ink"></div>
@@ -662,4 +660,3 @@ export default function Page() {
   );
 
 }
-
