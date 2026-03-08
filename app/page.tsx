@@ -16,10 +16,21 @@ const ARREST_VIDEO_URL = `${PINATA_GATEWAY}/bafybeickwaxlebikfa2aax7mwk7xnp56n6v
 const GlobalLinkIcon = () => (
   <span className="not-prose inline-flex relative items-center justify-center w-6 h-6 leading-none align-middle mx-1">
     <span className="text-xl">🌐</span>
-    {/* Lancuszek: poziomo, duzy, bez ramki, w rogu */}
-    <span className="absolute -bottom-1 -right-1 text-[18px] leading-none select-none pointer-events-none drop-shadow-[1px_1px_0px_rgba(255,255,255,1)]">
-      🔗
-    </span>
+    {/* Lancuszek SVG: przezroczysty w srodku, czarny obrys, mniejszy, poziomo */}
+    <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 flex items-center justify-center pointer-events-none">
+      <svg 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="black" 
+        strokeWidth="2.5" 
+        strokeLinecap="round" 
+        strokeLinejoin="round" 
+        className="w-full h-full drop-shadow-[1px_1px_0px_rgba(255,255,255,1)]"
+      >
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+      </svg>
+    </div>
   </span>
 );
 
@@ -167,7 +178,7 @@ export default function Page() {
             </div>
             <div className="w-[calc(100%-2rem)] mx-auto border-y-4 border-black py-2 flex items-center justify-between px-4 text-[10px] md:text-xs font-black uppercase tracking-[0.15em]">
               <span>📰 Niezależne Media</span>
-              <div className="text-center font-display text-black">NIEDZIELA, 1 MARCA 2026</div>
+              <div className="text-center font-display text-black">NIEDZIELA, 8 MARCA 2026</div>
               <span>Serwis Śledczy Nr 01 📄</span>
             </div>
           </div>
@@ -314,7 +325,7 @@ export default function Page() {
               </CaseFile>
 
               <p className="mt-4">
-                Для policjantów, którzy słyszeli to v czasie rzeczywistym, przekaz był jasny: v obiekcie mogło dojść do tragedii, a sprawcy martwili się jedynie o ciągłość dostaw.
+                Для policjantów, którzy słyszeli to v czasie rzeczywistym, przekaz był jasny: w obiekcie mogło dojść do tragedii, a sprawcy martwili się jedynie o ciągłość dostaw.
               </p>
 
               <p className="mt-4">
@@ -386,7 +397,7 @@ export default function Page() {
               <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Cisza po burzy</h2>
 
               <p className="mt-4">
-                Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość v Janowie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku Badiego w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
+                Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość v Janowie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku Badiego v tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
               </p>
 
               <p className="mt-4">
@@ -494,7 +505,6 @@ export default function Page() {
               </p>
 
               <div className="not-prose my-8">
-                {/* Odtwarzacz z wymuszonymi proporcjami 16:9, aby wideo wypelnilo ramke */}
                 <div className="w-full relative border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10 bg-black text-left rounded-sm overflow-hidden" style={{ paddingBottom: '56.25%' }}>
                   <iframe 
                     className="absolute inset-0 w-full h-full"
@@ -613,7 +623,7 @@ export default function Page() {
               </p>
 
               <p className="mt-4">
-                Jeszcze bardziej zastanawiające jest to, co stało się z tą nieruchomością w momencie zagrożenia. Gdy 15.10.2020 roku aresztowano Kordysa, nad środowiskiem zawisło widmo policyjnych nalotów. Dokumenty urzędowe odsłaniają niepokojącą zbieżność dat:
+                Jeszcze bardziej zastanawiające jest to, co stało się z tą nieruchomością w momencie zagrożenia. Gdy 15.10.2020 roku aresztowano Kordysa, nad środowiskiem zawisło vidmo policyjnych nalotów. Dokumenty urzędowe odsłaniają niepokojącą zbieżność dat:
               </p>
 
               <ul className="not-prose list-none space-y-10 my-12 font-mono text-sm border-l-4 border-black pl-6 relative z-10 text-black">
