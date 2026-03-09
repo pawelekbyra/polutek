@@ -17,7 +17,7 @@ const KICINSKI_VIDEO_URL = "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/
 
 const KORDYS_COVER = "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kordys-aresztowanie-cover-photo.png";
 
-const ONET_ARTICLE_URL = "https://wiadomosci.onet.pl/kraj/smierc-podczas-ceremonii-ayahuaski-wstrzasajace-kulisy/7e8e5x5";
+const ONET_ARTICLE_URL = "https://wiadomosci.onet.pl/tylko-w-onecie/ujawniamy-szamanskie-ceremonie-tajemnicza-smierc-i-miliarderzy-od-wiedzmina/hdxsqdq";
 
 export const InvestigativeArticle = () => {
   return (
@@ -80,7 +80,7 @@ export const InvestigativeArticle = () => {
           </CaseFile>
 
           <div className="not-prose my-8 flex justify-start">
-              <LocationStampUI name="JANOV U KRNOVA" code="656976" plot="st. 281" lv="127" />
+              <LocationStampUI name="Janov" code="" plot="84 Janov, Czechy" lv="252793" />
           </div>
 
           <p className="mt-4">
@@ -396,7 +396,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <div className="not-prose my-8 flex justify-start">
-              <LocationStampUI name="NÝDEK" code="708186" plot="st. 506/1" lv="832" />
+              <LocationStampUI name="Nýdek" code="" plot="95 Nýdek, Czechy" lv="120739" />
           </div>
 
           <p className="mt-4">
@@ -562,6 +562,18 @@ export const InvestigativeArticle = () => {
                 <div className="border-t-2 border-black/20 pt-3">
                   <a href="https://msp.gov.cz/web/krajsky-soud-v-ostrave/zakladni-informace/-/clanek/informace-rok-2022" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
                     🌐 Weryfikuj na msp.gov.cz
+                  </a>
+                </div>
+             </div>
+
+             <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
+                <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
+                  <div>
+                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Śledztwo Onetu</h4>
+                    <p className="font-mono text-xs text-black/60 mt-1 font-black">Onet.pl | Paweł Figurski</p>
+                  </div>
+                  <a href={ONET_ARTICLE_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                    🌐 Czytaj w Onecie
                   </a>
                 </div>
              </div>
