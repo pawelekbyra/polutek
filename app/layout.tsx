@@ -1,7 +1,7 @@
 import "./globals.css";
 import "plyr/dist/plyr.css";
 import type { Metadata, Viewport } from 'next';
-import { Playfair_Display, EB_Garamond, UnifrakturMaguntia } from 'next/font/google';
+import { Playfair_Display, EB_Garamond, UnifrakturMaguntia, Pirata_One } from 'next/font/google';
 
 const playfair = Playfair_Display({
   subsets: ['latin', 'latin-ext'],
@@ -19,6 +19,12 @@ const unifraktur = UnifrakturMaguntia({
   variable: '--font-unifraktur',
 });
 
+const pirata = Pirata_One({
+  weight: '400',
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-pirata',
+});
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1.0,
@@ -30,7 +36,7 @@ export const metadata: Metadata = {
   description: "Śledztwo w sprawie tajemniczych zgonów podczas szamańskich ceremonii z udziałem twórców gier i Michała Kicińskiego. Ujawniamy kulisy i pełną dokumentację.",
   metadataBase: new URL('https://www.nasza-gazetka.pl'),
   alternates: {
-    canonical: '/',
+    canonical: 'https://www.nasza-gazetka.pl/',
   },
   robots: {
     index: true,
@@ -65,7 +71,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl" className={`${playfair.variable} ${ebGaramond.variable} ${unifraktur.variable}`}>
+    <html lang="pl" className={`${playfair.variable} ${ebGaramond.variable} ${unifraktur.variable} ${pirata.variable}`}>
       <body className="antialiased text-black">
         {children}
       </body>
