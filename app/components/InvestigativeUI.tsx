@@ -1,5 +1,3 @@
-"use client";
-
 import React from 'react';
 
 export const CaseFile = ({ title, children, type = 'evidence', highlight = false }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email', highlight?: boolean }) => {
