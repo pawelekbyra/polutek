@@ -93,8 +93,7 @@ export const InvestigativeArticle = () => {
           <p className="mt-4">
             Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie Michał D. K.
           </p>
-
-          <p className="mt-12">
+          <p className="mt-2">
             <span className="bg-red-600 px-1 font-black text-white shadow-sm box-decoration-clone">
               Wspólnikiem szamana był twórca Wiedźmina – jeden z najbogatszych Polaków.
             </span>
@@ -176,8 +175,8 @@ export const InvestigativeArticle = () => {
             Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym:
           </p>
 
-          <LegalNote term="Dohoda o vině a trestu">
-            Ugoda o winie i karze. Czeska procedura karna pozwalająca oskarżonemu na dobrowolne poddanie się karze w zamian za łagodniejszy wyrok, bez przeprowadzania pełnego procesu dowodowego i wzywania świadków.
+          <LegalNote term="Plea bargain (dohoda o vině)">
+            Czeska procedura karna pozwalająca oskarżonemu na dobrowolne poddanie się karze w zamian za łagodniejszy wyrok, bez przeprowadzania pełnego procesu dowodowego i wzywania świadków.
           </LegalNote>
 
           <p className="mt-4">
@@ -234,7 +233,7 @@ export const InvestigativeArticle = () => {
             <ArticleVideoPlayer src={KICINSKI_VIDEO_URL} />
             <div className="mt-4 text-sm text-black font-mono border-l-[4px] border-black pl-4 bg-[#e8d154]/20 py-2 relative z-10">
               <span className="font-black uppercase text-xs mr-2">Materiał Wideo:</span>
-              Michał Kiciński o Ayahuasce (Festiwal Wibracje), źródło: Youtube
+              Michał Kiciński o Ayahuasce (Festiwal Wibracje)
             </div>
           </div>
 
@@ -272,7 +271,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego do tej pory oferuje tam w pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które w Czechach są zakazane, co wciąż jest eksponowane na stronie internetowej. <a href="https://munaysonqo.com/all-retreats/#calendar-7a66adc3-3ebd-432c-b572-0faf936c281f-event-e90d5161-a00e-4742-b4b7-039de153a23d" target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby otworzyć stronę ośrodka Munay Sonqo">🌐</a>
+            W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego do tej pory oferuje tam w pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które w Czechach są zakazane, co wciąż jest eksponowane na stronie internetowej. <a href="https://munaysonqo.com/all-retreats/#calendar-7a66adc3-3ebd-432c-b572-0faf936c281f-event-e90d5161-a00e-4742-b4b7-039de153a23d" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 cursor-pointer hover:bg-[#e8d154] transition-colors px-2 py-0.5 ml-1 border-2 border-black bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] no-underline text-xs font-bold text-black uppercase tracking-wider" title="Kliknij, aby otworzyć stronę ośrodka Munay Sonqo">🌐</a>
           </p>
 
           <p className="mt-4">
@@ -456,7 +455,7 @@ export const InvestigativeArticle = () => {
             Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji wydarzeń z darowizną Kicińskiego w Janowie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
           </p>
 
-          <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Wiktor B.</h2>
+          <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Śledztwo Onet: Szamańskie ceremonie</h2>
 
           <p className="mt-4">
             9. marca 2026 Onet ujawnia opinii publicznej wstrząsające kulisy działalności ośrodka w czeskim Janowie. Dziennikarskie śledztwo koncentruje się na śmierci 54-letniej uczestniczki, Ilony L.-H. <a href={ONET_INVESTIGATION_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Otwórz artykuł na Onet.pl">🌐</a>
@@ -489,41 +488,49 @@ export const InvestigativeArticle = () => {
               </div>
           </div>
 
-          <div className="not-prose mt-16 mb-0 border-y-2 border-black py-12 relative z-10 bg-white/30">
-              <h3 className="font-display font-black text-3xl uppercase tracking-tighter text-center text-black mb-12 flex items-center justify-center gap-3">
+          <div className="not-prose mt-16 mb-0 border-y-4 border-black py-8 bg-[#e8d154]/10 relative z-10">
+              <h3 className="font-display font-black text-2xl uppercase tracking-widest text-black mb-8 flex items-center gap-2 px-4">
                 <span>🛡️</span> Status Prawny (2025/2026)
               </h3>
 
-              <div className="grid gap-10 px-4 max-w-2xl mx-auto">
-                <div className="border-l-4 border-black pl-8 py-1">
-                    <div className="flex flex-col sm:flex-row justify-between items-baseline gap-4 mb-2">
-                      <span className="font-display text-black font-black uppercase text-2xl leading-none">Śledztwo w sprawie organizacji ceremonii</span>
-                      <span className="font-mono text-xs font-black text-black/30 tracking-widest">3013-1.Ds.15.2024</span>
+              <div className="grid gap-4 px-4">
+                <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    <div>
+                      <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie organizacji ceremonii</span>
+                      <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Okręgowa w Częstochowie</span>
                     </div>
-                    <span className="block text-base text-black/70 font-serif italic">Prokuratura Okręgowa w Częstochowie</span>
+                    <span className="font-mono text-sm font-black bg-black text-white px-4 py-2 border border-black tracking-widest">
+                      3013-1.Ds.15.2024
+                    </span>
                 </div>
 
-                <div className="border-l-4 border-black pl-8 py-1">
-                    <div className="flex flex-col sm:flex-row justify-between items-baseline gap-4 mb-2">
-                      <span className="font-display text-black font-black uppercase text-2xl leading-none">Śledztwo w sprawie śmierci Ilony L.</span>
-                      <span className="font-mono text-xs font-black text-black/30 tracking-widest">3013-1.Ds.4.2026</span>
+                <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    <div>
+                      <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie śmierci Ilony L.</span>
+                      <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Okręgowa w Częstochowie</span>
                     </div>
-                    <span className="block text-base text-black/70 font-serif italic">Prokuratura Okręgowa w Częstochowie</span>
+                    <span className="font-mono text-sm font-black bg-[#e8d154] text-black border-2 border-black px-4 py-2 tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                      3013-1.Ds.4.2026
+                    </span>
                 </div>
 
-                <div className="border-l-4 border-black pl-8 py-1">
-                    <div className="flex flex-col sm:flex-row justify-between items-baseline gap-4 mb-2">
-                      <span className="font-display text-black font-black uppercase text-2xl leading-none">Śledztwo w sprawie śmierci Wiktora B.</span>
-                      <span className="font-mono text-xs font-black text-black/30 tracking-widest">4027-0. Ds. 1254.2024</span>
+                <div className="border-2 border-black bg-white p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    <div>
+                      <span className="block font-display text-black font-bold uppercase">Śledztwo w sprawie śmierci Wiktora B.</span>
+                      <span className="block text-xs text-black/60 mt-1 font-mono">Prokuratura Rejonowa w Pułtusku</span>
                     </div>
-                    <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
-                      <span className="block text-base text-black/70 font-serif italic">Prokuratura Rejonowa w Pułtusku</span>
-                      <span className="text-[10px] font-black text-black uppercase tracking-[0.2em] border-2 border-black px-3 py-1 font-sans bg-black/5">Zawieszone</span>
+                    <div className="flex flex-col items-end gap-2">
+                      <span className="font-mono text-sm font-black bg-black/5 text-black px-4 py-2 border-2 border-black tracking-widest">
+                         4027-0. Ds. 1254.2024
+                      </span>
+                      <div className="flex items-center gap-2">
+                         <span className="text-[10px] font-black text-red-800 uppercase tracking-widest bg-red-100 px-2 py-1 border border-red-800 font-sans">Zawieszone</span>
+                      </div>
                     </div>
                 </div>
               </div>
 
-              <div className="mt-14 px-8 text-xs text-black/50 font-serif text-center italic leading-relaxed max-w-xl mx-auto border-t border-black/10 pt-8">
+              <div className="mt-8 px-4 text-xs text-black/70 font-mono text-center italic">
                 Postępowania toczą się w wymienionych jednostkach Prokuratury. Nadzór nad sprawami w Częstochowie objął Zastępca Prokuratora Okręgowego, a kluczowe czynności nadzoruje prokurator Jolanta Świdnicka.
               </div>
           </div>
