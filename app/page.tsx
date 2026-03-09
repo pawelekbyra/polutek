@@ -48,10 +48,10 @@ export default function Page() {
 
           <div className="w-full text-center flex flex-col items-center pt-6 pb-4 px-6 box-border relative z-10">
             <h1 className="text-black w-full mb-1">
-              <span className="block text-5xl md:text-[6rem] font-display font-black leading-[0.85] tracking-tighter uppercase">
+              <span className="block text-5xl md:text-[6rem] font-unifraktur font-black leading-[0.85] tracking-tighter uppercase">
                 Eliksir
               </span>
-              <span className="block text-5xl md:text-[6rem] font-display font-black leading-[0.85] tracking-tighter uppercase">
+              <span className="block text-5xl md:text-[6rem] font-unifraktur font-black leading-[0.85] tracking-tighter uppercase">
                 Wiedźmina
               </span>
             </h1>

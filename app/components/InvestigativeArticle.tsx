@@ -92,9 +92,8 @@ export const InvestigativeArticle = () => {
 
           <p className="mt-4">
             Drugie imię – Dawid – idealnie wypełnia lukę w zanonimizowanym skrócie Michał D. K.
-          </p>
-          <p className="mt-2">
-            <span className="bg-red-600 px-1 font-black text-white shadow-sm box-decoration-clone">
+            <br />
+            <span className="bg-red-600 px-1 font-black text-white shadow-sm box-decoration-clone inline-block">
               Wspólnikiem szamana był twórca Wiedźmina – jeden z najbogatszych Polaków.
             </span>
           </p>
@@ -175,7 +174,7 @@ export const InvestigativeArticle = () => {
             Co wydarzyło się w ciągu tych niespełna dwóch miesięcy? Odpowiedź kryje się w jednym czeskim terminie prawnym:
           </p>
 
-          <LegalNote term="dohoda o vině">
+          <LegalNote term="Dohoda o vině">
             Czeska procedura karna pozwalająca oskarżonemu na dobrowolne poddanie się karze w zamian za łagodniejszy wyrok, bez przeprowadzania pełnego procesu dowodowego i wzywania świadków.
           </LegalNote>
 
@@ -556,7 +555,7 @@ export const InvestigativeArticle = () => {
                     <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Szamańskie ceremonie, tajemnicza śmierć i miliarderzy od "Wiedźmina"</h4>
                     <p className="font-mono text-xs text-black/60 mt-1 font-black">Śledztwo dziennikarskie Onetu</p>
                   </div>
-                  <a href={ONET_INVESTIGATION_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                  <a href={ONET_INVESTIGATION_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-wine text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-wine transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     🌐 Czytaj na Onet.pl
                   </a>
                 </div>
