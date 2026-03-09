@@ -1,93 +1,83 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+import React from 'react';
+import { CaseFile, LegalNote, PullQuote, LocationStampUI, TransactionStampUI } from './InvestigativeUI';
+import { ArticleVideoPlayer } from './InvestigativeMedia';
+import { GalleryProvider, BadowskiTrigger, WiktorTrigger } from './GalleryTriggers';
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%; /* Zmienione na czysty czarny */
-    --radius: 0.5rem;
-  }
+const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/";
 
-  html, body {
-    @apply text-black antialiased; /* Wymuszona czarna czcionka bazowa */
-    background-color: transparent;
-    overflow-x: hidden;
-  }
+export const InvestigativeArticle = () => {
+  return (
+    <GalleryProvider>
+      <div className="bg-[#FDFBF7] min-h-screen py-12 px-4 md:px-8 font-serif text-[#1a1a1a]">
+        <header className="max-w-4xl mx-auto mb-16 text-center">
+          <h1 className="text-4xl md:text-6xl mb-4 leading-tight font-serif">Majątek ukryty w Beskidach</h1>
+          <p className="text-xl text-slate-600 italic leading-relaxed">Śledztwo w sprawie przepływów kapitałowych i nieruchomości na pograniczu.</p>
+        </header>
 
-  /* Warstwa tła - stała, płynna i bez migania */
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -10;
-    background-image: url('/background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    
-    /* Kluczowe dla płynności i naprawy migania: */
-    transform: translateZ(0);
-    will-change: transform;
-    pointer-events: none;
-  }
-}
+        <section className="max-w-4xl mx-auto prose prose-lg prose-slate prose-headings:font-serif prose-p:leading-relaxed">
+          <p className="lead">
+            W toku dziennikarskiego śledztwa udało nam się ustalić sieć powiązań między osobami zaangażowanymi w głośne procesy sądowe a nieruchomościami położonymi w malowniczych zakątkach czeskich Beskidów.
+          </p>
 
-@layer components {
-  .article-prose {
-    @apply prose prose-lg max-w-none;
-    /* Wszystkie elementy poniżej zmienione na text-black */
-    @apply prose-headings:font-display prose-headings:font-bold prose-headings:text-black;
-    @apply prose-p:font-body prose-p:text-black prose-p:leading-relaxed;
-    @apply prose-strong:text-black prose-strong:font-bold;
-    @apply prose-a:text-black prose-a:font-bold prose-a:no-underline prose-a:underline prose-a:decoration-double prose-a:decoration-black/30 hover:prose-a:bg-black/5 transition-colors;
-    @apply prose-blockquote:border-l-4 prose-blockquote:border-black prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-black;
-  }
+          <section className="mb-12">
+            <h2 className="text-2xl font-serif mb-6 border-b border-slate-200 pb-2">1. Posiadłość w Janovie (Kordys)</h2>
+            
+            <LocationStampUI 
+              name="Janov"
+              code="252793"
+              plot="84"
+              lv="Janov, Czechy"
+            />
 
-  .drop-cap::first-letter {
-    @apply text-7xl font-bold mr-3 float-left text-black leading-[0.8];
-  }
+            <p>
+              Pierwszym kluczowym punktem jest posiadłość w Janovie. Dokumentacja wskazuje, że nieruchomość ta stała się centrum operacyjnym w okresie intensywnych transferów finansowych.
+            </p>
 
-  .section-heading {
-    /* Użycie czarnego obramowania dla nagłówków sekcji */
-    @apply font-display font-bold mt-16 mb-8 border-b-4 border-black pb-2;
-  }
+            <CaseFile title="Akta sprawy Kordysa" type="evidence">
+              Analiza przepływów bankowych sugeruje, że środki na zakup zostały przetransferowane za pośrednictwem spółek typu shell.
+            </CaseFile>
+          </section>
 
-  .gradient-divider {
-    @apply h-[1px] bg-gradient-to-r from-transparent via-black to-transparent;
-  }
+          <section className="mb-12">
+            <h2 className="text-2xl font-serif mb-6 border-b border-slate-200 pb-2">2. Wątek Badowskiego</h2>
+            
+            <p>
+              Podczas analizy archiwów natrafiliśmy na dokumentację fotograficzną dotyczącą transakcji związanych z Wiktorem Badowskim.
+            </p>
 
-  .timeline-list {
-    @apply border-l-2 border-black pl-4;
-  }
+            <BadowskiTrigger />
 
-  .timeline-item-critical {
-    @apply bg-white/50 border-2 border-black p-4 rounded-sm shadow-sm;
-  }
+            <PullQuote author="Źródło zbliżone do śledztwa">
+              "To nie były zwykłe inwestycje. To był sposób na 'zaparkowanie' kapitału w miejscu, gdzie nikt nie będzie pytał o jego pochodzenie."
+            </PullQuote>
+          </section>
 
-  .source-card {
-    @apply p-3 bg-white border-2 border-black hover:bg-black/5 transition-colors shadow-sm;
-  }
+          <section className="mb-12">
+            <h2 className="text-2xl font-serif mb-6 border-b border-slate-200 pb-2">3. Nieruchomość w Nýdku (Badi)</h2>
+            
+            <LocationStampUI 
+              name="Nýdek"
+              code="120739"
+              plot="95"
+              lv="Nýdek, Czechy"
+            />
 
-  /* Specyficzne dla artykułu podświetlenia */
-  .highlight-wine {
-    @apply bg-black/10 px-1 font-bold text-black box-decoration-clone;
-  }
+            <p>
+              W Nýdku, niewielkiej miejscowości w Beskidzie Śląskim, odnaleźliśmy ślady powiązań z grupą określaną w aktach jako "Badi". 
+            </p>
 
-  .status-grid {
-    @apply grid gap-px bg-black border border-black;
-  }
+            <WiktorTrigger />
 
-  .status-row {
-    @apply bg-white p-4;
-  }
+            <LegalNote title="Notatka prawna: Status prawny nieruchomości">
+              Obecnie toczy się postępowanie wyjaśniające w sprawie wpisów w katastrze, które mogą nie odzwierciedlać faktycznego stanu posiadania.
+            </LegalNote>
+          </section>
 
-  .bg-paper-texture {
-    background-image: url('/sim_mirrored.png');
-    background-repeat: repeat;
-    background-size: 512px;
-  }
-}
+          <section className="mt-16 pt-8 border-t border-slate-200 italic text-slate-500 text-sm">
+            <p>Materiał zebrany w ramach projektu śledczego. Wszystkie prezentowane dokumenty pochodzą z jawnych źródeł lub zostały udostępnione przez sygnalistów.</p>
+          </section>
+        </section>
+      </div>
+    </GalleryProvider>
+  );
+};
