@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Receipt, FileText, Mail, Search, Scale, Quote } from 'lucide-react';
+import { MapPin, Stamp, FileText, Mail, Search, Scale, Quote } from 'lucide-react';
 
 export const CaseFile = ({ title, children, type = 'evidence', highlight = false }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email', highlight?: boolean }) => {
   const getIcon = () => {
@@ -67,7 +67,7 @@ export const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: 
 export const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
   <div className="not-prose relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group max-w-[280px]">
      <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed text-black/40 group-hover:text-black transition-colors">
-        <Receipt size={24} strokeWidth={1.5} />
+        <Stamp size={24} strokeWidth={1.5} />
      </div>
      <div className="py-2">
         <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1">{label}</div>

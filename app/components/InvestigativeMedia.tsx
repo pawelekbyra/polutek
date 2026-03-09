@@ -32,7 +32,7 @@ export const ArticleVideoPlayer: React.FC<{ src: string; poster?: string }> = ({
         ref={videoRef}
         controls
         poster={poster}
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
         playsInline
         aria-label="Materiał wideo - dowód w śledztwie"
       />
