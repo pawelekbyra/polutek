@@ -1,88 +1,79 @@
 import React from 'react';
-import { LocationTrigger, ImageTrigger, AudioTrigger, PDFTrigger } from './GalleryTriggers';
+import { CaseFile, LegalNote, PullQuote, LocationStampUI, TransactionStampUI } from './InvestigativeUI';
+import { ArticleVideoPlayer } from './InvestigativeMedia';
+import { GalleryProvider, BadowskiTrigger, WiktorTrigger } from './GalleryTriggers';
 
-const InvestigativeArticle = () => {
+const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/";
+
+export const InvestigativeArticle = () => {
   return (
-    <article className="max-w-none prose prose-lg prose-slate prose-headings:font-serif prose-p:leading-relaxed">
-      <h1 className="font-serif text-4xl md:text-5xl mb-8 text-[#1a1a1a]">
-        Dom na granicy światów
-      </h1>
+    <GalleryProvider>
+      <div className="bg-[#FDFBF7] min-h-screen py-12 px-4 md:px-8 font-serif text-[#1a1a1a]">
+        <header className="max-w-4xl mx-auto mb-16 text-center">
+          <h1 className="text-4xl md:text-6xl mb-4 leading-tight">Majątek ukryty w Beskidach</h1>
+          <p className="text-xl text-slate-600 italic">Śledztwo w sprawie przepływów kapitałowych i nieruchomości na pograniczu.</p>
+        </header>
 
-      <div className="mb-12 not-prose">
-        <ImageTrigger 
-          src="/gallery/janov/janov1.jpg" 
-          caption="Widok na posiadłość w Janovie, marzec 2024"
-          className="rounded shadow-lg"
-        />
-      </div>
+        <section className="max-w-4xl mx-auto prose prose-lg prose-slate prose-headings:font-serif">
+          <p className="lead">
+            W toku dziennikarskiego śledztwa udało nam się ustalić sieć powiązań między osobami zaangażowanymi w głośne procesy sądowe a nieruchomościami położonymi w malowniczych zakątkach czeskich Beskidów.
+          </p>
 
-      <p>
-        Wszystko zaczyna się tutaj, w miejscu, gdzie nawigacja GPS często gubi sygnał, a granica między Polską a Czechami staje się jedynie umowną linią na mapie. Janov u Krnova to miejscowość, która na pierwszy rzut oka nie wyróżnia się niczym szczególnym. Jednak to właśnie tutaj, pod adresem 
-        <LocationTrigger 
-          location="Janov" 
-          details="Janov 252793 84 Janov, Czechy"
-        />, 
-        rozpoczyna się historia, która wstrząsnęła lokalną społecznością.
-      </p>
-
-      <div className="my-10 p-6 bg-white/50 border-l-4 border-[#1a1a1a] italic">
-        "To nie był zwykły dom. To była twierdza, do której nikt nie miał wstępu bez wyraźnego zaproszenia."
-      </div>
-
-      <p>
-        Dokumenty, do których udało nam się dotrzeć, rzucają nowe światło na sposób nabycia tej nieruchomości. Choć oficjalne zapisy w czeskim katastrze wskazują na standardową transakcję, zeznania świadków sugerują coś zgoła innego.
-      </p>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-8 not-prose">
-        <PDFTrigger 
-          title="Wyrok Badi" 
-          thumbnail="/gallery/wyrok_badi/wyrok_page-0001.jpg"
-          folder="wyrok_badi"
-          pageCount={3}
-        />
-        <PDFTrigger 
-          title="Wyrok Kordysa" 
-          thumbnail="/gallery/wyrok_kordysa/30T_5_2021-1_page-0001.jpg"
-          folder="wyrok_kordysa"
-          pageCount={25}
-        />
-      </div>
-
-      <p>
-        Kolejnym punktem na mapie naszych poszukiwań był Nýdek. Miejscowość położona głęboko w Beskidach, znana głównie z tras turystycznych i spokoju, stała się tłem dla kolejnych niejasnych powiązań. Pod adresem 
-        <LocationTrigger 
-          location="Nýdek" 
-          details="Nýdek 120739 95 Nýdek, Czechy"
-        /> 
-        odnaleźliśmy ślady działalności, która nigdy nie została oficjalnie zarejestrowana.
-      </p>
-
-      <div className="my-12 flex flex-col items-center not-prose">
-        <AudioTrigger 
-          src="/evidence/stefan-nagranie.mp3"
-          title="Nagranie ze Stefanem"
-          duration="2:45"
-        />
-      </div>
-
-      <p>
-        Analiza zgromadzonych materiałów pozwala wysnuć wniosek, że oba te miejsca — choć oddalone od siebie o kilkadziesiąt kilometrów — stanowiły elementy tej samej, misternie skonstruowanej układanki. Pytanie, które wciąż pozostaje bez odpowiedzi, brzmi: kto tak naprawdę pociągał za sznurki?
-      </p>
-
-      <div className="mt-16 pt-8 border-t border-slate-200">
-        <h3 className="text-sm uppercase tracking-widest text-slate-500 mb-4 font-sans">Dokumentacja fotograficzna</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 not-prose">
-          {[2, 3, 4, 5, 6, 8, 9, 11].map((num) => (
-            <ImageTrigger 
-              key={num}
-              src={`/gallery/janov/janov${num}.jpg`}
-              className="aspect-square object-cover hover:opacity-90 transition-opacity"
+          <section className="mb-12">
+            <h2 className="text-2xl font-serif mb-6 border-b border-slate-200 pb-2">1. Posiadłość w Janovie (Kordys)</h2>
+            
+            <LocationStampUI 
+              location="JANOV"
+              details="Janov 252793 84 Janov, Czechy"
             />
-          ))}
-        </div>
+
+            <p>
+              Pierwszym kluczowym punktem jest posiadłość w Janovie. Dokumentacja wskazuje, że nieruchomość ta stała się centrum operacyjnym w okresie intensywnych transferów finansowych.
+            </p>
+
+            <CaseFile title="Akta sprawy Kordysa" type="evidence">
+              Analiza przepływów bankowych sugeruje, że środki na zakup zostały przetransferowane za pośrednictwem spółek typu shell.
+            </CaseFile>
+          </section>
+
+          <section className="mb-12">
+            <h2 className="text-2xl font-serif mb-6 border-b border-slate-200 pb-2">2. Wątek Badowskiego</h2>
+            
+            <p>
+              Podczas analizy archiwów natrafiliśmy na dokumentację fotograficzną dotyczącą transakcji związanych z Wiktorem Badowskim.
+            </p>
+
+            <BadowskiTrigger />
+
+            <PullQuote author="Źródło zbliżone do śledztwa">
+              "To nie były zwykłe inwestycje. To był sposób na 'zaparkowanie' kapitału w miejscu, gdzie nikt nie będzie pytał o jego pochodzenie."
+            </PullQuote>
+          </section>
+
+          <section className="mb-12">
+            <h2 className="text-2xl font-serif mb-6 border-b border-slate-200 pb-2">3. Nieruchomość w Nýdku (Badi)</h2>
+            
+            <LocationStampUI 
+              location="NÝDEK"
+              details="Nýdek 120739 95 Nýdek, Czechy"
+            />
+
+            <p>
+              W Nýdku, niewielkiej miejscowości w Beskidzie Śląskim, odnaleźliśmy ślady powiązań z grupą określaną w aktach jako "Badi". 
+            </p>
+
+            <WiktorTrigger />
+
+            <LegalNote title="Notatka prawna: Status prawny nieruchomości">
+              Obecnie toczy się postępowanie wyjaśniające w sprawie wpisów w katastrze, które mogą nie odzwierciedlać faktycznego stanu posiadania.
+            </LegalNote>
+          </section>
+
+          <section className="mt-16 pt-8 border-t border-slate-200 italic text-slate-500 text-sm">
+            <p>Materiał zebrany w ramach projektu śledczego. Wszystkie prezentowane dokumenty pochodzą z jawnych źródeł lub zostały udostępnione przez sygnalistów.</p>
+          </section>
+        </section>
       </div>
-    </article>
+    </GalleryProvider>
   );
 };
-
-export default InvestigativeArticle;
