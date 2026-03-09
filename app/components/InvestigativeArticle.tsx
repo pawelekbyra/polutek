@@ -81,7 +81,7 @@ export const InvestigativeArticle = () => {
           </CaseFile>
 
           <div className="not-prose my-8 flex justify-start">
-              <LocationStampUI name="Janov" code="Janov, Czechy" plot="252793" lv="84" />
+              <LocationStampUI name="JANOV 252" code="793 84 Czechy" plot="252793" lv="84" />
           </div>
 
           <p className="mt-4">
@@ -397,7 +397,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <div className="not-prose my-8 flex justify-start">
-              <LocationStampUI name="Nýdek" code="Nýdek, Czechy" plot="120739" lv="95" />
+              <LocationStampUI name="NYDEK 120" code="739 95 Czechy" plot="120739" lv="95" />
           </div>
 
           <p className="mt-4">

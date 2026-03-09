@@ -48,10 +48,14 @@ export const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: 
          <span className="text-xl">🏠</span>
       </div>
       <div className="py-2">
-         <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1 flex items-center gap-2">{name}</div>
-         <div className="font-mono text-base font-bold text-black uppercase">LV {lv}</div>
-         <div className="text-[10px] text-black/60 font-mono mt-1 uppercase">
-            Działka: {plot} <span className="mx-1">|</span> Obręb: {code}
+         <div className="text-[10px] text-black/60 font-mono uppercase mb-0.5">
+            Działka: {plot} <span className="mx-1">|</span> LV {lv}
+         </div>
+         <div className="text-xl md:text-2xl font-black text-black uppercase leading-none font-display tracking-tight">
+            {name}
+         </div>
+         <div className="text-[10px] uppercase tracking-[0.1em] text-black font-bold mt-1">
+            {code}
          </div>
       </div>
   </div>
