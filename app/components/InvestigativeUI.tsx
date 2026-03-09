@@ -42,41 +42,30 @@ export const PullQuote = ({ quote, author, source }: { quote: string, author: st
 );
 
 export const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string, plot: string, lv: string }) => (
-  <div className="not-prose relative z-10 border-2 border-black bg-white p-0 rounded-sm flex items-stretch gap-0 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-left hover:bg-[#e8d154]/5 transition-all group overflow-hidden max-w-sm">
-      <div className="bg-stone-100 px-4 flex flex-col items-center justify-center border-r-2 border-black border-dashed py-4 min-w-[60px]">
-         <span className="text-3xl grayscale group-hover:grayscale-0 transition-all mb-2">🏘️</span>
-         <div className="flex-grow w-px bg-black/10"></div>
-      </div>
-      <div className="p-5 flex-grow relative bg-white/50 backdrop-blur-sm">
-         <div className="absolute top-2 right-4 flex gap-3 text-[9px] font-mono text-black/30 uppercase tracking-tighter group-hover:text-black/60 transition-colors">
-            <span>PLT: {plot}</span>
-            <span>REG: {lv}</span>
-         </div>
-
-         <div className="mt-2">
-            <div className="text-[11px] font-serif italic text-black/60 uppercase tracking-[0.2em] mb-1">Czeska Republika</div>
-            <div className="text-3xl md:text-4xl font-display font-black text-black uppercase leading-[0.9] tracking-tighter mb-4 pr-12">
-               {name}
-            </div>
-            <div className="text-sm font-serif italic font-bold text-black uppercase tracking-[0.15em] border-t-2 border-black pt-3 flex justify-between items-center">
-               <span>{code}</span>
-               <span className="text-[10px] font-mono font-normal opacity-20 group-hover:opacity-40 transition-opacity">#OFFICIAL</span>
-            </div>
-         </div>
-      </div>
+  <div className="not-prose relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group max-w-[280px]">
+     <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed">
+        <span className="text-xl">🏠</span>
+     </div>
+     <div className="py-2">
+        <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1">Lokalizacja</div>
+        <div className="font-mono text-sm font-black text-black uppercase leading-none mb-1">{name}</div>
+        <div className="text-[9px] text-black/60 font-mono uppercase tracking-tighter leading-tight">
+          {code}<br/>
+          PLT: {plot} | LV: {lv}
+        </div>
+     </div>
   </div>
 );
 
 export const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
-  <div className="not-prose relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group">
-     <div className="absolute bottom-1 right-1 text-black">🔍</div>
+  <div className="not-prose relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group max-w-[280px]">
      <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed">
-        <span className="text-xl">📄</span>
+        <span className="text-xl">💮</span>
      </div>
      <div className="py-2">
         <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1">{label}</div>
-        <div className="font-mono text-base font-bold text-black uppercase">{value}</div>
-        {subDetails && <div className="text-[10px] text-black/60 font-mono mt-1 uppercase">{subDetails}</div>}
+        <div className="font-mono text-sm font-black text-black uppercase leading-none mb-1">{value}</div>
+        {subDetails && <div className="text-[9px] text-black/60 font-mono mt-1 uppercase leading-tight">{subDetails}</div>}
      </div>
   </div>
 );
