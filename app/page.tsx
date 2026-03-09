@@ -6,7 +6,7 @@ export default function Page() {
   const newsArticleSchema = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    "url": "https://www.eliksir-wiedzmina.pl",
+    "url": "https://www.nasza-gazetka.pl",
     "headline": "Eliksir Wiedźmina – Śledztwo: Michał Kiciński i tajemnica Janowa",
     "description": "Pełna dokumentacja śledztwa: Michał Kiciński, Jarosław Kordys i prokurator Jolanta Świdnicka. Ayahuasca, Janów i tragiczna śmierć uczestniczki.",
     "image": ["https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kordys-aresztowanie-cover-photo.png"],
@@ -40,7 +40,7 @@ export default function Page() {
               <div className="flex-grow h-px bg-black"></div>
             </div>
             <div className="w-[calc(100%-2rem)] mx-auto border-y border-black py-2 flex items-center justify-center md:justify-between px-4 text-[10px] md:text-xs font-black uppercase tracking-[0.15em]">
-              <span>Niezależne Media</span>
+              <span>Niezależne media</span>
               <div className="hidden md:block text-center font-display text-black">NIEDZIELA, 1 MARCA 2026</div>
               <span className="hidden md:inline">Serwis Śledczy Nr 01</span>
             </div>

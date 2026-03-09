@@ -28,7 +28,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Szamańskie ceremonie i miliarderzy – Ujawniamy kulisy śledztwa",
   description: "Śledztwo w sprawie tajemniczych zgonów podczas szamańskich ceremonii z udziałem twórców gier i Michała Kicińskiego. Ujawniamy kulisy i pełną dokumentację.",
-  metadataBase: new URL('https://www.eliksir-wiedzmina.pl'),
+  metadataBase: new URL('https://www.nasza-gazetka.pl'),
   alternates: {
     canonical: '/',
   },
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: 'Eliksir Wiedźmina',
     images: [
       {
-        url: 'https://www.eliksir-wiedzmina.pl/zdjeciehej.png',
+        url: 'https://www.nasza-gazetka.pl/zdjeciehej.png',
         width: 1200,
         height: 630,
         alt: "Szamańskie ceremonie i miliarderzy - śledztwo",
