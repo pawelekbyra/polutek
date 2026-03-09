@@ -1,13 +1,11 @@
-"use client";
-
-import React, { useState } from 'react';
+import React from 'react';
 import { CaseFile, LegalNote, PullQuote, LocationStampUI, TransactionStampUI } from './InvestigativeUI';
 import { ArticleVideoPlayer } from './InvestigativeMedia';
-import { PDFGallery } from './PDFGallery';
+import { InteractiveSpan } from './InteractiveSpan';
+import { GalleryProvider } from './GalleryContext';
 
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
-const BADI_PDF_URL = `${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`;
 const DOCUMENTATION_IPFS_URL = `${PINATA_GATEWAY}/bafybeicnxlo366f6fznm5p6j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j`;
 const JANOV_PDF_URL = DOCUMENTATION_IPFS_URL;
 const NYDEK_PDF_URL = DOCUMENTATION_IPFS_URL;
@@ -19,38 +17,11 @@ const KICINSKI_VIDEO_URL = "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/
 
 const KORDYS_COVER = "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kordys-aresztowanie-cover-photo.png";
 
-const BADOWSKI_GALLERY = [
-  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/wyrokBadowskiego/wyrok-bartosz-badowski-0001.jpg",
-  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/wyrokBadowskiego/wyrok-bartosz-badowski-0002.jpg",
-  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/wyrokBadowskiego/wyrok-bartosz-badowski-0003.jpg"
-];
-
-const WIKTOR_GALLERY = [
-  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Wiktor/zgon-wiktora-pultusk.jpg"
-];
-
-const ONET_ARTICLE_URL = "https://wiadomosci.onet.pl/kraj/smierc-podczas-ceremonii-ayahuaski-wstrzasajace-kulisy/7e8e5x5"; // Przykładowy link, jeśli nie znalazłem realnego
+const ONET_ARTICLE_URL = "https://wiadomosci.onet.pl/kraj/smierc-podczas-ceremonii-ayahuaski-wstrzasajace-kulisy/7e8e5x5";
 
 export const InvestigativeArticle = () => {
-  const [badowskiGalleryOpen, setBadowskiGalleryOpen] = useState(false);
-  const [wiktorGalleryOpen, setWiktorGalleryOpen] = useState(false);
-
   return (
-    <>
-      <PDFGallery
-        isOpen={badowskiGalleryOpen}
-        onClose={() => setBadowskiGalleryOpen(false)}
-        images={BADOWSKI_GALLERY}
-        title="Wyrok Bartosza Badowskiego (PDF Viewer)"
-      />
-
-      <PDFGallery
-        isOpen={wiktorGalleryOpen}
-        onClose={() => setWiktorGalleryOpen(false)}
-        images={WIKTOR_GALLERY}
-        title="Galeria: Śmierć Wiktora"
-      />
-
+    <GalleryProvider>
       <article className="max-w-3xl mx-auto px-6 pt-4 pb-0 flex-grow w-full z-10 relative">
         <div
           className="prose prose-stone prose-lg max-w-none article-prose font-serif text-lg leading-relaxed"
@@ -75,7 +46,7 @@ export const InvestigativeArticle = () => {
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Świadek B.</h2>
 
           <p className="mt-4">
-            W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa <span onClick={() => setBadowskiGalleryOpen(true)} className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć wyrok">📄</span> pojawia się postać świadka Bartosza B. Zgodnie z aktami:
+            W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa <InteractiveSpan type="badowski" title="Kliknij, aby zobaczyć wyrok">📄</InteractiveSpan> pojawia się postać świadka Bartosza B. Zgodnie z aktami:
           </p>
 
           <CaseFile title="Zeznania świadka B." type="transcript">
@@ -208,7 +179,7 @@ export const InvestigativeArticle = () => {
           </LegalNote>
 
           <p className="mt-4">
-            Bartosz „Badi” Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił kupić sobie wolność.
+            Bartosz „Badi” Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancje z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił kupić sobie wolność.
           </p>
 
           <p className="mt-4">
@@ -220,11 +191,11 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            Na mocy wyroku z dnia 2 listopada 2021 roku <span onClick={() => setBadowskiGalleryOpen(true)} className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć wyrok">📜</span> Bartosz Badowski został uznany winnym popełnienia zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi.
+            Na mocy wyroku z dnia 2 listopada 2021 roku <InteractiveSpan type="badowski" title="Kliknij, aby zobaczyć wyrok">📜</InteractiveSpan> Bartosz Badowski został uznany winnym popełnienia zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi.
           </p>
 
           <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
-            co najmniej od bliżej nieustalonej daty in 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne
+            co najmniej od bliżej nieustalonej daty w 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne
             <br/><br/>
             udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. ayahuascę zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)
             <br/><br/>
@@ -271,7 +242,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            Reakcja miliardera na zainteresowanie organów ścigania była błyskawiczna. Zwrócił się bezpośrednio do autora zawiadomienia – wysyłając mu wiadomość mailową z propozycją swoistej pokuty. Zamiast wyjaśnień prokuratorskich zaoferował przelew na cel charytatywny, nazywając lata nielegalnego procederu młodzieńczą naiwnością.
+            Reakcja miliardera na zainteresowanie organami ścigania była błyskawiczna. Zwrócił się bezpośrednio do autora zawiadomienia – wysyłając mu wiadomość mailową z propozycją swoistej pokuty. Zamiast wyjaśnień prokuratorskich zaoferował przelew na cel charytatywny, nazywając lata nielegalnego procederu młodzieńczą naiwnością.
           </p>
 
           <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email">
@@ -341,7 +312,7 @@ export const InvestigativeArticle = () => {
           </div>
 
           <p className="mt-4 mb-8">
-            Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech in pozbywaniu się gorącego kartofla:
+            Jednak kalendarz wydarzeń prawnych burzy ten romantyczny mit, ujawniając nerwowy pośpiech w pozbywaniu się gorącego kartofla:
           </p>
 
           <ul className="not-prose list-none space-y-10 my-12 font-mono text-sm border-l-4 border-black pl-6 relative z-10">
@@ -480,7 +451,7 @@ export const InvestigativeArticle = () => {
           </div>
 
           <p className="mt-4">
-            Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji zdarzeń z darowizną Kicińskiego w Janowie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
+            Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji wydarzeń z darowizną Kicińskiego w Janowie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
           </p>
 
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Wiktor B.</h2>
@@ -490,11 +461,11 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            Według ustaleń Onetu, w czerwcu 2018 roku na farmie in Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, organizator nie wezwał pomocy medycznej. Uczestnikom odebrano wcześniej telefony, co uniemożliwiło im samodzielne zaalarmowanie służb ratunkowych.
+            Według ustaleń Onetu, w czerwcu 2018 roku na farmie w Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, organizator nie wezwał pomocy medycznej. Uczestnikom odebrano wcześniej telefony, co uniemożliwiło im samodzielne zaalarmowanie służb ratunkowych.
           </p>
 
           <p className="mt-4">
-                 Prowadzący obrzęd Wiktor B., brat Bartosza Badowskiego, był tej nocy pod wpływem marihuany. Z relacji świadków wynika, że po śmierci kobiety podjął on natychmiastowe działania mające na celu zatuszowanie incydentu. Nakazał uczestnikom bezzwłoczne opuszczenie ośrodka. Czeskiej policji przedstawił fałszywą wersję zdarzeń, twierdząc, że Ilona L.-H. była jedynie gościem i została znaleziona martwa w łazience nad ranem. Służby początkowo nie nabrały podejrzeń, przyjmując tę relację za wiarygodną.
+                 Prowadzący obrzęd Wiktor B., brat Bartosza Badowskiego, był tej nocy pod wpływem marihuany. Z relacji świadków wynika, że po śmierci kobiety podjął on natychmiastowe działania mające na celu zatuszowanie incydentu. Nakazał uczestnikom bezzwłocznie opuszczenie ośrodka. Czeskiej policji przedstawił fałszywą wersję wydarzeń, twierdząc, że Ilona L.-H. była jedynie gościem i została znaleziona martwa w łazience nad ranem. Służby początkowo nie nabrały podejrzeń, przyjmując tę relację za wiarygodną.
           </p>
 
           <p className="mt-4">
@@ -506,7 +477,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            Ciało mężczyzny odnaleziono w magazynie firmy, w której pracował przy montażu szaf serwerowych. Na jego ciele nie stwierdzono widocznych obrażeń wskazujących na użycie siły fizycznej. Mimo że od śmierci Wiktora B. minęło już ponad półtora roku, śledczy wciąż czekają na wyniki badań toksykologicznych, które mają kluczowe znaczenie dla wyjaśnienia, czy w organizmie mężczyzny znajdowały się substancje mogące przyczynić się do jego nagłego odejścia. Z tego względu obecnie śledztwo w sprawie jego tajemniczego zgonu pozostaje zawieszone.<span onClick={() => setWiktorGalleryOpen(true)} className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć szczegóły">🔍</span>
+            Ciało mężczyzny odnaleziono w magazynie firmy, w której pracował przy montażu szaf serwerowych. Na jego ciele nie stwierdzono widocznych obrażeń wskazujących na użycie siły fizycznej. Mimo że od śmierci Wiktora B. minęło już ponad półtora roku, śledczy wciąż czekają na wyniki badań toksykologicznych, które mają kluczowe znaczenie dla wyjaśnienia, czy w organizmie mężczyzny znajdowały się substancje mogące przyczynić się do jego nagłego odejścia. Z tego względu obecnie śledztwo w sprawie jego tajemniczego zgonu pozostaje zawieszone.<InteractiveSpan type="wiktor" title="Kliknij, aby zobaczyć szczegóły">🔍</InteractiveSpan>
           </p>
 
           <div className="not-prose mt-12 mb-4 flex justify-end relative z-10">
@@ -601,7 +572,7 @@ export const InvestigativeArticle = () => {
                     <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Wyrok Bartosza Badowskiego</h4>
                     <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygn. 66 T 146/2021</p>
                   </div>
-                  <a href={BADI_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                  <a href={`${PINATA_GATEWAY}/bafkreietkosain6ftde7f3li5ic34qhkwuglz2tu2kfcpbvrwhslskhwza`} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     📄 Pobierz PDF
                   </a>
                 </div>
@@ -667,6 +638,6 @@ export const InvestigativeArticle = () => {
            </div>
         </footer>
       </article>
-    </>
+    </GalleryProvider>
   );
 };

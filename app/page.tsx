@@ -1,5 +1,3 @@
-"use client";
-
 import React from 'react';
 import Script from 'next/script';
 import { InvestigativeArticle } from './components/InvestigativeArticle';
@@ -35,9 +33,9 @@ export default function Page() {
           <div className="w-full flex flex-col items-center pt-2 pb-1 bg-white relative z-10">
             <div className="flex items-center justify-center w-[calc(100%-2rem)] mx-auto gap-4 pt-4 pb-1">
               <div className="flex-grow h-[3px] bg-black"></div>
-              <h1 className="text-4xl md:text-[5rem] font-black tracking-tighter text-black uppercase font-unifraktur leading-none whitespace-nowrap px-2">
+              <h2 className="text-4xl md:text-[5rem] font-black tracking-tighter text-black uppercase font-unifraktur leading-none whitespace-nowrap px-2">
                 NASZA GAZETKA
-              </h1>
+              </h2>
               <div className="flex-grow h-[3px] bg-black"></div>
             </div>
             <div className="w-[calc(100%-2rem)] mx-auto border-y-4 border-black py-2 flex items-center justify-between px-4 text-[10px] md:text-xs font-black uppercase tracking-[0.15em]">
@@ -48,14 +46,14 @@ export default function Page() {
           </div>
 
           <div className="w-full text-center flex flex-col items-center pt-6 pb-4 px-6 box-border relative z-10">
-            <h2 className="text-black w-full mb-1">
+            <h1 className="text-black w-full mb-1">
               <span className="block text-5xl md:text-[6rem] font-display font-black leading-[0.85] tracking-tighter uppercase">
                 Eliksir
               </span>
               <span className="block text-5xl md:text-[6rem] font-display font-black leading-[0.85] tracking-tighter uppercase">
                 Wiedźmina
               </span>
-            </h2>
+            </h1>
             <p className="block text-xs md:text-xl text-black font-black italic uppercase tracking-[0.25em] mt-4 border-y-2 border-black py-1">
               MROCZNA TAJEMNICA TWÓRCÓW CD PROJEKT
             </p>

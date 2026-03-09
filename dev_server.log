@@ -4,12 +4,15 @@ $ next dev
   - Local:        http://localhost:3000
 
  ✓ Starting...
- ✓ Ready in 2.1s
+ ✓ Ready in 2.9s
  ○ Compiling / ...
-request to https://fonts.gstatic.com/s/ebgaramond/v32/SlGUmQSNjdsmc35JDF1K5GR1SDk_YAPI.woff2 failed, reason:
-
-Retrying 1/3...
- ✓ Compiled / in 6.7s (546 modules)
- GET / 200 in 7940ms
- ✓ Compiled in 1173ms (262 modules)
- GET / 200 in 45ms
+ ✓ Compiled / in 9.3s (581 modules)
+ ✓ Compiled in 1229ms (277 modules)
+ GET / 200 in 10610ms
+ GET / 200 in 166ms
+ GET / 200 in 208ms
+ ✓ Compiled in 2.2s (541 modules)
+ ✓ Compiled in 635ms (541 modules)
+ ✓ Compiled in 722ms (277 modules)
+ ✓ Compiled in 465ms (277 modules)
+ GET / 200 in 161ms

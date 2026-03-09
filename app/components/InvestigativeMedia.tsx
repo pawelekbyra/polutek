@@ -28,7 +28,14 @@ export const ArticleVideoPlayer: React.FC<{ src: string; poster?: string }> = ({
 
   return (
     <div className="not-prose w-full bg-black aspect-video rounded-sm overflow-hidden flex items-center justify-center relative group border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10">
-      <video ref={videoRef} controls poster={poster} className="w-full h-full object-cover" playsInline />
+      <video
+        ref={videoRef}
+        controls
+        poster={poster}
+        className="w-full h-full object-cover"
+        playsInline
+        aria-label="Materiał wideo - dowód w śledztwie"
+      />
     </div>
   );
 };
