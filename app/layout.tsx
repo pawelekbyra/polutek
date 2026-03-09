@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   description: "Śledztwo w sprawie tajemniczych zgonów podczas szamańskich ceremonii z udziałem twórców gier i Michała Kicińskiego. Ujawniamy kulisy i pełną dokumentację.",
   metadataBase: new URL('https://www.nasza-gazetka.pl'),
   alternates: {
-    canonical: '/',
+    canonical: 'https://www.nasza-gazetka.pl/',
   },
   robots: {
     index: true,

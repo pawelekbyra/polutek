@@ -1,7 +1,7 @@
 export default function sitemap() {
   return [
     {
-      url: 'https://www.eliksir-wiedzmina.pl',
+      url: 'https://www.nasza-gazetka.pl',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1.0,
