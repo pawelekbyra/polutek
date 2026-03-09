@@ -1,14 +1,11 @@
 import React from 'react';
-import { CaseFile, LegalNote, PullQuote, LocationStampUI, TransactionStampUI } from './InvestigativeUI';
-import { ArticleVideoPlayer } from './InvestigativeMedia';
-import { GalleryProvider, BadowskiTrigger, WiktorTrigger } from './GalleryTriggers';
+import { CaseFile, LegalNote, PullQuote, LocationStampUI } from './components/InvestigativeUI';
+import { GalleryProvider, BadowskiTrigger, WiktorTrigger } from './components/GalleryTriggers';
 
-const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs/";
-
-export const InvestigativeArticle = () => {
+export default function Home() {
   return (
     <GalleryProvider>
-      <div className="bg-[#FDFBF7] min-h-screen py-12 px-4 md:px-8 font-serif text-[#1a1a1a]">
+      <main className="bg-[#FDFBF7] min-h-screen py-12 px-4 md:px-8 font-serif text-[#1a1a1a]">
         <header className="max-w-4xl mx-auto mb-16 text-center">
           <h1 className="text-4xl md:text-6xl mb-4 leading-tight">Majątek ukryty w Beskidach</h1>
           <p className="text-xl text-slate-600 italic">Śledztwo w sprawie przepływów kapitałowych i nieruchomości na pograniczu.</p>
@@ -81,7 +78,7 @@ export const InvestigativeArticle = () => {
             <p>Materiał zebrany w ramach projektu śledczego. Wszystkie prezentowane dokumenty pochodzą z jawnych źródeł lub zostały udostępnione przez sygnalistów.</p>
           </section>
         </section>
-      </div>
+      </main>
     </GalleryProvider>
   );
-};
+}
