@@ -26,8 +26,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Michał Kiciński, Ayahuasca i Tajemnicza Śmierć v Janovie",
-  description: "Pełna dokumentacja śledztwa dziennikarskiego v sprawie ceremonii ayahuaski. Dowody, nagrania i treści wyroków.",
+  title: "Szamańskie ceremonie i miliarderzy – Ujawniamy kulisy śledztwa",
+  description: "Ujawniamy wstrząsające kulisy szamańskich ceremonii z udziałem miliarderów i twórców gier. Śledztwo w sprawie tajemniczych zgonów i mrocznej strony polskiego biznesu.",
   metadataBase: new URL('https://www.eliksir-wiedzmina.pl'),
   robots: {
     index: true,
@@ -39,16 +39,16 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Michał Kiciński, Ayahuasca i Tajemnicza Śmierć v Janovie",
-    description: "Pełna dokumentacja śledztwa dziennikarskiego: Michał Kiciński i mroczna tajemnica Janova.",
+    title: "Szamańskie ceremonie i miliarderzy – Ujawniamy kulisy śledztwa",
+    description: "Ujawniamy wstrząsające kulisy szamańskich ceremonii z udziałem miliarderów i twórców gier. Śledztwo w sprawie tajemniczych zgonów i mrocznej strony polskiego biznesu.",
     url: '/',
     siteName: 'Eliksir Wiedźmina',
     images: [
       {
-        url: 'https://www.eliksir-wiedzmina.pl/gallery/wyrok_kordysa/wezwanie/wezwanie_kicinski.png',
+        url: '/zdjeciehej.png',
         width: 1200,
         height: 630,
-        alt: "Wezwanie dla Michała Kicińskiego",
+        alt: "Szamańskie ceremonie i miliarderzy",
       },
     ],
     locale: 'pl_PL',

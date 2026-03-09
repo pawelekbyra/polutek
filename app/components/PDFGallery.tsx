@@ -60,7 +60,7 @@ export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose,
         <div className="w-full h-full flex items-center justify-center">
           <img
             src={images[currentIndex]}
-            alt={`Page ${currentIndex + 1}`}
+            alt={`Strona ${currentIndex + 1} dokumentu: ${title}`}
             className="max-w-full max-h-full object-contain shadow-2xl"
           />
         </div>
@@ -81,7 +81,7 @@ export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose,
             onClick={() => setCurrentIndex(idx)}
             className={`w-12 h-16 border-2 transition-all shrink-0 ${idx === currentIndex ? 'border-yellow-500 scale-110' : 'border-transparent opacity-50'}`}
           >
-            <img src={img} className="w-full h-full object-cover" alt={`Thumb ${idx + 1}`} />
+            <img src={img} className="w-full h-full object-cover" alt={`Miniatura strony ${idx + 1}`} />
           </button>
         ))}
       </div>
