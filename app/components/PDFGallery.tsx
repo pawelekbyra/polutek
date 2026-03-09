@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Download } from 'lucide-react';
+import Image from 'next/image';
 
 interface PDFGalleryProps {
   images: string[];
@@ -57,11 +58,12 @@ export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose,
           <ChevronLeft size={32} />
         </button>
 
-        <div className="w-full h-full flex items-center justify-center">
-          <img
+        <div className="w-full h-full flex items-center justify-center relative">
+          <Image
             src={images[currentIndex]}
-            alt={`Strona ${currentIndex + 1} dokumentu: ${title}`}
-            className="max-w-full max-h-full object-contain shadow-2xl"
+            alt={`Dokument sądowy – sprawa szamańska - Strona ${currentIndex + 1}`}
+            fill
+            className="object-contain shadow-2xl"
           />
         </div>
 
@@ -79,9 +81,14 @@ export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose,
           <button
             key={idx}
             onClick={() => setCurrentIndex(idx)}
-            className={`w-12 h-16 border-2 transition-all shrink-0 ${idx === currentIndex ? 'border-yellow-500 scale-110' : 'border-transparent opacity-50'}`}
+            className={`w-12 h-16 border-2 transition-all shrink-0 relative overflow-hidden ${idx === currentIndex ? 'border-yellow-500 scale-110' : 'border-transparent opacity-50'}`}
           >
-            <img src={img} className="w-full h-full object-cover" alt={`Miniatura strony ${idx + 1}`} />
+            <Image
+              src={img}
+              alt={`Miniatura - Strona ${idx + 1}`}
+              fill
+              className="object-cover"
+            />
           </button>
         ))}
       </div>
