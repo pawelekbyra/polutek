@@ -41,7 +41,7 @@ export const GalleryProvider: React.FC<{ children: React.ReactNode }> = ({ child
   );
 };
 
-export const BadowskiTrigger: React.FC<{ children: React.ReactNode; title?: string }> = ({ children, title }) => {
+export const BadowskiTrigger: React.FC<{ children?: React.ReactNode; title?: string }> = ({ children, title }) => {
   const context = React.useContext(GalleryContext);
   if (!context) return <>{children}</>;
   return (
@@ -50,12 +50,12 @@ export const BadowskiTrigger: React.FC<{ children: React.ReactNode; title?: stri
       className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1"
       title={title}
     >
-      {children}
+      {children || '📄'}
     </span>
   );
 };
 
-export const WiktorTrigger: React.FC<{ children: React.ReactNode; title?: string }> = ({ children, title }) => {
+export const WiktorTrigger: React.FC<{ children?: React.ReactNode; title?: string }> = ({ children, title }) => {
   const context = React.useContext(GalleryContext);
   if (!context) return <>{children}</>;
   return (
@@ -64,7 +64,7 @@ export const WiktorTrigger: React.FC<{ children: React.ReactNode; title?: string
       className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1"
       title={title}
     >
-      {children}
+      {children || '🔍'}
     </span>
   );
 };
