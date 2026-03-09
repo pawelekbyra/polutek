@@ -6,6 +6,7 @@ export default function Page() {
   const newsArticleSchema = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
+    "url": "https://www.eliksir-wiedzmina.pl",
     "headline": "Eliksir Wiedźmina – Śledztwo: Michał Kiciński i tajemnica Janowa",
     "description": "Pełna dokumentacja śledztwa: Michał Kiciński, Jarosław Kordys i prokurator Jolanta Świdnicka. Ayahuasca, Janów i tragiczna śmierć uczestniczki.",
     "image": ["https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kordys-aresztowanie-cover-photo.png"],

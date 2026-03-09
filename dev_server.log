@@ -1,0 +1,12 @@
+yarn run v1.22.22
+$ next dev
+ ⚠ Port 3000 is in use, trying 3001 instead.
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3001
+
+ ✓ Starting...
+ ✓ Ready in 2.4s
+ ○ Compiling / ...
+ ✓ Compiled / in 5.3s (581 modules)
+ ✓ Compiled in 1091ms (277 modules)
+ GET / 200 in 6519ms
