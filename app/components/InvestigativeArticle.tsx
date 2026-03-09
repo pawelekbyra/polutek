@@ -10,11 +10,11 @@ export const InvestigativeArticle = () => {
     <GalleryProvider>
       <div className="bg-[#FDFBF7] min-h-screen py-12 px-4 md:px-8 font-serif text-[#1a1a1a]">
         <header className="max-w-4xl mx-auto mb-16 text-center">
-          <h1 className="text-4xl md:text-6xl mb-4 leading-tight">Majątek ukryty w Beskidach</h1>
-          <p className="text-xl text-slate-600 italic">Śledztwo w sprawie przepływów kapitałowych i nieruchomości na pograniczu.</p>
+          <h1 className="text-4xl md:text-6xl mb-4 leading-tight font-serif">Majątek ukryty w Beskidach</h1>
+          <p className="text-xl text-slate-600 italic leading-relaxed">Śledztwo w sprawie przepływów kapitałowych i nieruchomości na pograniczu.</p>
         </header>
 
-        <section className="max-w-4xl mx-auto prose prose-lg prose-slate prose-headings:font-serif">
+        <section className="max-w-4xl mx-auto prose prose-lg prose-slate prose-headings:font-serif prose-p:leading-relaxed">
           <p className="lead">
             W toku dziennikarskiego śledztwa udało nam się ustalić sieć powiązań między osobami zaangażowanymi w głośne procesy sądowe a nieruchomościami położonymi w malowniczych zakątkach czeskich Beskidów.
           </p>
@@ -23,8 +23,10 @@ export const InvestigativeArticle = () => {
             <h2 className="text-2xl font-serif mb-6 border-b border-slate-200 pb-2">1. Posiadłość w Janovie (Kordys)</h2>
             
             <LocationStampUI 
-              location="JANOV"
-              details="Janov 252793 84 Janov, Czechy"
+              name="Janov"
+              code="252793"
+              plot="84"
+              lv="Janov, Czechy"
             />
 
             <p>
@@ -54,8 +56,10 @@ export const InvestigativeArticle = () => {
             <h2 className="text-2xl font-serif mb-6 border-b border-slate-200 pb-2">3. Nieruchomość w Nýdku (Badi)</h2>
             
             <LocationStampUI 
-              location="NÝDEK"
-              details="Nýdek 120739 95 Nýdek, Czechy"
+              name="Nýdek"
+              code="120739"
+              plot="95"
+              lv="Nýdek, Czechy"
             />
 
             <p>
