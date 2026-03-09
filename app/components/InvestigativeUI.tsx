@@ -53,11 +53,12 @@ export const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: 
         <MapPin size={24} strokeWidth={1.5} />
      </div>
      <div className="py-2">
-        <div className="text-[9px] uppercase tracking-[0.2em] text-black font-bold mb-1">Lokalizacja</div>
+        <div className="text-[9px] text-black/60 font-mono uppercase tracking-tighter leading-tight mb-1">
+          LV: {lv} | DZIAŁKA: {plot}
+        </div>
         <div className="font-mono text-sm font-black text-black uppercase leading-none mb-1">{name}</div>
         <div className="text-[9px] text-black/60 font-mono uppercase tracking-tighter leading-tight">
-          {code}<br/>
-          PLT: {plot} | LV: {lv}
+          {code}
         </div>
      </div>
   </div>
