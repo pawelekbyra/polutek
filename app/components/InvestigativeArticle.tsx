@@ -498,7 +498,7 @@ export const InvestigativeArticle = () => {
                 <div className="border-l-4 border-black pl-8 py-1">
                     <div className="flex flex-col sm:flex-row justify-between items-baseline gap-4 mb-2">
                       <span className="font-display text-black font-black uppercase text-2xl leading-none">Śledztwo w sprawie organizacji ceremonii</span>
-                      <span className="font-mono text-xs font-black text-black/30 tracking-widest">3013-1.DS.15.2024</span>
+                      <span className="font-mono text-xs font-black text-black/30 tracking-widest">3013-1.Ds.15.2024</span>
                     </div>
                     <span className="block text-base text-black/70 font-serif italic">Prokuratura Okręgowa w Częstochowie</span>
                 </div>
@@ -506,7 +506,7 @@ export const InvestigativeArticle = () => {
                 <div className="border-l-4 border-black pl-8 py-1">
                     <div className="flex flex-col sm:flex-row justify-between items-baseline gap-4 mb-2">
                       <span className="font-display text-black font-black uppercase text-2xl leading-none">Śledztwo w sprawie śmierci Ilony L.</span>
-                      <span className="font-mono text-xs font-black text-black/30 tracking-widest">3013-1.DS.4.2026</span>
+                      <span className="font-mono text-xs font-black text-black/30 tracking-widest">3013-1.Ds.4.2026</span>
                     </div>
                     <span className="block text-base text-black/70 font-serif italic">Prokuratura Okręgowa w Częstochowie</span>
                 </div>
@@ -514,7 +514,7 @@ export const InvestigativeArticle = () => {
                 <div className="border-l-4 border-black pl-8 py-1">
                     <div className="flex flex-col sm:flex-row justify-between items-baseline gap-4 mb-2">
                       <span className="font-display text-black font-black uppercase text-2xl leading-none">Śledztwo w sprawie śmierci Wiktora B.</span>
-                      <span className="font-mono text-xs font-black text-black/30 tracking-widest">4027-0. DS. 1254.2024</span>
+                      <span className="font-mono text-xs font-black text-black/30 tracking-widest">4027-0. Ds. 1254.2024</span>
                     </div>
                     <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
                       <span className="block text-base text-black/70 font-serif italic">Prokuratura Rejonowa w Pułtusku</span>

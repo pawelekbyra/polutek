@@ -21,11 +21,15 @@ export const CaseFile = ({ title, children, type = 'evidence', highlight = false
 };
 
 export const LegalNote = ({ term, children }: { term: string, children: React.ReactNode }) => (
-  <div className="not-prose my-10 flex gap-4 p-5 bg-[#e8d154]/20 border-l-[6px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-left relative z-10">
-    <div className="text-2xl mt-1">⚖️</div>
-    <div>
-      <strong className="block font-display font-black uppercase text-[#000000] text-lg mb-2">{term}</strong>
-      <div className="text-[#000000] text-sm leading-relaxed font-mono italic">{children}</div>
+  <div className="not-prose my-12 border-y-2 border-black py-8 bg-white/30 relative z-10">
+    <div className="max-w-2xl mx-auto px-4">
+      <div className="flex items-start gap-6">
+        <div className="text-3xl opacity-20 mt-1">⚖️</div>
+        <div>
+          <strong className="block font-display font-black uppercase text-xl text-black mb-2 tracking-tight">{term}</strong>
+          <div className="text-black text-lg leading-relaxed font-serif italic opacity-80">{children}</div>
+        </div>
+      </div>
     </div>
   </div>
 );
