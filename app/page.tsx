@@ -1,84 +1,74 @@
 import React from 'react';
-import { CaseFile, LegalNote, PullQuote, LocationStampUI } from './components/InvestigativeUI';
-import { GalleryProvider, BadowskiTrigger, WiktorTrigger } from './components/GalleryTriggers';
+import Script from 'next/script';
+import { InvestigativeArticle } from './components/InvestigativeArticle';
 
-export default function Home() {
+export default function Page() {
+  const newsArticleSchema = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": "Eliksir Wiedźmina – Śledztwo: Michał Kiciński i tajemnica Janowa",
+    "description": "Pełna dokumentacja śledztwa: Michał Kiciński, Jarosław Kordys i prokurator Jolanta Świdnicka. Ayahuasca, Janów i tragiczna śmierć uczestniczki.",
+    "image": ["https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kordys-aresztowanie-cover-photo.png"],
+    "datePublished": "2024-03-03",
+    "author": [{
+      "@type": "Person",
+      "name": "Detektyw Polutek",
+      "url": "mailto:detektyw.polutek@protonmail.com"
+    }]
+  };
+
   return (
-    <GalleryProvider>
-      <main className="bg-[#FDFBF7] min-h-screen py-12 px-4 md:px-8 font-serif text-[#1a1a1a]">
-        <header className="max-w-4xl mx-auto mb-16 text-center">
-          <h1 className="text-4xl md:text-6xl mb-4 leading-tight">Majątek ukryty w Beskidach</h1>
-          <p className="text-xl text-slate-600 italic">Śledztwo w sprawie przepływów kapitałowych i nieruchomości na pograniczu.</p>
-        </header>
+    <>
+      <Script src="https://cdn.jsdelivr.net/npm/hls.js@latest" strategy="afterInteractive" />
+      <script
+        type="application/ld+json"
+        id="news-article-schema"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleSchema) }}
+      />
 
-        <section className="max-w-4xl mx-auto prose prose-lg prose-slate prose-headings:font-serif prose-p:leading-relaxed">
-          <p className="lead">
-            W toku dziennikarskiego śledztwa udało nam się ustalić sieć powiązań między osobami zaangażowanymi w głośne procesy sądowe a nieruchomościami położonymi w malowniczych zakątkach czeskich Beskidów.
-          </p>
+      <main className="min-h-screen bg-white text-[#000000] selection:bg-[#e8d154]/50 font-body flex flex-col items-center relative">
+        <div className="w-full max-w-4xl bg-white flex flex-col items-center pb-0 border-x-4 border-black overflow-hidden relative shadow-2xl">
 
-          <section className="mb-12">
-            <h2 className="text-2xl font-serif mb-6 border-b border-slate-200 pb-2">1. Posiadłość w Janovie (Kordys)</h2>
-            
-            <LocationStampUI 
-              name="Janov"
-              code="252793"
-              plot="84"
-              lv="Janov, Czechy"
-            />
+          {/* Header Section */}
+          <div className="w-full flex flex-col items-center pt-2 pb-1 bg-white relative z-10">
+            <div className="flex items-center justify-center w-[calc(100%-2rem)] mx-auto gap-4 pt-4 pb-1">
+              <div className="flex-grow h-[3px] bg-black"></div>
+              <h2 className="text-4xl md:text-[5rem] font-black tracking-tighter text-black uppercase font-unifraktur leading-none whitespace-nowrap px-2">
+                NASZA GAZETKA
+              </h2>
+              <div className="flex-grow h-[3px] bg-black"></div>
+            </div>
+            <div className="w-[calc(100%-2rem)] mx-auto border-y-4 border-black py-2 flex items-center justify-between px-4 text-[10px] md:text-xs font-black uppercase tracking-[0.15em]">
+              <span>📰 Niezależne Media</span>
+              <div className="text-center font-display text-black">NIEDZIELA, 1 MARCA 2026</div>
+              <span>Serwis Śledczy Nr 01 📄</span>
+            </div>
+          </div>
 
-            <p>
-              Pierwszym kluczowym punktem jest posiadłość w Janovie. Dokumentacja wskazuje, że nieruchomość ta stała się centrum operacyjnym w okresie intensywnych transferów finansowych.
+          <div className="w-full text-center flex flex-col items-center pt-6 pb-4 px-6 box-border relative z-10">
+            <h1 className="text-black w-full mb-1">
+              <span className="block text-5xl md:text-[6rem] font-display font-black leading-[0.85] tracking-tighter uppercase">
+                Eliksir
+              </span>
+              <span className="block text-5xl md:text-[6rem] font-display font-black leading-[0.85] tracking-tighter uppercase">
+                Wiedźmina
+              </span>
+            </h1>
+            <p className="block text-xs md:text-xl text-black font-black italic uppercase tracking-[0.25em] mt-4 border-y-2 border-black py-1">
+              MROCZNA TAJEMNICA TWÓRCÓW CD PROJEKT
             </p>
+            <div className="max-w-3xl mx-auto mt-6">
+              <p className="text-sm md:text-lg text-[#000000] leading-snug italic font-serif font-bold px-4">
+                Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
+              </p>
+            </div>
+          </div>
 
-            <CaseFile title="Akta sprawy Kordysa" type="evidence">
-              Analiza przepływów bankowych sugeruje, że środki na zakup zostały przetransferowane za pośrednictwem spółek typu shell.
-            </CaseFile>
-          </section>
+          {/* Main Article Content */}
+          <InvestigativeArticle />
 
-          <section className="mb-12">
-            <h2 className="text-2xl font-serif mb-6 border-b border-slate-200 pb-2">2. Wątek Badowskiego</h2>
-            
-            <p>
-              Podczas analizy archiwów natrafiliśmy na dokumentację fotograficzną dotyczącą transakcji związanych z Wiktorem Badowskim.
-            </p>
-
-            <BadowskiTrigger title="Dokumentacja">
-              <span className="underline cursor-pointer">Otwórz galerię dowodów fotograficznych</span>
-            </BadowskiTrigger>
-
-            <PullQuote author="Źródło zbliżone do śledztwa">
-              "To nie były zwykłe inwestycje. To był sposób na 'zaparkowanie' kapitału w miejscu, gdzie nikt nie będzie pytał o jego pochodzenie."
-            </PullQuote>
-          </section>
-
-          <section className="mb-12">
-            <h2 className="text-2xl font-serif mb-6 border-b border-slate-200 pb-2">3. Nieruchomość w Nýdku (Badi)</h2>
-            
-            <LocationStampUI 
-              name="Nýdek"
-              code="120739"
-              plot="95"
-              lv="Nýdek, Czechy"
-            />
-
-            <p>
-              W Nýdku, niewielkiej miejscowości w Beskidzie Śląskim, odnaleźliśmy ślady powiązań z grupą określaną w aktach jako "Badi". 
-            </p>
-
-            <WiktorTrigger title="Archiwum">
-              <span className="underline cursor-pointer">Przejrzyj zgromadzony materiał wizualny</span>
-            </WiktorTrigger>
-
-            <LegalNote title="Notatka prawna: Status prawny nieruchomości">
-              Obecnie toczy się postępowanie wyjaśniające w sprawie wpisów w katastrze, które mogą nie odzwierciedlać faktycznego stanu posiadania.
-            </LegalNote>
-          </section>
-
-          <section className="mt-16 pt-8 border-t border-slate-200 italic text-slate-500 text-sm">
-            <p>Materiał zebrany w ramach projektu śledczego. Wszystkie prezentowane dokumenty pochodzą z jawnych źródeł lub zostały udostępnione przez sygnalistów.</p>
-          </section>
-        </section>
+        </div>
       </main>
-    </GalleryProvider>
+    </>
   );
 }

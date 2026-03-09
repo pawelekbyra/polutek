@@ -20,23 +20,23 @@ export const CaseFile = ({ title, children, type = 'evidence', highlight = false
   );
 };
 
-export const LegalNote = ({ title, children }: { title: string, children: React.ReactNode }) => (
+export const LegalNote = ({ term, children }: { term: string, children: React.ReactNode }) => (
   <div className="not-prose my-10 flex gap-4 p-5 bg-[#e8d154]/20 border-l-[6px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-left relative z-10">
     <div className="text-2xl mt-1">⚖️</div>
     <div>
-      <strong className="block font-display font-black uppercase text-[#000000] text-lg mb-2">{title}</strong>
+      <strong className="block font-display font-black uppercase text-[#000000] text-lg mb-2">{term}</strong>
       <div className="text-[#000000] text-sm leading-relaxed font-mono italic">{children}</div>
     </div>
   </div>
 );
 
-export const PullQuote = ({ children, author, source }: { children: React.ReactNode, author: string, source?: string }) => (
+export const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
   <div className="not-prose my-10 pl-6 border-l-[6px] border-black text-left relative z-10">
-    <div className="font-serif text-xl md:text-2xl italic text-[#000000] leading-relaxed mb-3">
-      „{children}”
-    </div>
+    <p className="font-serif text-xl md:text-2xl italic text-[#000000] leading-relaxed mb-3">
+      „{quote}”
+    </p>
     <div className="font-sans text-[10px] uppercase tracking-widest text-black/70">
-      — <span className="font-bold text-black">{author}</span>{source ? `, ${source}` : ''}
+      — <span className="font-bold text-black">{author}</span>, {source}
     </div>
   </div>
 );

@@ -27,7 +27,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "Szamańskie ceremonie i miliarderzy – Ujawniamy kulisy śledztwa",
-  description: "Ujawniamy wstrząsające kulisy szamańskich ceremonii z udziałem miliarderów i twórców gier. Śledztwo w sprawie tajemniczych zgonów i mrocznej strony polskiego biznesu.",
+  description: "Śledztwo w sprawie tajemniczych zgonów podczas szamańskich ceremonii z udziałem twórców gier i Michała Kicińskiego. Ujawniamy kulisy i pełną dokumentację.",
   metadataBase: new URL('https://www.eliksir-wiedzmina.pl'),
   robots: {
     index: true,
@@ -40,15 +40,15 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Szamańskie ceremonie i miliarderzy – Ujawniamy kulisy śledztwa",
-    description: "Ujawniamy wstrząsające kulisy szamańskich ceremonii z udziałem miliarderów i twórców gier. Śledztwo w sprawie tajemniczych zgonów i mrocznej strony polskiego biznesu.",
+    description: "Śledztwo w sprawie tajemniczych zgonów podczas szamańskich ceremonii z udziałem twórców gier i Michała Kicińskiego. Ujawniamy kulisy i pełną dokumentację.",
     url: '/',
     siteName: 'Eliksir Wiedźmina',
     images: [
       {
-        url: '/zdjeciehej.png',
+        url: 'https://www.eliksir-wiedzmina.pl/zdjeciehej.png',
         width: 1200,
         height: 630,
-        alt: "Szamańskie ceremonie i miliarderzy",
+        alt: "Szamańskie ceremonie i miliarderzy - śledztwo",
       },
     ],
     locale: 'pl_PL',
