@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   title: "Szamańskie ceremonie i miliarderzy – Ujawniamy kulisy śledztwa",
   description: "Śledztwo w sprawie tajemniczych zgonów podczas szamańskich ceremonii z udziałem twórców gier i Michała Kicińskiego. Ujawniamy kulisy i pełną dokumentację.",
   metadataBase: new URL('https://www.eliksir-wiedzmina.pl'),
+  alternates: {
+    canonical: '/',
+  },
   robots: {
     index: true,
     follow: true,
