@@ -72,6 +72,7 @@ const config = {
         display: ["var(--font-playfair)", "serif"],
         body: ["var(--font-garamond)", "serif"],
         unifraktur: ['var(--font-unifraktur)', 'cursive'],
+        pirata: ['var(--font-pirata)', 'system-ui'],
       },
       borderRadius: {
         lg: "var(--radius)",
