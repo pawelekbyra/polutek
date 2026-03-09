@@ -41,30 +41,32 @@ export const GalleryProvider: React.FC<{ children: React.ReactNode }> = ({ child
   );
 };
 
-export const BadowskiTrigger: React.FC<{ children: React.ReactNode; title?: string }> = ({ children, title }) => {
+export const BadowskiTrigger: React.FC<{ children?: React.ReactNode; title?: string }> = ({ children, title }) => {
   const context = React.useContext(GalleryContext);
-  if (!context) return <>{children}</>;
+  const content = children || <span className="underline">Zobacz dokumentację</span>;
+  if (!context) return <>{content}</>;
   return (
     <span
       onClick={() => context.setBadowskiGalleryOpen(true)}
       className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1"
       title={title}
     >
-      {children}
+      {children || <span className="underline">Zobacz dokumentację</span>}
     </span>
   );
 };
 
-export const WiktorTrigger: React.FC<{ children: React.ReactNode; title?: string }> = ({ children, title }) => {
+export const WiktorTrigger: React.FC<{ children?: React.ReactNode; title?: string }> = ({ children, title }) => {
   const context = React.useContext(GalleryContext);
-  if (!context) return <>{children}</>;
+  const content = children || <span className="underline">Zobacz dokumentację</span>;
+  if (!context) return <>{content}</>;
   return (
     <span
       onClick={() => context.setWiktorGalleryOpen(true)}
       className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1"
       title={title}
     >
-      {children}
+      {content}
     </span>
   );
 };
