@@ -246,7 +246,7 @@ export const InvestigativeArticle = () => {
             Reakcja miliardera na zainteresowanie organami ścigania była błyskawiczna. Zwrócił się bezpośrednio do autora zawiadomienia – wysyłając mu wiadomość mailową z propozycją swoistej pokuty. Zamiast wyjaśnień prokuratorskich zaoferował przelew na cel charytatywny, nazywając lata nielegalnego procederu młodzieńczą naiwnością.
           </p>
 
-          <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email">
+          <CaseFile title="Wiadomość prywatna od M. Kicińskiego" type="email" source="ONET.PL">
             (...) Tak mogę zapłacić za swój błąd z Badim. Podaj mi Fundacje lub Stowarzyszenie (najlepiej powiązaną z hospicjum lub domami dziecka, bo tu widzę morze potrzeb i dużo cierpienia) i wpłacę tam dobrowolnie kwotę darowizny, w ramach Przeprosin wszechświatowi, za moją młodzieńczą naiwność i brak przenikliwości. Fundacja / Stowarzyszenie musi być uznana i z tradycjami, a nie jakaś organizacja krzak. Wyślę Ci potwierdzenie przelewu.
           </CaseFile>
 
@@ -254,7 +254,7 @@ export const InvestigativeArticle = () => {
             Do przesłuchania doszło tydzień przed terminem wskazanym na wezwaniu – 11 października 2023 roku o godzinie 15:00 w Komendzie Rejonowej Policji Warszawa II. W protokole Kiciński przyjmuje linię opartą na braku świadomości co do charakteru działalności prowadzonej w jego posiadłości.
           </p>
 
-          <CaseFile title="Zeznanie do protokołu">
+          <CaseFile title="Zeznanie do protokołu" source="ONET.PL">
             Nie mam żadnej wiedzy co się działo na mojej farmie, w której jestem 90% udziałowcem (...) wynajmowałem tę nieruchomość.
           </CaseFile>
 
@@ -262,7 +262,7 @@ export const InvestigativeArticle = () => {
             Gdy w toku czynności padło kluczowe pytanie o jego własny udział w ceremoniach ayahuaski w Janowie, odpowiedź była lakoniczna:
           </p>
 
-          <CaseFile title="Odpowiedź na pytanie o udział">
+          <CaseFile title="Odpowiedź na pytanie o udział" source="ONET.PL">
             nie brałem udziału w takich ceremoniach w latach 2016-2023, a o wcześniejszym okresie <span className="underline decoration-black decoration-4 underline-offset-4 font-black">odmawiam odpowiedzi</span>
           </CaseFile>
 
@@ -487,8 +487,9 @@ export const InvestigativeArticle = () => {
 
           <div className="not-prose mt-12 mb-4 flex justify-end relative z-10">
               <div className="text-right border-r-4 border-black pr-4">
-                <span className="block font-black text-black uppercase text-xl font-display tracking-widest">Marlow</span>
-                <span className="block text-xs text-black/60 font-mono mt-1 italic">marlow@nasza-gazetka.pl</span>
+                <span className="block font-black text-black uppercase text-xl font-display tracking-widest leading-none">Wojciech Kurka</span>
+                <span className="block text-[10px] text-black/60 font-mono mt-1 uppercase tracking-tighter leading-tight">dziennikarz śledczy, niezależne media</span>
+                <span className="block text-[10px] text-black/40 font-mono mt-0.5 italic lowercase tracking-tight">adam.kurka@protonmail.com</span>
               </div>
           </div>
 
