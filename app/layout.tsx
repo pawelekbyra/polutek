@@ -32,7 +32,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Co ukrywa Michał Kiciński? Afera z ayahuascą.",
+  title: "Michał Kiciński, Ayahuasca i szamani z Janova. Śmierć uczestniczki ceremonii.",
   description: "Michał Kiciński i mroczne sekrety farmy w Czechach. Śmierć podczas ceremonii z ayahuascą, zacieranie śladów i szokujące kulisy świata twórcy CD Projektu.",
   metadataBase: new URL('https://www.nasza-gazetka.pl'),
   alternates: {
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Co ukrywa Michał Kiciński? Afera z ayahuascą.",
+    title: "Michał Kiciński, Ayahuasca i szamani z Janova. Śmierć uczestniczki ceremonii.",
     description: "Michał Kiciński i mroczne sekrety farmy w Czechach. Śmierć podczas ceremonii z ayahuascą, zacieranie śladów i szokujące kulisy świata twórcy CD Projektu.",
     url: '/',
     siteName: 'Eliksir Wiedźmina',

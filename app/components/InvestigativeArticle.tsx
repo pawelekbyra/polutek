@@ -482,8 +482,8 @@ export const InvestigativeArticle = () => {
 
           <div className="not-prose mt-12 mb-4 flex justify-end relative z-10">
               <div className="text-right border-r-4 border-black pr-4">
-                <span className="block font-black text-black uppercase text-xl font-display tracking-widest">Detektyw Polutek</span>
-                <span className="block text-xs text-black/60 font-mono mt-1 italic">detektyw.polutek@protonmail.com</span>
+                <span className="block font-black text-black uppercase text-xl font-display tracking-widest">Marlow</span>
+                <span className="block text-xs text-black/60 font-mono mt-1 italic">marlow@nasza-gazetka.pl</span>
               </div>
           </div>
 
