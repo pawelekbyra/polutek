@@ -328,7 +328,7 @@ export const InvestigativeArticle = () => {
               <span className="text-xl">📅</span>
               <div>
                 <strong className="font-black text-base">3 października 2023 r.</strong><br/>
-                Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów w nieruchomości. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
+                Na tydzień przed wizytą na komendzie odkupuje od Bartosza Badowskiego jego 10% udziałów w nieruchomości za 160 tys. złotych<InteractiveSpan type="cena" title="Kliknij, aby zobaczyć dokument">👁️</InteractiveSpan>. Aby pozbyć się całego ośrodka jednym podpisem, musi najpierw stać się jego jedynym właścicielem.
               </div>
             </li>
 
@@ -413,7 +413,7 @@ export const InvestigativeArticle = () => {
             <div>
               <strong className="font-black text-base block">25 stycznia 2016 r.</strong>
               <span className="block leading-tight">
-                Marcin Iwiński zakupuje nieruchomość w Nydku za kwotę 5 000 000,00 CZK.
+                Marcin Iwiński zakupuje nieruchomość w Nydku za kwotę 5 000 000,00 CZK<InteractiveSpan type="cena-nydek" title="Kliknij, aby zobaczyć dokument">👁️</InteractiveSpan>.
               </span>
               <span className="block leading-tight">
                 Nieruchomość ta służy do organizacji nielegalnych ceremonii z użyciem psychodelików podawanych uczestnikom przez Piotra Tracza.

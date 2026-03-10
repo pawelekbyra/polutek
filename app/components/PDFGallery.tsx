@@ -9,15 +9,24 @@ interface PDFGalleryProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
+  pdfUrl?: string;
 }
 
-export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose, title }) => {
+export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose, title, pdfUrl }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!isOpen) return null;
 
   const next = () => setCurrentIndex((prev) => (prev + 1) % images.length);
   const prev = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+
+  const handleDownload = () => {
+    if (pdfUrl) {
+      window.open(pdfUrl, '_blank');
+    } else {
+      alert('Pobieranie PDF (Atrapa)...');
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-[100] bg-black/95 flex flex-col text-white font-sans">
@@ -35,7 +44,7 @@ export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose,
         <div className="flex items-center gap-2 md:gap-4">
           <button
             className="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded text-xs transition-colors"
-            onClick={() => alert('Pobieranie PDF (Atrapa)...')}
+            onClick={handleDownload}
           >
             <Download size={16} />
             <span className="hidden sm:inline">Pobierz PDF</span>
