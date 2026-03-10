@@ -470,7 +470,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            Jakiś czas po tragicznej nocy Wiktor B. zwołał spotkanie dla straumatyzowanych uczestników fatalnej ceremonii, w którego prowadzeniu pomagała mu jego koleżanka <strong className="font-black">Joanna Najdowska</strong> – poproszono ich wówczas, by dla wspólnego dobra szczegóły tamtej nocy pozostały tajemnicą.
+            Jakiś czas po tragicznej nocy Wiktor B. zwołał spotkanie dla straumatyzowanych uczestników fatalnej ceremonii, w którego prowadzeniu pomagała mu jego koleżanka- <strong className="font-black">Joanna Najdowska</strong>. Przekonano ich wówczas, by dla wspólnego dobra wydarzenia tamtej nocy pozostały tajemnicą.
           </p>
 
           <p className="mt-4">
