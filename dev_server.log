@@ -14,3 +14,10 @@ $ next dev
  ✓ Compiled / in 6.4s (608 modules)
  ✓ Compiled in 1170ms (280 modules)
  GET / 200 in 7744ms
+ ✓ Compiled in 3.4s (559 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from /app/.next/cache/webpack/server-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
+ ✓ Compiled in 959ms (559 modules)
+ GET / 200 in 175ms
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from /app/.next/cache/webpack/client-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
+ ✓ Compiled /_not-found in 392ms (548 modules)
+ GET /_vercel/insights/script.js 404 in 564ms

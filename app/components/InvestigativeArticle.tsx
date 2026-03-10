@@ -210,7 +210,7 @@ export const InvestigativeArticle = () => {
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Cisza po burzy</h2>
 
           <p className="mt-4">
-            Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janowie nie opustoszała – zamieszkali z nim wspomniani wcześniej Krzysztof Stefanek i Magdalena Drzewińska. Ich obecność u boku Badiego w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
+            Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janowie nie opustoszała – zamieszkali z nim wspomniani wcześniej <strong className="font-black">Krzysztof Stefanek</strong> i <strong className="font-black">Magdalena Drzewińska</strong>. Ich obecność u boku Badiego w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
           </p>
 
           <p className="mt-4">
@@ -489,7 +489,7 @@ export const InvestigativeArticle = () => {
               <div className="text-right border-r-4 border-black pr-4">
                 <span className="block font-black text-black uppercase text-xl font-display tracking-widest leading-none">Wojciech Kurka</span>
                 <span className="block text-[10px] text-black/60 font-mono mt-1 uppercase tracking-tighter leading-tight">dziennikarz śledczy, niezależne media</span>
-                <span className="block text-[10px] text-black/40 font-mono mt-0.5 italic lowercase tracking-tight">adam.kurka@protonmail.com</span>
+                <span className="block text-[10px] text-black/40 font-mono mt-0.5 italic lowercase tracking-tight">wojciech.kurka@protonmail.com</span>
               </div>
           </div>
 
