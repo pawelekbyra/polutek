@@ -123,7 +123,7 @@ export const InvestigativeArticle = () => {
 
           <div className="not-prose my-12 pl-6 border-l-[6px] border-black font-serif italic text-2xl text-[#000000] leading-relaxed relative z-10">
             „Z ich rozmowy wynika, że nie zajmowali się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęła uwagi policji.”
-            <div className="text-right text-[10px] uppercase tracking-widest text-black/50 mt-4 font-mono not-italic">
+            <div className="text-left text-[10px] uppercase tracking-widest text-black/50 mt-4 font-mono not-italic">
               Źródło: Uzasadnienie wyroku Kordysa, sygn. 30 T 5/2020
             </div>
           </div>
@@ -567,6 +567,23 @@ export const InvestigativeArticle = () => {
                   <a href={ONET_INVESTIGATION_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-[#e8d154] text-black px-4 py-2 text-xs font-black border-2 border-black hover:bg-white transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     🌐 Czytaj na Onet.pl
                   </a>
+                </div>
+             </div>
+
+             <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
+                <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
+                  <div>
+                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Wykup udziałów (Janów)</h4>
+                    <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygnatura: [PLACEHOLDER] | Przejęcie 10% od B. Badowskiego</p>
+                  </div>
+                  <div className="shrink-0 w-full sm:w-48 justify-center bg-black/5 text-black/40 px-4 py-2 text-xs font-bold border-2 border-black border-dashed flex items-center gap-2 uppercase tracking-widest text-center font-sans">
+                    🔒 Dokument Prywatny
+                  </div>
+                </div>
+                <div className="border-t-2 border-black/20 pt-3">
+                  <p className="text-[10px] text-black/60 font-mono italic leading-tight">
+                    Umowa cywilnoprawna z dnia 3 października 2023 r. dotycząca odkupienia 1/10 udziałów w nieruchomości Janów 252.
+                  </p>
                 </div>
              </div>
 
