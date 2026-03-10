@@ -123,6 +123,9 @@ export const InvestigativeArticle = () => {
 
           <div className="not-prose my-12 pl-6 border-l-[6px] border-black font-serif italic text-2xl text-[#000000] leading-relaxed relative z-10">
             „Z ich rozmowy wynika, że nie zajmowali się w zasadzie samym faktem śmierci, lecz raczej obawą, aby to nie przyciągnęła uwagi policji.”
+            <div className="text-right text-[10px] uppercase tracking-widest text-black/50 mt-4 font-mono not-italic">
+              Źródło: Uzasadnienie wyroku Kordysa, sygn. 30 T 5/2020
+            </div>
           </div>
 
           <p className="mt-4">

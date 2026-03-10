@@ -39,9 +39,8 @@ export default function Page() {
               </h2>
               <div className="flex-grow h-0.5 bg-black"></div>
             </div>
-            <div className="w-[calc(100%-2rem)] mx-auto border-y-2 border-black py-1 flex flex-col items-center justify-center px-4 text-[10px] md:text-lg font-black uppercase">
-              <span className="tracking-[0.25em]">Niezależne media</span>
-              <span className="tracking-[0.1em] mt-1">Michał Kiciński i Jarosław Kordys</span>
+            <div className="w-[calc(100%-2rem)] mx-auto border-y-2 border-black py-0 flex items-center justify-center px-4 text-[10px] md:text-lg font-black uppercase tracking-[0.25em]">
+              <span>Niezależne media</span>
             </div>
           </div>
 
@@ -49,7 +48,7 @@ export default function Page() {
             <div className="w-full max-w-[280px] mx-auto mb-2">
               <img
                 src="/zdjeciehej.png"
-                alt="Michał Kiciński i Jarosław Kordys"
+                alt="Dokumentacja śledztwa - Eliksir Wiedźmina"
                 className="w-full h-auto grayscale mix-blend-multiply"
               />
             </div>
