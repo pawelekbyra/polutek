@@ -18,7 +18,7 @@ export const CaseFile = ({ title, children, type = 'evidence', highlight = false
         {children}
       </div>
       {source && (
-        <div className="absolute bottom-1 right-2 text-[8px] md:text-[9px] text-black/20 uppercase tracking-widest font-mono pointer-events-none select-none">
+        <div className="absolute bottom-1 right-2 text-[8px] md:text-[9px] text-black/50 uppercase tracking-widest font-mono pointer-events-none select-none">
           Źródło: {source}
         </div>
       )}
