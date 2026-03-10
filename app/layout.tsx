@@ -1,5 +1,6 @@
 import "./globals.css";
 import "plyr/dist/plyr.css";
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata, Viewport } from 'next';
 import { Playfair_Display, EB_Garamond, UnifrakturMaguntia, Pirata_One } from 'next/font/google';
 
@@ -74,6 +75,7 @@ export default function RootLayout({
     <html lang="pl" className={`${playfair.variable} ${ebGaramond.variable} ${unifraktur.variable} ${pirata.variable}`}>
       <body className="antialiased text-black">
         {children}
+        <Analytics />
       </body>
     </html>
   );

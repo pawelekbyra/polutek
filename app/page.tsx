@@ -44,12 +44,19 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="w-full text-center flex flex-col items-center pt-6 pb-4 px-6 box-border relative z-10">
-            <h1 className="text-black w-full mb-1">
-              <span className="block text-5xl md:text-[8rem] font-body font-black leading-[0.85] tracking-tighter uppercase">
+          <div className="w-full text-center flex flex-col items-center pt-2 pb-4 px-6 box-border relative z-10">
+            <div className="w-full max-w-sm mx-auto mb-0">
+              <img
+                src="/zdjeciehej.png"
+                alt="Michał Kiciński i Jarosław Kordys"
+                className="w-full h-auto grayscale"
+              />
+            </div>
+            <h1 className="text-black w-full mb-1 -mt-4">
+              <span className="block text-5xl md:text-[6.5rem] font-body font-black leading-[0.85] tracking-tighter uppercase">
                 Eliksir
               </span>
-              <span className="block text-5xl md:text-[8rem] font-body font-black leading-[0.85] tracking-tighter uppercase">
+              <span className="block text-5xl md:text-[6.5rem] font-body font-black leading-[0.85] tracking-tighter uppercase">
                 Wiedźmina
               </span>
             </h1>
