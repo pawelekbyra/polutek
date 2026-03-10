@@ -1,6 +1,6 @@
 import "./globals.css";
 import "plyr/dist/plyr.css";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from 'next';
 import { Playfair_Display, EB_Garamond, UnifrakturMaguntia, Pirata_One } from 'next/font/google';
 

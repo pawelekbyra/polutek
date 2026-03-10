@@ -51,7 +51,7 @@ export const InvestigativeArticle = () => {
             W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa <InteractiveSpan type="badowski" title="Kliknij, aby zobaczyć wyrok">📄</InteractiveSpan> pojawia się postać świadka Bartosza B. Zgodnie z aktami:
           </p>
 
-          <CaseFile title="Zeznania świadka B." type="transcript">
+          <CaseFile title="Zeznania świadka B." type="transcript" source="ONET.PL">
             Świadek B. odnośnie osoby oskarżonego [Jarosława Kordysa] oświadczył, że zna się z nim ok. 8 lat, a poznali się w Holandii. Świadek B. potwierdził, że i on sam w przeszłości prowadził warsztaty, a obecnie sam jest przedmiotem dochodzenia policji w Krnowie właśnie z powodu ceremonii.
           </CaseFile>
 
@@ -59,7 +59,7 @@ export const InvestigativeArticle = () => {
             Akta ujawniają również skalę zarzutów wobec Bartosza B.:
           </p>
 
-          <CaseFile title="Zarzuty wobec Bartosza B.">
+          <CaseFile title="Zarzuty wobec Bartosza B." source="ONET.PL">
             (...) wymieniony był sprawdzany w związku z występkiem niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi (...) albowiem miał w roku 2014 zlecić przesłanie na swój adres przesyłki pocztowej przechwyconej na lotnisku w Lipsku RFN zawierającej 4,5 kg DMT, a 6.6.2018 miało dojść do zatrzymania przesyłki pocztowej we Frankfurcie nad Menem RFN zawierającej 2000 g meskaliny i 38,6 g substancji DMT.
           </CaseFile>
 
@@ -67,7 +67,7 @@ export const InvestigativeArticle = () => {
             Intrygujący fragment dotyczy własności bazy. Dokumenty stwierdzają:
           </p>
 
-          <CaseFile title="Własność nieruchomości">
+          <CaseFile title="Własność nieruchomości" source="ONET.PL">
             (...) budynek rodzinny w miejscowości Janów (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy.
             <br/><br/>
             Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem jednej dziesiątej nieruchomości.
@@ -77,7 +77,7 @@ export const InvestigativeArticle = () => {
             Do kogo należała reszta? Sąd wskazuje wprost:
           </p>
 
-          <CaseFile title="Ustalenia Sądu">
+          <CaseFile title="Ustalenia Sądu" source="ONET.PL">
             ...w odniesieniu do nieruchomości będących współwłasnością <strong className="font-black">Bartosza B.</strong> i <strong className="font-black">Michała D. K.</strong> <a href={JANOW_PDF_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć dokumentację">📸</a>
           </CaseFile>
 
@@ -109,7 +109,7 @@ export const InvestigativeArticle = () => {
             Kordys zadzwonił do Badowskiego wyraźnie zaniepokojony wieściami, które do niego dotarły. Bał się, że tragedia, o której huczało w kuluarach, może zniszczyć ich imperium. Sąd w uzasadnieniu wyroku precyzyjnie rekonstruuje ten moment:
           </p>
 
-          <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" type="transcript">
+          <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" type="transcript" source="ONET.PL">
             oskarżony [Jarosława Kordysa] omawia z B., że dotarła do niego informacja, że w obiekcie w Janowie <span className="underline decoration-red-700 decoration-4 underline-offset-4 font-bold">zmarła jakaś kobieta</span>.
           </CaseFile>
 
@@ -117,7 +117,7 @@ export const InvestigativeArticle = () => {
             W rozmowie pojawia się też wątek zagrożenia ze strony osoby trzeciej – mężczyźni omawiają szantażystę, który chce iść na policję. Kordys wprost pyta wspólnika:
           </p>
 
-          <CaseFile title="Pytanie Kordysa" type="transcript">
+          <CaseFile title="Pytanie Kordysa" type="transcript" source="ONET.PL">
             W jakim zagrożeniu jest nasza praca?
           </CaseFile>
 
@@ -133,7 +133,7 @@ export const InvestigativeArticle = () => {
             Cynizm tej konwersacji sięga zenitu chwilę później. Gdy tylko ustalili strategię uciszenia plotek, natychmiast przeszli do logistyki dostaw narkotyku. Sąd odnotowuje, że zaraz po dywagacjach o śmierci i szantażu, rozmówcy wracają do interesów:
           </p>
 
-          <CaseFile title="Kontynuacja rozmowy" type="transcript">
+          <CaseFile title="Kontynuacja rozmowy" type="transcript" source="ONET.PL">
             Następnie w rozmowie omawiają zamówienia «herbaty» z dżungli i to, czy im tego «nie zepsują», ekscytując się nagraniem od dostawcy, który «siedzi w dżungli i gotuje».
           </CaseFile>
 
@@ -145,7 +145,7 @@ export const InvestigativeArticle = () => {
             Zaledwie dwa dni po tym telefonie, 26.08.2020 czescy policjanci weszli do posiadłości w Janowie. Efekty rewizji opisano w wyroku Kordysa:
           </p>
 
-          <CaseFile title="Protokół rewizji">
+          <CaseFile title="Protokół rewizji" source="ONET.PL">
             w nieruchomości zabezpieczono rzeczy... oprócz marihuany zabezpieczono również substancje zawierające DMT o objętości ok. 2 kg.
           </CaseFile>
 
@@ -195,7 +195,7 @@ export const InvestigativeArticle = () => {
             Na mocy wyroku z dnia 2 listopada 2021 roku <InteractiveSpan type="badowski" title="Kliknij, aby zobaczyć wyrok">📜</InteractiveSpan> Bartosz Badowski został uznany winnym popełnienia zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi.
           </p>
 
-          <CaseFile title="Ustalenia wyroku skazującego Bartosza B.">
+          <CaseFile title="Ustalenia wyroku skazującego Bartosza B." source="ONET.PL">
             co najmniej od bliżej nieustalonej daty w 2015 roku do 26.08.2020 [...] oferował, organizował i co najmniej w 441 przypadkach zrealizował w nieregularnych odstępach czterodniowe i dziesięciodniowe pobyty [...] ukierunkowane na tzw. duchowe ćwiczenia spirytualne
             <br/><br/>
             udostępnił uczestnikom do użycia bliżej nieustaloną ilość substancji psychotropowych, a mianowicie tzw. ayahuascę zawierającą dimetylotryptaminę (DMT) oraz tzw. marihuanę zawierającą tetrahydrokannabinol (THC)
@@ -282,7 +282,7 @@ export const InvestigativeArticle = () => {
             Oto jak współpracę opisuje sam Bartosz Badowski:
           </p>
 
-          <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
+          <CaseFile title="Fragment korespondencji B. Badowskiego" type="email" source="ONET.PL">
             Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z zyskiem. (...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.
           </CaseFile>
 
@@ -296,7 +296,7 @@ export const InvestigativeArticle = () => {
             Stefanek wspomina, jak wspólnie z grupą przyjaciół pomagał uporządkować sprawy własnościowe, by obiekt znalazł się w jednych rękach. Kluczowy moment tej opowieści Stefanek datuje z niezwykłą precyzją:
           </p>
 
-          <CaseFile title="Wypowiedź K. Stefanka">
+          <CaseFile title="Wypowiedź K. Stefanka" source="ONET.PL">
             Ostatecznie <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">23 października 2023 roku</span> ten człowiek do nas zadzwonił powiedział, że wspólnie z żoną zdecydowali, że oni by chcieli to miejsce przekazać w darowiźnie
           </CaseFile>
 
@@ -470,7 +470,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            Jakiś czas po tragicznej nocy Wiktor B. zwołał spotkanie dla straumatyzowanych uczestników fatalnej ceremonii, w którego prowadzeniu pomagała mu jego koleżanka <strong className="font-black">Joanna Najdowska</strong> – poproszono ich wówczas, by dla wspólnego dobra szczegóły tamtej nocy pozostały tajemnicą.
+            Jakiś czas po tragicznej nocy Wiktor B. zwołał spotkanie dla straumatyzowanych uczestników fatalnej ceremonii, w którego prowadzeniu pomagała mu jego koleżanka- <strong className="font-black">Joanna Najdowska</strong>. Przekonano ich wówczas, by dla wspólnego dobra wydarzenia tamtej nocy pozostały tajemnicą.
           </p>
 
           <p className="mt-4">
