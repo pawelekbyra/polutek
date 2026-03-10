@@ -14,7 +14,7 @@ export default function Page() {
     "author": [{
       "@type": "Person",
       "name": "Wojciech Kurka",
-      "url": "mailto:adam.kurka@protonmail.com"
+      "url": "mailto:wojciech.kurka@protonmail.com"
     }]
   };
 
