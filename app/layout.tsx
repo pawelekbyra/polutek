@@ -32,8 +32,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Szamańskie ceremonie i miliarderzy – Ujawniamy kulisy śledztwa",
-  description: "Śledztwo w sprawie tajemniczych zgonów podczas szamańskich ceremonii z udziałem twórców gier i Michała Kicińskiego. Ujawniamy kulisy i pełną dokumentację.",
+  title: "Co ukrywa Michał Kiciński? Afera z ayahuascą.",
+  description: "Michał Kiciński i mroczne sekrety farmy w Czechach. Śmierć podczas ceremonii z ayahuascą, zacieranie śladów i szokujące kulisy świata twórcy CD Projektu.",
   metadataBase: new URL('https://www.nasza-gazetka.pl'),
   alternates: {
     canonical: 'https://www.nasza-gazetka.pl/',
@@ -48,8 +48,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Szamańskie ceremonie i miliarderzy – Ujawniamy kulisy śledztwa",
-    description: "Śledztwo w sprawie tajemniczych zgonów podczas szamańskich ceremonii z udziałem twórców gier i Michała Kicińskiego. Ujawniamy kulisy i pełną dokumentację.",
+    title: "Co ukrywa Michał Kiciński? Afera z ayahuascą.",
+    description: "Michał Kiciński i mroczne sekrety farmy w Czechach. Śmierć podczas ceremonii z ayahuascą, zacieranie śladów i szokujące kulisy świata twórcy CD Projektu.",
     url: '/',
     siteName: 'Eliksir Wiedźmina',
     images: [
