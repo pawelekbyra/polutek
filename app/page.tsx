@@ -13,8 +13,8 @@ export default function Page() {
     "datePublished": "2024-03-03",
     "author": [{
       "@type": "Person",
-      "name": "Marlow",
-      "url": "mailto:marlow@nasza-gazetka.pl"
+      "name": "Wojciech Kurka",
+      "url": "mailto:adam.kurka@protonmail.com"
     }]
   };
 
