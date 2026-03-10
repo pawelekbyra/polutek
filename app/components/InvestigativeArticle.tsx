@@ -34,7 +34,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            Ayahuasca (czyt. ajałaska) to tradycyjny wywar z amazońskich roślin o silnym działaniu halucynogennym. Ze względu na wysoką zawartość DMT – substancji psychodelicznej wywołującej intensywne wizje i zmiany stanu świadomości – jej posiadanie i podawanie jest w Polsce i Czechach zabronione. Finałem medialnego spektaklu Kordysów było ułaskawienie ich przez czeskiego prezydenta po dwóch latach odsiadki. <a href={KORDYS_PDF_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć archiwalny dowód">🔍</a>
+            Ayahuasca (czyt. ajałaska) to tradycyjny wywar z amazońskich roślin o silnym działaniu halucynogennym. Ze względu na wysoką zawartość DMT – substancji psychodelicznej wywołującej intensywne wizje i zmiany stanu świadomości – jej posiadanie i podawanie jest w Polsce i Czechach zabronione. Finałem medialnego spektaklu Kordysów było ułaskawienie ich przez czeskiego prezydenta po dwóch latach odsiadki. <a href="https://krytykapolityczna.pl/narkopolityka/polacy-ayahuasca-czechy/" target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć archiwalny dowód">🌐</a>
           </p>
 
           <p className="mt-4">
@@ -470,6 +470,10 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
+            Jakiś czas po tragicznej nocy Wiktor B. zwołał spotkanie dla straumatyzowanych uczestników fatalnej ceremonii, w którego prowadzeniu pomagała mu jego koleżanka <strong className="font-black">Joanna Najdowska</strong> – poproszono ich wówczas, by dla wspólnego dobra szczegóły tamtej nocy pozostały tajemnicą.
+          </p>
+
+          <p className="mt-4">
             Przez kolejne lata tę kłamliwą narrację udawało się skutecznie utrzymywać. O nieszczęśliwym wypadku i śmierci z przyczyn naturalnych przez długi czas przekonana była nawet najbliższa rodzina Ilony.
           </p>
 
@@ -531,7 +535,7 @@ export const InvestigativeArticle = () => {
               </div>
 
               <div className="mt-8 px-4 text-xs text-black/70 font-mono text-center italic">
-                Postępowania toczą się w wymienionych jednostkach Prokuratury. Nadzór nad sprawami w Częstochowie objął Zastępca Prokuratora Okręgowego, a kluczowe czynności nadzoruje prokurator Jolanta Świdnicka.
+                Nadzór nad sprawami w Częstochowie objął Zastępca Prokuratora Okręgowego
               </div>
           </div>
 
@@ -616,7 +620,7 @@ export const InvestigativeArticle = () => {
              <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                   <div>
-                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Zakup (Nýdek) - M. Iwiński</h4>
+                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Zakup (Nýdek) - 2016</h4>
                     <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygnatura: V-320/2016-832</p>
                   </div>
                   <a href={NYDEK_CADASTRAL_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
@@ -633,7 +637,7 @@ export const InvestigativeArticle = () => {
              <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                   <div>
-                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Sprzedaż (Nýdek)</h4>
+                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Sprzedaż (Nýdek) - 2021</h4>
                     <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygnatura: V-2937/2021</p>
                   </div>
                   <a href={NYDEK_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
