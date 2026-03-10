@@ -7,14 +7,14 @@ export default function Page() {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     "url": "https://www.nasza-gazetka.pl",
-    "headline": "Eliksir Wiedźmina – Śledztwo: Michał Kiciński i tajemnica Janowa",
+    "headline": "Michał Kiciński, Ayahuasca i szamani z Janova. Śmierć uczestniczki ceremonii.",
     "description": "Pełna dokumentacja śledztwa: Michał Kiciński, Jarosław Kordys i prokurator Jolanta Świdnicka. Ayahuasca, Janów i tragiczna śmierć uczestniczki.",
     "image": ["https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kordys-aresztowanie-cover-photo.png"],
     "datePublished": "2024-03-03",
     "author": [{
       "@type": "Person",
-      "name": "Detektyw Polutek",
-      "url": "mailto:detektyw.polutek@protonmail.com"
+      "name": "Marlow",
+      "url": "mailto:marlow@nasza-gazetka.pl"
     }]
   };
 
@@ -39,19 +39,17 @@ export default function Page() {
               </h2>
               <div className="flex-grow h-px bg-black"></div>
             </div>
-            <div className="w-[calc(100%-2rem)] mx-auto border-y border-black py-2 flex items-center justify-center md:justify-between px-4 text-[10px] md:text-xs font-black uppercase tracking-[0.15em]">
+            <div className="w-[calc(100%-2rem)] mx-auto border-y border-black py-2 flex items-center justify-center px-4 text-[10px] md:text-lg font-black uppercase tracking-[0.25em]">
               <span>Niezależne media</span>
-              <div className="hidden md:block text-center font-display text-black">NIEDZIELA, 1 MARCA 2026</div>
-              <span className="hidden md:inline">Serwis Śledczy Nr 01</span>
             </div>
           </div>
 
           <div className="w-full text-center flex flex-col items-center pt-6 pb-4 px-6 box-border relative z-10">
             <h1 className="text-black w-full mb-1">
-              <span className="block text-5xl md:text-[8.5rem] font-unifraktur leading-[0.75] tracking-tight uppercase">
+              <span className="block text-5xl md:text-[8.5rem] font-display font-black leading-[0.85] tracking-tighter uppercase">
                 Eliksir
               </span>
-              <span className="block text-5xl md:text-[8.5rem] font-unifraktur leading-[0.75] tracking-tight uppercase">
+              <span className="block text-5xl md:text-[8.5rem] font-display font-black leading-[0.85] tracking-tighter uppercase">
                 Wiedźmina
               </span>
             </h1>
