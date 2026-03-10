@@ -39,17 +39,17 @@ export default function Page() {
               </h2>
               <div className="flex-grow h-px bg-black"></div>
             </div>
-            <div className="w-[calc(100%-2rem)] mx-auto border-y border-black py-2 flex items-center justify-center px-4 text-[10px] md:text-lg font-black uppercase tracking-[0.25em]">
+            <div className="w-[calc(100%-2rem)] mx-auto border-y-2 border-black py-0.5 flex items-center justify-center px-4 text-[10px] md:text-lg font-black uppercase tracking-[0.25em]">
               <span>Niezależne media</span>
             </div>
           </div>
 
           <div className="w-full text-center flex flex-col items-center pt-6 pb-4 px-6 box-border relative z-10">
             <h1 className="text-black w-full mb-1">
-              <span className="block text-5xl md:text-[8.5rem] font-display font-black leading-[0.85] tracking-tighter uppercase">
+              <span className="block text-5xl md:text-[6rem] font-pirata leading-[0.85] tracking-tighter uppercase">
                 Eliksir
               </span>
-              <span className="block text-5xl md:text-[8.5rem] font-display font-black leading-[0.85] tracking-tighter uppercase">
+              <span className="block text-5xl md:text-[6rem] font-pirata leading-[0.85] tracking-tighter uppercase">
                 Wiedźmina
               </span>
             </h1>
