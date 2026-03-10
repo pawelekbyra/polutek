@@ -39,6 +39,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.nasza-gazetka.pl/',
   },
+  icons: {
+    icon: '/favicon.png',
+  },
   robots: {
     index: true,
     follow: true,
