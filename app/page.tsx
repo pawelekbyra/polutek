@@ -44,27 +44,27 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="w-full text-center flex flex-col items-center pt-2 pb-4 px-6 box-border relative z-10">
-            <div className="w-full max-w-sm mx-auto mb-0">
+          <div className="w-full text-center flex flex-col items-center pt-1 pb-4 px-6 box-border relative z-10">
+            <div className="w-full max-w-[280px] mx-auto mb-2">
               <img
                 src="/zdjeciehej.png"
                 alt="Michał Kiciński i Jarosław Kordys"
-                className="w-full h-auto grayscale"
+                className="w-full h-auto grayscale mix-blend-multiply"
               />
             </div>
-            <h1 className="text-black w-full mb-1 -mt-4">
-              <span className="block text-5xl md:text-[6.5rem] font-body font-black leading-[0.85] tracking-tighter uppercase">
+            <h1 className="text-black w-full mb-1 -mt-2">
+              <span className="block text-4xl md:text-[5rem] font-body font-black leading-[0.85] tracking-tighter uppercase">
                 Eliksir
               </span>
-              <span className="block text-5xl md:text-[6.5rem] font-body font-black leading-[0.85] tracking-tighter uppercase">
+              <span className="block text-4xl md:text-[5rem] font-body font-black leading-[0.85] tracking-tighter uppercase">
                 Wiedźmina
               </span>
             </h1>
-            <p className="block text-xs md:text-xl text-black font-black italic uppercase tracking-[0.25em] mt-4 border-y-2 border-black py-1">
+            <p className="block text-[10px] md:text-base text-black font-black uppercase tracking-[0.25em] mt-2 border-y-2 border-black py-1">
               MROCZNA TAJEMNICA TWÓRCÓW CD PROJEKT
             </p>
-            <div className="max-w-3xl mx-auto mt-6">
-              <p className="text-sm md:text-lg text-[#000000] leading-snug italic font-serif font-bold px-4">
+            <div className="max-w-2xl mx-auto mt-4">
+              <p className="text-xs md:text-sm text-[#000000] leading-snug italic font-serif font-bold px-4">
                 Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
               </p>
             </div>
