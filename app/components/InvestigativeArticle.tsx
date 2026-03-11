@@ -195,7 +195,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            Na mocy wyroku z dnia 2 listopada 2021 roku <InteractiveSpan type="badowski" title="Kliknij, aby zobaczyć wyrok">📜</InteractiveSpan> Bartosz Badowski został uznany winnym popełnienia zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi.
+            Na mocy wyroku z dnia 2 listopada 2021 roku <InteractiveSpan type="badowski" title="Kliknij, aby zobaczyć wyrok">📄</InteractiveSpan> Bartosz Badowski został uznany winnym popełnienia zbrodni niedozwolonej produkcji i innego obchodzenia się ze środkami odurzającymi.
           </p>
 
           <CaseFile title="Ustalenia wyroku skazującego Bartosza B." source="Uzasadnienie wyroku Kordysa, sygn. 30 T 5/2020">
@@ -274,7 +274,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego do tej pory oferuje tam w pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które w Czechach są zakazane, co wciąż jest eksponowane na stronie internetowej. <a href="https://munaysonqo.com/all-retreats/#calendar-7a66adc3-3ebd-432c-b572-0faf936c281f-event-e90d5161-a00e-4742-b4b7-039de153a23d" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 cursor-pointer hover:bg-[#e8d154] transition-colors px-2 py-0.5 ml-1 border-2 border-black bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] no-underline text-xs font-bold text-black uppercase tracking-wider" title="Kliknij, aby otworzyć stronę ośrodka Munay Sonqo">🌐</a>
+            W przeciwieństwie do Europy, peruwiańskie prawo zezwala na komercyjne prowadzenie ceremonii z ayahuascą. Ośrodek Kicińskiego do tej pory oferuje tam w pełni jawną i profesjonalną sprzedaż usług o profilu bliźniaczym do tych, które w Czechach są zakazane, co wciąż jest eksponowane na stronie internetowej. <a href="https://munaysonqo.com/all-retreats/#calendar-7a66adc3-3ebd-432c-b572-0faf936c281f-event-e90d5161-a00e-4742-b4b7-039de153a23d" target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby otworzyć stronę ośrodka Munay Sonqo">🌐</a>
           </p>
 
           <p className="mt-4">
@@ -477,7 +477,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            Przez kolejne lata tę kłamliwą narrację udawało się skutecznie utrzymywać. O nieszczęśliwym wypadku i śmierci z przyczyn naturalnych przez długi czas przekonana była nawet najbliższa rodzina Ilony.
+            Przez kolejne lata kłamliwą narrację udawało się skutecznie utrzymywać. O śmierci z przyczyn naturalnych przez długi czas przekonana była nawet najbliższa rodzina Ilony.
           </p>
 
           <p className="mt-4">
