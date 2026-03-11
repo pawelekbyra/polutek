@@ -47,7 +47,7 @@ export default function Page() {
           <div className="w-full text-center flex flex-col items-center pt-1 pb-4 px-6 box-border relative z-10">
             <div className="w-full max-w-[280px] mx-auto mb-2">
               <img
-                src="/zdjeciehej.png"
+                src="/sim.png"
                 alt="Dokumentacja śledztwa - Eliksir Wiedźmina"
                 className="w-full h-auto grayscale mix-blend-multiply"
               />
