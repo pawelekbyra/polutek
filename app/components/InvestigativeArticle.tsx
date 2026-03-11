@@ -183,7 +183,7 @@ export const InvestigativeArticle = () => {
           </LegalNote>
 
           <p className="mt-4">
-            Bartosz „Badi” Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancje z DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił kupić sobie wolność.
+            Bartosz „Badi” Badowski, wspólnik jednego z najbogatszych Polaków, błyskawicznie zrozumiał swoje położenie. W obliczu zabezpieczonych dowodów – w tym 2 kilogramów substancji zawierających DMT i marihuany – wybrał strategię, która miała uchronić go przed wieloletnim więzieniem. Postanowił kupić sobie wolność.
           </p>
 
           <p className="mt-4">
@@ -561,11 +561,16 @@ export const InvestigativeArticle = () => {
              <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                   <div>
-                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Szamańskie ceremonie, tajemnicza śmierć i miliarderzy od "Wiedźmina"</h4>
-                    <p className="font-mono text-xs text-black/60 mt-1 font-black">Śledztwo dziennikarskie Onetu</p>
+                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Wykup udziałów (Janów)</h4>
+                    <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygnatura: V-5464/2023 | Koszt: 160 000 CZK</p>
                   </div>
-                  <a href={ONET_INVESTIGATION_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-[#e8d154] text-black px-4 py-2 text-xs font-black border-2 border-black hover:bg-white transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                    🌐 Czytaj na Onet.pl
+                  <a href={JANOW_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                    📥 Pobierz PDF
+                  </a>
+                </div>
+                <div className="border-t-2 border-black/20 pt-3">
+                  <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
+                    🌐 Weryfikuj na nahlizenidokn.cuzk.cz
                   </a>
                 </div>
              </div>
@@ -573,17 +578,12 @@ export const InvestigativeArticle = () => {
              <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                   <div>
-                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Wykup udziałów (Janów)</h4>
-                    <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygnatura: [PLACEHOLDER] | Przejęcie 10% od B. Badowskiego</p>
+                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Szamańskie ceremonie, tajemnicza śmierć i miliarderzy od "Wiedźmina"</h4>
+                    <p className="font-mono text-xs text-black/60 mt-1 font-black">Śledztwo dziennikarskie Onetu</p>
                   </div>
-                  <div className="shrink-0 w-full sm:w-48 justify-center bg-black/5 text-black/40 px-4 py-2 text-xs font-bold border-2 border-black border-dashed flex items-center gap-2 uppercase tracking-widest text-center font-sans">
-                    🔒 Dokument Prywatny
-                  </div>
-                </div>
-                <div className="border-t-2 border-black/20 pt-3">
-                  <p className="text-[10px] text-black/60 font-mono italic leading-tight">
-                    Umowa cywilnoprawna z dnia 3 października 2023 r. dotycząca odkupienia 1/10 udziałów w nieruchomości Janów 252.
-                  </p>
+                  <a href={ONET_INVESTIGATION_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-[#e8d154] text-black px-4 py-2 text-xs font-black border-2 border-black hover:bg-white transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                    🌐 Czytaj na Onet.pl
+                  </a>
                 </div>
              </div>
 
