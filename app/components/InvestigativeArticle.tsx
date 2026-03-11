@@ -7,7 +7,7 @@ import { GalleryProvider } from './GalleryContext';
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
 const DOCUMENTATION_IPFS_URL = `${PINATA_GATEWAY}/bafybeicnxlo366f6fznm5p6j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j`;
-const JANOW_PDF_URL = DOCUMENTATION_IPFS_URL;
+const JANOV_PDF_URL = DOCUMENTATION_IPFS_URL;
 const NYDEK_PDF_URL = DOCUMENTATION_IPFS_URL;
 const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://munaysonqo.com/retreats/";
 
@@ -42,7 +42,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            W przygranicznym Janowie funkcjonował drugi, bliźniaczy ayahuaskowy ośrodek, którego współwłaścicielem okazał się miliarder – <strong className="font-black">Michał Kiciński</strong>.
+            W przygranicznym Janovie funkcjonował drugi, bliźniaczy ayahuaskowy ośrodek, którego współwłaścicielem okazał się miliarder – <strong className="font-black">Michał Kiciński</strong>.
           </p>
 
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Świadek B.</h2>
@@ -68,9 +68,9 @@ export const InvestigativeArticle = () => {
           </p>
 
           <CaseFile title="Własność nieruchomości" source="Uzasadnienie wyroku Kordysa, sygn. 30 T 5/2020">
-            (...) budynek rodzinny w miejscowości Janów (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy.
+            (...) budynek rodzinny w miejscowości Janov (...), który jest częściowo użytkowany do stałego zamieszkania, a częściowo jako komercyjny obiekt noclegowy.
             <br/><br/>
-            Świadek [Bartosz B.] potwierdził, że w Janowie jest właścicielem jednej dziesiątej nieruchomości.
+            Świadek [Bartosz B.] potwierdził, że w Janovie jest właścicielem jednej dziesiątej nieruchomości.
           </CaseFile>
 
           <p className="mt-4">
@@ -78,11 +78,11 @@ export const InvestigativeArticle = () => {
           </p>
 
           <CaseFile title="Ustalenia Sądu" source="Uzasadnienie wyroku Kordysa, sygn. 30 T 5/2020">
-            ...w odniesieniu do nieruchomości będących współwłasnością <strong className="font-black">Bartosza B.</strong> i <strong className="font-black">Michała D. K.</strong> <a href={JANOW_PDF_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć dokumentację">📸</a>
+            ...w odniesieniu do nieruchomości będących współwłasnością <strong className="font-black">Bartosza B.</strong> i <strong className="font-black">Michała D. K.</strong> <a href={JANOV_PDF_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć dokumentację">📸</a>
           </CaseFile>
 
           <div className="not-prose my-8 flex justify-start">
-              <LocationStampUI name="JANÓW 252" code="793 84 Czechy" plot="252793" lv="84" />
+              <LocationStampUI name="JANOV 252" code="793 84 Czechy" plot="252793" lv="84" />
           </div>
 
           <p className="mt-4">
@@ -110,7 +110,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <CaseFile title="Rekonstrukcja rozmowy (Uzasadnienie Sądu)" type="transcript" source="Uzasadnienie wyroku Kordysa, sygn. 30 T 5/2020">
-            oskarżony [Jarosława Kordysa] omawia z B., że dotarła do niego informacja, że w obiekcie w Janowie <span className="underline decoration-red-700 decoration-4 underline-offset-4 font-bold">zmarła jakaś kobieta</span>.
+            oskarżony [Jarosława Kordysa] omawia z B., że dotarła do niego informacja, że w obiekcie w Janovie <span className="underline decoration-red-700 decoration-4 underline-offset-4 font-bold">zmarła jakaś kobieta</span>.
           </CaseFile>
 
           <p className="mt-4">
@@ -145,7 +145,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            Zaledwie dwa dni po tym telefonie, 26.08.2020 czescy policjanci weszli do posiadłości w Janowie. Efekty rewizji opisano w wyroku Kordysa:
+            Zaledwie dwa dni po tym telefonie, 26.08.2020 czescy policjanci weszli do posiadłości w Janovie. Efekty rewizji opisano w wyroku Kordysa:
           </p>
 
           <CaseFile title="Protokół rewizji" source="Uzasadnienie wyroku Kordysa, sygn. 30 T 5/2020">
@@ -159,7 +159,7 @@ export const InvestigativeArticle = () => {
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Cena wolności</h2>
 
           <p className="mt-4">
-            Kiedy 26 sierpnia 2020 roku czeska policja weszła do posiadłości w Janowie, należącej do Bartosza Badowskiego i miliardera Michała Kicińskiego, Jarosław Kordys w Hermanovicach wciąż czuł się bezpiecznie. Nie wiedział jeszcze, że zegar zaczął odliczać czas do jego własnej katastrofy. Zaledwie 7 tygodni po cichym nalocie na Badowskiego policja zapukała do Kordysów.
+            Kiedy 26 sierpnia 2020 roku czeska policja weszła do posiadłości w Janovie, należącej do Bartosza Badowskiego i miliardera Michała Kicińskiego, Jarosław Kordys w Hermanovicach wciąż czuł się bezpiecznie. Nie wiedział jeszcze, że zegar zaczął odliczać czas do jego własnej katastrofy. Zaledwie 7 tygodni po cichym nalocie na Badowskiego policja zapukała do Kordysów.
           </p>
 
           <p className="mt-4">
@@ -187,7 +187,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            Ugoda pozwoliła na zamknięcie jego teczki bez wywoływania świadków, co w praktyce oznaczało, że mechanizmy działania janowskiego ośrodka nigdy nie wybrzmiały echem w publicznej debacie, chroniąc Badowskiego przed krzyżowym ogniem pytań i zeznaniami, które mogłyby pogrążyć także jego cichego wspólnika.
+            Ugoda pozwoliła na zamknięcie jego teczki bez wywoływania świadków, co w praktyce oznaczało, że mechanizmy działania janovskiego ośrodka nigdy nie wybrzmiały echem w publicznej debacie, chroniąc Badowskiego przed krzyżowym ogniem pytań i zeznaniami, które mogłyby pogrążyć także jego cichego wspólnika.
           </p>
 
           <p className="mt-4">
@@ -213,7 +213,7 @@ export const InvestigativeArticle = () => {
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Cisza po burzy</h2>
 
           <p className="mt-4">
-            Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janowie nie opustoszała – zamieszkali z nim wspomniani wcześniej <strong className="font-black">Krzysztof Stefanek</strong> i <strong className="font-black">Magdalena Drzewińska</strong>. Ich obecność u boku Badiego w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
+            Choć Badowski zaprzestał prowadzenia działalności szamańskiej, posiadłość w Janovie nie opustoszała – zamieszkali z nim wspomniani wcześniej <strong className="font-black">Krzysztof Stefanek</strong> i <strong className="font-black">Magdalena Drzewińska</strong>. Ich obecność u boku Badiego w tamtym czasie rzuca cień na ich późniejszą rolę; nie byli to wszakże niewinni obserwatorzy, lecz ludzie, którzy mimo tego, że sami byli obecni podczas policyjnej interwencji, pozostali lojalni wobec byłego szamana.
           </p>
 
           <p className="mt-4">
@@ -262,7 +262,7 @@ export const InvestigativeArticle = () => {
           </CaseFile>
 
           <p className="mt-4">
-            Gdy w toku czynności padło kluczowe pytanie o jego własny udział w ceremoniach ayahuaski w Janowie, odpowiedź była lakoniczna:
+            Gdy w toku czynności padło kluczowe pytanie o jego własny udział w ceremoniach ayahuaski w Janovie, odpowiedź była lakoniczna:
           </p>
 
           <CaseFile title="Odpowiedź na pytanie o udział" source="ONET.PL">
@@ -278,7 +278,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            Fakt, że Kiciński w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w Ameryce Południowej, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalności w Janowie.
+            Fakt, że Kiciński w momencie przesłuchania zarządzał legalnym biznesem ayahuaskowym w Ameryce Południowej, stawia pod znakiem zapytania jego deklarowaną nieświadomość co do profilu działalności w Janovie.
           </p>
 
           <p>
@@ -324,7 +324,7 @@ export const InvestigativeArticle = () => {
               <span className="text-xl">📅</span>
               <div>
                 <strong className="font-black text-base">21 września 2023 r.</strong><br/>
-                Michał Kiciński odbiera wezwanie na przesłuchanie w sprawie Janowa.
+                Michał Kiciński odbiera wezwanie na przesłuchanie w sprawie Janova.
               </div>
             </li>
 
@@ -356,20 +356,20 @@ export const InvestigativeArticle = () => {
               <span className="text-xl">📅</span>
               <div>
                 <strong className="font-black text-base">21 grudnia 2023 r.</strong><br/>
-                Finał operacji. Kiciński formalnie przekazuje Janów w formie darowizny. Nieruchomość trafia do stowarzyszenia non-profit – fasadowej organizacji krzak, zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
+                Finał operacji. Kiciński formalnie przekazuje Janov w formie darowizny. Nieruchomość trafia do stowarzyszenia non-profit – fasadowej organizacji krzak, zarządzanej przez ludzi, którzy przez lata byli częścią tego procederu. Miliarder pozbywa się dowodów, a nowi właściciele zyskują bazę do dalszej działalności pod nowym szyldem.
               </div>
             </li>
           </ul>
 
           <p className="mt-4">
-            Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong className="font-black">Krzysztof Stefanek</strong>, który w filmie mówi o odwróconej logice i pięknie wolontariatu, i jego konkubina <strong className="font-black">Magdalena Drzewińska</strong> w rzeczywistości doskonale znali mroczną historię Janowa i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
+            Cynizm tej sytuacji pogłębia fakt, że obdarowani nie byli przypadkowymi entuzjastami ekologii. <strong className="font-black">Krzysztof Stefanek</strong>, który w filmie mówi o odwróconej logice i pięknie wolontariatu, i jego konkubina <strong className="font-black">Magdalena Drzewińska</strong> w rzeczywistości doskonale znali mroczną historię Janova i tajemnicę śmierci Ilony. Przyjmując darowiznę, przejmowali nie tylko ziemię, ale i milczenie.
           </p>
 
           <div className="not-prose my-8 flex justify-start">
              <TransactionStampUI
               label="Nr Transakcji (Katastr)"
               value="V-5821/2023-127"
-              subDetails="Obręb: Janów u Krnova [656976]"
+              subDetails="Obręb: Janov u Krnova [656976]"
             />
           </div>
 
@@ -384,7 +384,7 @@ export const InvestigativeArticle = () => {
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Nýdek</h2>
 
           <p className="mt-4">
-            Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janowa, w miejscowości <strong className="font-black">Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek. <a href={NYDEK_PDF_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć dokumentację">📸</a>
+            Gdyby sprawa dotyczyła tylko jednego miliardera, można by mówić o przypadku lub pechowym doborze najemców. Jednak nieco dalej od Janova, w miejscowości <strong className="font-black">Nýdek</strong>, funkcjonował kolejny, bliźniaczy ośrodek. <a href={NYDEK_PDF_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć dokumentację">📸</a>
           </p>
 
           <p className="mt-4">
@@ -455,17 +455,17 @@ export const InvestigativeArticle = () => {
           </div>
 
           <p className="mt-4">
-            Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji wydarzeń z darowizną Kicińskiego w Janowie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
+            Transakcja ta rodzi wątpliwości: w jaki sposób niszowy szaman sfinansował zakup luksusowej willi od jednego z najbogatszych Polaków? Nowy właściciel niemal natychmiast zmienił formalny profil działalności na legalne warsztaty pracy z ciałem. Zbieżność tej sekwencji wydarzeń z darowizną Kicińskiego w Janovie pozwala dostrzec powtarzalny schemat wycofywania się właścicieli z infrastruktury powiązanej z nielegalnym procederem.
           </p>
 
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">WIKTOR B.</h2>
 
           <p className="mt-4">
-            9. marca 2026 Onet ujawnia opinii publicznej wstrząsające kulisy działalności ośrodka w czeskim Janowie. Dziennikarskie śledztwo koncentruje się na śmierci 54-letniej uczestniczki, Ilony L.-H. <a href={ONET_INVESTIGATION_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Otwórz artykuł na Onet.pl">🌐</a>
+            9. marca 2026 Onet ujawnia opinii publicznej wstrząsające kulisy działalności ośrodka w czeskim Janovie. Dziennikarskie śledztwo koncentruje się na śmierci 54-letniej uczestniczki, <strong className="font-black">Ilony L.-H.</strong> <a href={ONET_INVESTIGATION_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Otwórz artykuł na Onet.pl">🌐</a>
           </p>
 
           <p className="mt-4">
-            Według ustaleń Onetu, w czerwcu 2018 roku na farmie w Janowie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, organizator nie wezwał pomocy medycznej. Uczestnikom odebrano wcześniej telefony, co uniemożliwiło im samodzielne zaalarmowanie służb ratunkowych.
+            Według ustaleń Onetu, w czerwcu 2018 roku na farmie w Janovie doszło do tragedii. Podczas nocnej ceremonii z użyciem ayahuaski, kobieta poczuła się fatalnie, zmagając się z silnym bólem i intensywnymi wymiotami. Mimo jej krytycznego stanu, organizator nie wezwał pomocy medycznej. Uczestnikom odebrano wcześniej telefony, co uniemożliwiło im samodzielne zaalarmowanie służb ratunkowych.
           </p>
 
           <p className="mt-4">
@@ -473,7 +473,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            Jakiś czas po tragicznej nocy Wiktor B. zwołał spotkanie dla straumatyzowanych uczestników fatalnej ceremonii, w którego prowadzeniu pomagała mu jego koleżanka- <strong className="font-black">Joanna Najdowska</strong>. Przekonano ich wówczas, by dla wspólnego dobra wydarzenia tamtej nocy pozostały tajemnicą.
+            Jakiś czas po tragicznej nocy Wiktor B. zwołał spotkanie dla straumatyzowanych uczestników fatalnej ceremonii, w którego prowadzeniu pomagała mu jego koleżanka- <strong className="font-black">Joanna N.</strong>. Przekonano ich wówczas, by dla wspólnego dobra wydarzenia tamtej nocy pozostały tajemnicą.
           </p>
 
           <p className="mt-4">
@@ -573,7 +573,7 @@ export const InvestigativeArticle = () => {
              <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                   <div>
-                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Wykup udziałów (Janów)</h4>
+                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Wykup udziałów (Janov)</h4>
                     <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygnatura: [PLACEHOLDER] | Przejęcie 10% od B. Badowskiego</p>
                   </div>
                   <div className="shrink-0 w-full sm:w-48 justify-center bg-black/5 text-black/40 px-4 py-2 text-xs font-bold border-2 border-black border-dashed flex items-center gap-2 uppercase tracking-widest text-center font-sans">
@@ -582,7 +582,7 @@ export const InvestigativeArticle = () => {
                 </div>
                 <div className="border-t-2 border-black/20 pt-3">
                   <p className="text-[10px] text-black/60 font-mono italic leading-tight">
-                    Umowa cywilnoprawna z dnia 3 października 2023 r. dotycząca odkupienia 1/10 udziałów w nieruchomości Janów 252.
+                    Umowa cywilnoprawna z dnia 3 października 2023 r. dotycząca odkupienia 1/10 udziałów w nieruchomości Janov 252.
                   </p>
                 </div>
              </div>
@@ -624,10 +624,10 @@ export const InvestigativeArticle = () => {
              <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                   <div>
-                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Darowizna (Janów)</h4>
+                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Darowizna (Janov)</h4>
                     <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygnatura: V-5821/2023 | Koszt: 300 CZK</p>
                   </div>
-                  <a href={JANOW_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                  <a href={JANOV_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     📥 Pobierz PDF
                   </a>
                 </div>

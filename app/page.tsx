@@ -7,8 +7,8 @@ export default function Page() {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     "url": "https://www.nasza-gazetka.pl",
-    "headline": "Michał Kiciński, Ayahuasca i szamani z Janowa. Śmierć uczestniczki ceremonii.",
-    "description": "Pełna dokumentacja śledztwa: Michał Kiciński, Jarosław Kordys i prokurator Jolanta Świdnicka. Ayahuasca, Janów i tragiczna śmierć uczestniczki.",
+    "headline": "Twórcy „Wiedźmina” i ich szamani. Śmierć uczestniczki ceremonii.",
+    "description": "Śmierć podczas ceremonii z Ayahuascą, zacieranie śladów i szokujące kulisy świata twórców CD Projekt.",
     "image": ["https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kordys-aresztowanie-cover-photo.png"],
     "datePublished": "2024-03-03",
     "author": [{
@@ -31,15 +31,15 @@ export default function Page() {
         <div className="w-full max-w-4xl bg-white flex flex-col items-center pb-0 border-x-4 border-black overflow-hidden relative shadow-2xl">
 
           {/* Header Section */}
-          <div className="w-full flex flex-col items-center pt-2 pb-1 bg-white relative z-10">
+          <div className="w-full flex flex-col items-center pt-2 pb-0 bg-white relative z-10">
             <div className="flex items-center justify-center w-[calc(100%-2rem)] mx-auto gap-4 pt-4 pb-1">
-              <div className="flex-grow h-0.5 bg-black"></div>
+              <div className="flex-grow h-1 bg-black"></div>
               <h2 className="text-4xl md:text-[5rem] font-black tracking-tighter text-black uppercase font-display leading-none whitespace-nowrap px-2">
                 NASZA GAZETKA
               </h2>
-              <div className="flex-grow h-0.5 bg-black"></div>
+              <div className="flex-grow h-1 bg-black"></div>
             </div>
-            <div className="w-[calc(100%-2rem)] mx-auto border-y-2 border-black py-0 flex items-center justify-center px-4 text-[10px] md:text-lg font-black uppercase tracking-[0.25em]">
+            <div className="w-[calc(100%-2rem)] mx-auto border-y-2 border-black py-1 flex items-center justify-center px-4 text-[10px] md:text-lg font-black uppercase tracking-[0.25em] leading-none">
               <span>Niezależne media</span>
             </div>
           </div>
