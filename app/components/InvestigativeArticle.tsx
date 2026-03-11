@@ -488,11 +488,14 @@ export const InvestigativeArticle = () => {
             Ciało mężczyzny odnaleziono w magazynie firmy, w której pracował przy montażu szaf serwerowych. Na jego ciele nie stwierdzono widocznych obrażeń wskazujących na użycie siły fizycznej. Mimo że od śmierci Wiktora B. minęło już ponad półtora roku, śledczy wciąż czekają na wyniki badań toksykologicznych, które mają kluczowe znaczenie dla wyjaśnienia, czy w organizmie mężczyzny znajdowały się substancje mogące przyczynić się do jego nagłego odejścia. Z tego względu obecnie śledztwo w sprawie jego tajemniczego zgonu pozostaje zawieszone.<InteractiveSpan type="wiktor" title="Kliknij, aby zobaczyć szczegóły">🔍</InteractiveSpan>
           </p>
 
-          <div className="not-prose mt-12 mb-4 flex justify-end relative z-10">
-              <div className="text-right border-r-4 border-black pr-4">
-                <span className="block font-black text-black uppercase text-xl font-display tracking-widest leading-none">Wojciech Kurka</span>
+          <div className="not-prose mt-12 mb-4 flex justify-end items-stretch gap-4 relative z-10 h-16">
+              <div className="text-right border-r-4 border-black pr-4 flex flex-col justify-center">
+                <span className="block font-black text-black uppercase text-xl font-display tracking-widest leading-none">Wojciech Kurka 🛡️</span>
                 <span className="block text-[10px] text-black/60 font-mono mt-1 uppercase tracking-tighter leading-tight">dziennikarz śledczy, niezależne media</span>
                 <span className="block text-[10px] text-black/40 font-mono mt-0.5 italic lowercase tracking-tight">wojciech.kurka@protonmail.com</span>
+              </div>
+              <div className="w-16 h-16 grayscale border-2 border-black flex-shrink-0">
+                <img src="/t.webp" alt="Wojciech Kurka" className="w-full h-full object-cover" />
               </div>
           </div>
 
