@@ -33,8 +33,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Michał Kiciński, Ayahuasca i szamani z Janowa. Śmierć uczestniczki ceremonii.",
-  description: "Michał Kiciński i mroczne sekrety farmy w Czechach. Śmierć podczas ceremonii z ayahuascą, zacieranie śladów i szokujące kulisy świata twórcy CD Projektu.",
+  title: "Twórcy „Wiedźmina” i ich szamani. Śmierć uczestniczki ceremonii.",
+  description: "Śmierć podczas ceremonii z Ayahuascą, zacieranie śladów i szokujące kulisy świata twórców CD Projekt.",
   metadataBase: new URL('https://www.nasza-gazetka.pl'),
   alternates: {
     canonical: 'https://www.nasza-gazetka.pl/',
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Michał Kiciński, Ayahuasca i szamani z Janowa. Śmierć uczestniczki ceremonii.",
-    description: "Michał Kiciński i mroczne sekrety farmy w Czechach. Śmierć podczas ceremonii z ayahuascą, zacieranie śladów i szokujące kulisy świata twórcy CD Projektu.",
+    title: "Twórcy „Wiedźmina” i ich szamani. Śmierć uczestniczki ceremonii.",
+    description: "Śmierć podczas ceremonii z Ayahuascą, zacieranie śladów i szokujące kulisy świata twórców CD Projekt.",
     url: '/',
     siteName: 'Eliksir Wiedźmina',
     images: [
