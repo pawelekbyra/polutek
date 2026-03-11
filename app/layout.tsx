@@ -58,10 +58,10 @@ export const metadata: Metadata = {
     siteName: 'Eliksir Wiedźmina',
     images: [
       {
-        url: 'https://www.nasza-gazetka.pl/zdjeciehej.png',
-        width: 1200,
-        height: 630,
-        alt: "Szamańskie ceremonie i miliarderzy - śledztwo",
+        url: 'https://www.nasza-gazetka.pl/okladka.jpg',
+        width: 1536,
+        height: 804,
+        alt: "Twórcy „Wiedźmina” i ich szamani. Śmierć uczestniczki ceremonii Ayahuasca.",
       },
     ],
     locale: 'pl_PL',
