@@ -47,8 +47,8 @@ export default function Page() {
             </div>
 
             {/* Intro Content */}
-            <div className="w-full flex-grow flex flex-col items-center justify-center text-center px-6 box-border relative z-10 py-4 md:py-8">
-              <div className="w-full max-w-[140px] md:max-w-[240px] lg:max-w-[280px] mx-auto mb-2 md:mb-6">
+            <div className="w-full flex-grow flex flex-col items-center justify-center text-center px-6 box-border relative z-10 py-2 md:py-4">
+              <div className="w-full max-w-[120px] md:max-w-[200px] lg:max-w-[240px] mx-auto mb-2 md:mb-4">
                 <img
                   src="/zdjeciehej.png"
                   alt="Dokumentacja śledztwa - Eliksir Wiedźmina"
@@ -56,25 +56,25 @@ export default function Page() {
                 />
               </div>
               <h1 className="text-black w-full mb-1">
-                <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-[7.5rem] font-body font-black leading-[0.75] tracking-tighter uppercase">
+                <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-[6.5rem] font-body font-black leading-[0.8] tracking-tighter uppercase">
                   Eliksir
                 </span>
-                <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-[7.5rem] font-body font-black leading-[0.75] tracking-tighter uppercase">
+                <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-[6.5rem] font-body font-black leading-[0.8] tracking-tighter uppercase">
                   Wiedźmina
                 </span>
               </h1>
-              <p className="block text-[10px] sm:text-xs md:text-sm lg:text-base text-black font-black uppercase tracking-[0.25em] mt-4 md:mt-8 border-y-2 border-black py-1 px-4 max-w-fit mx-auto">
+              <p className="block text-[9px] sm:text-xs md:text-sm lg:text-base text-black font-black uppercase tracking-[0.25em] mt-2 md:mt-4 border-y-2 border-black py-1 px-4 max-w-fit mx-auto">
                 MROCZNA TAJEMNICA TWÓRCÓW CD PROJEKT
               </p>
-              <div className="max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl mx-auto mt-6 md:mt-10">
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#000000] leading-tight md:leading-snug italic font-serif font-bold px-4">
+              <div className="max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto mt-4 md:mt-6">
+                <p className="text-xs sm:text-sm md:text-base lg:text-lg text-[#000000] leading-tight md:leading-snug italic font-serif font-bold px-4">
                   Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
                 </p>
               </div>
 
               {/* Scroll Indicator */}
-              <div className="mt-auto pt-6 md:pt-12 animate-bounce">
-                <span className="text-2xl md:text-3xl text-black">↓</span>
+              <div className="mt-auto pt-4 md:pt-8 animate-bounce">
+                <span className="text-xl md:text-2xl text-black">↓</span>
               </div>
             </div>
           </div>
