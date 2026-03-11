@@ -285,7 +285,7 @@ export const InvestigativeArticle = () => {
             Oto jak współpracę opisuje sam Bartosz Badowski:
           </p>
 
-          <CaseFile title="Fragment korespondencji B. Badowskiego" type="email">
+          <CaseFile title="Fragment korespondencji B. Badowskiego" type="email" source="Bartosz Badowski">
             Przelewy wysyłałem z mojego konta ING, które mam do tej pory [...]. Tytuł „wynajem”. (...) Dopóki zarabiałem - dzieliłem się z zyskiem. (...) Michał wiedział dokładnie co się dzieje na farmie i czerpał z tego zyski przez wiele wiele lat. (...) Rozważam też wizytę na Policji w Czechach - ja poniosłem prawne konsekwencje za prowadzenie ceremonii, ale Kiciński - żadnych. Mimo że to on czerpał z tego największe zyski, to on był nade mną i był większościowym właścicielem farmy.
           </CaseFile>
 
