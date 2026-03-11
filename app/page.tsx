@@ -39,7 +39,7 @@ export default function Page() {
               </h2>
               <div className="flex-grow h-1 bg-black"></div>
             </div>
-            <div className="w-[calc(100%-2rem)] mx-auto border-y-2 border-black py-1 flex items-center justify-center px-4 text-[10px] md:text-lg font-black uppercase tracking-[0.25em] leading-none">
+            <div className="w-[calc(100%-2rem)] mx-auto border-y-2 border-black py-0 flex items-center justify-center px-4 text-[10px] md:text-lg font-black uppercase tracking-[0.25em] leading-none">
               <span>Niezależne media</span>
             </div>
           </div>
@@ -47,7 +47,7 @@ export default function Page() {
           <div className="w-full text-center flex flex-col items-center pt-1 pb-4 px-6 box-border relative z-10">
             <div className="w-full max-w-[280px] mx-auto mb-2">
               <img
-                src="/sim.png"
+                src="/zdjeciehej.png"
                 alt="Dokumentacja śledztwa - Eliksir Wiedźmina"
                 className="w-full h-auto grayscale mix-blend-multiply"
               />
