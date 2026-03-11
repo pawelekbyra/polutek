@@ -79,7 +79,7 @@ const GalleryModals: React.FC<GalleryModalsProps> = ({
         isOpen={cenaJanovGalleryOpen}
         onClose={() => setCenaJanovGalleryOpen(false)}
         images={CENA_JANOV_GALLERY}
-        title="Dokument: Cena Nieruchomości Janów"
+        title="Dokument: Cena Nieruchomości Janov"
         pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kataster/cena-janov.pdf"
       />
 
