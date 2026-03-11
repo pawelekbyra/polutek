@@ -39,7 +39,7 @@ export default function Page() {
               </h2>
               <div className="flex-grow h-1 bg-black"></div>
             </div>
-            <div className="w-[calc(100%-2rem)] mx-auto border-y-2 border-black py-1 flex items-center justify-center px-4 text-[10px] md:text-lg font-black uppercase tracking-[0.25em] leading-none">
+            <div className="w-[calc(100%-2rem)] mx-auto border-y-2 border-black py-0 flex items-center justify-center px-4 text-[10px] md:text-lg font-black uppercase tracking-[0.25em] leading-none">
               <span>Niezależne media</span>
             </div>
           </div>
