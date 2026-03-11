@@ -469,7 +469,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-                 Prowadzący obrzęd Wiktor B., brat Bartosza Badowskiego, był tej nocy pod wpływem marihuany. Z relacji świadków wynika, że po śmierci kobiety podjął on natychmiastowe działania mające na celu zatuszowanie incydentu. Nakazał uczestnikom bezzwłocznie opuszczenie ośrodka. Czeskiej policji przedstawił fałszywą wersję wydarzeń, twierdząc, że Ilona L.-H. była jedynie gościem i została znaleziona martwa w łazience nad ranem. Służby początkowo nie nabrały podejrzeń, przyjmując tę relację za wiarygodną.
+                 Prowadzący obrzęd <strong className="font-black">Wiktor B.</strong>, brat Bartosza Badowskiego, był tej nocy pod wpływem marihuany. Z relacji świadków wynika, że po śmierci kobiety podjął on natychmiastowe działania mające na celu zatuszowanie incydentu. Nakazał uczestnikom bezzwłocznie opuszczenie ośrodka. Czeskiej policji przedstawił fałszywą wersję wydarzeń, twierdząc, że Ilona L.-H. była jedynie gościem i została znaleziona martwa w łazience nad ranem. Służby początkowo nie nabrały podejrzeń, przyjmując tę relację za wiarygodną.
           </p>
 
           <p className="mt-4">
