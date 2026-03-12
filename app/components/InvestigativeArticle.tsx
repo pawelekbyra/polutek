@@ -83,7 +83,13 @@ export const InvestigativeArticle = () => {
           </CaseFile>
 
           <div className="not-prose my-8 flex justify-start">
-              <LocationStampUI name="JANOV 252" code="793 84 Czechy" plot="252793" lv="84" />
+              <LocationStampUI
+                name="JANOV 252"
+                code="793 84 Czechy"
+                plot="252793"
+                lv="84"
+                href="https://nahlizenidokn.cuzk.gov.cz/ZobrazObjekt.aspx?encrypted=NAHL~Ph1DBACX9hLEB6fts7JCaqzjwc-8Bm-FsLqDU8eePrzOZO_6ESWYq0fvwpyG2abQ9P1fCqZ_nqCtiHrQZWDcmetevryGohKCWXt1aFERNJbL_Omfu5XpBU30m_2IBOi9q4EcsPuNRyji8T8H8_hlY1SVJWGkDU6qn-jdDoP4DabZL2GxttqvHoRZb3ZS3pL_Ymbhzg1IoE7bNihOQVHxO1mqvj7tsbDFZocoY_C-KM8vAuKtZUO_akQJsw4LUoB1"
+              />
           </div>
 
           <p className="mt-4">
@@ -401,7 +407,13 @@ export const InvestigativeArticle = () => {
           </p>
 
           <div className="not-prose my-8 flex justify-start">
-              <LocationStampUI name="NYDEK 120" code="739 95 Czechy" plot="120739" lv="95" />
+              <LocationStampUI
+                name="NYDEK 120"
+                code="739 95 Czechy"
+                plot="120739"
+                lv="95"
+                href="https://nahlizenidokn.cuzk.gov.cz/ZobrazObjekt.aspx?encrypted=NAHL~uQr6_qGGFNbscI31qkCFl1vpVRu3o8TWYak_iMPnq4Xni8IKqU6i2gAeUccVcXY0cblWyhwAnpIfk_96Mg7yOtHNymugDk5IKqRCxXKsDVSaFSQDLQ1U0IhqdBk9LlCR_I0UG5TUns3dt8PYkjaBZnRbrrTdSTBlGm3NYz5s3Fs57qfwSIALL3wiNHX8YWmHNt4frIIWhALPhA00bxPjexuiQ2JTZo1a4_lgJyZNUq8_lkKhHRCtuhwUvhv7ZIDD"
+              />
           </div>
 
           <p className="mt-4">
