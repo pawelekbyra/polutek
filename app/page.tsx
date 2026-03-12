@@ -33,15 +33,15 @@ export default function Page() {
           {/* Header Section */}
           <div className="w-full flex flex-col items-center pt-12 pb-4 bg-white relative z-10">
             {/* Top Badge Structure */}
-            <div className="flex flex-col items-center mb-16">
-              <div className="border-[3px] border-black px-8 py-2.5 bg-white mb-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-                <span className="text-base md:text-lg font-black uppercase tracking-[0.3em] leading-none block text-center">
+            <div className="flex flex-col items-center mb-12">
+              <div className="border-[3px] border-black px-5 py-2 bg-white mb-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                <span className="text-[10px] md:text-sm font-black uppercase tracking-[0.3em] leading-none block text-center">
                   DZIENNIKARSKIE ŚLEDZTWO
                 </span>
               </div>
               <div className="flex items-center gap-3 w-full px-2">
                 <div className="h-px flex-grow bg-black/20"></div>
-                <span className="text-[9px] md:text-xs font-black uppercase tracking-[0.5em] leading-none block text-center text-black/40">
+                <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.5em] leading-none block text-center text-black/40">
                   MEDIA NIEZALEŻNE
                 </span>
                 <div className="h-px flex-grow bg-black/20"></div>
@@ -51,10 +51,10 @@ export default function Page() {
             <div className="w-full text-center flex flex-col items-center px-6 box-border">
               {/* Main Title */}
               <h1 className="text-black w-full mb-8">
-                <span className="block text-5xl md:text-7xl font-body font-black leading-[0.8] tracking-tighter uppercase">
+                <span className="block text-7xl md:text-[7.5rem] font-body font-black leading-[0.8] tracking-tighter uppercase">
                   Eliksir
                 </span>
-                <span className="block text-5xl md:text-7xl font-body font-black leading-[0.8] tracking-tighter uppercase">
+                <span className="block text-7xl md:text-[7.5rem] font-body font-black leading-[0.8] tracking-tighter uppercase">
                   Wiedźmina
                 </span>
               </h1>
