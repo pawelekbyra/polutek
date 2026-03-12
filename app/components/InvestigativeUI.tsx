@@ -52,12 +52,13 @@ export const PullQuote = ({ quote, author, source }: { quote: string, author: st
   </div>
 );
 
-export const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: string, plot: string, lv: string }) => (
-  <div className="not-prose relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group max-w-[280px]">
-     <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed text-black/40 group-hover:text-black transition-colors">
+export const LocationStampUI = ({ name, code, plot, lv, href }: { name: string, code: string, plot: string, lv: string, href?: string }) => {
+  const content = (
+    <>
+      <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed text-black/40 group-hover:text-black transition-colors">
         <MapPin size={24} strokeWidth={1.5} />
-     </div>
-     <div className="py-2">
+      </div>
+      <div className="py-2">
         <div className="text-[9px] text-black/60 font-mono uppercase tracking-tighter leading-tight mb-1">
           LV: {lv} | DZIAŁKA: {plot}
         </div>
@@ -65,9 +66,26 @@ export const LocationStampUI = ({ name, code, plot, lv }: { name: string, code: 
         <div className="text-[9px] text-black/60 font-mono uppercase tracking-tighter leading-tight">
           {code}
         </div>
-     </div>
-  </div>
-);
+      </div>
+    </>
+  );
+
+  const className = "not-prose relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group max-w-[280px] cursor-pointer";
+
+  if (href) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <div className={className}>
+      {content}
+    </div>
+  );
+};
 
 export const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
   <div className="not-prose relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group max-w-[280px]">
