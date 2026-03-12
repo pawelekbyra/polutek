@@ -5,7 +5,7 @@ import { InteractiveSpan } from './InteractiveSpan';
 import { GalleryProvider } from './GalleryContext';
 
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
-const KORDYS_PDF_URL = `${PINATA_GATEWAY}/bafybeibzxfsg5s4jkiuf2kzmbdtmfutfjk75ej5zrpt2igan4aldvqc3oq`;
+const KORDYS_PDF_URL = "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/wyrokKordysa/wyrok-jaroslawa-kordysa-30-t-5-2021-28-01-2022.pdf";
 const DOCUMENTATION_IPFS_URL = `${PINATA_GATEWAY}/bafybeicnxlo366f6fznm5p6j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j`;
 const JANOV_PDF_URL = DOCUMENTATION_IPFS_URL;
 const NYDEK_PDF_URL = DOCUMENTATION_IPFS_URL;
@@ -20,6 +20,7 @@ const KORDYS_COVER = "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kordys
 const ONET_ARTICLE_URL = "https://wiadomosci.onet.pl/kraj/smierc-podczas-ceremonii-ayahuaski-wstrzasajace-kulisy/7e8e5x5";
 const ONET_INVESTIGATION_URL = "https://wiadomosci.onet.pl/tylko-w-onecie/ujawniamy-szamanskie-ceremonie-tajemnicza-smierc-i-miliarderzy-od-wiedzmina/hdxsqdq";
 const NYDEK_CADASTRAL_URL = "https://nahlizenidokn.cuzk.gov.cz/ZobrazObjekt.aspx?encrypted=NAHL~HzwvTudnvFVyH2v2DgIY058_1nN6gGpNDAvsLklPjNR5Mp_Oq_Fi9nHrDZdkU9y9GjVXaqbSuuYVc435bFSDklMy2IdfOtCyqzfDiZ9Fs5xcBRXy_EQY_DtxlD4oaDXe99t6mMV0K2iQipgpnDL45rdj3m7so5wXsxXsna0peW21BZ8oDcn-oCC_GPUmYMZkKLi2HlgoMpiC0QcV8k6VPPzD2fF1zH8rkRCGVfo--cZbizU4Je5atQoaRJ0h4Btd";
+const JANOV_BUYOUT_CADASTRAL_URL = "https://nahlizenidokn.cuzk.gov.cz/ZobrazObjekt.aspx?encrypted=NAHL~jk3kaNPeol_6EgW14KqJDSmcC9KeRpgml1z2x2yDMVICfISMq1_XgQDyvfDDC5CYc3zUjC_t0wwqbIK0G6HqHi7HjXtVuYkM2vgddOiUXuXyvvlbp6LTx2mQgEWLk0O9S5n2cNg_XqpGU0QWq-HgMC7RreBwWqFJ7LGguJsL9TrBkQv-ttgNk68XRNZBIrouFSlRz8qqFSvmvaxxW3VnbmOgphhjyjACItJvT6F_08e7WELPeJRhIBWMJdrLKbi7";
 
 export const InvestigativeArticle = () => {
   return (
@@ -48,7 +49,7 @@ export const InvestigativeArticle = () => {
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">Świadek B.</h2>
 
           <p className="mt-4">
-            W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa <InteractiveSpan type="badowski" title="Kliknij, aby zobaczyć wyrok">📄</InteractiveSpan> pojawia się postać świadka Bartosza B. Zgodnie z aktami:
+            W obszernym i publicznie dostępnym uzasadnieniu wyroku Jarosława Kordysa <InteractiveSpan type="kordys" title="Kliknij, aby zobaczyć wyrok">📄</InteractiveSpan> pojawia się postać świadka Bartosza B. Zgodnie z aktami:
           </p>
 
           <CaseFile title="Zeznania świadka B." type="transcript" source="Uzasadnienie wyroku Kordysa, sygn. 30 T 5/2020">
@@ -573,23 +574,6 @@ export const InvestigativeArticle = () => {
              <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                   <div>
-                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Wykup udziałów (Janov)</h4>
-                    <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygnatura: [PLACEHOLDER] | Przejęcie 10% od B. Badowskiego</p>
-                  </div>
-                  <div className="shrink-0 w-full sm:w-48 justify-center bg-black/5 text-black/40 px-4 py-2 text-xs font-bold border-2 border-black border-dashed flex items-center gap-2 uppercase tracking-widest text-center font-sans">
-                    🔒 Dokument Prywatny
-                  </div>
-                </div>
-                <div className="border-t-2 border-black/20 pt-3">
-                  <p className="text-[10px] text-black/60 font-mono italic leading-tight">
-                    Umowa cywilnoprawna z dnia 3 października 2023 r. dotycząca odkupienia 1/10 udziałów w nieruchomości Janov 252.
-                  </p>
-                </div>
-             </div>
-
-             <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
-                <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
-                  <div>
                     <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Wyrok Jarosława Kordysa</h4>
                     <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygn. 30 T 5/2020</p>
                   </div>
@@ -617,23 +601,6 @@ export const InvestigativeArticle = () => {
                 <div className="border-t-2 border-black/20 pt-3">
                   <a href="https://msp.gov.cz/documents/22409/2997339/29Si+25-2022+p%C5%99%C3%ADloha+%C4%8D.+1.pdf" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
                     🌐 Weryfikuj oryginał (29 Si 25/2022)
-                  </a>
-                </div>
-             </div>
-
-             <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
-                <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
-                  <div>
-                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Darowizna (Janov)</h4>
-                    <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygnatura: V-5821/2023 | Koszt: 300 CZK</p>
-                  </div>
-                  <a href={JANOV_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                    📥 Pobierz PDF
-                  </a>
-                </div>
-                <div className="border-t-2 border-black/20 pt-3">
-                  <a href="https://nahlizenidokn.cuzk.cz" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
-                    🌐 Weryfikuj na nahlizenidokn.cuzk.cz
                   </a>
                 </div>
              </div>
@@ -669,6 +636,23 @@ export const InvestigativeArticle = () => {
                   <a href={NYDEK_CADASTRAL_URL} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-black/70 hover:text-black flex items-center gap-2 uppercase tracking-widest underline decoration-2 underline-offset-4 font-sans">
                     🌐 Weryfikuj w Katastrze
                   </a>
+                  <p className="text-[9px] leading-tight text-black/70 font-mono uppercase">
+                    Uwaga: Ujawnienie danych osobowych stron transakcji wymaga zalogowania poprzez opcję „Identita občana”, wybierając logowanie przez eIDAS.
+                  </p>
+                </div>
+             </div>
+
+             <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
+                <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
+                  <div>
+                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Wykup udziałów (Janov)</h4>
+                    <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygnatura: V-2031/2023-831</p>
+                  </div>
+                  <a href={JANOV_BUYOUT_CADASTRAL_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                    🌐 Weryfikuj w Katastrze
+                  </a>
+                </div>
+                <div className="border-t-2 border-black/20 pt-3 flex flex-col gap-2">
                   <p className="text-[9px] leading-tight text-black/70 font-mono uppercase">
                     Uwaga: Ujawnienie danych osobowych stron transakcji wymaga zalogowania poprzez opcję „Identita občana”, wybierając logowanie przez eIDAS.
                   </p>
