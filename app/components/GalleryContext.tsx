@@ -9,6 +9,7 @@ interface GalleryContextType {
   setWiktorGalleryOpen: (open: boolean) => void;
   setCenaJanovGalleryOpen: (open: boolean) => void;
   setCenaNydekGalleryOpen: (open: boolean) => void;
+  setWlasnoscKicinskiGalleryOpen: (open: boolean) => void;
 }
 
 const GalleryContext = createContext<GalleryContextType | undefined>(undefined);
@@ -44,6 +45,13 @@ const CENA_NYDEK_GALLERY = [
   "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kataster/cena-nydek.jpg"
 ];
 
+const WLASNOSC_KICINSKI_GALLERY = [
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/wlasnosc-kicinski-obrazy-0.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/wlasnosc-kicinski-obrazy-1.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/wlasnosc-kicinski-obrazy-2.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/wlasnosc-kicinski-obrazy-3.jpg"
+];
+
 interface GalleryModalsProps {
   badowskiGalleryOpen: boolean;
   setBadowskiGalleryOpen: (open: boolean) => void;
@@ -55,6 +63,8 @@ interface GalleryModalsProps {
   setCenaJanovGalleryOpen: (open: boolean) => void;
   cenaNydekGalleryOpen: boolean;
   setCenaNydekGalleryOpen: (open: boolean) => void;
+  wlasnoscKicinskiGalleryOpen: boolean;
+  setWlasnoscKicinskiGalleryOpen: (open: boolean) => void;
 }
 
 const GalleryModals: React.FC<GalleryModalsProps> = ({
@@ -67,7 +77,9 @@ const GalleryModals: React.FC<GalleryModalsProps> = ({
   cenaJanovGalleryOpen,
   setCenaJanovGalleryOpen,
   cenaNydekGalleryOpen,
-  setCenaNydekGalleryOpen
+  setCenaNydekGalleryOpen,
+  wlasnoscKicinskiGalleryOpen,
+  setWlasnoscKicinskiGalleryOpen
 }) => {
   return (
     <>
@@ -108,6 +120,14 @@ const GalleryModals: React.FC<GalleryModalsProps> = ({
         title="Dokument: Cena Nieruchomości Nýdek"
         pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kataster/cena-nydek.pdf"
       />
+
+      <PDFGallery
+        isOpen={wlasnoscKicinskiGalleryOpen}
+        onClose={() => setWlasnoscKicinskiGalleryOpen(false)}
+        images={WLASNOSC_KICINSKI_GALLERY}
+        title="Dokument: Własność Nieruchomości Janov"
+        pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/wlasnosc-kicinski.pdf"
+      />
     </>
   );
 };
@@ -118,6 +138,7 @@ export const GalleryProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [wiktorGalleryOpen, setWiktorGalleryOpen] = useState(false);
   const [cenaJanovGalleryOpen, setCenaJanovGalleryOpen] = useState(false);
   const [cenaNydekGalleryOpen, setCenaNydekGalleryOpen] = useState(false);
+  const [wlasnoscKicinskiGalleryOpen, setWlasnoscKicinskiGalleryOpen] = useState(false);
 
   return (
     <GalleryContext.Provider value={{
@@ -125,7 +146,8 @@ export const GalleryProvider: React.FC<{ children: React.ReactNode }> = ({ child
       setKordysGalleryOpen,
       setWiktorGalleryOpen,
       setCenaJanovGalleryOpen,
-      setCenaNydekGalleryOpen
+      setCenaNydekGalleryOpen,
+      setWlasnoscKicinskiGalleryOpen
     }}>
       {children}
       <GalleryModals
@@ -139,6 +161,8 @@ export const GalleryProvider: React.FC<{ children: React.ReactNode }> = ({ child
         setCenaJanovGalleryOpen={setCenaJanovGalleryOpen}
         cenaNydekGalleryOpen={cenaNydekGalleryOpen}
         setCenaNydekGalleryOpen={setCenaNydekGalleryOpen}
+        wlasnoscKicinskiGalleryOpen={wlasnoscKicinskiGalleryOpen}
+        setWlasnoscKicinskiGalleryOpen={setWlasnoscKicinskiGalleryOpen}
       />
     </GalleryContext.Provider>
   );
