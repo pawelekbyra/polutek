@@ -33,9 +33,9 @@ export default function Page() {
           {/* Header Section */}
           <div className="w-full flex flex-col items-center pt-12 pb-4 bg-white relative z-10">
             {/* Top Badge Structure */}
-            <div className="flex flex-col items-center mb-12">
-              <div className="border-[3px] border-black px-5 py-2 bg-white mb-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <span className="text-[10px] md:text-sm font-black uppercase tracking-[0.3em] leading-none block text-center">
+            <div className="flex flex-col items-center mb-4">
+              <div className="border-[2px] border-black px-2 md:px-5 py-1.5 bg-white mb-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+                <span className="text-[10px] md:text-sm font-black uppercase tracking-[0.2em] md:tracking-[0.3em] leading-none block text-center">
                   DZIENNIKARSKIE ŚLEDZTWO
                 </span>
               </div>
@@ -60,8 +60,8 @@ export default function Page() {
               </h1>
 
               {/* Subtitle Bar */}
-              <div className="w-full border-y-[3px] border-black py-3 mb-8">
-                <p className="text-xs md:text-lg text-black font-black uppercase tracking-[0.4em] leading-none not-italic">
+              <div className="w-full border-y-[1px] border-black py-1.5 mb-8">
+                <p className="text-[10px] md:text-base text-black font-bold uppercase tracking-[0.5em] leading-none not-italic">
                   MROCZNA TAJEMNICA TWÓRCÓW CD PROJEKT
                 </p>
               </div>
