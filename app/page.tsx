@@ -51,24 +51,26 @@ export default function Page() {
             <div className="w-full text-center flex flex-col items-center px-6 box-border">
               {/* Main Title */}
               <h1 className="text-black w-full mb-8">
-                <span className="block text-5xl sm:text-7xl md:text-[7.5rem] font-body font-black leading-[0.8] tracking-tighter uppercase">
+                <span className="block text-6xl sm:text-7xl md:text-[7.5rem] font-body font-black leading-[0.8] tracking-tighter uppercase">
                   Eliksir
                 </span>
-                <span className="block text-5xl sm:text-7xl md:text-[7.5rem] font-body font-black leading-[0.8] tracking-tighter uppercase">
+                <span className="block text-6xl sm:text-7xl md:text-[7.5rem] font-body font-black leading-[0.8] tracking-tighter uppercase">
                   Wiedźmina
                 </span>
               </h1>
 
               {/* Subtitle Bar */}
-              <div className="w-full border-y-[1px] border-black py-1.5 mb-8">
-                <p className="text-[10px] md:text-base text-black font-bold uppercase tracking-[0.5em] leading-none not-italic">
-                  MROCZNA TAJEMNICA TWÓRCÓW CD PROJEKT
+              <div className="w-full border-y-[1px] border-black py-2.5 mb-8">
+                <p className="text-[10px] md:text-base text-black font-bold uppercase tracking-[0.2em] md:tracking-[0.5em] leading-tight md:leading-none not-italic flex flex-col md:block gap-1 md:gap-0">
+                  <span className="block md:inline">Mroczna tajemnica</span>
+                  <span className="hidden md:inline"> </span>
+                  <span className="block md:inline">twórców CD Projekt</span>
                 </p>
               </div>
 
               {/* Lead Paragraph */}
               <div className="max-w-2xl mx-auto mb-16">
-                <p className="text-xl md:text-2xl text-[#000000] leading-snug italic font-serif font-bold px-4">
+                <p className="text-lg md:text-2xl text-[#000000] leading-snug italic font-serif font-bold px-4">
                   Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
                 </p>
               </div>
