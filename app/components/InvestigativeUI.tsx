@@ -14,14 +14,14 @@ export const CaseFile = ({ title, children, type = 'evidence', highlight = false
         <span className="flex items-center">{getIcon()}</span>
         <span>{title}</span>
       </div>
-      <div className="p-6 font-mono text-sm md:text-base leading-relaxed text-[#000000] antialiased">
+      <div className="p-6 pb-8 md:pb-6 font-mono text-sm md:text-base leading-relaxed text-[#000000] antialiased relative">
         {children}
+        {source && (
+          <div className="absolute bottom-1 right-4 text-[8px] md:text-[9px] text-black/50 uppercase tracking-widest font-mono pointer-events-none select-none text-right">
+            Źródło: {source}
+          </div>
+        )}
       </div>
-      {source && (
-        <div className="absolute bottom-1 right-4 text-[8px] md:text-[9px] text-black/50 uppercase tracking-widest font-mono pointer-events-none select-none text-right">
-          Źródło: {source}
-        </div>
-      )}
     </div>
   );
 };
@@ -46,7 +46,7 @@ export const PullQuote = ({ quote, author, source }: { quote: string, author: st
     <p className="font-serif text-xl md:text-2xl italic text-[#000000] leading-relaxed mb-3">
       „{quote}”
     </p>
-    <div className="font-sans text-[10px] uppercase tracking-widest text-black/70">
+    <div className="font-sans text-[10px] md:text-[11px] uppercase tracking-widest text-black/70 leading-relaxed">
       — <span className="font-bold text-black">{author}</span>, {source}
     </div>
   </div>
