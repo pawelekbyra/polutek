@@ -51,10 +51,10 @@ export default function Page() {
             <div className="w-full text-center flex flex-col items-center px-6 box-border">
               {/* Main Title */}
               <h1 className="text-black w-full mb-8">
-                <span className="block text-6xl md:text-8xl font-body font-black leading-[0.75] tracking-tighter uppercase">
+                <span className="block text-5xl md:text-7xl font-body font-black leading-[0.8] tracking-tighter uppercase">
                   Eliksir
                 </span>
-                <span className="block text-6xl md:text-8xl font-body font-black leading-[0.75] tracking-tighter uppercase">
+                <span className="block text-5xl md:text-7xl font-body font-black leading-[0.8] tracking-tighter uppercase">
                   Wiedźmina
                 </span>
               </h1>
