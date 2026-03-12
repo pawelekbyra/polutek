@@ -1,12 +1,36 @@
 yarn run v1.22.22
 $ next dev -p 3001
-  ▲ Next.js 14.2.3
-  - Local:        http://localhost:3001
-
- ✓ Starting...
- ✓ Ready in 3.4s
- ○ Compiling / ...
- ✓ Compiled / in 8.2s (610 modules)
- ✓ Compiled in 1397ms (281 modules)
- GET / 200 in 9755ms
- GET / 200 in 159ms
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3001
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at /app/node_modules/next/dist/server/lib/start-server.js:280:16
+    at n GET / 200 in 183ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1409ms (550 modules)
+ GET /_vercel/insights/script.js 404 in 1700ms
+ GET / 200 in 125ms
+ GET /_next/static/css/app/layout.css?v=1773311777994 404 in 67ms
+ GET /_next/static/chunks/main-app.js?v=1773311777994 404 in 107ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 106ms
+ GET /_next/static/chunks/app/page.js 404 in 94ms
+ GET /_next/static/chunks/app/layout.js 404 in 93ms
+ GET /_next/static/css/app/layout.css?v=1773311822126 404 in 59ms
+ GET / 200 in 158ms
+ GET /_next/static/chunks/main-app.js?v=1773311822126 404 in 81ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 77ms
+ GET /_next/static/chunks/app/page.js 404 in 73ms
+ GET /_next/static/chunks/app/layout.js 404 in 69ms
+ ✓ Compiled in 3.2s (561 modules)
+ GET / 200 in 351ms
+ ✓ Compiled /_not-found in 205ms (550 modules)
+ GET /_next/static/chunks/app-pages-internals.js 404 in 354ms
+ GET /_next/static/chunks/main-app.js?v=1773311981409 404 in 365ms
+ GET /_next/static/chunks/app/page.js 404 in 351ms
+ ✓ Compiled in 1081ms (561 modules)
+ GET / 200 in 496ms
+ ✓ Compiled /_not-found in 256ms (550 modules)
+ GET /_next/static/chunks/app-pages-internals.js 404 in 522ms
+ GET /_next/static/chunks/main-app.js?v=1773312056128 404 in 521ms
+ GET /_next/static/chunks/app/page.js 404 in 521ms

@@ -31,42 +31,55 @@ export default function Page() {
         <div className="w-full max-w-4xl bg-white flex flex-col items-center pb-0 border-x-4 border-black overflow-hidden relative shadow-2xl">
 
           {/* Header Section */}
-          <div className="w-full flex flex-col items-center pt-2 pb-0 bg-white relative z-10">
-            <div className="flex items-center justify-center w-[calc(100%-2rem)] mx-auto gap-4 pt-4 pb-1">
-              <div className="flex-grow h-1 bg-black"></div>
-              <h2 className="text-4xl md:text-[5rem] font-black tracking-tighter text-black uppercase font-display leading-none whitespace-nowrap px-2">
-                NASZA GAZETKA
-              </h2>
-              <div className="flex-grow h-1 bg-black"></div>
+          <div className="w-full flex flex-col items-center pt-10 pb-4 bg-white relative z-10">
+            {/* Top Badge */}
+            <div className="border-[3px] border-black px-4 py-1.5 mb-10 bg-white">
+              <span className="text-[11px] font-black uppercase tracking-[0.15em] leading-tight block text-center">
+                DZIENNIKARSKIE ŚLEDZTWO<br/>
+                MEDIA NIEZALEŻNE
+              </span>
             </div>
-            <div className="w-[calc(100%-2rem)] mx-auto border-y-2 border-black py-0 flex items-center justify-center px-4 text-[10px] md:text-lg font-black uppercase tracking-[0.25em] leading-none">
-              <span>Niezależne media</span>
-            </div>
-          </div>
 
-          <div className="w-full text-center flex flex-col items-center pt-1 pb-4 px-6 box-border relative z-10">
-            <div className="w-full max-w-[280px] mx-auto mb-2">
-              <img
-                src="/zdjeciehej.png"
-                alt="Dokumentacja śledztwa - Eliksir Wiedźmina"
-                className="w-full h-auto grayscale mix-blend-multiply"
-              />
-            </div>
-            <h1 className="text-black w-full mb-1 -mt-2">
-              <span className="block text-4xl md:text-[5rem] font-body font-black leading-[0.85] tracking-tighter uppercase">
-                Eliksir
-              </span>
-              <span className="block text-4xl md:text-[5rem] font-body font-black leading-[0.85] tracking-tighter uppercase">
-                Wiedźmina
-              </span>
-            </h1>
-            <p className="block text-[10px] md:text-base text-black font-black uppercase tracking-[0.25em] mt-2 border-y-2 border-black py-1">
-              MROCZNA TAJEMNICA TWÓRCÓW CD PROJEKT
-            </p>
-            <div className="max-w-2xl mx-auto mt-4">
-              <p className="text-xs md:text-sm text-[#000000] leading-snug italic font-serif font-bold px-4">
-                Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
-              </p>
+            <div className="w-full text-center flex flex-col items-center px-6 box-border">
+              {/* Hero Image */}
+              <div className="w-full max-w-[320px] mx-auto mb-8">
+                <img
+                  src="/zdjeciehej.png"
+                  alt="Zdjecie śledcze"
+                  className="w-full h-auto grayscale mix-blend-multiply"
+                />
+              </div>
+
+              {/* Document Label */}
+              <div className="mb-4">
+                <span className="font-serif italic text-base text-black/90 tracking-tight">
+                  Dokumentacja śledztwa — Eliksir Wiedźmina
+                </span>
+              </div>
+
+              {/* Main Title */}
+              <h1 className="text-black w-full mb-8">
+                <span className="block text-7xl md:text-[8.5rem] font-body font-black leading-[0.75] tracking-tighter uppercase">
+                  Eliksir
+                </span>
+                <span className="block text-7xl md:text-[8.5rem] font-body font-black leading-[0.75] tracking-tighter uppercase">
+                  Wiedźmina
+                </span>
+              </h1>
+
+              {/* Subtitle Bar */}
+              <div className="w-full border-y-[3px] border-black py-2.5 mb-8">
+                <p className="text-xs md:text-lg text-black font-black uppercase tracking-[0.3em] leading-none not-italic">
+                  MROCZNA TAJEMNICA TWÓRCÓW CD PROJEKT
+                </p>
+              </div>
+
+              {/* Lead Paragraph */}
+              <div className="max-w-2xl mx-auto mb-12">
+                <p className="text-lg md:text-xl text-[#000000] leading-snug italic font-serif font-bold px-4">
+                  Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
+                </p>
+              </div>
             </div>
           </div>
 
