@@ -10,6 +10,7 @@ interface GalleryContextType {
   setCenaJanovGalleryOpen: (open: boolean) => void;
   setCenaNydekGalleryOpen: (open: boolean) => void;
   setWlasnoscKicinskiGalleryOpen: (open: boolean) => void;
+  setJanovPhotosGalleryOpen: (open: boolean) => void;
 }
 
 const GalleryContext = createContext<GalleryContextType | undefined>(undefined);
@@ -52,6 +53,10 @@ const WLASNOSC_KICINSKI_GALLERY = [
   "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/wlasnosc-kicinski-obrazy-3.jpg"
 ];
 
+const JANOV_PHOTOS_GALLERY = Array.from({ length: 23 }, (_, i) =>
+  `https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov${i + 1}.jpg`
+);
+
 interface GalleryModalsProps {
   badowskiGalleryOpen: boolean;
   setBadowskiGalleryOpen: (open: boolean) => void;
@@ -65,6 +70,8 @@ interface GalleryModalsProps {
   setCenaNydekGalleryOpen: (open: boolean) => void;
   wlasnoscKicinskiGalleryOpen: boolean;
   setWlasnoscKicinskiGalleryOpen: (open: boolean) => void;
+  janovPhotosGalleryOpen: boolean;
+  setJanovPhotosGalleryOpen: (open: boolean) => void;
 }
 
 const GalleryModals: React.FC<GalleryModalsProps> = ({
@@ -79,7 +86,9 @@ const GalleryModals: React.FC<GalleryModalsProps> = ({
   cenaNydekGalleryOpen,
   setCenaNydekGalleryOpen,
   wlasnoscKicinskiGalleryOpen,
-  setWlasnoscKicinskiGalleryOpen
+  setWlasnoscKicinskiGalleryOpen,
+  janovPhotosGalleryOpen,
+  setJanovPhotosGalleryOpen
 }) => {
   return (
     <>
@@ -128,6 +137,13 @@ const GalleryModals: React.FC<GalleryModalsProps> = ({
         title="Dokument: Własność Nieruchomości Janov"
         pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/wlasnosc-kicinski.pdf"
       />
+
+      <PDFGallery
+        isOpen={janovPhotosGalleryOpen}
+        onClose={() => setJanovPhotosGalleryOpen(false)}
+        images={JANOV_PHOTOS_GALLERY}
+        title="Galeria: Janov 252"
+      />
     </>
   );
 };
@@ -139,6 +155,7 @@ export const GalleryProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [cenaJanovGalleryOpen, setCenaJanovGalleryOpen] = useState(false);
   const [cenaNydekGalleryOpen, setCenaNydekGalleryOpen] = useState(false);
   const [wlasnoscKicinskiGalleryOpen, setWlasnoscKicinskiGalleryOpen] = useState(false);
+  const [janovPhotosGalleryOpen, setJanovPhotosGalleryOpen] = useState(false);
 
   return (
     <GalleryContext.Provider value={{
@@ -147,7 +164,8 @@ export const GalleryProvider: React.FC<{ children: React.ReactNode }> = ({ child
       setWiktorGalleryOpen,
       setCenaJanovGalleryOpen,
       setCenaNydekGalleryOpen,
-      setWlasnoscKicinskiGalleryOpen
+      setWlasnoscKicinskiGalleryOpen,
+      setJanovPhotosGalleryOpen
     }}>
       {children}
       <GalleryModals
@@ -163,6 +181,8 @@ export const GalleryProvider: React.FC<{ children: React.ReactNode }> = ({ child
         setCenaNydekGalleryOpen={setCenaNydekGalleryOpen}
         wlasnoscKicinskiGalleryOpen={wlasnoscKicinskiGalleryOpen}
         setWlasnoscKicinskiGalleryOpen={setWlasnoscKicinskiGalleryOpen}
+        janovPhotosGalleryOpen={janovPhotosGalleryOpen}
+        setJanovPhotosGalleryOpen={setJanovPhotosGalleryOpen}
       />
     </GalleryContext.Provider>
   );

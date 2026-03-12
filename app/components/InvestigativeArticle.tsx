@@ -9,7 +9,7 @@ const KORDYS_PDF_URL = "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/wyro
 const DOCUMENTATION_IPFS_URL = `${PINATA_GATEWAY}/bafybeicnxlo366f6fznm5p6j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j7j`;
 const JANOV_PDF_URL = DOCUMENTATION_IPFS_URL;
 const NYDEK_PDF_URL = DOCUMENTATION_IPFS_URL;
-const MUNAY_WAYBACK_URL = "https://web.archive.org/web/20230607033503/https://munaysonqo.com/retreats/";
+const TRIBU_NYDEK_WAYBACK_URL = "https://web.archive.org/web/20180701000000*/www.tribunydek.com";
 
 const ARREST_VIDEO_URL = "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/jaroslaw-karolina-kordys-aresztowanie-zatrzymanie-ayahuasca-hermanovice-2020.mp4";
 const STEFANEK_VIDEO_URL = "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/historia-powstania-osady-natury-zew-w-gruncie-ruchu-stefan.mp4";
@@ -79,7 +79,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <CaseFile title="Ustalenia Sądu" source="Uzasadnienie wyroku Kordysa, sygn. 30 T 5/2020">
-            ...w odniesieniu do nieruchomości będących współwłasnością <strong className="font-black">Bartosza B.</strong> i <strong className="font-black">Michała D. K.</strong> <a href={JANOV_PDF_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć dokumentację">📸</a>
+            ...w odniesieniu do nieruchomości będących współwłasnością <strong className="font-black">Bartosza B.</strong> i <strong className="font-black">Michała D. K.</strong>
           </CaseFile>
 
           <div className="not-prose my-8 flex justify-start">
@@ -93,7 +93,7 @@ export const InvestigativeArticle = () => {
           </div>
 
           <p className="mt-4">
-            W Czechach księgi wieczyste są jawne i za niewielką opłatą można pobrać jej historyczny wypis. Pobrany dokument nie pozostawia wątpliwości<InteractiveSpan type="wlasnosc-kicinski" title="Kliknij, aby zobaczyć dokument">👁️</InteractiveSpan>: w latach 2012–2023 współwłaścicielami ayahuaskowej nieruchomości byli:
+            W Czechach księgi wieczyste są jawne i za niewielką opłatą można pobrać jej historyczny wypis. Pobrany dokument<InteractiveSpan type="wlasnosc-kicinski" title="Kliknij, aby zobaczyć dokument">👁️</InteractiveSpan> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami ayahuaskowej nieruchomości <InteractiveSpan type="janov-photos" title="Kliknij, aby zobaczyć galerię zdjęć Janova">📸</InteractiveSpan> byli:
             <br/><br/>
             Bartosz Badowski (10%) i <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">Michał Dawid Kiciński (90%)</span><br/>
           </p>
@@ -395,7 +395,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong className="font-black">Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu Wayback Machine zachowało zrzuty strony tribunydek.com. <a href={MUNAY_WAYBACK_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć archiwalny dowód">🔍</a> Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
+            Relacje świadków wskazują, że w posiadłości w Nýdku odbywały się regularne ceremonie o charakterze zbliżonym do tych u Kordysów i Badowskiego, prowadzone przez <strong className="font-black">Piotra Bonawenturę Tracza</strong>. Chociaż witryna ośrodka już nie istnieje, archiwum internetu Wayback Machine zachowało zrzuty strony tribunydek.com. <a href={TRIBU_NYDEK_WAYBACK_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć archiwalny dowód">🔍</a> Opisy warsztatów jednoznacznie wskazują, że nieruchomość była wykorzystywana do pracy z psychodelikami.
           </p>
 
           <p className="not-prose mt-4 font-bold text-center my-8 uppercase font-sans text-black">
@@ -677,7 +677,7 @@ export const InvestigativeArticle = () => {
                     <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Archiwum: WWW.TRIBUNYDEK.COM</h4>
                     <p className="font-mono text-xs text-black/60 mt-1 font-black">Wayback Machine</p>
                   </div>
-                  <a href={MUNAY_WAYBACK_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-[#e8d154] text-black px-4 py-2 text-xs font-black border-2 border-black hover:bg-white transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-sans">
+                  <a href={TRIBU_NYDEK_WAYBACK_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-[#e8d154] text-black px-4 py-2 text-xs font-black border-2 border-black hover:bg-white transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-sans">
                     🕰️ Otwórz Archiwum
                   </a>
                 </div>

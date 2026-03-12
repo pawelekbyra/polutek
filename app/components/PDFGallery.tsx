@@ -42,13 +42,15 @@ export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose,
         </div>
 
         <div className="flex items-center gap-2 md:gap-4">
-          <button
-            className="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded text-xs transition-colors"
-            onClick={handleDownload}
-          >
-            <Download size={16} />
-            <span className="hidden sm:inline">Pobierz PDF</span>
-          </button>
+          {pdfUrl && (
+            <button
+              className="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded text-xs transition-colors"
+              onClick={handleDownload}
+            >
+              <Download size={16} />
+              <span className="hidden sm:inline">Pobierz PDF</span>
+            </button>
+          )}
           <button
             onClick={onClose}
             className="p-1.5 hover:bg-white/20 rounded-full transition-colors"
