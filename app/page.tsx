@@ -31,52 +31,44 @@ export default function Page() {
         <div className="w-full max-w-4xl bg-white flex flex-col items-center pb-0 border-x-4 border-black overflow-hidden relative shadow-2xl">
 
           {/* Header Section */}
-          <div className="w-full flex flex-col items-center pt-10 pb-4 bg-white relative z-10">
-            {/* Top Badge */}
-            <div className="border-[3px] border-black px-4 py-1.5 mb-10 bg-white">
-              <span className="text-[11px] font-black uppercase tracking-[0.15em] leading-tight block text-center">
-                DZIENNIKARSKIE ŚLEDZTWO<br/>
-                MEDIA NIEZALEŻNE
-              </span>
+          <div className="w-full flex flex-col items-center pt-12 pb-4 bg-white relative z-10">
+            {/* Top Badge Structure */}
+            <div className="flex flex-col items-center mb-16">
+              <div className="border-[3px] border-black px-8 py-2.5 bg-white mb-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                <span className="text-base md:text-lg font-black uppercase tracking-[0.3em] leading-none block text-center">
+                  DZIENNIKARSKIE ŚLEDZTWO
+                </span>
+              </div>
+              <div className="flex items-center gap-3 w-full px-2">
+                <div className="h-px flex-grow bg-black/20"></div>
+                <span className="text-[9px] md:text-xs font-black uppercase tracking-[0.5em] leading-none block text-center text-black/40">
+                  MEDIA NIEZALEŻNE
+                </span>
+                <div className="h-px flex-grow bg-black/20"></div>
+              </div>
             </div>
 
             <div className="w-full text-center flex flex-col items-center px-6 box-border">
-              {/* Hero Image */}
-              <div className="w-full max-w-[320px] mx-auto mb-8">
-                <img
-                  src="/zdjeciehej.png"
-                  alt="Zdjecie śledcze"
-                  className="w-full h-auto grayscale mix-blend-multiply"
-                />
-              </div>
-
-              {/* Document Label */}
-              <div className="mb-4">
-                <span className="font-serif italic text-base text-black/90 tracking-tight">
-                  Dokumentacja śledztwa — Eliksir Wiedźmina
-                </span>
-              </div>
-
               {/* Main Title */}
               <h1 className="text-black w-full mb-8">
-                <span className="block text-7xl md:text-[8.5rem] font-body font-black leading-[0.75] tracking-tighter uppercase">
+                <span className="block text-6xl md:text-8xl font-body font-black leading-[0.75] tracking-tighter uppercase">
                   Eliksir
                 </span>
-                <span className="block text-7xl md:text-[8.5rem] font-body font-black leading-[0.75] tracking-tighter uppercase">
+                <span className="block text-6xl md:text-8xl font-body font-black leading-[0.75] tracking-tighter uppercase">
                   Wiedźmina
                 </span>
               </h1>
 
               {/* Subtitle Bar */}
-              <div className="w-full border-y-[3px] border-black py-2.5 mb-8">
-                <p className="text-xs md:text-lg text-black font-black uppercase tracking-[0.3em] leading-none not-italic">
+              <div className="w-full border-y-[3px] border-black py-3 mb-8">
+                <p className="text-xs md:text-lg text-black font-black uppercase tracking-[0.4em] leading-none not-italic">
                   MROCZNA TAJEMNICA TWÓRCÓW CD PROJEKT
                 </p>
               </div>
 
               {/* Lead Paragraph */}
-              <div className="max-w-2xl mx-auto mb-12">
-                <p className="text-lg md:text-xl text-[#000000] leading-snug italic font-serif font-bold px-4">
+              <div className="max-w-2xl mx-auto mb-16">
+                <p className="text-xl md:text-2xl text-[#000000] leading-snug italic font-serif font-bold px-4">
                   Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
                 </p>
               </div>
