@@ -4,7 +4,7 @@ import React from 'react';
 import { useGallery } from './GalleryContext';
 
 interface InteractiveSpanProps {
-  type: 'badowski' | 'kordys' | 'wiktor' | 'cena' | 'cena-nydek' | 'wlasnosc-kicinski';
+  type: 'badowski' | 'kordys' | 'wiktor' | 'cena' | 'cena-nydek' | 'wlasnosc-kicinski' | 'janov-photos';
   title: string;
   children: React.ReactNode;
 }
@@ -16,7 +16,8 @@ export const InteractiveSpan: React.FC<InteractiveSpanProps> = ({ type, title, c
     setWiktorGalleryOpen,
     setCenaJanovGalleryOpen,
     setCenaNydekGalleryOpen,
-    setWlasnoscKicinskiGalleryOpen
+    setWlasnoscKicinskiGalleryOpen,
+    setJanovPhotosGalleryOpen
   } = useGallery();
 
   const onClick = () => {
@@ -26,6 +27,7 @@ export const InteractiveSpan: React.FC<InteractiveSpanProps> = ({ type, title, c
     if (type === 'cena') setCenaJanovGalleryOpen(true);
     if (type === 'cena-nydek') setCenaNydekGalleryOpen(true);
     if (type === 'wlasnosc-kicinski') setWlasnoscKicinskiGalleryOpen(true);
+    if (type === 'janov-photos') setJanovPhotosGalleryOpen(true);
   };
 
   return (

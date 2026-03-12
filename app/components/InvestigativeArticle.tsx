@@ -79,7 +79,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <CaseFile title="Ustalenia Sądu" source="Uzasadnienie wyroku Kordysa, sygn. 30 T 5/2020">
-            ...w odniesieniu do nieruchomości będących współwłasnością <strong className="font-black">Bartosza B.</strong> i <strong className="font-black">Michała D. K.</strong> <a href={JANOV_PDF_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title="Kliknij, aby zobaczyć dokumentację">📸</a>
+            ...w odniesieniu do nieruchomości będących współwłasnością <strong className="font-black">Bartosza B.</strong> i <strong className="font-black">Michała D. K.</strong> <InteractiveSpan type="janov-photos" title="Kliknij, aby zobaczyć galerię zdjęć Janova">📸</InteractiveSpan>
           </CaseFile>
 
           <div className="not-prose my-8 flex justify-start">
