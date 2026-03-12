@@ -74,13 +74,6 @@ export const InvestigativeArticle = () => {
             Świadek [Bartosz B.] potwierdził, że w Janovie jest właścicielem jednej dziesiątej nieruchomości.
           </CaseFile>
 
-          <p className="mt-4">
-            Do kogo należała reszta? Sąd wskazuje wprost:
-          </p>
-
-          <CaseFile title="Ustalenia Sądu" source="Uzasadnienie wyroku Kordysa, sygn. 30 T 5/2020">
-            ...w odniesieniu do nieruchomości będących współwłasnością <strong className="font-black">Bartosza B.</strong> i <strong className="font-black">Michała D. K.</strong>
-          </CaseFile>
 
           <div className="not-prose my-8 flex justify-start">
               <LocationStampUI
@@ -93,7 +86,7 @@ export const InvestigativeArticle = () => {
           </div>
 
           <p className="mt-4">
-            W Czechach księgi wieczyste są jawne i za niewielką opłatą można pobrać jej historyczny wypis. Pobrany dokument<InteractiveSpan type="wlasnosc-kicinski" title="Kliknij, aby zobaczyć dokument">👁️</InteractiveSpan> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami ayahuaskowej nieruchomości <InteractiveSpan type="janov-photos" title="Kliknij, aby zobaczyć galerię zdjęć Janova">📸</InteractiveSpan> byli:
+            W Czechach księgi wieczyste są jawne i za niewielką opłatą można pobrać jej historyczny wypis. Pobrany dokument nie pozostawia wątpliwości<InteractiveSpan type="wlasnosc-kicinski" title="Kliknij, aby zobaczyć dokument">👁️</InteractiveSpan>: w latach 2012–2023 współwłaścicielami ayahuaskowej nieruchomości <InteractiveSpan type="janov-photos" title="Kliknij, aby zobaczyć galerię zdjęć Janova">📸</InteractiveSpan> byli:
             <br/><br/>
             Bartosz Badowski (10%) i <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">Michał Dawid Kiciński (90%)</span><br/>
           </p>

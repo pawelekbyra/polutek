@@ -53,9 +53,31 @@ const WLASNOSC_KICINSKI_GALLERY = [
   "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/wlasnosc-kicinski-obrazy-3.jpg"
 ];
 
-const JANOV_PHOTOS_GALLERY = Array.from({ length: 23 }, (_, i) =>
-  `https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov${i + 1}.jpg`
-);
+const JANOV_PHOTOS_GALLERY = [
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov1.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov2.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov3.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov4.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov5.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov6.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov7.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov8.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov9.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov10.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov11.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov12.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov13.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov14.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov15.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov16.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov17.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov18.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov19.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov20.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov21.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov22.jpg",
+  "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov23.jpg"
+];
 
 interface GalleryModalsProps {
   badowskiGalleryOpen: boolean;
