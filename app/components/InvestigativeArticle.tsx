@@ -93,7 +93,7 @@ export const InvestigativeArticle = () => {
           </div>
 
           <p className="mt-4">
-            W Czechach księgi wieczyste są jawne i za niewielką opłatą można pobrać jej historyczny wypis. Pobrany dokument nie pozostawia wątpliwości<InteractiveSpan type="wlasnosc-kicinski" title="Kliknij, aby zobaczyć dokument">👁️</InteractiveSpan>: w latach 2012–2023 współwłaścicielami ayahuaskowej nieruchomości byli:
+            W Czechach księgi wieczyste są jawne i za niewielką opłatą można pobrać jej historyczny wypis. Pobrany dokument<InteractiveSpan type="wlasnosc-kicinski" title="Kliknij, aby zobaczyć dokument">👁️</InteractiveSpan> nie pozostawia wątpliwości: w latach 2012–2023 współwłaścicielami ayahuaskowej nieruchomości byli:
             <br/><br/>
             Bartosz Badowski (10%) i <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">Michał Dawid Kiciński (90%)</span><br/>
           </p>
