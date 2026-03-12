@@ -87,7 +87,7 @@ export const InvestigativeArticle = () => {
           </div>
 
           <p className="mt-4">
-            Pobrany dokument nie pozostawia wątpliwości<InteractiveSpan type="wlasnosc-kicinski" title="Kliknij, aby zobaczyć dokument">👁️</InteractiveSpan>: w latach 2012–2023 współwłaścicielami ayahuaskowej nieruchomości byli:
+            W Czechach księgi wieczyste są jawne i za niewielką opłatą można pobrać jej historyczny wypis. Pobrany dokument nie pozostawia wątpliwości<InteractiveSpan type="wlasnosc-kicinski" title="Kliknij, aby zobaczyć dokument">👁️</InteractiveSpan>: w latach 2012–2023 współwłaścicielami ayahuaskowej nieruchomości byli:
             <br/><br/>
             Bartosz Badowski (10%) i <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">Michał Dawid Kiciński (90%)</span><br/>
           </p>
@@ -645,7 +645,7 @@ export const InvestigativeArticle = () => {
              <div className="p-4 bg-white/40 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/10 transition-colors">
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                   <div>
-                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Wykup udziałów (Janov)</h4>
+                    <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">Transakcja: Wykup udziałów (Janów)</h4>
                     <p className="font-mono text-xs text-black/60 mt-1 font-black">Sygnatura: V-2031/2023-831</p>
                   </div>
                   <a href={JANOV_BUYOUT_CADASTRAL_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
