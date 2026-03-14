@@ -1,8 +1,13 @@
+"use client";
+
 import React from 'react';
 import Script from 'next/script';
 import { InvestigativeArticle } from './components/InvestigativeArticle';
+import { useLanguage } from './components/LanguageContext';
 
 export default function Page() {
+  const { t, locale, setLocale } = useLanguage();
+
   const newsArticleSchema = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
@@ -14,7 +19,7 @@ export default function Page() {
     "dateModified": "2026-03-14",
     "author": [{
       "@type": "Person",
-      "name": "Wojciech Kurka",
+      "name": t.article.signatureName,
       "url": "mailto:wojciech.kurka@protonmail.com"
     }]
   };
@@ -33,17 +38,33 @@ export default function Page() {
 
           {/* Header Section */}
           <div className="w-full flex flex-col items-center pt-12 pb-4 bg-white relative z-10">
+            {/* Language Switcher */}
+            <div className="absolute top-4 right-6 flex gap-2 font-mono text-[10px] font-black">
+              <button
+                onClick={() => setLocale('pl')}
+                className={`px-2 py-1 border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-colors ${locale === 'pl' ? 'bg-[#e8d154]' : 'bg-white hover:bg-gray-100'}`}
+              >
+                PL
+              </button>
+              <button
+                onClick={() => setLocale('en')}
+                className={`px-2 py-1 border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-colors ${locale === 'en' ? 'bg-[#e8d154]' : 'bg-white hover:bg-gray-100'}`}
+              >
+                EN
+              </button>
+            </div>
+
             {/* Top Badge Structure */}
             <div className="flex flex-col items-center mb-4">
               <div className="border-[2px] border-black px-2 md:px-5 py-1.5 bg-white mb-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
                 <span className="text-[10px] md:text-sm font-black uppercase tracking-[0.2em] md:tracking-[0.3em] leading-none block text-center">
-                  DZIENNIKARSKIE ŚLEDZTWO
+                  {t.header.investigation}
                 </span>
               </div>
               <div className="flex items-center gap-3 w-full px-2">
                 <div className="h-px flex-grow bg-black/20"></div>
                 <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.5em] leading-none block text-center text-black/40">
-                  MEDIA NIEZALEŻNE
+                  {t.header.independentMedia}
                 </span>
                 <div className="h-px flex-grow bg-black/20"></div>
               </div>
@@ -68,16 +89,16 @@ export default function Page() {
               {/* Subtitle Bar */}
               <div className="w-full border-y-[1px] border-black py-2.5 mb-8">
                 <p className="text-[13px] md:text-base text-black font-bold uppercase tracking-[0.2em] md:tracking-[0.5em] leading-tight md:leading-none not-italic flex flex-col md:block gap-2 md:gap-0">
-                  <span className="block md:inline">Mroczna tajemnica</span>
+                  <span className="block md:inline">{t.header.subtitlePart1}</span>
                   <span className="hidden md:inline"> </span>
-                  <span className="block md:inline">twórców CD Projekt</span>
+                  <span className="block md:inline">{t.header.subtitlePart2}</span>
                 </p>
               </div>
 
               {/* Lead Paragraph */}
               <div className="max-w-2xl mx-auto mb-16">
                 <p className="text-sm md:text-2xl text-[#000000] leading-snug italic font-serif font-bold px-4">
-                  Ayahuasca, policyjne naloty i tragedia, o której nie miał się nikt dowiedzieć. Publicznie dostępne akta i rejestry ujawniają, jak twórcy gry „Wiedźmin” finansowali szamańskie podziemie.
+                  {t.header.lead}
                 </p>
               </div>
             </div>

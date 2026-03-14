@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState } from 'react';
 import { PDFGallery } from './PDFGallery';
+import { useLanguage } from './LanguageContext';
 
 interface GalleryContextType {
   setBadowskiGalleryOpen: (open: boolean) => void;
@@ -112,20 +113,22 @@ const GalleryModals: React.FC<GalleryModalsProps> = ({
   janovPhotosGalleryOpen,
   setJanovPhotosGalleryOpen
 }) => {
+  const { t } = useLanguage();
+
   return (
     <>
       <PDFGallery
         isOpen={badowskiGalleryOpen}
         onClose={() => setBadowskiGalleryOpen(false)}
         images={BADOWSKI_GALLERY}
-        title="Wyrok Bartosza Badowskiego (PDF Viewer)"
+        title={t.ui.pdfGalleryBadowskiTitle}
       />
 
       <PDFGallery
         isOpen={kordysGalleryOpen}
         onClose={() => setKordysGalleryOpen(false)}
         images={KORDYS_GALLERY}
-        title="Wyrok Jarosława Kordysa (PDF Viewer)"
+        title={t.ui.pdfGalleryKordysTitle}
         pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/wyrokKordysa/wyrok-jaroslawa-kordysa-30-t-5-2021-28-01-2022.pdf"
       />
 
@@ -133,14 +136,14 @@ const GalleryModals: React.FC<GalleryModalsProps> = ({
         isOpen={wiktorGalleryOpen}
         onClose={() => setWiktorGalleryOpen(false)}
         images={WIKTOR_GALLERY}
-        title="Galeria: Śmierć Wiktora"
+        title={t.ui.pdfGalleryWiktorTitle}
       />
 
       <PDFGallery
         isOpen={cenaJanovGalleryOpen}
         onClose={() => setCenaJanovGalleryOpen(false)}
         images={CENA_JANOV_GALLERY}
-        title="Dokument: Cena Nieruchomości Janov"
+        title={t.ui.pdfGalleryCenaJanovTitle}
         pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kataster/cena-janov.pdf"
       />
 
@@ -148,7 +151,7 @@ const GalleryModals: React.FC<GalleryModalsProps> = ({
         isOpen={cenaNydekGalleryOpen}
         onClose={() => setCenaNydekGalleryOpen(false)}
         images={CENA_NYDEK_GALLERY}
-        title="Dokument: Cena Nieruchomości Nýdek"
+        title={t.ui.pdfGalleryCenaNydekTitle}
         pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kataster/cena-nydek.pdf"
       />
 
@@ -156,7 +159,7 @@ const GalleryModals: React.FC<GalleryModalsProps> = ({
         isOpen={wlasnoscKicinskiGalleryOpen}
         onClose={() => setWlasnoscKicinskiGalleryOpen(false)}
         images={WLASNOSC_KICINSKI_GALLERY}
-        title="Dokument: Własność Nieruchomości Janov"
+        title={t.ui.pdfGalleryWlasnoscKicinskiTitle}
         pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/wlasnosc-kicinski.pdf"
       />
 
@@ -164,7 +167,7 @@ const GalleryModals: React.FC<GalleryModalsProps> = ({
         isOpen={janovPhotosGalleryOpen}
         onClose={() => setJanovPhotosGalleryOpen(false)}
         images={JANOV_PHOTOS_GALLERY}
-        title="Galeria: Janov 252"
+        title={t.ui.pdfGalleryJanovPhotosTitle}
       />
     </>
   );

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Download } from 'lucide-react';
 import Image from 'next/image';
+import { useLanguage } from './LanguageContext';
 
 interface PDFGalleryProps {
   images: string[];
@@ -14,6 +15,7 @@ interface PDFGalleryProps {
 
 export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose, title, pdfUrl }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { t } = useLanguage();
 
   if (!isOpen) return null;
 
@@ -24,7 +26,7 @@ export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose,
     if (pdfUrl) {
       window.open(pdfUrl, '_blank');
     } else {
-      alert('Pobieranie PDF (Atrapa)...');
+      alert(t.ui.pdfGalleryAtrappa);
     }
   };
 
@@ -48,7 +50,7 @@ export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose,
               onClick={handleDownload}
             >
               <Download size={16} />
-              <span className="hidden sm:inline">Pobierz PDF</span>
+              <span className="hidden sm:inline">{t.ui.pdfGalleryDownload}</span>
             </button>
           )}
           <button
@@ -72,7 +74,7 @@ export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose,
         <div className="w-full h-full flex items-center justify-center relative">
           <Image
             src={images[currentIndex]}
-            alt={`Dokument sądowy – sprawa szamańska - Strona ${currentIndex + 1}`}
+            alt={`${t.ui.pdfGalleryCourtDocument} ${currentIndex + 1}`}
             fill
             className="object-contain shadow-2xl"
           />
@@ -96,7 +98,7 @@ export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose,
           >
             <Image
               src={img}
-              alt={`Miniatura - Strona ${idx + 1}`}
+              alt={`${t.ui.pdfGalleryThumbnail} ${idx + 1}`}
               fill
               className="object-cover"
             />

@@ -1,7 +1,9 @@
 import React from 'react';
 import { MapPin, Stamp, FileText, Mail, Search, Scale, Quote } from 'lucide-react';
+import { useLanguage } from './LanguageContext';
 
 export const CaseFile = ({ title, children, type = 'evidence', highlight = false, source }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email', highlight?: boolean, source?: string }) => {
+  const { t } = useLanguage();
   const getIcon = () => {
     if (type === 'email') return <Mail size={12} />;
     if (type === 'transcript') return <Search size={12} />;
@@ -18,7 +20,7 @@ export const CaseFile = ({ title, children, type = 'evidence', highlight = false
         {children}
         {source && (
           <div className="absolute bottom-1 right-4 text-[8px] md:text-[9px] text-black/50 uppercase tracking-widest font-mono pointer-events-none select-none text-right">
-            Źródło: {source}
+            {t.ui.source}: {source}
           </div>
         )}
       </div>
@@ -53,6 +55,7 @@ export const PullQuote = ({ quote, author, source }: { quote: string, author: st
 );
 
 export const LocationStampUI = ({ name, code, plot, lv, href }: { name: string, code: string, plot: string, lv: string, href?: string }) => {
+  const { t } = useLanguage();
   const content = (
     <>
       <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed text-black/40 group-hover:text-black transition-colors">
@@ -60,7 +63,7 @@ export const LocationStampUI = ({ name, code, plot, lv, href }: { name: string, 
       </div>
       <div className="py-2">
         <div className="text-[9px] text-black/60 font-mono uppercase tracking-tighter leading-tight mb-1">
-          LV: {lv} | DZIAŁKA: {plot}
+          LV: {lv} | {t.ui.locationPlot}: {plot}
         </div>
         <div className="font-mono text-sm font-black text-black uppercase leading-none mb-1">{name}</div>
         <div className="text-[9px] text-black/60 font-mono uppercase tracking-tighter leading-tight">
