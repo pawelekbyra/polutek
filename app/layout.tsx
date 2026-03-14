@@ -33,8 +33,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Twórcy „Wiedźmina” i ich szamani. Śmierć uczestniczki ceremonii.",
-  description: "Śmierć podczas ceremonii z Ayahuascą, zacieranie śladów i szokujące kulisy świata twórców CD Projekt.",
+  title: "Afera, CD Projekt, Kiciński, Onet, Kordys: Ayahuasca i Mroczne Śledztwo",
+  description: "Afera, CD Projekt, Kiciński, Onet, Kordys. Śmierć podczas ceremonii z Ayahuascą, zacieranie śladów i szokujące kulisy świata twórców CD Projekt.",
   metadataBase: new URL('https://www.nasza-gazetka.pl'),
   alternates: {
     canonical: 'https://www.nasza-gazetka.pl/',
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Twórcy „Wiedźmina” i ich szamani. Śmierć uczestniczki ceremonii.",
-    description: "Śmierć podczas ceremonii z Ayahuascą, zacieranie śladów i szokujące kulisy świata twórców CD Projekt.",
+    title: "Afera, CD Projekt, Kiciński, Onet, Kordys: Ayahuasca i Mroczne Śledztwo",
+    description: "Afera, CD Projekt, Kiciński, Onet, Kordys. Śmierć podczas ceremonii z Ayahuascą, zacieranie śladów i szokujące kulisy świata twórców CD Projekt.",
     url: '/',
     siteName: 'Eliksir Wiedźmina',
     images: [
