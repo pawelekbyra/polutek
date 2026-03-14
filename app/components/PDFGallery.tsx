@@ -10,9 +10,10 @@ interface PDFGalleryProps {
   onClose: () => void;
   title: string;
   pdfUrl?: string;
+  dict: any;
 }
 
-export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose, title, pdfUrl }) => {
+export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose, title, pdfUrl, dict }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!isOpen) return null;
@@ -24,7 +25,7 @@ export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose,
     if (pdfUrl) {
       window.open(pdfUrl, '_blank');
     } else {
-      alert('Pobieranie PDF (Atrapa)...');
+      alert(dict.atrapa_download);
     }
   };
 
@@ -48,7 +49,7 @@ export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose,
               onClick={handleDownload}
             >
               <Download size={16} />
-              <span className="hidden sm:inline">Pobierz PDF</span>
+              <span className="hidden sm:inline">{dict.download_pdf}</span>
             </button>
           )}
           <button
@@ -72,7 +73,7 @@ export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose,
         <div className="w-full h-full flex items-center justify-center relative">
           <Image
             src={images[currentIndex]}
-            alt={`Dokument sądowy – sprawa szamańska - Strona ${currentIndex + 1}`}
+            alt={`${dict.court_document_alt} ${currentIndex + 1}`}
             fill
             className="object-contain shadow-2xl"
           />
@@ -96,7 +97,7 @@ export const PDFGallery: React.FC<PDFGalleryProps> = ({ images, isOpen, onClose,
           >
             <Image
               src={img}
-              alt={`Miniatura - Strona ${idx + 1}`}
+              alt={`${dict.thumbnail_alt} ${idx + 1}`}
               fill
               className="object-cover"
             />

@@ -94,6 +94,7 @@ interface GalleryModalsProps {
   setWlasnoscKicinskiGalleryOpen: (open: boolean) => void;
   janovPhotosGalleryOpen: boolean;
   setJanovPhotosGalleryOpen: (open: boolean) => void;
+  dict: any;
 }
 
 const GalleryModals: React.FC<GalleryModalsProps> = ({
@@ -110,7 +111,8 @@ const GalleryModals: React.FC<GalleryModalsProps> = ({
   wlasnoscKicinskiGalleryOpen,
   setWlasnoscKicinskiGalleryOpen,
   janovPhotosGalleryOpen,
-  setJanovPhotosGalleryOpen
+  setJanovPhotosGalleryOpen,
+  dict
 }) => {
   return (
     <>
@@ -118,59 +120,66 @@ const GalleryModals: React.FC<GalleryModalsProps> = ({
         isOpen={badowskiGalleryOpen}
         onClose={() => setBadowskiGalleryOpen(false)}
         images={BADOWSKI_GALLERY}
-        title="Wyrok Bartosza Badowskiego (PDF Viewer)"
+        title={dict.click_to_see_judgment.replace('Kliknij, aby zobaczyć ', '')}
+        dict={dict}
       />
 
       <PDFGallery
         isOpen={kordysGalleryOpen}
         onClose={() => setKordysGalleryOpen(false)}
         images={KORDYS_GALLERY}
-        title="Wyrok Jarosława Kordysa (PDF Viewer)"
+        title={dict.click_to_see_judgment.replace('Kliknij, aby zobaczyć ', '')}
         pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/wyrokKordysa/wyrok-jaroslawa-kordysa-30-t-5-2021-28-01-2022.pdf"
+        dict={dict}
       />
 
       <PDFGallery
         isOpen={wiktorGalleryOpen}
         onClose={() => setWiktorGalleryOpen(false)}
         images={WIKTOR_GALLERY}
-        title="Galeria: Śmierć Wiktora"
+        title={dict.click_to_see_details.replace('Kliknij, aby zobaczyć ', '')}
+        dict={dict}
       />
 
       <PDFGallery
         isOpen={cenaJanovGalleryOpen}
         onClose={() => setCenaJanovGalleryOpen(false)}
         images={CENA_JANOV_GALLERY}
-        title="Dokument: Cena Nieruchomości Janov"
+        title={dict.click_to_see_document.replace('Kliknij, aby zobaczyć ', '')}
         pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kataster/cena-janov.pdf"
+        dict={dict}
       />
 
       <PDFGallery
         isOpen={cenaNydekGalleryOpen}
         onClose={() => setCenaNydekGalleryOpen(false)}
         images={CENA_NYDEK_GALLERY}
-        title="Dokument: Cena Nieruchomości Nýdek"
+        title={dict.click_to_see_document.replace('Kliknij, aby zobaczyć ', '')}
         pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kataster/cena-nydek.pdf"
+        dict={dict}
       />
 
       <PDFGallery
         isOpen={wlasnoscKicinskiGalleryOpen}
         onClose={() => setWlasnoscKicinskiGalleryOpen(false)}
         images={WLASNOSC_KICINSKI_GALLERY}
-        title="Dokument: Własność Nieruchomości Janov"
+        title={dict.click_to_see_document.replace('Kliknij, aby zobaczyć ', '')}
         pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/wlasnosc-kicinski.pdf"
+        dict={dict}
       />
 
       <PDFGallery
         isOpen={janovPhotosGalleryOpen}
         onClose={() => setJanovPhotosGalleryOpen(false)}
         images={JANOV_PHOTOS_GALLERY}
-        title="Galeria: Janov 252"
+        title={dict.click_to_see_gallery.replace('Kliknij, aby zobaczyć ', '')}
+        dict={dict}
       />
     </>
   );
 };
 
-export const GalleryProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const GalleryProvider: React.FC<{ children: React.ReactNode; dict: any }> = ({ children, dict }) => {
   const [badowskiGalleryOpen, setBadowskiGalleryOpen] = useState(false);
   const [kordysGalleryOpen, setKordysGalleryOpen] = useState(false);
   const [wiktorGalleryOpen, setWiktorGalleryOpen] = useState(false);
@@ -205,6 +214,7 @@ export const GalleryProvider: React.FC<{ children: React.ReactNode }> = ({ child
         setWlasnoscKicinskiGalleryOpen={setWlasnoscKicinskiGalleryOpen}
         janovPhotosGalleryOpen={janovPhotosGalleryOpen}
         setJanovPhotosGalleryOpen={setJanovPhotosGalleryOpen}
+        dict={dict}
       />
     </GalleryContext.Provider>
   );

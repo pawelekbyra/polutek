@@ -1,7 +1,7 @@
 import React from 'react';
 import { MapPin, Stamp, FileText, Mail, Search, Scale, Quote } from 'lucide-react';
 
-export const CaseFile = ({ title, children, type = 'evidence', highlight = false, source }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email', highlight?: boolean, source?: string }) => {
+export const CaseFile = ({ title, children, type = 'evidence', highlight = false, source, dict }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email', highlight?: boolean, source?: string, dict: any }) => {
   const getIcon = () => {
     if (type === 'email') return <Mail size={12} />;
     if (type === 'transcript') return <Search size={12} />;
@@ -18,7 +18,7 @@ export const CaseFile = ({ title, children, type = 'evidence', highlight = false
         {children}
         {source && (
           <div className="absolute bottom-1 right-4 text-[8px] md:text-[9px] text-black/50 uppercase tracking-widest font-mono pointer-events-none select-none text-right">
-            Źródło: {source}
+            {dict.source_label}: {source}
           </div>
         )}
       </div>
