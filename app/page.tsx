@@ -7,10 +7,11 @@ export default function Page() {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     "url": "https://www.nasza-gazetka.pl",
-    "headline": "Twórcy „Wiedźmina” i ich szamani. Śmierć uczestniczki ceremonii.",
+    "headline": "Afera CD Projekt: Kiciński, Ayahuasca i Mroczne Śledztwo",
     "description": "Śmierć podczas ceremonii z Ayahuascą, zacieranie śladów i szokujące kulisy świata twórców CD Projekt.",
     "image": ["https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kordys-aresztowanie-cover-photo.png"],
-    "datePublished": "2024-03-03",
+    "datePublished": "2026-03-14",
+    "dateModified": "2026-03-14",
     "author": [{
       "@type": "Person",
       "name": "Wojciech Kurka",
@@ -49,15 +50,20 @@ export default function Page() {
             </div>
 
             <div className="w-full text-center flex flex-col items-center px-4 md:px-6 box-border">
-              {/* Main Title */}
-              <h1 className="text-black w-full mb-8">
-                <span className="block text-[14.5vw] sm:text-7xl md:text-[7.5rem] font-body font-black leading-[0.8] tracking-tighter uppercase">
+              {/* Main Title SEO */}
+              <h1 className="text-black w-full mb-6 font-body font-black text-2xl md:text-5xl uppercase tracking-tighter leading-tight border-b-2 border-black pb-4">
+                Afera CD Projekt: Kiciński, Ayahuasca i Mroczne Śledztwo
+              </h1>
+
+              {/* Aesthetic Title */}
+              <h2 className="text-black w-full mb-8 opacity-60">
+                <span className="block text-3xl md:text-5xl font-body font-black leading-[0.8] tracking-tighter uppercase">
                   Eliksir
                 </span>
-                <span className="block text-[14.5vw] sm:text-7xl md:text-[7.5rem] font-body font-black leading-[0.8] tracking-tighter uppercase">
+                <span className="block text-3xl md:text-5xl font-body font-black leading-[0.8] tracking-tighter uppercase">
                   Wiedźmina
                 </span>
-              </h1>
+              </h2>
 
               {/* Subtitle Bar */}
               <div className="w-full border-y-[1px] border-black py-2.5 mb-8">
