@@ -2,7 +2,7 @@ import React from 'react';
 import { CaseFile, LegalNote, PullQuote, FormattedText } from './InvestigativeUI';
 import { getDictionary } from '@/app/(localized)/[lang]/dictionaries';
 
-export const ProkuraturaArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' }) => {
+export const ProkuraturaArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' | 'de' | 'fr' }) => {
   const t = await getDictionary(lang);
 
   return (
@@ -25,7 +25,7 @@ export const ProkuraturaArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' })
           <FormattedText text={t.prokuratura.p3} />
         </p>
 
-        <CaseFile title={t.prokuratura.caseFileReportTitle} type="evidence" source={lang === 'pl' ? "Notatka służbowa policji" : lang === 'en' ? "Police official note" : "Nota oficial de la policía"} t={t}>
+        <CaseFile title={t.prokuratura.caseFileReportTitle} type="evidence" source={t.ui.policeNote} t={t}>
           <FormattedText text={t.prokuratura.caseFileReport} />
         </CaseFile>
 
@@ -59,7 +59,7 @@ export const ProkuraturaArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' })
           <FormattedText text={t.prokuratura.p8} /> <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">"<FormattedText text={t.prokuratura.noteNote} />"</span>
         </p>
 
-        <CaseFile title={t.prokuratura.caseFileReport2Title} type="evidence" source={lang === 'pl' ? "Archiwum Prokuratury Rejonowej" : lang === 'en' ? "District Prosecutor's Office Archive" : "Archivo de la Fiscalía de Distrito"} t={t}>
+        <CaseFile title={t.prokuratura.caseFileReport2Title} type="evidence" source={t.ui.prosecutorArchive} t={t}>
           <FormattedText text={t.prokuratura.caseFileReport2} />
         </CaseFile>
 

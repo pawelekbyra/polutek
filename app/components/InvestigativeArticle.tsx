@@ -38,7 +38,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           </p>
 
           <p className="mt-4">
-            <FormattedText text={t.article.p2} /> <a href="https://krytykapolityczna.pl/narkopolityka/polacy-ayahuasca-czechy/" target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby zobaczyć archiwalny dowód" : lang === 'en' ? "Click to see archival evidence" : "Haga clic para ver la evidencia de archivo"}>🌐</a>
+            <FormattedText text={t.article.p2} /> <a href="https://krytykapolityczna.pl/narkopolityka/polacy-ayahuasca-czechy/" target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={t.ui.tooltipArchivalEvidence}>🌐</a>
           </p>
 
           <p className="mt-4">
@@ -52,7 +52,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.article.sectionWitnessB}</h2>
 
           <p className="mt-4">
-            <FormattedText text={t.article.pWitnessB1} /> <InteractiveSpan type="kordys" title={lang === 'pl' ? "Kliknij, aby zobaczyć wyrok" : lang === 'en' ? "Click to see verdict" : "Haga clic para ver la sentencia"}>📄</InteractiveSpan>
+            <FormattedText text={t.article.pWitnessB1} /> <InteractiveSpan type="kordys" title={t.ui.tooltipVerdict}>📄</InteractiveSpan>
           </p>
 
           <CaseFile title={t.article.caseFileWitnessBTitle} type="transcript" source={t.sources.kordysVerdict} t={t}>
@@ -79,7 +79,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           <div className="not-prose my-8 flex justify-start">
               <LocationStampUI
                 name="JANOV 252"
-                code={lang === 'pl' ? "793 84 Czechy" : lang === 'en' ? "793 84 Czech Republic" : "793 84 República Checa"}
+                code={`793 84 ${t.ui.countryCzechRepublic}`}
                 plot="252793"
                 lv="84"
                 href="https://nahlizenidokn.cuzk.gov.cz/ZobrazObjekt.aspx?encrypted=NAHL~Ph1DBACX9hLEB6fts7JCaqzjwc-8Bm-FsLqDU8eePrzOZO_6ESWYq0fvwpyG2abQ9P1fCqZ_nqCtiHrQZWDcmetevryGohKCWXt1aFERNJbL_Omfu5XpBU30m_2IBOi9q4EcsPuNRyji8T8H8_hlY1SVJWGkDU6qn-jdDoP4DabZL2GxttqvHoRZb3ZS3pL_Ymbhzg1IoE7bNihOQVHxO1mqvj7tsbDFZocoY_C-KM8vAuKtZUO_akQJsw4LUoB1"
@@ -88,7 +88,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           </div>
 
           <p className="mt-4">
-            <FormattedText text={t.article.pOwnershipKicinski} /><InteractiveSpan type="wlasnosc-kicinski" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokument" : lang === 'en' ? "Click to see document" : "Haga clic para ver el documento"}>👁️</InteractiveSpan>:
+            <FormattedText text={t.article.pOwnershipKicinski} /><InteractiveSpan type="wlasnosc-kicinski" title={t.ui.tooltipDocument}>👁️</InteractiveSpan>:
             <br/><br/>
             <FormattedText text={t.article.pOwnershipKicinskiDetails} /><br/>
           </p>
@@ -195,7 +195,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           </p>
 
           <p className="mt-4">
-            <FormattedText text={t.article.pPriceOfFreedom7} /> <InteractiveSpan type="badowski" title={lang === 'pl' ? "Kliknij, aby zobaczyć wyrok" : lang === 'en' ? "Click to see verdict" : "Haga clic para ver la sentencia"}>📄</InteractiveSpan>
+            <FormattedText text={t.article.pPriceOfFreedom7} /> <InteractiveSpan type="badowski" title={t.ui.tooltipVerdict}>📄</InteractiveSpan>
           </p>
 
           <CaseFile title={t.article.caseFileBadowskiVerdictTitle} source={t.sources.kordysVerdict} t={t}>
@@ -271,7 +271,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           </p>
 
           <p className="mt-4">
-            <FormattedText text={t.article.pKicinskiPeru2} /> <a href="https://munaysonqo.com/all-retreats/#calendar-7a66adc3-3ebd-432c-b572-0faf936c281f-event-e90d5161-a00e-4742-b4b7-039de153a23d" target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby otworzyć stronę ośrodka Munay Sonqo" : lang === 'en' ? "Click to open Munay Sonqo center website" : "Haga clic para abrir el sitio web del centro Munay Sonqo"}>🌐</a>
+            <FormattedText text={t.article.pKicinskiPeru2} /> <a href="https://munaysonqo.com/all-retreats/#calendar-7a66adc3-3ebd-432c-b572-0faf936c281f-event-e90d5161-a00e-4742-b4b7-039de153a23d" target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={t.ui.tooltipMunaySonqo}>🌐</a>
           </p>
 
           <p className="mt-4">
@@ -320,7 +320,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
             <li className="flex items-start gap-4">
               <span className="text-xl">📅</span>
               <div>
-                <strong className="font-black text-base">{lang === 'pl' ? "21 września 2023 r." : lang === 'en' ? "September 21, 2023" : "21 de septiembre de 2023"}</strong><br/>
+                <strong className="font-black text-base">{t.article.date21Sep2023}</strong><br/>
                 <FormattedText text={t.article.timelineItem1} />
               </div>
             </li>
@@ -328,15 +328,15 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
             <li className="flex items-start gap-4">
               <span className="text-xl">📅</span>
               <div>
-                <strong className="font-black text-base">{lang === 'pl' ? "3 października 2023 r." : lang === 'en' ? "October 3, 2023" : "3 de octubre de 2023"}</strong><br/>
-                <FormattedText text={t.article.timelineItem2} /><InteractiveSpan type="cena" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokument" : lang === 'en' ? "Click to see document" : "Haga clic para ver el documento"}>👁️</InteractiveSpan>
+                <strong className="font-black text-base">{t.article.date3Oct2023}</strong><br/>
+                <FormattedText text={t.article.timelineItem2} /><InteractiveSpan type="cena" title={t.ui.tooltipDocument}>👁️</InteractiveSpan>
               </div>
             </li>
 
             <li className="flex items-start gap-4">
               <span className="text-xl">📅</span>
               <div>
-                <strong className="font-black text-base">{lang === 'pl' ? "11 października 2023 r." : lang === 'en' ? "October 11, 2023" : "11 de octubre de 2023"}</strong><br/>
+                <strong className="font-black text-base">{t.article.date11Oct2023}</strong><br/>
                 <FormattedText text={t.article.timelineItem3} />
               </div>
             </li>
@@ -352,7 +352,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
             <li className="flex items-start gap-4 mt-6">
               <span className="text-xl">📅</span>
               <div>
-                <strong className="font-black text-base">{lang === 'pl' ? "21 grudnia 2023 r." : lang === 'en' ? "December 21, 2023" : "21 de diciembre de 2023"}</strong><br/>
+                <strong className="font-black text-base">{t.article.date21Dec2023}</strong><br/>
                 <FormattedText text={t.article.timelineItem5} />
               </div>
             </li>
@@ -381,11 +381,11 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.article.sectionNydek}</h2>
 
           <p className="mt-4">
-            <FormattedText text={t.article.pNydek1} /> <a href={NYDEK_PDF_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokumentację" : lang === 'en' ? "Click to see documentation" : "Haga clic para ver la documentación"}>📸</a>
+            <FormattedText text={t.article.pNydek1} /> <a href={NYDEK_PDF_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={t.ui.tooltipDocumentation}>📸</a>
           </p>
 
           <p className="mt-4">
-            <FormattedText text={t.article.pNydek2} /> <a href={TRIBU_NYDEK_WAYBACK_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby zobaczyć archiwalny dowód" : lang === 'en' ? "Click to see archival evidence" : "Haga clic para ver la evidencia de archivo"}>🔍</a>
+            <FormattedText text={t.article.pNydek2} /> <a href={TRIBU_NYDEK_WAYBACK_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={t.ui.tooltipArchivalEvidence}>🔍</a>
           </p>
 
           <p className="not-prose mt-4 font-bold text-center my-8 uppercase font-sans text-black">
@@ -399,7 +399,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           <div className="not-prose my-8 flex justify-start">
               <LocationStampUI
                 name="NYDEK 120"
-                code={lang === 'pl' ? "739 95 Czechy" : lang === 'en' ? "739 95 Czech Republic" : "739 95 República Checa"}
+                code={`739 95 ${t.ui.countryCzechRepublic}`}
                 plot="120739"
                 lv="95"
                 href="https://nahlizenidokn.cuzk.gov.cz/ZobrazObjekt.aspx?encrypted=NAHL~uQr6_qGGFNbscI31qkCFl1vpVRu3o8TWYak_iMPnq4Xni8IKqU6i2gAeUccVcXY0cblWyhwAnpIfk_96Mg7yOtHNymugDk5IKqRCxXKsDVSaFSQDLQ1U0IhqdBk9LlCR_I0UG5TUns3dt8PYkjaBZnRbrrTdSTBlGm3NYz5s3Fs57qfwSIALL3wiNHX8YWmHNt4frIIWhALPhA00bxPjexuiQ2JTZo1a4_lgJyZNUq8_lkKhHRCtuhwUvhv7ZIDD"
@@ -419,9 +419,9 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
              <li className="flex items-start gap-4">
               <span className="text-xl">📅</span>
             <div>
-              <strong className="font-black text-base block">{lang === 'pl' ? "25 stycznia 2016 r." : lang === 'en' ? "January 25, 2016" : "25 de enero de 2016"}</strong>
+              <strong className="font-black text-base block">{t.article.date25Jan2016}</strong>
               <span className="block leading-tight">
-                <FormattedText text={t.article.timelineNydekItem1} /><InteractiveSpan type="cena-nydek" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokument" : lang === 'en' ? "Click to see document" : "Haga clic para ver el documento"}>👁️</InteractiveSpan>
+                <FormattedText text={t.article.timelineNydekItem1} /><InteractiveSpan type="cena-nydek" title={t.ui.tooltipDocument}>👁️</InteractiveSpan>
               </span>
               <span className="block leading-tight">
                 <FormattedText text={t.article.timelineNydekItem1Details} />
@@ -432,7 +432,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
              <li className="flex items-start gap-4">
               <span className="text-xl">📅</span>
               <div>
-                <strong className="font-black text-base">{lang === 'pl' ? "15 października 2020 r." : lang === 'en' ? "October 15, 2020" : "15 de octubre de 2020"}</strong><br/>
+                <strong className="font-black text-base">{t.article.date15Oct2020}</strong><br/>
                 <FormattedText text={t.article.timelineNydekItem2} />
               </div>
              </li>
@@ -440,7 +440,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
             <li className="flex items-start gap-4">
               <span className="text-xl">📅</span>
               <div>
-                <strong className="font-black text-base">{lang === 'pl' ? "15 czerwca 2021 r." : lang === 'en' ? "June 15, 2021" : "15 de junio de 2021"}</strong><br/>
+                <strong className="font-black text-base">{t.article.date15Jun2021}</strong><br/>
                 <FormattedText text={t.article.timelineNydekItem3} />
               </div>
             </li>
@@ -465,7 +465,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.article.sectionWiktor}</h2>
 
           <p className="mt-4">
-            <FormattedText text={t.article.pWiktor1} /> <a href={ONET_INVESTIGATION_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Otwórz artykuł na Onet.pl" : lang === 'en' ? "Open article on Onet.pl" : "Abrir artículo en Onet.pl"}>🌐</a>
+            <FormattedText text={t.article.pWiktor1} /> <a href={ONET_INVESTIGATION_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={t.ui.tooltipOnet}>🌐</a>
           </p>
 
           <p className="mt-4">
@@ -489,7 +489,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           </p>
 
           <p className="mt-4">
-            <FormattedText text={t.article.pWiktor7} /><InteractiveSpan type="wiktor" title={lang === 'pl' ? "Kliknij, aby zobaczyć szczegóły" : lang === 'en' ? "Click to see details" : "Haga clic para ver detalles"}>🔍</InteractiveSpan>
+            <FormattedText text={t.article.pWiktor7} /><InteractiveSpan type="wiktor" title={t.ui.tooltipDetails}>🔍</InteractiveSpan>
           </p>
 
           <div className="not-prose mt-12 mb-4 flex justify-end relative z-10">
@@ -612,7 +612,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                   <div>
                     <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">{t.article.sourceNydekPurchaseTitle}</h4>
-                    <p className="font-mono text-xs text-black/60 mt-1 font-black">{lang === 'pl' ? 'Sygnatura' : lang === 'en' ? 'Reference' : 'Referencia'}: V-320/2016-832</p>
+                    <p className="font-mono text-xs text-black/60 mt-1 font-black">{t.ui.caseSignature}: V-320/2016-832</p>
                   </div>
                   <a href={NYDEK_CADASTRAL_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     🌐 {t.article.verifyInKatastr}
@@ -629,7 +629,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                   <div>
                     <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">{t.article.sourceNydekSaleTitle}</h4>
-                    <p className="font-mono text-xs text-black/60 mt-1 font-black">{lang === 'pl' ? 'Sygnatura' : lang === 'en' ? 'Reference' : 'Referencia'}: V-2937/2021</p>
+                    <p className="font-mono text-xs text-black/60 mt-1 font-black">{t.ui.caseSignature}: V-2937/2021</p>
                   </div>
                   <a href={NYDEK_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     📥 {t.article.downloadPDF}
@@ -649,7 +649,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                   <div>
                     <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">{t.article.sourceJanovBuyoutTitle}</h4>
-                    <p className="font-mono text-xs text-black/60 mt-1 font-black">{lang === 'pl' ? 'Sygnatura' : lang === 'en' ? 'Reference' : 'Referencia'}: V-2031/2023-831</p>
+                    <p className="font-mono text-xs text-black/60 mt-1 font-black">{t.ui.caseSignature}: V-2031/2023-831</p>
                   </div>
                   <a href={JANOV_BUYOUT_CADASTRAL_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     🌐 {t.article.verifyInKatastr}

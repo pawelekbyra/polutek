@@ -152,7 +152,14 @@
     "sourceJanovBuyoutTitle": "Transacción: Compra de participaciones (Janov)",
     "sourceWaybackTitle": "Archivo: WWW.TRIBUNYDEK.COM",
     "openArchive": "Abrir archivo",
-    "katastrNote": "Nota: La divulgación de datos personales de las partes de la transacción requiere iniciar sesión a través de la opción «Identita občana», seleccionando el inicio de sesión a través de eIDAS."
+    "katastrNote": "Nota: La divulgación de datos personales de las partes de la transacción requiere iniciar sesión a través de la opción «Identita občana», seleccionando el inicio de sesión a través de eIDAS.",
+    "date21Sep2023": "21 de septiembre de 2023",
+    "date3Oct2023": "3 de octubre de 2023",
+    "date11Oct2023": "11 de octubre de 2023",
+    "date21Dec2023": "21 de diciembre de 2023",
+    "date25Jan2016": "25 de enero de 2016",
+    "date15Oct2020": "15 de octubre de 2020",
+    "date15Jun2021": "15 de junio de 2021"
   },
   "prokuratura": {
     "title": "Robo en la Fiscalía de Wałbrzych. Expedientes que desaparecen.",
@@ -194,7 +201,7 @@
     "noData": "SIN DATOS",
     "caseBurglary": "Investigación de robo PR 999/2024",
     "caseBurglaryStatus": "Estado: Expedientes robados durante el robo",
-    "lost": "LOST"
+    "lost": "PERDIDO"
   },
   "ui": {
     "source": "Fuente",
@@ -215,7 +222,18 @@
     "pdfGalleryWlasnoscKicinskiTitle": "Documento: Propiedad del inmueble Janov",
     "pdfGalleryJanovPhotosTitle": "Galería: Janov 252",
     "caseRefLabel": "ref. de caso",
-    "precinctLabel": "Recinto"
+    "precinctLabel": "Recinto",
+    "tooltipArchivalEvidence": "Haga clic para ver la evidencia de archivo",
+    "tooltipVerdict": "Haga clic para ver la sentencia",
+    "tooltipDocument": "Haga clic para ver el documento",
+    "tooltipMunaySonqo": "Haga clic para abrir el sitio web del centro Munay Sonqo",
+    "tooltipDocumentation": "Haga clic para ver la documentación",
+    "tooltipOnet": "Abrir artículo en Onet.pl",
+    "tooltipDetails": "Haga clic para ver detalles",
+    "countryCzechRepublic": "República Checa",
+    "caseSignature": "Referencia",
+    "policeNote": "Nota oficial de la policía",
+    "prosecutorArchive": "Archivo de la Fiscalía de Distrito"
   },
   "sources": {
     "kordysVerdict": "Justificación de la sentencia de Kordys, ref. 30 T 5/2020",

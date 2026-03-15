@@ -152,7 +152,14 @@
     "sourceJanovBuyoutTitle": "Transaction : Rachat de parts (Janov)",
     "sourceWaybackTitle": "Archive : WWW.TRIBUNYDEK.COM",
     "openArchive": "Ouvrir l'archive",
-    "katastrNote": "Note : La divulgation des données personnelles des parties à la transaction nécessite une connexion via l'option « Identita občana », en choisissant la connexion via eIDAS."
+    "katastrNote": "Note : La divulgation des données personnelles des parties à la transaction nécessite une connexion via l'option « Identita občana », en choisissant la connexion via eIDAS.",
+    "date21Sep2023": "21 septembre 2023",
+    "date3Oct2023": "3 octobre 2023",
+    "date11Oct2023": "11 octobre 2023",
+    "date21Dec2023": "21 décembre 2023",
+    "date25Jan2016": "25 janvier 2016",
+    "date15Oct2020": "15 octobre 2020",
+    "date15Jun2021": "15 juin 2021"
   },
   "prokuratura": {
     "title": "Cambriolage au parquet de Wałbrzych. Dossiers qui disparaissent.",
@@ -194,7 +201,7 @@
     "noData": "AUCUNE DONNÉE",
     "caseBurglary": "Enquête sur le cambriolage PR 999/2024",
     "caseBurglaryStatus": "Statut : Dossiers volés lors du cambriolage",
-    "lost": "LOST"
+    "lost": "PERDU"
   },
   "ui": {
     "source": "Source",
@@ -215,7 +222,18 @@
     "pdfGalleryWlasnoscKicinskiTitle": "Document : Propriété de l'immeuble Janov",
     "pdfGalleryJanovPhotosTitle": "Galerie : Janov 252",
     "caseRefLabel": "réf.",
-    "precinctLabel": "Circonscription"
+    "precinctLabel": "Circonscription",
+    "tooltipArchivalEvidence": "Cliquez pour voir les preuves d'archive",
+    "tooltipVerdict": "Cliquez pour voir le jugement",
+    "tooltipDocument": "Cliquez pour voir le document",
+    "tooltipMunaySonqo": "Cliquez pour ouvrir le site du centre Munay Sonqo",
+    "tooltipDocumentation": "Cliquez pour voir la documentation",
+    "tooltipOnet": "Ouvrir l'article sur Onet.pl",
+    "tooltipDetails": "Cliquez pour voir les détails",
+    "countryCzechRepublic": "République tchèque",
+    "caseSignature": "Référence",
+    "policeNote": "Note officielle de la police",
+    "prosecutorArchive": "Archives du parquet d'arrondissement"
   },
   "sources": {
     "kordysVerdict": "Attendus du jugement Kordys, réf. 30 T 5/2020",
