@@ -40,8 +40,8 @@ export const LegalNote = ({ term, children }: { term: string, children: React.Re
 
 export const FormattedText = ({ text }: { text: string }) => {
   if (!text) return null;
-  // Match **bold**, ==yellow highlight==, !!red highlight!!, __underline__, and newlines
-  const parts = text.split(/(\*\*.*?\*\*|==.*?==|!!.*?!!|__.*?__|\n)/g);
+  // Match **bold**, ==yellow highlight==, !!red highlight!!, __underline__, ++black underline++, ~~red underline~~, and newlines
+  const parts = text.split(/(\*\*.*?\*\*|==.*?==|!!.*?!!|__.*?__|\+\+.*?\+\+|~~.*?~~|\n)/g);
   return (
     <>
       {parts.map((part, i) => {
@@ -57,6 +57,12 @@ export const FormattedText = ({ text }: { text: string }) => {
         }
         if (part.startsWith('__') && part.endsWith('__')) {
           return <span key={i} className="underline decoration-[#e8d154] decoration-4 underline-offset-4">{part.slice(2, -2)}</span>;
+        }
+        if (part.startsWith('++') && part.endsWith('++')) {
+          return <span key={i} className="underline decoration-black decoration-2 underline-offset-4">{part.slice(2, -2)}</span>;
+        }
+        if (part.startsWith('~~') && part.endsWith('~~')) {
+          return <span key={i} className="underline decoration-red-600 decoration-2 underline-offset-4">{part.slice(2, -2)}</span>;
         }
         return part;
       })}
