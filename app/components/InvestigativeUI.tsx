@@ -38,6 +38,32 @@ export const LegalNote = ({ term, children }: { term: string, children: React.Re
   </div>
 );
 
+export const FormattedText = ({ text }: { text: string }) => {
+  if (!text) return null;
+  // Match **bold**, ==yellow highlight==, !!red highlight!!, __underline__, and newlines
+  const parts = text.split(/(\*\*.*?\*\*|==.*?==|!!.*?!!|__.*?__|\n)/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        if (part === '\n') return <br key={i} />;
+        if (part.startsWith('**') && part.endsWith('**')) {
+          return <strong key={i} className="font-black">{part.slice(2, -2)}</strong>;
+        }
+        if (part.startsWith('==') && part.endsWith('==')) {
+          return <span key={i} className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">{part.slice(2, -2)}</span>;
+        }
+        if (part.startsWith('!!') && part.endsWith('!!')) {
+          return <span key={i} className="bg-red-600 font-black text-white shadow-sm box-decoration-clone inline-block leading-tight px-1">{part.slice(2, -2)}</span>;
+        }
+        if (part.startsWith('__') && part.endsWith('__')) {
+          return <span key={i} className="underline decoration-[#e8d154] decoration-4 underline-offset-4">{part.slice(2, -2)}</span>;
+        }
+        return part;
+      })}
+    </>
+  );
+};
+
 export const PullQuote = ({ quote, author, source }: { quote: string, author: string, source: string }) => (
   <div className="not-prose my-10 pl-6 border-l-[6px] border-black text-left relative z-10">
     <div className="absolute -left-3 top-0 bg-white p-1 text-black/20">

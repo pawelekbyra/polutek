@@ -1,5 +1,5 @@
 import React from 'react';
-import { CaseFile, LegalNote, PullQuote, LocationStampUI, TransactionStampUI } from './InvestigativeUI';
+import { CaseFile, LegalNote, PullQuote, LocationStampUI, TransactionStampUI, FormattedText } from './InvestigativeUI';
 import { ArticleVideoPlayer } from './InvestigativeMedia';
 import { InteractiveSpan } from './InteractiveSpan';
 import { GalleryProvider } from './GalleryContext';
@@ -34,45 +34,45 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           style={{ color: '#000000', opacity: 1, WebkitFontSmoothing: 'none' }}
         >
           <p className="drop-cap mt-0">
-            {t.article.p1}
+            <FormattedText text={t.article.p1} />
           </p>
 
           <p className="mt-4">
-            {t.article.p2} <a href="https://krytykapolityczna.pl/narkopolityka/polacy-ayahuasca-czechy/" target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby zobaczyć archiwalny dowód" : lang === 'en' ? "Click to see archival evidence" : "Haga clic para ver la evidencia de archivo"}>🌐</a>
+            <FormattedText text={t.article.p2} /> <a href="https://krytykapolityczna.pl/narkopolityka/polacy-ayahuasca-czechy/" target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby zobaczyć archiwalny dowód" : lang === 'en' ? "Click to see archival evidence" : "Haga clic para ver la evidencia de archivo"}>🌐</a>
           </p>
 
           <p className="mt-4">
-            {t.article.p3}
+            <FormattedText text={t.article.p3} />
           </p>
 
           <p className="mt-4">
-            {t.article.p4}
+            <FormattedText text={t.article.p4} />
           </p>
 
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.article.sectionWitnessB}</h2>
 
           <p className="mt-4">
-            {t.article.pWitnessB1} <InteractiveSpan type="kordys" title={lang === 'pl' ? "Kliknij, aby zobaczyć wyrok" : lang === 'en' ? "Click to see verdict" : "Haga clic para ver la sentencia"}>📄</InteractiveSpan>
+            <FormattedText text={t.article.pWitnessB1} /> <InteractiveSpan type="kordys" title={lang === 'pl' ? "Kliknij, aby zobaczyć wyrok" : lang === 'en' ? "Click to see verdict" : "Haga clic para ver la sentencia"}>📄</InteractiveSpan>
           </p>
 
           <CaseFile title={t.article.caseFileWitnessBTitle} type="transcript" source={t.sources.kordysVerdict} t={t}>
-            {t.article.caseFileWitnessB1}
+            <FormattedText text={t.article.caseFileWitnessB1} />
           </CaseFile>
 
           <p className="mt-4">
-            {t.article.pWitnessB2}
+            <FormattedText text={t.article.pWitnessB2} />
           </p>
 
           <CaseFile title={t.article.caseFileWitnessB2Title} source={t.sources.kordysVerdict} t={t}>
-            {t.article.caseFileWitnessB2}
+            <FormattedText text={t.article.caseFileWitnessB2} />
           </CaseFile>
 
           <p className="mt-4">
-            {t.article.pWitnessB3}
+            <FormattedText text={t.article.pWitnessB3} />
           </p>
 
           <CaseFile title={t.article.caseFileOwnershipTitle} source={t.sources.kordysVerdict} t={t}>
-            {t.article.caseFileOwnership}
+            <FormattedText text={t.article.caseFileOwnership} />
           </CaseFile>
 
 
@@ -88,84 +88,82 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           </div>
 
           <p className="mt-4">
-            {t.article.pOwnershipKicinski}<InteractiveSpan type="wlasnosc-kicinski" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokument" : lang === 'en' ? "Click to see document" : "Haga clic para ver el documento"}>👁️</InteractiveSpan>:
+            <FormattedText text={t.article.pOwnershipKicinski} /><InteractiveSpan type="wlasnosc-kicinski" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokument" : lang === 'en' ? "Click to see document" : "Haga clic para ver el documento"}>👁️</InteractiveSpan>:
             <br/><br/>
-            <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">{t.article.pOwnershipKicinskiDetails}</span><br/>
+            <FormattedText text={t.article.pOwnershipKicinskiDetails} /><br/>
           </p>
 
           <p className="mt-4 leading-tight">
-            {t.article.pOwnershipKicinskiConclusion1}
+            <FormattedText text={t.article.pOwnershipKicinskiConclusion1} />
             <br />
-            <span className="bg-red-600 px-1 font-black text-white shadow-sm box-decoration-clone inline-block">
-              {t.article.pOwnershipKicinskiConclusion2}
-            </span>
+            <FormattedText text={t.article.pOwnershipKicinskiConclusion2} />
           </p>
 
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.article.sectionEavesdropping}</h2>
 
           <p className="mt-4">
-            {t.article.pEavesdropping1}
+            <FormattedText text={t.article.pEavesdropping1} />
           </p>
 
           <p className="mt-4">
-            {t.article.pEavesdropping2}
+            <FormattedText text={t.article.pEavesdropping2} />
           </p>
 
           <CaseFile title={t.article.caseFileConversationTitle} type="transcript" source={t.sources.kordysVerdict} t={t}>
-            {t.article.caseFileConversation}
+            <FormattedText text={t.article.caseFileConversation} />
           </CaseFile>
 
           <p className="mt-4">
-            {t.article.pEavesdropping3}
+            <FormattedText text={t.article.pEavesdropping3} />
           </p>
 
           <CaseFile title={t.article.caseFileQuestionTitle} type="transcript" source={t.sources.kordysVerdict} t={t}>
-            {t.article.caseFileQuestion}
+            <FormattedText text={t.article.caseFileQuestion} />
           </CaseFile>
 
           <div className="not-prose my-12 pl-6 border-l-[6px] border-black font-serif italic text-2xl text-[#000000] leading-relaxed relative z-10">
-            {t.article.quoteConversationText}
+            <FormattedText text={t.article.quoteConversationText} />
             <div className="text-left text-[10px] uppercase tracking-widest text-black/50 mt-4 font-mono not-italic">
-              {t.article.quoteConversationSource}
+              <FormattedText text={t.article.quoteConversationSource} />
             </div>
           </div>
 
           <p className="mt-4">
-            {t.article.pEavesdropping4}
+            <FormattedText text={t.article.pEavesdropping4} />
           </p>
 
           <p className="mt-4">
-            {t.article.pEavesdropping5}
+            <FormattedText text={t.article.pEavesdropping5} />
           </p>
 
           <CaseFile title={t.article.caseFileContinuationTitle} type="transcript" source={t.sources.kordysVerdict} t={t}>
-            {t.article.caseFileContinuation}
+            <FormattedText text={t.article.caseFileContinuation} />
           </CaseFile>
 
           <p className="mt-4">
-            {t.article.pEavesdropping6}
+            <FormattedText text={t.article.pEavesdropping6} />
           </p>
 
           <p className="mt-4">
-            {t.article.pEavesdropping7}
+            <FormattedText text={t.article.pEavesdropping7} />
           </p>
 
           <CaseFile title={t.article.caseFileSearchTitle} source={t.sources.kordysVerdict} t={t}>
-            {t.article.caseFileSearch}
+            <FormattedText text={t.article.caseFileSearch} />
           </CaseFile>
 
           <p className="mt-4">
-            {t.article.pEavesdropping8}
+            <FormattedText text={t.article.pEavesdropping8} />
           </p>
 
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.article.sectionPriceOfFreedom}</h2>
 
           <p className="mt-4">
-            {t.article.pPriceOfFreedom1}
+            <FormattedText text={t.article.pPriceOfFreedom1} />
           </p>
 
           <p className="mt-4">
-            {t.article.pPriceOfFreedom2}
+            <FormattedText text={t.article.pPriceOfFreedom2} />
           </p>
 
           <div className="not-prose my-8">
@@ -177,51 +175,51 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           </div>
 
           <p className="mt-4">
-            {t.article.pPriceOfFreedom3}
+            <FormattedText text={t.article.pPriceOfFreedom3} />
           </p>
 
           <LegalNote term="Dohoda o vině">
-            {t.article.legalNoteDohoda}
+            <FormattedText text={t.article.legalNoteDohoda} />
           </LegalNote>
 
           <p className="mt-4">
-            {t.article.pPriceOfFreedom4}
+            <FormattedText text={t.article.pPriceOfFreedom4} />
           </p>
 
           <p className="mt-4">
-            {t.article.pPriceOfFreedom5}
+            <FormattedText text={t.article.pPriceOfFreedom5} />
           </p>
 
           <p className="mt-4">
-            {t.article.pPriceOfFreedom6}
+            <FormattedText text={t.article.pPriceOfFreedom6} />
           </p>
 
           <p className="mt-4">
-            {t.article.pPriceOfFreedom7} <InteractiveSpan type="badowski" title={lang === 'pl' ? "Kliknij, aby zobaczyć wyrok" : lang === 'en' ? "Click to see verdict" : "Haga clic para ver la sentencia"}>📄</InteractiveSpan>
+            <FormattedText text={t.article.pPriceOfFreedom7} /> <InteractiveSpan type="badowski" title={lang === 'pl' ? "Kliknij, aby zobaczyć wyrok" : lang === 'en' ? "Click to see verdict" : "Haga clic para ver la sentencia"}>📄</InteractiveSpan>
           </p>
 
           <CaseFile title={t.article.caseFileBadowskiVerdictTitle} source={t.sources.kordysVerdict} t={t}>
-            {t.article.caseFileBadowskiVerdict}
+            <FormattedText text={t.article.caseFileBadowskiVerdict} />
           </CaseFile>
 
           <p className="mt-4">
-            {t.article.pPriceOfFreedom8}
+            <FormattedText text={t.article.pPriceOfFreedom8} />
           </p>
 
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.article.sectionSilence}</h2>
 
           <p className="mt-4">
-            {t.article.pSilence1}
+            <FormattedText text={t.article.pSilence1} />
           </p>
 
           <p className="mt-4">
-            {t.article.pSilence2}
+            <FormattedText text={t.article.pSilence2} />
           </p>
 
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.article.sectionKicinski}</h2>
 
           <p className="mt-4">
-            {t.article.pKicinski1}
+            <FormattedText text={t.article.pKicinski1} />
           </p>
 
           <PullQuote
@@ -241,69 +239,69 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.article.sectionErrorWithBadi}</h2>
 
           <p className="mt-4">
-            {t.article.pErrorWithBadi1}
+            <FormattedText text={t.article.pErrorWithBadi1} />
           </p>
 
           <p className="mt-4">
-            {t.article.pErrorWithBadi2}
+            <FormattedText text={t.article.pErrorWithBadi2} />
           </p>
 
           <CaseFile title={t.article.caseFileEmailTitle} type="email" source="ONET.PL" t={t}>
-            {t.article.caseFileEmail}
+            <FormattedText text={t.article.caseFileEmail} />
           </CaseFile>
 
           <p className="mt-4">
-            {t.article.pErrorWithBadi3}
+            <FormattedText text={t.article.pErrorWithBadi3} />
           </p>
 
           <CaseFile title={t.article.caseFileStatementTitle} source="ONET.PL" t={t}>
-            {t.article.caseFileStatement}
+            <FormattedText text={t.article.caseFileStatement} />
           </CaseFile>
 
           <p className="mt-4">
-            {t.article.pErrorWithBadi4}
+            <FormattedText text={t.article.pErrorWithBadi4} />
           </p>
 
           <CaseFile title={t.article.caseFileParticipationTitle} source="ONET.PL" t={t}>
-            {t.article.caseFileParticipation}
+            <FormattedText text={t.article.caseFileParticipation} />
           </CaseFile>
 
           <p className="mt-4">
-            {t.article.pKicinskiPeru}
+            <FormattedText text={t.article.pKicinskiPeru} />
           </p>
 
           <p className="mt-4">
-            {t.article.pKicinskiPeru2} <a href="https://munaysonqo.com/all-retreats/#calendar-7a66adc3-3ebd-432c-b572-0faf936c281f-event-e90d5161-a00e-4742-b4b7-039de153a23d" target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby otworzyć stronę ośrodka Munay Sonqo" : lang === 'en' ? "Click to open Munay Sonqo center website" : "Haga clic para abrir el sitio web del centro Munay Sonqo"}>🌐</a>
+            <FormattedText text={t.article.pKicinskiPeru2} /> <a href="https://munaysonqo.com/all-retreats/#calendar-7a66adc3-3ebd-432c-b572-0faf936c281f-event-e90d5161-a00e-4742-b4b7-039de153a23d" target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby otworzyć stronę ośrodka Munay Sonqo" : lang === 'en' ? "Click to open Munay Sonqo center website" : "Haga clic para abrir el sitio web del centro Munay Sonqo"}>🌐</a>
           </p>
 
           <p className="mt-4">
-            {t.article.pKicinskiPeru3}
+            <FormattedText text={t.article.pKicinskiPeru3} />
           </p>
 
-          <p>
-            {t.article.pBadowskiCorrespondence}
+          <p className="mt-4">
+            <FormattedText text={t.article.pBadowskiCorrespondence} />
           </p>
 
           <CaseFile title={t.article.caseFileBadowskiEmailTitle} type="email" source="Bartosz Badowski" t={t}>
-            {t.article.caseFileBadowskiEmail}
+            <FormattedText text={t.article.caseFileBadowskiEmail} />
           </CaseFile>
 
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.article.sectionPhilanthropist}</h2>
 
           <p className="mt-4">
-            {t.article.pPhilanthropist1}
+            <FormattedText text={t.article.pPhilanthropist1} />
           </p>
 
           <p className="mt-4">
-            {t.article.pPhilanthropist2}
+            <FormattedText text={t.article.pPhilanthropist2} />
           </p>
 
           <CaseFile title={t.article.caseFileStefanekTitle} source={t.sources.stefanekYT} t={t}>
-            {t.article.caseFileStefanek}
+            <FormattedText text={t.article.caseFileStefanek} />
           </CaseFile>
 
           <p className="mt-4">
-            {t.article.pPhilanthropist3}
+            <FormattedText text={t.article.pPhilanthropist3} />
           </p>
 
           <div className="not-prose my-8">
@@ -315,7 +313,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           </div>
 
           <p className="mt-4 mb-8">
-            {t.article.pPhilanthropist4}
+            <FormattedText text={t.article.pPhilanthropist4} />
           </p>
 
           <ul className="not-prose list-none space-y-10 my-12 font-mono text-sm border-l-4 border-black pl-6 relative z-10">
@@ -323,7 +321,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
               <span className="text-xl">📅</span>
               <div>
                 <strong className="font-black text-base">{lang === 'pl' ? "21 września 2023 r." : lang === 'en' ? "September 21, 2023" : "21 de septiembre de 2023"}</strong><br/>
-                {t.article.timelineItem1}
+                <FormattedText text={t.article.timelineItem1} />
               </div>
             </li>
 
@@ -331,7 +329,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
               <span className="text-xl">📅</span>
               <div>
                 <strong className="font-black text-base">{lang === 'pl' ? "3 października 2023 r." : lang === 'en' ? "October 3, 2023" : "3 de octubre de 2023"}</strong><br/>
-                {t.article.timelineItem2}<InteractiveSpan type="cena" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokument" : lang === 'en' ? "Click to see document" : "Haga clic para ver el documento"}>👁️</InteractiveSpan>
+                <FormattedText text={t.article.timelineItem2} /><InteractiveSpan type="cena" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokument" : lang === 'en' ? "Click to see document" : "Haga clic para ver el documento"}>👁️</InteractiveSpan>
               </div>
             </li>
 
@@ -339,7 +337,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
               <span className="text-xl">📅</span>
               <div>
                 <strong className="font-black text-base">{lang === 'pl' ? "11 października 2023 r." : lang === 'en' ? "October 11, 2023" : "11 de octubre de 2023"}</strong><br/>
-                {t.article.timelineItem3}
+                <FormattedText text={t.article.timelineItem3} />
               </div>
             </li>
 
@@ -347,7 +345,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
               <span className="text-xl mt-4">⚠️</span>
               <div className="bg-[#e8d154]/30 border-2 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] w-full">
                 <strong className="font-black text-base font-sans">{t.article.timelineItem4Title}</strong><br/>
-                {t.article.timelineItem4Text}
+                <FormattedText text={t.article.timelineItem4Text} />
               </div>
             </li>
 
@@ -355,13 +353,13 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
               <span className="text-xl">📅</span>
               <div>
                 <strong className="font-black text-base">{lang === 'pl' ? "21 grudnia 2023 r." : lang === 'en' ? "December 21, 2023" : "21 de diciembre de 2023"}</strong><br/>
-                {t.article.timelineItem5}
+                <FormattedText text={t.article.timelineItem5} />
               </div>
             </li>
           </ul>
 
           <p className="mt-4">
-            {t.article.pPhilanthropist5}
+            <FormattedText text={t.article.pPhilanthropist5} />
           </p>
 
           <div className="not-prose my-8 flex justify-start">
@@ -373,29 +371,29 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           </div>
 
           <p className="mt-4">
-            {t.article.pPhilanthropist6}
+            <FormattedText text={t.article.pPhilanthropist6} />
           </p>
 
           <p className="mt-4">
-            {t.article.pPhilanthropist7}
+            <FormattedText text={t.article.pPhilanthropist7} />
           </p>
 
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.article.sectionNydek}</h2>
 
           <p className="mt-4">
-            {t.article.pNydek1} <a href={NYDEK_PDF_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokumentację" : lang === 'en' ? "Click to see documentation" : "Haga clic para ver la documentación"}>📸</a>
+            <FormattedText text={t.article.pNydek1} /> <a href={NYDEK_PDF_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokumentację" : lang === 'en' ? "Click to see documentation" : "Haga clic para ver la documentación"}>📸</a>
           </p>
 
           <p className="mt-4">
-            {t.article.pNydek2} <a href={TRIBU_NYDEK_WAYBACK_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby zobaczyć archiwalny dowód" : lang === 'en' ? "Click to see archival evidence" : "Haga clic para ver la evidencia de archivo"}>🔍</a>
+            <FormattedText text={t.article.pNydek2} /> <a href={TRIBU_NYDEK_WAYBACK_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby zobaczyć archiwalny dowód" : lang === 'en' ? "Click to see archival evidence" : "Haga clic para ver la evidencia de archivo"}>🔍</a>
           </p>
 
           <p className="not-prose mt-4 font-bold text-center my-8 uppercase font-sans text-black">
-            {t.article.pNydekQuestion}
+            <FormattedText text={t.article.pNydekQuestion} />
           </p>
 
           <p className="mt-4">
-            {t.article.pNydek3}
+            <FormattedText text={t.article.pNydek3} />
           </p>
 
           <div className="not-prose my-8 flex justify-start">
@@ -410,11 +408,11 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           </div>
 
           <p className="mt-4">
-            <span className="bg-red-600 px-1 font-black text-white shadow-sm box-decoration-clone">{t.article.pNydekConclusion}</span>
+            <FormattedText text={t.article.pNydekConclusion} />
           </p>
 
           <p className="mt-4">
-            {t.article.pNydek4}
+            <FormattedText text={t.article.pNydek4} />
           </p>
 
           <ul className="not-prose list-none space-y-10 my-12 font-mono text-sm border-l-4 border-black pl-6 relative z-10 text-black">
@@ -423,10 +421,10 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
             <div>
               <strong className="font-black text-base block">{lang === 'pl' ? "25 stycznia 2016 r." : lang === 'en' ? "January 25, 2016" : "25 de enero de 2016"}</strong>
               <span className="block leading-tight">
-                {t.article.timelineNydekItem1}<InteractiveSpan type="cena-nydek" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokument" : lang === 'en' ? "Click to see document" : "Haga clic para ver el documento"}>👁️</InteractiveSpan>
+                <FormattedText text={t.article.timelineNydekItem1} /><InteractiveSpan type="cena-nydek" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokument" : lang === 'en' ? "Click to see document" : "Haga clic para ver el documento"}>👁️</InteractiveSpan>
               </span>
               <span className="block leading-tight">
-                {t.article.timelineNydekItem1Details}
+                <FormattedText text={t.article.timelineNydekItem1Details} />
               </span>
             </div>
              </li>
@@ -435,7 +433,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
               <span className="text-xl">📅</span>
               <div>
                 <strong className="font-black text-base">{lang === 'pl' ? "15 października 2020 r." : lang === 'en' ? "October 15, 2020" : "15 de octubre de 2020"}</strong><br/>
-                {t.article.timelineNydekItem2}
+                <FormattedText text={t.article.timelineNydekItem2} />
               </div>
              </li>
 
@@ -443,13 +441,13 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
               <span className="text-xl">📅</span>
               <div>
                 <strong className="font-black text-base">{lang === 'pl' ? "15 czerwca 2021 r." : lang === 'en' ? "June 15, 2021" : "15 de junio de 2021"}</strong><br/>
-                {t.article.timelineNydekItem3}
+                <FormattedText text={t.article.timelineNydekItem3} />
               </div>
             </li>
           </ul>
 
           <p className="mt-4">
-            {t.article.pNydek5}
+            <FormattedText text={t.article.pNydek5} />
           </p>
 
           <div className="not-prose my-8 flex justify-start">
@@ -461,37 +459,37 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
           </div>
 
           <p className="mt-4">
-            {t.article.pNydek6}
+            <FormattedText text={t.article.pNydek6} />
           </p>
 
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.article.sectionWiktor}</h2>
 
           <p className="mt-4">
-            {t.article.pWiktor1} <a href={ONET_INVESTIGATION_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Otwórz artykuł na Onet.pl" : lang === 'en' ? "Open article on Onet.pl" : "Abrir artículo en Onet.pl"}>🌐</a>
+            <FormattedText text={t.article.pWiktor1} /> <a href={ONET_INVESTIGATION_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Otwórz artykuł na Onet.pl" : lang === 'en' ? "Open article on Onet.pl" : "Abrir artículo en Onet.pl"}>🌐</a>
           </p>
 
           <p className="mt-4">
-            {t.article.pWiktor2}
+            <FormattedText text={t.article.pWiktor2} />
           </p>
 
           <p className="mt-4">
-                 {t.article.pWiktor3}
+            <FormattedText text={t.article.pWiktor3} />
           </p>
 
           <p className="mt-4">
-            {t.article.pWiktor4}
+            <FormattedText text={t.article.pWiktor4} />
           </p>
 
           <p className="mt-4">
-            {t.article.pWiktor5}
+            <FormattedText text={t.article.pWiktor5} />
           </p>
 
           <p className="mt-4">
-            {t.article.pWiktor6}
+            <FormattedText text={t.article.pWiktor6} />
           </p>
 
           <p className="mt-4">
-            {t.article.pWiktor7}<InteractiveSpan type="wiktor" title={lang === 'pl' ? "Kliknij, aby zobaczyć szczegóły" : lang === 'en' ? "Click to see details" : "Haga clic para ver detalles"}>🔍</InteractiveSpan>
+            <FormattedText text={t.article.pWiktor7} /><InteractiveSpan type="wiktor" title={lang === 'pl' ? "Kliknij, aby zobaczyć szczegóły" : lang === 'en' ? "Click to see details" : "Haga clic para ver detalles"}>🔍</InteractiveSpan>
           </p>
 
           <div className="not-prose mt-12 mb-4 flex justify-end relative z-10">

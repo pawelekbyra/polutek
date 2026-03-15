@@ -95,16 +95,6 @@ export default async function Page({ params: { lang } }: { params: { lang: strin
                 {t.metadata.title}
               </h1>
 
-              {/* Aesthetic Title */}
-              <h2 className="text-black w-full mb-8 opacity-60">
-                <span className="block text-3xl md:text-5xl font-body font-black leading-[0.8] tracking-tighter uppercase">
-                  {t.header.titlePart1}
-                </span>
-                <span className="block text-3xl md:text-5xl font-body font-black leading-[0.8] tracking-tighter uppercase">
-                  {t.header.titlePart2}
-                </span>
-              </h2>
-
               {/* Subtitle Bar */}
               <div className="w-full border-y-[1px] border-black py-2.5 mb-8">
                 <p className="text-[13px] md:text-base text-black font-bold uppercase tracking-[0.2em] md:tracking-[0.5em] leading-tight md:leading-none not-italic flex flex-col md:block gap-2 md:gap-0">
