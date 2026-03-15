@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProkuraturaArticle } from '../../components/ProkuraturaArticle';
+import { ProkuraturaArticle } from '@/app/components/ProkuraturaArticle';
 import { Metadata } from 'next';
 import { getDictionary } from '../dictionaries';
 
