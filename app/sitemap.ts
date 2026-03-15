@@ -3,7 +3,7 @@ export default function sitemap() {
   const locales = ['pl', 'en', 'es'];
   const routes = ['', 'prokuratura-rejonowa-w-walbrzychu'];
 
-  const entries = locales.flatMap((lang) =>
+  const localizedEntries = locales.flatMap((lang) =>
     routes.map((route) => ({
       url: `${baseUrl}/${lang}/${route}${route ? '/' : ''}`,
       lastModified: new Date(),
@@ -12,5 +12,12 @@ export default function sitemap() {
     }))
   );
 
-  return entries;
+  const rootEntry = {
+    url: `${baseUrl}/`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.5,
+  };
+
+  return [rootEntry, ...localizedEntries];
 }
