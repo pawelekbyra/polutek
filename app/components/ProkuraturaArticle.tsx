@@ -1,5 +1,5 @@
 import React from 'react';
-import { CaseFile, LegalNote, PullQuote } from './InvestigativeUI';
+import { CaseFile, LegalNote, PullQuote, FormattedText } from './InvestigativeUI';
 import { getDictionary } from '../[lang]/dictionaries';
 
 export const ProkuraturaArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' }) => {
@@ -12,31 +12,31 @@ export const ProkuraturaArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' })
         style={{ color: '#000000', opacity: 1, WebkitFontSmoothing: 'none' }}
       >
         <p className="drop-cap mt-0">
-          {t.prokuratura.p1}
+          <FormattedText text={t.prokuratura.p1} />
         </p>
 
         <p className="mt-4">
-          {t.prokuratura.p2}
+          <FormattedText text={t.prokuratura.p2} />
         </p>
 
         <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.prokuratura.sectionMissingEvidence}</h2>
 
         <p className="mt-4">
-          {t.prokuratura.p3}
+          <FormattedText text={t.prokuratura.p3} />
         </p>
 
         <CaseFile title={t.prokuratura.caseFileReportTitle} type="evidence" source={lang === 'pl' ? "Notatka służbowa policji" : lang === 'en' ? "Police official note" : "Nota oficial de la policía"} t={t}>
-          {t.prokuratura.caseFileReport}
+          <FormattedText text={t.prokuratura.caseFileReport} />
         </CaseFile>
 
         <p className="mt-4">
-          {t.prokuratura.p4}
+          <FormattedText text={t.prokuratura.p4} />
         </p>
 
         <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.prokuratura.sectionInvestigation}</h2>
 
         <p className="mt-4">
-          {t.prokuratura.p5}
+          <FormattedText text={t.prokuratura.p5} />
         </p>
 
         <PullQuote
@@ -46,37 +46,37 @@ export const ProkuraturaArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' })
         />
 
         <p className="mt-4">
-          {t.prokuratura.p6}
+          <FormattedText text={t.prokuratura.p6} />
         </p>
 
         <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.prokuratura.sectionDejaVu}</h2>
 
         <p className="mt-4">
-          {t.prokuratura.p7}
+          <FormattedText text={t.prokuratura.p7} />
         </p>
 
         <p className="mt-4">
-          {t.prokuratura.p8} <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">"{t.prokuratura.noteNote}"</span>
+          <FormattedText text={t.prokuratura.p8} /> <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">"<FormattedText text={t.prokuratura.noteNote} />"</span>
         </p>
 
         <CaseFile title={t.prokuratura.caseFileReport2Title} type="evidence" source={lang === 'pl' ? "Archiwum Prokuratury Rejonowej" : lang === 'en' ? "District Prosecutor's Office Archive" : "Archivo de la Fiscalía de Distrito"} t={t}>
-          {t.prokuratura.caseFileReport2}
+          <FormattedText text={t.prokuratura.caseFileReport2} />
         </CaseFile>
 
         <p className="mt-4 leading-tight">
-          {t.prokuratura.p9}
+          <FormattedText text={t.prokuratura.p9} />
           <br />
           <span className="bg-red-600 px-1 font-black text-white shadow-sm box-decoration-clone inline-block">
-            {t.prokuratura.p9Conclusion}
+            <FormattedText text={t.prokuratura.p9Conclusion} />
           </span>
         </p>
 
         <LegalNote term={t.prokuratura.legalNoteRecidivism}>
-          {t.prokuratura.legalNoteRecidivismDesc}
+          <FormattedText text={t.prokuratura.legalNoteRecidivismDesc} />
         </LegalNote>
 
         <p className="mt-4">
-          {t.prokuratura.p10}
+          <FormattedText text={t.prokuratura.p10} />
         </p>
 
         <div className="not-prose mt-12 mb-4 flex justify-end relative z-10">
