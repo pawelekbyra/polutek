@@ -1,0 +1,22 @@
+yarn run v1.22.22
+$ next dev -p 3001
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3001
+
+ ✓ Starting...
+ ✓ Ready in 2.4s
+ ○ Compiling /[lang] ...
+ ✓ Compiled /[lang] in 8.7s (651 modules)
+ ✓ Compiled in 1161ms (298 modules)
+ GET /pl 200 in 10388ms
+ GET /en 200 in 406ms
+ GET /es 200 in 287ms
+ ○ Compiling /[lang]/prokuratura-rejonowa-w-walbrzychu ...
+ ✓ Compiled /[lang]/prokuratura-rejonowa-w-walbrzychu in 1128ms (593 modules)
+ GET /pl/prokuratura-rejonowa-w-walbrzychu 200 in 2039ms
+ ✓ Compiled in 135ms (308 modules)
+ ✓ Compiled in 104ms (308 modules)
+ ✓ Compiled in 116ms (308 modules)
+ ✓ Compiled in 121ms (308 modules)
+ ✓ Compiled in 1152ms (607 modules)
+ ✓ Compiled in 643ms (607 modules)

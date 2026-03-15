@@ -3,7 +3,7 @@ import { CaseFile, LegalNote, PullQuote, LocationStampUI, TransactionStampUI } f
 import { ArticleVideoPlayer } from './InvestigativeMedia';
 import { InteractiveSpan } from './InteractiveSpan';
 import { GalleryProvider } from './GalleryContext';
-import { useLanguage } from './LanguageContext';
+import { getDictionary } from '../[lang]/dictionaries';
 
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 const KORDYS_PDF_URL = "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/wyrokKordysa/wyrok-jaroslawa-kordysa-30-t-5-2021-28-01-2022.pdf";
@@ -23,11 +23,11 @@ const ONET_INVESTIGATION_URL = "https://wiadomosci.onet.pl/tylko-w-onecie/ujawni
 const NYDEK_CADASTRAL_URL = "https://nahlizenidokn.cuzk.gov.cz/ZobrazObjekt.aspx?encrypted=NAHL~HzwvTudnvFVyH2v2DgIY058_1nN6gGpNDAvsLklPjNR5Mp_Oq_Fi9nHrDZdkU9y9GjVXaqbSuuYVc435bFSDklMy2IdfOtCyqzfDiZ9Fs5xcBRXy_EQY_DtxlD4oaDXe99t6mMV0K2iQipgpnDL45rdj3m7so5wXsxXsna0peW21BZ8oDcn-oCC_GPUmYMZkKLi2HlgoMpiC0QcV8k6VPPzD2fF1zH8rkRCGVfo--cZbizU4Je5atQoaRJ0h4Btd";
 const JANOV_BUYOUT_CADASTRAL_URL = "https://nahlizenidokn.cuzk.gov.cz/ZobrazObjekt.aspx?encrypted=NAHL~jk3kaNPeol_6EgW14KqJDSmcC9KeRpgml1z2x2yDMVICfISMq1_XgQDyvfDDC5CYc3zUjC_t0wwqbIK0G6HqHi7HjXtVuYkM2vgddOiUXuXyvvlbp6LTx2mQgEWLk0O9S5n2cNg_XqpGU0QWq-HgMC7RreBwWqFJ7LGguJsL9TrBkQv-ttgNk68XRNZBIrouFSlRz8qqFSvmvaxxW3VnbmOgphhjyjACItJvT6F_08e7WELPeJRhIBWMJdrLKbi7";
 
-export const InvestigativeArticle = () => {
-  const { t, locale } = useLanguage();
+export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' }) => {
+  const t = await getDictionary(lang);
 
   return (
-    <GalleryProvider>
+    <GalleryProvider ui={t.ui}>
       <article className="max-w-3xl mx-auto px-6 pt-4 pb-0 flex-grow w-full z-10 relative">
         <div
           className="prose prose-stone prose-lg max-w-none article-prose font-serif text-lg leading-relaxed"
@@ -38,7 +38,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            {t.article.p2} <a href="https://krytykapolityczna.pl/narkopolityka/polacy-ayahuasca-czechy/" target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={locale === 'pl' ? "Kliknij, aby zobaczyć archiwalny dowód" : "Click to see archival evidence"}>🌐</a>
+            {t.article.p2} <a href="https://krytykapolityczna.pl/narkopolityka/polacy-ayahuasca-czechy/" target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby zobaczyć archiwalny dowód" : lang === 'en' ? "Click to see archival evidence" : "Haga clic para ver la evidencia de archivo"}>🌐</a>
           </p>
 
           <p className="mt-4">
@@ -52,10 +52,10 @@ export const InvestigativeArticle = () => {
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.article.sectionWitnessB}</h2>
 
           <p className="mt-4">
-            {t.article.pWitnessB1} <InteractiveSpan type="kordys" title={locale === 'pl' ? "Kliknij, aby zobaczyć wyrok" : "Click to see verdict"}>📄</InteractiveSpan>
+            {t.article.pWitnessB1} <InteractiveSpan type="kordys" title={lang === 'pl' ? "Kliknij, aby zobaczyć wyrok" : lang === 'en' ? "Click to see verdict" : "Haga clic para ver la sentencia"}>📄</InteractiveSpan>
           </p>
 
-          <CaseFile title={t.article.caseFileWitnessBTitle} type="transcript" source={t.sources.kordysVerdict}>
+          <CaseFile title={t.article.caseFileWitnessBTitle} type="transcript" source={t.sources.kordysVerdict} t={t}>
             {t.article.caseFileWitnessB1}
           </CaseFile>
 
@@ -63,7 +63,7 @@ export const InvestigativeArticle = () => {
             {t.article.pWitnessB2}
           </p>
 
-          <CaseFile title={t.article.caseFileWitnessB2Title} source={t.sources.kordysVerdict}>
+          <CaseFile title={t.article.caseFileWitnessB2Title} source={t.sources.kordysVerdict} t={t}>
             {t.article.caseFileWitnessB2}
           </CaseFile>
 
@@ -71,7 +71,7 @@ export const InvestigativeArticle = () => {
             {t.article.pWitnessB3}
           </p>
 
-          <CaseFile title={t.article.caseFileOwnershipTitle} source={t.sources.kordysVerdict}>
+          <CaseFile title={t.article.caseFileOwnershipTitle} source={t.sources.kordysVerdict} t={t}>
             {t.article.caseFileOwnership}
           </CaseFile>
 
@@ -79,15 +79,16 @@ export const InvestigativeArticle = () => {
           <div className="not-prose my-8 flex justify-start">
               <LocationStampUI
                 name="JANOV 252"
-                code={locale === 'pl' ? "793 84 Czechy" : "793 84 Czech Republic"}
+                code={lang === 'pl' ? "793 84 Czechy" : lang === 'en' ? "793 84 Czech Republic" : "793 84 República Checa"}
                 plot="252793"
                 lv="84"
                 href="https://nahlizenidokn.cuzk.gov.cz/ZobrazObjekt.aspx?encrypted=NAHL~Ph1DBACX9hLEB6fts7JCaqzjwc-8Bm-FsLqDU8eePrzOZO_6ESWYq0fvwpyG2abQ9P1fCqZ_nqCtiHrQZWDcmetevryGohKCWXt1aFERNJbL_Omfu5XpBU30m_2IBOi9q4EcsPuNRyji8T8H8_hlY1SVJWGkDU6qn-jdDoP4DabZL2GxttqvHoRZb3ZS3pL_Ymbhzg1IoE7bNihOQVHxO1mqvj7tsbDFZocoY_C-KM8vAuKtZUO_akQJsw4LUoB1"
+                t={t}
               />
           </div>
 
           <p className="mt-4">
-            {t.article.pOwnershipKicinski}<InteractiveSpan type="wlasnosc-kicinski" title={locale === 'pl' ? "Kliknij, aby zobaczyć dokument" : "Click to see document"}>👁️</InteractiveSpan>:
+            {t.article.pOwnershipKicinski}<InteractiveSpan type="wlasnosc-kicinski" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokument" : lang === 'en' ? "Click to see document" : "Haga clic para ver el documento"}>👁️</InteractiveSpan>:
             <br/><br/>
             <span className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">{t.article.pOwnershipKicinskiDetails}</span><br/>
           </p>
@@ -110,7 +111,7 @@ export const InvestigativeArticle = () => {
             {t.article.pEavesdropping2}
           </p>
 
-          <CaseFile title={t.article.caseFileConversationTitle} type="transcript" source={t.sources.kordysVerdict}>
+          <CaseFile title={t.article.caseFileConversationTitle} type="transcript" source={t.sources.kordysVerdict} t={t}>
             {t.article.caseFileConversation}
           </CaseFile>
 
@@ -118,7 +119,7 @@ export const InvestigativeArticle = () => {
             {t.article.pEavesdropping3}
           </p>
 
-          <CaseFile title={t.article.caseFileQuestionTitle} type="transcript" source={t.sources.kordysVerdict}>
+          <CaseFile title={t.article.caseFileQuestionTitle} type="transcript" source={t.sources.kordysVerdict} t={t}>
             {t.article.caseFileQuestion}
           </CaseFile>
 
@@ -137,7 +138,7 @@ export const InvestigativeArticle = () => {
             {t.article.pEavesdropping5}
           </p>
 
-          <CaseFile title={t.article.caseFileContinuationTitle} type="transcript" source={t.sources.kordysVerdict}>
+          <CaseFile title={t.article.caseFileContinuationTitle} type="transcript" source={t.sources.kordysVerdict} t={t}>
             {t.article.caseFileContinuation}
           </CaseFile>
 
@@ -149,7 +150,7 @@ export const InvestigativeArticle = () => {
             {t.article.pEavesdropping7}
           </p>
 
-          <CaseFile title={t.article.caseFileSearchTitle} source={t.sources.kordysVerdict}>
+          <CaseFile title={t.article.caseFileSearchTitle} source={t.sources.kordysVerdict} t={t}>
             {t.article.caseFileSearch}
           </CaseFile>
 
@@ -168,7 +169,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <div className="not-prose my-8">
-            <ArticleVideoPlayer src={ARREST_VIDEO_URL} poster={KORDYS_COVER} />
+            <ArticleVideoPlayer src={ARREST_VIDEO_URL} poster={KORDYS_COVER} ariaLabel={t.ui.videoCaptionLabel} />
             <div className="mt-4 text-sm text-black font-mono border-l-[4px] border-black pl-4 bg-[#e8d154]/20 py-2 relative z-10">
               <span className="font-black uppercase text-xs mr-2">{t.ui.videoOperationalLabel}</span>
               {t.article.videoArrestCaption}
@@ -196,10 +197,10 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            {t.article.pPriceOfFreedom7} <InteractiveSpan type="badowski" title={locale === 'pl' ? "Kliknij, aby zobaczyć wyrok" : "Click to see verdict"}>📄</InteractiveSpan>
+            {t.article.pPriceOfFreedom7} <InteractiveSpan type="badowski" title={lang === 'pl' ? "Kliknij, aby zobaczyć wyrok" : lang === 'en' ? "Click to see verdict" : "Haga clic para ver la sentencia"}>📄</InteractiveSpan>
           </p>
 
-          <CaseFile title={t.article.caseFileBadowskiVerdictTitle} source={t.sources.kordysVerdict}>
+          <CaseFile title={t.article.caseFileBadowskiVerdictTitle} source={t.sources.kordysVerdict} t={t}>
             {t.article.caseFileBadowskiVerdict}
           </CaseFile>
 
@@ -230,7 +231,7 @@ export const InvestigativeArticle = () => {
           />
 
           <div className="not-prose my-8">
-            <ArticleVideoPlayer src={KICINSKI_VIDEO_URL} />
+            <ArticleVideoPlayer src={KICINSKI_VIDEO_URL} ariaLabel={t.ui.videoCaptionLabel} />
             <div className="mt-4 text-sm text-black font-mono border-l-[4px] border-black pl-4 bg-[#e8d154]/20 py-2 relative z-10">
               <span className="font-black uppercase text-xs mr-2">{t.ui.videoSourceLabel}</span>
               {t.article.videoKicinskiCaption}
@@ -247,7 +248,7 @@ export const InvestigativeArticle = () => {
             {t.article.pErrorWithBadi2}
           </p>
 
-          <CaseFile title={t.article.caseFileEmailTitle} type="email" source="ONET.PL">
+          <CaseFile title={t.article.caseFileEmailTitle} type="email" source="ONET.PL" t={t}>
             {t.article.caseFileEmail}
           </CaseFile>
 
@@ -255,7 +256,7 @@ export const InvestigativeArticle = () => {
             {t.article.pErrorWithBadi3}
           </p>
 
-          <CaseFile title={t.article.caseFileStatementTitle} source="ONET.PL">
+          <CaseFile title={t.article.caseFileStatementTitle} source="ONET.PL" t={t}>
             {t.article.caseFileStatement}
           </CaseFile>
 
@@ -263,7 +264,7 @@ export const InvestigativeArticle = () => {
             {t.article.pErrorWithBadi4}
           </p>
 
-          <CaseFile title={t.article.caseFileParticipationTitle} source="ONET.PL">
+          <CaseFile title={t.article.caseFileParticipationTitle} source="ONET.PL" t={t}>
             {t.article.caseFileParticipation}
           </CaseFile>
 
@@ -272,7 +273,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            {t.article.pKicinskiPeru2} <a href="https://munaysonqo.com/all-retreats/#calendar-7a66adc3-3ebd-432c-b572-0faf936c281f-event-e90d5161-a00e-4742-b4b7-039de153a23d" target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={locale === 'pl' ? "Kliknij, aby otworzyć stronę ośrodka Munay Sonqo" : "Click to open Munay Sonqo center website"}>🌐</a>
+            {t.article.pKicinskiPeru2} <a href="https://munaysonqo.com/all-retreats/#calendar-7a66adc3-3ebd-432c-b572-0faf936c281f-event-e90d5161-a00e-4742-b4b7-039de153a23d" target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby otworzyć stronę ośrodka Munay Sonqo" : lang === 'en' ? "Click to open Munay Sonqo center website" : "Haga clic para abrir el sitio web del centro Munay Sonqo"}>🌐</a>
           </p>
 
           <p className="mt-4">
@@ -283,7 +284,7 @@ export const InvestigativeArticle = () => {
             {t.article.pBadowskiCorrespondence}
           </p>
 
-          <CaseFile title={t.article.caseFileBadowskiEmailTitle} type="email" source="Bartosz Badowski">
+          <CaseFile title={t.article.caseFileBadowskiEmailTitle} type="email" source="Bartosz Badowski" t={t}>
             {t.article.caseFileBadowskiEmail}
           </CaseFile>
 
@@ -297,7 +298,7 @@ export const InvestigativeArticle = () => {
             {t.article.pPhilanthropist2}
           </p>
 
-          <CaseFile title={t.article.caseFileStefanekTitle} source={t.sources.stefanekYT}>
+          <CaseFile title={t.article.caseFileStefanekTitle} source={t.sources.stefanekYT} t={t}>
             {t.article.caseFileStefanek}
           </CaseFile>
 
@@ -306,7 +307,7 @@ export const InvestigativeArticle = () => {
           </p>
 
           <div className="not-prose my-8">
-            <ArticleVideoPlayer src={STEFANEK_VIDEO_URL} />
+            <ArticleVideoPlayer src={STEFANEK_VIDEO_URL} ariaLabel={t.ui.videoCaptionLabel} />
             <div className="mt-4 text-sm text-black font-mono border-l-[4px] border-black pl-4 bg-[#e8d154]/20 py-2 relative z-10">
               <span className="font-black uppercase text-xs mr-2">{t.ui.videoSourceLabel}</span>
               {t.article.videoStefanekCaption}
@@ -321,7 +322,7 @@ export const InvestigativeArticle = () => {
             <li className="flex items-start gap-4">
               <span className="text-xl">📅</span>
               <div>
-                <strong className="font-black text-base">{locale === 'pl' ? "21 września 2023 r." : "September 21, 2023"}</strong><br/>
+                <strong className="font-black text-base">{lang === 'pl' ? "21 września 2023 r." : lang === 'en' ? "September 21, 2023" : "21 de septiembre de 2023"}</strong><br/>
                 {t.article.timelineItem1}
               </div>
             </li>
@@ -329,15 +330,15 @@ export const InvestigativeArticle = () => {
             <li className="flex items-start gap-4">
               <span className="text-xl">📅</span>
               <div>
-                <strong className="font-black text-base">{locale === 'pl' ? "3 października 2023 r." : "October 3, 2023"}</strong><br/>
-                {t.article.timelineItem2}<InteractiveSpan type="cena" title={locale === 'pl' ? "Kliknij, aby zobaczyć dokument" : "Click to see document"}>👁️</InteractiveSpan>
+                <strong className="font-black text-base">{lang === 'pl' ? "3 października 2023 r." : lang === 'en' ? "October 3, 2023" : "3 de octubre de 2023"}</strong><br/>
+                {t.article.timelineItem2}<InteractiveSpan type="cena" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokument" : lang === 'en' ? "Click to see document" : "Haga clic para ver el documento"}>👁️</InteractiveSpan>
               </div>
             </li>
 
             <li className="flex items-start gap-4">
               <span className="text-xl">📅</span>
               <div>
-                <strong className="font-black text-base">{locale === 'pl' ? "11 października 2023 r." : "October 11, 2023"}</strong><br/>
+                <strong className="font-black text-base">{lang === 'pl' ? "11 października 2023 r." : lang === 'en' ? "October 11, 2023" : "11 de octubre de 2023"}</strong><br/>
                 {t.article.timelineItem3}
               </div>
             </li>
@@ -353,7 +354,7 @@ export const InvestigativeArticle = () => {
             <li className="flex items-start gap-4 mt-6">
               <span className="text-xl">📅</span>
               <div>
-                <strong className="font-black text-base">{locale === 'pl' ? "21 grudnia 2023 r." : "December 21, 2023"}</strong><br/>
+                <strong className="font-black text-base">{lang === 'pl' ? "21 grudnia 2023 r." : lang === 'en' ? "December 21, 2023" : "21 de diciembre de 2023"}</strong><br/>
                 {t.article.timelineItem5}
               </div>
             </li>
@@ -382,11 +383,11 @@ export const InvestigativeArticle = () => {
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.article.sectionNydek}</h2>
 
           <p className="mt-4">
-            {t.article.pNydek1} <a href={NYDEK_PDF_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={locale === 'pl' ? "Kliknij, aby zobaczyć dokumentację" : "Click to see documentation"}>📸</a>
+            {t.article.pNydek1} <a href={NYDEK_PDF_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokumentację" : lang === 'en' ? "Click to see documentation" : "Haga clic para ver la documentación"}>📸</a>
           </p>
 
           <p className="mt-4">
-            {t.article.pNydek2} <a href={TRIBU_NYDEK_WAYBACK_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={locale === 'pl' ? "Kliknij, aby zobaczyć archiwalny dowód" : "Click to see archival evidence"}>🔍</a>
+            {t.article.pNydek2} <a href={TRIBU_NYDEK_WAYBACK_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Kliknij, aby zobaczyć archiwalny dowód" : lang === 'en' ? "Click to see archival evidence" : "Haga clic para ver la evidencia de archivo"}>🔍</a>
           </p>
 
           <p className="not-prose mt-4 font-bold text-center my-8 uppercase font-sans text-black">
@@ -400,10 +401,11 @@ export const InvestigativeArticle = () => {
           <div className="not-prose my-8 flex justify-start">
               <LocationStampUI
                 name="NYDEK 120"
-                code={locale === 'pl' ? "739 95 Czechy" : "739 95 Czech Republic"}
+                code={lang === 'pl' ? "739 95 Czechy" : lang === 'en' ? "739 95 Czech Republic" : "739 95 República Checa"}
                 plot="120739"
                 lv="95"
                 href="https://nahlizenidokn.cuzk.gov.cz/ZobrazObjekt.aspx?encrypted=NAHL~uQr6_qGGFNbscI31qkCFl1vpVRu3o8TWYak_iMPnq4Xni8IKqU6i2gAeUccVcXY0cblWyhwAnpIfk_96Mg7yOtHNymugDk5IKqRCxXKsDVSaFSQDLQ1U0IhqdBk9LlCR_I0UG5TUns3dt8PYkjaBZnRbrrTdSTBlGm3NYz5s3Fs57qfwSIALL3wiNHX8YWmHNt4frIIWhALPhA00bxPjexuiQ2JTZo1a4_lgJyZNUq8_lkKhHRCtuhwUvhv7ZIDD"
+                t={t}
               />
           </div>
 
@@ -419,9 +421,9 @@ export const InvestigativeArticle = () => {
              <li className="flex items-start gap-4">
               <span className="text-xl">📅</span>
             <div>
-              <strong className="font-black text-base block">{locale === 'pl' ? "25 stycznia 2016 r." : "January 25, 2016"}</strong>
+              <strong className="font-black text-base block">{lang === 'pl' ? "25 stycznia 2016 r." : lang === 'en' ? "January 25, 2016" : "25 de enero de 2016"}</strong>
               <span className="block leading-tight">
-                {t.article.timelineNydekItem1}<InteractiveSpan type="cena-nydek" title={locale === 'pl' ? "Kliknij, aby zobaczyć dokument" : "Click to see document"}>👁️</InteractiveSpan>
+                {t.article.timelineNydekItem1}<InteractiveSpan type="cena-nydek" title={lang === 'pl' ? "Kliknij, aby zobaczyć dokument" : lang === 'en' ? "Click to see document" : "Haga clic para ver el documento"}>👁️</InteractiveSpan>
               </span>
               <span className="block leading-tight">
                 {t.article.timelineNydekItem1Details}
@@ -432,7 +434,7 @@ export const InvestigativeArticle = () => {
              <li className="flex items-start gap-4">
               <span className="text-xl">📅</span>
               <div>
-                <strong className="font-black text-base">{locale === 'pl' ? "15 października 2020 r." : "October 15, 2020"}</strong><br/>
+                <strong className="font-black text-base">{lang === 'pl' ? "15 października 2020 r." : lang === 'en' ? "October 15, 2020" : "15 de octubre de 2020"}</strong><br/>
                 {t.article.timelineNydekItem2}
               </div>
              </li>
@@ -440,7 +442,7 @@ export const InvestigativeArticle = () => {
             <li className="flex items-start gap-4">
               <span className="text-xl">📅</span>
               <div>
-                <strong className="font-black text-base">{locale === 'pl' ? "15 czerwca 2021 r." : "June 15, 2021"}</strong><br/>
+                <strong className="font-black text-base">{lang === 'pl' ? "15 czerwca 2021 r." : lang === 'en' ? "June 15, 2021" : "15 de junio de 2021"}</strong><br/>
                 {t.article.timelineNydekItem3}
               </div>
             </li>
@@ -465,7 +467,7 @@ export const InvestigativeArticle = () => {
           <h2 className="not-prose section-heading text-4xl font-black tracking-tighter text-black uppercase border-b-4 border-black mb-6 mt-16 font-display">{t.article.sectionWiktor}</h2>
 
           <p className="mt-4">
-            {t.article.pWiktor1} <a href={ONET_INVESTIGATION_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={locale === 'pl' ? "Otwórz artykuł na Onet.pl" : "Open article on Onet.pl"}>🌐</a>
+            {t.article.pWiktor1} <a href={ONET_INVESTIGATION_URL} target="_blank" rel="noopener noreferrer" className="cursor-pointer hover:bg-[#e8d154]/50 transition-colors rounded px-1" title={lang === 'pl' ? "Otwórz artykuł na Onet.pl" : lang === 'en' ? "Open article on Onet.pl" : "Abrir artículo en Onet.pl"}>🌐</a>
           </p>
 
           <p className="mt-4">
@@ -489,14 +491,14 @@ export const InvestigativeArticle = () => {
           </p>
 
           <p className="mt-4">
-            {t.article.pWiktor7}<InteractiveSpan type="wiktor" title={locale === 'pl' ? "Kliknij, aby zobaczyć szczegóły" : "Click to see details"}>🔍</InteractiveSpan>
+            {t.article.pWiktor7}<InteractiveSpan type="wiktor" title={lang === 'pl' ? "Kliknij, aby zobaczyć szczegóły" : lang === 'en' ? "Click to see details" : "Haga clic para ver detalles"}>🔍</InteractiveSpan>
           </p>
 
           <div className="not-prose mt-12 mb-4 flex justify-end relative z-10">
               <div className="text-right border-r-4 border-black pr-4">
                 <span className="block font-black text-black uppercase text-xl font-display tracking-widest leading-none">{t.article.signatureName}</span>
                 <span className="block text-[10px] text-black/60 font-mono mt-1 uppercase tracking-tighter leading-tight">{t.article.signatureTitle}</span>
-                <span className="block text-[10px] text-black/40 font-mono mt-0.5 italic lowercase tracking-tight">wojciech.kurka@protonmail.com</span>
+                <span className="block text-[10px] text-black/40 font-mono mt-0.5 italic lowercase tracking-tight">marlow@nasza-gazetka.pl</span>
               </div>
           </div>
 
@@ -612,7 +614,7 @@ export const InvestigativeArticle = () => {
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                   <div>
                     <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">{t.article.sourceNydekPurchaseTitle}</h4>
-                    <p className="font-mono text-xs text-black/60 mt-1 font-black">{t.locale === 'pl' ? 'Sygnatura' : 'Reference'}: V-320/2016-832</p>
+                    <p className="font-mono text-xs text-black/60 mt-1 font-black">{lang === 'pl' ? 'Sygnatura' : lang === 'en' ? 'Reference' : 'Referencia'}: V-320/2016-832</p>
                   </div>
                   <a href={NYDEK_CADASTRAL_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     🌐 {t.article.verifyInKatastr}
@@ -629,7 +631,7 @@ export const InvestigativeArticle = () => {
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                   <div>
                     <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">{t.article.sourceNydekSaleTitle}</h4>
-                    <p className="font-mono text-xs text-black/60 mt-1 font-black">{t.locale === 'pl' ? 'Sygnatura' : 'Reference'}: V-2937/2021</p>
+                    <p className="font-mono text-xs text-black/60 mt-1 font-black">{lang === 'pl' ? 'Sygnatura' : lang === 'en' ? 'Reference' : 'Referencia'}: V-2937/2021</p>
                   </div>
                   <a href={NYDEK_PDF_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     📥 {t.article.downloadPDF}
@@ -649,7 +651,7 @@ export const InvestigativeArticle = () => {
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3 font-sans">
                   <div>
                     <h4 className="font-bold text-black text-base uppercase font-display tracking-widest">{t.article.sourceJanovBuyoutTitle}</h4>
-                    <p className="font-mono text-xs text-black/60 mt-1 font-black">{t.locale === 'pl' ? 'Sygnatura' : 'Reference'}: V-2031/2023-831</p>
+                    <p className="font-mono text-xs text-black/60 mt-1 font-black">{lang === 'pl' ? 'Sygnatura' : lang === 'en' ? 'Reference' : 'Referencia'}: V-2031/2023-831</p>
                   </div>
                   <a href={JANOV_BUYOUT_CADASTRAL_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-48 justify-center bg-black text-white px-4 py-2 text-xs font-bold border-2 border-black hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     🌐 {t.article.verifyInKatastr}

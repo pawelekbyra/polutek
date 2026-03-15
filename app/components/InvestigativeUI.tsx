@@ -1,9 +1,7 @@
 import React from 'react';
 import { MapPin, Stamp, FileText, Mail, Search, Scale, Quote } from 'lucide-react';
-import { useLanguage } from './LanguageContext';
 
-export const CaseFile = ({ title, children, type = 'evidence', highlight = false, source }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email', highlight?: boolean, source?: string }) => {
-  const { t } = useLanguage();
+export const CaseFile = ({ title, children, type = 'evidence', highlight = false, source, t }: { title: string, children: React.ReactNode, type?: 'evidence' | 'transcript' | 'email', highlight?: boolean, source?: string, t: any }) => {
   const getIcon = () => {
     if (type === 'email') return <Mail size={12} />;
     if (type === 'transcript') return <Search size={12} />;
@@ -54,8 +52,7 @@ export const PullQuote = ({ quote, author, source }: { quote: string, author: st
   </div>
 );
 
-export const LocationStampUI = ({ name, code, plot, lv, href }: { name: string, code: string, plot: string, lv: string, href?: string }) => {
-  const { t } = useLanguage();
+export const LocationStampUI = ({ name, code, plot, lv, href, t }: { name: string, code: string, plot: string, lv: string, href?: string, t: any }) => {
   const content = (
     <>
       <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed text-black/40 group-hover:text-black transition-colors">

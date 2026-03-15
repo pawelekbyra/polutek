@@ -2,7 +2,6 @@
 
 import React, { createContext, useContext, useState } from 'react';
 import { PDFGallery } from './PDFGallery';
-import { useLanguage } from './LanguageContext';
 
 interface GalleryContextType {
   setBadowskiGalleryOpen: (open: boolean) => void;
@@ -95,6 +94,7 @@ interface GalleryModalsProps {
   setWlasnoscKicinskiGalleryOpen: (open: boolean) => void;
   janovPhotosGalleryOpen: boolean;
   setJanovPhotosGalleryOpen: (open: boolean) => void;
+  ui: any;
 }
 
 const GalleryModals: React.FC<GalleryModalsProps> = ({
@@ -111,69 +111,75 @@ const GalleryModals: React.FC<GalleryModalsProps> = ({
   wlasnoscKicinskiGalleryOpen,
   setWlasnoscKicinskiGalleryOpen,
   janovPhotosGalleryOpen,
-  setJanovPhotosGalleryOpen
+  setJanovPhotosGalleryOpen,
+  ui
 }) => {
-  const { t } = useLanguage();
-
   return (
     <>
       <PDFGallery
         isOpen={badowskiGalleryOpen}
         onClose={() => setBadowskiGalleryOpen(false)}
         images={BADOWSKI_GALLERY}
-        title={t.ui.pdfGalleryBadowskiTitle}
+        title={ui.pdfGalleryBadowskiTitle}
+        ui={ui}
       />
 
       <PDFGallery
         isOpen={kordysGalleryOpen}
         onClose={() => setKordysGalleryOpen(false)}
         images={KORDYS_GALLERY}
-        title={t.ui.pdfGalleryKordysTitle}
+        title={ui.pdfGalleryKordysTitle}
         pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/wyrokKordysa/wyrok-jaroslawa-kordysa-30-t-5-2021-28-01-2022.pdf"
+        ui={ui}
       />
 
       <PDFGallery
         isOpen={wiktorGalleryOpen}
         onClose={() => setWiktorGalleryOpen(false)}
         images={WIKTOR_GALLERY}
-        title={t.ui.pdfGalleryWiktorTitle}
+        title={ui.pdfGalleryWiktorTitle}
+        ui={ui}
       />
 
       <PDFGallery
         isOpen={cenaJanovGalleryOpen}
         onClose={() => setCenaJanovGalleryOpen(false)}
         images={CENA_JANOV_GALLERY}
-        title={t.ui.pdfGalleryCenaJanovTitle}
+        title={ui.pdfGalleryCenaJanovTitle}
         pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kataster/cena-janov.pdf"
+        ui={ui}
       />
 
       <PDFGallery
         isOpen={cenaNydekGalleryOpen}
         onClose={() => setCenaNydekGalleryOpen(false)}
         images={CENA_NYDEK_GALLERY}
-        title={t.ui.pdfGalleryCenaNydekTitle}
+        title={ui.pdfGalleryCenaNydekTitle}
         pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kataster/cena-nydek.pdf"
+        ui={ui}
       />
 
       <PDFGallery
         isOpen={wlasnoscKicinskiGalleryOpen}
         onClose={() => setWlasnoscKicinskiGalleryOpen(false)}
         images={WLASNOSC_KICINSKI_GALLERY}
-        title={t.ui.pdfGalleryWlasnoscKicinskiTitle}
+        title={ui.pdfGalleryWlasnoscKicinskiTitle}
         pdfUrl="https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/wlasnosc-kicinski.pdf"
+        ui={ui}
       />
 
       <PDFGallery
         isOpen={janovPhotosGalleryOpen}
         onClose={() => setJanovPhotosGalleryOpen(false)}
         images={JANOV_PHOTOS_GALLERY}
-        title={t.ui.pdfGalleryJanovPhotosTitle}
+        title={ui.pdfGalleryJanovPhotosTitle}
+        ui={ui}
       />
     </>
   );
 };
 
-export const GalleryProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const GalleryProvider: React.FC<{ children: React.ReactNode, ui: any }> = ({ children, ui }) => {
   const [badowskiGalleryOpen, setBadowskiGalleryOpen] = useState(false);
   const [kordysGalleryOpen, setKordysGalleryOpen] = useState(false);
   const [wiktorGalleryOpen, setWiktorGalleryOpen] = useState(false);
@@ -208,6 +214,7 @@ export const GalleryProvider: React.FC<{ children: React.ReactNode }> = ({ child
         setWlasnoscKicinskiGalleryOpen={setWlasnoscKicinskiGalleryOpen}
         janovPhotosGalleryOpen={janovPhotosGalleryOpen}
         setJanovPhotosGalleryOpen={setJanovPhotosGalleryOpen}
+        ui={ui}
       />
     </GalleryContext.Provider>
   );
