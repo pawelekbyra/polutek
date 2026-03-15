@@ -152,7 +152,14 @@
     "sourceJanovBuyoutTitle": "Transaktion: Anteilskauf (Janov)",
     "sourceWaybackTitle": "Archiv: WWW.TRIBUNYDEK.COM",
     "openArchive": "Archiv öffnen",
-    "katastrNote": "Hinweis: Die Offenlegung personenbezogener Daten der Transaktionsparteien erfordert eine Anmeldung über die Option „Identita občana“, wobei die Anmeldung über eIDAS zu wählen ist."
+    "katastrNote": "Hinweis: Die Offenlegung personenbezogener Daten der Transaktionsparteien erfordert eine Anmeldung über die Option „Identita občana“, wobei die Anmeldung über eIDAS zu wählen ist.",
+    "date21Sep2023": "21. September 2023",
+    "date3Oct2023": "3. Oktober 2023",
+    "date11Oct2023": "11. Oktober 2023",
+    "date21Dec2023": "21. Dezember 2023",
+    "date25Jan2016": "25. Januar 2016",
+    "date15Oct2020": "15. Oktober 2020",
+    "date15Jun2021": "15. Juni 2021"
   },
   "prokuratura": {
     "title": "Einbruch in die Staatsanwaltschaft in Wałbrzych. Verschwindende Akten.",
@@ -215,7 +222,18 @@
     "pdfGalleryWlasnoscKicinskiTitle": "Dokument: Immobilieneigentum Janov",
     "pdfGalleryJanovPhotosTitle": "Galerie: Janov 252",
     "caseRefLabel": "Az.",
-    "precinctLabel": "Gemarkung"
+    "precinctLabel": "Gemarkung",
+    "tooltipArchivalEvidence": "Klicken Sie hier, um archivierte Beweise zu sehen",
+    "tooltipVerdict": "Klicken Sie hier, um das Urteil zu sehen",
+    "tooltipDocument": "Klicken Sie hier, um das Dokument zu sehen",
+    "tooltipMunaySonqo": "Klicken Sie hier, um die Website des Munay Sonqo Zentrums zu öffnen",
+    "tooltipDocumentation": "Klicken Sie hier, um die Dokumentation zu sehen",
+    "tooltipOnet": "Artikel auf Onet.pl öffnen",
+    "tooltipDetails": "Klicken Sie hier, um Details zu sehen",
+    "countryCzechRepublic": "Tschechien",
+    "caseSignature": "Aktenzeichen",
+    "policeNote": "Polizeiliche Dienstnotiz",
+    "prosecutorArchive": "Archiv der Bezirksstaatsanwaltschaft"
   },
   "sources": {
     "kordysVerdict": "Urteilsbegründung Kordys, Az. 30 T 5/2020",

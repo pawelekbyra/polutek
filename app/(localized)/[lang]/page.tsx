@@ -11,6 +11,15 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
   const t = await getDictionary(params.lang as any);
+
+  const localeMap: Record<string, string> = {
+    pl: 'pl_PL',
+    en: 'en_US',
+    es: 'es_ES',
+    de: 'de_DE',
+    fr: 'fr_FR',
+  };
+
   return {
     title: t.metadata.title,
     description: t.metadata.description,
@@ -25,7 +34,7 @@ export async function generateMetadata({ params }: { params: { lang: string } })
           alt: t.metadata.ogAlt,
         },
       ],
-      locale: params.lang === 'pl' ? 'pl_PL' : params.lang === 'en' ? 'en_US' : 'es_ES',
+      locale: localeMap[params.lang] || 'en_US',
       type: 'article',
     },
   };

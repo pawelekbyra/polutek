@@ -13,7 +13,7 @@
     "lead": "Psychedelic business, police raids, and a tragedy that no one was supposed to know about. Publicly available files and registers reveal how Polish millionaires Marcin Iwiński and Michał Kiciński – creators of 'The Witcher' game – funded the shamanic underground."
   },
   "article": {
-    "p1": "In 2020, media were flooded with reports of a group of Polish shamans being busted in Hermanovice, Czech Republic. A police raid, the arrest of **Jarosław and Karolina Kordys**, and subsequent harsh sentences – 8.5 and 5.5 years in prison for running an illegal business of organizing so-called ceremonies where an exotic psychedelic – ayahuaska – was served to clients.",
+    "p1": "In 2020, media were flooded with reports of a group of Polish shamans being busted in Heřmanice, Czech Republic. A police raid, the arrest of **Jarosław and Karolina Kordys**, and subsequent harsh sentences – 8.5 and 5.5 years in prison for running an illegal business of organizing so-called ceremonies where an exotic psychedelic – ayahuasca – was served to clients.",
     "p2": "Ayahuasca is a traditional Amazonian plant brew with powerful hallucinogenic effects. Due to its high content of DMT – a psychedelic substance that induces intense visions and altered states of consciousness – its possession and administration are prohibited in Poland and the Czech Republic. The finale of the Kordys' media spectacle was their pardon by the Czech president after two years of imprisonment.",
     "p3": "The curtain fell, the topic went quiet. But is this really the end of the story? In the shadow of this high-profile trial, a second one was taking place – quiet and lightning-fast, ending in a discreet verdict that not a single word was mentioned in the media. An analysis of court documents leads to astonishing conclusions.",
     "p4": "In the border town of Janov, a second, twin ayahuasca center operated, the co-owner of which turned out to be a billionaire – **Michał Kiciński**.",
@@ -101,7 +101,7 @@
     "timelineItem3": "The billionaire stands before the police. For the record, he refuses to testify about his past in this place.",
     "timelineItem4Title": "October 23, 2023",
     "timelineItem4Text": "Just 12 days after the troublesome interrogation, when the ownership formalities with Badi are already completed, a phone call is made to Stefanek with an offer to give away property worth millions for free.",
-    "timelineItem5": "The finale of the operation. Kiciński formally transfers Janov in the form of a donation. The property goes to a non-profit association – a front shell organization, managed by people who for years were part of this practice. The billionaire gets rid of the evidence, and the new owners gain a base for further activity under a new banner.",
+    "timelineItem5": "The finale of the operation. Kiciński formally transfers Janov in the form of a donation. The property goes to a non-profit association – a facade shell organization, run by people who were part of this practice for years. The billionaire gets rid of the evidence, and the new owners gain a base for further activity under a new name.",
     "pPhilanthropist5": "The cynicism of this situation is deepened by the fact that the recipients were not accidental ecology enthusiasts. **Krzysztof Stefanek**, who talks in the film about reversed logic and the beauty of volunteering, and his partner **Magdalena Drzewińska** in reality perfectly knew the dark history of Janov and the secret of Ilona's death. By accepting the donation, they were taking over not only the land, but also the __silence__.",
     "pPhilanthropist6": "Ultimately, the strategy proved successful. The investigation was discontinued before it began, and the property, which could be subject to forfeiture as an instrument of crime, was safely parked in the association. Kiciński remained an anonymous philanthropist, and Stefanek – the guardian of a new, clean settlement.",
     "pPhilanthropist7": "People who consciously profited from the tragedy were those for whom __covering up the truth__ became the foundation of their new, lucrative reality. Under the banner of a Non-profit organization, members of the **Stowarzyszenie Natury Zew** live from organizing holiday stays with a price list of donations instead of receipts, lying to their guests and publicly to everyone who comes across their idyllic videos. And after all, the compensation to the universe was supposed to go to a hospice, and not to a **shell organization**.",
@@ -116,7 +116,7 @@
     "timelineNydekItem1Details": "This property is used for organizing illegal ceremonies with the use of psychedelics administered to participants by Piotr Tracz.",
     "timelineNydekItem2": "Police assault on the Kordys' center. Panic erupts in the community.",
     "timelineNydekItem3": "**Marcin Iwiński** „sells” the properties in Nýdek.",
-    "pNydek5": "The buyer of the luxury property was not another investor, but **Piotr Tracz** himself – the same man who previously played the role of a shaman there.",
+    "pNydek5": "The buyer of the luxury property was not another investor, but **Piotr Tracz** – the same man who previously played the role of a shaman there.",
     "pNydek6": "This transaction raises doubts: how did a niche shaman finance the purchase of a luxury villa from one of the richest Poles? The new owner almost immediately changed the formal profile of activity to legal bodywork workshops. The coincidence of this sequence of events with Kiciński's donation in Janov allows us to see a repetitive pattern of owners withdrawing from infrastructure linked to illegal practices.",
     "sectionWiktor": "WIKTOR B.",
     "pWiktor1": "On March 9, 2026, Onet reveals to the public shocking behind-the-scenes of the activity of the center in Janov, Czech Republic. The journalistic investigation focuses on the death of a 54-year-old participant, **Ilona L.-H.**",
@@ -152,7 +152,14 @@
     "sourceJanovBuyoutTitle": "Transaction: Share Buyout (Janov)",
     "sourceWaybackTitle": "Archive: WWW.TRIBUNYDEK.COM",
     "openArchive": "Open Archive",
-    "katastrNote": "Note: Disclosure of personal data of the parties to the transaction requires logging in via the „Identita občana” option, selecting login via eIDAS."
+    "katastrNote": "Note: Disclosure of personal data of the parties to the transaction requires logging in via the „Identita občana” option, selecting login via eIDAS.",
+    "date21Sep2023": "September 21, 2023",
+    "date3Oct2023": "October 3, 2023",
+    "date11Oct2023": "October 11, 2023",
+    "date21Dec2023": "December 21, 2023",
+    "date25Jan2016": "January 25, 2016",
+    "date15Oct2020": "October 15, 2020",
+    "date15Jun2021": "June 15, 2021"
   },
   "prokuratura": {
     "title": "Burglary at the Prosecutor's Office in Wałbrzych. Vanishing Files.",
@@ -196,6 +203,11 @@
     "caseBurglaryStatus": "Status: Files stolen during burglary",
     "lost": "LOST"
   },
+  "sources": {
+    "kordysVerdict": "Justification for the verdict of Kordys, case ref. 30 T 5/2020",
+    "stefanekYT": "YouTube channel Osada Natury Zew",
+    "kicinskiNewsweek": "Newsweek, May 30, 2016"
+  },
   "ui": {
     "source": "Source",
     "transactionLabel": "Transaction No. (Katastr)",
@@ -204,22 +216,28 @@
     "videoSourceLabel": "Video Material:",
     "videoOperationalLabel": "Operational Material:",
     "pdfGalleryDownload": "Download PDF",
-    "pdfGalleryAtrappa": "Downloading PDF (Mockup)...",
+    "pdfGalleryAtrappa": "Downloading PDF (Dummy)...",
     "pdfGalleryCourtDocument": "Court document – shamanic case - Page",
     "pdfGalleryThumbnail": "Thumbnail - Page",
     "pdfGalleryBadowskiTitle": "Verdict of Bartosz Badowski (PDF Viewer)",
     "pdfGalleryKordysTitle": "Verdict of Jarosław Kordys (PDF Viewer)",
-    "pdfGalleryWiktorTitle": "Gallery: Wiktor's Death",
+    "pdfGalleryWiktorTitle": "Gallery: Death of Wiktor",
     "pdfGalleryCenaJanovTitle": "Document: Janov Property Price",
     "pdfGalleryCenaNydekTitle": "Document: Nýdek Property Price",
     "pdfGalleryWlasnoscKicinskiTitle": "Document: Janov Property Ownership",
     "pdfGalleryJanovPhotosTitle": "Gallery: Janov 252",
     "caseRefLabel": "case ref.",
-    "precinctLabel": "Precinct"
-  },
-  "sources": {
-    "kordysVerdict": "Justification for the verdict of Kordys, case ref. 30 T 5/2020",
-    "stefanekYT": "YouTube channel Osada Natury Zew",
-    "kicinskiNewsweek": "Newsweek, May 30, 2016"
+    "precinctLabel": "Precinct",
+    "tooltipArchivalEvidence": "Click to see archival evidence",
+    "tooltipVerdict": "Click to see the verdict",
+    "tooltipDocument": "Click to see the document",
+    "tooltipMunaySonqo": "Click to open the Munay Sonqo center website",
+    "tooltipDocumentation": "Click to see the documentation",
+    "tooltipOnet": "Open article on Onet.pl",
+    "tooltipDetails": "Click to see details",
+    "countryCzechRepublic": "Czech Republic",
+    "caseSignature": "Case Ref",
+    "policeNote": "Police official note",
+    "prosecutorArchive": "District Prosecutor's Office Archive"
   }
 }
