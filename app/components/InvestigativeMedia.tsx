@@ -1,11 +1,9 @@
 "use client";
 
 import React, { useEffect, useRef } from 'react';
-import { useLanguage } from './LanguageContext';
 
-export const ArticleVideoPlayer: React.FC<{ src: string; poster?: string }> = ({ src, poster }) => {
+export const ArticleVideoPlayer: React.FC<{ src: string; poster?: string; ariaLabel?: string }> = ({ src, poster, ariaLabel }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { t } = useLanguage();
 
   useEffect(() => {
     let hls: any;
@@ -36,7 +34,7 @@ export const ArticleVideoPlayer: React.FC<{ src: string; poster?: string }> = ({
         poster={poster}
         className="w-full h-auto object-contain"
         playsInline
-        aria-label={t.ui.videoCaptionLabel}
+        aria-label={ariaLabel}
       />
     </div>
   );

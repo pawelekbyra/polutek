@@ -1,26 +1,48 @@
-"use client";
-
 import React from 'react';
 import Script from 'next/script';
-import { InvestigativeArticle } from './components/InvestigativeArticle';
-import { useLanguage } from './components/LanguageContext';
+import Link from 'next/link';
+import { InvestigativeArticle } from '../components/InvestigativeArticle';
+import { getDictionary } from './dictionaries';
+import { Metadata } from 'next';
 
-export default function Page() {
-  const { t, locale, setLocale } = useLanguage();
+export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+  const t = await getDictionary(params.lang as any);
+  return {
+    title: t.metadata.title,
+    description: t.metadata.description,
+    openGraph: {
+      title: t.metadata.title,
+      description: t.metadata.description,
+      images: [
+        {
+          url: 'https://www.nasza-gazetka.pl/okladka.jpg',
+          width: 1536,
+          height: 804,
+          alt: t.metadata.ogAlt,
+        },
+      ],
+      locale: params.lang === 'pl' ? 'pl_PL' : params.lang === 'en' ? 'en_US' : 'es_ES',
+      type: 'article',
+    },
+  };
+}
+
+export default async function Page({ params: { lang } }: { params: { lang: string } }) {
+  const t = await getDictionary(lang as any);
 
   const newsArticleSchema = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    "url": "https://www.nasza-gazetka.pl",
-    "headline": "Afera CD Projekt: Kiciński, Ayahuasca i Mroczne Śledztwo",
-    "description": "Śmierć podczas ceremonii z Ayahuascą, zacieranie śladów i szokujące kulisy świata twórców CD Projekt.",
+    "url": `https://www.nasza-gazetka.pl/${lang}/`,
+    "headline": t.metadata.title,
+    "description": t.metadata.description,
     "image": ["https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/kordys-aresztowanie-cover-photo.png"],
     "datePublished": "2026-03-14",
     "dateModified": "2026-03-14",
     "author": [{
       "@type": "Person",
       "name": t.article.signatureName,
-      "url": "mailto:wojciech.kurka@protonmail.com"
+      "url": "mailto:marlow@nasza-gazetka.pl"
     }]
   };
 
@@ -40,18 +62,15 @@ export default function Page() {
           <div className="w-full flex flex-col items-center pt-12 pb-4 bg-white relative z-10">
             {/* Language Switcher */}
             <div className="absolute top-4 right-6 flex gap-2 font-mono text-[10px] font-black">
-              <button
-                onClick={() => setLocale('pl')}
-                className={`px-2 py-1 border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-colors ${locale === 'pl' ? 'bg-[#e8d154]' : 'bg-white hover:bg-gray-100'}`}
-              >
-                PL
-              </button>
-              <button
-                onClick={() => setLocale('en')}
-                className={`px-2 py-1 border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-colors ${locale === 'en' ? 'bg-[#e8d154]' : 'bg-white hover:bg-gray-100'}`}
-              >
-                EN
-              </button>
+              {['pl', 'en', 'es'].map((l) => (
+                <Link
+                  key={l}
+                  href={`/${l}/`}
+                  className={`px-2 py-1 border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-colors ${lang === l ? 'bg-[#e8d154]' : 'bg-white hover:bg-gray-100'}`}
+                >
+                  {l.toUpperCase()}
+                </Link>
+              ))}
             </div>
 
             {/* Top Badge Structure */}
@@ -73,16 +92,16 @@ export default function Page() {
             <div className="w-full text-center flex flex-col items-center px-4 md:px-6 box-border">
               {/* Main Title SEO */}
               <h1 className="text-black w-full mb-6 font-body font-black text-2xl md:text-5xl uppercase tracking-tighter leading-tight border-b-2 border-black pb-4">
-                Afera CD Projekt: Kiciński, Ayahuasca i Mroczne Śledztwo
+                {t.metadata.title}
               </h1>
 
               {/* Aesthetic Title */}
               <h2 className="text-black w-full mb-8 opacity-60">
                 <span className="block text-3xl md:text-5xl font-body font-black leading-[0.8] tracking-tighter uppercase">
-                  Eliksir
+                  {t.header.titlePart1}
                 </span>
                 <span className="block text-3xl md:text-5xl font-body font-black leading-[0.8] tracking-tighter uppercase">
-                  Wiedźmina
+                  {t.header.titlePart2}
                 </span>
               </h2>
 
@@ -105,7 +124,7 @@ export default function Page() {
           </div>
 
           {/* Main Article Content */}
-          <InvestigativeArticle />
+          <InvestigativeArticle lang={lang as any} />
 
         </div>
       </main>
