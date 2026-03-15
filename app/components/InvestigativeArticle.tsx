@@ -23,7 +23,7 @@ const ONET_INVESTIGATION_URL = "https://wiadomosci.onet.pl/tylko-w-onecie/ujawni
 const NYDEK_CADASTRAL_URL = "https://nahlizenidokn.cuzk.gov.cz/ZobrazObjekt.aspx?encrypted=NAHL~HzwvTudnvFVyH2v2DgIY058_1nN6gGpNDAvsLklPjNR5Mp_Oq_Fi9nHrDZdkU9y9GjVXaqbSuuYVc435bFSDklMy2IdfOtCyqzfDiZ9Fs5xcBRXy_EQY_DtxlD4oaDXe99t6mMV0K2iQipgpnDL45rdj3m7so5wXsxXsna0peW21BZ8oDcn-oCC_GPUmYMZkKLi2HlgoMpiC0QcV8k6VPPzD2fF1zH8rkRCGVfo--cZbizU4Je5atQoaRJ0h4Btd";
 const JANOV_BUYOUT_CADASTRAL_URL = "https://nahlizenidokn.cuzk.gov.cz/ZobrazObjekt.aspx?encrypted=NAHL~jk3kaNPeol_6EgW14KqJDSmcC9KeRpgml1z2x2yDMVICfISMq1_XgQDyvfDDC5CYc3zUjC_t0wwqbIK0G6HqHi7HjXtVuYkM2vgddOiUXuXyvvlbp6LTx2mQgEWLk0O9S5n2cNg_XqpGU0QWq-HgMC7RreBwWqFJ7LGguJsL9TrBkQv-ttgNk68XRNZBIrouFSlRz8qqFSvmvaxxW3VnbmOgphhjyjACItJvT6F_08e7WELPeJRhIBWMJdrLKbi7";
 
-export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' }) => {
+export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' | 'de' | 'fr' }) => {
   const t = await getDictionary(lang);
 
   return (
@@ -178,7 +178,13 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
             <FormattedText text={t.article.pPriceOfFreedom3} />
           </p>
 
-          <LegalNote term="Dohoda o vině">
+          <LegalNote term={
+            lang === 'pl' ? "Dohoda o vině (ugoda o winie i karze)" :
+            lang === 'en' ? "Dohoda o vině (plea bargain)" :
+            lang === 'es' ? "Dohoda o vině (acuerdo de culpabilidad)" :
+            lang === 'de' ? "Dohoda o vině (Verständigung im Strafverfahren)" :
+            "Dohoda o vině (comparution sur reconnaissance préalable de culpabilité)"
+          }>
             <FormattedText text={t.article.legalNoteDohoda} />
           </LegalNote>
 
