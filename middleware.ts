@@ -16,13 +16,11 @@ export function middleware(request: NextRequest) {
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   )
 
-  if (pathnameHasLocale) return
+  if (pathnameHasLocale || pathname === '/') return
 
-  // Redirect if there is no locale
+  // Redirect if there is no locale and not root
   const locale = getLocale(request)
   request.nextUrl.pathname = `/${locale}${pathname}`
-  // e.g. incoming is /products
-  // The new URL is now /en/products
   return NextResponse.redirect(request.nextUrl)
 }
 
