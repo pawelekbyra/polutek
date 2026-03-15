@@ -95,14 +95,14 @@ export default async function Page({ params: { lang } }: { params: { lang: strin
 
             <div className="w-full text-center flex flex-col items-center px-4 md:px-6 box-border">
               {/* Main Title SEO */}
-              <h1 className="text-black w-full mb-6 font-body font-black text-2xl md:text-5xl uppercase tracking-tighter leading-tight border-b-2 border-black pb-4">
+              <h1 className="text-black w-full mb-4 font-body font-black text-2xl md:text-5xl uppercase tracking-tighter leading-tight">
                 {t.metadata.title}
               </h1>
 
 
               {/* Lead Paragraph */}
-              <div className="max-w-2xl mx-auto mb-16">
-                <p className="text-sm md:text-2xl text-[#000000] leading-snug italic font-serif font-bold px-4">
+              <div className="max-w-3xl mx-auto mb-12">
+                <p className="text-sm md:text-xl text-[#000000] leading-snug italic font-serif font-bold px-4">
                   {t.header.lead}
                 </p>
               </div>
