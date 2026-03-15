@@ -5,6 +5,10 @@ import { InvestigativeArticle } from '@/app/components/InvestigativeArticle';
 import { getDictionary } from './dictionaries';
 import { Metadata } from 'next';
 
+export async function generateStaticParams() {
+  return [{ lang: 'pl' }, { lang: 'en' }, { lang: 'es' }, { lang: 'de' }, { lang: 'fr' }];
+}
+
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
   const t = await getDictionary(params.lang as any);
   return {
@@ -62,7 +66,7 @@ export default async function Page({ params: { lang } }: { params: { lang: strin
           <div className="w-full flex flex-col items-center pt-12 pb-4 bg-white relative z-10">
             {/* Language Switcher */}
             <div className="absolute top-4 right-6 flex gap-2 font-mono text-[10px] font-black">
-              {['pl', 'en', 'es'].map((l) => (
+              {['pl', 'en', 'es', 'de', 'fr'].map((l) => (
                 <Link
                   key={l}
                   href={`/${l}/`}
@@ -95,14 +99,6 @@ export default async function Page({ params: { lang } }: { params: { lang: strin
                 {t.metadata.title}
               </h1>
 
-              {/* Subtitle Bar */}
-              <div className="w-full border-y-[1px] border-black py-2.5 mb-8">
-                <p className="text-[13px] md:text-base text-black font-bold uppercase tracking-[0.2em] md:tracking-[0.5em] leading-tight md:leading-none not-italic flex flex-col md:block gap-2 md:gap-0">
-                  <span className="block md:inline">{t.header.subtitlePart1}</span>
-                  <span className="hidden md:inline"> </span>
-                  <span className="block md:inline">{t.header.subtitlePart2}</span>
-                </p>
-              </div>
 
               {/* Lead Paragraph */}
               <div className="max-w-2xl mx-auto mb-16">

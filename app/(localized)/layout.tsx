@@ -32,11 +32,7 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-export async function generateStaticParams() {
-  return [{ lang: 'pl' }, { lang: 'en' }, { lang: 'es' }, { lang: 'de' }, { lang: 'fr' }];
-}
-
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { lang?: string } }): Promise<Metadata> {
   const { lang } = params;
   const baseUrl = 'https://www.nasza-gazetka.pl';
 
@@ -72,10 +68,10 @@ export default function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { lang: string };
+  params: { lang?: string };
 }>) {
   return (
-    <html lang={params.lang} className={`${playfair.variable} ${ebGaramond.variable} ${unifraktur.variable} ${pirata.variable}`}>
+    <html lang={params?.lang || 'pl'} className={`${playfair.variable} ${ebGaramond.variable} ${unifraktur.variable} ${pirata.variable}`}>
       <body className="antialiased text-black">
         {children}
         <Analytics />

@@ -3,6 +3,10 @@ import { ProkuraturaArticle } from '@/app/components/ProkuraturaArticle';
 import { Metadata } from 'next';
 import { getDictionary } from '../dictionaries';
 
+export async function generateStaticParams() {
+  return [{ lang: 'pl' }, { lang: 'en' }, { lang: 'es' }, { lang: 'de' }, { lang: 'fr' }];
+}
+
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
   const t = await getDictionary(params.lang as any);
   return {
