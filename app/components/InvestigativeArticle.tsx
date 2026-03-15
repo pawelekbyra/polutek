@@ -3,7 +3,7 @@ import { CaseFile, LegalNote, PullQuote, LocationStampUI, TransactionStampUI, Fo
 import { ArticleVideoPlayer } from './InvestigativeMedia';
 import { InteractiveSpan } from './InteractiveSpan';
 import { GalleryProvider } from './GalleryContext';
-import { getDictionary } from '../[lang]/dictionaries';
+import { getDictionary } from '@/app/(localized)/[lang]/dictionaries';
 
 const PINATA_GATEWAY = "https://yellow-elegant-porpoise-917.mypinata.cloud/ipfs";
 const KORDYS_PDF_URL = "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/wyrokKordysa/wyrok-jaroslawa-kordysa-30-t-5-2021-28-01-2022.pdf";

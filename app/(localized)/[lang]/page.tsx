@@ -1,7 +1,7 @@
 import React from 'react';
 import Script from 'next/script';
 import Link from 'next/link';
-import { InvestigativeArticle } from '../components/InvestigativeArticle';
+import { InvestigativeArticle } from '@/app/components/InvestigativeArticle';
 import { getDictionary } from './dictionaries';
 import { Metadata } from 'next';
 
