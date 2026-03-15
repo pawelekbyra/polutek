@@ -12,6 +12,12 @@ function getLocale(request: NextRequest) {
 export function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
   const { pathname } = request.nextUrl
+
+  // ALLOW ROOT PATH
+  if (pathname === '/') {
+    return NextResponse.next()
+  }
+
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   )
@@ -21,8 +27,6 @@ export function middleware(request: NextRequest) {
   // Redirect if there is no locale
   const locale = getLocale(request)
   request.nextUrl.pathname = `/${locale}${pathname}`
-  // e.g. incoming is /products
-  // The new URL is now /en/products
   return NextResponse.redirect(request.nextUrl)
 }
 
@@ -30,7 +34,5 @@ export const config = {
   matcher: [
     // Skip all internal paths (_next)
     '/((?!_next|favicon.ico|images|pdf|fonts|api).*)',
-    // Optional: only run on root (/)
-    // '/'
   ],
 }
