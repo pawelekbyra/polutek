@@ -33,7 +33,7 @@ export const viewport: Viewport = {
 };
 
 export async function generateStaticParams() {
-  return [{ lang: 'pl' }, { lang: 'en' }, { lang: 'es' }];
+  return [{ lang: 'pl' }, { lang: 'en' }, { lang: 'es' }, { lang: 'de' }, { lang: 'fr' }];
 }
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
@@ -48,6 +48,8 @@ export async function generateMetadata({ params }: { params: { lang: string } })
         'pl': `${baseUrl}/pl/`,
         'en': `${baseUrl}/en/`,
         'es': `${baseUrl}/es/`,
+        'de': `${baseUrl}/de/`,
+        'fr': `${baseUrl}/fr/`,
       },
     },
     icons: {
