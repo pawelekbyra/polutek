@@ -178,13 +178,7 @@ export const InvestigativeArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' 
             <FormattedText text={t.article.pPriceOfFreedom3} />
           </p>
 
-          <LegalNote term={
-            lang === 'pl' ? "Dohoda o vině (ugoda o winie i karze)" :
-            lang === 'en' ? "Dohoda o vině (plea bargain)" :
-            lang === 'es' ? "Dohoda o vině (acuerdo de culpabilidad)" :
-            lang === 'de' ? "Dohoda o vině (Verständigung im Strafverfahren)" :
-            "Dohoda o vině (comparution sur reconnaissance préalable de culpabilité)"
-          }>
+          <LegalNote term={t.article.legalTermDohoda}>
             <FormattedText text={t.article.legalNoteDohoda} />
           </LegalNote>
 
