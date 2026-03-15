@@ -1,6 +1,6 @@
 import React from 'react';
 import { CaseFile, LegalNote, PullQuote, FormattedText } from './InvestigativeUI';
-import { getDictionary } from '../[lang]/dictionaries';
+import { getDictionary } from '@/app/(localized)/[lang]/dictionaries';
 
 export const ProkuraturaArticle = async ({ lang }: { lang: 'pl' | 'en' | 'es' }) => {
   const t = await getDictionary(lang);
