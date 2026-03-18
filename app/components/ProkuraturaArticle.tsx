@@ -4,7 +4,6 @@ import React from 'react';
 import { CaseFile, FormattedText } from './InvestigativeUI';
 import { Music, Download, Calendar } from 'lucide-react';
 import { useGallery } from './GalleryContext';
-import Image from 'next/image';
 
 const AudioPlayer = ({ src, title, downloadLabel }: { src: string; title: string, downloadLabel: string }) => (
   <div className="mt-4 bg-black/5 rounded-sm p-4 border border-black/10">
@@ -74,19 +73,18 @@ export const ProkuraturaArticle = ({ t }: { t: any }) => {
             </p>
 
             <div
-              className="relative group cursor-pointer border-2 border-black/10 rounded-sm overflow-hidden shadow-lg hover:shadow-xl transition-all hover:scale-[1.01] active:scale-[0.99]"
+              className="relative group cursor-pointer border-2 border-black/10 rounded-sm overflow-hidden shadow-2xl hover:shadow-black/20 transition-all hover:scale-[1.01] active:scale-[0.99] max-w-2xl mx-auto bg-white"
               onClick={() => setSmsGalleryOpen(true)}
             >
-              <div className="aspect-[9/16] relative w-full max-w-sm mx-auto">
-                <Image
+              <div className="relative w-full">
+                <img
                   src="/skandalicznysms.png"
                   alt="Evidence 3 - SMS"
-                  fill
-                  className="object-contain"
+                  className="w-full h-auto block"
                 />
               </div>
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
-                <div className="bg-black text-white px-4 py-2 text-xs font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center pointer-events-none">
+                <div className="bg-black text-white px-6 py-3 text-sm font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity shadow-xl">
                   {t.ui.tooltipDetails}
                 </div>
               </div>
