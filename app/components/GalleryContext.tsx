@@ -11,6 +11,7 @@ interface GalleryContextType {
   setCenaNydekGalleryOpen: (open: boolean) => void;
   setWlasnoscKicinskiGalleryOpen: (open: boolean) => void;
   setJanovPhotosGalleryOpen: (open: boolean) => void;
+  setSmsGalleryOpen: (open: boolean) => void;
 }
 
 const GalleryContext = createContext<GalleryContextType | undefined>(undefined);
@@ -79,6 +80,10 @@ const JANOV_PHOTOS_GALLERY = [
   "https://pub-309ebc4b2d654f78b2a22e1d57917b94.r2.dev/Janov/janov23.jpg"
 ];
 
+const SMS_GALLERY = [
+  "/skandalicznysms.png"
+];
+
 interface GalleryModalsProps {
   badowskiGalleryOpen: boolean;
   setBadowskiGalleryOpen: (open: boolean) => void;
@@ -94,6 +99,8 @@ interface GalleryModalsProps {
   setWlasnoscKicinskiGalleryOpen: (open: boolean) => void;
   janovPhotosGalleryOpen: boolean;
   setJanovPhotosGalleryOpen: (open: boolean) => void;
+  smsGalleryOpen: boolean;
+  setSmsGalleryOpen: (open: boolean) => void;
   ui: any;
 }
 
@@ -112,6 +119,8 @@ const GalleryModals: React.FC<GalleryModalsProps> = ({
   setWlasnoscKicinskiGalleryOpen,
   janovPhotosGalleryOpen,
   setJanovPhotosGalleryOpen,
+  smsGalleryOpen,
+  setSmsGalleryOpen,
   ui
 }) => {
   return (
@@ -175,6 +184,14 @@ const GalleryModals: React.FC<GalleryModalsProps> = ({
         title={ui.pdfGalleryJanovPhotosTitle}
         ui={ui}
       />
+
+      <PDFGallery
+        isOpen={smsGalleryOpen}
+        onClose={() => setSmsGalleryOpen(false)}
+        images={SMS_GALLERY}
+        title={ui.pdfGallerySmsTitle || "SMS"}
+        ui={ui}
+      />
     </>
   );
 };
@@ -187,6 +204,7 @@ export const GalleryProvider: React.FC<{ children: React.ReactNode, ui: any }> =
   const [cenaNydekGalleryOpen, setCenaNydekGalleryOpen] = useState(false);
   const [wlasnoscKicinskiGalleryOpen, setWlasnoscKicinskiGalleryOpen] = useState(false);
   const [janovPhotosGalleryOpen, setJanovPhotosGalleryOpen] = useState(false);
+  const [smsGalleryOpen, setSmsGalleryOpen] = useState(false);
 
   return (
     <GalleryContext.Provider value={{
@@ -196,7 +214,8 @@ export const GalleryProvider: React.FC<{ children: React.ReactNode, ui: any }> =
       setCenaJanovGalleryOpen,
       setCenaNydekGalleryOpen,
       setWlasnoscKicinskiGalleryOpen,
-      setJanovPhotosGalleryOpen
+      setJanovPhotosGalleryOpen,
+      setSmsGalleryOpen
     }}>
       {children}
       <GalleryModals
@@ -214,6 +233,8 @@ export const GalleryProvider: React.FC<{ children: React.ReactNode, ui: any }> =
         setWlasnoscKicinskiGalleryOpen={setWlasnoscKicinskiGalleryOpen}
         janovPhotosGalleryOpen={janovPhotosGalleryOpen}
         setJanovPhotosGalleryOpen={setJanovPhotosGalleryOpen}
+        smsGalleryOpen={smsGalleryOpen}
+        setSmsGalleryOpen={setSmsGalleryOpen}
         ui={ui}
       />
     </GalleryContext.Provider>
