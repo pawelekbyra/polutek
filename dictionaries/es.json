@@ -13,7 +13,7 @@
     "lead": "Negocio psicodélico, redadas policiales y una tragedia que nadie debía conocer. Los archivos y registros públicos revelan cómo los millonarios polacos Marcin Iwiński y Michał Kiciński, creadores del juego 'The Witcher', financiaron el inframundo chamánico."
   },
   "article": {
-    "p1": "En 2020, los medios se inundaron con informes sobre el desmantelamiento de un grupo de chamanes polacos en Hermanovice, República Checa. Una redada policial, el arresto de **Jarosław y Karolina Kordys**, y las posteriores y severas condenas: 8,5 y 5,5 años de prisión por dirigir un negocio ilegal de organización de las llamadas ceremonias en las que se servía a los clientes un psicodélico exótico: la ayahuasca.",
+    "p1": "En 2020, los medios se inundaron con informes sobre el desmantelamiento de un grupo de chamanes polacos en Heřmanice, República Checa. Una redada policial, el arresto de **Jarosław y Karolina Kordys**, y las posteriores y severas condenas: 8,5 y 5,5 años de prisión por dirigir un negocio ilegal de organización de las llamadas ceremonias en las que se servía a los clientes un psicodélico exótico: la ayahuasca.",
     "p2": "La ayahuasca es un brebaje tradicional de plantas amazónicas con potentes efectos alucinógenos. Debido a su alto contenido de DMT, una sustancia psicodélica que induce visiones intensas y estados alterados de conciencia, su posesión y administración están prohibidas en Polonia y la República Checa. El final del espectáculo mediático de los Kordys fue su indulto por parte del presidente checo tras dos años de encarcelamiento.",
     "p3": "Cayó el telón, el tema se silenció. Pero, ¿es realmente este el fin de la historia? A la sombra de este juicio de alto perfil, se desarrollaba un segundo, silencioso y veloz, que terminó en una sentencia discreta de la que no se mencionó ni una sola palabra en los medios. Un análisis de los documentos judiciales conduce a conclusiones asombrosas.",
     "p4": "En la ciudad fronteriza de Janov, funcionaba un segundo centro de ayahuasca gemelo, cuyo copropietario resultó ser un multimillonario: **Michał Kiciński**.",
@@ -32,7 +32,7 @@
     "pOwnershipKicinskiConclusion1": "El segundo nombre, **Dawid**, llena perfectamente el vacío en la abreviatura anonimizada **Michał D. K.**",
     "pOwnershipKicinskiConclusion2": "!!El socio del chamán era el creador de The Witcher, uno de los polacos más ricos.!!",
     "sectionEavesdropping": "Bajo vigilancia",
-    "pEavesdropping1": "Un gran avance en el caso de los organizadores de ceremonias de ayahuasca in 2020 se produjo gracias a las técnicas operativas policiales. El teléfono de Kordys estaba bajo vigilancia constante, y los oficiales escucharon en vivo cuando el 24.08.2020 se produjo un intercambio nervioso entre **Badowski y Kordys**.",
+    "pEavesdropping1": "Un gran avance en el caso de los organizadores de ceremonias de ayahuasca en 2020 se produjo gracias a las técnicas operativas policiales. El teléfono de Kordys estaba bajo vigilancia constante, y los oficiales escucharon en vivo cuando el 24.08.2020 se produjo un intercambio nervioso entre **Badowski y Kordys**.",
     "pEavesdropping2": "Kordys llamó a Badowski claramente alarmado por las noticias que le habían llegado. Temía que la tragedia de la que se susurraba entre bastidores pudiera destruir su imperio. El tribunal, en la justificación de la sentencia, reconstruye con precisión este momento:",
     "caseFileConversation": "el acusado [Jarosław Kordys] discute con B. que le llegó información de que ~~una mujer murió~~ en las instalaciones de Janov.",
     "caseFileConversationTitle": "Reconstrucción de la conversación (Justificación judicial)",
@@ -51,9 +51,9 @@
     "caseFileSearch": "se aseguraron objetos en la propiedad... además de marihuana, también se aseguraron sustancias que contenían DMT con un volumen de aproximadamente 2 kg.",
     "pEavesdropping8": "Durante la intervención policial, se identificó allí a 15 ciudadanos polacos que habrían participado en la ceremonia. Entre ellos se encontraban asiduos y amigos cercanos de Badowski: **Krzysztof Stefanek** y **Magdalena Drzewińska**, cuya presencia en el momento de la llegada de los servicios es significativa en el contexto de su papel posterior en esta historia.",
     "sectionPriceOfFreedom": "El precio de la libertad",
-    "pPriceOfFreedom1": "Cuando el 26 de agosto de 2020, la policía checa entró en la propiedad de Janov, perteneciente a **Bartosz Badowski** y al multimillonario **Michał Kiciński**, Jarosław Kordys en Hermanovice todavía se sentía seguro. Aún no sabía que el reloj había empezado a correr hacia su propia catastrofé. Solo 7 semanas después de la discreta redada contra Badowski, la policía llamó a la puerta de los Kordys.",
+    "pPriceOfFreedom1": "Cuando el 26 de agosto de 2020, la policía checa entró en la propiedad de Janov, perteneciente a **Bartosz Badowski** y al multimillonario **Michał Kiciński**, Jarosław Kordys en Heřmanice todavía se sentía seguro. Aún no sabía que el reloj había empezado a correr hacia su propia catástrofe. Solo 7 semanas después de la discreta redada contra Badowski, la policía llamó a la puerta de los Kordys.",
     "pPriceOfFreedom2": "El 15 de octubre de 2020, el idilio en su centro fue interrumpido por el sonido de granadas de estruendo. La unidad antiterrorista checa no se anduvo con rodeos: oficiales enmascarados con armas largas irrumpieron en el edificio, tirando al suelo a los futuros protagonistas de un escándalo de alto perfil.",
-    "videoArrestCaption": "Grabación de la redada policial en el centro de Hermanovice (15.10.2020)",
+    "videoArrestCaption": "Grabación de la redada policial en el centro de Heřmanice (15.10.2020)",
     "pPriceOfFreedom3": "¿Qué sucedió en estos menos de dos meses? La respuesta reside en un término legal checo:",
     "legalTermDohoda": "Dohoda o vině (acuerdo de culpabilidad)",
     "legalNoteDohoda": "Procedimiento penal checo que permite al acusado someterse voluntariamente a una pena a cambio de una sentencia más leve, sin llevar a cabo un juicio probatorio completo ni llamar a testigos.",
@@ -174,7 +174,7 @@
     "evidence2Title": "Prueba 2",
     "evidence2Desc": "Se trata de una grabación en la que **Leszek Chmura** responde a preguntas en otro caso, 2019.",
     "evidence3Title": "Prueba 3",
-    "evidence3Desc": "SMS de Leszek Chmura del 26.01.2018.",
+    "evidence3Desc": "SMS de Leszek Chmura del 26.01.2017.",
     "downloadAudio": "Descargar archivo de audio",
     "date26Jan": "26 de enero"
   },
