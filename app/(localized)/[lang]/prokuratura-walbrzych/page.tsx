@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProkuraturaArticle } from '@/app/components/ProkuraturaArticle';
+import { GalleryProvider } from '@/app/components/GalleryContext';
 import { Metadata } from 'next';
 import { getDictionary } from '../dictionaries';
 
@@ -74,7 +75,9 @@ export default async function Page({ params: { lang } }: { params: { lang: strin
         </div>
 
         {/* Main Article Content */}
-        <ProkuraturaArticle lang={lang as any} />
+        <GalleryProvider ui={t.ui}>
+          <ProkuraturaArticle t={t} />
+        </GalleryProvider>
 
         <footer className="mt-8 pb-12 text-center w-full">
             <a href="https://www.nasza-gazetka.pl" className="inline-block font-serif text-base font-bold text-black/60 hover:text-black hover:bg-[#e8d154]/20 transition-all underline decoration-1 underline-offset-8 px-4 py-2 tracking-[0.2em]">
