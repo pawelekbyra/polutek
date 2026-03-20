@@ -1,6 +1,7 @@
+import { locales } from '@/app/i18n-config';
+
 export default function sitemap() {
   const baseUrl = 'https://www.nasza-gazetka.pl';
-  const locales = ['pl', 'en', 'es', 'de', 'fr'];
   const routes = ['', 'prokuratura-rejonowa-w-walbrzychu'];
 
   const entries = locales.flatMap((lang) =>

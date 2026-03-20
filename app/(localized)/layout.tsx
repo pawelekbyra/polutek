@@ -3,6 +3,7 @@ import "plyr/dist/plyr.css";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from 'next';
 import { Playfair_Display, EB_Garamond, UnifrakturMaguntia, Pirata_One } from 'next/font/google';
+import { locales, defaultLocale } from '@/app/i18n-config';
 
 const playfair = Playfair_Display({
   subsets: ['latin', 'latin-ext'],
@@ -40,13 +41,9 @@ export async function generateMetadata({ params }: { params: { lang?: string } }
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: `${baseUrl}/${lang}/`,
-      languages: {
-        'pl': `${baseUrl}/pl/`,
-        'en': `${baseUrl}/en/`,
-        'es': `${baseUrl}/es/`,
-        'de': `${baseUrl}/de/`,
-        'fr': `${baseUrl}/fr/`,
-      },
+      languages: Object.fromEntries(
+        locales.map((l) => [l, `${baseUrl}/${l}/`])
+      ),
     },
     icons: {
       icon: '/favicon.png',
@@ -71,7 +68,7 @@ export default function RootLayout({
   params: { lang?: string };
 }>) {
   return (
-    <html lang={params?.lang || 'pl'} data-theme="investigative" className={`${playfair.variable} ${ebGaramond.variable} ${unifraktur.variable} ${pirata.variable}`}>
+    <html lang={params?.lang || defaultLocale} data-theme="investigative" className={`${playfair.variable} ${ebGaramond.variable} ${unifraktur.variable} ${pirata.variable}`}>
       <body className="antialiased text-black bg-base-100">
         {children}
         <Analytics />

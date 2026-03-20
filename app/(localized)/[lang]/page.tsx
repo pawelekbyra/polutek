@@ -4,9 +4,10 @@ import Link from 'next/link';
 import { InvestigativeArticle } from '@/app/components/InvestigativeArticle';
 import { getDictionary } from './dictionaries';
 import { Metadata } from 'next';
+import { locales, Locale } from '@/app/i18n-config';
 
 export async function generateStaticParams() {
-  return [{ lang: 'pl' }, { lang: 'en' }, { lang: 'es' }, { lang: 'de' }, { lang: 'fr' }];
+  return locales.map((lang) => ({ lang }));
 }
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
@@ -18,6 +19,7 @@ export async function generateMetadata({ params }: { params: { lang: string } })
     es: 'es_ES',
     de: 'de_DE',
     fr: 'fr_FR',
+    cs: 'cs_CZ',
   };
 
   return {
@@ -40,8 +42,8 @@ export async function generateMetadata({ params }: { params: { lang: string } })
   };
 }
 
-export default async function Page({ params: { lang } }: { params: { lang: string } }) {
-  const t = await getDictionary(lang as any);
+export default async function Page({ params: { lang } }: { params: { lang: Locale } }) {
+  const t = await getDictionary(lang);
 
   const newsArticleSchema = {
     "@context": "https://schema.org",
@@ -75,7 +77,7 @@ export default async function Page({ params: { lang } }: { params: { lang: strin
           <div className="w-full flex flex-col items-center pt-12 pb-4 bg-white relative z-10">
             {/* Language Switcher */}
             <div className="absolute top-4 right-6 flex gap-2 font-mono text-[10px] font-black">
-              {['pl', 'en', 'es', 'de', 'fr'].map((l) => (
+              {locales.map((l) => (
                 <Link
                   key={l}
                   href={`/${l}/`}

@@ -1,12 +1,11 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-
-let locales = ['pl', 'en', 'es', 'de', 'fr']
+import { locales, defaultLocale } from '@/app/i18n-config'
 
 // Get the preferred locale, similar to the above or using a library
 function getLocale(request: NextRequest) {
-  // For this project, we default to 'pl' if not specified
-  return 'pl'
+  // For this project, we default to the default locale if not specified
+  return defaultLocale
 }
 
 export function middleware(request: NextRequest) {

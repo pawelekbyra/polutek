@@ -1,14 +1,21 @@
 import React from 'react';
 import Link from 'next/link';
+import { locales } from '@/app/i18n-config';
 
 export default function RootPage() {
-  const languages = [
-    { code: 'pl', name: 'Polski' },
-    { code: 'en', name: 'English' },
-    { code: 'es', name: 'Español' },
-    { code: 'de', name: 'Deutsch' },
-    { code: 'fr', name: 'Français' },
-  ];
+  const languageNames: Record<string, string> = {
+    pl: 'Polski',
+    en: 'English',
+    es: 'Español',
+    de: 'Deutsch',
+    fr: 'Français',
+    cs: 'Čeština',
+  };
+
+  const languages = locales.map(code => ({
+    code,
+    name: languageNames[code] || code.toUpperCase()
+  }));
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4 font-serif">

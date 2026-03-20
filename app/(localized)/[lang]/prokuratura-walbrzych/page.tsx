@@ -3,13 +3,14 @@ import { ProkuraturaArticle } from '@/app/components/ProkuraturaArticle';
 import { GalleryProvider } from '@/app/components/GalleryContext';
 import { Metadata } from 'next';
 import { getDictionary } from '../dictionaries';
+import { locales, Locale } from '@/app/i18n-config';
 
 export async function generateStaticParams() {
-  return [{ lang: 'pl' }, { lang: 'en' }, { lang: 'es' }, { lang: 'de' }, { lang: 'fr' }];
+  return locales.map((lang) => ({ lang }));
 }
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
-  const t = await getDictionary(params.lang as any);
+  const t = await getDictionary(params.lang as Locale);
   return {
     title: t.prokuratura.title,
     description: t.prokuratura.description,
@@ -20,8 +21,8 @@ export async function generateMetadata({ params }: { params: { lang: string } })
   };
 }
 
-export default async function Page({ params: { lang } }: { params: { lang: string } }) {
-  const t = await getDictionary(lang as any);
+export default async function Page({ params: { lang } }: { params: { lang: Locale } }) {
+  const t = await getDictionary(lang);
 
   return (
     <main className="min-h-screen bg-white text-[#000000] selection:bg-[#e8d154]/50 font-body flex flex-col items-center relative">
