@@ -9,12 +9,12 @@ export const CaseFile = ({ title, children, type = 'evidence', highlight = false
   };
 
   return (
-    <div className={`not-prose my-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-sm overflow-hidden break-inside-avoid text-left relative z-10 ${highlight ? 'bg-[#e8d154]' : 'bg-white/40'}`}>
-      <div className="bg-black px-4 py-2 flex items-center gap-2 text-xs font-mono text-white uppercase tracking-wider">
+    <div className={`card my-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-sm overflow-hidden break-inside-avoid text-left relative z-10 ${highlight ? 'bg-primary' : 'bg-base-100/40'}`}>
+      <div className="bg-neutral px-4 py-2 flex items-center gap-2 text-xs font-mono text-neutral-content uppercase tracking-wider">
         <span className="flex items-center">{getIcon()}</span>
         <span>{title}</span>
       </div>
-      <div className="p-6 pb-8 md:pb-6 font-mono text-sm md:text-base leading-relaxed text-[#000000] antialiased relative">
+      <div className="card-body p-6 pb-8 md:pb-6 font-mono text-sm md:text-base leading-relaxed text-black antialiased relative">
         {children}
         {source && (
           <div className="absolute bottom-1 right-4 text-[8px] md:text-[9px] text-black/50 uppercase tracking-widest font-mono pointer-events-none select-none text-right">
@@ -27,13 +27,13 @@ export const CaseFile = ({ title, children, type = 'evidence', highlight = false
 };
 
 export const LegalNote = ({ term, children }: { term: string, children: React.ReactNode }) => (
-  <div className="not-prose my-10 flex gap-4 p-5 bg-[#e8d154]/20 border-l-[6px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-left relative z-10">
-    <div className="text-black/40 mt-1">
+  <div className="alert my-10 flex gap-4 p-5 bg-primary/20 border-2 border-black border-l-[6px] rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-left relative z-10">
+    <div className="text-black/40">
       <Scale size={32} strokeWidth={1.5} />
     </div>
-    <div>
-      <strong className="block font-display font-black uppercase text-[#000000] text-lg mb-2">{term}</strong>
-      <div className="text-[#000000] text-sm leading-relaxed font-mono italic">{children}</div>
+    <div className="flex flex-col">
+      <strong className="block font-display font-black uppercase text-black text-lg mb-2">{term}</strong>
+      <div className="text-black text-sm leading-relaxed font-mono italic">{children}</div>
     </div>
   </div>
 );
@@ -50,19 +50,19 @@ export const FormattedText = ({ text }: { text: string }) => {
           return <strong key={i} className="font-black">{part.slice(2, -2)}</strong>;
         }
         if (part.startsWith('==') && part.endsWith('==')) {
-          return <span key={i} className="bg-[#e8d154]/80 px-1 font-black text-black box-decoration-clone">{part.slice(2, -2)}</span>;
+          return <mark key={i} className="bg-primary/80 px-1 font-black text-black box-decoration-clone">{part.slice(2, -2)}</mark>;
         }
         if (part.startsWith('!!') && part.endsWith('!!')) {
-          return <span key={i} className="bg-red-600 font-black text-white shadow-sm box-decoration-clone inline-block leading-tight px-1">{part.slice(2, -2)}</span>;
+          return <span key={i} className="badge badge-error rounded-none font-black text-white shadow-sm box-decoration-clone inline-block leading-tight px-1 h-auto py-0">{part.slice(2, -2)}</span>;
         }
         if (part.startsWith('__') && part.endsWith('__')) {
-          return <span key={i} className="underline decoration-[#e8d154] decoration-4 underline-offset-4">{part.slice(2, -2)}</span>;
+          return <span key={i} className="underline decoration-primary decoration-4 underline-offset-4">{part.slice(2, -2)}</span>;
         }
         if (part.startsWith('++') && part.endsWith('++')) {
-          return <span key={i} className="underline decoration-black decoration-2 underline-offset-4">{part.slice(2, -2)}</span>;
+          return <span key={i} className="underline decoration-neutral decoration-2 underline-offset-4">{part.slice(2, -2)}</span>;
         }
         if (part.startsWith('~~') && part.endsWith('~~')) {
-          return <span key={i} className="underline decoration-red-600 decoration-2 underline-offset-4">{part.slice(2, -2)}</span>;
+          return <span key={i} className="underline decoration-error decoration-2 underline-offset-4">{part.slice(2, -2)}</span>;
         }
         return part;
       })}
@@ -87,7 +87,7 @@ export const PullQuote = ({ quote, author, source }: { quote: string, author: st
 export const LocationStampUI = ({ name, code, plot, lv, href, t }: { name: string, code: string, plot: string, lv: string, href?: string, t: any }) => {
   const content = (
     <>
-      <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed text-black/40 group-hover:text-black transition-colors">
+      <div className="bg-neutral/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed text-black/40 group-hover:text-black transition-colors">
         <MapPin size={24} strokeWidth={1.5} />
       </div>
       <div className="py-2">
@@ -102,7 +102,7 @@ export const LocationStampUI = ({ name, code, plot, lv, href, t }: { name: strin
     </>
   );
 
-  const className = "not-prose relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group max-w-[280px] cursor-pointer";
+  const className = "stats relative z-10 border-2 border-black bg-base-100 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-primary/20 transition-colors text-left group max-w-[280px] cursor-pointer";
 
   if (href) {
     return (
@@ -120,8 +120,8 @@ export const LocationStampUI = ({ name, code, plot, lv, href, t }: { name: strin
 };
 
 export const TransactionStampUI = ({ label, value, subDetails }: { label: string, value: string, subDetails?: string }) => (
-  <div className="not-prose relative z-10 border-2 border-black bg-white p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e8d154]/20 transition-colors text-left group max-w-[280px]">
-     <div className="bg-black/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed text-black/40 group-hover:text-black transition-colors">
+  <div className="stats relative z-10 border-2 border-black bg-base-100 p-1 pr-6 rounded-sm flex items-center gap-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-primary/20 transition-colors text-left group max-w-[280px]">
+     <div className="bg-neutral/5 h-full p-3 flex items-center justify-center border-r-2 border-black border-dashed text-black/40 group-hover:text-black transition-colors">
         <Stamp size={24} strokeWidth={1.5} />
      </div>
      <div className="py-2">

@@ -79,7 +79,7 @@ export default async function Page({ params: { lang } }: { params: { lang: strin
                 <Link
                   key={l}
                   href={`/${l}/`}
-                  className={`px-2 py-1 border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-colors ${lang === l ? 'bg-[#e8d154]' : 'bg-white hover:bg-gray-100'}`}
+                  className={`btn btn-xs btn-outline border-2 border-black rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-primary/20 hover:text-black transition-colors ${lang === l ? 'bg-primary' : 'bg-base-100'}`}
                 >
                   {l.toUpperCase()}
                 </Link>
@@ -88,7 +88,7 @@ export default async function Page({ params: { lang } }: { params: { lang: strin
 
             {/* Top Badge Structure */}
             <div className="flex flex-col items-center mb-4">
-              <div className="border-[2px] border-black px-2 md:px-5 py-1.5 bg-white mb-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+              <div className="badge border-[2px] border-black px-2 md:px-5 py-3 h-auto bg-base-100 mb-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] rounded-none">
                 <span className="text-[10px] md:text-sm font-black uppercase tracking-[0.2em] md:tracking-[0.3em] leading-none block text-center">
                   {t.header.investigation}
                 </span>
