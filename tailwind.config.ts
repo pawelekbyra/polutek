@@ -99,7 +99,25 @@ const config = {
     require("tailwindcss-animate"),
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
+    require("daisyui"),
   ],
+  daisyui: {
+    themes: [
+      {
+        investigative: {
+          "primary": "#e8d154",
+          "secondary": "#722f37",
+          "accent": "#b45309",
+          "neutral": "#09090b",
+          "base-100": "#ffffff",
+          "info": "#71717a",
+          "success": "#22c55e",
+          "warning": "#f59e0b",
+          "error": "#ef4444",
+        },
+      },
+    ],
+  },
 } satisfies Config
 
 export default config

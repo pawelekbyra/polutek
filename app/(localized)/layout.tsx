@@ -71,8 +71,8 @@ export default function RootLayout({
   params: { lang?: string };
 }>) {
   return (
-    <html lang={params?.lang || 'pl'} className={`${playfair.variable} ${ebGaramond.variable} ${unifraktur.variable} ${pirata.variable}`}>
-      <body className="antialiased text-black">
+    <html lang={params?.lang || 'pl'} data-theme="investigative" className={`${playfair.variable} ${ebGaramond.variable} ${unifraktur.variable} ${pirata.variable}`}>
+      <body className="antialiased text-black bg-base-100">
         {children}
         <Analytics />
       </body>
